@@ -223,3 +223,29 @@ void ThreadSync(TThreadProc fn) {
    
 }
 ```
+
+##### 集合类型操作("set" type operation)  
+
+```c
+// 集合加法，val...中存储为位的索引，下标为0
+// Lazarus "set" addition, an index stored as a bit in val... with a subscript of 0
+TSet Include(TSet s, uint8_t val) {
+    return (TSet)(s | (1 << val));
+}
+
+// 集合减法，val...中存储为位的索引，下标为0
+// "set" subtraction, index stored as a bit in val..., subscript 0
+TSet Exclude(TSet s, uint8_t val) {
+    return (TSet)(s & (~(1 << val)));
+}
+
+// 集合类型的判断，val表示位数，下标为0
+// Judgment of "set" type, val indicates the number of digits, and the subscript is 0
+BOOL InSet(uint32_t s, uint8_t val) {
+    if ((s&(1 << val)) != 0) {
+        return TRUE;
+    }
+    return FALSE;
+}
+```
+
