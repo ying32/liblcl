@@ -191,7 +191,7 @@ SetMessageCallback(GET_CALLBACK(doMessageCallbackProc));
 * 线程同步回调(Thread synchronization callback)  
 ```c
 
-TThreadProc threadSyncProc;
+static TThreadProc threadSyncProc;
 
 void* LCLAPI doThreadSyncCallbackProc() {
     if (threadSyncProc) {
