@@ -113,6 +113,10 @@ Printer = Printer_Instance();
 #define GET_VAL(index) \
 getParamOf(index, args)
 
+#define Syscall12(addr, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) \
+    ((void(*)(uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t))addr)(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
+
+
 // 回调函数原型(Callback function prototype)
 // f: 通过SetOnXXX传入的Id或者函数指针(Id or function pointer passed in through SetOnXXX) 
 // args: 参数组数指针，通过getParamOf来获取每个成员(Parameter group number pointer, Get each member by getParamOf)
