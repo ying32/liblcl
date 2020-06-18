@@ -33,6 +33,36 @@ The `utf-8` encoding is used by default on all platforms.
 
 ----
 
+##### 使用结构化异常处理的函数（dll中导出）
+
+##### Use structured exception handling functions (exported in dll)  
+
+```c
+// 类型定义(Type definition)
+typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+
+// 从DLL中获取此函数(Get this function from DLL)
+pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");  
+
+// 使用方法(Instructions)
+static void* pApplication_Instance; 
+pApplication_Instance = get_proc_addr("Application_Instance");  
+
+// 
+#define GET_FUNC_ADDR(name) \
+if(!p##name) \
+   p##name = get_proc_addr(""#name""); \
+assert(p##name != NULL); 
+
+//
+TApplication Application_Instance() {
+    GET_FUNC_ADDR(Application_Instance)
+    return (TApplication)MySyscall(pApplication_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+```
+
+----
+
 ##### 默认的实例类(Default instanced class)
 
 *无需手动调用创建和释放。*  
@@ -40,11 +70,19 @@ The `utf-8` encoding is used by default on all platforms.
 *No need to manually call create and release.*  
 
 ```c
+// 定义(definition)
 static TApplication Application; // 应用程序(Application)
 static TScreen Screen;           // 屏幕(Screen)
 static TMouse  Mouse;            // 鼠标(Mouse)
 static TClipboard  Clipboard;    // 剪切板(Clipboard)
-static TPrinter Printer;         // 打印机(Printer)
+static TPrinter Printer;         // 打印机(Printer)  
+
+// 获取实例类指针(Get instance class pointer)
+Application = Application_Instance();
+Screen = Screen_Instance();
+Mouse = Mouse_Instance();              
+Clipboard = Clipboard_Instance();      
+Printer = Printer_Instance();          
 ```
 
 ----
@@ -58,7 +96,10 @@ static TPrinter Printer;         // 打印机(Printer)
 获取参数数组中每个成员  
 
 ```c
-// getParam 从指定索引和地址获取事件中的参数
+// x86: sizeof(uintptr_t) = 4
+// x64: sizeof(uintptr_t) = 8
+
+// 从指定索引和地址获取事件中的参数(Get the parameters in the event from the specified index and address)
 #define getParamOf(index, ptr) \
  (*((uintptr_t*)((uintptr_t)ptr + (uintptr_t)index*sizeof(uintptr_t))))
 ```
