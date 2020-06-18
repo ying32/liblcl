@@ -165,7 +165,7 @@ void* LCLAPI doEventCallbackProc(void* f, void* args, long argcount) {
     return NULL; // 总是返回NULL即可(Always return NULL)
 }
 // 设置回调(Set callback)
-SetEventCallback()
+SetEventCallback(GET_CALLBACK(doEventCallbackProc));
 ```
 
 * TForm消息回调TForm message callback() 
@@ -176,6 +176,9 @@ void* LCLAPI doMessageCallbackProc(void* f, void* msg) {
    ((void(*)(void*))f)(msg);
     return NULL;
 }
+
+// 设置回调(Set callback)
+SetMessageCallback(GET_CALLBACK(doMessageCallbackProc));
 ```
 
 * 线程同步回调(Thread synchronization callback)  
@@ -191,6 +194,10 @@ void* LCLAPI doThreadSyncCallbackProc() {
     return NULL;
 }
 
+// 设置回调(Set callback)
+SetThreadSyncCallback(GET_CALLBACK(doThreadSyncCallbackProc));
+
+// 
 void ThreadSync(TThreadProc fn) {
    
 #ifdef __GNUC__
