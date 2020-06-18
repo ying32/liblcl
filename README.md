@@ -53,6 +53,13 @@ if(!p##name) \
    p##name = get_proc_addr(""#name""); \
 assert(p##name != NULL); 
 
+#define COV_PARAM(name) \
+(uintptr_t)name
+
+#define MySyscall(addr, len, a1, a2 , a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) \
+    pMySyscall((void*)addr, (intptr_t)len, COV_PARAM(a1), COV_PARAM(a2), COV_PARAM(a3), COV_PARAM(a4), COV_PARAM(a5), COV_PARAM(a6), COV_PARAM(a7), COV_PARAM(a8), COV_PARAM(a9), COV_PARAM(a10), COV_PARAM(a11), COV_PARAM(a12))
+
+
 // 如此定义的函数就可以捕捉DLL中LCL抛出的异常
 // The function defined in this way can catch the exception thrown by LCL in DLL
 DEFINE_FUNC_PTR(Application_Instance) 
