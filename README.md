@@ -132,40 +132,40 @@ void* LCLAPI doEventCallbackProc(void* f, void* args, long argcount) {
       switch (argcount) {
     case 0: Syscall12(f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
        break;
-	
+    
     case 1: Syscall12(f, GET_VAL(0), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
        break;
-	
+    
     case 2: Syscall12(f, GET_VAL(0), GET_VAL(1), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         break;
-	
+    
     case 3: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), 0, 0, 0, 0, 0, 0, 0, 0, 0);
        break;
-	
+    
     case 4: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(2), 0, 0, 0, 0, 0, 0, 0, 0);
        break;
-	
+    
     case 5: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), 0, 0, 0, 0, 0, 0, 0);
        break;
-	
+    
     case 6: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), 0, 0, 0, 0, 0, 0);
        break;
-	
+    
     case 7: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), 0, 0, 0, 0, 0);
        break;
-	
+    
     case 8: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), GET_VAL(7), 0, 0, 0, 0);
        break;
-	
+    
     case 9: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), GET_VAL(7), GET_VAL(8), 0, 0, 0);
        break;
-	
+    
     case 10: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), GET_VAL(7), GET_VAL(8), GET_VAL(9), 0, 0);
        break;
-	
+    
     case 11: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), GET_VAL(7), GET_VAL(8), GET_VAL(9), GET_VAL(10), 0);
        break;
-	
+    
     case 12: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), GET_VAL(7), GET_VAL(8), GET_VAL(9), GET_VAL(10), GET_VAL(11));
        break;
     }
@@ -287,14 +287,14 @@ void onButton1Click(TObject sender) {
 void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
     printf("aFileNames: %p, len=%d\n", aFileNames, len);
     intptr_t i;
-	// GetStringArrOf 为一个从Lazarus的string数组中获取成员的函数。
+    // GetStringArrOf 为一个从Lazarus的string数组中获取成员的函数。
     for (i = 0; i < len; i++) {
         
 #ifdef _WIN32
         // 由于liblcl使用的是UTF-8编码，所以获取或者传入的在Windows下都要经过UTF-8编/解码 
         char *filename = UTF8Decode(GetStringArrOf(aFileNames, i));
 #else
-	    // Linux与macOS默认都是UTF-8，则无需编/解码
+        // Linux与macOS默认都是UTF-8，则无需编/解码
         char *filename = GetStringArrOf(aFileNames, i);
 #endif
         printf("file[%d]=%s\n", i+1, filename);
@@ -340,23 +340,23 @@ int main()
 #endif
 
         // 主窗口显示在任务栏，仅Windows有效
-		Application_SetMainFormOnTaskBar(Application, TRUE); 
-		// 应用程序标题，影响到：比如ShowMessage的标题。
-		Application_SetTitle(Application, "Hello LCL"); 
-		// 初始化应用程序
+        Application_SetMainFormOnTaskBar(Application, TRUE); 
+        // 应用程序标题，影响到：比如ShowMessage的标题。
+        Application_SetTitle(Application, "Hello LCL"); 
+        // 初始化应用程序
         Application_Initialize(Application);
 
         // 创建窗口
         TForm form = Application_CreateForm(Application, FALSE);
-		// 设置窗口标题
+        // 设置窗口标题
         Form_SetCaption(form, "LCL Form");
-		// 设置窗口位置
+        // 设置窗口位置
         Form_SetPosition(form, poScreenCenter);
 
         // --- 拖放文件测试 ---
-		// 接受文件拖放
+        // 接受文件拖放
         Form_SetAllowDropFiles(form, TRUE); 
-	    // 拖放文件事件
+        // 拖放文件事件
         Form_SetOnDropFiles(form, onOnDropFiles);
 
         // 窗口优先接受按键，不受其它影响
@@ -365,41 +365,41 @@ int main()
         // 窗口按键事件
         Form_SetOnKeyDown(form, onFormKeyDown);
         
-		// ---------- 从内存流或者文件加载UI布局文件 ----------
+        // ---------- 从内存流或者文件加载UI布局文件 ----------
         // 从文件加载窗口设置
         // 从流加载
         //TMemoryStream mem = NewMemoryStream();
         //MemoryStream_Write(mem, data, datalen);
-		//MemoryStream_SetPosition(mem, 0); 
+        //MemoryStream_SetPosition(mem, 0); 
         //ResFormLoadFromStream(mem, form);
         //MemoryStream_Free(mem);
-		
+        
         // 从文件加载
         //ResFormLoadFromFile("./Form1.gfm", form);
 
         // ----------  动态创建控件 ---------- 
         // 创建一个按钮
         TButton btn = Button_Create(form);
-		// 设置子父窗口
+        // 设置子父窗口
         Button_SetParent(btn, form);
-		// 设置按钮单击事件
+        // 设置按钮单击事件
         Button_SetOnClick(btn, onButton1Click);
-		// 设置按钮标题
+        // 设置按钮标题
         Button_SetCaption(btn, "button1");
-		// 设置按钮在Parent的左边位置
+        // 设置按钮在Parent的左边位置
         Button_SetLeft(btn, 100);
-		// 设置按钮在Parent的顶边位置
+        // 设置按钮在Parent的顶边位置
         Button_SetTop(btn, 100);
-		
+        
         // 创建一个单行文件框（多行为TMemo）
         TEdit edit = Edit_Create(form);
-		// 设置子父窗口
+        // 设置子父窗口
         Edit_SetParent(edit, form);
-		// 设置左边
+        // 设置左边
         Edit_SetLeft(edit, 10);
-		// 设置顶边
+        // 设置顶边
         Edit_SetTop(edit, 10);
-		// 设置编辑器内容改变事件
+        // 设置编辑器内容改变事件
         Edit_SetOnChange(edit, onEditChange);
 
         // 运行app
