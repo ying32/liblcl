@@ -79,11 +79,11 @@ TApplication Application_Instance() {
 
 ```c
 // 定义(definition)
-static TApplication Application; // 应用程序(Application)
-static TScreen Screen;           // 屏幕(Screen)
-static TMouse  Mouse;            // 鼠标(Mouse)
-static TClipboard  Clipboard;    // 剪切板(Clipboard)
-static TPrinter Printer;         // 打印机(Printer)  
+TApplication Application; // 应用程序(Application)
+TScreen Screen;           // 屏幕(Screen)
+TMouse  Mouse;            // 鼠标(Mouse)
+TClipboard  Clipboard;    // 剪切板(Clipboard)
+TPrinter Printer;         // 打印机(Printer)  
 
 // 获取实例类指针(Get instance class pointer)
 Application = Application_Instance();
