@@ -45,10 +45,9 @@ typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintp
 pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");  
 
 // ----------- 使用方法(Instructions) -----------  
-static void* pApplication_Instance; 
-pApplication_Instance = get_proc_addr("Application_Instance");  
+#define DEFINE_FUNC_PTR(name) \
+static void* p##name; 
 
-// 
 #define GET_FUNC_ADDR(name) \
 if(!p##name) \
    p##name = get_proc_addr(""#name""); \
@@ -56,6 +55,7 @@ assert(p##name != NULL);
 
 // 如此定义的函数就可以捕捉DLL中LCL抛出的异常
 // The function defined in this way can catch the exception thrown by LCL in DLL
+DEFINE_FUNC_PTR(Application_Instance) 
 TApplication Application_Instance() {
     GET_FUNC_ADDR(Application_Instance)
     return (TApplication)MySyscall(pApplication_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
