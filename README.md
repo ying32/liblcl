@@ -176,11 +176,32 @@ void* LCLAPI doMessageCallbackProc(void* f, void* msg) {
 
 * 线程同步回调(Thread synchronization callback)  
 ```c
+
+TThreadProc threadSyncProc;
+
 void* LCLAPI doThreadSyncCallbackProc() {
     if (threadSyncProc) {
         ((TThreadProc)threadSyncProc)();
         threadSyncProc = NULL;
     }
     return NULL;
+}
+
+void ThreadSync(TThreadProc fn) {
+   
+#ifdef __GNUC__
+    pthread_mutex_lock(&threadSyncMutex);
+#else
+    EnterCriticalSection(&threadSyncMutex);
+#endif
+    threadSyncProc = fn;
+    Synchronize(FALSE);
+    threadSyncProc = NULL;
+#ifdef __GNUC__
+    pthread_mutex_unlock(&threadSyncMutex);
+#else
+    LeaveCriticalSection(&threadSyncMutex);
+#endif
+   
 }
 ```
