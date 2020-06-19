@@ -33,9 +33,13 @@ The `utf-8` encoding is used by default on all platforms.
 
 ----
 
-##### 使用结构化异常处理的函数（dll中导出）
+##### 使用结构化异常处理的函数  
 
-##### Use structured exception handling functions (exported in dll)  
+##### Use structured exception handling functions   
+
+*注： 如果在liblcl源代码`ExtDecl.inc`文件中启用了`UsehandleException`编译指令，则不再需要`MySyscall`处理异常，但编译出的文件会增大，Windows下会增加约1M左右，Linux下会增加3M左右，macOS下会增加2.5M左右。*  
+
+*Note: If the `UsehandleException` compilation instruction is enabled in the `ExtDecl.inc` file of the liblcl source code, then there is no longer a need for `MySyscall` to handle exceptions, but the compiled file will increase, and it will increase by about 1M under Windows, Linux It will increase about 3M under macOS, and about 2.5M under macOS.*  
 
 ```c
 // 类型定义(Type definition)
