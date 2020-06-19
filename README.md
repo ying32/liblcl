@@ -42,10 +42,12 @@ The `utf-8` encoding is used by default on all platforms.
 *Note: If the `UsehandleException` compilation instruction is enabled in the `ExtDecl.inc` file of the liblcl source code, then there is no longer a need for `MySyscall` to handle exceptions, but the compiled file will increase, and it will increase by about 1M under Windows, Linux It will increase about 3M under macOS, and about 2.5M under macOS.*  
 
 ```c
-// 类型定义(Type definition)
+// 类型定义
+// Type definition
 typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
 
-// 从DLL中获取此函数(Get this function from DLL)
+// 从DLL中获取此函数
+// Get this function from DLL
 pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");  
 
 // ----------- 使用方法(Instructions) -----------  
@@ -82,14 +84,16 @@ TApplication Application_Instance() {
 *No need to manually call create and release.*  
 
 ```c
-// 定义(definition)
+// 定义
+// definition
 TApplication Application; // 应用程序(Application)
 TScreen Screen;           // 屏幕(Screen)
 TMouse  Mouse;            // 鼠标(Mouse)
 TClipboard  Clipboard;    // 剪切板(Clipboard)
 TPrinter Printer;         // 打印机(Printer)  
 
-// 获取实例类指针(Get instance class pointer)
+// 获取实例类指针
+// Get instance class pointer
 Application = Application_Instance();
 Screen = Screen_Instance();
 Mouse = Mouse_Instance();              
@@ -111,7 +115,8 @@ Printer = Printer_Instance();
 // x86: sizeof(uintptr_t) = 4
 // x64: sizeof(uintptr_t) = 8
 
-// 从指定索引和地址获取事件中的参数(Get the parameters in the event from the specified index and address)
+// 从指定索引和地址获取事件中的参数
+// Get the parameters in the event from the specified index and address
 #define getParamOf(index, ptr) \
  (*((uintptr_t*)((uintptr_t)ptr + (uintptr_t)index*sizeof(uintptr_t))))
 ```
@@ -128,10 +133,14 @@ getParamOf(index, args)
     ((void(*)(uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t))addr)(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
 
 
-// 回调函数原型(Callback function prototype)
-// f: 通过SetOnXXX传入的Id或者函数指针(Id or function pointer passed in through SetOnXXX) 
-// args: 参数组数指针，通过getParamOf来获取每个成员(Parameter group number pointer, Get each member by getParamOf)
-// argcount: 参数数组长度(Parameter array length)
+// 回调函数原型
+// Callback function prototype
+// f:        通过SetOnXXX传入的Id或者函数指针
+//           Id or function pointer passed in through SetOnXXX 
+// args:     参数组数指针，通过getParamOf来获取每个成员
+//           Parameter group number pointer, Get each member by getParamOf
+// argcount: 参数数组长度
+//           Parameter array length
 void* LCLAPI doEventCallbackProc(void* f, void* args, long argcount) {
       switch (argcount) {
     case 0: Syscall12(f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -173,9 +182,12 @@ void* LCLAPI doEventCallbackProc(void* f, void* args, long argcount) {
     case 12: Syscall12(f, GET_VAL(0), GET_VAL(1), GET_VAL(2), GET_VAL(3), GET_VAL(4), GET_VAL(5), GET_VAL(6), GET_VAL(7), GET_VAL(8), GET_VAL(9), GET_VAL(10), GET_VAL(11));
        break;
     }
-    return NULL; // 总是返回NULL即可(Always return NULL)
+    // 总是返回NULL即可
+    // Always return NULL
+    return NULL; 
 }
-// 设置回调(Set callback)
+// 设置回调
+// Set callback
 SetEventCallback(GET_CALLBACK(doEventCallbackProc));
 ```
 
@@ -188,7 +200,8 @@ void* LCLAPI doMessageCallbackProc(void* f, void* msg) {
     return NULL;
 }
 
-// 设置回调(Set callback)
+// 设置回调
+// Set callback
 SetMessageCallback(GET_CALLBACK(doMessageCallbackProc));
 ```
 
@@ -205,10 +218,12 @@ void* LCLAPI doThreadSyncCallbackProc() {
     return NULL;
 }
 
-// 设置回调(Set callback)
+// 设置回调
+// Set callback
 SetThreadSyncCallback(GET_CALLBACK(doThreadSyncCallbackProc));
 
-// 
+// 线程同步操作
+// Thread synchronization operation
 void ThreadSync(TThreadProc fn) {
    
 #ifdef __GNUC__
@@ -252,6 +267,61 @@ BOOL InSet(uint32_t s, uint8_t val) {
     return FALSE;
 }
 ```
+
+----
+
+##### 初始liblcl示例(Initial liblcl example)
+
+```c
+#define GET_CALLBACK(name) \
+  (void*)&name
+ 
+static void init_lib_lcl() {
+#ifdef __GNUC__
+    pthread_mutex_init(&threadSyncMutex, NULL);
+#else
+    InitializeCriticalSection(&threadSyncMutex);
+#endif
+
+    // 设置事件的回调函数
+    // Set the callback function of the event
+	SetEventCallback(GET_CALLBACK(doEventCallbackProc));
+	// 设置消息回调
+    // Set message callback
+	SetMessageCallback(GET_CALLBACK(doMessageCallbackProc));
+	// 设置线程同步回调
+    // Set thread synchronization callback
+	SetThreadSyncCallback(GET_CALLBACK(doThreadSyncCallbackProc));
+    // 初始实例类
+    // Initial instance class
+	Application = Application_Instance();
+	Screen = Screen_Instance();
+	Mouse = Mouse_Instance();            
+	Clipboard = Clipboard_Instance();    
+	Printer = Printer_Instance();        
+
+#ifdef _WIN32
+    // 尝试加载exe中名为MAINICON的图标为应用程序图标
+    // Try to load the icon named MAINICON in the exe as the application icon
+    if(Application) {
+        TIcon icon = Application_GetIcon(Application);
+        if(icon) {
+            Icon_SetHandle(icon, LoadIconA(GetModuleHandleA(NULL), "MAINICON"));
+        } 
+    }
+#endif
+}
+
+static void un_init_lib_lcl() {
+#ifdef __GNUC__
+    pthread_mutex_destroy(&threadSyncMutex);
+#else
+    DeleteCriticalSection(&threadSyncMutex);
+#endif
+}
+```
+
+
 
 
 
