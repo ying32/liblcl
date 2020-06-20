@@ -285,30 +285,30 @@ static void init_lib_lcl() {
 
     // 设置事件的回调函数
     // Set the callback function of the event
-	SetEventCallback(GET_CALLBACK(doEventCallbackProc));
-	// 设置消息回调
+    SetEventCallback(GET_CALLBACK(doEventCallbackProc));
+    // 设置消息回调
     // Set message callback
-	SetMessageCallback(GET_CALLBACK(doMessageCallbackProc));
-	// 设置线程同步回调
+    SetMessageCallback(GET_CALLBACK(doMessageCallbackProc));
+    // 设置线程同步回调
     // Set thread synchronization callback
-	SetThreadSyncCallback(GET_CALLBACK(doThreadSyncCallbackProc));
+    SetThreadSyncCallback(GET_CALLBACK(doThreadSyncCallbackProc));
     // 初始实例类
     // Initial instance class
-	Application = Application_Instance();
-	Screen = Screen_Instance();
-	Mouse = Mouse_Instance();            
-	Clipboard = Clipboard_Instance();    
-	Printer = Printer_Instance();        
+    Application = Application_Instance();
+    Screen = Screen_Instance();
+    Mouse = Mouse_Instance();            
+    Clipboard = Clipboard_Instance();    
+    Printer = Printer_Instance();        
 
 #ifdef _WIN32
     // 尝试加载exe中名为MAINICON的图标为应用程序图标
     // Try to load the icon named MAINICON in the exe as the application icon
-    if(Application) {
-        TIcon icon = Application_GetIcon(Application);
-        if(icon) {
-            Icon_SetHandle(icon, LoadIconA(GetModuleHandleA(NULL), "MAINICON"));
-        } 
-    }
+    //if(Application) {
+    //    TIcon icon = Application_GetIcon(Application);
+    //    if(icon) {
+    //        Icon_SetHandle(icon, LoadIconA(GetModuleHandleA(NULL), "MAINICON"));
+    //    } 
+    //}
 #endif
 }
 
