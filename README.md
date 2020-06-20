@@ -9,11 +9,15 @@ A common cross-platform GUI library, the core uses Lazarus LCL.
 
 ___
 
-已支持语言(Languages supported)：
+* 已支持语言(Languages supported)：
 
 go: https://github.com/ying32/govcl  
 
-c/c++: https://github.com/ying32/govcl/tree/master/Tools/makeCHeader/test  
+c/c++: https://github.com/ying32/govcl/tree/master/Tools/makeCHeader/test    
+
+* 测试中的语言(Language under test)  
+
+rust（Test only）: https://github.com/ying32/rust-vcl
 
 ----
 
