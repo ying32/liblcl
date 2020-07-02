@@ -8,7 +8,7 @@
 
 ----
 
-[编译说明](Compile.README.md)  
+[编译指南](Compile.README.md)  
 
 ----
 
