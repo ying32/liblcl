@@ -12,6 +12,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -76,6 +77,24 @@ var (
 
 func main() {
 
+	govclPath := ""
+	goPath, ok := os.LookupEnv("GOPATH")
+	if !ok || goPath == "" {
+		panic("未找到$GOPATH")
+	}
+
+	paths := strings.Split(goPath, ";")
+	for _, path := range paths {
+		path += "/src/github.com/ying32/govcl"
+		if FileExists(path) {
+			govclPath = path
+		}
+	}
+	if govclPath == "" {
+		panic("未在$GOPATH中到找govcl源代码目录，请go get github.com/ying32/govcl")
+	}
+
+	//-----------
 	file := NewCFile("./test/liblcl.h")
 	file.WriteHeader()
 
@@ -132,11 +151,11 @@ func main() {
 	//file.WComment("枚举定义\n")
 
 	file.AddReplaceFlag("typedefs", getClassDefs())
-	file.AddReplaceFlag("enumdefs", parseEnums("../../vcl/types/enums.go"))
-	file.AddReplaceFlag("eventdefs", parseEvents("../../vcl/events.go"))
-	file.AddReplaceFlag("colorconsts", parseConst("../../vcl/types/colors/colors.go"))
-	file.AddReplaceFlag("keyconsts", parseConst("../../vcl/types/keys/keys.go"))
-	file.AddReplaceFlag("typeconsts", parseConst("../../vcl/types/consts.go"))
+	file.AddReplaceFlag("enumdefs", parseEnums(govclPath+"/vcl/types/enums.go"))
+	file.AddReplaceFlag("eventdefs", parseEvents(govclPath+"/vcl/events.go"))
+	file.AddReplaceFlag("colorconsts", parseConst(govclPath+"/vcl/types/colors/colors.go"))
+	file.AddReplaceFlag("keyconsts", parseConst(govclPath+"/vcl/types/keys/keys.go"))
+	file.AddReplaceFlag("typeconsts", parseConst(govclPath+"/vcl/types/consts.go"))
 
 	file.Save()
 
@@ -145,8 +164,19 @@ func main() {
 
 }
 
+func FileExists(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true
+	}
+	if os.IsNotExist(err) {
+		return false
+	}
+	return false
+}
+
 func ReadFile(fileName string) ([]byte, error) {
-	bs, err := ioutil.ReadFile("../../UILibSources/liblcl/" + fileName)
+	bs, err := ioutil.ReadFile("../../src/" + fileName)
 	if err != nil {
 		return nil, err
 	}

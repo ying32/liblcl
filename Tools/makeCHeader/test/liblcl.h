@@ -141,7 +141,7 @@ typedef int16_t TCursor;
 #define	crLow  (TCursor)-30
 
 
-//../../vcl/types/colors/colors.go
+//F:\Golang/src/github.com/ying32/govcl/vcl/types/colors/colors.go
 
 // Delphi中的颜色表，Delphi中的TColor与一般HTML的RGB有点不一样，反过来的
 
@@ -311,7 +311,7 @@ typedef int16_t TCursor;
 
 
 
-//../../vcl/types/keys/keys.go
+//F:\Golang/src/github.com/ying32/govcl/vcl/types/keys/keys.go
 
 // Virtual Keys, Standard Set
 
@@ -503,7 +503,7 @@ typedef int16_t TCursor;
 
 
 
-//../../vcl/types/consts.go
+//F:\Golang/src/github.com/ying32/govcl/vcl/types/consts.go
 #define idOK       1
 #define idCancel   2
 #define idAbort    3
@@ -615,7 +615,7 @@ typedef enum {
 	cdsIndeterminate,
 }TCustomDrawStates;
 
-//../../vcl/types/enums.go
+//F:\Golang/src/github.com/ying32/govcl/vcl/types/enums.go
 typedef enum  {
     alNone,
     alTop,
@@ -2263,7 +2263,7 @@ typedef void* TStream;
 
 
 // 所有事件定义
-//../../vcl/events.go
+//F:\Golang/src/github.com/ying32/govcl/vcl/events.go
 // void (TObject sender)
 typedef void(*TNotifyEvent)(TObject);
 
