@@ -489,4 +489,10 @@ int main()
     return 0;
 }
 ```
+----
 
+### 授权(LICENSE)  
+
+**保持跟Lazarus LCL组件采用相同的授权协议: [COPYING.modifiedLGPL](COPYING.modifiedLGPL.txt)**  
+
+**Keep the same license agreement with Lazarus LCL components: [COPYING.modifiedLGPL](COPYING.modifiedLGPL.txt)**
