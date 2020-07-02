@@ -5,7 +5,7 @@ A common cross-platform GUI library, the core uses Lazarus LCL.
 
 ----
 
-源代码(Source code)：https://github.com/ying32/govcl/tree/master/UILibSources  
+[编译说明](Compile.README.md)([Compilation guide](Compile.README.en-US.md))  
 
 ___
 
