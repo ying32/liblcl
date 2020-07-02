@@ -13,7 +13,7 @@ ___
 
 go: https://github.com/ying32/govcl  
 
-c/c++: https://github.com/ying32/govcl/tree/master/Tools/makeCHeader/test    
+c/c++: [Tools/makeCHeader/test](Tools/makeCHeader/test )    
 
 * 测试中的语言(Language under test)  
 
