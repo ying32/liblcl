@@ -28,6 +28,13 @@ begin
   handleExceptionEnd
 end;
 
+procedure Form_FocusControl(AObj: TForm; Control: TWinControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FocusControl(Control);
+  handleExceptionEnd
+end;
+
 procedure Form_Hide(AObj: TForm); extdecl;
 begin
   handleExceptionBegin
@@ -1687,6 +1694,7 @@ exports
   Form_Create,
   Form_Free,
   Form_Close,
+  Form_FocusControl,
   Form_Hide,
   Form_SetFocus,
   Form_Show,

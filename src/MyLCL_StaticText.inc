@@ -567,6 +567,20 @@ begin
   handleExceptionEnd
 end;
 
+function StaticText_GetFocusControl(AObj: TStaticText): TWinControl; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FocusControl;
+  handleExceptionEnd
+end;
+
+procedure StaticText_SetFocusControl(AObj: TStaticText; AValue: TWinControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FocusControl := AValue;
+  handleExceptionEnd
+end;
+
 function StaticText_GetFont(AObj: TStaticText): TFont; extdecl;
 begin
   handleExceptionBegin
@@ -1371,6 +1385,8 @@ exports
   StaticText_SetDragMode,
   StaticText_GetEnabled,
   StaticText_SetEnabled,
+  StaticText_GetFocusControl,
+  StaticText_SetFocusControl,
   StaticText_GetFont,
   StaticText_SetFont,
   StaticText_GetParentColor,

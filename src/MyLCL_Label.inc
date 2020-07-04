@@ -448,6 +448,20 @@ begin
   handleExceptionEnd
 end;
 
+function Label_GetFocusControl(AObj: TLabel): TWinControl; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FocusControl;
+  handleExceptionEnd
+end;
+
+procedure Label_SetFocusControl(AObj: TLabel; AValue: TWinControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FocusControl := AValue;
+  handleExceptionEnd
+end;
+
 function Label_GetFont(AObj: TLabel): TFont; extdecl;
 begin
   handleExceptionBegin
@@ -1109,6 +1123,8 @@ exports
   Label_SetDragMode,
   Label_GetEnabled,
   Label_SetEnabled,
+  Label_GetFocusControl,
+  Label_SetFocusControl,
   Label_GetFont,
   Label_SetFont,
   Label_GetParentColor,
