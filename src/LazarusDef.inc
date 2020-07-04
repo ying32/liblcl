@@ -963,20 +963,35 @@ begin
   handleExceptionEnd
 end;
 
-function SysIsZhCN: Boolean;
-begin
-{$IFDEF MSWINDOWS}
-  Result := SysLocale.DefaultLCID = 2052;
+
+function IsZhLang: Boolean;
+{$IFDEF WINDOWS}
+const
+   Langs:array[0..4] of Integer = (2052, 3076, 5124, 4100, 1028);
 {$ELSE}
-  Result := Pos('zh_CN', GetEnvironmentVariable('LANG')) <> -1;
+const
+   Langs:array[0..4] of string = ('zh_CN', 'zh_HK', 'zh_MO', 'zh_SG', 'zh_TW');
 {$ENDIF}
+var
+  I: Integer;
+begin
+  Result := False;
+  for I := 0 to High(Langs) do
+  begin
+  {$IFDEF MSWINDOWS}
+    if Langs[I] = SysLocale.DefaultLCID then
+  {$ELSE}
+    if Pos(Langs[I], GetEnvironmentVariable('LANG')) <> -1 then
+  {$ENDIF}
+      Exit(True);
+  end;
 end;
 
 function DLibAbout: PChar; extdecl;
 var
   LVal: string;
 begin
-  if SysIsZhCN then
+  if IsZhLang then
     LVal := '作者：不在乎y(ying32)'#13#10 +
             '官网：https://z-kit.cc'#13#10 +
             '基于Lazarus ' + lcl_version + '制作'#13#10 +
