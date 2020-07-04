@@ -3195,6 +3195,12 @@ void Form_Close(TForm AObj) {
     MySyscall(pForm_Close, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Form_FocusControl)
+void Form_FocusControl(TForm AObj, TWinControl Control) {
+    GET_FUNC_ADDR(Form_FocusControl)
+    MySyscall(pForm_FocusControl, 2, AObj, Control ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Form_Hide)
 void Form_Hide(TForm AObj) {
     GET_FUNC_ADDR(Form_Hide)
@@ -3547,6 +3553,18 @@ DEFINE_FUNC_PTR(Form_SetAction)
 void Form_SetAction(TForm AObj, TAction AValue) {
     GET_FUNC_ADDR(Form_SetAction)
     MySyscall(pForm_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_GetActiveControl)
+TWinControl Form_GetActiveControl(TForm AObj) {
+    GET_FUNC_ADDR(Form_GetActiveControl)
+    return (TWinControl)MySyscall(pForm_GetActiveControl, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetActiveControl)
+void Form_SetActiveControl(TForm AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(Form_SetActiveControl)
+    MySyscall(pForm_SetActiveControl, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_GetAlign)
@@ -12397,6 +12415,18 @@ DEFINE_FUNC_PTR(Label_SetEnabled)
 void Label_SetEnabled(TLabel AObj, BOOL AValue) {
     GET_FUNC_ADDR(Label_SetEnabled)
     MySyscall(pLabel_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_GetFocusControl)
+TWinControl Label_GetFocusControl(TLabel AObj) {
+    GET_FUNC_ADDR(Label_GetFocusControl)
+    return (TWinControl)MySyscall(pLabel_GetFocusControl, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_SetFocusControl)
+void Label_SetFocusControl(TLabel AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(Label_SetFocusControl)
+    MySyscall(pLabel_SetFocusControl, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_GetFont)
@@ -21337,6 +21367,18 @@ DEFINE_FUNC_PTR(StaticText_SetEnabled)
 void StaticText_SetEnabled(TStaticText AObj, BOOL AValue) {
     GET_FUNC_ADDR(StaticText_SetEnabled)
     MySyscall(pStaticText_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_GetFocusControl)
+TWinControl StaticText_GetFocusControl(TStaticText AObj) {
+    GET_FUNC_ADDR(StaticText_GetFocusControl)
+    return (TWinControl)MySyscall(pStaticText_GetFocusControl, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_SetFocusControl)
+void StaticText_SetFocusControl(TStaticText AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(StaticText_SetFocusControl)
+    MySyscall(pStaticText_SetFocusControl, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_GetFont)
@@ -47603,6 +47645,12 @@ DEFINE_FUNC_PTR(Screen_ToString)
 char* Screen_ToString(TScreen AObj) {
     GET_FUNC_ADDR(Screen_ToString)
     return (char*)MySyscall(pScreen_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Screen_GetActiveControl)
+TWinControl Screen_GetActiveControl(TScreen AObj) {
+    GET_FUNC_ADDR(Screen_GetActiveControl)
+    return (TWinControl)MySyscall(pScreen_GetActiveControl, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Screen_GetActiveForm)

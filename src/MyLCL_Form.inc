@@ -449,6 +449,20 @@ begin
   handleExceptionEnd
 end;
 
+function Form_GetActiveControl(AObj: TForm): TWinControl; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ActiveControl;
+  handleExceptionEnd
+end;
+
+procedure Form_SetActiveControl(AObj: TForm; AValue: TWinControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ActiveControl := AValue;
+  handleExceptionEnd
+end;
+
 function Form_GetAlign(AObj: TForm): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1754,6 +1768,8 @@ exports
   Form_SetShowInTaskBar,
   Form_GetAction,
   Form_SetAction,
+  Form_GetActiveControl,
+  Form_SetActiveControl,
   Form_GetAlign,
   Form_SetAlign,
   Form_GetAlphaBlend,

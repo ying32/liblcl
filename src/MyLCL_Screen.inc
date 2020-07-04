@@ -98,6 +98,13 @@ begin
   handleExceptionEnd
 end;
 
+function Screen_GetActiveControl(AObj: TScreen): TWinControl; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ActiveControl;
+  handleExceptionEnd
+end;
+
 function Screen_GetActiveForm(AObj: TScreen): TForm; extdecl;
 begin
   handleExceptionBegin
@@ -362,6 +369,7 @@ exports
   Screen_Equals,
   Screen_GetHashCode,
   Screen_ToString,
+  Screen_GetActiveControl,
   Screen_GetActiveForm,
   Screen_GetCustomFormCount,
   Screen_GetCursor,
