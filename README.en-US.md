@@ -115,17 +115,49 @@ Printer = Printer_Instance();
 * Basic event callback  
 
 ```c
-#define GET_VAL(index) \
-getParamOf(index, args)
-
-#define Syscall12(addr, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) \
-    ((void(*)(uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t))addr)(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
-
+ typedef void(*SYSCALL0)();  
+ typedef void(*SYSCALL1)(intptr_t);  
+ typedef void(*SYSCALL2)(intptr_t, uintptr_t);  
+ typedef void(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef void(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ 
 
 // Callback function prototype
 // f:        Id or function pointer passed in through SetOnXXX 
 // args:     Parameter group number pointer, Get each member by getParamOf
 // argcount: Parameter array length
+static void* LCLAPI doEventCallbackProc(void* f, void* args, long argCount) {
+ 
+	#define _A_(index) \
+	   getParamOf(index, args)
+
+    switch (argCount) {
+    case 0:  ((SYSCALL0) (f))(); break;
+    case 1:  ((SYSCALL1) (f))(_A_(0)); break;
+    case 2:  ((SYSCALL2) (f))(_A_(0), _A_(1)); break;
+    case 3:  ((SYSCALL3) (f))(_A_(0), _A_(1), _A_(2)); break;
+    case 4:  ((SYSCALL4) (f))(_A_(0), _A_(1), _A_(2), _A_(2)); break;
+    case 5:  ((SYSCALL5) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4)); break;
+    case 6:  ((SYSCALL6) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5)); break;
+    case 7:  ((SYSCALL7) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6)); break;
+    case 8:  ((SYSCALL8) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7)); break;
+    case 9:  ((SYSCALL9) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8)); break;
+    case 10: ((SYSCALL10)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9)); break;
+    case 11: ((SYSCALL11)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9), _A_(10)); break;
+    case 12: ((SYSCALL12)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9), _A_(10), _A_(11)); break;
+    }
+    // Always return NULL
+    return NULL;
+}
+
 void* LCLAPI doEventCallbackProc(void* f, void* args, long argcount) {
       switch (argcount) {
     case 0: Syscall12(f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -168,7 +200,7 @@ void* LCLAPI doEventCallbackProc(void* f, void* args, long argcount) {
        break;
     }
 
-    // Always return NULL
+   
     return NULL; 
 }
 
