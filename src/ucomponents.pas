@@ -42,32 +42,19 @@ end;
 procedure InitClassLists;
 begin
   MyRegisterComponents([
-      //TApplication,
-      //TForm,
       TButton, TBitBtn, TMaskEdit, TEdit, TMainMenu, TPopupMenu, TMemo, TCheckBox,
       TRadioButton,TGroupBox,TLabel,TListBox,TComboBox,TPanel,TImage,TLinkLabel,
       TSpeedButton,TSplitter,TRadioGroup,TStaticText,TColorBox,TColorListBox,
-      TTrayIcon,{TBalloonHint,TCategoryPanelGroup,TCategoryPanel,}TOpenDialog,
-      TSaveDialog,TColorDialog,TFontDialog,TPrintDialog,TOpenPictureDialog,
-      TSavePictureDialog{,TSaveTextFileDialog,TOpenTextFileDialog},
-      TRichEdit,TTrackBar,TImageList,TUpDown,TProgressBar,
-      {THotKey,}TDateTimePicker,TMonthCalendar,TListView,TTreeView,TStatusBar,
-      TToolBar{,TIcon,TBitmap,TMemoryStream,TFont,TStrings,
-      TStringList,TBrush,TPen},TMenuItem{,TListGroups,TPicture,
-      TListColumns,TListItems,TTreeNodes,TListItem,TTreeNode},
-      TPageControl,TTabSheet,TControl{,TScreen,TMouse,TListGroup,
-      TListColumn,TCollectionItem},TStatusPanels,{TStatusPanel,
-      TCanvas,TObject,TPngImage,TJPEGImage,TGIFImage,TGIFFrame,}
-      TActionList,TAction,TToolButton,{TIniFile,TRegistry,TClipboard,Forms.TMonitor,}
-      {TMargins,TPadding,}TPaintBox,TTimer,TComponent,{TList,TGraphic,TMonthCalColors,}
-      {TParaAttributes,TTextAttributes,TIconOptions,}TScrollBar,TShape,TBevel,TScrollBox,
-      TCheckListBox,TGauge{,TCustomHint},TImageButton,TFontDialog,TFindDialog,TReplaceDialog,TPageSetupDialog,
-      TPrinterSetupDialog, TSelectDirectoryDialog,
-      TStringGrid, TDrawGrid, TValueListEditor, THeaderControl,
-      {THeaderSection,THeaderSections,}TLabeledEdit,TBoundLabel,
-      TFlowPanel,TCoolBar,TCoolBands,TCoolBand, TSpinEdit,TMiniWebview,
-      TTaskDialog, {TTaskDialogButtons, TTaskDialogProgressBar, TTaskDialogButtonItem, TTaskDialogRadioButtonItem, TTaskDialogBaseButtonItem,}TCalendar,
-      {TControlBorderSpacing,}TComboBoxEx,{TFrame,TControlScrollBar,TSizeConstraints,}TXButton, TCheckGroup, TToggleBox
+      TTrayIcon,TOpenDialog,TSaveDialog,TColorDialog,TFontDialog,TPrintDialog,
+      TOpenPictureDialog,TSavePictureDialog,TRichEdit,TTrackBar,TImageList,TUpDown,
+      TProgressBar,TDateTimePicker,TMonthCalendar,TListView,TTreeView,TStatusBar,
+      TToolBar,TMenuItem,TPageControl,TTabSheet,TStatusPanels,TActionList,TAction,
+      TToolButton,TPaintBox,TTimer,TScrollBar,TShape,TBevel,TScrollBox,
+      TCheckListBox,TGauge,TImageButton,TFontDialog,TFindDialog,TReplaceDialog,
+      TPageSetupDialog,TPrinterSetupDialog, TSelectDirectoryDialog,TStringGrid,
+      TDrawGrid, TValueListEditor, THeaderControl,TLabeledEdit,TBoundLabel,
+      TFlowPanel,TCoolBar, TSpinEdit,TMiniWebview,TTaskDialog, TCalendar,
+      TComboBoxEx,TXButton, TCheckGroup, TToggleBox
   ]);
   {$I UserDefineComponentsClass.inc}
 end;
