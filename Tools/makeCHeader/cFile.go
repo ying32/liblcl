@@ -14,6 +14,58 @@ import (
 	"io/ioutil"
 )
 
+var (
+	CTypeMap = map[string]string{
+		"LongBool":             "BOOL",
+		"PChar":                "char*",
+		"Pointer":              "void*",
+		"Integer":              "int32_t",
+		"Cardinal":             "uint32_t",
+		"Double":               "double",
+		"Single":               "float",
+		"TThreadID":            "uintptr_t",
+		"NativeInt":            "intptr_t",
+		"NativeUInt":           "uintptr_t",
+		"Boolean":              "BOOL",
+		"Longint":              "int32_t",
+		"UInt64":               "uint64_t",
+		"IInt64":               "int64_t",
+		"TBasicAction":         "TAction",
+		"TPersistent":          "TObject",
+		"Byte":                 "char",
+		"TBorderWidth":         "int32_t",
+		"TCustomImageList":     "TImageList",
+		"TUnixDateTime":        "uint32_t",
+		"TCustomListView":      "TListView",
+		"TCustomTreeView":      "TTreeView",
+		"TImageIndex":          "int32_t",
+		"SmallInt":             "int16_t",
+		"TCustomForm":          "TForm",
+		"TWidth":               "int32_t",
+		"uint32":               "uint32_t",
+		"int32":                "int32_t",
+		"Int64":                "int64_t",
+		"LongWord":             "uint32_t",
+		"Word":                 "uint16_t",
+		"PPointerList":         "void*",
+		"string":               "char*",
+		"TCustomHeaderControl": "THeaderControl",
+		"TCollectionItemClass": "TCollectionItem",
+		"PPoint":               "TPoint*",
+		"TOverlay":             "uint8_t",
+		"TGoForm":              "TForm",
+		"TLMessage":            "TMessage",
+		"IObject":              "TObject",
+		"IWinControl":          "TWinControl",
+		"IComponent":           "TComponent",
+		"IControl":             "TControl",
+		"bool":                 "BOOL",
+		"uint16":               "uint16_t",
+
+		//"TResItem":             "",
+	}
+)
+
 type CFile struct {
 	buff     *bytes.Buffer
 	fileName string
@@ -682,4 +734,100 @@ func (c *CFile) AddReplaceFlag(flag string, data []byte) {
 		name string
 		data []byte
 	}{name: fmt.Sprintf("<%%%s%%>", flag), data: data})
+}
+
+func MakeCFunc(f *CFile, name, returnType string, params []Param, isClass bool) {
+
+	if name == "DSendMessage" || name == "DCreateURLShortCut" {
+		f.WLn()
+		f.WLn()
+		if name == "DSendMessage" {
+			f.W("#ifndef _WIN32\n")
+		} else if name == "DCreateURLShortCut" {
+			f.W("#ifdef _WIN32\n")
+		}
+
+		f.WLn()
+	}
+
+	//f.W("  ")
+
+	//f.W(fmt.Sprintf("static void* p%s; \n", name))
+	f.W(fmt.Sprintf("DEFINE_FUNC_PTR(%s)\n", name))
+	if returnType != "" {
+		f.W(cTypeConvert(returnType))
+	} else {
+		f.W("void")
+	}
+	f.W(" ")
+	//f.W("LCLAPI")
+	//f.W(" ")
+	// 不是类的成员，不要那个D开头
+	tempName := name
+	if !isClass {
+		if tempName[0] == 'D' {
+			tempName = tempName[1:]
+		}
+	}
+	f.W(tempName)
+
+	f.W("(")
+	for i, ps := range params {
+		if i > 0 {
+			f.W(", ")
+		}
+		if ps.Type == "PChar" && !ps.IsVar {
+			//f.W("const ")
+			f.W("CChar ")
+		}
+		f.W(cTypeConvert(ps.Type))
+		if ps.IsVar {
+			f.W("*")
+		}
+		f.W(" ")
+		f.W(ps.Name)
+	}
+
+	getParamNames := func() string {
+		if len(params) > 0 {
+			ns := ""
+			for i, s := range params {
+				if i >= 0 {
+					ns += ", "
+				}
+				//ns += fmt.Sprintf("COV_PARAM(%s)", s.Name)
+				ns += s.Name
+			}
+			for i := 0; i < 12-len(params); i++ {
+				ns += " ,0"
+			}
+			return ns
+		}
+		return " ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0"
+	}
+
+	f.W(") {\n")
+	f.W(fmt.Sprintf("    GET_FUNC_ADDR(%s)\n", name))
+	f.W("    ")
+	if returnType != "" {
+		f.W(fmt.Sprintf("return (%s)", cTypeConvert(returnType)))
+	}
+	f.W(fmt.Sprintf("MySyscall(p%s, %d%s);", name, len(params), getParamNames()))
+	f.WLn()
+	f.W("}\n")
+	f.WLn()
+
+	// 添加结束
+	if name == "DWindowFromPoint" || name == "DCreateShortCut" {
+		f.WLn()
+		f.W("#endif\n")
+		f.WLn()
+	}
+}
+
+func cTypeConvert(src string) string {
+	if val, ok := CTypeMap[src]; ok {
+		return val
+	}
+	return src
 }
