@@ -2680,6 +2680,371 @@ void close_liblcl() {
 
 
 
+
+// LazarusDef.inc
+DEFINE_FUNC_PTR(DLibStringEncoding)
+TStringEncoding LibStringEncoding() {
+    GET_FUNC_ADDR(DLibStringEncoding)
+    return (TStringEncoding)MySyscall(pDLibStringEncoding, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DLibVersion)
+uint32_t LibVersion() {
+    GET_FUNC_ADDR(DLibVersion)
+    return (uint32_t)MySyscall(pDLibVersion, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSysLocale)
+void SysLocale(TSysLocale* AInfo) {
+    GET_FUNC_ADDR(DSysLocale)
+    MySyscall(pDSysLocale, 1, AInfo ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Application_Instance)
+TApplication Application_Instance() {
+    GET_FUNC_ADDR(Application_Instance)
+    return (TApplication)MySyscall(pApplication_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Mouse_Instance)
+TMouse Mouse_Instance() {
+    GET_FUNC_ADDR(Mouse_Instance)
+    return (TMouse)MySyscall(pMouse_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Screen_Instance)
+TScreen Screen_Instance() {
+    GET_FUNC_ADDR(Screen_Instance)
+    return (TScreen)MySyscall(pScreen_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DTextToShortCut)
+TShortCut TextToShortCut(CChar char* AText) {
+    GET_FUNC_ADDR(DTextToShortCut)
+    return (TShortCut)MySyscall(pDTextToShortCut, 1, AText ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DShortCutToText)
+char* ShortCutToText(TShortCut AVal) {
+    GET_FUNC_ADDR(DShortCutToText)
+    return (char*)MySyscall(pDShortCutToText, 1, AVal ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_Instance)
+TClipboard Clipboard_Instance() {
+    GET_FUNC_ADDR(Clipboard_Instance)
+    return (TClipboard)MySyscall(pClipboard_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+
+
+#ifndef _WIN32
+
+DEFINE_FUNC_PTR(DSendMessage)
+LResult SendMessage(HWND hWd, uint32_t msg, WParam wParam, LParam lParam) {
+    GET_FUNC_ADDR(DSendMessage)
+    return (LResult)MySyscall(pDSendMessage, 4, hWd, msg, wParam, lParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DPostMessage)
+BOOL PostMessage(HWND hWd, uint32_t msg, WParam wParam, LParam lParam) {
+    GET_FUNC_ADDR(DPostMessage)
+    return (BOOL)MySyscall(pDPostMessage, 4, hWd, msg, wParam, lParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DIsIconic)
+BOOL IsIconic(HWND hWnd) {
+    GET_FUNC_ADDR(DIsIconic)
+    return (BOOL)MySyscall(pDIsIconic, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DIsWindow)
+BOOL IsWindow(HWND hWnd) {
+    GET_FUNC_ADDR(DIsWindow)
+    return (BOOL)MySyscall(pDIsWindow, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DIsZoomed)
+BOOL IsZoomed(HWND hWnd) {
+    GET_FUNC_ADDR(DIsZoomed)
+    return (BOOL)MySyscall(pDIsZoomed, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DIsWindowVisible)
+BOOL IsWindowVisible(HWND hWnd) {
+    GET_FUNC_ADDR(DIsWindowVisible)
+    return (BOOL)MySyscall(pDIsWindowVisible, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGetDC)
+HDC GetDC(HWND hWnd) {
+    GET_FUNC_ADDR(DGetDC)
+    return (HDC)MySyscall(pDGetDC, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DReleaseDC)
+int32_t ReleaseDC(HWND hWnd, HDC dc) {
+    GET_FUNC_ADDR(DReleaseDC)
+    return (int32_t)MySyscall(pDReleaseDC, 2, hWnd, dc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSetForegroundWindow)
+BOOL SetForegroundWindow(HWND hWnd) {
+    GET_FUNC_ADDR(DSetForegroundWindow)
+    return (BOOL)MySyscall(pDSetForegroundWindow, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DWindowFromPoint)
+HWND WindowFromPoint(TPoint* point) {
+    GET_FUNC_ADDR(DWindowFromPoint)
+    return (HWND)MySyscall(pDWindowFromPoint, 1, point ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+
+#endif
+
+DEFINE_FUNC_PTR(SetEventCallback)
+void SetEventCallback(void* APtr) {
+    GET_FUNC_ADDR(SetEventCallback)
+    MySyscall(pSetEventCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SetMessageCallback)
+void SetMessageCallback(void* APtr) {
+    GET_FUNC_ADDR(SetMessageCallback)
+    MySyscall(pSetMessageCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SetThreadSyncCallback)
+void SetThreadSyncCallback(void* APtr) {
+    GET_FUNC_ADDR(SetThreadSyncCallback)
+    MySyscall(pSetThreadSyncCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGetStringArrOf)
+char* GetStringArrOf(void* P, intptr_t AIndex) {
+    GET_FUNC_ADDR(DGetStringArrOf)
+    return (char*)MySyscall(pDGetStringArrOf, 2, P, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DStrLen)
+intptr_t StrLen(CChar char* p) {
+    GET_FUNC_ADDR(DStrLen)
+    return (intptr_t)MySyscall(pDStrLen, 1, p ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DMove)
+void Move(void* Src, void* Dest, intptr_t Len) {
+    GET_FUNC_ADDR(DMove)
+    MySyscall(pDMove, 3, Src, Dest, Len ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DShowMessage)
+void ShowMessage(CChar char* AMsg) {
+    GET_FUNC_ADDR(DShowMessage)
+    MySyscall(pDShowMessage, 1, AMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGetMainInstance)
+HINST GetMainInstance() {
+    GET_FUNC_ADDR(DGetMainInstance)
+    return (HINST)MySyscall(pDGetMainInstance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DMessageDlg)
+int32_t MessageDlg(CChar char* Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons, int32_t HelpCtx) {
+    GET_FUNC_ADDR(DMessageDlg)
+    return (int32_t)MySyscall(pDMessageDlg, 4, Msg, DlgType, Buttons, HelpCtx ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSynchronize)
+void Synchronize(BOOL AUseMsg) {
+    GET_FUNC_ADDR(DSynchronize)
+    MySyscall(pDSynchronize, 1, AUseMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DMainThreadId)
+uintptr_t MainThreadId() {
+    GET_FUNC_ADDR(DMainThreadId)
+    return (uintptr_t)MySyscall(pDMainThreadId, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DCurrentThreadId)
+uintptr_t CurrentThreadId() {
+    GET_FUNC_ADDR(DCurrentThreadId)
+    return (uintptr_t)MySyscall(pDCurrentThreadId, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSysOpen)
+void SysOpen(CChar char* FileName) {
+    GET_FUNC_ADDR(DSysOpen)
+    MySyscall(pDSysOpen, 1, FileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DExtractFilePath)
+char* ExtractFilePath(CChar char* AFileName) {
+    GET_FUNC_ADDR(DExtractFilePath)
+    return (char*)MySyscall(pDExtractFilePath, 1, AFileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFileExists)
+BOOL FileExists(CChar char* AFileName) {
+    GET_FUNC_ADDR(DFileExists)
+    return (BOOL)MySyscall(pDFileExists, 1, AFileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSelectDirectory1)
+BOOL SelectDirectory1(char** Directory, TSelectDirOpts Options, int32_t HelpCtx) {
+    GET_FUNC_ADDR(DSelectDirectory1)
+    return (BOOL)MySyscall(pDSelectDirectory1, 3, Directory, Options, HelpCtx ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSelectDirectory2)
+BOOL SelectDirectory2(CChar char* Caption, CChar char* Root, char** Directory, uint32_t Options, TWinControl Parent) {
+    GET_FUNC_ADDR(DSelectDirectory2)
+    return (BOOL)MySyscall(pDSelectDirectory2, 5, Caption, Root, Directory, Options, Parent ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DInputBox)
+char* InputBox(CChar char* ACaption, CChar char* APrompt, CChar char* ADefault) {
+    GET_FUNC_ADDR(DInputBox)
+    return (char*)MySyscall(pDInputBox, 3, ACaption, APrompt, ADefault ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DInputQuery)
+BOOL InputQuery(CChar char* ACaption, CChar char* APrompt, CChar char* Value, char** AOut) {
+    GET_FUNC_ADDR(DInputQuery)
+    return (BOOL)MySyscall(pDInputQuery, 4, ACaption, APrompt, Value, AOut ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+
+
+#ifdef _WIN32
+
+DEFINE_FUNC_PTR(DCreateURLShortCut)
+void CreateURLShortCut(CChar char* ADestPath, CChar char* AShortCutName, CChar char* AURL) {
+    GET_FUNC_ADDR(DCreateURLShortCut)
+    MySyscall(pDCreateURLShortCut, 3, ADestPath, AShortCutName, AURL ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DCreateShortCut)
+BOOL CreateShortCut(CChar char* ADestPath, CChar char* AShortCutName, CChar char* ASrcFileName, CChar char* AIconFileName, CChar char* ADescription, CChar char* ACmdArgs) {
+    GET_FUNC_ADDR(DCreateShortCut)
+    return (BOOL)MySyscall(pDCreateShortCut, 6, ADestPath, AShortCutName, ASrcFileName, AIconFileName, ADescription, ACmdArgs ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+
+#endif
+
+DEFINE_FUNC_PTR(DSetPropertyValue)
+void SetPropertyValue(TObject Instance, CChar char* PropName, CChar char* Value) {
+    GET_FUNC_ADDR(DSetPropertyValue)
+    MySyscall(pDSetPropertyValue, 3, Instance, PropName, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DSetPropertySecValue)
+void SetPropertySecValue(TObject Instance, CChar char* PropName, CChar char* SecPropName, CChar char* Value) {
+    GET_FUNC_ADDR(DSetPropertySecValue)
+    MySyscall(pDSetPropertySecValue, 4, Instance, PropName, SecPropName, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGUIDToString)
+char* GUIDToString(TGUID* AGUID) {
+    GET_FUNC_ADDR(DGUIDToString)
+    return (char*)MySyscall(pDGUIDToString, 1, AGUID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DStringToGUID)
+void StringToGUID(CChar char* AGUIDStr, TGUID* AGUID) {
+    GET_FUNC_ADDR(DStringToGUID)
+    MySyscall(pDStringToGUID, 2, AGUIDStr, AGUID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DCreateGUID)
+void CreateGUID(TGUID* AGUID) {
+    GET_FUNC_ADDR(DCreateGUID)
+    MySyscall(pDCreateGUID, 1, AGUID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Printer_Instance)
+TPrinter Printer_Instance() {
+    GET_FUNC_ADDR(Printer_Instance)
+    return (TPrinter)MySyscall(pPrinter_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DLibAbout)
+char* LibAbout() {
+    GET_FUNC_ADDR(DLibAbout)
+    return (char*)MySyscall(pDLibAbout, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGetLibResouceCount)
+int32_t GetLibResouceCount() {
+    GET_FUNC_ADDR(DGetLibResouceCount)
+    return (int32_t)MySyscall(pDGetLibResouceCount, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGetLibResouceItem)
+void GetLibResouceItem(int32_t AIndex, TResItem* AResult) {
+    GET_FUNC_ADDR(DGetLibResouceItem)
+    MySyscall(pDGetLibResouceItem, 2, AIndex, AResult ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DModifyLibResouce)
+void ModifyLibResouce(void* APtr, CChar char* AValue) {
+    GET_FUNC_ADDR(DModifyLibResouce)
+    MySyscall(pDModifyLibResouce, 2, APtr, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DGetLibType)
+TLibType GetLibType() {
+    GET_FUNC_ADDR(DGetLibType)
+    return (TLibType)MySyscall(pDGetLibType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DInitGoDll)
+void InitGoDll(uintptr_t AMainThreadId) {
+    GET_FUNC_ADDR(DInitGoDll)
+    MySyscall(pDInitGoDll, 1, AMainThreadId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFindControl)
+TWinControl FindControl(HWND AHandle) {
+    GET_FUNC_ADDR(DFindControl)
+    return (TWinControl)MySyscall(pDFindControl, 1, AHandle ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFindLCLControl)
+TControl FindLCLControl(TPoint* AScreenPos) {
+    GET_FUNC_ADDR(DFindLCLControl)
+    return (TControl)MySyscall(pDFindLCLControl, 1, AScreenPos ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFindOwnerControl)
+TWinControl FindOwnerControl(HWND Handle) {
+    GET_FUNC_ADDR(DFindOwnerControl)
+    return (TWinControl)MySyscall(pDFindOwnerControl, 1, Handle ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFindControlAtPosition)
+TControl FindControlAtPosition(TPoint* APosition, BOOL AllowDisabled) {
+    GET_FUNC_ADDR(DFindControlAtPosition)
+    return (TControl)MySyscall(pDFindControlAtPosition, 2, APosition, AllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFindLCLWindow)
+TWinControl FindLCLWindow(TPoint* AScreenPos, BOOL AllowDisabled) {
+    GET_FUNC_ADDR(DFindLCLWindow)
+    return (TWinControl)MySyscall(pDFindLCLWindow, 2, AScreenPos, AllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DFindDragTarget)
+TControl FindDragTarget(TPoint* APosition, BOOL AllowDisabled) {
+    GET_FUNC_ADDR(DFindDragTarget)
+    return (TControl)MySyscall(pDFindDragTarget, 2, APosition, AllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+
 // uexport1.pas
 
 // MyLCL_Application.inc
@@ -3173,6 +3538,24 @@ DEFINE_FUNC_PTR(Application_StaticClassType)
 TClass Application_StaticClassType() {
     GET_FUNC_ADDR(Application_StaticClassType)
     return (TClass)MySyscall(pApplication_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Application_Initialize)
+void Application_Initialize(TApplication AObj) {
+    GET_FUNC_ADDR(Application_Initialize)
+    MySyscall(pApplication_Initialize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Application_CreateForm)
+TForm Application_CreateForm(TApplication App, BOOL AInitScale) {
+    GET_FUNC_ADDR(Application_CreateForm)
+    return (TForm)MySyscall(pApplication_CreateForm, 2, App, AInitScale ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Application_Run)
+void Application_Run(TApplication AObj) {
+    GET_FUNC_ADDR(Application_Run)
+    MySyscall(pApplication_Run, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 
@@ -4603,6 +4986,72 @@ DEFINE_FUNC_PTR(Form_StaticClassType)
 TClass Form_StaticClassType() {
     GET_FUNC_ADDR(Form_StaticClassType)
     return (TClass)MySyscall(pForm_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_Create2)
+TForm Form_Create2(TComponent AOwner, BOOL AInitScale) {
+    GET_FUNC_ADDR(Form_Create2)
+    return (TForm)MySyscall(pForm_Create2, 2, AOwner, AInitScale ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_EnabledMaximize)
+void Form_EnabledMaximize(TForm AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Form_EnabledMaximize)
+    MySyscall(pForm_EnabledMaximize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_EnabledMinimize)
+void Form_EnabledMinimize(TForm AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Form_EnabledMinimize)
+    MySyscall(pForm_EnabledMinimize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_EnabledSystemMenu)
+void Form_EnabledSystemMenu(TForm AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Form_EnabledSystemMenu)
+    MySyscall(pForm_EnabledSystemMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetOnDestroy)
+void Form_SetOnDestroy(TForm AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Form_SetOnDestroy)
+    MySyscall(pForm_SetOnDestroy, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetOnConstrainedResize)
+void Form_SetOnConstrainedResize(TForm AObj, TConstrainedResizeEvent AEventId) {
+    GET_FUNC_ADDR(Form_SetOnConstrainedResize)
+    MySyscall(pForm_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetOnWndProc)
+void Form_SetOnWndProc(TForm AObj, TWndProcEvent AEventId) {
+    GET_FUNC_ADDR(Form_SetOnWndProc)
+    MySyscall(pForm_SetOnWndProc, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleForPPI)
+void Form_ScaleForPPI(TForm AObj, int32_t ANewPPI) {
+    GET_FUNC_ADDR(Form_ScaleForPPI)
+    MySyscall(pForm_ScaleForPPI, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleControlsForDpi)
+void Form_ScaleControlsForDpi(TForm AObj, int32_t ANewPPI) {
+    GET_FUNC_ADDR(Form_ScaleControlsForDpi)
+    MySyscall(pForm_ScaleControlsForDpi, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleForCurrentDpi)
+void Form_ScaleForCurrentDpi(TForm AObj) {
+    GET_FUNC_ADDR(Form_ScaleForCurrentDpi)
+    MySyscall(pForm_ScaleForCurrentDpi, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_InheritedWndProc)
+void Form_InheritedWndProc(TForm AObj, TMessage* AMsg) {
+    GET_FUNC_ADDR(Form_InheritedWndProc)
+    MySyscall(pForm_InheritedWndProc, 2, AObj, AMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 
@@ -29497,6 +29946,24 @@ TClass ImageList_StaticClassType() {
     return (TClass)MySyscall(pImageList_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ImageList_Draw1)
+void ImageList_Draw1(TImageList AObj, TCanvas Canvas, int32_t X, int32_t Y, int32_t Index, BOOL Enabled) {
+    GET_FUNC_ADDR(ImageList_Draw1)
+    MySyscall(pImageList_Draw1, 6, AObj, Canvas, X, Y, Index, Enabled ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_DrawOverlay1)
+void ImageList_DrawOverlay1(TImageList AObj, TCanvas Canvas, int32_t X, int32_t Y, int32_t ImageIndex, uint8_t Overlay, BOOL Enabled) {
+    GET_FUNC_ADDR(ImageList_DrawOverlay1)
+    MySyscall(pImageList_DrawOverlay1, 7, AObj, Canvas, X, Y, ImageIndex, Overlay, Enabled ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_GetIcon1)
+void ImageList_GetIcon1(TImageList AObj, int32_t Index, TIcon Image) {
+    GET_FUNC_ADDR(ImageList_GetIcon1)
+    MySyscall(pImageList_GetIcon1, 3, AObj, Index, Image ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 
 // uexport2.pas
 
@@ -41095,6 +41562,30 @@ TClass Bitmap_StaticClassType() {
     return (TClass)MySyscall(pBitmap_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Bitmap_Clear)
+void Bitmap_Clear(TBitmap AObj) {
+    GET_FUNC_ADDR(Bitmap_Clear)
+    MySyscall(pBitmap_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bitmap_BeginUpdate)
+void Bitmap_BeginUpdate(TBitmap AObj, BOOL ACanvasOnly) {
+    GET_FUNC_ADDR(Bitmap_BeginUpdate)
+    MySyscall(pBitmap_BeginUpdate, 2, AObj, ACanvasOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bitmap_EndUpdate)
+void Bitmap_EndUpdate(TBitmap AObj, BOOL AStreamIsValid) {
+    GET_FUNC_ADDR(Bitmap_EndUpdate)
+    MySyscall(pBitmap_EndUpdate, 2, AObj, AStreamIsValid ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bitmap_LoadFromDevice)
+void Bitmap_LoadFromDevice(TBitmap AObj, HDC ADc) {
+    GET_FUNC_ADDR(Bitmap_LoadFromDevice)
+    MySyscall(pBitmap_LoadFromDevice, 2, AObj, ADc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 
 // MyLCL_MemoryStream.inc
 DEFINE_FUNC_PTR(MemoryStream_Create)
@@ -41227,6 +41718,18 @@ DEFINE_FUNC_PTR(MemoryStream_StaticClassType)
 TClass MemoryStream_StaticClassType() {
     GET_FUNC_ADDR(MemoryStream_StaticClassType)
     return (TClass)MySyscall(pMemoryStream_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MemoryStream_Write)
+int32_t MemoryStream_Write(TMemoryStream AObj, void* Buffer, int32_t Count) {
+    GET_FUNC_ADDR(MemoryStream_Write)
+    return (int32_t)MySyscall(pMemoryStream_Write, 3, AObj, Buffer, Count ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MemoryStream_Read)
+int32_t MemoryStream_Read(TMemoryStream AObj, void* Buffer, int32_t Count) {
+    GET_FUNC_ADDR(MemoryStream_Read)
+    return (int32_t)MySyscall(pMemoryStream_Read, 3, AObj, Buffer, Count ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 
@@ -50989,6 +51492,96 @@ TClass Canvas_StaticClassType() {
     return (TClass)MySyscall(pCanvas_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Canvas_BrushCopy)
+void Canvas_BrushCopy(TCanvas AObj, TRect* Dest, TBitmap Bitmap, TRect* Source, TColor Color) {
+    GET_FUNC_ADDR(Canvas_BrushCopy)
+    MySyscall(pCanvas_BrushCopy, 5, AObj, Dest, Bitmap, Source, Color ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_CopyRect)
+void Canvas_CopyRect(TCanvas AObj, TRect* Dest, TCanvas Canvas, TRect* Source) {
+    GET_FUNC_ADDR(Canvas_CopyRect)
+    MySyscall(pCanvas_CopyRect, 4, AObj, Dest, Canvas, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_Draw1)
+void Canvas_Draw1(TCanvas AObj, int32_t X, int32_t Y, TGraphic Graphic) {
+    GET_FUNC_ADDR(Canvas_Draw1)
+    MySyscall(pCanvas_Draw1, 4, AObj, X, Y, Graphic ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_Draw2)
+void Canvas_Draw2(TCanvas AObj, int32_t X, int32_t Y, TGraphic Graphic, char Opacity) {
+    GET_FUNC_ADDR(Canvas_Draw2)
+    MySyscall(pCanvas_Draw2, 5, AObj, X, Y, Graphic, Opacity ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_DrawFocusRect)
+void Canvas_DrawFocusRect(TCanvas AObj, TRect* ARect) {
+    GET_FUNC_ADDR(Canvas_DrawFocusRect)
+    MySyscall(pCanvas_DrawFocusRect, 2, AObj, ARect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_FillRect)
+void Canvas_FillRect(TCanvas AObj, TRect* Rect) {
+    GET_FUNC_ADDR(Canvas_FillRect)
+    MySyscall(pCanvas_FillRect, 2, AObj, Rect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_FrameRect)
+void Canvas_FrameRect(TCanvas AObj, TRect* Rect) {
+    GET_FUNC_ADDR(Canvas_FrameRect)
+    MySyscall(pCanvas_FrameRect, 2, AObj, Rect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_StretchDraw)
+void Canvas_StretchDraw(TCanvas AObj, TRect* Rect, TGraphic Graphic) {
+    GET_FUNC_ADDR(Canvas_StretchDraw)
+    MySyscall(pCanvas_StretchDraw, 3, AObj, Rect, Graphic ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_TextRect1)
+void Canvas_TextRect1(TCanvas AObj, TRect* Rect, int32_t X, int32_t Y, CChar char* Text) {
+    GET_FUNC_ADDR(Canvas_TextRect1)
+    MySyscall(pCanvas_TextRect1, 5, AObj, Rect, X, Y, Text ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_TextRect2)
+int32_t Canvas_TextRect2(TCanvas AObj, TRect* Rect, CChar char* Text, char** AOutStr, TTextFormat TextFormat) {
+    GET_FUNC_ADDR(Canvas_TextRect2)
+    return (int32_t)MySyscall(pCanvas_TextRect2, 5, AObj, Rect, Text, AOutStr, TextFormat ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_Polygon)
+void Canvas_Polygon(TCanvas AObj, TPoint* APoints, int32_t ALen) {
+    GET_FUNC_ADDR(Canvas_Polygon)
+    MySyscall(pCanvas_Polygon, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_Polyline)
+void Canvas_Polyline(TCanvas AObj, TPoint* APoints, int32_t ALen) {
+    GET_FUNC_ADDR(Canvas_Polyline)
+    MySyscall(pCanvas_Polyline, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_PolyBezier)
+void Canvas_PolyBezier(TCanvas AObj, TPoint* APoints, int32_t ALen) {
+    GET_FUNC_ADDR(Canvas_PolyBezier)
+    MySyscall(pCanvas_PolyBezier, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_Pixels)
+TColor Canvas_Pixels(TCanvas AObj, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Canvas_Pixels)
+    return (TColor)MySyscall(pCanvas_Pixels, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_SetPixels)
+void Canvas_SetPixels(TCanvas AObj, int32_t X, int32_t Y, TColor AColor) {
+    GET_FUNC_ADDR(Canvas_SetPixels)
+    MySyscall(pCanvas_SetPixels, 4, AObj, X, Y, AColor ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 
 // MyLCL_Object.inc
 DEFINE_FUNC_PTR(Object_Create)
@@ -53823,6 +54416,12 @@ DEFINE_FUNC_PTR(Clipboard_StaticClassType)
 TClass Clipboard_StaticClassType() {
     GET_FUNC_ADDR(Clipboard_StaticClassType)
     return (TClass)MySyscall(pClipboard_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_SetClipboard)
+TClipboard Clipboard_SetClipboard(TClipboard NewClipboard) {
+    GET_FUNC_ADDR(Clipboard_SetClipboard)
+    return (TClipboard)MySyscall(pClipboard_SetClipboard, 1, NewClipboard ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 
@@ -75645,6 +76244,12 @@ TClass Printer_StaticClassType() {
     return (TClass)MySyscall(pPrinter_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Printer_SetPrinter)
+void Printer_SetPrinter(TPrinter Obj, CChar char* aName) {
+    GET_FUNC_ADDR(Printer_SetPrinter)
+    MySyscall(pPrinter_SetPrinter, 2, Obj, aName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 
 // MyLCL_TaskDialog.inc
 DEFINE_FUNC_PTR(TaskDialog_Create)
@@ -83171,611 +83776,6 @@ DEFINE_FUNC_PTR(ToggleBox_StaticClassType)
 TClass ToggleBox_StaticClassType() {
     GET_FUNC_ADDR(ToggleBox_StaticClassType)
     return (TClass)MySyscall(pToggleBox_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-
-
-// LazarusDef.inc
-DEFINE_FUNC_PTR(DLibStringEncoding)
-TStringEncoding LibStringEncoding() {
-    GET_FUNC_ADDR(DLibStringEncoding)
-    return (TStringEncoding)MySyscall(pDLibStringEncoding, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DLibVersion)
-uint32_t LibVersion() {
-    GET_FUNC_ADDR(DLibVersion)
-    return (uint32_t)MySyscall(pDLibVersion, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSysLocale)
-void SysLocale(TSysLocale* AInfo) {
-    GET_FUNC_ADDR(DSysLocale)
-    MySyscall(pDSysLocale, 1, AInfo ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Application_Instance)
-TApplication Application_Instance() {
-    GET_FUNC_ADDR(Application_Instance)
-    return (TApplication)MySyscall(pApplication_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Application_Initialize)
-void Application_Initialize(TApplication AObj) {
-    GET_FUNC_ADDR(Application_Initialize)
-    MySyscall(pApplication_Initialize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Application_CreateForm)
-TForm Application_CreateForm(TApplication App, BOOL AInitScale) {
-    GET_FUNC_ADDR(Application_CreateForm)
-    return (TForm)MySyscall(pApplication_CreateForm, 2, App, AInitScale ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Application_Run)
-void Application_Run(TApplication AObj) {
-    GET_FUNC_ADDR(Application_Run)
-    MySyscall(pApplication_Run, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_Create2)
-TForm Form_Create2(TComponent AOwner, BOOL AInitScale) {
-    GET_FUNC_ADDR(Form_Create2)
-    return (TForm)MySyscall(pForm_Create2, 2, AOwner, AInitScale ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_EnabledMaximize)
-void Form_EnabledMaximize(TForm AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Form_EnabledMaximize)
-    MySyscall(pForm_EnabledMaximize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_EnabledMinimize)
-void Form_EnabledMinimize(TForm AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Form_EnabledMinimize)
-    MySyscall(pForm_EnabledMinimize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_EnabledSystemMenu)
-void Form_EnabledSystemMenu(TForm AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Form_EnabledSystemMenu)
-    MySyscall(pForm_EnabledSystemMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_SetOnDestroy)
-void Form_SetOnDestroy(TForm AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Form_SetOnDestroy)
-    MySyscall(pForm_SetOnDestroy, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_SetOnConstrainedResize)
-void Form_SetOnConstrainedResize(TForm AObj, TConstrainedResizeEvent AEventId) {
-    GET_FUNC_ADDR(Form_SetOnConstrainedResize)
-    MySyscall(pForm_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_SetOnWndProc)
-void Form_SetOnWndProc(TForm AObj, TWndProcEvent AEventId) {
-    GET_FUNC_ADDR(Form_SetOnWndProc)
-    MySyscall(pForm_SetOnWndProc, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_ScaleForPPI)
-void Form_ScaleForPPI(TForm AObj, int32_t ANewPPI) {
-    GET_FUNC_ADDR(Form_ScaleForPPI)
-    MySyscall(pForm_ScaleForPPI, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_ScaleControlsForDpi)
-void Form_ScaleControlsForDpi(TForm AObj, int32_t ANewPPI) {
-    GET_FUNC_ADDR(Form_ScaleControlsForDpi)
-    MySyscall(pForm_ScaleControlsForDpi, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_ScaleForCurrentDpi)
-void Form_ScaleForCurrentDpi(TForm AObj) {
-    GET_FUNC_ADDR(Form_ScaleForCurrentDpi)
-    MySyscall(pForm_ScaleForCurrentDpi, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_InheritedWndProc)
-void Form_InheritedWndProc(TForm AObj, TMessage* AMsg) {
-    GET_FUNC_ADDR(Form_InheritedWndProc)
-    MySyscall(pForm_InheritedWndProc, 2, AObj, AMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Mouse_Instance)
-TMouse Mouse_Instance() {
-    GET_FUNC_ADDR(Mouse_Instance)
-    return (TMouse)MySyscall(pMouse_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Screen_Instance)
-TScreen Screen_Instance() {
-    GET_FUNC_ADDR(Screen_Instance)
-    return (TScreen)MySyscall(pScreen_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DTextToShortCut)
-TShortCut TextToShortCut(CChar char* AText) {
-    GET_FUNC_ADDR(DTextToShortCut)
-    return (TShortCut)MySyscall(pDTextToShortCut, 1, AText ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DShortCutToText)
-char* ShortCutToText(TShortCut AVal) {
-    GET_FUNC_ADDR(DShortCutToText)
-    return (char*)MySyscall(pDShortCutToText, 1, AVal ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Clipboard_Instance)
-TClipboard Clipboard_Instance() {
-    GET_FUNC_ADDR(Clipboard_Instance)
-    return (TClipboard)MySyscall(pClipboard_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Clipboard_SetClipboard)
-TClipboard Clipboard_SetClipboard(TClipboard NewClipboard) {
-    GET_FUNC_ADDR(Clipboard_SetClipboard)
-    return (TClipboard)MySyscall(pClipboard_SetClipboard, 1, NewClipboard ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MemoryStream_Write)
-int32_t MemoryStream_Write(TMemoryStream AObj, void* Buffer, int32_t Count) {
-    GET_FUNC_ADDR(MemoryStream_Write)
-    return (int32_t)MySyscall(pMemoryStream_Write, 3, AObj, Buffer, Count ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MemoryStream_Read)
-int32_t MemoryStream_Read(TMemoryStream AObj, void* Buffer, int32_t Count) {
-    GET_FUNC_ADDR(MemoryStream_Read)
-    return (int32_t)MySyscall(pMemoryStream_Read, 3, AObj, Buffer, Count ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_BrushCopy)
-void Canvas_BrushCopy(TCanvas AObj, TRect* Dest, TBitmap Bitmap, TRect* Source, TColor Color) {
-    GET_FUNC_ADDR(Canvas_BrushCopy)
-    MySyscall(pCanvas_BrushCopy, 5, AObj, Dest, Bitmap, Source, Color ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_CopyRect)
-void Canvas_CopyRect(TCanvas AObj, TRect* Dest, TCanvas Canvas, TRect* Source) {
-    GET_FUNC_ADDR(Canvas_CopyRect)
-    MySyscall(pCanvas_CopyRect, 4, AObj, Dest, Canvas, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_Draw1)
-void Canvas_Draw1(TCanvas AObj, int32_t X, int32_t Y, TGraphic Graphic) {
-    GET_FUNC_ADDR(Canvas_Draw1)
-    MySyscall(pCanvas_Draw1, 4, AObj, X, Y, Graphic ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_Draw2)
-void Canvas_Draw2(TCanvas AObj, int32_t X, int32_t Y, TGraphic Graphic, char Opacity) {
-    GET_FUNC_ADDR(Canvas_Draw2)
-    MySyscall(pCanvas_Draw2, 5, AObj, X, Y, Graphic, Opacity ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_DrawFocusRect)
-void Canvas_DrawFocusRect(TCanvas AObj, TRect* ARect) {
-    GET_FUNC_ADDR(Canvas_DrawFocusRect)
-    MySyscall(pCanvas_DrawFocusRect, 2, AObj, ARect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_FillRect)
-void Canvas_FillRect(TCanvas AObj, TRect* Rect) {
-    GET_FUNC_ADDR(Canvas_FillRect)
-    MySyscall(pCanvas_FillRect, 2, AObj, Rect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_FrameRect)
-void Canvas_FrameRect(TCanvas AObj, TRect* Rect) {
-    GET_FUNC_ADDR(Canvas_FrameRect)
-    MySyscall(pCanvas_FrameRect, 2, AObj, Rect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_StretchDraw)
-void Canvas_StretchDraw(TCanvas AObj, TRect* Rect, TGraphic Graphic) {
-    GET_FUNC_ADDR(Canvas_StretchDraw)
-    MySyscall(pCanvas_StretchDraw, 3, AObj, Rect, Graphic ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_TextRect1)
-void Canvas_TextRect1(TCanvas AObj, TRect* Rect, int32_t X, int32_t Y, CChar char* Text) {
-    GET_FUNC_ADDR(Canvas_TextRect1)
-    MySyscall(pCanvas_TextRect1, 5, AObj, Rect, X, Y, Text ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_TextRect2)
-int32_t Canvas_TextRect2(TCanvas AObj, TRect* Rect, CChar char* Text, char** AOutStr, TTextFormat TextFormat) {
-    GET_FUNC_ADDR(Canvas_TextRect2)
-    return (int32_t)MySyscall(pCanvas_TextRect2, 5, AObj, Rect, Text, AOutStr, TextFormat ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_Polygon)
-void Canvas_Polygon(TCanvas AObj, TPoint* APoints, int32_t ALen) {
-    GET_FUNC_ADDR(Canvas_Polygon)
-    MySyscall(pCanvas_Polygon, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_Polyline)
-void Canvas_Polyline(TCanvas AObj, TPoint* APoints, int32_t ALen) {
-    GET_FUNC_ADDR(Canvas_Polyline)
-    MySyscall(pCanvas_Polyline, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_PolyBezier)
-void Canvas_PolyBezier(TCanvas AObj, TPoint* APoints, int32_t ALen) {
-    GET_FUNC_ADDR(Canvas_PolyBezier)
-    MySyscall(pCanvas_PolyBezier, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_Pixels)
-TColor Canvas_Pixels(TCanvas AObj, int32_t X, int32_t Y) {
-    GET_FUNC_ADDR(Canvas_Pixels)
-    return (TColor)MySyscall(pCanvas_Pixels, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_SetPixels)
-void Canvas_SetPixels(TCanvas AObj, int32_t X, int32_t Y, TColor AColor) {
-    GET_FUNC_ADDR(Canvas_SetPixels)
-    MySyscall(pCanvas_SetPixels, 4, AObj, X, Y, AColor ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(ImageList_Draw1)
-void ImageList_Draw1(TImageList AObj, TCanvas Canvas, int32_t X, int32_t Y, int32_t Index, BOOL Enabled) {
-    GET_FUNC_ADDR(ImageList_Draw1)
-    MySyscall(pImageList_Draw1, 6, AObj, Canvas, X, Y, Index, Enabled ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(ImageList_DrawOverlay1)
-void ImageList_DrawOverlay1(TImageList AObj, TCanvas Canvas, int32_t X, int32_t Y, int32_t ImageIndex, uint8_t Overlay, BOOL Enabled) {
-    GET_FUNC_ADDR(ImageList_DrawOverlay1)
-    MySyscall(pImageList_DrawOverlay1, 7, AObj, Canvas, X, Y, ImageIndex, Overlay, Enabled ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(ImageList_GetIcon1)
-void ImageList_GetIcon1(TImageList AObj, int32_t Index, TIcon Image) {
-    GET_FUNC_ADDR(ImageList_GetIcon1)
-    MySyscall(pImageList_GetIcon1, 3, AObj, Index, Image ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_Clear)
-void Bitmap_Clear(TBitmap AObj) {
-    GET_FUNC_ADDR(Bitmap_Clear)
-    MySyscall(pBitmap_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_BeginUpdate)
-void Bitmap_BeginUpdate(TBitmap AObj, BOOL ACanvasOnly) {
-    GET_FUNC_ADDR(Bitmap_BeginUpdate)
-    MySyscall(pBitmap_BeginUpdate, 2, AObj, ACanvasOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_EndUpdate)
-void Bitmap_EndUpdate(TBitmap AObj, BOOL AStreamIsValid) {
-    GET_FUNC_ADDR(Bitmap_EndUpdate)
-    MySyscall(pBitmap_EndUpdate, 2, AObj, AStreamIsValid ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_LoadFromDevice)
-void Bitmap_LoadFromDevice(TBitmap AObj, HDC ADc) {
-    GET_FUNC_ADDR(Bitmap_LoadFromDevice)
-    MySyscall(pBitmap_LoadFromDevice, 2, AObj, ADc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-
-
-#ifndef _WIN32
-
-DEFINE_FUNC_PTR(DSendMessage)
-LResult SendMessage(HWND hWd, uint32_t msg, WParam wParam, LParam lParam) {
-    GET_FUNC_ADDR(DSendMessage)
-    return (LResult)MySyscall(pDSendMessage, 4, hWd, msg, wParam, lParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DPostMessage)
-BOOL PostMessage(HWND hWd, uint32_t msg, WParam wParam, LParam lParam) {
-    GET_FUNC_ADDR(DPostMessage)
-    return (BOOL)MySyscall(pDPostMessage, 4, hWd, msg, wParam, lParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DIsIconic)
-BOOL IsIconic(HWND hWnd) {
-    GET_FUNC_ADDR(DIsIconic)
-    return (BOOL)MySyscall(pDIsIconic, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DIsWindow)
-BOOL IsWindow(HWND hWnd) {
-    GET_FUNC_ADDR(DIsWindow)
-    return (BOOL)MySyscall(pDIsWindow, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DIsZoomed)
-BOOL IsZoomed(HWND hWnd) {
-    GET_FUNC_ADDR(DIsZoomed)
-    return (BOOL)MySyscall(pDIsZoomed, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DIsWindowVisible)
-BOOL IsWindowVisible(HWND hWnd) {
-    GET_FUNC_ADDR(DIsWindowVisible)
-    return (BOOL)MySyscall(pDIsWindowVisible, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGetDC)
-HDC GetDC(HWND hWnd) {
-    GET_FUNC_ADDR(DGetDC)
-    return (HDC)MySyscall(pDGetDC, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DReleaseDC)
-int32_t ReleaseDC(HWND hWnd, HDC dc) {
-    GET_FUNC_ADDR(DReleaseDC)
-    return (int32_t)MySyscall(pDReleaseDC, 2, hWnd, dc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSetForegroundWindow)
-BOOL SetForegroundWindow(HWND hWnd) {
-    GET_FUNC_ADDR(DSetForegroundWindow)
-    return (BOOL)MySyscall(pDSetForegroundWindow, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DWindowFromPoint)
-HWND WindowFromPoint(TPoint* point) {
-    GET_FUNC_ADDR(DWindowFromPoint)
-    return (HWND)MySyscall(pDWindowFromPoint, 1, point ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-
-#endif
-
-DEFINE_FUNC_PTR(SetEventCallback)
-void SetEventCallback(void* APtr) {
-    GET_FUNC_ADDR(SetEventCallback)
-    MySyscall(pSetEventCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(SetMessageCallback)
-void SetMessageCallback(void* APtr) {
-    GET_FUNC_ADDR(SetMessageCallback)
-    MySyscall(pSetMessageCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(SetThreadSyncCallback)
-void SetThreadSyncCallback(void* APtr) {
-    GET_FUNC_ADDR(SetThreadSyncCallback)
-    MySyscall(pSetThreadSyncCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGetStringArrOf)
-char* GetStringArrOf(void* P, intptr_t AIndex) {
-    GET_FUNC_ADDR(DGetStringArrOf)
-    return (char*)MySyscall(pDGetStringArrOf, 2, P, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DStrLen)
-intptr_t StrLen(CChar char* p) {
-    GET_FUNC_ADDR(DStrLen)
-    return (intptr_t)MySyscall(pDStrLen, 1, p ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DMove)
-void Move(void* Src, void* Dest, intptr_t Len) {
-    GET_FUNC_ADDR(DMove)
-    MySyscall(pDMove, 3, Src, Dest, Len ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DShowMessage)
-void ShowMessage(CChar char* AMsg) {
-    GET_FUNC_ADDR(DShowMessage)
-    MySyscall(pDShowMessage, 1, AMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGetMainInstance)
-HINST GetMainInstance() {
-    GET_FUNC_ADDR(DGetMainInstance)
-    return (HINST)MySyscall(pDGetMainInstance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DMessageDlg)
-int32_t MessageDlg(CChar char* Msg, TMsgDlgType DlgType, TMsgDlgButtons Buttons, int32_t HelpCtx) {
-    GET_FUNC_ADDR(DMessageDlg)
-    return (int32_t)MySyscall(pDMessageDlg, 4, Msg, DlgType, Buttons, HelpCtx ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSynchronize)
-void Synchronize(BOOL AUseMsg) {
-    GET_FUNC_ADDR(DSynchronize)
-    MySyscall(pDSynchronize, 1, AUseMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DMainThreadId)
-uintptr_t MainThreadId() {
-    GET_FUNC_ADDR(DMainThreadId)
-    return (uintptr_t)MySyscall(pDMainThreadId, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DCurrentThreadId)
-uintptr_t CurrentThreadId() {
-    GET_FUNC_ADDR(DCurrentThreadId)
-    return (uintptr_t)MySyscall(pDCurrentThreadId, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSysOpen)
-void SysOpen(CChar char* FileName) {
-    GET_FUNC_ADDR(DSysOpen)
-    MySyscall(pDSysOpen, 1, FileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DExtractFilePath)
-char* ExtractFilePath(CChar char* AFileName) {
-    GET_FUNC_ADDR(DExtractFilePath)
-    return (char*)MySyscall(pDExtractFilePath, 1, AFileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFileExists)
-BOOL FileExists(CChar char* AFileName) {
-    GET_FUNC_ADDR(DFileExists)
-    return (BOOL)MySyscall(pDFileExists, 1, AFileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSelectDirectory1)
-BOOL SelectDirectory1(char** Directory, TSelectDirOpts Options, int32_t HelpCtx) {
-    GET_FUNC_ADDR(DSelectDirectory1)
-    return (BOOL)MySyscall(pDSelectDirectory1, 3, Directory, Options, HelpCtx ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSelectDirectory2)
-BOOL SelectDirectory2(CChar char* Caption, CChar char* Root, char** Directory, uint32_t Options, TWinControl Parent) {
-    GET_FUNC_ADDR(DSelectDirectory2)
-    return (BOOL)MySyscall(pDSelectDirectory2, 5, Caption, Root, Directory, Options, Parent ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DInputBox)
-char* InputBox(CChar char* ACaption, CChar char* APrompt, CChar char* ADefault) {
-    GET_FUNC_ADDR(DInputBox)
-    return (char*)MySyscall(pDInputBox, 3, ACaption, APrompt, ADefault ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DInputQuery)
-BOOL InputQuery(CChar char* ACaption, CChar char* APrompt, CChar char* Value, char** AOut) {
-    GET_FUNC_ADDR(DInputQuery)
-    return (BOOL)MySyscall(pDInputQuery, 4, ACaption, APrompt, Value, AOut ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-
-
-#ifdef _WIN32
-
-DEFINE_FUNC_PTR(DCreateURLShortCut)
-void CreateURLShortCut(CChar char* ADestPath, CChar char* AShortCutName, CChar char* AURL) {
-    GET_FUNC_ADDR(DCreateURLShortCut)
-    MySyscall(pDCreateURLShortCut, 3, ADestPath, AShortCutName, AURL ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DCreateShortCut)
-BOOL CreateShortCut(CChar char* ADestPath, CChar char* AShortCutName, CChar char* ASrcFileName, CChar char* AIconFileName, CChar char* ADescription, CChar char* ACmdArgs) {
-    GET_FUNC_ADDR(DCreateShortCut)
-    return (BOOL)MySyscall(pDCreateShortCut, 6, ADestPath, AShortCutName, ASrcFileName, AIconFileName, ADescription, ACmdArgs ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-
-#endif
-
-DEFINE_FUNC_PTR(DSetPropertyValue)
-void SetPropertyValue(TObject Instance, CChar char* PropName, CChar char* Value) {
-    GET_FUNC_ADDR(DSetPropertyValue)
-    MySyscall(pDSetPropertyValue, 3, Instance, PropName, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DSetPropertySecValue)
-void SetPropertySecValue(TObject Instance, CChar char* PropName, CChar char* SecPropName, CChar char* Value) {
-    GET_FUNC_ADDR(DSetPropertySecValue)
-    MySyscall(pDSetPropertySecValue, 4, Instance, PropName, SecPropName, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGUIDToString)
-char* GUIDToString(TGUID* AGUID) {
-    GET_FUNC_ADDR(DGUIDToString)
-    return (char*)MySyscall(pDGUIDToString, 1, AGUID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DStringToGUID)
-void StringToGUID(CChar char* AGUIDStr, TGUID* AGUID) {
-    GET_FUNC_ADDR(DStringToGUID)
-    MySyscall(pDStringToGUID, 2, AGUIDStr, AGUID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DCreateGUID)
-void CreateGUID(TGUID* AGUID) {
-    GET_FUNC_ADDR(DCreateGUID)
-    MySyscall(pDCreateGUID, 1, AGUID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Printer_Instance)
-TPrinter Printer_Instance() {
-    GET_FUNC_ADDR(Printer_Instance)
-    return (TPrinter)MySyscall(pPrinter_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Printer_SetPrinter)
-void Printer_SetPrinter(TPrinter Obj, CChar char* aName) {
-    GET_FUNC_ADDR(Printer_SetPrinter)
-    MySyscall(pPrinter_SetPrinter, 2, Obj, aName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DLibAbout)
-char* LibAbout() {
-    GET_FUNC_ADDR(DLibAbout)
-    return (char*)MySyscall(pDLibAbout, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGetLibResouceCount)
-int32_t GetLibResouceCount() {
-    GET_FUNC_ADDR(DGetLibResouceCount)
-    return (int32_t)MySyscall(pDGetLibResouceCount, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGetLibResouceItem)
-void GetLibResouceItem(int32_t AIndex, TResItem* AResult) {
-    GET_FUNC_ADDR(DGetLibResouceItem)
-    MySyscall(pDGetLibResouceItem, 2, AIndex, AResult ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DModifyLibResouce)
-void ModifyLibResouce(void* APtr, CChar char* AValue) {
-    GET_FUNC_ADDR(DModifyLibResouce)
-    MySyscall(pDModifyLibResouce, 2, APtr, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DGetLibType)
-TLibType GetLibType() {
-    GET_FUNC_ADDR(DGetLibType)
-    return (TLibType)MySyscall(pDGetLibType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DInitGoDll)
-void InitGoDll(uintptr_t AMainThreadId) {
-    GET_FUNC_ADDR(DInitGoDll)
-    MySyscall(pDInitGoDll, 1, AMainThreadId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFindControl)
-TWinControl FindControl(HWND AHandle) {
-    GET_FUNC_ADDR(DFindControl)
-    return (TWinControl)MySyscall(pDFindControl, 1, AHandle ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFindLCLControl)
-TControl FindLCLControl(TPoint* AScreenPos) {
-    GET_FUNC_ADDR(DFindLCLControl)
-    return (TControl)MySyscall(pDFindLCLControl, 1, AScreenPos ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFindOwnerControl)
-TWinControl FindOwnerControl(HWND Handle) {
-    GET_FUNC_ADDR(DFindOwnerControl)
-    return (TWinControl)MySyscall(pDFindOwnerControl, 1, Handle ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFindControlAtPosition)
-TControl FindControlAtPosition(TPoint* APosition, BOOL AllowDisabled) {
-    GET_FUNC_ADDR(DFindControlAtPosition)
-    return (TControl)MySyscall(pDFindControlAtPosition, 2, APosition, AllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFindLCLWindow)
-TWinControl FindLCLWindow(TPoint* AScreenPos, BOOL AllowDisabled) {
-    GET_FUNC_ADDR(DFindLCLWindow)
-    return (TWinControl)MySyscall(pDFindLCLWindow, 2, AScreenPos, AllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DFindDragTarget)
-TControl FindDragTarget(TPoint* APosition, BOOL AllowDisabled) {
-    GET_FUNC_ADDR(DFindDragTarget)
-    return (TControl)MySyscall(pDFindDragTarget, 2, APosition, AllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 

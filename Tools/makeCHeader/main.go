@@ -11,6 +11,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+
 	"io/ioutil"
 	"os"
 	"regexp"
@@ -69,10 +70,11 @@ var (
 
 		//"TResItem":             "",
 	}
-	funcsMap   = make(map[string]string, 0)
-	classArray = make([]string, 0)
-	objsMap    = make(map[string]string)
-	defFile    = bytes.NewBuffer([]byte("EXPORTS\n\n"))
+	funcsMap        = make(map[string]string, 0)
+	classArray      = make([]string, 0)
+	objsMap         = make(map[string]string)
+	defFile         = bytes.NewBuffer([]byte("EXPORTS\n\n"))
+	defClassMethods = make(map[string][]string, 0)
 )
 
 func main() {
@@ -114,31 +116,31 @@ func main() {
 	file.WLn()
 	file.WLn()
 
+	//	parseClassFiles(file, "uexport2.pas")
+
+	file.WLn()
+	parseFile(file, "LazarusDef.inc", false, nil)
+
 	// 自动生成的对象函数
 	for i := 1; i <= 4; i++ {
 		parseClassFiles(file, fmt.Sprintf("uexport%d.pas", i))
 	}
 
-	//	parseClassFiles(file, "uexport2.pas")
-
-	file.WLn()
-	parseFile(file, "LazarusDef.inc", false)
-
 	file.WLn()
 	file.W("#ifdef __linux__\n")
-	parseFile(file, "ulinuxpatchs.pas", true)
+	parseFile(file, "ulinuxpatchs.pas", true, nil)
 	file.WLn()
 	file.W("#endif\n")
 	file.WLn()
 
 	file.WLn()
 	file.W("#ifdef __APPLE__\n")
-	parseFile(file, "umacospatchs.pas", true)
+	parseFile(file, "umacospatchs.pas", true, nil)
 	file.WLn()
 	file.W("#endif\n")
 	file.WLn()
 
-	parseFile(file, "uformdesignerfile.pas", true)
+	parseFile(file, "uformdesignerfile.pas", true, nil)
 
 	// ulinuxpatchs.pas
 	// umacospathcs.pas
@@ -158,6 +160,8 @@ func main() {
 	file.AddReplaceFlag("typeconsts", parseConst(govclPath+"/vcl/types/consts.go"))
 
 	file.Save()
+
+	//fmt.Println(defClassMethods)
 
 	// 保存def文件
 	//ioutil.WriteFile("./test/liblcl.def", defFile.Bytes(), 0664)
@@ -183,7 +187,7 @@ func ReadFile(fileName string) ([]byte, error) {
 	return bs, nil
 }
 
-func parseFile(f *CFile, fileName string, isclass bool) {
+func parseFile(f *CFile, fileName string, isClass bool, appendBytes []byte) {
 	bs, err := ReadFile(fileName)
 	if err != nil {
 		panic(err)
@@ -192,19 +196,53 @@ func parseFile(f *CFile, fileName string, isclass bool) {
 	// {无效参数}
 	bs = bytes.Replace(bs, []byte("{无效参数}"), nil, -1)
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
+
+	// 附加进去
+	if len(appendBytes) > 0 {
+		bs = append(bs, appendBytes...)
+	}
 	sps := bytes.Split(bs, []byte("\n"))
 	for i, line := range sps {
 		s := string(bytes.TrimSpace(line))
 		if (strings.HasPrefix(strings.ToLower(s), "function") || strings.HasPrefix(strings.ToLower(s), "procedure")) && strings.HasSuffix(s, "extdecl;") {
 			eventType := ""
+			prevLine := ""
 			if i > 0 {
-				prevLine := string(bytes.TrimSpace(sps[i-1]))
+				prevLine = string(bytes.TrimSpace(sps[i-1]))
 				if strings.HasPrefix(prevLine, "//EVENT_TYPE:") {
 					//fmt.Println("事件：", prevLine)
 					eventType = strings.TrimSpace(strings.TrimPrefix(prevLine, "//EVENT_TYPE:"))
 				}
 			}
-			parseFunc(f, s, isclass, eventType)
+			if !isClass {
+				cs := s
+				if strings.HasPrefix(s, "procedure") {
+					cs = strings.TrimPrefix(cs, "procedure")
+				} else if strings.HasPrefix(s, "function") {
+					cs = strings.TrimPrefix(cs, "function")
+				}
+				cs = strings.TrimSpace(cs)
+				// 起始不要D开头的，然后不要_Instance结束的
+				if cs[0] != 'D' && !strings.Contains(cs, "_Instance") {
+					if idx := strings.Index(cs, "_"); idx > 0 {
+						name := strings.TrimSpace(cs[:idx])
+						if name != "Exception" {
+							name = "T" + name
+						}
+						mArr, _ := defClassMethods[name]
+						temp := ""
+						if eventType != "" {
+							temp += prevLine + "\r\n"
+						}
+						temp += s + "\r\n"
+
+						mArr = append(mArr, temp)
+						defClassMethods[name] = mArr
+						continue
+					}
+				}
+			}
+			parseFunc(f, s, isClass, eventType)
 		}
 	}
 
@@ -233,13 +271,20 @@ func parseClassFiles(f *CFile, fileName string) {
 			// 生成类型定义用的
 			classArray = append(classArray, className)
 			fmt.Println(incFileName)
-			parseFile(f, incFileName, true)
+
+			appendStr := ""
+			if mArr, ok := defClassMethods[className]; ok {
+				for _, ar := range mArr {
+					appendStr += ar
+				}
+			}
+			parseFile(f, incFileName, true, []byte(appendStr))
 		}
 	}
 
 }
 
-func parseFunc(f *CFile, s string, isclass bool, eventType string) {
+func parseFunc(f *CFile, s string, isClass bool, eventType string) {
 	isFunc := strings.HasPrefix(strings.ToLower(s), "function")
 	if isFunc {
 		s = strings.TrimPrefix(s, "function")
@@ -292,7 +337,7 @@ func parseFunc(f *CFile, s string, isclass bool, eventType string) {
 
 	defFile.WriteString(fmt.Sprintf("  %s\n", funcName))
 
-	MakeCFunc(f, funcName, returnType, params, isclass)
+	MakeCFunc(f, funcName, returnType, params, isClass)
 }
 
 type Param struct {
@@ -349,7 +394,7 @@ func ParseParams(s string, eventType string) []Param {
 	return ps
 }
 
-func MakeCFunc(f *CFile, name, returnType string, params []Param, isclass bool) {
+func MakeCFunc(f *CFile, name, returnType string, params []Param, isClass bool) {
 
 	if name == "DSendMessage" || name == "DCreateURLShortCut" {
 		f.WLn()
@@ -377,7 +422,7 @@ func MakeCFunc(f *CFile, name, returnType string, params []Param, isclass bool) 
 	//f.W(" ")
 	// 不是类的成员，不要那个D开头
 	tempName := name
-	if !isclass {
+	if !isClass {
 		if tempName[0] == 'D' {
 			tempName = tempName[1:]
 		}
