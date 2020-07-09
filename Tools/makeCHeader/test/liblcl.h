@@ -1594,16 +1594,6 @@ typedef enum  {
 }TSelectDirOpt;
 
 typedef TSet TSelectDirOpts;
-typedef enum  {
-    sdNewFolder,
-    sdShowEdit,
-    sdShowShares,
-    sdNewUI,
-    sdShowFiles,
-    sdValidateDir,
-}TSelectDirExtOpt;
-
-typedef TSet TSelectDirExtOpts;
 typedef uint32_t TFindOption;
 typedef TSet TFindOptions;
 typedef enum  {
@@ -2900,9 +2890,9 @@ BOOL SelectDirectory1(char** Directory, TSelectDirOpts Options, int32_t HelpCtx)
 }
 
 DEFINE_FUNC_PTR(DSelectDirectory2)
-BOOL SelectDirectory2(CChar char* Caption, CChar char* Root, char** Directory, uint32_t Options, TWinControl Parent) {
+BOOL SelectDirectory2(CChar char* Caption, CChar char* Root, BOOL AShowHidden, char** Directory) {
     GET_FUNC_ADDR(DSelectDirectory2)
-    return (BOOL)MySyscall(pDSelectDirectory2, 5, Caption, Root, Directory, Options, Parent ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (BOOL)MySyscall(pDSelectDirectory2, 4, Caption, Root, AShowHidden, Directory ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DInputBox)
