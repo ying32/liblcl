@@ -1,20 +1,20 @@
-{$ifdef windows}
-unit uExport2;
+//{$ifdef windows}
+//unit uExport2;
 
-{$mode delphi}
+//{$mode delphi}
 
-{$I ExtDecl.inc}
+//{$I ExtDecl.inc}
 
-interface
+//interface
 
-implementation
+//implementation
 
-uses
-  Classes, SysUtils,
-  {$I UseAll.inc},
-  uControlPatchs, uExceptionHandle;
+//uses
+//  Classes, SysUtils,
+//  {$I UseAll.inc},
+//  uControlPatchs, uExceptionHandle;
   
-{$endif windows}
+//{$endif windows}
 
 {$I MyLCL_UpDown.inc}
 {$I MyLCL_ProgressBar.inc}
@@ -52,6 +52,6 @@ uses
 {$I MyLCL_StatusPanel.inc}
 
 
-{$ifdef windows}
-end.
-{$endif windows}
+//{$ifdef windows}
+//end.
+//{$endif windows}

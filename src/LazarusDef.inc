@@ -153,15 +153,6 @@ begin
   handleExceptionEnd
 end;
 
-
-////EVENT_TYPE:TDropFilesEvent
-//procedure Form_SetOnDropFiles(AObj: TGoForm; AEventId: NativeUInt); extdecl;
-//begin
-//  {$DEFINE EventName := OnDropFiles}
-//  {$DEFINE EventMethodName := OnTDropFilesEvent_OnDropFiles}
-//  EventMethodCode
-//end;
-
 //EVENT_TYPE:TNotifyEvent
 procedure Form_SetOnDestroy(AObj: TGoForm; AEventId: NativeUInt); extdecl;
 begin
@@ -192,20 +183,6 @@ begin
   TMessageEventClass.Add(AObj, AEventId);
   handleExceptionEnd
 end;
-
-//procedure Form_SetShowInTaskBar(AObj: TGoForm; AVal: TShowInTaskbar); extdecl;
-//begin
-//  handleExceptionBegin
-//  AObj.ShowInTaskBar := AVal;
-//  handleExceptionEnd
-//end;
-//
-//function Form_ShowInTaskBar(AObj: TGoForm): TShowInTaskbar; extdecl;
-//begin
-//  handleExceptionBegin
-//  Result := AObj.ShowInTaskBar;
-//  handleExceptionEnd
-//end;
 
 procedure Form_ScaleForPPI(AObj: TGoForm; ANewPPI: Integer); extdecl;
 begin
@@ -757,12 +734,12 @@ begin
   handleExceptionEnd
 end;
 
-function DSelectDirectory2(Caption, Root: PChar; var Directory: PChar; Options: Cardinal{无效参数}; Parent: TWinControl{无效参数}): LongBool;  extdecl;
+function DSelectDirectory2(Caption, Root: PChar; AShowHidden: LongBool; var Directory: PChar): LongBool;  extdecl;
 var
   LDir: string;
 begin
   handleExceptionBegin
-  Result := SelectDirectory(Caption, Root, LDir, False, 0);
+  Result := SelectDirectory(Caption, Root, LDir, AShowHidden, 0);
   if Result then
     Directory := PChar(LDir);
   handleExceptionEnd
@@ -874,8 +851,8 @@ begin
 end;
 
 procedure DSetPropertySecValue(Instance: TObject; PropName, SecPropName, Value: PChar); extdecl;
-type
-  TCallIndexGetClassProc = function(AData: Pointer; AIndex: Integer): Pointer;
+//type
+  //TCallIndexGetClassProc = function(AData: Pointer; AIndex: Integer): Pointer;
 var
   LPropInfo: PPropInfo;
   LObj: TObject;
@@ -920,7 +897,6 @@ begin
 end;
 
 
-//
 //GUIDToString
 function DGUIDToString(var AGUID: TGUID): PChar; extdecl;
 begin
@@ -928,6 +904,7 @@ begin
   Result := PChar(GUIDToString(AGUID));
   handleExceptionEnd
 end;
+
 //StringToGUID
 procedure DStringToGUID(AGUIDStr: PChar; out AGUID: TGUID); extdecl;
 begin
@@ -950,12 +927,6 @@ begin
   Result := Printer;
 end;
 
-//function DPrinter_SetPrinter(NewPrinter: TPrinter): TPrinter; extdecl;
-//begin
-//  Result := SetPrinter(NewPrinter);
-//end;
-//
-// 因参数与Delphi中不一致，这里要伪造下参数，后面  ADriver, APort, ADeviceMode 三个参数无效
 procedure Printer_SetPrinter(Obj: TPrinter; aName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -1098,11 +1069,7 @@ begin
   Result := ltLCL;
 end;
 
-// 非Windows下使用exports无法导出pas中的
-//function DGetProcAddr(AName: PChar): Pointer; extdecl;
-//begin
-//  Result := GetProcAddr(AName);
-//end;
+
 
 {$ifndef UsehandleException}
 // dylib

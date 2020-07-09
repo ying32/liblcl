@@ -1,20 +1,20 @@
-{$ifdef windows}
-unit uExport3;
+//{$ifdef windows}
+//unit uExport3;
 
-{$mode delphi}
+//{$mode delphi}
 
-{$I ExtDecl.inc}
+//{$I ExtDecl.inc}
 
-interface
+//interface
 
-implementation
+//implementation
 
-uses
-  Classes, SysUtils,
-  {$I UseAll.inc},
-  uControlPatchs, uExceptionHandle;
+//uses
+//  Classes, SysUtils,
+//  {$I UseAll.inc},
+//  uControlPatchs, uExceptionHandle;
   
-{$endif windows}
+//{$endif windows}
 
 {$I MyLCL_SpinEdit.inc}
 {$I MyLCL_MiniWebview.inc}
@@ -52,6 +52,6 @@ uses
 {$I MyLCL_PrinterSetupDialog.inc}
 
 
-{$ifdef windows}
-end.
-{$endif windows}
+//{$ifdef windows}
+//end.
+//{$endif windows}

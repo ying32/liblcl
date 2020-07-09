@@ -1,20 +1,20 @@
-{$ifdef windows}
-unit uExport4;
+//{$ifdef windows}
+//unit uExport4;
 
-{$mode delphi}
+//{$mode delphi}
 
-{$I ExtDecl.inc}
+//{$I ExtDecl.inc}
 
-interface
+//interface
 
-implementation
+//implementation
 
-uses
-  Classes, SysUtils,
-  {$I UseAll.inc},
-  uControlPatchs, uExceptionHandle;
+//uses
+//  Classes, SysUtils,
+//  {$I UseAll.inc},
+//  uControlPatchs, uExceptionHandle;
   
-{$endif windows}
+//{$endif windows}
 
 {$I MyLCL_PageSetupDialog.inc}
 {$I MyLCL_DragObject.inc}
@@ -52,6 +52,6 @@ uses
 {$I MyLCL_ToggleBox.inc}
 
 
-{$ifdef windows}
-end.
-{$endif windows}
+//{$ifdef windows}
+//end.
+//{$endif windows}

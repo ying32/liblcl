@@ -293,10 +293,10 @@ constructor TTreeView.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   Self.ScrollBars := TScrollStyle.ssAutoBoth;
-  Self.ExpandSignType := tvestArrowFill;
-{$IFNDEF WINDOWS}
-  Self.TreeLinePenStyle := TPenStyle.psSolid;
-{$ENDIF}
+//  Self.ExpandSignType := tvestArrowFill;
+//{$IFNDEF WINDOWS}
+//  Self.TreeLinePenStyle := TPenStyle.psSolid;
+//{$ENDIF}
 end;
 
 procedure TTreeView.DeleteSelected;
