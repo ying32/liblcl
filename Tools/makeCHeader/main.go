@@ -27,6 +27,9 @@ var (
 	objsMap         = make(map[string]string)
 	defFile         = bytes.NewBuffer([]byte("EXPORTS\n\n"))
 	defClassMethods = make(map[string][]string, 0)
+
+	cFile    = NewCFile("./test/liblcl.h")
+	rustFile = NewRustFile("./test/imports.rs")
 )
 
 func main() {
@@ -48,9 +51,11 @@ func main() {
 		panic("未在$GOPATH中到找govcl源代码目录，请go get github.com/ying32/govcl")
 	}
 
-	//-----------
-	file := NewCFile("./test/liblcl.h")
-	file.WriteHeader()
+	//----------- c头文件
+	cFile.WriteHeader()
+
+	// ----------- rust 文件
+	rustFile.WriteHeader()
 
 	// UInt64 WINAPI MySyscall(void* AProc, intptr_t ALen, void* A1, void* A2, void* A3, void* A4, void* A5, void* A6, void* A7, void* A8, void* A9, void* A10, void* A11, void* A12);
 	funcsMap["MySyscall"] = ""     // 排除此函数，手动构建
@@ -65,53 +70,58 @@ func main() {
 	funcsMap["NSWindow_setRepresentedURL"] = ""
 	funcsMap["NSWindow_release"] = ""
 
-	file.WLn()
-	file.WLn()
+	cFile.WLn()
+	cFile.WLn()
 
 	//	parseClassFiles(file, "uexport2.pas")
 
-	file.WLn()
-	parseFile(file, "LazarusDef.inc", false, nil)
+	cFile.WLn()
+	parseFile("LazarusDef.inc", false, nil)
 
 	// 自动生成的对象函数
 	for i := 1; i <= 4; i++ {
-		parseClassFiles(file, fmt.Sprintf("uexport%d.pas", i))
+		parseClassFiles(fmt.Sprintf("uexport%d.pas", i))
 	}
 
-	file.WLn()
-	file.W("#ifdef __linux__\n")
-	parseFile(file, "ulinuxpatchs.pas", true, nil)
-	file.WLn()
-	file.W("#endif\n")
-	file.WLn()
+	cFile.WLn()
+	cFile.W("#ifdef __linux__\n")
+	parseFile("ulinuxpatchs.pas", true, nil)
+	cFile.WLn()
+	cFile.W("#endif\n")
+	cFile.WLn()
 
-	file.WLn()
-	file.W("#ifdef __APPLE__\n")
-	parseFile(file, "umacospatchs.pas", true, nil)
-	file.WLn()
-	file.W("#endif\n")
-	file.WLn()
+	cFile.WLn()
+	cFile.W("#ifdef __APPLE__\n")
+	parseFile("umacospatchs.pas", true, nil)
+	cFile.WLn()
+	cFile.W("#endif\n")
+	cFile.WLn()
 
-	parseFile(file, "uformdesignerfile.pas", true, nil)
+	parseFile("uformdesignerfile.pas", true, nil)
 
 	// ulinuxpatchs.pas
 	// umacospathcs.pas
 
 	//fmt.Println(file.String())
 
-	file.WriteFooter()
+	cFile.WriteFooter()
+	rustFile.WriteFooter()
 	// 生成枚举
-	file.WLn()
+	cFile.WLn()
 	//file.WComment("枚举定义\n")
 
-	file.AddReplaceFlag("typedefs", getClassDefs())
-	file.AddReplaceFlag("enumdefs", parseEnums(govclPath+"/vcl/types/enums.go"))
-	file.AddReplaceFlag("eventdefs", parseEvents(govclPath+"/vcl/events.go"))
-	file.AddReplaceFlag("colorconsts", parseConst(govclPath+"/vcl/types/colors/colors.go"))
-	file.AddReplaceFlag("keyconsts", parseConst(govclPath+"/vcl/types/keys/keys.go"))
-	file.AddReplaceFlag("typeconsts", parseConst(govclPath+"/vcl/types/consts.go"))
+	cFile.AddReplaceFlag("typedefs", getClassDefs())
+	cFile.AddReplaceFlag("enumdefs", parseEnums(govclPath+"/vcl/types/enums.go"))
+	cFile.AddReplaceFlag("eventdefs", parseEvents(govclPath+"/vcl/events.go"))
+	cFile.AddReplaceFlag("colorconsts", parseConst(govclPath+"/vcl/types/colors/colors.go"))
+	cFile.AddReplaceFlag("keyconsts", parseConst(govclPath+"/vcl/types/keys/keys.go"))
+	cFile.AddReplaceFlag("typeconsts", parseConst(govclPath+"/vcl/types/consts.go"))
 
-	file.Save()
+	// 保存liblcl.h
+	//cFile.Save()
+
+	// 保存rust文件
+	rustFile.Save()
 
 	//fmt.Println(defClassMethods)
 
@@ -139,12 +149,12 @@ func ReadFile(fileName string) ([]byte, error) {
 	return bs, nil
 }
 
-func parseFile(f *CFile, fileName string, isClass bool, appendBytes []byte) {
+func parseFile(fileName string, isClass bool, appendBytes []byte) {
 	bs, err := ReadFile(fileName)
 	if err != nil {
 		panic(err)
 	}
-	f.WComment(fileName)
+	cFile.WComment(fileName)
 	// {无效参数}
 	bs = bytes.Replace(bs, []byte("{无效参数}"), nil, -1)
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
@@ -194,19 +204,19 @@ func parseFile(f *CFile, fileName string, isClass bool, appendBytes []byte) {
 					}
 				}
 			}
-			parseFunc(f, s, isClass, eventType)
+			parseFunc(s, isClass, eventType)
 		}
 	}
 
 }
 
-func parseClassFiles(f *CFile, fileName string) {
+func parseClassFiles(fileName string) {
 	bs, err := ReadFile(fileName)
 	if err != nil {
 		panic(err)
 	}
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
-	f.WComment(fileName)
+	cFile.WComment(fileName)
 	matchs := incFileExpr.FindAllStringSubmatch(string(bs), -1)
 	for _, match := range matchs {
 		if len(match) >= 2 {
@@ -230,13 +240,17 @@ func parseClassFiles(f *CFile, fileName string) {
 					appendStr += ar
 				}
 			}
-			parseFile(f, incFileName, true, []byte(appendStr))
+			rustFile.W("\r\n")
+			rustFile.W("    // " + className)
+			rustFile.W("\r\n")
+
+			parseFile(incFileName, true, []byte(appendStr))
 		}
 	}
 
 }
 
-func parseFunc(f *CFile, s string, isClass bool, eventType string) {
+func parseFunc(s string, isClass bool, eventType string) {
 	isFunc := strings.HasPrefix(strings.ToLower(s), "function")
 	if isFunc {
 		s = strings.TrimPrefix(s, "function")
@@ -289,7 +303,9 @@ func parseFunc(f *CFile, s string, isClass bool, eventType string) {
 
 	defFile.WriteString(fmt.Sprintf("  %s\n", funcName))
 
-	MakeCFunc(f, funcName, returnType, params, isClass)
+	MakeCFunc(funcName, returnType, params, isClass)
+	//
+	MakeRustImport(funcName, returnType, params, isClass)
 }
 
 type Param struct {

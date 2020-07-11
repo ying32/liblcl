@@ -9,7 +9,7 @@ end;
 function DLibVersion: Cardinal; extdecl;
 begin
   // 共8位，2位2位的
-  Result := $02000400;
+  Result := $02000500;
 end;
 
 // 一些初始
@@ -1039,12 +1039,12 @@ const
 
   );
 
-function DGetLibResouceCount: Integer; extdecl;
+function DGetLibResourceCount: Integer; extdecl;
 begin
   Result := Length(GLibResouces);
 end;
 
-procedure DGetLibResouceItem(AIndex: Integer; out AResult: TResItem); extdecl;
+procedure DGetLibResourceItem(AIndex: Integer; out AResult: TResItem); extdecl;
 begin
   handleExceptionBegin
   if (AIndex >= 0)  and (AIndex < Length(GLibResouces)) then
@@ -1053,7 +1053,7 @@ begin
 end;
 
 // 说不好有没有内存泄露，啊，先这样呗
-procedure DModifyLibResouce(APtr: Pointer; AValue: PChar); extdecl;
+procedure DModifyLibResource(APtr: Pointer; AValue: PChar); extdecl;
 begin
   handleExceptionBegin
   if APtr <> nil then
@@ -1338,10 +1338,10 @@ exports
   Printer_Instance,
   Printer_SetPrinter,
 
-  // libResouces
-  DGetLibResouceCount,
-  DGetLibResouceItem,
-  DModifyLibResouce,
+  // libResources
+  DGetLibResourceCount,
+  DGetLibResourceItem,
+  DModifyLibResource,
   DLibAbout,
 
   DGetLibType,
