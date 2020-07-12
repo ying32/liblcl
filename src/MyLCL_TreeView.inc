@@ -1467,6 +1467,20 @@ begin
   handleExceptionEnd
 end;
 
+function TreeView_GetDropTarget(AObj: TTreeView): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DropTarget;
+  handleExceptionEnd
+end;
+
+procedure TreeView_SetDropTarget(AObj: TTreeView; AValue: TTreeNode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DropTarget := AValue;
+  handleExceptionEnd
+end;
+
 function TreeView_GetSelected(AObj: TTreeView): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -2181,6 +2195,8 @@ exports
   TreeView_GetItems,
   TreeView_SetItems,
   TreeView_GetCanvas,
+  TreeView_GetDropTarget,
+  TreeView_SetDropTarget,
   TreeView_GetSelected,
   TreeView_SetSelected,
   TreeView_GetTopItem,

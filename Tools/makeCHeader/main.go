@@ -118,7 +118,7 @@ func main() {
 	cFile.AddReplaceFlag("typeconsts", parseConst(govclPath+"/vcl/types/consts.go"))
 
 	// 保存liblcl.h
-	//cFile.Save()
+	cFile.Save()
 
 	// 保存rust文件
 	rustFile.Save()

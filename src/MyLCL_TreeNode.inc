@@ -210,6 +210,20 @@ begin
   handleExceptionEnd
 end;
 
+function TreeNode_GetDropTarget(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DropTarget;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetDropTarget(AObj: TTreeNode; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DropTarget := AValue;
+  handleExceptionEnd
+end;
+
 function TreeNode_GetSelected(AObj: TTreeNode): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -406,6 +420,8 @@ exports
   TreeNode_GetDeleting,
   TreeNode_GetFocused,
   TreeNode_SetFocused,
+  TreeNode_GetDropTarget,
+  TreeNode_SetDropTarget,
   TreeNode_GetSelected,
   TreeNode_SetSelected,
   TreeNode_GetExpanded,

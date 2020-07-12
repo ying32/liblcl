@@ -35408,6 +35408,18 @@ TCanvas ListView_GetCanvas(TListView AObj) {
     return (TCanvas)MySyscall(pListView_GetCanvas, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ListView_GetDropTarget)
+TListItem ListView_GetDropTarget(TListView AObj) {
+    GET_FUNC_ADDR(ListView_GetDropTarget)
+    return (TListItem)MySyscall(pListView_GetDropTarget, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_SetDropTarget)
+void ListView_SetDropTarget(TListView AObj, TListItem AValue) {
+    GET_FUNC_ADDR(ListView_SetDropTarget)
+    MySyscall(pListView_SetDropTarget, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ListView_GetItemFocused)
 TListItem ListView_GetItemFocused(TListView AObj) {
     GET_FUNC_ADDR(ListView_GetItemFocused)
@@ -37082,6 +37094,18 @@ DEFINE_FUNC_PTR(TreeView_GetCanvas)
 TCanvas TreeView_GetCanvas(TTreeView AObj) {
     GET_FUNC_ADDR(TreeView_GetCanvas)
     return (TCanvas)MySyscall(pTreeView_GetCanvas, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_GetDropTarget)
+TTreeNode TreeView_GetDropTarget(TTreeView AObj) {
+    GET_FUNC_ADDR(TreeView_GetDropTarget)
+    return (TTreeNode)MySyscall(pTreeView_GetDropTarget, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_SetDropTarget)
+void TreeView_SetDropTarget(TTreeView AObj, TTreeNode AValue) {
+    GET_FUNC_ADDR(TreeView_SetDropTarget)
+    MySyscall(pTreeView_SetDropTarget, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_GetSelected)
@@ -43802,6 +43826,12 @@ void ListItem_Free(TListItem AObj) {
     MySyscall(pListItem_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ListItem_DisplayRectSubItem)
+void ListItem_DisplayRectSubItem(TListItem AObj, int32_t subItem, TDisplayCode Code, TRect* Result) {
+    GET_FUNC_ADDR(ListItem_DisplayRectSubItem)
+    MySyscall(pListItem_DisplayRectSubItem, 4, AObj, subItem, Code, Result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ListItem_Assign)
 void ListItem_Assign(TListItem AObj, TObject Source) {
     GET_FUNC_ADDR(ListItem_Assign)
@@ -43878,6 +43908,18 @@ DEFINE_FUNC_PTR(ListItem_ToString)
 char* ListItem_ToString(TListItem AObj) {
     GET_FUNC_ADDR(ListItem_ToString)
     return (char*)MySyscall(pListItem_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListItem_GetDropTarget)
+BOOL ListItem_GetDropTarget(TListItem AObj) {
+    GET_FUNC_ADDR(ListItem_GetDropTarget)
+    return (BOOL)MySyscall(pListItem_GetDropTarget, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListItem_SetDropTarget)
+void ListItem_SetDropTarget(TListItem AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ListItem_SetDropTarget)
+    MySyscall(pListItem_SetDropTarget, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListItem_GetCaption)
@@ -44234,6 +44276,18 @@ DEFINE_FUNC_PTR(TreeNode_SetFocused)
 void TreeNode_SetFocused(TTreeNode AObj, BOOL AValue) {
     GET_FUNC_ADDR(TreeNode_SetFocused)
     MySyscall(pTreeNode_SetFocused, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetDropTarget)
+BOOL TreeNode_GetDropTarget(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetDropTarget)
+    return (BOOL)MySyscall(pTreeNode_GetDropTarget, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetDropTarget)
+void TreeNode_SetDropTarget(TTreeNode AObj, BOOL AValue) {
+    GET_FUNC_ADDR(TreeNode_SetDropTarget)
+    MySyscall(pTreeNode_SetDropTarget, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_GetSelected)

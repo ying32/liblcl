@@ -21,6 +21,13 @@ begin
   handleExceptionEnd
 end;
 
+procedure ListItem_DisplayRectSubItem(AObj: TListItem; subItem: Integer; Code: TDisplayCode; var Result: TRect); extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayRectSubItem(subItem, Code);
+  handleExceptionEnd
+end;
+
 procedure ListItem_Assign(AObj: TListItem; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -109,6 +116,20 @@ function ListItem_ToString(AObj: TListItem): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
+  handleExceptionEnd
+end;
+
+function ListItem_GetDropTarget(AObj: TListItem): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DropTarget;
+  handleExceptionEnd
+end;
+
+procedure ListItem_SetDropTarget(AObj: TListItem; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DropTarget := AValue;
   handleExceptionEnd
 end;
 
@@ -323,6 +344,7 @@ end;
 exports
   ListItem_Create,
   ListItem_Free,
+  ListItem_DisplayRectSubItem,
   ListItem_Assign,
   ListItem_Delete,
   ListItem_DisplayRect,
@@ -336,6 +358,8 @@ exports
   ListItem_Equals,
   ListItem_GetHashCode,
   ListItem_ToString,
+  ListItem_GetDropTarget,
+  ListItem_SetDropTarget,
   ListItem_GetCaption,
   ListItem_SetCaption,
   ListItem_GetChecked,

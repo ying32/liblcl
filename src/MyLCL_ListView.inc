@@ -1500,6 +1500,20 @@ begin
   handleExceptionEnd
 end;
 
+function ListView_GetDropTarget(AObj: TListView): TListItem; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DropTarget;
+  handleExceptionEnd
+end;
+
+procedure ListView_SetDropTarget(AObj: TListView; AValue: TListItem); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DropTarget := AValue;
+  handleExceptionEnd
+end;
+
 function ListView_GetItemFocused(AObj: TListView): TListItem; extdecl;
 begin
   handleExceptionBegin
@@ -2232,6 +2246,8 @@ exports
   ListView_SetOnItemChecked,
   ListView_SetOnStartDock,
   ListView_GetCanvas,
+  ListView_GetDropTarget,
+  ListView_SetDropTarget,
   ListView_GetItemFocused,
   ListView_SetItemFocused,
   ListView_GetSelCount,
