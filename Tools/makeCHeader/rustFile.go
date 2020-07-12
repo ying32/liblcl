@@ -8,7 +8,62 @@
 
 package main
 
-import "strings"
+import (
+	"strings"
+)
+
+var (
+	rustBaseTypeMap = map[string]string{
+		"LongBool":             "bool",
+		"PChar":                "*const c_char",
+		"Pointer":              "usize",
+		"Integer":              "u32",
+		"Cardinal":             "u32",
+		"Double":               "f64",
+		"Single":               "f32",
+		"TThreadID":            "usize",
+		"NativeInt":            "size",
+		"NativeUInt":           "usize",
+		"Boolean":              "bool",
+		"Longint":              "i32",
+		"UInt64":               "u64",
+		"IInt64":               "i64",
+		"TBasicAction":         "usize",
+		"TPersistent":          "usize",
+		"Byte":                 "u8",
+		"TBorderWidth":         "i32",
+		"TCustomImageList":     "usize",
+		"TUnixDateTime":        "u32",
+		"TCustomListView":      "usize",
+		"TCustomTreeView":      "usize",
+		"TImageIndex":          "i32",
+		"SmallInt":             "i16",
+		"TCustomForm":          "usize",
+		"TWidth":               "i32",
+		"uint32":               "u32",
+		"int32":                "i32",
+		"Int64":                "i64",
+		"LongWord":             "u32",
+		"Word":                 "u16",
+		"PPointerList":         "usize",
+		"string":               "*const c_char",
+		"TCustomHeaderControl": "usize",
+		"TCollectionItemClass": "usize",
+		"PPoint":               "usize",
+		"TOverlay":             "u8",
+		"TGoForm":              "usize",
+		"TLMessage":            "usize",
+		"IObject":              "usize",
+		"IWinControl":          "usize",
+		"IComponent":           "usize",
+		"IControl":             "usize",
+		"bool":                 "bool",
+		"uint16":               "u16",
+		"TForm":                "usize",
+
+		//"TResItem":             "",
+	}
+)
 
 type RustFile struct {
 	*File
@@ -39,13 +94,11 @@ use crate::types::*;
 
 #[link(name = "liblcl")]
 extern "system" {
-
 `)
 }
 
 func (c *RustFile) WriteFooter() {
 	c.W(`
-
     fn SetEventCallback(callback: extern "system" fn(f: usize, args: usize, arg_count: i32) -> usize) -> usize;
     fn SetMessageCallback(callback: extern "system" fn(f: usize, msg: usize) -> usize) -> usize;
     fn SetThreadSyncCallback(callback: extern "system" fn() -> usize) -> usize;
@@ -93,7 +146,23 @@ func MakeRustImport(name, returnType string, params []Param, isClass bool) {
 	}
 	rustFile.W("    pub fn ")
 	rustFile.W(name)
-	rustFile.W("();")
+	// 参数
+	rustFile.W("(")
+	for i, p := range params {
+		if i > 0 {
+			rustFile.W(", ")
+		}
+		rustFile.W(p.Name)
+		rustFile.W(": ")
+		rustFile.W(rustBaseTypeConvert(p.Type))
+	}
+	rustFile.W(")")
+	// 判断返回值
+	if returnType != "" {
+		rustFile.W(" -> ")
+		rustFile.W(rustBaseTypeConvert(returnType))
+	}
+	rustFile.W(";")
 	rustFile.WLn()
 
 	//rustFile.W("(")
@@ -151,9 +220,17 @@ func MakeRustImport(name, returnType string, params []Param, isClass bool) {
 // #[cfg(windows)]
 // #[cfg(unix)]
 
-func rustTypeConvert(src string) string {
-	//if val, ok := CTypeMap[src]; ok {
-	//	return val
-	//}
+func rustBaseTypeConvert(src string) string {
+	if _, ok := objsMap[src]; ok {
+		return "usize"
+	} else {
+		if src == "TMouse" || src == "TApplication" || src == "TScreen" || src == "TClipboard" || src == "TPrinter" || src == "TControl" || src == "TWinControl" ||
+			src == "TComponent" || src == "TObject" {
+			return "usize"
+		}
+	}
+	if val, ok := rustBaseTypeMap[src]; ok {
+		return val
+	}
 	return src
 }

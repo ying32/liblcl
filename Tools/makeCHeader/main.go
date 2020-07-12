@@ -155,6 +155,7 @@ func parseFile(fileName string, isClass bool, appendBytes []byte) {
 		panic(err)
 	}
 	cFile.WComment(fileName)
+	rustFile.WLn()
 	// {无效参数}
 	bs = bytes.Replace(bs, []byte("{无效参数}"), nil, -1)
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
@@ -217,6 +218,7 @@ func parseClassFiles(fileName string) {
 	}
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
 	cFile.WComment(fileName)
+	rustFile.WLn()
 	matchs := incFileExpr.FindAllStringSubmatch(string(bs), -1)
 	for _, match := range matchs {
 		if len(match) >= 2 {
