@@ -2,10 +2,9 @@
 //
 // Copyright © ying32. All Rights Reserved.
 // 
-// Licensed under Apache License 2.0
+// Licensed under Lazarus.modifiedLGPL
 //
 //----------------------------------------
-// 事件回调
 
 unit uEventCallback;
 

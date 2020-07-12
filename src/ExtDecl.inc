@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+// 
+// Licensed under Lazarus.modifiedLGPL
+//
+//----------------------------------------
+
 {$MACRO ON}
 {$IFDEF Windows}
   {$DEFINE extdecl := stdcall}

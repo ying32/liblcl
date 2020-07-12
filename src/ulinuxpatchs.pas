@@ -1,3 +1,11 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+// 
+// Licensed under Lazarus.modifiedLGPL
+//
+//----------------------------------------
+
 unit uLinuxPatchs;
 
 {$mode objfpc}{$H+}

@@ -2,20 +2,9 @@
 //
 // Copyright © ying32. All Rights Reserved.
 // 
-// Licensed under Apache License 2.0
+// Licensed under Lazarus.modifiedLGPL
 //
 //----------------------------------------
-
-{*******************************************************}
-{                                                       }
-{       govcl windows WebBrowser                        }
-{                                                       }
-{       根据VCL原有的TWebBrowser精简的一个，用于在      }
-{       Lazarus中也能使用                               }
-{                                                       }
-{       版权所有 (C) ying32                             }
-{                                                       }
-{*******************************************************}
 
 unit uMiniWebview;
 
