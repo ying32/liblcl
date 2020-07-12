@@ -22,7 +22,8 @@
 * ATFlatControls
 
 ```
-ATFlatControls
-   |----atflatcontrols
+3rd-party 
+   |----ATFlatControls
+         |----atflatcontrols
 ```
 
