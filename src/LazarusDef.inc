@@ -709,11 +709,11 @@ end;
 
 procedure DSysOpen(FileName: PChar); extdecl;
 begin
- {$IFDEF WINDOWS}
-   ShellExecute(0, nil, FileName, nil, nil, SW_SHOW);
- {$ELSE}
+ //{$IFDEF WINDOWS}
+   //ShellExecuteW(0, nil, PWideChar(UTF8ToUTF16(string(FileName))), nil, nil, SW_SHOW);
+ //{$ELSE}
    OpenURL(FileName);
- {$ENDIF}
+ //{$ENDIF}
 end;
 
 // 不想导入包，所以干脆用delphi的得了
