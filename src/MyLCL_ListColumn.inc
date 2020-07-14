@@ -84,6 +84,20 @@ begin
   handleExceptionEnd
 end;
 
+function ListColumn_GetSortIndicator(AObj: TListColumn): TSortIndicator; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.SortIndicator;
+  handleExceptionEnd
+end;
+
+procedure ListColumn_SetSortIndicator(AObj: TListColumn; AValue: TSortIndicator); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SortIndicator := AValue;
+  handleExceptionEnd
+end;
+
 function ListColumn_GetAlignment(AObj: TListColumn): TAlignment; extdecl;
 begin
   handleExceptionBegin
@@ -255,6 +269,8 @@ exports
   ListColumn_Equals,
   ListColumn_GetHashCode,
   ListColumn_ToString,
+  ListColumn_GetSortIndicator,
+  ListColumn_SetSortIndicator,
   ListColumn_GetAlignment,
   ListColumn_SetAlignment,
   ListColumn_GetAutoSize,
