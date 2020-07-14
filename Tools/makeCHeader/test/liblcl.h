@@ -1982,6 +1982,12 @@ typedef enum  {
     clVerticalThenHorizontal,
 }TColumnLayout;
 
+typedef enum  {
+    siNone,
+    siAscending,
+    siDescending,
+}TSortIndicator;
+
 
 
 typedef int32_t TLeftRight; 
@@ -48580,6 +48586,18 @@ DEFINE_FUNC_PTR(ListColumn_ToString)
 char* ListColumn_ToString(TListColumn AObj) {
     GET_FUNC_ADDR(ListColumn_ToString)
     return (char*)MySyscall(pListColumn_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListColumn_GetSortIndicator)
+TSortIndicator ListColumn_GetSortIndicator(TListColumn AObj) {
+    GET_FUNC_ADDR(ListColumn_GetSortIndicator)
+    return (TSortIndicator)MySyscall(pListColumn_GetSortIndicator, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListColumn_SetSortIndicator)
+void ListColumn_SetSortIndicator(TListColumn AObj, TSortIndicator AValue) {
+    GET_FUNC_ADDR(ListColumn_SetSortIndicator)
+    MySyscall(pListColumn_SetSortIndicator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListColumn_GetAlignment)
