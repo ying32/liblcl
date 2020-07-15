@@ -21,7 +21,9 @@ c/c++: [Tools/makeCHeader/test](Tools/makeCHeader/test )
 
 * Language under test  
 
-rust（Test only）: https://github.com/ying32/rust-vcl
+rust（Test only）: https://github.com/ying32/rust-vcl  
+
+nim（Test only）: https://github.com/ying32/nim-vcl  
 
 ----
 
