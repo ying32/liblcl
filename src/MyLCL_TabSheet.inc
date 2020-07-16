@@ -161,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_ClientToScreen(AObj: TTabSheet; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_ClientToParent(AObj: TTabSheet; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +212,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_ScreenToClient(AObj: TTabSheet; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +220,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_ParentToClient(AObj: TTabSheet; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

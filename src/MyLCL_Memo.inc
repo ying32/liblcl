@@ -21,6 +21,13 @@ begin
   handleExceptionEnd
 end;
 
+procedure Memo_Append(AObj: TMemo; Value: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Append(Value);
+  handleExceptionEnd
+end;
+
 procedure Memo_Clear(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_ClientToScreen(AObj: TMemo; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_ClientToParent(AObj: TMemo; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -259,6 +268,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_ScreenToClient(AObj: TMemo; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -266,6 +276,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_ParentToClient(AObj: TMemo; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1565,6 +1576,7 @@ end;
 exports
   Memo_Create,
   Memo_Free,
+  Memo_Append,
   Memo_Clear,
   Memo_ClearSelection,
   Memo_CopyToClipboard,

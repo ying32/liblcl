@@ -16,40 +16,40 @@
   
 //{$endif windows}
 
-{$I MyLCL_Application.inc}
-{$I MyLCL_Form.inc}
-{$I MyLCL_Button.inc}
-{$I MyLCL_Edit.inc}
-{$I MyLCL_MainMenu.inc}
-{$I MyLCL_PopupMenu.inc}
-{$I MyLCL_Memo.inc}
-{$I MyLCL_CheckBox.inc}
-{$I MyLCL_RadioButton.inc}
-{$I MyLCL_GroupBox.inc}
-{$I MyLCL_Label.inc}
-{$I MyLCL_ListBox.inc}
-{$I MyLCL_ComboBox.inc}
-{$I MyLCL_Panel.inc}
-{$I MyLCL_Image.inc}
-{$I MyLCL_LinkLabel.inc}
-{$I MyLCL_SpeedButton.inc}
-{$I MyLCL_Splitter.inc}
-{$I MyLCL_RadioGroup.inc}
-{$I MyLCL_StaticText.inc}
-{$I MyLCL_ColorBox.inc}
-{$I MyLCL_ColorListBox.inc}
-{$I MyLCL_TrayIcon.inc}
-{$I MyLCL_OpenDialog.inc}
-{$I MyLCL_SaveDialog.inc}
-{$I MyLCL_ColorDialog.inc}
-{$I MyLCL_FontDialog.inc}
-{$I MyLCL_PrintDialog.inc}
-{$I MyLCL_OpenPictureDialog.inc}
-{$I MyLCL_SavePictureDialog.inc}
-{$I MyLCL_SelectDirectoryDialog.inc}
-{$I MyLCL_RichEdit.inc}
-{$I MyLCL_TrackBar.inc}
-{$I MyLCL_ImageList.inc}
+{$I MyLCL_Application.inc}  //BASECLASS:TComponent
+{$I MyLCL_Form.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Button.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Edit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_MainMenu.inc}  //BASECLASS:TComponent
+{$I MyLCL_PopupMenu.inc}  //BASECLASS:TComponent
+{$I MyLCL_Memo.inc}  //BASECLASS:TWinControl
+{$I MyLCL_CheckBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_RadioButton.inc}  //BASECLASS:TWinControl
+{$I MyLCL_GroupBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Label.inc}  //BASECLASS:TControl
+{$I MyLCL_ListBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ComboBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Panel.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Image.inc}  //BASECLASS:TControl
+{$I MyLCL_LinkLabel.inc}  //BASECLASS:TWinControl
+{$I MyLCL_SpeedButton.inc}  //BASECLASS:TControl
+{$I MyLCL_Splitter.inc}  //BASECLASS:TControl
+{$I MyLCL_RadioGroup.inc}  //BASECLASS:TWinControl
+{$I MyLCL_StaticText.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ColorBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ColorListBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_TrayIcon.inc}  //BASECLASS:TComponent
+{$I MyLCL_OpenDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_SaveDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_ColorDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_FontDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_PrintDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_OpenPictureDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_SavePictureDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_SelectDirectoryDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_RichEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_TrackBar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ImageList.inc}  //BASECLASS:TComponent
 
 
 //{$ifdef windows}

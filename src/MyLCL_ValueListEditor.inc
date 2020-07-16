@@ -28,6 +28,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_CellRect(AObj: TValueListEditor; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +43,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_MouseCoord(AObj: TValueListEditor; X: Integer; Y: Integer; var Result: TGridCoord); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +191,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_ClientToScreen(AObj: TValueListEditor; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_ClientToParent(AObj: TValueListEditor; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +235,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_ScreenToClient(AObj: TValueListEditor; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -238,6 +243,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_ParentToClient(AObj: TValueListEditor; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

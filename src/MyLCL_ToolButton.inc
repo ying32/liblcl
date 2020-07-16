@@ -49,6 +49,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_ClientToScreen(AObj: TToolButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +57,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_ClientToParent(AObj: TToolButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +114,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_ScreenToClient(AObj: TToolButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +122,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_ParentToClient(AObj: TToolButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

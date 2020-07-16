@@ -112,6 +112,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Canvas_TextExtent(AObj: TCanvas; Text: PChar; var Result: TSize); extdecl;
 begin
   handleExceptionBegin

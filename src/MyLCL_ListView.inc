@@ -217,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_ClientToScreen(AObj: TListView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_ClientToParent(AObj: TListView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -266,6 +268,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_ScreenToClient(AObj: TListView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -273,6 +276,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_ParentToClient(AObj: TListView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -168,6 +168,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_ClientToScreen(AObj: TBitBtn; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +176,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_ClientToParent(AObj: TBitBtn; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +219,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_ScreenToClient(AObj: TBitBtn; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +227,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_ParentToClient(AObj: TBitBtn; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

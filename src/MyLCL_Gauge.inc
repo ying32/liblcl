@@ -35,6 +35,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_ClientToScreen(AObj: TGauge; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +43,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_ClientToParent(AObj: TGauge; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +100,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_ScreenToClient(AObj: TGauge; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +108,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_ParentToClient(AObj: TGauge; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

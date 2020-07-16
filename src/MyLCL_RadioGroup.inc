@@ -161,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_ClientToScreen(AObj: TRadioGroup; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_ClientToParent(AObj: TRadioGroup; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +212,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_ScreenToClient(AObj: TRadioGroup; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +220,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_ParentToClient(AObj: TRadioGroup; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

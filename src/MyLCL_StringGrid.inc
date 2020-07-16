@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_CellRect(AObj: TStringGrid; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +36,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_MouseCoord(AObj: TStringGrid; X: Integer; Y: Integer; var Result: TGridCoord); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +184,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_ClientToScreen(AObj: TStringGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +192,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_ClientToParent(AObj: TStringGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +235,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_ScreenToClient(AObj: TStringGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -238,6 +243,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_ParentToClient(AObj: TStringGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

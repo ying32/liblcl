@@ -161,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_ClientToScreen(AObj: TDateTimePicker; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_ClientToParent(AObj: TDateTimePicker; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +212,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_ScreenToClient(AObj: TDateTimePicker; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +220,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_ParentToClient(AObj: TDateTimePicker; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

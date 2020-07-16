@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_CellRect(AObj: TDrawGrid; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +36,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_MouseCoord(AObj: TDrawGrid; X: Integer; Y: Integer; var Result: TGridCoord); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +184,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_ClientToScreen(AObj: TDrawGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +192,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_ClientToParent(AObj: TDrawGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +235,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_ScreenToClient(AObj: TDrawGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -238,6 +243,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_ParentToClient(AObj: TDrawGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

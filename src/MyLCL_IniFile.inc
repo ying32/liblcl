@@ -105,6 +105,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function IniFile_ReadDate(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +113,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function IniFile_ReadDateTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +121,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure IniFile_ReadFloat(AObj: TIniFile; Section: PChar; Name: PChar; var Default: Double; var Result: Double); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function IniFile_ReadTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin

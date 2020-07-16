@@ -196,6 +196,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBoxEx_ClientToScreen(AObj: TComboBoxEx; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +204,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBoxEx_ClientToParent(AObj: TComboBoxEx; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -245,6 +247,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBoxEx_ScreenToClient(AObj: TComboBoxEx; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -252,6 +255,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBoxEx_ParentToClient(AObj: TComboBoxEx; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -238,6 +238,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_ClientToScreen(AObj: TTreeView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -245,6 +246,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_ClientToParent(AObj: TTreeView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -287,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_ScreenToClient(AObj: TTreeView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -294,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_ParentToClient(AObj: TTreeView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

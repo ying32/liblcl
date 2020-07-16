@@ -28,6 +28,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_TabRect(AObj: TPageControl; Index: Integer; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +176,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_ClientToScreen(AObj: TPageControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +184,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_ClientToParent(AObj: TPageControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +227,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_ScreenToClient(AObj: TPageControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +235,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_ParentToClient(AObj: TPageControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

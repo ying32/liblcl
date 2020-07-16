@@ -98,6 +98,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function Registry_ReadDate(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +106,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function Registry_ReadDateTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +114,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Registry_ReadFloat(AObj: TRegistry; Name: PChar; var Result: Double); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +136,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function Registry_ReadTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin

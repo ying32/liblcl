@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ImageList_GetHotSpot(AObj: TImageList; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

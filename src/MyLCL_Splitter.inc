@@ -28,6 +28,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_ClientToScreen(AObj: TSplitter; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +36,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_ClientToParent(AObj: TSplitter; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_ScreenToClient(AObj: TSplitter; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_ParentToClient(AObj: TSplitter; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

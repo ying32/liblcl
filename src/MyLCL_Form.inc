@@ -203,6 +203,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_ClientToScreen(AObj: TForm; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +211,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_ClientToParent(AObj: TForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -245,6 +247,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_ScreenToClient(AObj: TForm; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -252,6 +255,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_ParentToClient(AObj: TForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

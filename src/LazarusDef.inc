@@ -654,12 +654,12 @@ begin
   handleExceptionEnd
 end;
 
-function DGetClassName(Obj: TObject): PChar; extdecl;
-begin
-  handleExceptionBegin
-  Result := PChar(string(Obj.ClassName));
-  handleExceptionEnd
-end;
+//function DGetClassName(Obj: TObject): PChar; extdecl;
+//begin
+//  handleExceptionBegin
+//  Result := PChar(string(Obj.ClassName));
+//  handleExceptionEnd
+//end;
 
 procedure DShowMessage(AMsg: PChar); extdecl;
 begin
@@ -1052,6 +1052,7 @@ begin
   Result := Length(GLibResouces);
 end;
 
+//RETURNISLASTPARAM:
 procedure DGetLibResourceItem(AIndex: Integer; out AResult: TResItem); extdecl;
 begin
   handleExceptionBegin
@@ -1265,7 +1266,7 @@ exports
   DGetStringArrOf,
   DStrLen,
   DMove,
-  DGetClassName,
+  //DGetClassName,
   DShowMessage,
   DGetMainInstance,
   DSynchronize,

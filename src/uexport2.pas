@@ -16,40 +16,40 @@
   
 //{$endif windows}
 
-{$I MyLCL_UpDown.inc}
-{$I MyLCL_ProgressBar.inc}
-{$I MyLCL_DateTimePicker.inc}
-{$I MyLCL_MonthCalendar.inc}
-{$I MyLCL_ListView.inc}
-{$I MyLCL_TreeView.inc}
-{$I MyLCL_StatusBar.inc}
-{$I MyLCL_ToolBar.inc}
-{$I MyLCL_BitBtn.inc}
-{$I MyLCL_Icon.inc}
-{$I MyLCL_Bitmap.inc}
-{$I MyLCL_MemoryStream.inc}
-{$I MyLCL_Font.inc}
-{$I MyLCL_Strings.inc}
-{$I MyLCL_StringList.inc}
-{$I MyLCL_Brush.inc}
-{$I MyLCL_Pen.inc}
-{$I MyLCL_MenuItem.inc}
-{$I MyLCL_Picture.inc}
-{$I MyLCL_ListColumns.inc}
-{$I MyLCL_ListItems.inc}
-{$I MyLCL_TreeNodes.inc}
-{$I MyLCL_ListItem.inc}
-{$I MyLCL_TreeNode.inc}
-{$I MyLCL_PageControl.inc}
-{$I MyLCL_TabSheet.inc}
-{$I MyLCL_Control.inc}
-{$I MyLCL_WinControl.inc}
-{$I MyLCL_Screen.inc}
-{$I MyLCL_Mouse.inc}
-{$I MyLCL_ListColumn.inc}
-{$I MyLCL_CollectionItem.inc}
-{$I MyLCL_StatusPanels.inc}
-{$I MyLCL_StatusPanel.inc}
+{$I MyLCL_UpDown.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ProgressBar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_DateTimePicker.inc}  //BASECLASS:TWinControl
+{$I MyLCL_MonthCalendar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ListView.inc}  //BASECLASS:TWinControl
+{$I MyLCL_TreeView.inc}  //BASECLASS:TWinControl
+{$I MyLCL_StatusBar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ToolBar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_BitBtn.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Icon.inc}  //BASECLASS:TObject
+{$I MyLCL_Bitmap.inc}  //BASECLASS:TObject
+{$I MyLCL_MemoryStream.inc}  //BASECLASS:TObject
+{$I MyLCL_Font.inc}  //BASECLASS:TObject
+{$I MyLCL_Strings.inc}  //BASECLASS:TObject
+{$I MyLCL_StringList.inc}  //BASECLASS:TObject
+{$I MyLCL_Brush.inc}  //BASECLASS:TObject
+{$I MyLCL_Pen.inc}  //BASECLASS:TObject
+{$I MyLCL_MenuItem.inc}  //BASECLASS:TComponent
+{$I MyLCL_Picture.inc}  //BASECLASS:TObject
+{$I MyLCL_ListColumns.inc}  //BASECLASS:TObject
+{$I MyLCL_ListItems.inc}  //BASECLASS:TObject
+{$I MyLCL_TreeNodes.inc}  //BASECLASS:TObject
+{$I MyLCL_ListItem.inc}  //BASECLASS:TObject
+{$I MyLCL_TreeNode.inc}  //BASECLASS:TObject
+{$I MyLCL_PageControl.inc}  //BASECLASS:TWinControl
+{$I MyLCL_TabSheet.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Control.inc}  //BASECLASS:TControl
+{$I MyLCL_WinControl.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Screen.inc}  //BASECLASS:TComponent
+{$I MyLCL_Mouse.inc}  //BASECLASS:TObject
+{$I MyLCL_ListColumn.inc}  //BASECLASS:TObject
+{$I MyLCL_CollectionItem.inc}  //BASECLASS:TObject
+{$I MyLCL_StatusPanels.inc}  //BASECLASS:TObject
+{$I MyLCL_StatusPanel.inc}  //BASECLASS:TObject
 
 
 //{$ifdef windows}

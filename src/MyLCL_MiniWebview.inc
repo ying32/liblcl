@@ -231,6 +231,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_ClientToScreen(AObj: TMiniWebview; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -238,6 +239,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_ClientToParent(AObj: TMiniWebview; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -273,6 +275,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_ScreenToClient(AObj: TMiniWebview; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -280,6 +283,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_ParentToClient(AObj: TMiniWebview; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

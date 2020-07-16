@@ -13,6 +13,10 @@ library liblcl;
 
 {$mode delphi}
 
+// 以后测试
+// https://www.freepascal.org/docs-html/prog/progsu25.html
+//{$LONGSTRINGS ON}
+
 {$ifndef windows}
   {$define UseCThreads}
 {$endif}

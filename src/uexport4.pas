@@ -16,40 +16,40 @@
   
 //{$endif windows}
 
-{$I MyLCL_PageSetupDialog.inc}
-{$I MyLCL_DragObject.inc}
-{$I MyLCL_DragDockObject.inc}
-{$I MyLCL_StringGrid.inc}
-{$I MyLCL_DrawGrid.inc}
-{$I MyLCL_ValueListEditor.inc}
-{$I MyLCL_HeaderControl.inc}
-{$I MyLCL_HeaderSection.inc}
-{$I MyLCL_HeaderSections.inc}
-{$I MyLCL_LabeledEdit.inc}
-{$I MyLCL_BoundLabel.inc}
-{$I MyLCL_FlowPanel.inc}
-{$I MyLCL_CoolBar.inc}
-{$I MyLCL_CoolBands.inc}
-{$I MyLCL_CoolBand.inc}
-{$I MyLCL_Collection.inc}
-{$I MyLCL_Printer.inc}
-{$I MyLCL_TaskDialog.inc}
-{$I MyLCL_TaskDialogButtons.inc}
-{$I MyLCL_TaskDialogButtonItem.inc}
-{$I MyLCL_TaskDialogRadioButtonItem.inc}
-{$I MyLCL_TaskDialogBaseButtonItem.inc}
-{$I MyLCL_ComboBoxEx.inc}
-{$I MyLCL_ComboExItems.inc}
-{$I MyLCL_ComboExItem.inc}
-{$I MyLCL_Frame.inc}
-{$I MyLCL_ControlScrollBar.inc}
-{$I MyLCL_SizeConstraints.inc}
-{$I MyLCL_XButton.inc}
-{$I MyLCL_AnchorSide.inc}
-{$I MyLCL_ControlBorderSpacing.inc}
-{$I MyLCL_ControlChildSizing.inc}
-{$I MyLCL_CheckGroup.inc}
-{$I MyLCL_ToggleBox.inc}
+{$I MyLCL_PageSetupDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_DragObject.inc}  //BASECLASS:TObject
+{$I MyLCL_DragDockObject.inc}  //BASECLASS:TObject
+{$I MyLCL_StringGrid.inc}  //BASECLASS:TWinControl
+{$I MyLCL_DrawGrid.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ValueListEditor.inc}  //BASECLASS:TWinControl
+{$I MyLCL_HeaderControl.inc}  //BASECLASS:TWinControl
+{$I MyLCL_HeaderSection.inc}  //BASECLASS:TObject
+{$I MyLCL_HeaderSections.inc}  //BASECLASS:TObject
+{$I MyLCL_LabeledEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_BoundLabel.inc}  //BASECLASS:TControl
+{$I MyLCL_FlowPanel.inc}  //BASECLASS:TWinControl
+{$I MyLCL_CoolBar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_CoolBands.inc}  //BASECLASS:TObject
+{$I MyLCL_CoolBand.inc}  //BASECLASS:TObject
+{$I MyLCL_Collection.inc}  //BASECLASS:TObject
+{$I MyLCL_Printer.inc}  //BASECLASS:TObject
+{$I MyLCL_TaskDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_TaskDialogButtons.inc}  //BASECLASS:TObject
+{$I MyLCL_TaskDialogButtonItem.inc}  //BASECLASS:TObject
+{$I MyLCL_TaskDialogRadioButtonItem.inc}  //BASECLASS:TObject
+{$I MyLCL_TaskDialogBaseButtonItem.inc}  //BASECLASS:TObject
+{$I MyLCL_ComboBoxEx.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ComboExItems.inc}  //BASECLASS:TObject
+{$I MyLCL_ComboExItem.inc}  //BASECLASS:TObject
+{$I MyLCL_Frame.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ControlScrollBar.inc}  //BASECLASS:TObject
+{$I MyLCL_SizeConstraints.inc}  //BASECLASS:TObject
+{$I MyLCL_XButton.inc}  //BASECLASS:TControl
+{$I MyLCL_AnchorSide.inc}  //BASECLASS:TObject
+{$I MyLCL_ControlBorderSpacing.inc}  //BASECLASS:TObject
+{$I MyLCL_ControlChildSizing.inc}  //BASECLASS:TObject
+{$I MyLCL_CheckGroup.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ToggleBox.inc}  //BASECLASS:TWinControl
 
 
 //{$ifdef windows}

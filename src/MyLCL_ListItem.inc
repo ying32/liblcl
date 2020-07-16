@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListItem_DisplayRectSubItem(AObj: TListItem; subItem: Integer; Code: TDisplayCode; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +43,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListItem_DisplayRect(AObj: TListItem; Code: TDisplayCode; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

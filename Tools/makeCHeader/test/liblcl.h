@@ -7892,6 +7892,12 @@ void Memo_Free(TMemo AObj) {
     MySyscall(pMemo_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Memo_Append)
+void Memo_Append(TMemo AObj, CChar char* Value) {
+    GET_FUNC_ADDR(Memo_Append)
+    MySyscall(pMemo_Append, 2, AObj, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Memo_Clear)
 void Memo_Clear(TMemo AObj) {
     GET_FUNC_ADDR(Memo_Clear)
