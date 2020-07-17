@@ -1,5 +1,5 @@
 {
-  "ast_file_name": "../genAST/liblcl.json",
+  "ast_file_name": "./liblcl.json",
   "languages": [
     {
       "type_dict": {
@@ -24,12 +24,16 @@
       },
       "files": [
         {
-          "template_file_name": "liblcl-template.nim",
-          "save_file_name": "liblcl.nim"
+          "template_file_name": "./nim/tpl/liblcl-template.nim",
+          "save_file_name": "J:\\NimLang\\Hello\\src\\liblcl.nim"
         },
         {
-          "template_file_name": "types-template.nim",
-          "save_file_name": "types.nim"
+          "template_file_name": "./nim/tpl/types-template.nim",
+          "save_file_name": "J:\\NimLang\\Hello\\src\\types.nim"
+        },
+        {
+          "template_file_name": "./nim/tpl/vcl-template.nim",
+          "save_file_name": "J:\\NimLang\\Hello\\src\\vcl.nim"
         }
       ]
     }]

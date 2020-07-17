@@ -50,6 +50,7 @@ type (
 	TConst struct {
 		Name    string `json:"name"`
 		Value   string `json:"value"`
+		Value2  string `json:"value_2"`
 		Comment string `json:"comment"`
 	}
 
@@ -78,13 +79,19 @@ type (
 		Comment   string   `json:"comment"`
 	}
 
+	TBaseObject struct {
+		ClassName     string `json:"class_name"`
+		BaseClassName string `json:"base_class_name"`
+	}
+
 	TObjectFile struct {
-		Functions []TFunction `json:"functions"`
-		Objects   []TClass    `json:"objects"`
-		Events    []TEvent    `json:"events"`
-		Consts    []TConst    `json:"consts"`
-		Types     []TType     `json:"types"`
-		BaseTypes []TType     `json:"base_types"`
+		Functions   []TFunction   `json:"functions"`
+		Objects     []TClass      `json:"objects"`
+		Events      []TEvent      `json:"events"`
+		Consts      []TConst      `json:"consts"`
+		Types       []TType       `json:"types"`
+		BaseTypes   []TType       `json:"base_types"`
+		BaseObjects []TBaseObject `json:"base_objects"`
 	}
 )
 

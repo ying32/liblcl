@@ -64,6 +64,12 @@ func main() {
 	funcsMap["NSWindow_setRepresentedURL"] = ""
 	funcsMap["NSWindow_release"] = ""
 
+	// 预定义的基类
+	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TObject", BaseClassName: ""})
+	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TComponent", BaseClassName: "TObject"})
+	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TControl", BaseClassName: "TComponent"})
+	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TWinControl", BaseClassName: "TControl"})
+
 	parseFile("LazarusDef.inc", false, nil, "", "")
 
 	// 自动生成的对象函数
@@ -71,9 +77,9 @@ func main() {
 		parseClassFiles(fmt.Sprintf("uexport%d.pas", i))
 	}
 
-	parseFile("ulinuxpatchs.pas", true, nil, "", "")
-	parseFile("umacospatchs.pas", true, nil, "", "")
-	parseFile("uformdesignerfile.pas", true, nil, "", "")
+	parseFile("ulinuxpatchs.pas", false, nil, "", "")
+	parseFile("umacospatchs.pas", false, nil, "", "")
+	parseFile("uformdesignerfile.pas", false, nil, "", "")
 
 	// 事件
 	parseEvents(govclPath + "/vcl/events.go")
@@ -92,9 +98,38 @@ func main() {
 	parseBaseType(govclPath+"/vcl/types/types_amd64.go", "amd64")
 	parseBaseType(govclPath+"/vcl/types/message.go", "i386")
 	parseBaseType(govclPath+"/vcl/types/message_posix.go", "amd64")
-	// 保存分析文件
-	SaveObjectFile("liblcl.json", ObjectFile)
 
+	SortObjects()
+	// 保存分析文件
+	SaveObjectFile("../genBind/liblcl.json", ObjectFile)
+
+}
+
+// 把基类放最新面
+func SortObjects() {
+
+	move := func(src, dest int, o TClass) {
+		temp := ObjectFile.Objects[dest] // 备份目标位置的
+		ObjectFile.Objects[dest] = o     // 替换目标位置的为新的
+		ObjectFile.Objects[src] = temp   // 将原来的替换到当前位置
+	}
+
+	for i, o := range ObjectFile.Objects {
+		if o.ClassName == "TObject" {
+			o.BaseClassName = ""
+			move(i, 0, o)
+		} else if o.ClassName == "TComponent" {
+			o.BaseClassName = "TObject"
+			move(i, 1, o)
+		} else if o.ClassName == "TControl" {
+			o.BaseClassName = "TComponent"
+			move(i, 2, o)
+		} else if o.ClassName == "TWinControl" {
+			o.BaseClassName = "TControl"
+			move(i, 3, o)
+		}
+
+	}
 }
 
 func FileExists(path string) bool {
@@ -177,6 +212,9 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 						continue
 					}
 				}
+			}
+			if strings.HasPrefix(s, "ResFormLoadFrom") {
+				panic("ResFormLoadFrom")
 			}
 			parseFunc(s, isClass, eventType, className, baseClassName, isLastReturn, isMethod)
 		}
@@ -338,6 +376,13 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 				temps = temps[1:]
 			}
 			item.RealName = strings.TrimPrefix(item.Name, temps+"_")
+		}
+		if item.RealName == "StaticClassType" {
+			item.IsStatic = true
+			item.IsMethod = false
+			item.Params = make([]TFuncParam, 0)
+		} else if item.RealName == "ClassType" {
+			item.IsStatic = false // 这里不知道为啥生成错误
 		}
 
 		currentClass.Methods = append(currentClass.Methods, item)
@@ -624,22 +669,33 @@ func parseConst(filename string) {
 		panic(err)
 	}
 	i := 0
+
+	addComment := func(s string) {
+		// 注释也收集
+		if strings.HasPrefix(s, "//") || strings.HasPrefix(s, "/*") {
+
+			item := TConst{}
+			item.Name = ""
+			item.Value = ""
+			item.Comment = strings.Replace(s, "//", "", -1)
+			item.Comment = strings.Replace(item.Comment, "/*", "", -1)
+			item.Comment = strings.TrimSpace(strings.Replace(item.Comment, "*/", "", -1))
+			ObjectFile.Consts = append(ObjectFile.Consts, item)
+
+		}
+	}
+
 	for i < len(lines) {
 		s := string(bytes.TrimSpace(lines[i]))
+
 		if strings.HasPrefix(s, "const (") {
+			addComment(string(bytes.TrimSpace(lines[i-1])))
 			i++
 			for s != ")" {
 				s = string(bytes.TrimSpace(lines[i]))
 				// 注释也收集
 				if strings.HasPrefix(s, "//") || strings.HasPrefix(s, "/*") {
-
-					item := TConst{}
-					item.Name = ""
-					item.Value = ""
-					item.Comment = strings.Replace(s, "//", "", -1)
-					item.Comment = strings.Replace(item.Comment, "/*", "", -1)
-					item.Comment = strings.TrimSpace(strings.Replace(item.Comment, "*/", "", -1))
-					ObjectFile.Consts = append(ObjectFile.Consts, item)
+					addComment(s)
 
 				} else {
 					ss := strings.Split(s, "=")
@@ -655,6 +711,16 @@ func parseConst(filename string) {
 							item.Comment = strings.TrimSpace(ssArr[1])
 						} else {
 							item.Value = strings.TrimSpace(ss[1])
+						}
+						if strings.Contains(item.Value, "+") {
+							ssArr = strings.Split(item.Value, "+")
+							item.Value = firstLowerChar(strings.TrimSpace(ssArr[0]))
+							item.Value2 = strings.TrimSpace(ssArr[1])
+						} else {
+							if !strings.Contains(item.Value, "(") && !strings.Contains(item.Value, ")") {
+								item.Value = firstLowerChar(item.Value)
+							}
+
 						}
 						ObjectFile.Consts = append(ObjectFile.Consts, item)
 					}
