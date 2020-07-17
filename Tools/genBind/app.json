@@ -1,0 +1,36 @@
+{
+  "ast_file_name": "../genAST/liblcl.json",
+  "languages": [
+    {
+      "type_dict": {
+        "i32": "int32",
+        "u32": "uint32",
+        "string": "cstring",
+        "i16":"int16",
+        "u16": "uint16",
+        "u8": "uint8",
+        "i8": "int8",
+        "usize": "uint",
+        "isize":"int",
+        "u64":"uint64",
+        "i64": "int64",
+        "f32": "float32",
+        "f64": "float64",
+        "PPoint": "var TPoint"
+      },
+      "keyword_dict": {
+        "ptr": "valPtr",
+        "_UnusedMsg":"unusedMsg"
+      },
+      "files": [
+        {
+          "template_file_name": "liblcl-template.nim",
+          "save_file_name": "liblcl.nim"
+        },
+        {
+          "template_file_name": "types-template.nim",
+          "save_file_name": "types.nim"
+        }
+      ]
+    }]
+}

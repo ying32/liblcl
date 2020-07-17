@@ -1,0 +1,771 @@
+//----------------------------------------
+//
+// Copyright © ying32. All Rights Reserved.
+//
+// Licensed under Apache License 2.0
+//
+//----------------------------------------
+
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"strconv"
+
+	"io/ioutil"
+	"os"
+	"regexp"
+	"strings"
+
+	. "./define"
+)
+
+var (
+	paramsExpr  = regexp.MustCompile(`\((.+?)\)`)
+	incFileExpr = regexp.MustCompile(`\{\$I\s(MyLCL\_.+?\.inc)\}\s\s\/\/BASECLASS\:(T[a-z,A-Z]*)`) //`\{\$I\s(MyLCL\_.+?\.inc)\}`)
+
+	funcsMap        = make(map[string]string, 0)
+	classArray      = make([]string, 0)
+	objsMap         = make(map[string]string)
+	defClassMethods = make(map[string][]string, 0)
+
+	ObjectFile TObjectFile
+)
+
+func main() {
+
+	govclPath := ""
+	goPath, ok := os.LookupEnv("GOPATH")
+	if !ok || goPath == "" {
+		panic("未找到$GOPATH")
+	}
+
+	paths := strings.Split(goPath, ";")
+	for _, path := range paths {
+		path += "/src/github.com/ying32/govcl"
+		if FileExists(path) {
+			govclPath = path
+		}
+	}
+	if govclPath == "" {
+		panic("未在$GOPATH中到找govcl源代码目录，请go get github.com/ying32/govcl")
+	}
+
+	funcsMap["MySyscall"] = ""     // 排除此函数，手动构建
+	funcsMap["DGetClassName"] = "" // 已经废弃，govcl中也没引用
+	// 已经是c语言的了，则不需要这些了
+	funcsMap["NSWindow_titleVisibility"] = ""
+	funcsMap["NSWindow_setTitleVisibility"] = ""
+	funcsMap["NSWindow_titlebarAppearsTransparent"] = ""
+	funcsMap["NSWindow_setTitlebarAppearsTransparent"] = ""
+	funcsMap["NSWindow_styleMask"] = ""
+	funcsMap["NSWindow_setStyleMask"] = ""
+	funcsMap["NSWindow_setRepresentedURL"] = ""
+	funcsMap["NSWindow_release"] = ""
+
+	parseFile("LazarusDef.inc", false, nil, "", "")
+
+	// 自动生成的对象函数
+	for i := 1; i <= 4; i++ {
+		parseClassFiles(fmt.Sprintf("uexport%d.pas", i))
+	}
+
+	parseFile("ulinuxpatchs.pas", true, nil, "", "")
+	parseFile("umacospatchs.pas", true, nil, "", "")
+	parseFile("uformdesignerfile.pas", true, nil, "", "")
+
+	// 事件
+	parseEvents(govclPath + "/vcl/events.go")
+
+	// 常量
+	parseConst(govclPath + "/vcl/types/colors/colors.go")
+	parseConst(govclPath + "/vcl/types/keys/keys.go")
+	parseConst(govclPath + "/vcl/types/consts.go")
+	parseConst(govclPath + "/vcl/types/cursors.go")
+
+	parseEnums(govclPath + "/vcl/types/enums.go")
+
+	parseBaseType(govclPath+"/vcl/types/types.go", "")
+	parseBaseType(govclPath+"/vcl/types/pascal.go", "")
+	parseBaseType(govclPath+"/vcl/types/types_386arm.go", "i386")
+	parseBaseType(govclPath+"/vcl/types/types_amd64.go", "amd64")
+	parseBaseType(govclPath+"/vcl/types/message.go", "i386")
+	parseBaseType(govclPath+"/vcl/types/message_posix.go", "amd64")
+	// 保存分析文件
+	SaveObjectFile("liblcl.json", ObjectFile)
+
+}
+
+func FileExists(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true
+	}
+	if os.IsNotExist(err) {
+		return false
+	}
+	return false
+}
+
+func ReadFile(fileName string) ([]byte, error) {
+	bs, err := ioutil.ReadFile("../../src/" + fileName)
+	if err != nil {
+		return nil, err
+	}
+	return bs, nil
+}
+
+func parseFile(fileName string, isClass bool, appendBytes []byte, className, baseClassName string) {
+	bs, err := ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
+
+	// {无效参数}
+	bs = bytes.Replace(bs, []byte("{无效参数}"), nil, -1)
+	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
+
+	// 附加进去
+	if len(appendBytes) > 0 {
+		bs = append(bs, appendBytes...)
+	}
+	sps := bytes.Split(bs, []byte("\n"))
+	for i, line := range sps {
+		s := string(bytes.TrimSpace(line))
+		if (strings.HasPrefix(strings.ToLower(s), "function") || strings.HasPrefix(strings.ToLower(s), "procedure")) && strings.HasSuffix(s, "extdecl;") {
+			prevLine := ""
+
+			eventType := ""
+			isLastReturn := false
+			isMethod := false
+			if i > 0 {
+				prevLine = string(bytes.TrimSpace(sps[i-1]))
+				if strings.HasPrefix(prevLine, "//EVENT_TYPE:") {
+					//fmt.Println("事件：", prevLine)
+					eventType = strings.TrimSpace(strings.TrimPrefix(prevLine, "//EVENT_TYPE:"))
+				} else if strings.HasPrefix(prevLine, "//RETURNISLASTPARAM:") {
+					isLastReturn = true
+				} else if strings.HasPrefix(prevLine, "//CLASSMETHOD:") {
+					isMethod = true
+				}
+			}
+			if !isClass {
+				cs := s
+				if strings.HasPrefix(s, "procedure") {
+					cs = strings.TrimPrefix(cs, "procedure")
+				} else if strings.HasPrefix(s, "function") {
+					cs = strings.TrimPrefix(cs, "function")
+				}
+				cs = strings.TrimSpace(cs)
+				// 起始不要D开头的，然后不要_Instance结束的
+				if cs[0] != 'D' && !strings.Contains(cs, "_Instance") {
+					if idx := strings.Index(cs, "_"); idx > 0 {
+						name := strings.TrimSpace(cs[:idx])
+						if name != "Exception" {
+							name = "T" + name
+						}
+						mArr, _ := defClassMethods[name]
+						temp := ""
+						if eventType != "" || isLastReturn || isMethod {
+							temp += prevLine + "\r\n"
+						}
+						temp += s + "\r\n"
+
+						mArr = append(mArr, temp)
+						defClassMethods[name] = mArr
+						continue
+					}
+				}
+			}
+			parseFunc(s, isClass, eventType, className, baseClassName, isLastReturn, isMethod)
+		}
+	}
+}
+
+func parseClassFiles(fileName string) {
+	bs, err := ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
+	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
+
+	matchs := incFileExpr.FindAllStringSubmatch(string(bs), -1)
+	for _, match := range matchs {
+		if len(match) >= 2 {
+			incFileName := strings.TrimSpace(match[1])
+			className := strings.TrimPrefix(incFileName, "MyLCL_")
+			className = strings.TrimSuffix(className, ".inc")
+			if className != "Exception" {
+				className = "T" + strings.Trim(className, " ")
+			} else {
+				className = strings.Trim(className, " ")
+			}
+			baseClassName := ""
+			if len(match) >= 3 {
+				baseClassName = strings.TrimSpace(match[2])
+			}
+			// 后面事件判断是否为类的
+			objsMap[className] = className
+			// 生成类型定义用的
+			classArray = append(classArray, className)
+			fmt.Println(incFileName)
+
+			appendStr := ""
+			if mArr, ok := defClassMethods[className]; ok {
+				for _, ar := range mArr {
+					appendStr += ar
+				}
+			}
+			//rustFile.W("\r\n")
+			//rustFile.W("    // " + className)
+			//rustFile.W("\r\n")
+
+			parseFile(incFileName, true, []byte(appendStr), className, baseClassName)
+			ObjectFile.Objects = append(ObjectFile.Objects, currentClass)
+		}
+	}
+
+}
+
+var (
+	nonWinFunc   bool
+	currentClass TClass
+)
+
+func parseFunc(s string, isClass bool, eventType, className, baseClassName string, isLastReturn, isMethod bool) {
+	isFunc := strings.HasPrefix(strings.ToLower(s), "function")
+	if isFunc {
+		s = strings.TrimPrefix(s, "function")
+	} else {
+		s = strings.TrimPrefix(s, "procedure")
+	}
+	s = strings.TrimSpace(strings.TrimSuffix(s, "extdecl;"))
+
+	haveParams := strings.Index(s, "(") != -1
+	paramsStr := ""
+	if haveParams {
+		ms := paramsExpr.FindStringSubmatch(s)
+		if len(ms) >= 2 {
+			paramsStr = strings.TrimSpace(ms[1])
+
+		}
+	}
+
+	funcName := ""
+	n := strings.Index(s, "(")
+	if n == -1 {
+		n = strings.Index(s, ":")
+	}
+	if n != -1 {
+		funcName = strings.TrimSpace(s[:n])
+	}
+
+	returnType := ""
+	if isFunc {
+		n := strings.Index(s, ")")
+		if n == -1 {
+			n = strings.Index(s, ":")
+		}
+		if n != -1 {
+			returnType = strings.TrimSpace(s[n+1:])
+			returnType = strings.TrimSuffix(returnType, ";")
+			returnType = strings.TrimPrefix(returnType, ":")
+			returnType = strings.TrimSpace(returnType)
+		}
+	}
+
+	params := parseParams(paramsStr, eventType)
+
+	if _, ok := funcsMap[funcName]; ok {
+		return
+	}
+	funcsMap[funcName] = ""
+
+	nameSuffix := func(sName string) bool {
+		return strings.HasSuffix(funcName, sName)
+	}
+
+	namePreSuffix := func(sName string) bool {
+		return strings.HasPrefix(funcName, sName)
+	}
+
+	nameEq := func(sName string) bool {
+		return funcName == sName
+	}
+
+	item := TFunction{}
+	item.Name = funcName
+	item.IsStatic = !isClass || nameSuffix("_Instance") || nameSuffix("_ClassType")
+	item.Return = GetTypes(returnType)
+	item.LastIsReturn = isLastReturn
+	item.IsMethod = isMethod
+
+	if namePreSuffix("GtkWidget_") || namePreSuffix("GdkWindow_") {
+		item.Platform = "linux"
+	} else if namePreSuffix("NSWindow_") {
+		item.Platform = "macos"
+	} else if nameEq("DCreateURLShortCut") || nameEq("DCreateShortCut") {
+		item.Platform = "windows"
+	} else {
+		if nameEq("DSendMessage") {
+			nonWinFunc = true
+		} else if nameEq("SetEventCallback") { //"DWindowFromPoint") {
+			nonWinFunc = false
+		}
+
+		if !nonWinFunc {
+			item.Platform = "all"
+		} else {
+			item.Platform = "linux,macos"
+		}
+
+	}
+	item.Params = params
+
+	// 添加到对象文件中
+	if !isClass {
+		ObjectFile.Functions = append(ObjectFile.Functions, item)
+	} else {
+		if currentClass.ClassName != className && className != "" {
+			currentClass.ClassName = className
+			currentClass.BaseClassName = baseClassName
+			currentClass.Methods = make([]TFunction, 0)
+		}
+		temps := className
+		if temps != "" {
+			if temps[0] == 'T' {
+				temps = temps[1:]
+			}
+			item.RealName = strings.TrimPrefix(item.Name, temps+"_")
+		}
+
+		currentClass.Methods = append(currentClass.Methods, item)
+	}
+
+	//MakeCFunc(funcName, returnType, params, isClass)
+	//
+	//MakeRustImport(funcName, returnType, params, isClass)
+	//
+	//MakeNimImport(funcName, returnType, params, isClass)
+}
+
+func parseParams(s string, eventType string) []TFuncParam {
+	if s == "" {
+		return nil
+	}
+	ps := make([]TFuncParam, 0)
+	pss := strings.Split(s, ";")
+	for _, p := range pss {
+		subps := strings.Split(strings.TrimSpace(p), ":")
+		if len(subps) >= 2 {
+
+			name := strings.TrimSpace(subps[0])
+			typeStr := strings.TrimSpace(subps[1])
+			isVar := strings.HasPrefix(name, "var ") || strings.HasPrefix(name, "out ")
+			if isVar {
+				name = strings.TrimPrefix(name, "var ")
+				name = strings.TrimPrefix(name, "out ")
+
+			}
+			name = strings.TrimPrefix(name, "const ")
+			name = strings.TrimSpace(name)
+			// 共用类型的参数
+			if strings.Index(name, ",") != -1 {
+				ssubps := strings.Split(name, ",")
+				for _, sps := range ssubps {
+					var item TFuncParam
+					item.IsVar = isVar
+					item.Name = strings.TrimSpace(sps)
+					item.Type = GetTypes(typeStr)
+					ps = append(ps, item)
+				}
+
+			} else {
+				var item TFuncParam
+				item.Name = name
+				if eventType != "" && name == "AEventId" {
+					item.Type = eventType
+				} else {
+					item.Type = GetTypes(typeStr)
+				}
+				item.IsVar = isVar
+				ps = append(ps, item)
+			}
+		}
+	}
+	return ps
+}
+
+func parseEnums(fileName string) {
+
+	_, lines, err := ReadFileLines(fileName)
+	if err != nil {
+		panic(err)
+	}
+
+	i := 0
+	for i < len(lines) {
+		s := string(bytes.TrimSpace(lines[i]))
+		if strings.HasPrefix(s, "type") {
+
+			sp := strings.Split(s, " ")
+			prevLine := ""
+			if i > 0 {
+				prevLine = string(bytes.TrimSpace(lines[i-1]))
+			}
+			if len(sp) >= 3 {
+				item := TType{}
+				item.Name = strings.TrimSpace(sp[1])
+
+				if strings.HasPrefix(prevLine, "//ENUM:") {
+					item.Kind = "enum"
+					//item.Type = strings.TrimSpace(sp[2])
+					i++
+					find := false
+					for i < len(lines) {
+						s = string(bytes.TrimSpace(lines[i]))
+						if find && s == ")" {
+							break
+						}
+
+						if strings.HasPrefix(s, "const (") {
+							i++
+							find = true
+							continue
+						}
+
+						if s == "" || s == "//" || strings.HasPrefix(s, "{$") || strings.HasPrefix(s, "//") ||
+							strings.HasPrefix(s, "/*") {
+							i++
+							continue
+						}
+
+						if find {
+
+							eqPos := strings.Index(s, " = ")
+							cPos := strings.Index(s, "//")
+
+							eItem := TEnum{}
+
+							// 找到一个等号，并且不在注释中
+							if eqPos != -1 && (eqPos < cPos || cPos == -1) {
+								sArr := strings.Split(s, " = ")
+
+								eItem.Name = strings.TrimSpace(sArr[0])
+								if cPos != -1 {
+									sArr = strings.Split(sArr[1], "//")
+									eItem.Value = strings.TrimSpace(sArr[0])
+									eItem.Comment = strings.TrimSpace(sArr[1])
+								} else {
+									eItem.Value = strings.TrimSpace(sArr[1])
+								}
+
+							} else {
+								if cPos != -1 {
+									sArr := strings.Split(s, "//")
+									eItem.Name = strings.TrimSpace(sArr[0])
+									eItem.Comment = strings.TrimSpace(sArr[1])
+								} else {
+									eItem.Name = strings.TrimSpace(s)
+								}
+							}
+							eItem.Name = firstLowerChar(eItem.Name)
+							if eItem.Value == "iota + 0" {
+								eItem.Value = ""
+							}
+							pi := strings.Index(eItem.Value, "(")
+							if pi != -1 {
+								eItem.Value = eItem.Value[pi+1:]
+								pi = strings.Index(eItem.Value, ")")
+								if pi != -1 {
+									eItem.Value = eItem.Value[:pi]
+								}
+							}
+							item.Enums = append(item.Enums, eItem)
+
+						}
+						i++
+					}
+
+				} else if strings.HasPrefix(prevLine, "//SET:") {
+					item.Kind = "set"
+					item.SetOf = strings.TrimSpace(strings.TrimPrefix(prevLine, "//SET:"))
+				} else {
+					item.Kind = "type"
+					item.Type = strings.TrimSpace(sp[2])
+					if item.Type == "=" {
+						item.Type = strings.TrimSpace(sp[3])
+					}
+				}
+				// 转换类型
+				item.Type = GetTypes(item.Type)
+
+				ObjectFile.Types = append(ObjectFile.Types, item)
+			}
+		}
+		i++
+	}
+
+}
+
+func parseEvents(fileName string) {
+	_, lines, err := ReadFileLines(fileName)
+	if err != nil {
+		panic(err)
+	}
+
+	eventTypeIsPtr := func(tt string) bool {
+		if tt == "TRect" || tt == "TPoint" || tt == "TSize" {
+			return true
+		}
+		return false
+	}
+
+	for _, line := range lines {
+		s := string(bytes.TrimSpace(line))
+		if strings.HasPrefix(s, "type ") {
+			s = strings.TrimPrefix(s, "type ")
+			// 干掉注释
+			if i := strings.Index(s, "//"); i != -1 {
+				s = s[:i]
+			}
+			if i := strings.Index(s, "/*"); i != -1 {
+				s = s[:i]
+			}
+			s = strings.TrimSpace(s)
+			// 检测是否有返回值，有则移到参数后面
+			if i := strings.Index(s, ")"); i != -1 {
+				retVal := strings.TrimSpace(s[i+1:])
+				if len(retVal) > 3 {
+					s = s[:i] + ", result " + retVal + ")" // 重新处理这个返回值
+				}
+			}
+
+			// type TLVOwnerDataHintEvent = TLVDataHintEvent
+			// 处理上面这种情况
+			if strings.Index(s, "=") != -1 {
+				sp := strings.Split(s, "=")
+				item := TEvent{}
+				item.Name = strings.TrimSpace(sp[0])
+				item.ReDefine = strings.TrimSpace(sp[1])
+				ObjectFile.Events = append(ObjectFile.Events, item)
+				continue
+			}
+
+			idx := strings.Index(s, " ")
+			name := s[:idx]
+			body := strings.TrimRight(strings.TrimPrefix(s[idx+1:], "func("), ")")
+			params := make([]TFuncParam, 0)
+			for _, ps := range strings.Split(body, ",") {
+				ps = strings.TrimSpace(ps)
+				subps := strings.Split(ps, " ")
+				item := TFuncParam{}
+				if len(subps) >= 1 {
+					item.Name = strings.TrimSpace(subps[0])
+				}
+				if len(subps) >= 2 {
+					item.Type = strings.Trim(strings.TrimSpace(subps[1]), "*")
+					item.IsVar = strings.HasPrefix(strings.TrimSpace(subps[1]), "*")
+					item.IsArray = strings.HasPrefix(strings.TrimSpace(subps[1]), "[]")
+				}
+				if item.IsArray {
+					item.Type = GetTypes("pointer") //strings.TrimPrefix(item.Type, "[]")
+				}
+				// 转换类型
+				item.Type = GetTypes(item.Type)
+
+				if item.Name != "" {
+					params = append(params, item)
+				}
+
+				// 如果上个参数是一个数组，则添加一个数组长度参数
+				if item.IsArray {
+					item := TFuncParam{}
+					item.Name = "len"
+					// 转换类型
+					item.Type = GetTypes("int")
+					params = append(params, item)
+				}
+			}
+			// 处理参数，将所有参数的类型都补上
+			lastType := ""
+			lastIsVar := false
+			for i := len(params) - 1; i >= 0; i-- {
+				item := params[i]
+				if item.Type == "" {
+					item.IsVar = lastIsVar
+					item.Type = lastType
+					params[i] = item
+				}
+				// 处理一些，有些是用指针传递的，但实际使用中不以指针表示
+				if !item.IsVar && eventTypeIsPtr(item.Type) {
+					item.IsVar = true
+					params[i] = item
+				}
+				lastType = item.Type
+				lastIsVar = item.IsVar
+			}
+
+			item := TEvent{}
+			item.Name = name
+			item.Params = params
+
+			ObjectFile.Events = append(ObjectFile.Events, item)
+
+		}
+	}
+}
+
+func parseConst(filename string) {
+
+	_, lines, err := ReadFileLines(filename)
+	if err != nil {
+		panic(err)
+	}
+	i := 0
+	for i < len(lines) {
+		s := string(bytes.TrimSpace(lines[i]))
+		if strings.HasPrefix(s, "const (") {
+			i++
+			for s != ")" {
+				s = string(bytes.TrimSpace(lines[i]))
+				// 注释也收集
+				if strings.HasPrefix(s, "//") || strings.HasPrefix(s, "/*") {
+
+					item := TConst{}
+					item.Name = ""
+					item.Value = ""
+					item.Comment = strings.Replace(s, "//", "", -1)
+					item.Comment = strings.Replace(item.Comment, "/*", "", -1)
+					item.Comment = strings.TrimSpace(strings.Replace(item.Comment, "*/", "", -1))
+					ObjectFile.Consts = append(ObjectFile.Consts, item)
+
+				} else {
+					ss := strings.Split(s, "=")
+					if len(ss) == 2 {
+						item := TConst{}
+						item.Name = strings.TrimSpace(ss[0])
+						if !strings.HasPrefix(item.Name, "CF_") {
+							item.Name = firstLowerChar(item.Name)
+						}
+						ssArr := strings.Split(ss[1], "//")
+						if len(ssArr) >= 2 {
+							item.Value = strings.TrimSpace(ssArr[0])
+							item.Comment = strings.TrimSpace(ssArr[1])
+						} else {
+							item.Value = strings.TrimSpace(ss[1])
+						}
+						ObjectFile.Consts = append(ObjectFile.Consts, item)
+					}
+				}
+				i++
+			}
+			continue
+		}
+		i++
+	}
+}
+
+func parseBaseType(filename, arch string) {
+
+	_, lines, err := ReadFileLines(filename)
+	if err != nil {
+		panic(err)
+	}
+	i := 0
+	for i < len(lines) {
+		s := string(bytes.TrimSpace(lines[i]))
+		if strings.HasPrefix(s, "type") {
+
+			sArr := strings.Split(strings.TrimPrefix(s, "type "), " ")
+			item := TType{}
+			item.Kind = "type"
+			item.FieldArch = arch
+			if len(sArr) >= 2 {
+				item.Name = strings.TrimSpace(sArr[0])
+				s2 := strings.TrimSpace(sArr[1])
+				if s2 == "struct" {
+					item.Kind = "struct"
+					// 解析结构
+					i++
+					for i < len(lines) {
+						s = string(bytes.TrimSpace(lines[i]))
+						if s == "}" {
+							break
+						}
+						if s == "" || strings.HasPrefix(s, "//") || strings.HasPrefix(s, "/*") {
+							i++
+							continue
+						}
+						sArr2 := strings.Split(s, " ")
+						if len(sArr2) >= 2 {
+							field := TField{}
+							field.Name = firstLowerChar(strings.TrimSpace(sArr2[0]))
+							pi := strings.Index(sArr2[1], "//")
+							if pi != -1 {
+								field.Type = strings.TrimSpace(sArr2[1][:pi])
+								field.Comment = strings.TrimSpace(sArr2[1][pi+3:])
+							} else {
+								field.Type = strings.TrimSpace(sArr2[len(sArr2)-1])
+							}
+							// 判断是否数组
+							field.IsArr = strings.HasPrefix(field.Type, "[")
+							if field.IsArr {
+								p1, p2 := strings.Index(field.Type, "["), strings.Index(field.Type, "]")
+								field.ArrLength, _ = strconv.Atoi(field.Type[p1+1 : p2])
+								field.Type = field.Type[p2+1:]
+							}
+							// 转换类型
+							field.Type = GetTypes(field.Type)
+
+							item.Fields = append(item.Fields, field)
+						}
+						i++
+					}
+
+				} else {
+					if s2 == "=" {
+						item.Type = strings.TrimSpace(sArr[2])
+					} else {
+						item.Type = s2
+					}
+				}
+			}
+			// 转换类型
+			item.Type = GetTypes(item.Type)
+
+			if i > 0 && item.Kind != "struct" {
+				prevLine := string(bytes.TrimSpace(lines[i-1]))
+				if strings.HasPrefix(prevLine, "//") {
+					item.Comment = strings.TrimSpace(strings.TrimPrefix(prevLine, "//"))
+				}
+			}
+			if item.Name != "" {
+				ObjectFile.BaseTypes = append(ObjectFile.BaseTypes, item)
+			}
+		}
+		i++
+	}
+}
+
+func firstLowerChar(sx string) string {
+	sx = strings.TrimSpace(sx)
+	if len(sx) > 0 {
+		sx = strings.ToLower(string(sx[0])) + string(sx[1:])
+	}
+
+	return sx
+}
+
+func ReadFileLines(filename string) (*bytes.Buffer, [][]byte, error) {
+	buff := bytes.NewBuffer(nil)
+	buff.WriteString("//" + filename)
+	buff.WriteString("\n")
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Println(err)
+		return nil, nil, err
+	}
+	return buff, bytes.Split(bs, []byte("\n")), nil
+}
