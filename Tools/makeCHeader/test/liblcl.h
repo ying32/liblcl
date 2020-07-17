@@ -549,71 +549,9 @@ typedef int16_t TCursor;
 #define cF_LOCALE       0x10
 
 
+
  
-
-// 补充的一部分
-
-// TShiftState
-typedef enum {
-    ssShift = 0,
-    ssAlt,
-    ssCtrl,
-    ssLeft,
-    ssRight,
-    ssMiddle,
-    ssDouble,
-    // Extra additions
-    ssMeta,
-    ssSuper,
-    ssHyper,
-    ssAltGr,
-    ssCaps,
-    ssNum,
-    ssScroll,
-    ssTriple,
-    ssQuad,
-    ssExtra1,
-    ssExtra2,
-}TShiftStates;
-
-// TControlState
-typedef enum {
-	csLButtonDown = 0,
-	csClicked,
-	csPalette,
-	csReadingState,
-	csFocusing,
-	csCreating, // not used, exists for Delphi compatibility
-	csPaintCopy,
-	csCustomPaint,
-	csDestroyingHandle,
-	csDocking,
-	csVisibleSetInLoading,
-}TControlStates;
-
-
-// TGridDrawState
-typedef enum {
-	gdSelected = 0,
-	gdFocused,
-	gdFixed,
-	gdHot,
-	gdPushed,
-	gdRowHighlight,
-}TGridDrawStates;
-
-// TCustomDrawState
-typedef enum {
-	cdsSelected = 0,
-	cdsGrayed,
-	cdsDisabled,
-	cdsChecked,
-	cdsFocused,
-	cdsDefault,
-	cdsHot,
-	cdsMarked,
-	cdsIndeterminate,
-}TCustomDrawStates;
+ 
 
 //F:\Golang/src/github.com/ying32/govcl/vcl/types/enums.go
 typedef enum  {
@@ -695,12 +633,6 @@ typedef enum  {
 }TVerticalAlignment;
 
 typedef enum  {
-    bsPushButton,
-    bsCommandLink,
-    bsSplitButton,
-}TButtonStyle;
-
-typedef enum  {
     csDropDown,
     csSimple,                               // like an TEdit plus a TListBox
     csDropDownList,                         // like TLabel plus a button to drop down the list
@@ -710,6 +642,7 @@ typedef enum  {
     csOwnerDrawEditableVariable,            // like csOwnerDrawVariable, but with TEdit
 }TComboBoxStyle;
 
+typedef TComboBoxStyle TColorBoxStyle;
 typedef enum  {
     wsNormal,
     wsMinimized,
@@ -736,12 +669,6 @@ typedef enum  {
     lbOwnerDrawVariable,
     lbVirtual,
 }TListBoxStyle;
-
-typedef enum  {
-    maAutomatic,
-    maManual,
-    maParent,
-}TMenuItemAutoFlag;
 
 typedef enum  {
     paLeft,
@@ -784,8 +711,14 @@ typedef enum  {
     bsDisabled,             // button disabled (grayed)
     bsDown,                 // button is down
     bsExclusive,            // button is the only down in his group
-    bsHot, // button is under mouse
+    bsHot,                  // button is under mouse
 }TButtonState;
+
+typedef enum  {
+    bsAutoDetect,
+    bsWin31,
+    bsNew,
+}TButtonStyle;
 
 typedef enum  {
     sbsNone,
@@ -817,13 +750,6 @@ typedef enum  {
     stText,
     stBoth,
 }TSortType;
-
-typedef enum  {
-    msControlSelect,
-    msShiftSelect,
-    msVisibleOnly,
-    msSiblingOnly,
-}TMultiSelectStyles;
 
 typedef enum  {
     arAlignBottom,
@@ -1023,44 +949,11 @@ typedef enum  {
 }TStatusPanelStyle;
 
 typedef enum  {
-    pbNone,
-    pbLowered,
-    pbRaised,
-}TStatusPanelBevel;
-
-typedef uint32_t TJPEGQualityRange;
-typedef enum  {
     jpBestQuality,
     jpBestSpeed,
 }TJPEGPerformance;
 
-typedef enum  {
-    jsFullSize,
-    jsHalf,
-    jsQuarter,
-    jsEighth,
-}TJPEGScale;
-
 typedef TPixelFormat TJPEGPixelFormat;
-typedef enum  {
-    gvUnknown,
-    gv87a,
-    gv89a,
-}TGIFVersion;
-
-typedef enum  {
-    glDisabled,
-    glEnabled,
-    glContinously,
-}TGIFAnimationLoop;
-
-typedef enum  {
-    gdDisabled,
-    gdEnabled,
-    gdAuto,
-}TGIFDithering;
-
-typedef uint32_t TCompressionLevel;
 typedef enum  {
     nsCut,
     nsDropHilite,               // = Node.DropTarget
@@ -1088,6 +981,13 @@ typedef enum  {
     taAdd,
     taInsert,
 }TAddMode;
+
+typedef enum  {
+    msControlSelect,
+    msShiftSelect,
+    msVisibleOnly,
+    msSiblingOnly,
+}TMultiSelectStyles;
 
 typedef TSet TMultiSelectStyle;
 typedef enum  {
@@ -1285,8 +1185,35 @@ typedef enum  {
     pmInches,
 }TPageMeasureUnits;
 
-typedef uint32_t TStringsOption;
+typedef enum  {
+    soStrictDelimiter,
+    soWriteBOM,
+    soTrailingLineBreak,
+    soUseLocale,
+}TStringsOption;
+
 typedef TSet TStringsOptions;
+typedef enum  {
+    ssShift,
+    ssAlt,
+    ssCtrl,
+    ssLeft,
+    ssRight,
+    ssMiddle,
+    ssDouble,
+    ssMeta,
+    ssSuper,
+    ssHyper,
+    ssAltGr,
+    ssCaps,
+    ssNum,
+    ssScroll,
+    ssTriple,
+    ssQuad,
+    ssExtra1,
+    ssExtra2,
+}TShiftStateEnum;
+
 typedef TSet TShiftState;
 typedef enum  {
     mbLeft,
@@ -1479,7 +1406,6 @@ typedef enum  {
 }TAnchorKind;
 
 typedef TSet TAnchors;
-typedef TSet TOwnerDrawState;
 typedef enum  {
     odSelected,
     odGrayed,
@@ -1497,6 +1423,7 @@ typedef enum  {
     odBackgroundPainted, // item background already painted
 }TOwnerDrawStateType;
 
+typedef TSet TOwnerDrawState;
 typedef enum  {
     bkCustom,
     bkOK,
@@ -1578,8 +1505,19 @@ typedef enum  {
     cdPostErase,
 }TCustomDrawStage;
 
+typedef enum  {
+    cdsSelected,
+    cdsGrayed,
+    cdsDisabled,
+    cdsChecked,
+    cdsFocused,
+    cdsDefault,
+    cdsHot,
+    cdsMarked,
+    cdsIndeterminate,
+}TCustomDrawStateFlag;
+
 typedef TSet TCustomDrawState;
-typedef TSet TTBCustomDrawFlags;
 typedef enum  {
     drBounds,
     drIcon,
@@ -1594,7 +1532,27 @@ typedef enum  {
 }TSelectDirOpt;
 
 typedef TSet TSelectDirOpts;
-typedef uint32_t TFindOption;
+typedef enum  {
+    frDown,
+    frFindNext,
+    frHideMatchCase,
+    frHideWholeWord,
+    frHideUpDown,
+    frMatchCase,
+    frDisableMatchCase,
+    frDisableUpDown,
+    frDisableWholeWord,
+    frReplace,
+    frReplaceAll,
+    frWholeWord,
+    frShowHelp,
+    frEntireScope,
+    frHideEntireScope,
+    frPromptOnReplace,
+    frHidePromptOnReplace,
+    frButtonsAtBottom,
+}TFindOption;
+
 typedef TSet TFindOptions;
 typedef enum  {
     dmManual,
@@ -1638,10 +1596,52 @@ typedef enum  {
     gdsGradient,
 }TGridDrawingStyle;
 
-typedef int32_t TGridOption;
+typedef enum  {
+    goFixedVertLine,
+    goFixedHorzLine,
+    goVertLine,
+    goHorzLine,
+    goRangeSelect,
+    goDrawFocusSelected,
+    goRowSizing,
+    goColSizing,
+    goRowMoving,
+    goColMoving,
+    goEditing,
+    goAutoAddRows,
+    goTabs,
+    goRowSelect,
+    goAlwaysShowEditor,
+    goThumbTracking,
+    goColSpanning,                 // Enable cellextent calcs
+    goRelaxedRowSelect,            // User can see focused cell on goRowSelect
+    goDblClickAutoSize,            // dblclicking columns borders (on hdrs) resize col.
+    goSmoothScroll,                // Switch scrolling mode (pixel scroll is by default)
+    goFixedRowNumbering,           // Ya
+    goScrollKeepVisible,           // keeps focused cell visible while scrolling
+    goHeaderHotTracking,           // Header cells change look when mouse is over them
+    goHeaderPushedLook,            // Header cells looks pushed when clicked
+    goSelectionActive,             // Setting grid.Selection moves also cell cursor
+    goFixedColSizing,              // Allow to resize fixed columns
+    goDontScrollPartCell,          // clicking partially visible cells will not scroll
+    goCellHints,                   // show individual cell hints
+    goTruncCellHints,              // show cell hints if cell text is too long
+    goCellEllipsis,                // show "..." if cell text is too long
+    goAutoAddRowsSkipContentCheck, //BB Also add a row (if AutoAddRows in Options) if last row is empty
+    goRowHighlight,                // Highlight the current Row
+}TGridOption;
+
 typedef TSet TGridOptions;
+typedef enum  {
+    gdSelected,
+    gdFocused,
+    gdFixed,
+    gdHot,
+    gdPushed,
+    gdRowHighlight,
+}TGridDrawStates;
+
 typedef TSet TGridDrawState;
-typedef uint32_t TGridScrollDirection;
 typedef enum  {
     hsText,
     hsOwnerDraw,
@@ -1682,6 +1682,20 @@ typedef enum  {
     tsTrackMove,
     tsTrackEnd,
 }TSectionTrackState;
+
+typedef enum  {
+    csLButtonDown,
+    csClicked,
+    csPalette,
+    csReadingState,
+    csFocusing,
+    csCreating, // not used, exists for Delphi compatibility
+    csPaintCopy,
+    csCustomPaint,
+    csDestroyingHandle,
+    csDocking,
+    csVisibleSetInLoading,
+}TControlStateType;
 
 typedef TSet TControlState;
 typedef enum  {
@@ -1737,24 +1751,6 @@ typedef enum  {
 }TTaskBarProgressState;
 
 typedef enum  {
-    enabled,
-    dismissOnClick,
-    noBackground,
-    hidden,
-    nonInteractive,
-}TThumbButtonState;
-
-typedef TSet TThumbButtonStates;
-typedef enum  {
-    appThumbAlways,
-    appThumbWhenActive,
-    appPeekAlways,
-    appPeekWhenActive,
-    customizedPreview,
-}TThumbTabProperty;
-
-typedef TSet TThumbTabProperties;
-typedef enum  {
     bmDIB,
     bmDDB,
 }TBitmapHandleType;
@@ -1806,7 +1802,6 @@ typedef enum  {
     stNever,              // never show taskbar item for the form
 }TShowInTaskbar;
 
-typedef TSet TTaskDialogCommonButtons;
 typedef enum  {
     tcbOk,
     tcbYes,
@@ -1816,7 +1811,7 @@ typedef enum  {
     tcbClose,
 }TTaskDialogCommonButton;
 
-typedef TSet TTaskDialogFlags;
+typedef TSet TTaskDialogCommonButtons;
 typedef enum  {
     tfEnableHyperlinks,
     tfUseHiconMain,
@@ -1836,13 +1831,14 @@ typedef enum  {
     tfCanBeMinimized,
 }TTaskDialogFlag;
 
+typedef TSet TTaskDialogFlags;
 typedef enum  {
     tdiNone,
     tdiWarning,
     tdiError,
     tdiInformation,
     tdiShield,
-    tdiQuestion, // Lazarus所有
+    tdiQuestion,
 }TTaskDialogIcon;
 
 typedef enum  {
@@ -1992,9 +1988,9 @@ typedef enum  {
 
 typedef int32_t TLeftRight; 
 typedef TBorderStyle TFormBorderStyle;
-typedef int32_t TColorBoxStyle;
+ 
 typedef TAlignment TLinkAlignment;
-typedef TMenuItemAutoFlag TMenuAutoFlag; 
+ 
 typedef int32_t TNumGlyphs;
 typedef uint16_t TShortCut; 
 typedef int16_t TScrollBarInc;
@@ -2296,17 +2292,17 @@ typedef void(*TMouseMoveEvent)(TObject, TShiftState, int32_t, int32_t);
 // void (TObject sender, TShiftState shift, int32_t wheelDelta, int32_t x, int32_t y, BOOL* handled)
 typedef void(*TMouseWheelEvent)(TObject, TShiftState, int32_t, int32_t, int32_t, BOOL*);
 
-// void (TWinControl control, int32_t index, TRect aRect, TOwnerDrawState state)
-typedef void(*TDrawItemEvent)(TWinControl, int32_t, TRect, TOwnerDrawState);
+// void (TWinControl control, int32_t index, TRect* aRect, TOwnerDrawState state)
+typedef void(*TDrawItemEvent)(TWinControl, int32_t, TRect*, TOwnerDrawState);
 
-// void (TObject sender, TCanvas aCanvas, TRect aRect, BOOL selected)
-typedef void(*TMenuDrawItemEvent)(TObject, TCanvas, TRect, BOOL);
+// void (TObject sender, TCanvas aCanvas, TRect* aRect, BOOL selected)
+typedef void(*TMenuDrawItemEvent)(TObject, TCanvas, TRect*, BOOL);
 
 // void (TObject sender, TListColumn column)
 typedef void(*TLVColumnClickEvent)(TObject, TListColumn);
 
-// void (TObject sender, TListColumn column, TPoint point)
-typedef void(*TLVColumnRClickEvent)(TObject, TListColumn, TPoint);
+// void (TObject sender, TListColumn column, TPoint* point)
+typedef void(*TLVColumnRClickEvent)(TObject, TListColumn, TPoint*);
 
 // void (TObject sender, TListItem item, BOOL selected)
 typedef void(*TLVSelectItemEvent)(TObject, TListItem, BOOL);
@@ -2323,8 +2319,8 @@ typedef void(*TLVChangeEvent)(TObject, TListItem, TItemChange);
 // void (TObject sender, TListItem item)
 typedef void(*TLVNotifyEvent)(TObject, TListItem);
 
-// void (TListView sender, TRect aRect, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TLVAdvancedCustomDrawEvent)(TListView, TRect, TCustomDrawStage, BOOL*);
+// void (TListView sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TLVAdvancedCustomDrawEvent)(TListView, TRect*, TCustomDrawStage, BOOL*);
 
 // void (TListView sender, TListItem item, TCustomDrawState state, TCustomDrawStage Stage, BOOL* defaultDraw)
 typedef void(*TLVAdvancedCustomDrawItemEvent)(TListView, TListItem, TCustomDrawState, TCustomDrawStage, BOOL*);
@@ -2341,8 +2337,8 @@ typedef void(*TTVExpandedEvent)(TObject, TTreeNode);
 // void (TObject sender, TTreeNode node)
 typedef void(*TTVChangedEvent)(TObject, TTreeNode);
 
-// void (TTreeView sender, TRect aRect, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TTVAdvancedCustomDrawEvent)(TTreeView, TRect, TCustomDrawStage, BOOL*);
+// void (TTreeView sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TTVAdvancedCustomDrawEvent)(TTreeView, TRect*, TCustomDrawStage, BOOL*);
 
 // void (TTreeView sender, TTreeNode node, TCustomDrawState state, TCustomDrawStage stage, BOOL* paintImages, BOOL* defaultDraw)
 typedef void(*TTVAdvancedCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawState, TCustomDrawStage, BOOL*, BOOL*);
@@ -2350,11 +2346,8 @@ typedef void(*TTVAdvancedCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawS
 // void (TObject sender, int32_t tabIndex, int32_t* imageIndex)
 typedef void(*TTabGetImageEvent)(TObject, int32_t, int32_t*);
 
-// void (TToolBar sender, TRect aRect, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TTBAdvancedCustomDrawEvent)(TToolBar, TRect, TCustomDrawStage, BOOL*);
-
-// void (TToolBar sender, TToolButton button, TCustomDrawState state, TCustomDrawStage stage, TTBCustomDrawFlags* flags, BOOL* defaultDraw)
-typedef void(*TTBAdvancedCustomDrawBtnEvent)(TToolBar, TToolButton, TCustomDrawState, TCustomDrawStage, TTBCustomDrawFlags*, BOOL*);
+// void (TToolBar sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TTBAdvancedCustomDrawEvent)(TToolBar, TRect*, TCustomDrawStage, BOOL*);
 
 // void ()
 typedef void(*TThreadProc)(void);
@@ -2371,8 +2364,8 @@ typedef void(*THelpEvent)(uint16_t, THelpEventData, BOOL*, BOOL*);
 // void (TWMKey* msg, BOOL* handled)
 typedef void(*TShortCutEvent)(TWMKey*, BOOL*);
 
-// void (TObject sender, TPoint mousePos, BOOL* handled)
-typedef void(*TContextPopupEvent)(TObject, TPoint, BOOL*);
+// void (TObject sender, TPoint* mousePos, BOOL* handled)
+typedef void(*TContextPopupEvent)(TObject, TPoint*, BOOL*);
 
 // void (TObject sender, TObject source, int32_t x, int32_t y, TDragState state, BOOL* accept)
 typedef void(*TDragOverEvent)(TObject, TObject, int32_t, int32_t, TDragState, BOOL*);
@@ -2398,17 +2391,17 @@ typedef void(*TUnDockEvent)(TObject, TControl, TControl, BOOL*);
 // void (TObject sender, TDragDockObject dragObject)
 typedef void(*TStartDockEvent)(TObject, TDragDockObject);
 
-// void (TObject sender, TControl dockClient, TRect* influenceRect, TPoint mousePos, BOOL* canDock)
-typedef void(*TGetSiteInfoEvent)(TObject, TControl, TRect*, TPoint, BOOL*);
+// void (TObject sender, TControl dockClient, TRect* influenceRect, TPoint* mousePos, BOOL* canDock)
+typedef void(*TGetSiteInfoEvent)(TObject, TControl, TRect*, TPoint*, BOOL*);
 
-// void (TObject sender, TShiftState shift, TPoint mousePos, BOOL* handled)
-typedef void(*TMouseWheelUpDownEvent)(TObject, TShiftState, TPoint, BOOL*);
+// void (TObject sender, TShiftState shift, TPoint* mousePos, BOOL* handled)
+typedef void(*TMouseWheelUpDownEvent)(TObject, TShiftState, TPoint*, BOOL*);
 
 // void (TObject sender, BOOL isColumn, int32_t sIndex, int32_t tIndex)
 typedef void(*TMovedEvent)(TObject, BOOL, int32_t, int32_t);
 
-// void (TObject sender, int32_t aCol, int32_t aRow, TRect aRect, TGridDrawState state)
-typedef void(*TDrawCellEvent)(TObject, int32_t, int32_t, TRect, TGridDrawState);
+// void (TObject sender, int32_t aCol, int32_t aRow, TRect* aRect, TGridDrawState state)
+typedef void(*TDrawCellEvent)(TObject, int32_t, int32_t, TRect*, TGridDrawState);
 
 // void (TObject sender, int32_t aCol, int32_t aRow)
 typedef void(*TFixedCellClickEvent)(TObject, int32_t, int32_t);
@@ -2422,8 +2415,8 @@ typedef void(*TSelectCellEvent)(TObject, int32_t, int32_t, BOOL*);
 // void (TObject sender, int32_t aCol, int32_t aRow, char* value)
 typedef void(*TSetEditEvent)(TObject, int32_t, int32_t, char*);
 
-// void (THeaderControl headerControl, THeaderSection section, TRect aRect, BOOL pressed)
-typedef void(*TDrawSectionEvent)(THeaderControl, THeaderSection, TRect, BOOL);
+// void (THeaderControl headerControl, THeaderSection section, TRect* aRect, BOOL pressed)
+typedef void(*TDrawSectionEvent)(THeaderControl, THeaderSection, TRect*, BOOL);
 
 // void (THeaderControl headerControl, THeaderSection section)
 typedef void(*TSectionNotifyEvent)(THeaderControl, THeaderSection);
@@ -2458,8 +2451,8 @@ typedef void(*TLVChangingEvent)(TObject, TListItem, TItemChange, BOOL*);
 // void (TObject sender, TListItem item)
 typedef void(*TLVOwnerDataEvent)(TObject, TListItem);
 
-// void (TObject sender, TItemFind find, char* findString, TPoint findPosition, TCustomData findData, int32_t startIndex, TSearchDirection direction, BOOL warp, int32_t* index)
-typedef void(*TLVOwnerDataFindEvent)(TObject, TItemFind, char*, TPoint, TCustomData, int32_t, TSearchDirection, BOOL, int32_t*);
+// void (TObject sender, TItemFind find, char* findString, TPoint* findPosition, TCustomData findData, int32_t startIndex, TSearchDirection direction, BOOL warp, int32_t* index)
+typedef void(*TLVOwnerDataFindEvent)(TObject, TItemFind, char*, TPoint*, TCustomData, int32_t, TSearchDirection, BOOL, int32_t*);
 
 // void (TObject sender, TListItem item)
 typedef void(*TLVDeletedEvent)(TObject, TListItem);
@@ -2509,8 +2502,8 @@ typedef void(*TWindowPreviewItemRequestEvent)(TObject, TPoint*, TBitmap);
 // void (TObject sender, int32_t aButtonID)
 typedef void(*TThumbButtonNotifyEvent)(TObject, int32_t);
 
-// void (TListView sender, TRect aRect, BOOL* defaultDraw)
-typedef void(*TLVCustomDrawEvent)(TListView, TRect, BOOL*);
+// void (TListView sender, TRect* aRect, BOOL* defaultDraw)
+typedef void(*TLVCustomDrawEvent)(TListView, TRect*, BOOL*);
 
 // void (TListView sender, TListItem item, TCustomDrawStage state, BOOL* defaultDraw)
 typedef void(*TLVCustomDrawItemEvent)(TListView, TListItem, TCustomDrawStage, BOOL*);
@@ -2518,16 +2511,16 @@ typedef void(*TLVCustomDrawItemEvent)(TListView, TListItem, TCustomDrawStage, BO
 // void (TListView sender, TListItem item, int32_t subItem, TCustomDrawStage state, BOOL* defaultDraw)
 typedef void(*TLVCustomDrawSubItemEvent)(TListView, TListItem, int32_t, TCustomDrawStage, BOOL*);
 
-// void (TListView sender, TListItem item, TRect rect, TOwnerDrawState state)
-typedef void(*TLVDrawItemEvent)(TListView, TListItem, TRect, TOwnerDrawState);
+// void (TListView sender, TListItem item, TRect* rect, TOwnerDrawState state)
+typedef void(*TLVDrawItemEvent)(TListView, TListItem, TRect*, TOwnerDrawState);
 
 // void (TObject sender, int32_t startIndex, int32_t endIndex)
 typedef void(*TLVDataHintEvent)(TObject, int32_t, int32_t);
 
 typedef TLVDataHintEvent TLVOwnerDataHintEvent;
 
-// void (TTreeView sender, TRect aRect, BOOL* defaultDraw)
-typedef void(*TTVCustomDrawEvent)(TTreeView, TRect, BOOL*);
+// void (TTreeView sender, TRect* aRect, BOOL* defaultDraw)
+typedef void(*TTVCustomDrawEvent)(TTreeView, TRect*, BOOL*);
 
 // void (TTreeView sender, TTreeNode node, TCustomDrawStage state, BOOL* defaultDraw)
 typedef void(*TTVCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawStage, BOOL*);

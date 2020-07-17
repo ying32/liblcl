@@ -28,8 +28,7 @@ var (
 	defFile         = bytes.NewBuffer([]byte("EXPORTS\n\n"))
 	defClassMethods = make(map[string][]string, 0)
 
-	cFile    = NewCFile("./test/liblcl.h")
-	rustFile = NewRustFile("./test/imports.rs")
+	cFile = NewCFile("./test/liblcl.h")
 )
 
 func main() {
@@ -53,9 +52,6 @@ func main() {
 
 	//----------- c头文件
 	cFile.WriteHeader()
-
-	// ----------- rust 文件
-	rustFile.WriteHeader()
 
 	// UInt64 WINAPI MySyscall(void* AProc, intptr_t ALen, void* A1, void* A2, void* A3, void* A4, void* A5, void* A6, void* A7, void* A8, void* A9, void* A10, void* A11, void* A12);
 	funcsMap["MySyscall"] = ""     // 排除此函数，手动构建
@@ -105,7 +101,7 @@ func main() {
 	//fmt.Println(file.String())
 
 	cFile.WriteFooter()
-	rustFile.WriteFooter()
+
 	// 生成枚举
 	cFile.WLn()
 	//file.WComment("枚举定义\n")
@@ -121,7 +117,9 @@ func main() {
 	cFile.Save()
 
 	// 保存rust文件
-	rustFile.Save()
+	//rustFile.Save()
+	// 保存nim导入
+	//nimImportFile.Save()
 
 	//fmt.Println(defClassMethods)
 
@@ -155,7 +153,7 @@ func parseFile(fileName string, isClass bool, appendBytes []byte) {
 		panic(err)
 	}
 	cFile.WComment(fileName)
-	rustFile.WLn()
+
 	// {无效参数}
 	bs = bytes.Replace(bs, []byte("{无效参数}"), nil, -1)
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
@@ -218,7 +216,7 @@ func parseClassFiles(fileName string) {
 	}
 	bs = bytes.Replace(bs, []byte("\r"), nil, -1)
 	cFile.WComment(fileName)
-	rustFile.WLn()
+
 	matchs := incFileExpr.FindAllStringSubmatch(string(bs), -1)
 	for _, match := range matchs {
 		if len(match) >= 2 {
@@ -242,9 +240,6 @@ func parseClassFiles(fileName string) {
 					appendStr += ar
 				}
 			}
-			rustFile.W("\r\n")
-			rustFile.W("    // " + className)
-			rustFile.W("\r\n")
 
 			parseFile(incFileName, true, []byte(appendStr))
 		}
@@ -306,8 +301,6 @@ func parseFunc(s string, isClass bool, eventType string) {
 	defFile.WriteString(fmt.Sprintf("  %s\n", funcName))
 
 	MakeCFunc(funcName, returnType, params, isClass)
-	//
-	MakeRustImport(funcName, returnType, params, isClass)
 }
 
 type Param struct {
@@ -547,6 +540,9 @@ func parseEvents(fileName string) []byte {
 					if item.IsArr {
 						item.Type = "void*" // 所有数组都变成一个指针类型 //strings.TrimPrefix(item.Type, "[]")
 					}
+				}
+				if !item.IsVar && (item.Type == "TPoint" || item.Type == "TSize" || item.Type == "TRect") {
+					item.IsVar = true
 				}
 				params = append(params, item)
 				// 如果上个参数是一个数组，则添加一个数组长度参数

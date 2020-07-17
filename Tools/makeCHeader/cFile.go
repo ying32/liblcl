@@ -223,79 +223,17 @@ typedef int16_t TCursor;
 <%keyconsts%>
 
 <%typeconsts%>
+
  
-
-// 补充的一部分
-
-// TShiftState
-typedef enum {
-    ssShift = 0,
-    ssAlt,
-    ssCtrl,
-    ssLeft,
-    ssRight,
-    ssMiddle,
-    ssDouble,
-    // Extra additions
-    ssMeta,
-    ssSuper,
-    ssHyper,
-    ssAltGr,
-    ssCaps,
-    ssNum,
-    ssScroll,
-    ssTriple,
-    ssQuad,
-    ssExtra1,
-    ssExtra2,
-}TShiftStates;
-
-// TControlState
-typedef enum {
-	csLButtonDown = 0,
-	csClicked,
-	csPalette,
-	csReadingState,
-	csFocusing,
-	csCreating, // not used, exists for Delphi compatibility
-	csPaintCopy,
-	csCustomPaint,
-	csDestroyingHandle,
-	csDocking,
-	csVisibleSetInLoading,
-}TControlStates;
-
-
-// TGridDrawState
-typedef enum {
-	gdSelected = 0,
-	gdFocused,
-	gdFixed,
-	gdHot,
-	gdPushed,
-	gdRowHighlight,
-}TGridDrawStates;
-
-// TCustomDrawState
-typedef enum {
-	cdsSelected = 0,
-	cdsGrayed,
-	cdsDisabled,
-	cdsChecked,
-	cdsFocused,
-	cdsDefault,
-	cdsHot,
-	cdsMarked,
-	cdsIndeterminate,
-}TCustomDrawStates;
+ 
 
 <%enumdefs%>
 
 typedef int32_t TLeftRight; 
 typedef TBorderStyle TFormBorderStyle;
-typedef int32_t TColorBoxStyle;
+ 
 typedef TAlignment TLinkAlignment;
-typedef TMenuItemAutoFlag TMenuAutoFlag; 
+ 
 typedef int32_t TNumGlyphs;
 typedef uint16_t TShortCut; 
 typedef int16_t TScrollBarInc;
