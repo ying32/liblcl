@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_BringToFront(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Splitter_ClientToScreen(AObj: TSplitter; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Splitter_ClientToParent(AObj: TSplitter; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -44,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_Dragging(AObj: TSplitter): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_HasParent(AObj: TSplitter): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Hide(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Invalidate(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_Perform(AObj: TSplitter; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Refresh(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Repaint(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Splitter_ScreenToClient(AObj: TSplitter; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -101,6 +112,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Splitter_ParentToClient(AObj: TSplitter; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -109,6 +121,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_SendToBack(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -116,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_SetBounds(AObj: TSplitter; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Show(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Update(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_GetTextBuf(AObj: TSplitter; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_GetTextLen(AObj: TSplitter): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_SetTextBuf(AObj: TSplitter; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_FindComponent(AObj: TSplitter; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_GetNamePath(AObj: TSplitter): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_Assign(AObj: TSplitter; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_ClassType(AObj: TSplitter): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_ClassName(AObj: TSplitter): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_InstanceSize(AObj: TSplitter): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_InheritsFrom(AObj: TSplitter; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_Equals(AObj: TSplitter; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_GetHashCode(AObj: TSplitter): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Splitter_ToString(AObj: TSplitter): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_AnchorToNeighbour(AObj: TSplitter; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_AnchorParallel(AObj: TSplitter; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_AnchorHorizontalCenterTo(AObj: TSplitter; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_AnchorVerticalCenterTo(AObj: TSplitter; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_AnchorAsAlign(AObj: TSplitter; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Splitter_AnchorClient(AObj: TSplitter; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

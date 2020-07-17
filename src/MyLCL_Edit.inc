@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Clear(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_ClearSelection(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_CopyToClipboard(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_CutToClipboard(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_PasteFromClipboard(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Undo(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_SelectAll(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_CanFocus(AObj: TEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_ContainsControl(AObj: TEdit; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_ControlAtPos(AObj: TEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_DisableAlign(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_EnableAlign(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_FindChildControl(AObj: TEdit; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_FlipChildren(AObj: TEdit; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_Focused(AObj: TEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_HandleAllocated(AObj: TEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_InsertControl(AObj: TEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Invalidate(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_RemoveControl(AObj: TEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Realign(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Repaint(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_ScaleBy(AObj: TEdit; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_ScrollBy(AObj: TEdit; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_SetBounds(AObj: TEdit; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_SetFocus(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Update(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_BringToFront(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Edit_ClientToScreen(AObj: TEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -218,6 +246,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Edit_ClientToParent(AObj: TEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -226,6 +255,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_Dragging(AObj: TEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -233,6 +263,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_HasParent(AObj: TEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +271,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Hide(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +279,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_Perform(AObj: TEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Refresh(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Edit_ScreenToClient(AObj: TEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -269,6 +304,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Edit_ParentToClient(AObj: TEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_SendToBack(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Show(AObj: TEdit); extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_GetTextBuf(AObj: TEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_GetTextLen(AObj: TEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_SetTextBuf(AObj: TEdit; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_FindComponent(AObj: TEdit; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_GetNamePath(AObj: TEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_Assign(AObj: TEdit; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_ClassType(AObj: TEdit): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_ClassName(AObj: TEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_InstanceSize(AObj: TEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_InheritsFrom(AObj: TEdit; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_Equals(AObj: TEdit; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_GetHashCode(AObj: TEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Edit_ToString(AObj: TEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_AnchorToNeighbour(AObj: TEdit; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_AnchorParallel(AObj: TEdit; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_AnchorHorizontalCenterTo(AObj: TEdit; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_AnchorVerticalCenterTo(AObj: TEdit; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_AnchorAsAlign(AObj: TEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Edit_AnchorClient(AObj: TEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

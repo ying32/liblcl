@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_CanFocus(AObj: TRadioButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_ContainsControl(AObj: TRadioButton; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_ControlAtPos(AObj: TRadioButton; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_DisableAlign(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_EnableAlign(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_FindChildControl(AObj: TRadioButton; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_FlipChildren(AObj: TRadioButton; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_Focused(AObj: TRadioButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_HandleAllocated(AObj: TRadioButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_InsertControl(AObj: TRadioButton; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Invalidate(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_RemoveControl(AObj: TRadioButton; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Realign(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Repaint(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_ScaleBy(AObj: TRadioButton; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_ScrollBy(AObj: TRadioButton; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_SetBounds(AObj: TRadioButton; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_SetFocus(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Update(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_BringToFront(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure RadioButton_ClientToScreen(AObj: TRadioButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure RadioButton_ClientToParent(AObj: TRadioButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_Dragging(AObj: TRadioButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_HasParent(AObj: TRadioButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +215,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Hide(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -198,6 +223,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_Perform(AObj: TRadioButton; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -205,6 +231,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Refresh(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -212,6 +239,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure RadioButton_ScreenToClient(AObj: TRadioButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -220,6 +248,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure RadioButton_ParentToClient(AObj: TRadioButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_SendToBack(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Show(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_GetTextBuf(AObj: TRadioButton; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_GetTextLen(AObj: TRadioButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_SetTextBuf(AObj: TRadioButton; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_FindComponent(AObj: TRadioButton; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_GetNamePath(AObj: TRadioButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_Assign(AObj: TRadioButton; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_ClassType(AObj: TRadioButton): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_ClassName(AObj: TRadioButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_InstanceSize(AObj: TRadioButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_InheritsFrom(AObj: TRadioButton; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_Equals(AObj: TRadioButton; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_GetHashCode(AObj: TRadioButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function RadioButton_ToString(AObj: TRadioButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_AnchorToNeighbour(AObj: TRadioButton; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_AnchorParallel(AObj: TRadioButton; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_AnchorHorizontalCenterTo(AObj: TRadioButton; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_AnchorVerticalCenterTo(AObj: TRadioButton; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_AnchorAsAlign(AObj: TRadioButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure RadioButton_AnchorClient(AObj: TRadioButton; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

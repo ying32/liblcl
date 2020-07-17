@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Refresh(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ValueListEditor_CellRect(AObj: TValueListEditor; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_MouseToCell(AObj: TValueListEditor; X: Integer; Y: Integer; var ACol: Integer; var ARow: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -43,6 +46,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ValueListEditor_MouseCoord(AObj: TValueListEditor; X: Integer; Y: Integer; var Result: TGridCoord); extdecl;
 begin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_CanFocus(AObj: TValueListEditor): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_ContainsControl(AObj: TValueListEditor; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_ControlAtPos(AObj: TValueListEditor; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_DisableAlign(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_EnableAlign(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_FindChildControl(AObj: TValueListEditor; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_FlipChildren(AObj: TValueListEditor; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_Focused(AObj: TValueListEditor): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -107,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_HandleAllocated(AObj: TValueListEditor): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_InsertControl(AObj: TValueListEditor; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -121,6 +135,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Invalidate(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -128,6 +143,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_RemoveControl(AObj: TValueListEditor; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -135,6 +151,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Realign(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -142,6 +159,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Repaint(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -149,6 +167,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_ScaleBy(AObj: TValueListEditor; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -156,6 +175,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_ScrollBy(AObj: TValueListEditor; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -163,6 +183,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_SetBounds(AObj: TValueListEditor; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -170,6 +191,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_SetFocus(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Update(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_BringToFront(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +215,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ValueListEditor_ClientToScreen(AObj: TValueListEditor; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -199,6 +224,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ValueListEditor_ClientToParent(AObj: TValueListEditor; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_Dragging(AObj: TValueListEditor): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_HasParent(AObj: TValueListEditor): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Hide(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_Perform(AObj: TValueListEditor; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ValueListEditor_ScreenToClient(AObj: TValueListEditor; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -243,6 +274,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ValueListEditor_ParentToClient(AObj: TValueListEditor; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -251,6 +283,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_SendToBack(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +291,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Show(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -265,6 +299,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_GetTextBuf(AObj: TValueListEditor; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -272,6 +307,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_GetTextLen(AObj: TValueListEditor): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -279,6 +315,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_SetTextBuf(AObj: TValueListEditor; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -286,6 +323,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_FindComponent(AObj: TValueListEditor; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -293,6 +331,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_GetNamePath(AObj: TValueListEditor): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -300,6 +339,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_Assign(AObj: TValueListEditor; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -307,6 +347,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_ClassType(AObj: TValueListEditor): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +355,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_ClassName(AObj: TValueListEditor): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -321,6 +363,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_InstanceSize(AObj: TValueListEditor): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -328,6 +371,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_InheritsFrom(AObj: TValueListEditor; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -335,6 +379,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_Equals(AObj: TValueListEditor; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -342,6 +387,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_GetHashCode(AObj: TValueListEditor): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -349,6 +395,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ValueListEditor_ToString(AObj: TValueListEditor): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -356,6 +403,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorToNeighbour(AObj: TValueListEditor; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -363,6 +411,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorParallel(AObj: TValueListEditor; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -370,6 +419,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorHorizontalCenterTo(AObj: TValueListEditor; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -377,6 +427,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorVerticalCenterTo(AObj: TValueListEditor; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -384,6 +435,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorAsAlign(AObj: TValueListEditor; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -391,6 +443,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorClient(AObj: TValueListEditor; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

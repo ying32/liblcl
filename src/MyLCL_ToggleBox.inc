@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_CanFocus(AObj: TToggleBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_ContainsControl(AObj: TToggleBox; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_ControlAtPos(AObj: TToggleBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_DisableAlign(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_EnableAlign(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_FindChildControl(AObj: TToggleBox; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_FlipChildren(AObj: TToggleBox; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_Focused(AObj: TToggleBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_HandleAllocated(AObj: TToggleBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_InsertControl(AObj: TToggleBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Invalidate(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_RemoveControl(AObj: TToggleBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Realign(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Repaint(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_ScaleBy(AObj: TToggleBox; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_ScrollBy(AObj: TToggleBox; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_SetBounds(AObj: TToggleBox; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_SetFocus(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Update(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_BringToFront(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ToggleBox_ClientToScreen(AObj: TToggleBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ToggleBox_ClientToParent(AObj: TToggleBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_Dragging(AObj: TToggleBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_HasParent(AObj: TToggleBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +215,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Hide(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -198,6 +223,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_Perform(AObj: TToggleBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -205,6 +231,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Refresh(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -212,6 +239,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ToggleBox_ScreenToClient(AObj: TToggleBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -220,6 +248,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ToggleBox_ParentToClient(AObj: TToggleBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_SendToBack(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Show(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_GetTextBuf(AObj: TToggleBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_GetTextLen(AObj: TToggleBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_SetTextBuf(AObj: TToggleBox; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_FindComponent(AObj: TToggleBox; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_GetNamePath(AObj: TToggleBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_Assign(AObj: TToggleBox; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_ClassType(AObj: TToggleBox): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_ClassName(AObj: TToggleBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_InstanceSize(AObj: TToggleBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_InheritsFrom(AObj: TToggleBox; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_Equals(AObj: TToggleBox; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_GetHashCode(AObj: TToggleBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ToggleBox_ToString(AObj: TToggleBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_AnchorToNeighbour(AObj: TToggleBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_AnchorParallel(AObj: TToggleBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_AnchorHorizontalCenterTo(AObj: TToggleBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_AnchorVerticalCenterTo(AObj: TToggleBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_AnchorAsAlign(AObj: TToggleBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ToggleBox_AnchorClient(AObj: TToggleBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

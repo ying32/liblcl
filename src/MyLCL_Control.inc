@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_BringToFront(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Control_ClientToScreen(AObj: TControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Control_ClientToParent(AObj: TControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -44,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_Dragging(AObj: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_HasParent(AObj: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Hide(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Invalidate(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_Perform(AObj: TControl; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Refresh(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Repaint(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Control_ScreenToClient(AObj: TControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -101,6 +112,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Control_ParentToClient(AObj: TControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -109,6 +121,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_SendToBack(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -116,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_SetBounds(AObj: TControl; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Show(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Update(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_GetTextBuf(AObj: TControl; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_GetTextLen(AObj: TControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_SetTextBuf(AObj: TControl; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_FindComponent(AObj: TControl; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_GetNamePath(AObj: TControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_Assign(AObj: TControl; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_ClassType(AObj: TControl): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_ClassName(AObj: TControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_InstanceSize(AObj: TControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_InheritsFrom(AObj: TControl; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_Equals(AObj: TControl; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_GetHashCode(AObj: TControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Control_ToString(AObj: TControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_AnchorToNeighbour(AObj: TControl; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_AnchorParallel(AObj: TControl; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_AnchorHorizontalCenterTo(AObj: TControl; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_AnchorVerticalCenterTo(AObj: TControl; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_AnchorAsAlign(AObj: TControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Control_AnchorClient(AObj: TControl; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

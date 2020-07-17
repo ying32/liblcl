@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_Execute(AObj: TOpenDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_FindComponent(AObj: TOpenDialog; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_GetNamePath(AObj: TOpenDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_HasParent(AObj: TOpenDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure OpenDialog_Assign(AObj: TOpenDialog; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_ClassType(AObj: TOpenDialog): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_ClassName(AObj: TOpenDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_InstanceSize(AObj: TOpenDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_InheritsFrom(AObj: TOpenDialog; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_Equals(AObj: TOpenDialog; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_GetHashCode(AObj: TOpenDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function OpenDialog_ToString(AObj: TOpenDialog): PChar; extdecl;
 begin
   handleExceptionBegin

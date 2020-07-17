@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_Add(AObj: TList; Item: Pointer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure List_Clear(AObj: TList); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure List_Delete(AObj: TList; Index: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_Expand(AObj: TList): TList; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_IndexOf(AObj: TList; Item: Pointer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure List_Insert(AObj: TList; Index: Integer; Item: Pointer); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure List_Move(AObj: TList; CurIndex: Integer; NewIndex: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_ClassType(AObj: TList): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_ClassName(AObj: TList): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_InstanceSize(AObj: TList): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_InheritsFrom(AObj: TList; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_Equals(AObj: TList; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_GetHashCode(AObj: TList): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function List_ToString(AObj: TList): PChar; extdecl;
 begin
   handleExceptionBegin

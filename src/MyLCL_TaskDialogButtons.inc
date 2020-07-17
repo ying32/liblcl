@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 function TaskDialogButtons_Add(AObj: TTaskDialogButtons): TTaskDialogBaseButtonItem; extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_FindButton(AObj: TTaskDialogButtons; AModalResult: TModalResult): TTaskDialogBaseButtonItem; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_Owner(AObj: TTaskDialogButtons): TPersistent; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogButtons_Assign(AObj: TTaskDialogButtons; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogButtons_BeginUpdate(AObj: TTaskDialogButtons); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogButtons_Clear(AObj: TTaskDialogButtons); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogButtons_Delete(AObj: TTaskDialogButtons; Index: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogButtons_EndUpdate(AObj: TTaskDialogButtons); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_FindItemID(AObj: TTaskDialogButtons; ID: Integer): TCollectionItem; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_GetNamePath(AObj: TTaskDialogButtons): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_Insert(AObj: TTaskDialogButtons; Index: Integer): TCollectionItem; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_ClassType(AObj: TTaskDialogButtons): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_ClassName(AObj: TTaskDialogButtons): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_InstanceSize(AObj: TTaskDialogButtons): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_InheritsFrom(AObj: TTaskDialogButtons; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_Equals(AObj: TTaskDialogButtons; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +135,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_GetHashCode(AObj: TTaskDialogButtons): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +143,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtons_ToString(AObj: TTaskDialogButtons): PChar; extdecl;
 begin
   handleExceptionBegin

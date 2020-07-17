@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_Execute(AObj: TColorDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_FindComponent(AObj: TColorDialog; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_GetNamePath(AObj: TColorDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_HasParent(AObj: TColorDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorDialog_Assign(AObj: TColorDialog; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_ClassType(AObj: TColorDialog): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_ClassName(AObj: TColorDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_InstanceSize(AObj: TColorDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_InheritsFrom(AObj: TColorDialog; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_Equals(AObj: TColorDialog; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_GetHashCode(AObj: TColorDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorDialog_ToString(AObj: TColorDialog): PChar; extdecl;
 begin
   handleExceptionBegin

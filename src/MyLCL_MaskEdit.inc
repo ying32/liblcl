@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_ValidateEdit(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Clear(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_GetTextLen(AObj: TMaskEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_ClearSelection(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_CopyToClipboard(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_CutToClipboard(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_PasteFromClipboard(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Undo(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_SelectAll(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_CanFocus(AObj: TMaskEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_ContainsControl(AObj: TMaskEdit; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_ControlAtPos(AObj: TMaskEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_DisableAlign(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_EnableAlign(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_FindChildControl(AObj: TMaskEdit; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_FlipChildren(AObj: TMaskEdit; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_Focused(AObj: TMaskEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_HandleAllocated(AObj: TMaskEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_InsertControl(AObj: TMaskEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Invalidate(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_RemoveControl(AObj: TMaskEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Realign(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Repaint(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_ScaleBy(AObj: TMaskEdit; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_ScrollBy(AObj: TMaskEdit; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_SetBounds(AObj: TMaskEdit; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_SetFocus(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Update(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +245,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_BringToFront(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +253,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MaskEdit_ClientToScreen(AObj: TMaskEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -232,6 +262,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MaskEdit_ClientToParent(AObj: TMaskEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -240,6 +271,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_Dragging(AObj: TMaskEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +279,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_HasParent(AObj: TMaskEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Hide(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_Perform(AObj: TMaskEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -268,6 +303,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Refresh(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -275,6 +311,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MaskEdit_ScreenToClient(AObj: TMaskEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -283,6 +320,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MaskEdit_ParentToClient(AObj: TMaskEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_SendToBack(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Show(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_GetTextBuf(AObj: TMaskEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_SetTextBuf(AObj: TMaskEdit; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_FindComponent(AObj: TMaskEdit; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_GetNamePath(AObj: TMaskEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_Assign(AObj: TMaskEdit; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_ClassType(AObj: TMaskEdit): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_ClassName(AObj: TMaskEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_InstanceSize(AObj: TMaskEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_InheritsFrom(AObj: TMaskEdit; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_Equals(AObj: TMaskEdit; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_GetHashCode(AObj: TMaskEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MaskEdit_ToString(AObj: TMaskEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_AnchorToNeighbour(AObj: TMaskEdit; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_AnchorParallel(AObj: TMaskEdit; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_AnchorHorizontalCenterTo(AObj: TMaskEdit; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_AnchorVerticalCenterTo(AObj: TMaskEdit; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_AnchorAsAlign(AObj: TMaskEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -424,6 +481,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MaskEdit_AnchorClient(AObj: TMaskEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

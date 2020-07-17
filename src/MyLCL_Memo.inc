@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Append(AObj: TMemo; Value: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Clear(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_ClearSelection(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_CopyToClipboard(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_CutToClipboard(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_PasteFromClipboard(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Undo(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_SelectAll(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_CanFocus(AObj: TMemo): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_ContainsControl(AObj: TMemo; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_ControlAtPos(AObj: TMemo; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_DisableAlign(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_EnableAlign(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_FindChildControl(AObj: TMemo; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_FlipChildren(AObj: TMemo; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_Focused(AObj: TMemo): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_HandleAllocated(AObj: TMemo): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_InsertControl(AObj: TMemo; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Invalidate(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_RemoveControl(AObj: TMemo; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Realign(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Repaint(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_ScaleBy(AObj: TMemo; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_ScrollBy(AObj: TMemo; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_SetBounds(AObj: TMemo; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_SetFocus(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Update(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_BringToFront(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +245,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Memo_ClientToScreen(AObj: TMemo; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -225,6 +254,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Memo_ClientToParent(AObj: TMemo; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -233,6 +263,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_Dragging(AObj: TMemo): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +271,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_HasParent(AObj: TMemo): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +279,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Hide(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_Perform(AObj: TMemo; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Refresh(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -268,6 +303,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Memo_ScreenToClient(AObj: TMemo; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -276,6 +312,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Memo_ParentToClient(AObj: TMemo; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_SendToBack(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Show(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_GetTextBuf(AObj: TMemo; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_GetTextLen(AObj: TMemo): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_SetTextBuf(AObj: TMemo; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_FindComponent(AObj: TMemo; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_GetNamePath(AObj: TMemo): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_Assign(AObj: TMemo; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_ClassType(AObj: TMemo): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_ClassName(AObj: TMemo): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_InstanceSize(AObj: TMemo): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_InheritsFrom(AObj: TMemo; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_Equals(AObj: TMemo; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_GetHashCode(AObj: TMemo): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Memo_ToString(AObj: TMemo): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_AnchorToNeighbour(AObj: TMemo; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_AnchorParallel(AObj: TMemo; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_AnchorHorizontalCenterTo(AObj: TMemo; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_AnchorVerticalCenterTo(AObj: TMemo; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_AnchorAsAlign(AObj: TMemo; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -424,6 +481,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Memo_AnchorClient(AObj: TMemo; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

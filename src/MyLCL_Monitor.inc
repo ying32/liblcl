@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_ClassType(AObj: TMonitor): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_ClassName(AObj: TMonitor): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_InstanceSize(AObj: TMonitor): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_InheritsFrom(AObj: TMonitor; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_Equals(AObj: TMonitor; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_GetHashCode(AObj: TMonitor): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Monitor_ToString(AObj: TMonitor): PChar; extdecl;
 begin
   handleExceptionBegin

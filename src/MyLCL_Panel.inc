@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_CanFocus(AObj: TPanel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_ContainsControl(AObj: TPanel; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_ControlAtPos(AObj: TPanel; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_DisableAlign(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_EnableAlign(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_FindChildControl(AObj: TPanel; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_FlipChildren(AObj: TPanel; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_Focused(AObj: TPanel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_HandleAllocated(AObj: TPanel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_InsertControl(AObj: TPanel; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Invalidate(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_RemoveControl(AObj: TPanel; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Realign(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Repaint(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_ScaleBy(AObj: TPanel; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_ScrollBy(AObj: TPanel; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_SetBounds(AObj: TPanel; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_SetFocus(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Update(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_BringToFront(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Panel_ClientToScreen(AObj: TPanel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Panel_ClientToParent(AObj: TPanel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_Dragging(AObj: TPanel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_HasParent(AObj: TPanel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +215,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Hide(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -198,6 +223,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_Perform(AObj: TPanel; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -205,6 +231,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Refresh(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -212,6 +239,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Panel_ScreenToClient(AObj: TPanel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -220,6 +248,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Panel_ParentToClient(AObj: TPanel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_SendToBack(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Show(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_GetTextBuf(AObj: TPanel; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_GetTextLen(AObj: TPanel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_SetTextBuf(AObj: TPanel; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_FindComponent(AObj: TPanel; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_GetNamePath(AObj: TPanel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_Assign(AObj: TPanel; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_ClassType(AObj: TPanel): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_ClassName(AObj: TPanel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_InstanceSize(AObj: TPanel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_InheritsFrom(AObj: TPanel; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_Equals(AObj: TPanel; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_GetHashCode(AObj: TPanel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Panel_ToString(AObj: TPanel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_AnchorToNeighbour(AObj: TPanel; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_AnchorParallel(AObj: TPanel; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_AnchorHorizontalCenterTo(AObj: TPanel; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_AnchorVerticalCenterTo(AObj: TPanel; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_AnchorAsAlign(AObj: TPanel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Panel_AnchorClient(AObj: TPanel; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

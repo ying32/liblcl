@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddChildFirst(AObj: TTreeNodes; Parent: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddChild(AObj: TTreeNodes; Parent: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddChildObjectFirst(AObj: TTreeNodes; Parent: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddChildObject(AObj: TTreeNodes; Parent: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddObjectFirst(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddObject(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddNode(AObj: TTreeNodes; Node: TTreeNode; Relative: TTreeNode; S: PChar; Ptr: Pointer; Method: TNodeAttachMode): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_AddFirst(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_Add(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNodes_Assign(AObj: TTreeNodes; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNodes_BeginUpdate(AObj: TTreeNodes); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNodes_Clear(AObj: TTreeNodes); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNodes_Delete(AObj: TTreeNodes; Node: TTreeNode); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNodes_EndUpdate(AObj: TTreeNodes); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_GetFirstNode(AObj: TTreeNodes): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_Insert(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_InsertObject(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_CustomSort(AObj: TTreeNodes; SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_GetNamePath(AObj: TTreeNodes): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_ClassType(AObj: TTreeNodes): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_ClassName(AObj: TTreeNodes): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_InstanceSize(AObj: TTreeNodes): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_InheritsFrom(AObj: TTreeNodes; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_Equals(AObj: TTreeNodes; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_GetHashCode(AObj: TTreeNodes): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNodes_ToString(AObj: TTreeNodes): PChar; extdecl;
 begin
   handleExceptionBegin

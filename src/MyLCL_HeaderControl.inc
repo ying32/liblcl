@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_FlipChildren(AObj: THeaderControl; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_CanFocus(AObj: THeaderControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_ContainsControl(AObj: THeaderControl; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_ControlAtPos(AObj: THeaderControl; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_DisableAlign(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_EnableAlign(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_FindChildControl(AObj: THeaderControl; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_Focused(AObj: THeaderControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_HandleAllocated(AObj: THeaderControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_InsertControl(AObj: THeaderControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Invalidate(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_RemoveControl(AObj: THeaderControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Realign(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Repaint(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_ScaleBy(AObj: THeaderControl; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_ScrollBy(AObj: THeaderControl; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_SetBounds(AObj: THeaderControl; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_SetFocus(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Update(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_BringToFront(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure HeaderControl_ClientToScreen(AObj: THeaderControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure HeaderControl_ClientToParent(AObj: THeaderControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_Dragging(AObj: THeaderControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_HasParent(AObj: THeaderControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +215,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Hide(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -198,6 +223,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_Perform(AObj: THeaderControl; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -205,6 +231,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Refresh(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -212,6 +239,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure HeaderControl_ScreenToClient(AObj: THeaderControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -220,6 +248,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure HeaderControl_ParentToClient(AObj: THeaderControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_SendToBack(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Show(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_GetTextBuf(AObj: THeaderControl; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_GetTextLen(AObj: THeaderControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_SetTextBuf(AObj: THeaderControl; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_FindComponent(AObj: THeaderControl; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_GetNamePath(AObj: THeaderControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_Assign(AObj: THeaderControl; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_ClassType(AObj: THeaderControl): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_ClassName(AObj: THeaderControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_InstanceSize(AObj: THeaderControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_InheritsFrom(AObj: THeaderControl; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_Equals(AObj: THeaderControl; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_GetHashCode(AObj: THeaderControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderControl_ToString(AObj: THeaderControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_AnchorToNeighbour(AObj: THeaderControl; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_AnchorParallel(AObj: THeaderControl; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_AnchorHorizontalCenterTo(AObj: THeaderControl; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_AnchorVerticalCenterTo(AObj: THeaderControl; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_AnchorAsAlign(AObj: THeaderControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderControl_AnchorClient(AObj: THeaderControl; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

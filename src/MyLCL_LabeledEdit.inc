@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_SetBounds(AObj: TLabeledEdit; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Clear(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_ClearSelection(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_CopyToClipboard(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_CutToClipboard(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_PasteFromClipboard(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Undo(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_SelectAll(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_CanFocus(AObj: TLabeledEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_ContainsControl(AObj: TLabeledEdit; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_ControlAtPos(AObj: TLabeledEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_DisableAlign(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_EnableAlign(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_FindChildControl(AObj: TLabeledEdit; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_FlipChildren(AObj: TLabeledEdit; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_Focused(AObj: TLabeledEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_HandleAllocated(AObj: TLabeledEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_InsertControl(AObj: TLabeledEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Invalidate(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_RemoveControl(AObj: TLabeledEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Realign(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Repaint(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_ScaleBy(AObj: TLabeledEdit; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_ScrollBy(AObj: TLabeledEdit; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_SetFocus(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Update(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_BringToFront(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LabeledEdit_ClientToScreen(AObj: TLabeledEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -218,6 +246,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LabeledEdit_ClientToParent(AObj: TLabeledEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -226,6 +255,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_Dragging(AObj: TLabeledEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -233,6 +263,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_HasParent(AObj: TLabeledEdit): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +271,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Hide(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +279,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_Perform(AObj: TLabeledEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Refresh(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LabeledEdit_ScreenToClient(AObj: TLabeledEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -269,6 +304,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LabeledEdit_ParentToClient(AObj: TLabeledEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_SendToBack(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Show(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_GetTextBuf(AObj: TLabeledEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_GetTextLen(AObj: TLabeledEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_SetTextBuf(AObj: TLabeledEdit; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_FindComponent(AObj: TLabeledEdit; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_GetNamePath(AObj: TLabeledEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_Assign(AObj: TLabeledEdit; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_ClassType(AObj: TLabeledEdit): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_ClassName(AObj: TLabeledEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_InstanceSize(AObj: TLabeledEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_InheritsFrom(AObj: TLabeledEdit; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_Equals(AObj: TLabeledEdit; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_GetHashCode(AObj: TLabeledEdit): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LabeledEdit_ToString(AObj: TLabeledEdit): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_AnchorToNeighbour(AObj: TLabeledEdit; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_AnchorParallel(AObj: TLabeledEdit; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_AnchorHorizontalCenterTo(AObj: TLabeledEdit; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_AnchorVerticalCenterTo(AObj: TLabeledEdit; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_AnchorAsAlign(AObj: TLabeledEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LabeledEdit_AnchorClient(AObj: TLabeledEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

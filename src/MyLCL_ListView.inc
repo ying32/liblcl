@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AddItem(AObj: TListView; Item: PChar; AObject: TObject); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_AlphaSort(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Clear(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_ClearSelection(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_DeleteSelected(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_IsEditing(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_SelectAll(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_CustomSort(AObj: TListView; SortProc: PFNLVCOMPARE; lParam: NativeInt): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_CanFocus(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_ContainsControl(AObj: TListView; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_ControlAtPos(AObj: TListView; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_DisableAlign(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_EnableAlign(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_FindChildControl(AObj: TListView; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_FlipChildren(AObj: TListView; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_Focused(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_HandleAllocated(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_InsertControl(AObj: TListView; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Invalidate(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_RemoveControl(AObj: TListView; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Realign(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Repaint(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_ScaleBy(AObj: TListView; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_ScrollBy(AObj: TListView; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_SetBounds(AObj: TListView; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_SetFocus(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Update(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_BringToFront(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +245,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListView_ClientToScreen(AObj: TListView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -225,6 +254,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListView_ClientToParent(AObj: TListView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -233,6 +263,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_Dragging(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +271,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_HasParent(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +279,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Hide(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_Perform(AObj: TListView; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Refresh(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -268,6 +303,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListView_ScreenToClient(AObj: TListView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -276,6 +312,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListView_ParentToClient(AObj: TListView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_SendToBack(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Show(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_GetTextBuf(AObj: TListView; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_GetTextLen(AObj: TListView): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_SetTextBuf(AObj: TListView; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_FindComponent(AObj: TListView; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_GetNamePath(AObj: TListView): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_Assign(AObj: TListView; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_ClassType(AObj: TListView): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_ClassName(AObj: TListView): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_InstanceSize(AObj: TListView): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_InheritsFrom(AObj: TListView; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_Equals(AObj: TListView; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_GetHashCode(AObj: TListView): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListView_ToString(AObj: TListView): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AnchorToNeighbour(AObj: TListView; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AnchorParallel(AObj: TListView; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AnchorHorizontalCenterTo(AObj: TListView; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AnchorVerticalCenterTo(AObj: TListView; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AnchorAsAlign(AObj: TListView; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -424,6 +481,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListView_AnchorClient(AObj: TListView; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

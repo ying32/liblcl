@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AddItem(AObj: TColorListBox; Item: PChar; AObject: TObject); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Clear(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_ClearSelection(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_DeleteSelected(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_ItemAtPos(AObj: TColorListBox; var Pos: TPoint; Existing: LongBool): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ColorListBox_ItemRect(AObj: TColorListBox; Index: Integer; var Result: TRect); extdecl;
 begin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_SelectAll(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -71,6 +78,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_CanFocus(AObj: TColorListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +86,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_ContainsControl(AObj: TColorListBox; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -85,6 +94,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_ControlAtPos(AObj: TColorListBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -92,6 +102,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_DisableAlign(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -99,6 +110,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_EnableAlign(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_FindChildControl(AObj: TColorListBox; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_FlipChildren(AObj: TColorListBox; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_Focused(AObj: TColorListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_HandleAllocated(AObj: TColorListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_InsertControl(AObj: TColorListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Invalidate(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -148,6 +166,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_RemoveControl(AObj: TColorListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -155,6 +174,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Realign(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -162,6 +182,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Repaint(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_ScaleBy(AObj: TColorListBox; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -176,6 +198,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_ScrollBy(AObj: TColorListBox; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +206,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_SetBounds(AObj: TColorListBox; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -190,6 +214,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_SetFocus(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -197,6 +222,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Update(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -204,6 +230,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_BringToFront(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -211,6 +238,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ColorListBox_ClientToScreen(AObj: TColorListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -219,6 +247,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ColorListBox_ClientToParent(AObj: TColorListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -227,6 +256,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_Dragging(AObj: TColorListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -234,6 +264,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_HasParent(AObj: TColorListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +272,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Hide(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -248,6 +280,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_Perform(AObj: TColorListBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -255,6 +288,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Refresh(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -262,6 +296,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ColorListBox_ScreenToClient(AObj: TColorListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ColorListBox_ParentToClient(AObj: TColorListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -278,6 +314,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_SendToBack(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -285,6 +322,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Show(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -292,6 +330,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_GetTextBuf(AObj: TColorListBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -299,6 +338,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_GetTextLen(AObj: TColorListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -306,6 +346,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_SetTextBuf(AObj: TColorListBox; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -313,6 +354,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_FindComponent(AObj: TColorListBox; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -320,6 +362,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_GetNamePath(AObj: TColorListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -327,6 +370,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_Assign(AObj: TColorListBox; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -334,6 +378,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_ClassType(AObj: TColorListBox): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -341,6 +386,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_ClassName(AObj: TColorListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -348,6 +394,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_InstanceSize(AObj: TColorListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -355,6 +402,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_InheritsFrom(AObj: TColorListBox; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -362,6 +410,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_Equals(AObj: TColorListBox; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -369,6 +418,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_GetHashCode(AObj: TColorListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -376,6 +426,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ColorListBox_ToString(AObj: TColorListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -383,6 +434,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AnchorToNeighbour(AObj: TColorListBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -390,6 +442,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AnchorParallel(AObj: TColorListBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -397,6 +450,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AnchorHorizontalCenterTo(AObj: TColorListBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -404,6 +458,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AnchorVerticalCenterTo(AObj: TColorListBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -411,6 +466,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AnchorAsAlign(AObj: TColorListBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -418,6 +474,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ColorListBox_AnchorClient(AObj: TColorListBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 procedure AnchorSide_Assign(AObj: TAnchorSide; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_GetNamePath(AObj: TAnchorSide): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_ClassType(AObj: TAnchorSide): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_ClassName(AObj: TAnchorSide): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_InstanceSize(AObj: TAnchorSide): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_InheritsFrom(AObj: TAnchorSide; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_Equals(AObj: TAnchorSide; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_GetHashCode(AObj: TAnchorSide): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function AnchorSide_ToString(AObj: TAnchorSide): PChar; extdecl;
 begin
   handleExceptionBegin

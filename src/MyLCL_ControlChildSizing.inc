@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 procedure ControlChildSizing_Assign(AObj: TControlChildSizing; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_GetNamePath(AObj: TControlChildSizing): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_ClassType(AObj: TControlChildSizing): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_ClassName(AObj: TControlChildSizing): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_InstanceSize(AObj: TControlChildSizing): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_InheritsFrom(AObj: TControlChildSizing; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_Equals(AObj: TControlChildSizing; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_GetHashCode(AObj: TControlChildSizing): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlChildSizing_ToString(AObj: TControlChildSizing): PChar; extdecl;
 begin
   handleExceptionBegin

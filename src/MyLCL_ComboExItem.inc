@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 procedure ComboExItem_Assign(AObj: TComboExItem; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_GetNamePath(AObj: TComboExItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_ClassType(AObj: TComboExItem): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_ClassName(AObj: TComboExItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_InstanceSize(AObj: TComboExItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_InheritsFrom(AObj: TComboExItem; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_Equals(AObj: TComboExItem; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_GetHashCode(AObj: TComboExItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ComboExItem_ToString(AObj: TComboExItem): PChar; extdecl;
 begin
   handleExceptionBegin

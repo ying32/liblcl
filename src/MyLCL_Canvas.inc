@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Arc(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer; X3: Integer; Y3: Integer; X4: Integer; Y4: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_ArcTo(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer; X3: Integer; Y3: Integer; X4: Integer; Y4: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_AngleArc(AObj: TCanvas; X: Integer; Y: Integer; Radius: Cardinal; var StartAngle: Single; var SweepAngle: Single); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Chord(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer; X3: Integer; Y3: Integer; X4: Integer; Y4: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Ellipse(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_FloodFill(AObj: TCanvas; X: Integer; Y: Integer; Color: TColor; FillStyle: TFillStyle); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_HandleAllocated(AObj: TCanvas): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_LineTo(AObj: TCanvas; X: Integer; Y: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_MoveTo(AObj: TCanvas; X: Integer; Y: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Pie(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer; X3: Integer; Y3: Integer; X4: Integer; Y4: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Rectangle(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Refresh(AObj: TCanvas); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_RoundRect(AObj: TCanvas; X1: Integer; Y1: Integer; X2: Integer; Y2: Integer; X3: Integer; Y3: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Canvas_TextExtent(AObj: TCanvas; Text: PChar; var Result: TSize); extdecl;
 begin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_TextOut(AObj: TCanvas; X: Integer; Y: Integer; Text: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Lock(AObj: TCanvas); extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_TextHeight(AObj: TCanvas; Text: PChar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_TextWidth(AObj: TCanvas; Text: PChar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -148,6 +166,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Assign(AObj: TCanvas; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -155,6 +174,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_GetNamePath(AObj: TCanvas): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -162,6 +182,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_ClassType(AObj: TCanvas): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_ClassName(AObj: TCanvas): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -176,6 +198,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_InstanceSize(AObj: TCanvas): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +206,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_InheritsFrom(AObj: TCanvas; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -190,6 +214,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_Equals(AObj: TCanvas; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -197,6 +222,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_GetHashCode(AObj: TCanvas): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -204,6 +230,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Canvas_ToString(AObj: TCanvas): PChar; extdecl;
 begin
   handleExceptionBegin

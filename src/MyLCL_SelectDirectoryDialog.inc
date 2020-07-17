@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_Execute(AObj: TSelectDirectoryDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_FindComponent(AObj: TSelectDirectoryDialog; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_GetNamePath(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_HasParent(AObj: TSelectDirectoryDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SelectDirectoryDialog_Assign(AObj: TSelectDirectoryDialog; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_ClassType(AObj: TSelectDirectoryDialog): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_ClassName(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_InstanceSize(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_InheritsFrom(AObj: TSelectDirectoryDialog; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_Equals(AObj: TSelectDirectoryDialog; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_GetHashCode(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SelectDirectoryDialog_ToString(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
   handleExceptionBegin

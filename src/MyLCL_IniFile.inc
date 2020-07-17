@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ReadString(AObj: TIniFile; Section: PChar; Ident: PChar; Default: PChar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteString(AObj: TIniFile; Section: PChar; Ident: PChar; Value: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_ReadSections(AObj: TIniFile; Strings: TStrings); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_ReadSectionValues(AObj: TIniFile; Section: PChar; Strings: TStrings); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_EraseSection(AObj: TIniFile; Section: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_DeleteKey(AObj: TIniFile; Section: PChar; Ident: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_UpdateFile(AObj: TIniFile); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_SectionExists(AObj: TIniFile; Section: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ReadInteger(AObj: TIniFile; Section: PChar; Ident: PChar; Default: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteInteger(AObj: TIniFile; Section: PChar; Ident: PChar; Value: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ReadBool(AObj: TIniFile; Section: PChar; Ident: PChar; Default: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteBool(AObj: TIniFile; Section: PChar; Ident: PChar; Value: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 function IniFile_ReadDate(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 function IniFile_ReadDateTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
@@ -121,6 +135,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure IniFile_ReadFloat(AObj: TIniFile; Section: PChar; Name: PChar; var Default: Double; var Result: Double); extdecl;
 begin
@@ -129,6 +144,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 function IniFile_ReadTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteDate(AObj: TIniFile; Section: PChar; Name: PChar; Value: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteDateTime(AObj: TIniFile; Section: PChar; Name: PChar; Value: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteFloat(AObj: TIniFile; Section: PChar; Name: PChar; var Value: Double); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure IniFile_WriteTime(AObj: TIniFile; Section: PChar; Name: PChar; Value: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ValueExists(AObj: TIniFile; Section: PChar; Ident: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ClassType(AObj: TIniFile): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ClassName(AObj: TIniFile): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_InstanceSize(AObj: TIniFile): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_InheritsFrom(AObj: TIniFile; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_Equals(AObj: TIniFile; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_GetHashCode(AObj: TIniFile): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function IniFile_ToString(AObj: TIniFile): PChar; extdecl;
 begin
   handleExceptionBegin

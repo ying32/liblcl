@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MemoryStream_Clear(AObj: TMemoryStream); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MemoryStream_LoadFromStream(AObj: TMemoryStream; Stream: TStream); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MemoryStream_LoadFromFile(AObj: TMemoryStream; FileName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MemoryStream_Seek(AObj: TMemoryStream; var Offset: Int64; Origin: TSeekOrigin; var Result: Int64); extdecl;
 begin
@@ -50,6 +54,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MemoryStream_SaveToStream(AObj: TMemoryStream; Stream: TStream); extdecl;
 begin
   handleExceptionBegin
@@ -57,6 +62,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MemoryStream_SaveToFile(AObj: TMemoryStream; FileName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MemoryStream_CopyFrom(AObj: TMemoryStream; Source: TStream; var Count: Int64; var Result: Int64); extdecl;
 begin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_ClassType(AObj: TMemoryStream): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_ClassName(AObj: TMemoryStream): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_InstanceSize(AObj: TMemoryStream): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_InheritsFrom(AObj: TMemoryStream; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_Equals(AObj: TMemoryStream; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -107,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_GetHashCode(AObj: TMemoryStream): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MemoryStream_ToString(AObj: TMemoryStream): PChar; extdecl;
 begin
   handleExceptionBegin

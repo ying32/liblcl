@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AddProgress(AObj: TGauge; Value: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_BringToFront(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Gauge_ClientToScreen(AObj: TGauge; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -43,6 +46,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Gauge_ClientToParent(AObj: TGauge; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_Dragging(AObj: TGauge): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_HasParent(AObj: TGauge): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Hide(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Invalidate(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_Perform(AObj: TGauge; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Refresh(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Repaint(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Gauge_ScreenToClient(AObj: TGauge; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -108,6 +120,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Gauge_ParentToClient(AObj: TGauge; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -116,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_SendToBack(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_SetBounds(AObj: TGauge; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Show(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Update(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_GetTextBuf(AObj: TGauge; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_GetTextLen(AObj: TGauge): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_SetTextBuf(AObj: TGauge; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_FindComponent(AObj: TGauge; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_GetNamePath(AObj: TGauge): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_Assign(AObj: TGauge; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_ClassType(AObj: TGauge): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_ClassName(AObj: TGauge): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_InstanceSize(AObj: TGauge): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_InheritsFrom(AObj: TGauge; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_Equals(AObj: TGauge; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_GetHashCode(AObj: TGauge): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Gauge_ToString(AObj: TGauge): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AnchorToNeighbour(AObj: TGauge; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AnchorParallel(AObj: TGauge; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AnchorHorizontalCenterTo(AObj: TGauge; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AnchorVerticalCenterTo(AObj: TGauge; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AnchorAsAlign(AObj: TGauge; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Gauge_AnchorClient(AObj: TGauge; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

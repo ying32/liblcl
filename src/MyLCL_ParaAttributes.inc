@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 procedure ParaAttributes_Assign(AObj: TParaAttributes; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_GetNamePath(AObj: TParaAttributes): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_ClassType(AObj: TParaAttributes): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_ClassName(AObj: TParaAttributes): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_InstanceSize(AObj: TParaAttributes): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_InheritsFrom(AObj: TParaAttributes; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_Equals(AObj: TParaAttributes; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_GetHashCode(AObj: TParaAttributes): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ParaAttributes_ToString(AObj: TParaAttributes): PChar; extdecl;
 begin
   handleExceptionBegin

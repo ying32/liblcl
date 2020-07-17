@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ReplaceDialog_CloseDialog(AObj: TReplaceDialog); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_Execute(AObj: TReplaceDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_FindComponent(AObj: TReplaceDialog; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_GetNamePath(AObj: TReplaceDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_HasParent(AObj: TReplaceDialog): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ReplaceDialog_Assign(AObj: TReplaceDialog; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_ClassType(AObj: TReplaceDialog): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_ClassName(AObj: TReplaceDialog): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_InstanceSize(AObj: TReplaceDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_InheritsFrom(AObj: TReplaceDialog; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_Equals(AObj: TReplaceDialog; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_GetHashCode(AObj: TReplaceDialog): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ReplaceDialog_ToString(AObj: TReplaceDialog): PChar; extdecl;
 begin
   handleExceptionBegin

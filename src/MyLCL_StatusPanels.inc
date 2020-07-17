@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_Add(AObj: TStatusPanels): TStatusPanel; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_Insert(AObj: TStatusPanels; Index: Integer): TStatusPanel; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_Owner(AObj: TStatusPanels): TPersistent; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StatusPanels_Assign(AObj: TStatusPanels; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StatusPanels_BeginUpdate(AObj: TStatusPanels); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StatusPanels_Clear(AObj: TStatusPanels); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StatusPanels_Delete(AObj: TStatusPanels; Index: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StatusPanels_EndUpdate(AObj: TStatusPanels); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_FindItemID(AObj: TStatusPanels; ID: Integer): TCollectionItem; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_GetNamePath(AObj: TStatusPanels): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_ClassType(AObj: TStatusPanels): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_ClassName(AObj: TStatusPanels): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_InstanceSize(AObj: TStatusPanels): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_InheritsFrom(AObj: TStatusPanels; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_Equals(AObj: TStatusPanels; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_GetHashCode(AObj: TStatusPanels): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StatusPanels_ToString(AObj: TStatusPanels): PChar; extdecl;
 begin
   handleExceptionBegin

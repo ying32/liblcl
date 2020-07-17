@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_BringToFront(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Image_ClientToScreen(AObj: TImage; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Image_ClientToParent(AObj: TImage; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -44,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_Dragging(AObj: TImage): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_HasParent(AObj: TImage): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Hide(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Invalidate(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_Perform(AObj: TImage; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Refresh(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Repaint(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Image_ScreenToClient(AObj: TImage; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -101,6 +112,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Image_ParentToClient(AObj: TImage; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -109,6 +121,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_SendToBack(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -116,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_SetBounds(AObj: TImage; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Show(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Update(AObj: TImage); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_GetTextBuf(AObj: TImage; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_GetTextLen(AObj: TImage): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_SetTextBuf(AObj: TImage; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_FindComponent(AObj: TImage; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_GetNamePath(AObj: TImage): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_Assign(AObj: TImage; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_ClassType(AObj: TImage): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_ClassName(AObj: TImage): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_InstanceSize(AObj: TImage): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_InheritsFrom(AObj: TImage; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_Equals(AObj: TImage; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_GetHashCode(AObj: TImage): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Image_ToString(AObj: TImage): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_AnchorToNeighbour(AObj: TImage; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_AnchorParallel(AObj: TImage; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_AnchorHorizontalCenterTo(AObj: TImage; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_AnchorVerticalCenterTo(AObj: TImage; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_AnchorAsAlign(AObj: TImage; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Image_AnchorClient(AObj: TImage; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

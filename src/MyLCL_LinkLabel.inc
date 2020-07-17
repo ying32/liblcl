@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Invalidate(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Repaint(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_SetBounds(AObj: TLinkLabel; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Update(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_BringToFront(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LinkLabel_ClientToScreen(AObj: TLinkLabel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LinkLabel_ClientToParent(AObj: TLinkLabel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_Dragging(AObj: TLinkLabel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_HasParent(AObj: TLinkLabel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Hide(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_Perform(AObj: TLinkLabel; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Refresh(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -107,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LinkLabel_ScreenToClient(AObj: TLinkLabel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -115,6 +128,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure LinkLabel_ParentToClient(AObj: TLinkLabel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_SendToBack(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Show(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_GetTextBuf(AObj: TLinkLabel; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_GetTextLen(AObj: TLinkLabel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_SetTextBuf(AObj: TLinkLabel; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_FindComponent(AObj: TLinkLabel; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_GetNamePath(AObj: TLinkLabel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_Assign(AObj: TLinkLabel; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_ClassType(AObj: TLinkLabel): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_ClassName(AObj: TLinkLabel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_InstanceSize(AObj: TLinkLabel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_InheritsFrom(AObj: TLinkLabel; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_Equals(AObj: TLinkLabel; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_GetHashCode(AObj: TLinkLabel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function LinkLabel_ToString(AObj: TLinkLabel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_AnchorToNeighbour(AObj: TLinkLabel; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_AnchorParallel(AObj: TLinkLabel; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_AnchorHorizontalCenterTo(AObj: TLinkLabel; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_AnchorVerticalCenterTo(AObj: TLinkLabel; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_AnchorAsAlign(AObj: TLinkLabel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure LinkLabel_AnchorClient(AObj: TLinkLabel; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

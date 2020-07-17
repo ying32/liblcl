@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Navigate(AObj: TMiniWebview; AURL: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_GoBack(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_GoForward(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_GoHome(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_GoSearch(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Refresh(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Stop(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_SetBounds(AObj: TMiniWebview; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ExecuteScript(AObj: TMiniWebview; AScriptText: PChar; AScriptType: PChar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ExecuteJS(AObj: TMiniWebview; AScriptText: PChar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_LoadHTML(AObj: TMiniWebview; AStr: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_CanFocus(AObj: TMiniWebview): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ContainsControl(AObj: TMiniWebview; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ControlAtPos(AObj: TMiniWebview; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_DisableAlign(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_EnableAlign(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_FindChildControl(AObj: TMiniWebview; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_FlipChildren(AObj: TMiniWebview; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_Focused(AObj: TMiniWebview): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_HandleAllocated(AObj: TMiniWebview): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_InsertControl(AObj: TMiniWebview; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Invalidate(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_RemoveControl(AObj: TMiniWebview; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Realign(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Repaint(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_ScaleBy(AObj: TMiniWebview; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_ScrollBy(AObj: TMiniWebview; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_SetFocus(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +245,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Update(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +253,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_BringToFront(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +261,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MiniWebview_ClientToScreen(AObj: TMiniWebview; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -239,6 +270,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MiniWebview_ClientToParent(AObj: TMiniWebview; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -247,6 +279,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_Dragging(AObj: TMiniWebview): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_HasParent(AObj: TMiniWebview): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Hide(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -268,6 +303,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_Perform(AObj: TMiniWebview; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -275,6 +311,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MiniWebview_ScreenToClient(AObj: TMiniWebview; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -283,6 +320,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure MiniWebview_ParentToClient(AObj: TMiniWebview; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_SendToBack(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +337,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Show(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_GetTextBuf(AObj: TMiniWebview; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_GetTextLen(AObj: TMiniWebview): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_SetTextBuf(AObj: TMiniWebview; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_FindComponent(AObj: TMiniWebview; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_GetNamePath(AObj: TMiniWebview): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_Assign(AObj: TMiniWebview; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ClassType(AObj: TMiniWebview): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ClassName(AObj: TMiniWebview): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_InstanceSize(AObj: TMiniWebview): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_InheritsFrom(AObj: TMiniWebview; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_Equals(AObj: TMiniWebview; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_GetHashCode(AObj: TMiniWebview): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function MiniWebview_ToString(AObj: TMiniWebview): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_AnchorToNeighbour(AObj: TMiniWebview; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_AnchorParallel(AObj: TMiniWebview; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_AnchorHorizontalCenterTo(AObj: TMiniWebview; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_AnchorVerticalCenterTo(AObj: TMiniWebview; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -424,6 +481,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_AnchorAsAlign(AObj: TMiniWebview; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -431,6 +489,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure MiniWebview_AnchorClient(AObj: TMiniWebview; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

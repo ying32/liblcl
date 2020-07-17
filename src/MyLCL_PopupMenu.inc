@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PopupMenu_CloseMenu(AObj: TPopupMenu); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PopupMenu_Popup(AObj: TPopupMenu; X: Integer; Y: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_FindComponent(AObj: TPopupMenu; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_GetNamePath(AObj: TPopupMenu): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_HasParent(AObj: TPopupMenu): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PopupMenu_Assign(AObj: TPopupMenu; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_ClassType(AObj: TPopupMenu): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_ClassName(AObj: TPopupMenu): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_InstanceSize(AObj: TPopupMenu): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_InheritsFrom(AObj: TPopupMenu; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_Equals(AObj: TPopupMenu; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_GetHashCode(AObj: TPopupMenu): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PopupMenu_ToString(AObj: TPopupMenu): PChar; extdecl;
 begin
   handleExceptionBegin

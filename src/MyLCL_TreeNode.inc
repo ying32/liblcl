@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNode_Assign(AObj: TTreeNode; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNode_Collapse(AObj: TTreeNode; Recurse: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNode_Delete(AObj: TTreeNode); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure TreeNode_DisplayRect(AObj: TTreeNode; TextOnly: LongBool; var Result: TRect); extdecl;
 begin
@@ -50,6 +54,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_EditText(AObj: TTreeNode): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -57,6 +62,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNode_Expand(AObj: TTreeNode; Recurse: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_IndexOf(AObj: TTreeNode; Value: TTreeNode): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -71,6 +78,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNode_MakeVisible(AObj: TTreeNode); extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +86,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeNode_MoveTo(AObj: TTreeNode; Destination: TTreeNode; Mode: TNodeAttachMode); extdecl;
 begin
   handleExceptionBegin
@@ -85,6 +94,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_CustomSort(AObj: TTreeNode; SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -92,6 +102,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_GetNamePath(AObj: TTreeNode): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -99,6 +110,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_ClassType(AObj: TTreeNode): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_ClassName(AObj: TTreeNode): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_InstanceSize(AObj: TTreeNode): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_InheritsFrom(AObj: TTreeNode; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_Equals(AObj: TTreeNode; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_GetHashCode(AObj: TTreeNode): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeNode_ToString(AObj: TTreeNode): PChar; extdecl;
 begin
   handleExceptionBegin

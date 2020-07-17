@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_AlphaSort(AObj: TTreeView; ARecurse: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_FullCollapse(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_FullExpand(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_GetNodeAt(AObj: TTreeView; X: Integer; Y: Integer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_IsEditing(AObj: TTreeView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_LoadFromFile(AObj: TTreeView; FileName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_LoadFromStream(AObj: TTreeView; Stream: TStream); extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_SaveToFile(AObj: TTreeView; FileName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_SaveToStream(AObj: TTreeView; Stream: TStream); extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_ClearSelection(AObj: TTreeView; KeepPrimary: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_CustomSort(AObj: TTreeView; SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_CanFocus(AObj: TTreeView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +117,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_ContainsControl(AObj: TTreeView; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -112,6 +125,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_ControlAtPos(AObj: TTreeView; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -119,6 +133,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_DisableAlign(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +141,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_EnableAlign(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -133,6 +149,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_FindChildControl(AObj: TTreeView; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -140,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_FlipChildren(AObj: TTreeView; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -147,6 +165,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_Focused(AObj: TTreeView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -154,6 +173,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_HandleAllocated(AObj: TTreeView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -161,6 +181,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_InsertControl(AObj: TTreeView; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -168,6 +189,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Invalidate(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -175,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_RemoveControl(AObj: TTreeView; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -182,6 +205,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Realign(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -189,6 +213,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Repaint(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -196,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_ScaleBy(AObj: TTreeView; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -203,6 +229,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_ScrollBy(AObj: TTreeView; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -210,6 +237,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_SetBounds(AObj: TTreeView; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -217,6 +245,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_SetFocus(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +253,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Update(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +261,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_BringToFront(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -238,6 +269,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure TreeView_ClientToScreen(AObj: TTreeView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -246,6 +278,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure TreeView_ClientToParent(AObj: TTreeView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -254,6 +287,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_Dragging(AObj: TTreeView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -261,6 +295,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_HasParent(AObj: TTreeView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -268,6 +303,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Hide(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -275,6 +311,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_Perform(AObj: TTreeView; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -282,6 +319,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Refresh(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -289,6 +327,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure TreeView_ScreenToClient(AObj: TTreeView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -297,6 +336,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure TreeView_ParentToClient(AObj: TTreeView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -305,6 +345,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_SendToBack(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -312,6 +353,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Show(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -319,6 +361,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_GetTextBuf(AObj: TTreeView; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -326,6 +369,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_GetTextLen(AObj: TTreeView): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -333,6 +377,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_SetTextBuf(AObj: TTreeView; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +385,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_FindComponent(AObj: TTreeView; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -347,6 +393,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_GetNamePath(AObj: TTreeView): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -354,6 +401,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_Assign(AObj: TTreeView; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -361,6 +409,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_ClassType(AObj: TTreeView): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -368,6 +417,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_ClassName(AObj: TTreeView): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -375,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_InstanceSize(AObj: TTreeView): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +433,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_InheritsFrom(AObj: TTreeView; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -389,6 +441,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_Equals(AObj: TTreeView; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -396,6 +449,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_GetHashCode(AObj: TTreeView): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +457,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TreeView_ToString(AObj: TTreeView): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +465,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_AnchorToNeighbour(AObj: TTreeView; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -417,6 +473,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_AnchorParallel(AObj: TTreeView; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -424,6 +481,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_AnchorHorizontalCenterTo(AObj: TTreeView; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -431,6 +489,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_AnchorVerticalCenterTo(AObj: TTreeView; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -438,6 +497,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_AnchorAsAlign(AObj: TTreeView; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -445,6 +505,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TreeView_AnchorClient(AObj: TTreeView; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

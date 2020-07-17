@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_BringToFront(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Bevel_ClientToScreen(AObj: TBevel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Bevel_ClientToParent(AObj: TBevel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -44,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_Dragging(AObj: TBevel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_HasParent(AObj: TBevel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Hide(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Invalidate(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_Perform(AObj: TBevel; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Refresh(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Repaint(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Bevel_ScreenToClient(AObj: TBevel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -101,6 +112,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Bevel_ParentToClient(AObj: TBevel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -109,6 +121,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_SendToBack(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -116,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_SetBounds(AObj: TBevel; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Show(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Update(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_GetTextBuf(AObj: TBevel; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_GetTextLen(AObj: TBevel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_SetTextBuf(AObj: TBevel; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_FindComponent(AObj: TBevel; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_GetNamePath(AObj: TBevel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_Assign(AObj: TBevel; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_ClassType(AObj: TBevel): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_ClassName(AObj: TBevel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_InstanceSize(AObj: TBevel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_InheritsFrom(AObj: TBevel; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_Equals(AObj: TBevel; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_GetHashCode(AObj: TBevel): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Bevel_ToString(AObj: TBevel): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_AnchorToNeighbour(AObj: TBevel; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_AnchorParallel(AObj: TBevel; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_AnchorHorizontalCenterTo(AObj: TBevel; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_AnchorVerticalCenterTo(AObj: TBevel; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_AnchorAsAlign(AObj: TBevel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bevel_AnchorClient(AObj: TBevel; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

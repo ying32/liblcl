@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure HeaderSection_Assign(AObj: THeaderSection; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_GetNamePath(AObj: THeaderSection): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_ClassType(AObj: THeaderSection): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_ClassName(AObj: THeaderSection): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_InstanceSize(AObj: THeaderSection): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_InheritsFrom(AObj: THeaderSection; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_Equals(AObj: THeaderSection; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_GetHashCode(AObj: THeaderSection): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function HeaderSection_ToString(AObj: THeaderSection): PChar; extdecl;
 begin
   handleExceptionBegin

@@ -65,6 +65,7 @@ end;
 {$ENDIF}
 
 // 移动来自 MyLCL_Application.inc
+//CLASSMETHOD:
 procedure Application_Initialize(AObj: TApplication); extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Application_CreateForm(App: TApplication; AInitScale: LongBool): TForm; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +100,7 @@ begin
   end;
 end;
 
+//CLASSMETHOD:
 procedure Application_Run(AObj: TApplication); extdecl;
 begin
   handleExceptionBegin
@@ -109,6 +112,7 @@ end;
 
 // TForm
 
+//CLASSMETHOD:
 function Form_Create2(AOwner: TComponent; AInitScale: LongBool): TGoForm; extdecl;
 begin
   handleExceptionBegin
@@ -116,6 +120,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Form_EnabledMaximize(AObj: TGoForm; AValue: Boolean); extdecl;
 begin
   handleExceptionBegin
@@ -131,6 +136,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Form_EnabledMinimize(AObj: TGoForm; AValue: Boolean); extdecl;
 begin
   handleExceptionBegin
@@ -146,6 +152,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Form_EnabledSystemMenu(AObj: TGoForm; AValue: Boolean); extdecl;
 begin
   handleExceptionBegin
@@ -192,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Form_ScaleForPPI(AObj: TGoForm; ANewPPI: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -199,11 +207,13 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Form_ScaleControlsForDpi(AObj: TGoForm; ANewPPI: Integer); extdecl;
 begin
   // no support
 end;
 
+//CLASSMETHOD:
 procedure Form_ScaleForCurrentDpi(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
@@ -211,6 +221,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Form_InheritedWndProc(AObj: TGoForm; var AMsg: TLMessage); extdecl;
 begin
   handleExceptionBegin
@@ -259,6 +270,7 @@ end;
 
 // TMemoryStream
 // function Write(const Buffer; Count: Longint): Longint;
+//CLASSMETHOD:
 function MemoryStream_Write(AObj: TMemoryStream; Buffer: Pointer; Count: Longint): Longint; extdecl;
 begin
   handleExceptionBegin
@@ -267,6 +279,7 @@ begin
 end;
 
 // function Read(var Buffer; Count: Longint): Longint;
+//CLASSMETHOD:
 function MemoryStream_Read(AObj: TMemoryStream; Buffer: Pointer; Count: Longint): Longint; extdecl;
 begin
   handleExceptionBegin
@@ -286,6 +299,7 @@ end;
 // Canvas_TextRect1
 // Canvas_TextRect2
 
+//CLASSMETHOD:
 procedure Canvas_BrushCopy(AObj: TCanvas; var Dest: TRect; Bitmap: TBitmap; var Source: TRect; Color: TColor); extdecl;
 begin
   handleExceptionBegin
@@ -293,6 +307,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_CopyRect(AObj: TCanvas; var Dest: TRect; Canvas: TCanvas; var Source: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -300,6 +315,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Draw1(AObj: TCanvas; X, Y: Integer; Graphic: TGraphic); extdecl;
 begin
   handleExceptionBegin
@@ -307,6 +323,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Draw2(AObj: TCanvas; X, Y: Integer; Graphic: TGraphic; Opacity: Byte); extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +331,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_DrawFocusRect(AObj: TCanvas; var ARect: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -321,6 +339,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_FillRect(AObj: TCanvas; var Rect: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -328,6 +347,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_FrameRect(AObj: TCanvas; var Rect: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -335,6 +355,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_StretchDraw(AObj: TCanvas; var Rect: TRect; Graphic: TGraphic); extdecl;
 begin
   handleExceptionBegin
@@ -342,6 +363,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_TextRect1(AObj: TCanvas; var Rect: TRect; X, Y: Integer; const Text: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -382,6 +404,7 @@ type
 
 *)
 
+//CLASSMETHOD:
 function Canvas_TextRect2(AObj: TCanvas; var Rect: TRect; Text: PChar; var AOutStr: PChar; TextFormat: TTextFormat): Integer; extdecl;
 var
   LStyle: TTextStyle;
@@ -423,6 +446,7 @@ end;
 //  canvas.PolyBezier();
 //  Canvas.PolyBezierTo();
 
+//CLASSMETHOD:
 procedure Canvas_Polygon(AObj: TCanvas; APoints: PPoint; ALen: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -430,6 +454,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_Polyline(AObj: TCanvas; APoints: PPoint; ALen: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -437,6 +462,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Canvas_PolyBezier(AObj: TCanvas; APoints: PPoint; ALen: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -444,7 +470,6 @@ begin
   handleExceptionEnd
 end;
 
-//
 function Canvas_Pixels(AObj: TCanvas; X, Y: Integer): TColor; extdecl;
 begin
   handleExceptionBegin
@@ -468,6 +493,7 @@ end;
 // ImageList_GetIcon1
 // ImageList_GetIcon2
 
+//CLASSMETHOD:
 procedure ImageList_Draw1(AObj: TImageList; Canvas: TCanvas; X, Y, Index: Integer; Enabled: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -482,6 +508,7 @@ end;
 //  AObj.Draw(Canvas, X, Y, Index, ADrawingStyle, AImageType, Enabled);
 //end;
 
+//CLASSMETHOD:
 procedure ImageList_DrawOverlay1(AObj: TImageList; Canvas: TCanvas; X, Y: Integer; ImageIndex: Integer; Overlay: TOverlay; Enabled: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -495,7 +522,8 @@ end;
 //begin
 //  AObj.DrawOverlay(Canvas, X, Y, ImageIndex, Overlay, ADrawingStyle, AImageType, Enabled);
 //end;
-  
+
+//CLASSMETHOD:
 procedure ImageList_GetIcon1(AObj: TImageList; Index: Integer; Image: TIcon); extdecl;
 begin
   handleExceptionBegin
@@ -511,6 +539,7 @@ end;
 
 
 // TBitmap
+//CLASSMETHOD:
 procedure Bitmap_Clear(AObj: TBitmap); extdecl;
 begin
   handleExceptionBegin
@@ -518,6 +547,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bitmap_BeginUpdate(AObj: TBitmap; ACanvasOnly: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -525,6 +555,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bitmap_EndUpdate(AObj: TBitmap; AStreamIsValid: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -532,6 +563,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Bitmap_LoadFromDevice(AObj: TBitmap; ADc: HDC); extdecl;
 begin
   handleExceptionBegin

@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Click(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_BringToFront(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure SpeedButton_ClientToScreen(AObj: TSpeedButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -43,6 +46,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure SpeedButton_ClientToParent(AObj: TSpeedButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_Dragging(AObj: TSpeedButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_HasParent(AObj: TSpeedButton): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Hide(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Invalidate(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_Perform(AObj: TSpeedButton; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Refresh(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Repaint(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure SpeedButton_ScreenToClient(AObj: TSpeedButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -108,6 +120,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure SpeedButton_ParentToClient(AObj: TSpeedButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -116,6 +129,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_SendToBack(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -123,6 +137,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_SetBounds(AObj: TSpeedButton; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +145,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Show(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -137,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Update(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_GetTextBuf(AObj: TSpeedButton; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_GetTextLen(AObj: TSpeedButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_SetTextBuf(AObj: TSpeedButton; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_FindComponent(AObj: TSpeedButton; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_GetNamePath(AObj: TSpeedButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_Assign(AObj: TSpeedButton; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_ClassType(AObj: TSpeedButton): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_ClassName(AObj: TSpeedButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_InstanceSize(AObj: TSpeedButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_InheritsFrom(AObj: TSpeedButton; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_Equals(AObj: TSpeedButton; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_GetHashCode(AObj: TSpeedButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function SpeedButton_ToString(AObj: TSpeedButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_AnchorToNeighbour(AObj: TSpeedButton; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_AnchorParallel(AObj: TSpeedButton; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_AnchorHorizontalCenterTo(AObj: TSpeedButton; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_AnchorVerticalCenterTo(AObj: TSpeedButton; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_AnchorAsAlign(AObj: TSpeedButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure SpeedButton_AnchorClient(AObj: TSpeedButton; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

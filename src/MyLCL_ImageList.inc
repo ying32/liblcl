@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ImageList_GetHotSpot(AObj: TImageList; var Result: TPoint); extdecl;
 begin
@@ -29,6 +30,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_HideDragImage(AObj: TImageList); extdecl;
 begin
   handleExceptionBegin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_ShowDragImage(AObj: TImageList); extdecl;
 begin
   handleExceptionBegin
@@ -43,6 +46,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_Assign(AObj: TImageList; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -50,6 +54,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_Add(AObj: TImageList; Image: TBitmap; Mask: TBitmap): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -57,6 +62,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_AddIcon(AObj: TImageList; Image: TIcon): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_AddImages(AObj: TImageList; Value: TCustomImageList); extdecl;
 begin
   handleExceptionBegin
@@ -71,6 +78,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_AddMasked(AObj: TImageList; Image: TBitmap; MaskColor: TColor): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +86,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_Clear(AObj: TImageList); extdecl;
 begin
   handleExceptionBegin
@@ -85,6 +94,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_Delete(AObj: TImageList; Index: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -92,6 +102,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_Insert(AObj: TImageList; Index: Integer; Image: TBitmap; Mask: TBitmap); extdecl;
 begin
   handleExceptionBegin
@@ -99,6 +110,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_InsertIcon(AObj: TImageList; Index: Integer; Image: TIcon); extdecl;
 begin
   handleExceptionBegin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_InsertMasked(AObj: TImageList; Index: Integer; Image: TBitmap; MaskColor: TColor); extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_Move(AObj: TImageList; CurIndex: Integer; NewIndex: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_Replace(AObj: TImageList; Index: Integer; Image: TBitmap; Mask: TBitmap); extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_ReplaceMasked(AObj: TImageList; Index: Integer; NewImage: TBitmap; MaskColor: TColor); extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_BeginUpdate(AObj: TImageList); extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ImageList_EndUpdate(AObj: TImageList); extdecl;
 begin
   handleExceptionBegin
@@ -148,6 +166,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_FindComponent(AObj: TImageList; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -155,6 +174,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_GetNamePath(AObj: TImageList): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -162,6 +182,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_HasParent(AObj: TImageList): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_ClassType(AObj: TImageList): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -176,6 +198,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_ClassName(AObj: TImageList): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +206,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_InstanceSize(AObj: TImageList): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -190,6 +214,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_InheritsFrom(AObj: TImageList; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -197,6 +222,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_Equals(AObj: TImageList; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -204,6 +230,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_GetHashCode(AObj: TImageList): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -211,6 +238,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ImageList_ToString(AObj: TImageList): PChar; extdecl;
 begin
   handleExceptionBegin

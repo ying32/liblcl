@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_GetNamePath(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogRadioButtonItem_Assign(AObj: TTaskDialogRadioButtonItem; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_ClassType(AObj: TTaskDialogRadioButtonItem): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_ClassName(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_InstanceSize(AObj: TTaskDialogRadioButtonItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_InheritsFrom(AObj: TTaskDialogRadioButtonItem; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_Equals(AObj: TTaskDialogRadioButtonItem; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_GetHashCode(AObj: TTaskDialogRadioButtonItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogRadioButtonItem_ToString(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
   handleExceptionBegin

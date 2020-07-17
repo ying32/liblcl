@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 procedure ControlBorderSpacing_Assign(AObj: TControlBorderSpacing; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_GetNamePath(AObj: TControlBorderSpacing): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_ClassType(AObj: TControlBorderSpacing): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_ClassName(AObj: TControlBorderSpacing): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_InstanceSize(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_InheritsFrom(AObj: TControlBorderSpacing; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_Equals(AObj: TControlBorderSpacing; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_GetHashCode(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlBorderSpacing_ToString(AObj: TControlBorderSpacing): PChar; extdecl;
 begin
   handleExceptionBegin

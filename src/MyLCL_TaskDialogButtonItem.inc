@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_GetNamePath(AObj: TTaskDialogButtonItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure TaskDialogButtonItem_Assign(AObj: TTaskDialogButtonItem; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_ClassType(AObj: TTaskDialogButtonItem): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_ClassName(AObj: TTaskDialogButtonItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_InstanceSize(AObj: TTaskDialogButtonItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_InheritsFrom(AObj: TTaskDialogButtonItem; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_Equals(AObj: TTaskDialogButtonItem; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_GetHashCode(AObj: TTaskDialogButtonItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function TaskDialogButtonItem_ToString(AObj: TTaskDialogButtonItem): PChar; extdecl;
 begin
   handleExceptionBegin

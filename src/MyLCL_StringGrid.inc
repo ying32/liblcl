@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_CellRect(AObj: TStringGrid; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
@@ -29,6 +30,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_MouseToCell(AObj: TStringGrid; X: Integer; Y: Integer; var ACol: Integer; var ARow: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_MouseCoord(AObj: TStringGrid; X: Integer; Y: Integer; var Result: TGridCoord); extdecl;
 begin
@@ -44,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_CanFocus(AObj: TStringGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_ContainsControl(AObj: TStringGrid; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_ControlAtPos(AObj: TStringGrid; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_DisableAlign(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_EnableAlign(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_FindChildControl(AObj: TStringGrid; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_FlipChildren(AObj: TStringGrid; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_Focused(AObj: TStringGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_HandleAllocated(AObj: TStringGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -107,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_InsertControl(AObj: TStringGrid; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Invalidate(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -121,6 +135,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_RemoveControl(AObj: TStringGrid; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -128,6 +143,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Realign(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -135,6 +151,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Repaint(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -142,6 +159,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_ScaleBy(AObj: TStringGrid; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -149,6 +167,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_ScrollBy(AObj: TStringGrid; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -156,6 +175,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_SetBounds(AObj: TStringGrid; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -163,6 +183,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_SetFocus(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -170,6 +191,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Update(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_BringToFront(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_ClientToScreen(AObj: TStringGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -192,6 +216,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_ClientToParent(AObj: TStringGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_Dragging(AObj: TStringGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_HasParent(AObj: TStringGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Hide(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_Perform(AObj: TStringGrid; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Refresh(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_ScreenToClient(AObj: TStringGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -243,6 +274,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_ParentToClient(AObj: TStringGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -251,6 +283,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_SendToBack(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +291,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Show(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -265,6 +299,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_GetTextBuf(AObj: TStringGrid; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -272,6 +307,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_GetTextLen(AObj: TStringGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -279,6 +315,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_SetTextBuf(AObj: TStringGrid; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -286,6 +323,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_FindComponent(AObj: TStringGrid; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -293,6 +331,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_GetNamePath(AObj: TStringGrid): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -300,6 +339,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_Assign(AObj: TStringGrid; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -307,6 +347,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_ClassType(AObj: TStringGrid): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +355,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_ClassName(AObj: TStringGrid): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -321,6 +363,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_InstanceSize(AObj: TStringGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -328,6 +371,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_InheritsFrom(AObj: TStringGrid; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -335,6 +379,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_Equals(AObj: TStringGrid; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -342,6 +387,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_GetHashCode(AObj: TStringGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -349,6 +395,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function StringGrid_ToString(AObj: TStringGrid): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -356,6 +403,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_AnchorToNeighbour(AObj: TStringGrid; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -363,6 +411,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_AnchorParallel(AObj: TStringGrid; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -370,6 +419,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_AnchorHorizontalCenterTo(AObj: TStringGrid; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -377,6 +427,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_AnchorVerticalCenterTo(AObj: TStringGrid; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -384,6 +435,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_AnchorAsAlign(AObj: TStringGrid; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -391,6 +443,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure StringGrid_AnchorClient(AObj: TStringGrid; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

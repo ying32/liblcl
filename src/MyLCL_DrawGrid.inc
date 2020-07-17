@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure DrawGrid_CellRect(AObj: TDrawGrid; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
@@ -29,6 +30,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_MouseToCell(AObj: TDrawGrid; X: Integer; Y: Integer; var ACol: Integer; var ARow: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure DrawGrid_MouseCoord(AObj: TDrawGrid; X: Integer; Y: Integer; var Result: TGridCoord); extdecl;
 begin
@@ -44,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_CanFocus(AObj: TDrawGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_ContainsControl(AObj: TDrawGrid; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_ControlAtPos(AObj: TDrawGrid; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_DisableAlign(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_EnableAlign(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_FindChildControl(AObj: TDrawGrid; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_FlipChildren(AObj: TDrawGrid; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_Focused(AObj: TDrawGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_HandleAllocated(AObj: TDrawGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -107,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_InsertControl(AObj: TDrawGrid; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Invalidate(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -121,6 +135,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_RemoveControl(AObj: TDrawGrid; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -128,6 +143,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Realign(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -135,6 +151,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Repaint(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -142,6 +159,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_ScaleBy(AObj: TDrawGrid; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -149,6 +167,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_ScrollBy(AObj: TDrawGrid; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -156,6 +175,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_SetBounds(AObj: TDrawGrid; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -163,6 +183,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_SetFocus(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -170,6 +191,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Update(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -177,6 +199,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_BringToFront(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure DrawGrid_ClientToScreen(AObj: TDrawGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -192,6 +216,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure DrawGrid_ClientToParent(AObj: TDrawGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_Dragging(AObj: TDrawGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_HasParent(AObj: TDrawGrid): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Hide(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_Perform(AObj: TDrawGrid; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Refresh(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure DrawGrid_ScreenToClient(AObj: TDrawGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -243,6 +274,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure DrawGrid_ParentToClient(AObj: TDrawGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -251,6 +283,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_SendToBack(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +291,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Show(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -265,6 +299,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_GetTextBuf(AObj: TDrawGrid; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -272,6 +307,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_GetTextLen(AObj: TDrawGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -279,6 +315,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_SetTextBuf(AObj: TDrawGrid; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -286,6 +323,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_FindComponent(AObj: TDrawGrid; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -293,6 +331,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_GetNamePath(AObj: TDrawGrid): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -300,6 +339,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_Assign(AObj: TDrawGrid; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -307,6 +347,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_ClassType(AObj: TDrawGrid): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +355,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_ClassName(AObj: TDrawGrid): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -321,6 +363,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_InstanceSize(AObj: TDrawGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -328,6 +371,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_InheritsFrom(AObj: TDrawGrid; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -335,6 +379,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_Equals(AObj: TDrawGrid; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -342,6 +387,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_GetHashCode(AObj: TDrawGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -349,6 +395,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function DrawGrid_ToString(AObj: TDrawGrid): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -356,6 +403,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_AnchorToNeighbour(AObj: TDrawGrid; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -363,6 +411,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_AnchorParallel(AObj: TDrawGrid; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -370,6 +419,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_AnchorHorizontalCenterTo(AObj: TDrawGrid; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -377,6 +427,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_AnchorVerticalCenterTo(AObj: TDrawGrid; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -384,6 +435,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_AnchorAsAlign(AObj: TDrawGrid; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -391,6 +443,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure DrawGrid_AnchorClient(AObj: TDrawGrid; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

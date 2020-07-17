@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListItem_DisplayRectSubItem(AObj: TListItem; subItem: Integer; Code: TDisplayCode; var Result: TRect); extdecl;
 begin
@@ -29,6 +30,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListItem_Assign(AObj: TListItem; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListItem_Delete(AObj: TListItem); extdecl;
 begin
   handleExceptionBegin
@@ -43,6 +46,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListItem_DisplayRect(AObj: TListItem; Code: TDisplayCode; var Result: TRect); extdecl;
 begin
@@ -51,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_EditCaption(AObj: TListItem): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -58,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListItem_MakeVisible(AObj: TListItem; PartialOK: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -65,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_GetNamePath(AObj: TListItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_ClassType(AObj: TListItem): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -79,6 +87,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_ClassName(AObj: TListItem): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -86,6 +95,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_InstanceSize(AObj: TListItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -93,6 +103,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_InheritsFrom(AObj: TListItem; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -100,6 +111,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_Equals(AObj: TListItem; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -107,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_GetHashCode(AObj: TListItem): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListItem_ToString(AObj: TListItem): PChar; extdecl;
 begin
   handleExceptionBegin

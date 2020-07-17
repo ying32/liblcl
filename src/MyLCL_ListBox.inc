@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AddItem(AObj: TListBox; Item: PChar; AObject: TObject); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Clear(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_ClearSelection(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_DeleteSelected(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_ItemAtPos(AObj: TListBox; var Pos: TPoint; Existing: LongBool): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListBox_ItemRect(AObj: TListBox; Index: Integer; var Result: TRect); extdecl;
 begin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_SelectAll(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -71,6 +78,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_CanFocus(AObj: TListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +86,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_ContainsControl(AObj: TListBox; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -85,6 +94,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_ControlAtPos(AObj: TListBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -92,6 +102,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_DisableAlign(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -99,6 +110,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_EnableAlign(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_FindChildControl(AObj: TListBox; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_FlipChildren(AObj: TListBox; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_Focused(AObj: TListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_HandleAllocated(AObj: TListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_InsertControl(AObj: TListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Invalidate(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -148,6 +166,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_RemoveControl(AObj: TListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -155,6 +174,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Realign(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -162,6 +182,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Repaint(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_ScaleBy(AObj: TListBox; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -176,6 +198,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_ScrollBy(AObj: TListBox; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +206,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_SetBounds(AObj: TListBox; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -190,6 +214,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_SetFocus(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -197,6 +222,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Update(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -204,6 +230,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_BringToFront(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -211,6 +238,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListBox_ClientToScreen(AObj: TListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -219,6 +247,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListBox_ClientToParent(AObj: TListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -227,6 +256,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_Dragging(AObj: TListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -234,6 +264,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_HasParent(AObj: TListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +272,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Hide(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -248,6 +280,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_Perform(AObj: TListBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -255,6 +288,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Refresh(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -262,6 +296,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListBox_ScreenToClient(AObj: TListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ListBox_ParentToClient(AObj: TListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -278,6 +314,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_SendToBack(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -285,6 +322,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Show(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -292,6 +330,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_GetTextBuf(AObj: TListBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -299,6 +338,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_GetTextLen(AObj: TListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -306,6 +346,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_SetTextBuf(AObj: TListBox; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -313,6 +354,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_FindComponent(AObj: TListBox; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -320,6 +362,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_GetNamePath(AObj: TListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -327,6 +370,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_Assign(AObj: TListBox; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -334,6 +378,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_ClassType(AObj: TListBox): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -341,6 +386,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_ClassName(AObj: TListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -348,6 +394,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_InstanceSize(AObj: TListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -355,6 +402,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_InheritsFrom(AObj: TListBox; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -362,6 +410,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_Equals(AObj: TListBox; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -369,6 +418,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_GetHashCode(AObj: TListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -376,6 +426,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ListBox_ToString(AObj: TListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -383,6 +434,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AnchorToNeighbour(AObj: TListBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -390,6 +442,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AnchorParallel(AObj: TListBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -397,6 +450,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AnchorHorizontalCenterTo(AObj: TListBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -404,6 +458,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AnchorVerticalCenterTo(AObj: TListBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -411,6 +466,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AnchorAsAlign(AObj: TListBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -418,6 +474,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure ListBox_AnchorClient(AObj: TListBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

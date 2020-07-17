@@ -7,6 +7,7 @@
 //
 //----------------------------------------
 
+//CLASSMETHOD:
 procedure ControlScrollBar_Assign(AObj: TControlScrollBar; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -14,6 +15,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_IsScrollBarVisible(AObj: TControlScrollBar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -21,6 +23,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_GetNamePath(AObj: TControlScrollBar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +31,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_ClassType(AObj: TControlScrollBar): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +39,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_ClassName(AObj: TControlScrollBar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +47,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_InstanceSize(AObj: TControlScrollBar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +55,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_InheritsFrom(AObj: TControlScrollBar; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +63,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_Equals(AObj: TControlScrollBar; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +71,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_GetHashCode(AObj: TControlScrollBar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +79,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function ControlScrollBar_ToString(AObj: TControlScrollBar): PChar; extdecl;
 begin
   handleExceptionBegin

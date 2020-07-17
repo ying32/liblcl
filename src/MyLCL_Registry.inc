@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_CloseKey(AObj: TRegistry); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_CreateKey(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_DeleteKey(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_DeleteValue(AObj: TRegistry; Name: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_HasSubKeys(AObj: TRegistry): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_KeyExists(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_LoadKey(AObj: TRegistry; Key: PChar; FileName: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -70,6 +77,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_MoveKey(AObj: TRegistry; OldName: PChar; NewName: PChar; Delete: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -77,6 +85,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_OpenKey(AObj: TRegistry; Key: PChar; CanCreate: LongBool): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -84,6 +93,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_OpenKeyReadOnly(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -91,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ReadBool(AObj: TRegistry; Name: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -98,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 function Registry_ReadDate(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 function Registry_ReadDateTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
@@ -114,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Registry_ReadFloat(AObj: TRegistry; Name: PChar; var Result: Double); extdecl;
 begin
@@ -122,6 +136,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ReadInteger(AObj: TRegistry; Name: PChar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -129,6 +144,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ReadString(AObj: TRegistry; Name: PChar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -136,6 +152,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 function Registry_ReadTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
@@ -144,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_RegistryConnect(AObj: TRegistry; UNCName: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -151,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_RenameValue(AObj: TRegistry; OldName: PChar; NewName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -158,6 +177,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ReplaceKey(AObj: TRegistry; Key: PChar; FileName: PChar; BackUpFileName: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -165,6 +185,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_RestoreKey(AObj: TRegistry; Key: PChar; FileName: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -172,6 +193,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_SaveKey(AObj: TRegistry; Key: PChar; FileName: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -179,6 +201,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_UnLoadKey(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -186,6 +209,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ValueExists(AObj: TRegistry; Name: PChar): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +217,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteBool(AObj: TRegistry; Name: PChar; Value: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +225,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteDate(AObj: TRegistry; Name: PChar; Value: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
@@ -207,6 +233,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteDateTime(AObj: TRegistry; Name: PChar; Value: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
@@ -214,6 +241,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteFloat(AObj: TRegistry; Name: PChar; var Value: Double); extdecl;
 begin
   handleExceptionBegin
@@ -221,6 +249,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteInteger(AObj: TRegistry; Name: PChar; Value: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -228,6 +257,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteString(AObj: TRegistry; Name: PChar; Value: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteExpandString(AObj: TRegistry; Name: PChar; Value: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +273,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure Registry_WriteTime(AObj: TRegistry; Name: PChar; Value: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +281,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ClassType(AObj: TRegistry): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +289,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ClassName(AObj: TRegistry): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +297,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_InstanceSize(AObj: TRegistry): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -270,6 +305,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_InheritsFrom(AObj: TRegistry; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_Equals(AObj: TRegistry; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +321,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_GetHashCode(AObj: TRegistry): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -291,6 +329,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function Registry_ToString(AObj: TRegistry): PChar; extdecl;
 begin
   handleExceptionBegin

@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_CheckAll(AObj: TCheckListBox; AState: TCheckBoxState; AllowGrayed: LongBool; AllowDisabled: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AddItem(AObj: TCheckListBox; Item: PChar; AObject: TObject); extdecl;
 begin
   handleExceptionBegin
@@ -35,6 +37,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Clear(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -42,6 +45,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_ClearSelection(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -49,6 +53,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_DeleteSelected(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +61,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_ItemAtPos(AObj: TCheckListBox; var Pos: TPoint; Existing: LongBool): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -63,6 +69,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure CheckListBox_ItemRect(AObj: TCheckListBox; Index: Integer; var Result: TRect); extdecl;
 begin
@@ -71,6 +78,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_SelectAll(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +86,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_CanFocus(AObj: TCheckListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -85,6 +94,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_ContainsControl(AObj: TCheckListBox; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -92,6 +102,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_ControlAtPos(AObj: TCheckListBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -99,6 +110,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_DisableAlign(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_EnableAlign(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_FindChildControl(AObj: TCheckListBox; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_FlipChildren(AObj: TCheckListBox; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_Focused(AObj: TCheckListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_HandleAllocated(AObj: TCheckListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_InsertControl(AObj: TCheckListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -148,6 +166,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Invalidate(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -155,6 +174,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_RemoveControl(AObj: TCheckListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -162,6 +182,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Realign(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Repaint(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -176,6 +198,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_ScaleBy(AObj: TCheckListBox; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +206,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_ScrollBy(AObj: TCheckListBox; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -190,6 +214,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_SetBounds(AObj: TCheckListBox; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -197,6 +222,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_SetFocus(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -204,6 +230,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Update(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -211,6 +238,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_BringToFront(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -218,6 +246,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure CheckListBox_ClientToScreen(AObj: TCheckListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -226,6 +255,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure CheckListBox_ClientToParent(AObj: TCheckListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -234,6 +264,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_Dragging(AObj: TCheckListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +272,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_HasParent(AObj: TCheckListBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -248,6 +280,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Hide(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -255,6 +288,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_Perform(AObj: TCheckListBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -262,6 +296,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Refresh(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -269,6 +304,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure CheckListBox_ScreenToClient(AObj: TCheckListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -277,6 +313,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure CheckListBox_ParentToClient(AObj: TCheckListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -285,6 +322,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_SendToBack(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -292,6 +330,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Show(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -299,6 +338,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_GetTextBuf(AObj: TCheckListBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -306,6 +346,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_GetTextLen(AObj: TCheckListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -313,6 +354,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_SetTextBuf(AObj: TCheckListBox; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -320,6 +362,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_FindComponent(AObj: TCheckListBox; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -327,6 +370,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_GetNamePath(AObj: TCheckListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -334,6 +378,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_Assign(AObj: TCheckListBox; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -341,6 +386,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_ClassType(AObj: TCheckListBox): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -348,6 +394,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_ClassName(AObj: TCheckListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -355,6 +402,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_InstanceSize(AObj: TCheckListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -362,6 +410,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_InheritsFrom(AObj: TCheckListBox; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -369,6 +418,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_Equals(AObj: TCheckListBox; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -376,6 +426,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_GetHashCode(AObj: TCheckListBox): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -383,6 +434,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function CheckListBox_ToString(AObj: TCheckListBox): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -390,6 +442,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AnchorToNeighbour(AObj: TCheckListBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -397,6 +450,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AnchorParallel(AObj: TCheckListBox; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -404,6 +458,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AnchorHorizontalCenterTo(AObj: TCheckListBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -411,6 +466,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AnchorVerticalCenterTo(AObj: TCheckListBox; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -418,6 +474,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AnchorAsAlign(AObj: TCheckListBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -425,6 +482,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure CheckListBox_AnchorClient(AObj: TCheckListBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin

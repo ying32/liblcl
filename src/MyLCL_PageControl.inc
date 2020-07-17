@@ -21,6 +21,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_SelectNextPage(AObj: TPageControl; GoForward: LongBool; CheckTabVisible: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -28,6 +29,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure PageControl_TabRect(AObj: TPageControl; Index: Integer; var Result: TRect); extdecl;
 begin
@@ -36,6 +38,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_CanFocus(AObj: TPageControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -43,6 +46,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_ContainsControl(AObj: TPageControl; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -50,6 +54,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_ControlAtPos(AObj: TPageControl; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -57,6 +62,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_DisableAlign(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +70,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_EnableAlign(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -71,6 +78,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_FindChildControl(AObj: TPageControl; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +86,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_FlipChildren(AObj: TPageControl; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
@@ -85,6 +94,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_Focused(AObj: TPageControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -92,6 +102,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_HandleAllocated(AObj: TPageControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -99,6 +110,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_InsertControl(AObj: TPageControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -106,6 +118,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Invalidate(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +126,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_RemoveControl(AObj: TPageControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -120,6 +134,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Realign(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -127,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Repaint(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -134,6 +150,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_ScaleBy(AObj: TPageControl; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -141,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_ScrollBy(AObj: TPageControl; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -148,6 +166,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_SetBounds(AObj: TPageControl; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -155,6 +174,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_SetFocus(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -162,6 +182,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Update(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -169,6 +190,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_BringToFront(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -176,6 +198,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure PageControl_ClientToScreen(AObj: TPageControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -184,6 +207,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure PageControl_ClientToParent(AObj: TPageControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -192,6 +216,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_Dragging(AObj: TPageControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -199,6 +224,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_HasParent(AObj: TPageControl): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -206,6 +232,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Hide(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -213,6 +240,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_Perform(AObj: TPageControl; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
@@ -220,6 +248,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Refresh(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -227,6 +256,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure PageControl_ScreenToClient(AObj: TPageControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
@@ -235,6 +265,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure PageControl_ParentToClient(AObj: TPageControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
@@ -243,6 +274,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_SendToBack(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -250,6 +282,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Show(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -257,6 +290,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_GetTextBuf(AObj: TPageControl; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -264,6 +298,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_GetTextLen(AObj: TPageControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -271,6 +306,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_SetTextBuf(AObj: TPageControl; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -278,6 +314,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_FindComponent(AObj: TPageControl; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -285,6 +322,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_GetNamePath(AObj: TPageControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -292,6 +330,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_Assign(AObj: TPageControl; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -299,6 +338,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_ClassType(AObj: TPageControl): TClass; extdecl;
 begin
   handleExceptionBegin
@@ -306,6 +346,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_ClassName(AObj: TPageControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -313,6 +354,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_InstanceSize(AObj: TPageControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -320,6 +362,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_InheritsFrom(AObj: TPageControl; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -327,6 +370,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_Equals(AObj: TPageControl; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -334,6 +378,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_GetHashCode(AObj: TPageControl): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -341,6 +386,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 function PageControl_ToString(AObj: TPageControl): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -348,6 +394,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_AnchorToNeighbour(AObj: TPageControl; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -355,6 +402,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_AnchorParallel(AObj: TPageControl; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -362,6 +410,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_AnchorHorizontalCenterTo(AObj: TPageControl; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -369,6 +418,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_AnchorVerticalCenterTo(AObj: TPageControl; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -376,6 +426,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_AnchorAsAlign(AObj: TPageControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -383,6 +434,7 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
 procedure PageControl_AnchorClient(AObj: TPageControl; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
