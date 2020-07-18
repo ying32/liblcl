@@ -50,6 +50,9 @@
 {$I MyLCL_ControlChildSizing.inc}  //BASECLASS:TObject
 {$I MyLCL_CheckGroup.inc}  //BASECLASS:TWinControl
 {$I MyLCL_ToggleBox.inc}  //BASECLASS:TWinControl
+{$I MyLCL_GridColumnTitle.inc}  //BASECLASS:TObject
+{$I MyLCL_GridColumn.inc}  //BASECLASS:TObject
+{$I MyLCL_GridColumns.inc}  //BASECLASS:TObject
 
 
 //{$ifdef windows}

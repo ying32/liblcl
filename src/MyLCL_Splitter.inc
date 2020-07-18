@@ -382,6 +382,20 @@ begin
   handleExceptionEnd
 end;
 
+function Splitter_GetMinSize(AObj: TSplitter): NaturalNumber; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MinSize;
+  handleExceptionEnd
+end;
+
+procedure Splitter_SetMinSize(AObj: TSplitter; AValue: NaturalNumber); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MinSize := AValue;
+  handleExceptionEnd
+end;
+
 function Splitter_GetParentColor(AObj: TSplitter): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -857,6 +871,8 @@ exports
   Splitter_SetCursor,
   Splitter_GetConstraints,
   Splitter_SetConstraints,
+  Splitter_GetMinSize,
+  Splitter_SetMinSize,
   Splitter_GetParentColor,
   Splitter_SetParentColor,
   Splitter_GetVisible,

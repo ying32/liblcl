@@ -451,10 +451,10 @@ begin
   handleExceptionEnd
 end;
 
-//EVENT_TYPE:TMovedEvent
+//EVENT_TYPE:TGridOperationEvent
 procedure DrawGrid_SetOnColRowMoved(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMovedEvent_OnColRowMoved}
+  {$DEFINE EventMethodName := OnTGridOperationEvent_OnColRowMoved}
   {$DEFINE EventName := OnColRowMoved}
   EventMethodCode
 end;

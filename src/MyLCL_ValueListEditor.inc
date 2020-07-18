@@ -22,6 +22,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ValueListEditor_DeleteRow(AObj: TValueListEditor; ARow: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DeleteRow(ARow);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ValueListEditor_Refresh(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -665,6 +673,20 @@ procedure ValueListEditor_SetDragMode(AObj: TValueListEditor; AValue: TDragMode)
 begin
   handleExceptionBegin
   AObj.DragMode := AValue;
+  handleExceptionEnd
+end;
+
+function ValueListEditor_GetDropDownRows(AObj: TValueListEditor): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DropDownRows;
+  handleExceptionEnd
+end;
+
+procedure ValueListEditor_SetDropDownRows(AObj: TValueListEditor; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DropDownRows := AValue;
   handleExceptionEnd
 end;
 
@@ -1745,6 +1767,7 @@ end;
 exports
   ValueListEditor_Create,
   ValueListEditor_Free,
+  ValueListEditor_DeleteRow,
   ValueListEditor_Refresh,
   ValueListEditor_CellRect,
   ValueListEditor_MouseToCell,
@@ -1829,6 +1852,8 @@ exports
   ValueListEditor_SetDragKind,
   ValueListEditor_GetDragMode,
   ValueListEditor_SetDragMode,
+  ValueListEditor_GetDropDownRows,
+  ValueListEditor_SetDropDownRows,
   ValueListEditor_GetEnabled,
   ValueListEditor_SetEnabled,
   ValueListEditor_GetFixedColor,

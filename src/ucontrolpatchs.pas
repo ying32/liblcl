@@ -28,6 +28,8 @@ type
   // 一些关于库的信息
   TStringEncoding = (seUnknown, seANSI, seUnicode, seUTF8);
 
+  NaturalNumber = Integer;
+
   //TMargins = TControlBorderSpacing;
 
 {$ifndef windows}

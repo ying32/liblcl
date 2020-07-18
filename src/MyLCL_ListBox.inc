@@ -706,6 +706,20 @@ begin
   handleExceptionEnd
 end;
 
+function ListBox_GetExtendedSelect(AObj: TListBox): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ExtendedSelect;
+  handleExceptionEnd
+end;
+
+procedure ListBox_SetExtendedSelect(AObj: TListBox; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ExtendedSelect := AValue;
+  handleExceptionEnd
+end;
+
 function ListBox_GetFont(AObj: TListBox): TFont; extdecl;
 begin
   handleExceptionBegin
@@ -1654,6 +1668,8 @@ exports
   ListBox_SetDragMode,
   ListBox_GetEnabled,
   ListBox_SetEnabled,
+  ListBox_GetExtendedSelect,
+  ListBox_SetExtendedSelect,
   ListBox_GetFont,
   ListBox_SetFont,
   ListBox_GetItemHeight,

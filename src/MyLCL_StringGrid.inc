@@ -22,6 +22,118 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StringGrid_DeleteColRow(AObj: TStringGrid; IsColumn: LongBool; index: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DeleteColRow(IsColumn, index);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_DeleteCol(AObj: TStringGrid; Index: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DeleteCol(Index);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_DeleteRow(AObj: TStringGrid; Index: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DeleteRow(Index);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_ExchangeColRow(AObj: TStringGrid; IsColumn: LongBool; index: Integer; WithIndex: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ExchangeColRow(IsColumn, index, WithIndex);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_InsertColRow(AObj: TStringGrid; IsColumn: LongBool; index: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InsertColRow(IsColumn, index);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_MoveColRow(AObj: TStringGrid; IsColumn: LongBool; FromIndex: Integer; ToIndex: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MoveColRow(IsColumn, FromIndex, ToIndex);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_SortColRow(AObj: TStringGrid; IsColumn: LongBool; Index: Integer; FromIndex: Integer; ToIndex: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SortColRow(IsColumn, Index, FromIndex, ToIndex);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_EditorByStyle(AObj: TStringGrid; Style: TColumnButtonStyle): TWinControl; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.EditorByStyle(Style);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_EditorKeyDown(AObj: TStringGrid; Sender: TObject; var Key: Word; Shift: TShiftState); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditorKeyDown(Sender, Key, Shift);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_EditorKeyPress(AObj: TStringGrid; Sender: TObject; var Key: Char); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditorKeyPress(Sender, Key);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_EditorKeyUp(AObj: TStringGrid; Sender: TObject; var key: Word; shift: TShiftState); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditorKeyUp(Sender, key, shift);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_EditorTextChanged(AObj: TStringGrid; aCol: Integer; aRow: Integer; aText: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditorTextChanged(aCol, aRow, aText);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_EditingDone(AObj: TStringGrid); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditingDone;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_AutoAdjustColumns(AObj: TStringGrid); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustColumns;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure StringGrid_CellRect(AObj: TStringGrid; ACol: Integer; ARow: Integer; var Result: TRect); extdecl;
 begin
@@ -31,10 +143,106 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure StringGrid_MouseToCell(AObj: TStringGrid; X: Integer; Y: Integer; var ACol: Integer; var ARow: Integer); extdecl;
+function StringGrid_CellToGridZone(AObj: TStringGrid; aCol: Integer; aRow: Integer): TGridZone; extdecl;
 begin
   handleExceptionBegin
-  AObj.MouseToCell(X, Y, ACol, ARow);
+  Result :=  AObj.CellToGridZone(aCol, aRow);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_CheckPosition(AObj: TStringGrid); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CheckPosition;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ClearCols(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ClearCols;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ClearRows(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ClearRows;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_Clear(AObj: TStringGrid); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Clear;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_ClearSelections(AObj: TStringGrid); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ClearSelections;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_HasMultiSelection(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HasMultiSelection;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_InvalidateCell(AObj: TStringGrid; aCol: Integer; aRow: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InvalidateCell(aCol, aRow);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_InvalidateCol(AObj: TStringGrid; ACol: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InvalidateCol(ACol);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_InvalidateRange(AObj: TStringGrid; var aRange: TRect); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InvalidateRange(aRange);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_InvalidateRow(AObj: TStringGrid; ARow: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InvalidateRow(ARow);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_IsCellVisible(AObj: TStringGrid; aCol: Integer; aRow: Integer): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IsCellVisible(aCol, aRow);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_IsFixedCellVisible(AObj: TStringGrid; aCol: Integer; aRow: Integer): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IsFixedCellVisible(aCol, aRow);
   handleExceptionEnd
 end;
 
@@ -44,6 +252,32 @@ procedure StringGrid_MouseCoord(AObj: TStringGrid; X: Integer; Y: Integer; var R
 begin
   handleExceptionBegin
   Result :=  AObj.MouseCoord(X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//RETURNISLASTPARAM:
+procedure StringGrid_MouseToCell(AObj: TStringGrid; var Mouse: TPoint; var Result: TPoint); extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MouseToCell(Mouse);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//RETURNISLASTPARAM:
+procedure StringGrid_MouseToLogcell(AObj: TStringGrid; var Mouse: TPoint; var Result: TPoint); extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MouseToLogcell(Mouse);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_MouseToGridZone(AObj: TStringGrid; X: Integer; Y: Integer): TGridZone; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MouseToGridZone(X, Y);
   handleExceptionEnd
 end;
 
@@ -451,12 +685,662 @@ begin
   handleExceptionEnd
 end;
 
-//EVENT_TYPE:TMovedEvent
+function StringGrid_GetSelectedColor(AObj: TStringGrid): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.SelectedColor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetSelectedColor(AObj: TStringGrid; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SelectedColor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetSelectedColumn(AObj: TStringGrid): TGridColumn; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.SelectedColumn;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetStrictSort(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.StrictSort;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetStrictSort(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.StrictSort := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetFixedHotColor(AObj: TStringGrid): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FixedHotColor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetFixedHotColor(AObj: TStringGrid; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixedHotColor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetFastEditing(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FastEditing;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetFastEditing(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FastEditing := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetFixedGridLineColor(AObj: TStringGrid): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FixedGridLineColor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetFixedGridLineColor(AObj: TStringGrid; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixedGridLineColor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetFocusColor(AObj: TStringGrid): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FocusColor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetFocusColor(AObj: TStringGrid; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FocusColor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetFocusRectVisible(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FocusRectVisible;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetFocusRectVisible(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FocusRectVisible := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetGridLineColor(AObj: TStringGrid): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GridLineColor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetGridLineColor(AObj: TStringGrid; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.GridLineColor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetGridLineStyle(AObj: TStringGrid): TPenStyle; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GridLineStyle;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetGridLineStyle(AObj: TStringGrid; AValue: TPenStyle); extdecl;
+begin
+  handleExceptionBegin
+  AObj.GridLineStyle := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetEditor(AObj: TStringGrid): TWinControl; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Editor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetEditor(AObj: TStringGrid; AValue: TWinControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Editor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetEditorBorderStyle(AObj: TStringGrid): TBorderStyle; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.EditorBorderStyle;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetEditorBorderStyle(AObj: TStringGrid; AValue: TBorderStyle); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditorBorderStyle := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetEditorMode(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.EditorMode;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetEditorMode(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EditorMode := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetSortOrder(AObj: TStringGrid): TSortOrder; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.SortOrder;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetSortOrder(AObj: TStringGrid; AValue: TSortOrder); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SortOrder := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetSortColumn(AObj: TStringGrid): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.SortColumn;
+  handleExceptionEnd
+end;
+
+//EVENT_TYPE:TOnSelectEvent
+procedure StringGrid_SetOnAfterSelection(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnSelectEvent_OnAfterSelection}
+  {$DEFINE EventName := OnAfterSelection}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TOnSelectEvent
+procedure StringGrid_SetOnBeforeSelection(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnSelectEvent_OnBeforeSelection}
+  {$DEFINE EventName := OnBeforeSelection}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TOnSelectEvent
+procedure StringGrid_SetOnButtonClick(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnSelectEvent_OnButtonClick}
+  {$DEFINE EventName := OnButtonClick}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TToggledCheckboxEvent
+procedure StringGrid_SetOnCheckboxToggled(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTToggledCheckboxEvent_OnCheckboxToggled}
+  {$DEFINE EventName := OnCheckboxToggled}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TGridOperationEvent
+procedure StringGrid_SetOnColRowDeleted(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTGridOperationEvent_OnColRowDeleted}
+  {$DEFINE EventName := OnColRowDeleted}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TGridOperationEvent
+procedure StringGrid_SetOnColRowExchanged(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTGridOperationEvent_OnColRowExchanged}
+  {$DEFINE EventName := OnColRowExchanged}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TGridOperationEvent
+procedure StringGrid_SetOnColRowInserted(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTGridOperationEvent_OnColRowInserted}
+  {$DEFINE EventName := OnColRowInserted}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TGridOperationEvent
 procedure StringGrid_SetOnColRowMoved(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMovedEvent_OnColRowMoved}
+  {$DEFINE EventMethodName := OnTGridOperationEvent_OnColRowMoved}
   {$DEFINE EventName := OnColRowMoved}
   EventMethodCode
+end;
+
+//EVENT_TYPE:TOnCompareCells
+procedure StringGrid_SetOnCompareCells(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnCompareCells_OnCompareCells}
+  {$DEFINE EventName := OnCompareCells}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure StringGrid_SetOnEditingDone(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnEditingDone}
+  {$DEFINE EventName := OnEditingDone}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TGetCellHintEvent
+procedure StringGrid_SetOnGetCellHint(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTGetCellHintEvent_OnGetCellHint}
+  {$DEFINE EventName := OnGetCellHint}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TGetCheckboxStateEvent
+procedure StringGrid_SetOnGetCheckboxState(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTGetCheckboxStateEvent_OnGetCheckboxState}
+  {$DEFINE EventName := OnGetCheckboxState}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TSetCheckboxStateEvent
+procedure StringGrid_SetOnSetCheckboxState(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTSetCheckboxStateEvent_OnSetCheckboxState}
+  {$DEFINE EventName := OnSetCheckboxState}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:THdrEvent
+procedure StringGrid_SetOnHeaderClick(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTHdrEvent_OnHeaderClick}
+  {$DEFINE EventName := OnHeaderClick}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:THdrEvent
+procedure StringGrid_SetOnHeaderSized(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTHdrEvent_OnHeaderSized}
+  {$DEFINE EventName := OnHeaderSized}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:THeaderSizingEvent
+procedure StringGrid_SetOnHeaderSizing(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTHeaderSizingEvent_OnHeaderSizing}
+  {$DEFINE EventName := OnHeaderSizing}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure StringGrid_SetOnPickListSelect(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnPickListSelect}
+  {$DEFINE EventName := OnPickListSelect}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TOnSelectEvent
+procedure StringGrid_SetOnSelection(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnSelectEvent_OnSelection}
+  {$DEFINE EventName := OnSelection}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TSelectEditorEvent
+procedure StringGrid_SetOnSelectEditor(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTSelectEditorEvent_OnSelectEditor}
+  {$DEFINE EventName := OnSelectEditor}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TUserCheckBoxBitmapEvent
+procedure StringGrid_SetOnUserCheckboxBitmap(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTUserCheckBoxBitmapEvent_OnUserCheckboxBitmap}
+  {$DEFINE EventName := OnUserCheckboxBitmap}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TValidateEntryEvent
+procedure StringGrid_SetOnValidateEntry(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTValidateEntryEvent_OnValidateEntry}
+  {$DEFINE EventName := OnValidateEntry}
+  EventMethodCode
+end;
+
+function StringGrid_GetAlternateColor(AObj: TStringGrid): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AlternateColor;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetAlternateColor(AObj: TStringGrid; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AlternateColor := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetAutoAdvance(AObj: TStringGrid): TAutoAdvance; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AutoAdvance;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetAutoAdvance(AObj: TStringGrid; AValue: TAutoAdvance); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdvance := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetAutoEdit(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AutoEdit;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetAutoEdit(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoEdit := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetAutoFillColumns(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AutoFillColumns;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetAutoFillColumns(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoFillColumns := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetCellHintPriority(AObj: TStringGrid): TCellHintPriority; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.CellHintPriority;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetCellHintPriority(AObj: TStringGrid; AValue: TCellHintPriority); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CellHintPriority := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetColumnClickSorts(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ColumnClickSorts;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetColumnClickSorts(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ColumnClickSorts := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetColumns(AObj: TStringGrid): TGridColumns; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Columns;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetColumns(AObj: TStringGrid; AValue: TGridColumns); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Columns := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetExtendedSelect(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ExtendedSelect;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetExtendedSelect(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ExtendedSelect := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetFlat(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Flat;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetFlat(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Flat := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetHeaderHotZones(AObj: TStringGrid): TGridZoneSet; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HeaderHotZones;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetHeaderHotZones(AObj: TStringGrid; AValue: TGridZoneSet); extdecl;
+begin
+  handleExceptionBegin
+  AObj.HeaderHotZones := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetHeaderPushZones(AObj: TStringGrid): TGridZoneSet; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HeaderPushZones;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetHeaderPushZones(AObj: TStringGrid; AValue: TGridZoneSet); extdecl;
+begin
+  handleExceptionBegin
+  AObj.HeaderPushZones := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetImageIndexSortAsc(AObj: TStringGrid): TImageIndex; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ImageIndexSortAsc;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetImageIndexSortAsc(AObj: TStringGrid; AValue: TImageIndex); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ImageIndexSortAsc := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetImageIndexSortDesc(AObj: TStringGrid): TImageIndex; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ImageIndexSortDesc;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetImageIndexSortDesc(AObj: TStringGrid; AValue: TImageIndex); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ImageIndexSortDesc := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetMouseWheelOption(AObj: TStringGrid): TMouseWheelOption; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MouseWheelOption;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetMouseWheelOption(AObj: TStringGrid; AValue: TMouseWheelOption); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MouseWheelOption := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetOptions2(AObj: TStringGrid): TGridOptions2; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Options2;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetOptions2(AObj: TStringGrid; AValue: TGridOptions2); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Options2 := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetRangeSelectMode(AObj: TStringGrid): TRangeSelectMode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.RangeSelectMode;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetRangeSelectMode(AObj: TStringGrid; AValue: TRangeSelectMode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.RangeSelectMode := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetTabAdvance(AObj: TStringGrid): TAutoAdvance; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TabAdvance;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetTabAdvance(AObj: TStringGrid; AValue: TAutoAdvance); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TabAdvance := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetTitleFont(AObj: TStringGrid): TFont; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TitleFont;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetTitleFont(AObj: TStringGrid; AValue: TFont); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TitleFont := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetTitleImageList(AObj: TStringGrid): TImageList; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TitleImageList;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetTitleImageList(AObj: TStringGrid; AValue: TImageList); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TitleImageList := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetTitleStyle(AObj: TStringGrid): TTitleStyle; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TitleStyle;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetTitleStyle(AObj: TStringGrid; AValue: TTitleStyle); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TitleStyle := AValue;
+  handleExceptionEnd
+end;
+
+function StringGrid_GetUseXORFeatures(AObj: TStringGrid): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.UseXORFeatures;
+  handleExceptionEnd
+end;
+
+procedure StringGrid_SetUseXORFeatures(AObj: TStringGrid; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.UseXORFeatures := AValue;
+  handleExceptionEnd
 end;
 
 function StringGrid_GetAlign(AObj: TStringGrid): TAlign; extdecl;
@@ -1136,20 +2020,6 @@ begin
   handleExceptionEnd
 end;
 
-function StringGrid_GetEditorMode(AObj: TStringGrid): LongBool; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.EditorMode;
-  handleExceptionEnd
-end;
-
-procedure StringGrid_SetEditorMode(AObj: TStringGrid; AValue: LongBool); extdecl;
-begin
-  handleExceptionBegin
-  AObj.EditorMode := AValue;
-  handleExceptionEnd
-end;
-
 function StringGrid_GetGridHeight(AObj: TStringGrid): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1668,6 +2538,13 @@ begin
   handleExceptionEnd
 end;
 
+function StringGrid_GetIsCellSelected(AObj: TStringGrid; aCol: Integer; aRow: Integer): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IsCellSelected[aCol, aRow];
+  handleExceptionEnd
+end;
+
 function StringGrid_GetCells(AObj: TStringGrid; ACol: Integer; ARow: Integer): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -1788,9 +2665,38 @@ end;
 exports
   StringGrid_Create,
   StringGrid_Free,
+  StringGrid_DeleteColRow,
+  StringGrid_DeleteCol,
+  StringGrid_DeleteRow,
+  StringGrid_ExchangeColRow,
+  StringGrid_InsertColRow,
+  StringGrid_MoveColRow,
+  StringGrid_SortColRow,
+  StringGrid_EditorByStyle,
+  StringGrid_EditorKeyDown,
+  StringGrid_EditorKeyPress,
+  StringGrid_EditorKeyUp,
+  StringGrid_EditorTextChanged,
+  StringGrid_EditingDone,
+  StringGrid_AutoAdjustColumns,
   StringGrid_CellRect,
-  StringGrid_MouseToCell,
+  StringGrid_CellToGridZone,
+  StringGrid_CheckPosition,
+  StringGrid_ClearCols,
+  StringGrid_ClearRows,
+  StringGrid_Clear,
+  StringGrid_ClearSelections,
+  StringGrid_HasMultiSelection,
+  StringGrid_InvalidateCell,
+  StringGrid_InvalidateCol,
+  StringGrid_InvalidateRange,
+  StringGrid_InvalidateRow,
+  StringGrid_IsCellVisible,
+  StringGrid_IsFixedCellVisible,
   StringGrid_MouseCoord,
+  StringGrid_MouseToCell,
+  StringGrid_MouseToLogcell,
+  StringGrid_MouseToGridZone,
   StringGrid_CanFocus,
   StringGrid_ContainsControl,
   StringGrid_ControlAtPos,
@@ -1841,7 +2747,97 @@ exports
   StringGrid_AnchorVerticalCenterTo,
   StringGrid_AnchorAsAlign,
   StringGrid_AnchorClient,
+  StringGrid_GetSelectedColor,
+  StringGrid_SetSelectedColor,
+  StringGrid_GetSelectedColumn,
+  StringGrid_GetStrictSort,
+  StringGrid_SetStrictSort,
+  StringGrid_GetFixedHotColor,
+  StringGrid_SetFixedHotColor,
+  StringGrid_GetFastEditing,
+  StringGrid_SetFastEditing,
+  StringGrid_GetFixedGridLineColor,
+  StringGrid_SetFixedGridLineColor,
+  StringGrid_GetFocusColor,
+  StringGrid_SetFocusColor,
+  StringGrid_GetFocusRectVisible,
+  StringGrid_SetFocusRectVisible,
+  StringGrid_GetGridLineColor,
+  StringGrid_SetGridLineColor,
+  StringGrid_GetGridLineStyle,
+  StringGrid_SetGridLineStyle,
+  StringGrid_GetEditor,
+  StringGrid_SetEditor,
+  StringGrid_GetEditorBorderStyle,
+  StringGrid_SetEditorBorderStyle,
+  StringGrid_GetEditorMode,
+  StringGrid_SetEditorMode,
+  StringGrid_GetSortOrder,
+  StringGrid_SetSortOrder,
+  StringGrid_GetSortColumn,
+  StringGrid_SetOnAfterSelection,
+  StringGrid_SetOnBeforeSelection,
+  StringGrid_SetOnButtonClick,
+  StringGrid_SetOnCheckboxToggled,
+  StringGrid_SetOnColRowDeleted,
+  StringGrid_SetOnColRowExchanged,
+  StringGrid_SetOnColRowInserted,
   StringGrid_SetOnColRowMoved,
+  StringGrid_SetOnCompareCells,
+  StringGrid_SetOnEditingDone,
+  StringGrid_SetOnGetCellHint,
+  StringGrid_SetOnGetCheckboxState,
+  StringGrid_SetOnSetCheckboxState,
+  StringGrid_SetOnHeaderClick,
+  StringGrid_SetOnHeaderSized,
+  StringGrid_SetOnHeaderSizing,
+  StringGrid_SetOnPickListSelect,
+  StringGrid_SetOnSelection,
+  StringGrid_SetOnSelectEditor,
+  StringGrid_SetOnUserCheckboxBitmap,
+  StringGrid_SetOnValidateEntry,
+  StringGrid_GetAlternateColor,
+  StringGrid_SetAlternateColor,
+  StringGrid_GetAutoAdvance,
+  StringGrid_SetAutoAdvance,
+  StringGrid_GetAutoEdit,
+  StringGrid_SetAutoEdit,
+  StringGrid_GetAutoFillColumns,
+  StringGrid_SetAutoFillColumns,
+  StringGrid_GetCellHintPriority,
+  StringGrid_SetCellHintPriority,
+  StringGrid_GetColumnClickSorts,
+  StringGrid_SetColumnClickSorts,
+  StringGrid_GetColumns,
+  StringGrid_SetColumns,
+  StringGrid_GetExtendedSelect,
+  StringGrid_SetExtendedSelect,
+  StringGrid_GetFlat,
+  StringGrid_SetFlat,
+  StringGrid_GetHeaderHotZones,
+  StringGrid_SetHeaderHotZones,
+  StringGrid_GetHeaderPushZones,
+  StringGrid_SetHeaderPushZones,
+  StringGrid_GetImageIndexSortAsc,
+  StringGrid_SetImageIndexSortAsc,
+  StringGrid_GetImageIndexSortDesc,
+  StringGrid_SetImageIndexSortDesc,
+  StringGrid_GetMouseWheelOption,
+  StringGrid_SetMouseWheelOption,
+  StringGrid_GetOptions2,
+  StringGrid_SetOptions2,
+  StringGrid_GetRangeSelectMode,
+  StringGrid_SetRangeSelectMode,
+  StringGrid_GetTabAdvance,
+  StringGrid_SetTabAdvance,
+  StringGrid_GetTitleFont,
+  StringGrid_SetTitleFont,
+  StringGrid_GetTitleImageList,
+  StringGrid_SetTitleImageList,
+  StringGrid_GetTitleStyle,
+  StringGrid_SetTitleStyle,
+  StringGrid_GetUseXORFeatures,
+  StringGrid_SetUseXORFeatures,
   StringGrid_GetAlign,
   StringGrid_SetAlign,
   StringGrid_GetAnchors,
@@ -1935,8 +2931,6 @@ exports
   StringGrid_GetCanvas,
   StringGrid_GetCol,
   StringGrid_SetCol,
-  StringGrid_GetEditorMode,
-  StringGrid_SetEditorMode,
   StringGrid_GetGridHeight,
   StringGrid_GetGridWidth,
   StringGrid_GetLeftCol,
@@ -2011,6 +3005,7 @@ exports
   StringGrid_SetChildSizing,
   StringGrid_GetBorderSpacing,
   StringGrid_SetBorderSpacing,
+  StringGrid_GetIsCellSelected,
   StringGrid_GetCells,
   StringGrid_SetCells,
   StringGrid_GetCols,

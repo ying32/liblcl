@@ -173,7 +173,7 @@ type
     class procedure OnTTabChangingEvent_OnChanging(Sender: TObject; var AllowChange: Boolean);
     class procedure OnTWebTitleChangeEvent_OnTitleChange(Sender: TObject; const Text: string);
     class procedure OnTWebJSExternalEvent_OnJSExternal(Sender: TObject; const Afunc: string; const AArgs: WideString; var ARetval: WideString);
-    class procedure OnTMovedEvent_OnColRowMoved(Sender: TObject; IsColumn: Boolean; FromIndex, ToIndex: Longint);
+
     class procedure OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol, ARow: Longint; ARect: TRect; State: TGridDrawState);
     class procedure OnTGetEditEvent_OnGetEditMask(Sender: TObject; ACol, ARow: Integer; var Value: string);
     class procedure OnTGetEditEvent_OnGetEditText(Sender: TObject; ACol, ARow: Integer; var Value: string);
@@ -188,6 +188,30 @@ type
 
     class procedure OnTConstrainedResizeEvent_OnConstrainedResize(Sender: TObject; var MinWidth, MinHeight, MaxWidth, MaxHeight: TConstraintSize);
     class procedure OnTDropFilesEvent_OnDropFiles(Sender: TObject; const AFileNames: array of string);
+
+
+    //TStringGrid
+    class procedure OnTOnSelectEvent_OnAfterSelection(Sender: TObject; aCol, aRow: Integer);
+    class procedure OnTOnSelectEvent_OnBeforeSelection(Sender: TObject; aCol, aRow: Integer);
+    class procedure OnTOnSelectEvent_OnButtonClick(Sender: TObject; aCol, aRow: Integer);
+    class procedure OnTToggledCheckboxEvent_OnCheckboxToggled(sender: TObject; aCol, aRow: Integer; aState: TCheckboxState);
+    class procedure OnTGridOperationEvent_OnColRowDeleted(Sender: TObject; IsColumn:Boolean; sIndex, tIndex: Integer);
+    class procedure OnTGridOperationEvent_OnColRowExchanged(Sender: TObject; IsColumn:Boolean; sIndex, tIndex: Integer);
+    class procedure OnTGridOperationEvent_OnColRowInserted(Sender: TObject; IsColumn:Boolean; sIndex, tIndex: Integer);
+    class procedure OnTGridOperationEvent_OnColRowMoved(Sender: TObject; IsColumn: Boolean; FromIndex, ToIndex: Longint);
+    class procedure OnTOnCompareCells_OnCompareCells(Sender: TObject; ACol, ARow, BCol,BRow: Integer; var Result: integer);
+    class procedure OnTNotifyEvent_OnEditingDone(Sender: TObject);
+    class procedure OnTGetCellHintEvent_OnGetCellHint(Sender: TObject; ACol, ARow: Integer; var HintText: String);
+    class procedure OnTGetCheckboxStateEvent_OnGetCheckboxState(Sender: TObject; ACol, ARow: Integer; var Value: TCheckboxState);
+    class procedure OnTSetCheckboxStateEvent_OnSetCheckboxState(Sender: TObject; ACol, ARow: Integer; const Value: TCheckboxState);
+    class procedure OnTHdrEvent_OnHeaderClick(Sender: TObject; IsColumn: Boolean; Index: Integer);
+    class procedure OnTHdrEvent_OnHeaderSized(Sender: TObject; IsColumn: Boolean; Index: Integer);
+    class procedure OnTHeaderSizingEvent_OnHeaderSizing(sender: TObject; const IsColumn: boolean; const aIndex, aSize: Integer);
+    class procedure OnTNotifyEvent_OnPickListSelect(Sender: TObject);
+    class procedure OnTOnSelectEvent_OnSelection(Sender: TObject; aCol, aRow: Integer);
+    class procedure OnTSelectEditorEvent_OnSelectEditor(Sender: TObject; aCol, aRow: Integer; var Editor: TWinControl);
+    class procedure OnTUserCheckboxBitmapEvent_OnUserCheckboxBitmap(Sender: TObject; const aCol, aRow: Integer; const CheckedState: TCheckboxState; var ABitmap: TBitmap);
+    class procedure OnTValidateEntryEvent_OnValidateEntry(sender: TObject; aCol, aRow: Integer; const OldValue: string; var NewValue: String);
     //--------------------------------------------------------------------------
 
     class procedure Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt);
@@ -621,7 +645,7 @@ end;
 class procedure TEventClass.OnTStartDockEvent_OnStartDock(Sender: TObject;
   var DragObject: TDragDockObject);
 begin
-  SendEvent(Sender, @TEventClass.OnTStartDockEvent_OnStartDock, [Sender, DragObject]);
+  SendEvent(Sender, @TEventClass.OnTStartDockEvent_OnStartDock, [Sender, @DragObject]);
 end;
 
 class procedure TEventClass.OnTUnDockEvent_OnUnDock(Sender: TObject; Client: TControl;
@@ -651,7 +675,7 @@ end;
 class procedure TEventClass.OnTSysLinkEvent_OnLinkClick(Sender: TObject;
   const Link: string; LinkType: TSysLinkType);
 begin
-  SendEvent(Sender, @TEventClass.OnTSysLinkEvent_OnLinkClick, [Sender, Link, Ord(LinkType)]);
+  SendEvent(Sender, @TEventClass.OnTSysLinkEvent_OnLinkClick, [Sender, PChar(Link), Ord(LinkType)]);
 end;
 
 class procedure TEventClass.OnTUDChangingEvent_OnChanging(Sender: TObject;
@@ -909,7 +933,7 @@ end;
 class procedure TEventClass.OnTWebTitleChangeEvent_OnTitleChange(Sender: TObject;
   const Text: string);
 begin
-  SendEvent(Sender, @TEventClass.OnTWebTitleChangeEvent_OnTitleChange, [Sender, Text]);
+  SendEvent(Sender, @TEventClass.OnTWebTitleChangeEvent_OnTitleChange, [Sender, PChar(Text)]);
 end;
 
 class procedure TEventClass.OnTWebJSExternalEvent_OnJSExternal(Sender: TObject;
@@ -918,15 +942,102 @@ var
   LRet: PChar;
 begin
   LRet := PChar(ARetval);
-  SendEvent(Sender, @TEventClass.OnTWebJSExternalEvent_OnJSExternal, [Sender, string(Afunc), string(AArgs), @LRet]);
+  SendEvent(Sender, @TEventClass.OnTWebJSExternalEvent_OnJSExternal, [Sender, PChar(Afunc), PChar(AArgs), @LRet]);
   ARetval := WideString(LRet);
 end;
 
-class procedure TEventClass.OnTMovedEvent_OnColRowMoved(Sender: TObject; IsColumn: Boolean;
+class procedure TEventClass.OnTGridOperationEvent_OnColRowMoved(Sender: TObject; IsColumn: Boolean;
   FromIndex, ToIndex: Longint);
 begin
-  //if IsColumn then
-    SendEvent(Sender, @TEventClass.OnTMovedEvent_OnColRowMoved, [Sender, IsColumn, FromIndex, ToIndex]);
+  SendEvent(Sender, @TEventClass.OnTGridOperationEvent_OnColRowMoved, [Sender, IsColumn, FromIndex, ToIndex]);
+end;
+
+class procedure TEventClass.OnTOnCompareCells_OnCompareCells(Sender: TObject;
+  ACol, ARow, BCol, BRow: Integer; var Result: integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTOnCompareCells_OnCompareCells, [Sender, ACol, ARow, BCol, BRow, @Result]);
+end;
+
+class procedure TEventClass.OnTNotifyEvent_OnEditingDone(Sender: TObject);
+begin
+  SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnEditingDone, [Sender]);
+end;
+
+class procedure TEventClass.OnTGetCellHintEvent_OnGetCellHint(Sender: TObject;
+  ACol, ARow: Integer; var HintText: String);
+var
+  LVal: PChar;
+begin
+  LVal := PChar(HintText);
+  SendEvent(Sender, @TEventClass.OnTGetCellHintEvent_OnGetCellHint, [Sender, aCol, aRow, @LVal]);
+  if LVal <> nil then
+    HintText := LVal;
+end;
+
+class procedure TEventClass.OnTGetCheckboxStateEvent_OnGetCheckboxState(
+  Sender: TObject; ACol, ARow: Integer; var Value: TCheckboxState);
+begin
+  SendEvent(Sender, @TEventClass.OnTGetCheckboxStateEvent_OnGetCheckboxState, [Sender, ACol, ARow, @Value]);
+end;
+
+class procedure TEventClass.OnTSetCheckboxStateEvent_OnSetCheckboxState(
+  Sender: TObject; ACol, ARow: Integer; const Value: TCheckboxState);
+begin
+  SendEvent(Sender, @TEventClass.OnTSetCheckboxStateEvent_OnSetCheckboxState, [Sender, ACol, ARow, PWord(@Value)^]);
+end;
+
+class procedure TEventClass.OnTHdrEvent_OnHeaderClick(Sender: TObject;
+  IsColumn: Boolean; Index: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTHdrEvent_OnHeaderClick, [Sender, IsColumn, Index]);
+end;
+
+class procedure TEventClass.OnTHdrEvent_OnHeaderSized(Sender: TObject;
+  IsColumn: Boolean; Index: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTHdrEvent_OnHeaderSized, [Sender, IsColumn, Index]);
+end;
+
+class procedure TEventClass.OnTHeaderSizingEvent_OnHeaderSizing(
+  sender: TObject; const IsColumn: boolean; const aIndex, aSize: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTHeaderSizingEvent_OnHeaderSizing, [Sender, IsColumn, aIndex, aSize]);
+end;
+
+class procedure TEventClass.OnTNotifyEvent_OnPickListSelect(Sender: TObject);
+begin
+  SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnPickListSelect, [Sender]);
+end;
+
+class procedure TEventClass.OnTOnSelectEvent_OnSelection(Sender: TObject; aCol,
+  aRow: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTOnSelectEvent_OnSelection, [Sender, aCol, aRow]);
+end;
+
+class procedure TEventClass.OnTSelectEditorEvent_OnSelectEditor(
+  Sender: TObject; aCol, aRow: Integer; var Editor: TWinControl);
+begin
+  SendEvent(Sender, @TEventClass.OnTSelectEditorEvent_OnSelectEditor, [Sender, aCol, aRow, @Editor]);
+end;
+
+class procedure TEventClass.OnTUserCheckboxBitmapEvent_OnUserCheckboxBitmap(
+  Sender: TObject; const aCol, aRow: Integer;
+  const CheckedState: TCheckboxState; var ABitmap: TBitmap);
+begin
+  SendEvent(Sender, @TEventClass.OnTUserCheckboxBitmapEvent_OnUserCheckboxBitmap, [Sender, aCol, aRow, PWord(@CheckedState)^, @ABitmap]);
+end;
+
+class procedure TEventClass.OnTValidateEntryEvent_OnValidateEntry(
+  sender: TObject; aCol, aRow: Integer; const OldValue: string;
+  var NewValue: String);
+var
+  LVal: PChar;
+begin
+  LVal := PChar(NewValue);
+  SendEvent(Sender, @TEventClass.OnTValidateEntryEvent_OnValidateEntry, [Sender, aCol, aRow, PChar(OldValue), @LVal]);
+  if LVal <> nil then
+    NewValue := LVal;
 end;
 
 class procedure TEventClass.OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol,
@@ -1016,6 +1127,48 @@ begin
   LLen := Length(AFileNames);
   if LLen > 0 then
     SendEvent(Sender, @TEventClass.OnTDropFilesEvent_OnDropFiles, [Sender, @AFileNames[0], LLen]);
+end;
+
+class procedure TEventClass.OnTOnSelectEvent_OnAfterSelection(Sender: TObject;
+  aCol, aRow: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTOnSelectEvent_OnAfterSelection, [Sender, aCol, aRow]);
+end;
+
+class procedure TEventClass.OnTOnSelectEvent_OnBeforeSelection(Sender: TObject;
+  aCol, aRow: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTOnSelectEvent_OnBeforeSelection, [Sender, aCol, aRow]);
+end;
+
+class procedure TEventClass.OnTOnSelectEvent_OnButtonClick(Sender: TObject;
+  aCol, aRow: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTOnSelectEvent_OnButtonClick, [Sender, aCol, aRow]);
+end;
+
+class procedure TEventClass.OnTToggledCheckboxEvent_OnCheckboxToggled(
+  sender: TObject; aCol, aRow: Integer; aState: TCheckboxState);
+begin
+  SendEvent(Sender, @TEventClass.OnTToggledCheckboxEvent_OnCheckboxToggled, [Sender, aCol, aRow, PWord(@aState)^]);
+end;
+
+class procedure TEventClass.OnTGridOperationEvent_OnColRowDeleted(
+  Sender: TObject; IsColumn: Boolean; sIndex, tIndex: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTGridOperationEvent_OnColRowDeleted, [Sender, IsColumn, sIndex, tIndex]);
+end;
+
+class procedure TEventClass.OnTGridOperationEvent_OnColRowExchanged(
+  Sender: TObject; IsColumn: Boolean; sIndex, tIndex: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTGridOperationEvent_OnColRowExchanged, [Sender, IsColumn, sIndex, tIndex]);
+end;
+
+class procedure TEventClass.OnTGridOperationEvent_OnColRowInserted(
+  Sender: TObject; IsColumn: Boolean; sIndex, tIndex: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTGridOperationEvent_OnColRowInserted, [Sender, IsColumn, sIndex, tIndex]);
 end;
 
 // 用户定义事件实现引入
