@@ -196,6 +196,30 @@ func templateIsBaseMethod(className, method string) bool {
 	return recursive(className, method)
 }
 
+func templateText(s string) template.HTML {
+	return template.HTML(s)
+}
+
+func templateCPsZero(params []define.TFuncParam) string {
+	if len(params) > 0 {
+		ns := ""
+		for i := 0; i < 12-len(params); i++ {
+			ns += " ,0"
+		}
+		return ns
+	}
+	return " ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0"
+}
+
+func templateDelDChar(s string) string {
+	if len(s) > 0 {
+		if s[0] == 'D' && !strings.Contains(s, "_Instance") {
+			return s[1:]
+		}
+	}
+	return s
+}
+
 var templateFuncs = template.FuncMap{
 	"isEmpty":      templateIsEmpty,
 	"covType":      templateCovType,
@@ -210,6 +234,9 @@ var templateFuncs = template.FuncMap{
 	"paramsEmpty":  templateParamsEmpty,
 	"propGetName":  templatePropGetName,
 	"isBaseMethod": templateIsBaseMethod,
+	"html":         templateText,
+	"cPsZero":      templateCPsZero,
+	"delDChar":     templateDelDChar,
 }
 
 func execTemplate(objFile define.TObjectFile, file TFile) {

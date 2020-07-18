@@ -36,5 +36,33 @@
           "save_file_name": "J:\\NimLang\\Hello\\src\\vcl.nim"
         }
       ]
-    }]
+    },
+    {
+      "type_dict": {
+        "i32": "int32_t",
+        "u32": "uint32_t",
+        "string": "char*",
+        "i16":"int16_t",
+        "u16": "uint16_t",
+        "u8": "uint8_t",
+        "i8": "int8_t",
+        "usize": "uintptr_t",
+        "isize":"intptr_t",
+        "u64":"uint64_t",
+        "i64": "int64_t",
+        "f32": "float",
+        "f64": "double",
+        "PPoint": "TPoint*",
+        "bool": "BOOL",
+        "pointer": "void*"
+      },
+      "keyword_dict": {},
+      "files": [
+        {
+          "template_file_name": "./c/tpl/liblcl-template.h",
+          "save_file_name": "./c/liblcl.h"
+        }
+      ]
+    }
+  ]
 }
