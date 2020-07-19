@@ -29,20 +29,11 @@ type
 {{/* 定义的一些函数 */}}
 #---------------------------------------------------------------
 ##
-proc ShowMessage*(msg: string) =
-  DShowMessage(msg)
-##
-proc GetStringArrOf*(p: pointer, index: int): string =
-  return $DGetStringArrOf(p, index)
-##
 proc CheckPtr*(obj: TObject): pointer =
   if obj != nil:
     return obj.FInstance
   else:
     return nil
-##
-proc LoadResFormFile*(fileName: string, root: TObject) =
-  ResFormLoadFromFile(fileName, CheckPtr(root))
 ##
 ## -------------------- 转换对象定义 ------------------------------------------
 ##
