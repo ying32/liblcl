@@ -14,15 +14,21 @@
 
 * 已支持语言： 
 
-go: https://github.com/ying32/govcl  
+  * go: https://github.com/ying32/govcl  
 
-c/c++: [Tools/makeCHeader/test](Tools/makeCHeader/test )    
+  * c/c++: [Tools/genBind/c](Tools/genBind/c)    
+
+* 完成度较高的语言：
+
+  * nim（Test）: https://github.com/ying32/nim-vcl  
 
 * 测试中的语言    
 
-rust（Test only）: https://github.com/ying32/rust-vcl  
+  * rust（Test only）: https://github.com/ying32/rust-vcl  
 
-nim（Test only）: https://github.com/ying32/nim-vcl  
+----
+
+语言绑定工具生成器：[genBind](Tools\genBind)，目前已经生成了c/c++、nim的，详细参考这两种语言的绑定模板文件。
 
 ----
 

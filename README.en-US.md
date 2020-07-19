@@ -15,15 +15,22 @@ A common cross-platform GUI library, the core uses Lazarus LCL.
 
 * Languages supported:  
 
-go: https://github.com/ying32/govcl  
+  * go: https://github.com/ying32/govcl  
 
-c/c++: [Tools/makeCHeader/test](Tools/makeCHeader/test )    
+  * c/c++: [Tools/genBind/c](Tools/genBind/c)    
+
+* Highly completed languages:  
+
+  * nim(Test): https://github.com/ying32/nim-vcl  
 
 * Language under test  
 
-rust（Test only）: https://github.com/ying32/rust-vcl  
+  * rust(Test only): https://github.com/ying32/rust-vcl  
 
-nim（Test only）: https://github.com/ying32/nim-vcl  
+
+----
+
+Language binding tool generator: [genBind](Tools\genBind), c/c++ and nim have been generated. Please refer to the binding template files of these two languages for details.  
 
 ----
 
