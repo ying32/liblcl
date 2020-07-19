@@ -71,6 +71,7 @@ method Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}}
      this.{{if ne $className "TObject"}}TObject.{{end}}FInstance = nil
 ##
 {{else if $mm.IsStatic}}
+##
 proc {{$className}}Class*(): TClass =
   return {{$mm.Name}}()
 ##
@@ -78,6 +79,7 @@ proc {{$className}}Class*(): TClass =
 {{if not $mm.IsStatic}}
 {{/* 累了，不想弄，直接写好的得了 */}}
 {{if eq $mm.RealName "TextRect2"}}
+##
 method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 {.base.} =
   var outstr: cstring
   result = Canvas_TextRect2(this.FInstance, Rect, Text, outstr, TextFormat)
@@ -95,6 +97,12 @@ method {{propGetName $mm}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}
 {{end}}
 {{end}}
 {{end}}
+##
+proc As{{$classN}}(obj: pointer): {{$className}} =
+  if obj == nil:
+    return nil
+  new(result)
+  result.FInstance = obj
 {{end}}
 ##
 ##
