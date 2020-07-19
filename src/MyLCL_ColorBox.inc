@@ -1137,6 +1137,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ColorBox_GetBoundsRect(AObj: TColorBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1165,6 +1166,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ColorBox_GetClientOrigin(AObj: TColorBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1172,6 +1174,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ColorBox_GetClientRect(AObj: TColorBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

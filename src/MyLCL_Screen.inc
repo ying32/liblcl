@@ -158,6 +158,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Screen_GetDesktopRect(AObj: TScreen; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +194,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Screen_GetWorkAreaRect(AObj: TScreen; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

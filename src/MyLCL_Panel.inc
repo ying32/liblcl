@@ -1096,6 +1096,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Panel_GetBoundsRect(AObj: TPanel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1124,6 +1125,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Panel_GetClientOrigin(AObj: TPanel; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1131,6 +1133,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Panel_GetClientRect(AObj: TPanel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

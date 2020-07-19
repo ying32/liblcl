@@ -509,6 +509,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function MonthCalendar_GetDate(AObj: TMonthCalendar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -916,6 +917,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MonthCalendar_GetBoundsRect(AObj: TMonthCalendar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -944,6 +946,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MonthCalendar_GetClientOrigin(AObj: TMonthCalendar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -951,6 +954,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MonthCalendar_GetClientRect(AObj: TMonthCalendar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

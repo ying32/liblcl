@@ -1059,6 +1059,7 @@ begin
   EventMethodCode
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_GetCaretPos(AObj: TMemo; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1269,6 +1270,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_GetBoundsRect(AObj: TMemo; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1297,6 +1299,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_GetClientOrigin(AObj: TMemo; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1304,6 +1307,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Memo_GetClientRect(AObj: TMemo; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

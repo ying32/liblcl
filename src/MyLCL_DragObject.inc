@@ -115,6 +115,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DragObject_GetDragPos(AObj: TDragObject; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -143,6 +144,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DragObject_GetDragTargetPos(AObj: TDragObject; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

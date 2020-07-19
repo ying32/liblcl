@@ -1200,6 +1200,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListBox_GetBoundsRect(AObj: TListBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1228,6 +1229,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListBox_GetClientOrigin(AObj: TListBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1235,6 +1237,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListBox_GetClientRect(AObj: TListBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

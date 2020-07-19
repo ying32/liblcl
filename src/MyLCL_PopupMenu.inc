@@ -153,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PopupMenu_GetPopupPoint(AObj: TPopupMenu; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

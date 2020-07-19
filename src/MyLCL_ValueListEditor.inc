@@ -1185,6 +1185,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_GetSelection(AObj: TValueListEditor; var Result: TGridRect); extdecl;
 begin
   handleExceptionBegin
@@ -1346,6 +1347,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_GetBoundsRect(AObj: TValueListEditor; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1374,6 +1376,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_GetClientOrigin(AObj: TValueListEditor; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1381,6 +1384,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ValueListEditor_GetClientRect(AObj: TValueListEditor; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -926,6 +926,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ScrollBar_GetBoundsRect(AObj: TScrollBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -954,6 +955,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ScrollBar_GetClientOrigin(AObj: TScrollBar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -961,6 +963,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ScrollBar_GetClientRect(AObj: TScrollBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

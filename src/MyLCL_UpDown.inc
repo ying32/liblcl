@@ -890,6 +890,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure UpDown_GetBoundsRect(AObj: TUpDown; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -918,6 +919,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure UpDown_GetClientOrigin(AObj: TUpDown; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -925,6 +927,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure UpDown_GetClientRect(AObj: TUpDown; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

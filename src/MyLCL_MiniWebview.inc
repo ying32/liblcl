@@ -765,6 +765,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_GetBoundsRect(AObj: TMiniWebview; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -793,6 +794,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_GetClientOrigin(AObj: TMiniWebview; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -800,6 +802,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MiniWebview_GetClientRect(AObj: TMiniWebview; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

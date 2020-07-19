@@ -980,6 +980,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioButton_GetBoundsRect(AObj: TRadioButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1008,6 +1009,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioButton_GetClientOrigin(AObj: TRadioButton; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1015,6 +1017,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioButton_GetClientRect(AObj: TRadioButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

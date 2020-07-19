@@ -1142,6 +1142,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CoolBar_GetBoundsRect(AObj: TCoolBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1170,6 +1171,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CoolBar_GetClientOrigin(AObj: TCoolBar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1177,6 +1179,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CoolBar_GetClientRect(AObj: TCoolBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

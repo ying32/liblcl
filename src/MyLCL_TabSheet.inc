@@ -999,6 +999,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_GetBoundsRect(AObj: TTabSheet; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1027,6 +1028,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_GetClientOrigin(AObj: TTabSheet; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1034,6 +1036,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TabSheet_GetClientRect(AObj: TTabSheet; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

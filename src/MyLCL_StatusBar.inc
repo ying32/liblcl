@@ -1035,6 +1035,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StatusBar_GetBoundsRect(AObj: TStatusBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1063,6 +1064,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StatusBar_GetClientOrigin(AObj: TStatusBar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1070,6 +1072,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StatusBar_GetClientRect(AObj: TStatusBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

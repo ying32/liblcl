@@ -126,7 +126,11 @@ func templateCovKeyWord(s string) string {
 }
 
 func templateIsObject(s string) bool {
-	_, ok := Objs[strings.TrimSpace(s)]
+	s = strings.TrimSpace(s)
+	if s == "" {
+		return false
+	}
+	_, ok := Objs[s]
 	return ok
 }
 
@@ -222,6 +226,20 @@ func templateDelDChar(s string) string {
 	return s
 }
 
+func templateGetLastParam(pss []define.TFuncParam) define.TFuncParam {
+	if len(pss) == 0 {
+		return define.TFuncParam{}
+	}
+	return pss[len(pss)-1]
+}
+
+func templateCanOutParam(mm define.TFunction, idx int) bool {
+	if !mm.LastIsReturn {
+		return true
+	}
+	return idx < len(mm.Params)-1
+}
+
 var templateFuncs = template.FuncMap{
 	"isEmpty":      templateIsEmpty,
 	"covType":      templateCovType,
@@ -239,6 +257,8 @@ var templateFuncs = template.FuncMap{
 	"html":         templateText,
 	"cPsZero":      templateCPsZero,
 	"delDChar":     templateDelDChar,
+	"lastParam":    templateGetLastParam,
+	"canOutParam":  templateCanOutParam,
 }
 
 func execTemplate(objFile define.TObjectFile, file TFile, lineBreak string) {

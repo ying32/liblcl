@@ -703,6 +703,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ImageButton_GetBoundsRect(AObj: TImageButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -731,6 +732,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ImageButton_GetClientOrigin(AObj: TImageButton; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -738,6 +740,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ImageButton_GetClientRect(AObj: TImageButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

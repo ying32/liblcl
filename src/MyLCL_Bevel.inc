@@ -459,6 +459,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Bevel_GetBoundsRect(AObj: TBevel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -487,6 +488,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Bevel_GetClientOrigin(AObj: TBevel; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -494,6 +496,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Bevel_GetClientRect(AObj: TBevel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -733,6 +733,7 @@ begin
   EventMethodCode
 end;
 
+//RETURNISLASTPARAM:
 procedure SpeedButton_GetBoundsRect(AObj: TSpeedButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -761,6 +762,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure SpeedButton_GetClientOrigin(AObj: TSpeedButton; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -768,6 +770,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure SpeedButton_GetClientRect(AObj: TSpeedButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

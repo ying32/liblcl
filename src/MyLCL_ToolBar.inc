@@ -1197,6 +1197,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolBar_GetBoundsRect(AObj: TToolBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1225,6 +1226,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolBar_GetClientOrigin(AObj: TToolBar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1232,6 +1234,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolBar_GetClientRect(AObj: TToolBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

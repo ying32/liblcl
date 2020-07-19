@@ -714,6 +714,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Image_GetBoundsRect(AObj: TImage; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -742,6 +743,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Image_GetClientOrigin(AObj: TImage; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -749,6 +751,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Image_GetClientRect(AObj: TImage; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

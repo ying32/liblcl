@@ -139,6 +139,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure FindDialog_GetPosition(AObj: TFindDialog; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

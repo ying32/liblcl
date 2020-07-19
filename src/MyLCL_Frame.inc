@@ -1058,6 +1058,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Frame_GetBoundsRect(AObj: TFrame; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1086,6 +1087,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Frame_GetClientOrigin(AObj: TFrame; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1093,6 +1095,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Frame_GetClientRect(AObj: TFrame; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

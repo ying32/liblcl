@@ -41,15 +41,25 @@ proc CheckPtr*(obj: TObject): pointer =
   else:
     return nil
 ##
-proc getApplication(): TApplication =
-  new(result)
-  result.FInstance = Application_Instance()
-##
-##
 proc LoadResFormFile*(fileName: string, root: TObject) =
   ResFormLoadFromFile(fileName, CheckPtr(root))
 ##
+## -------------------- 转换对象定义 ------------------------------------------
 ##
+{{/* As<xxx>方法定义 */}}
+{{range $el := .Objects}}
+## {{/*这里添加一个强制转换的*/}}
+proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
+  if obj == nil:
+    return nil
+  new(result)
+  result.FInstance = obj
+{{end}}
+##
+
+
+{{/*模板定义*/}}
+{{define "getlastPs"}}{{if .LastIsReturn}}: {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
 
 {{/* 开始生成方法 */}}
 {{range $el := .Objects}}
@@ -70,6 +80,15 @@ method Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}}
      {{$mm.Name}}(this.FInstance)
      this.{{if ne $className "TObject"}}TObject.{{end}}FInstance = nil
 ##
+{{/*基类，添加一个Instance方法*/}}
+{{if eq $className "TObject"}}
+method Instance*(this: TObject): pointer {.base.} =
+  if this != nil:
+    return this.FInstance
+  else:
+    return nil
+{{end}}
+##
 {{else if $mm.IsStatic}}
 ##
 proc {{$className}}Class*(): TClass =
@@ -86,27 +105,20 @@ method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var str
   AOutStr = $outstr
 {{else}}
 ##
-method {{propGetName $mm}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{end}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}} =
-  {{if not (isEmpty $mm.Return)}}
-    {{if isObject $mm.Return}}
-  new(result)
-    {{end}}
-  {{end}}
-  {{if not (isEmpty $mm.Return)}}{{if isObject $mm.Return}}result.FInstance ={{else}}return{{end}} {{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.FInstance{{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{end}})
+method {{propGetName $mm}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}} =
+  {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.FInstance{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
 {{end}}
 {{end}}
 {{end}}
 {{end}}
-##
-proc As{{$classN}}(obj: pointer): {{$className}} =
-  if obj == nil:
-    return nil
-  new(result)
-  result.FInstance = obj
 {{end}}
 ##
 ##
 #------------ global vars ----------------------
 ##
 var
-   Application* = getApplication()
+  Application* = AsApplication(Application_Instance())
+  Screen* = AsScreen(Screen_Instance())
+  Mouse* = AsMouse(Mouse_Instance())
+  Clipboard* = AsClipboard(Clipboard_Instance())
+  Printer* = AsPrinter(Printer_Instance())

@@ -1104,6 +1104,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RichEdit_GetCaretPos(AObj: TRichEdit; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1342,6 +1343,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RichEdit_GetBoundsRect(AObj: TRichEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1370,6 +1372,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RichEdit_GetClientOrigin(AObj: TRichEdit; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1377,6 +1380,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RichEdit_GetClientRect(AObj: TRichEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

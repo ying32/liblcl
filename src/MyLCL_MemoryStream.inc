@@ -142,6 +142,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MemoryStream_GetPosition(AObj: TMemoryStream; var Result: Int64); extdecl;
 begin
   handleExceptionBegin
@@ -156,6 +157,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MemoryStream_GetSize(AObj: TMemoryStream; var Result: Int64); extdecl;
 begin
   handleExceptionBegin

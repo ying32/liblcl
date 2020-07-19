@@ -1121,6 +1121,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure SpinEdit_GetBoundsRect(AObj: TSpinEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1149,6 +1150,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure SpinEdit_GetClientOrigin(AObj: TSpinEdit; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1156,6 +1158,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure SpinEdit_GetClientRect(AObj: TSpinEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -1178,6 +1178,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_GetSelection(AObj: TDrawGrid; var Result: TGridRect); extdecl;
 begin
   handleExceptionBegin
@@ -1339,6 +1340,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_GetBoundsRect(AObj: TDrawGrid; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1367,6 +1369,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_GetClientOrigin(AObj: TDrawGrid; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1374,6 +1377,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DrawGrid_GetClientRect(AObj: TDrawGrid; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

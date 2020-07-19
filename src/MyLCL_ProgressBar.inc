@@ -984,6 +984,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ProgressBar_GetBoundsRect(AObj: TProgressBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1012,6 +1013,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ProgressBar_GetClientOrigin(AObj: TProgressBar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1019,6 +1021,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ProgressBar_GetClientRect(AObj: TProgressBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

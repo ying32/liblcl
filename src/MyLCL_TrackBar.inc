@@ -1010,6 +1010,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TrackBar_GetBoundsRect(AObj: TTrackBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1038,6 +1039,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TrackBar_GetClientOrigin(AObj: TTrackBar; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1045,6 +1047,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TrackBar_GetClientRect(AObj: TTrackBar; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

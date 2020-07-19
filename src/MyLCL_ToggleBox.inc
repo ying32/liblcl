@@ -1000,6 +1000,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToggleBox_GetBoundsRect(AObj: TToggleBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1028,6 +1029,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToggleBox_GetClientOrigin(AObj: TToggleBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1035,6 +1037,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToggleBox_GetClientRect(AObj: TToggleBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -642,6 +642,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure WinControl_GetBoundsRect(AObj: TWinControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -670,6 +671,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure WinControl_GetClientOrigin(AObj: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -677,6 +679,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure WinControl_GetClientRect(AObj: TWinControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

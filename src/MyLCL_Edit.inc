@@ -1233,6 +1233,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Edit_GetBoundsRect(AObj: TEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1261,6 +1262,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Edit_GetClientOrigin(AObj: TEdit; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1268,6 +1270,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Edit_GetClientRect(AObj: TEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

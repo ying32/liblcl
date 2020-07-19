@@ -2048,6 +2048,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_GetSelection(AObj: TStringGrid; var Result: TGridRect); extdecl;
 begin
   handleExceptionBegin
@@ -2209,6 +2210,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_GetBoundsRect(AObj: TStringGrid; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -2237,6 +2239,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_GetClientOrigin(AObj: TStringGrid; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -2244,6 +2247,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StringGrid_GetClientRect(AObj: TStringGrid; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

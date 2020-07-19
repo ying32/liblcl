@@ -1070,6 +1070,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_GetBoundsRect(AObj: TPageControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1098,6 +1099,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_GetClientOrigin(AObj: TPageControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1105,6 +1107,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PageControl_GetClientRect(AObj: TPageControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -624,6 +624,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PaintBox_GetBoundsRect(AObj: TPaintBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -652,6 +653,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PaintBox_GetClientOrigin(AObj: TPaintBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -659,6 +661,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure PaintBox_GetClientRect(AObj: TPaintBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

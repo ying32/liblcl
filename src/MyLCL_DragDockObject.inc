@@ -101,6 +101,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DragDockObject_GetDockRect(AObj: TDragDockObject; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -129,6 +130,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DragDockObject_GetEraseDockRect(AObj: TDragDockObject; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -185,6 +187,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DragDockObject_GetDragPos(AObj: TDragDockObject; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -213,6 +216,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DragDockObject_GetDragTargetPos(AObj: TDragDockObject; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

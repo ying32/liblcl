@@ -1730,6 +1730,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_GetBoundsRect(AObj: TListView; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1758,6 +1759,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_GetClientOrigin(AObj: TListView; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1765,6 +1767,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListView_GetClientRect(AObj: TListView; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

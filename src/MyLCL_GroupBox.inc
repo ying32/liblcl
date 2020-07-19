@@ -976,6 +976,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure GroupBox_GetBoundsRect(AObj: TGroupBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1004,6 +1005,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure GroupBox_GetClientOrigin(AObj: TGroupBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1011,6 +1013,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure GroupBox_GetClientRect(AObj: TGroupBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

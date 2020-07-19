@@ -697,6 +697,7 @@ begin
   EventMethodCode
 end;
 
+//RETURNISLASTPARAM:
 procedure XButton_GetBoundsRect(AObj: TXButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -725,6 +726,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure XButton_GetClientOrigin(AObj: TXButton; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -732,6 +734,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure XButton_GetClientRect(AObj: TXButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

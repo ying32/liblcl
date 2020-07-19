@@ -360,6 +360,10 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 
 	}
 	item.Params = params
+	// delphi中因为处理了，所以这里不这样返回了
+	if item.Return == "datetime" {
+		item.LastIsReturn = false
+	}
 
 	// 添加到对象文件中
 	if !isClass {

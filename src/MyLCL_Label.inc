@@ -764,6 +764,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Label_GetBoundsRect(AObj: TLabel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -792,6 +793,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Label_GetClientOrigin(AObj: TLabel; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -799,6 +801,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Label_GetClientRect(AObj: TLabel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

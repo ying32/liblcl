@@ -13,7 +13,7 @@ type
 ##
   {{$el.Name}}* = object
     {{range $field := $el.Fields}}
-    {{covKeyword $field.Name}}: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
+    {{covKeyword $field.Name}}*: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
     {{end}}
   {{else if eq $el.Kind "set"}}
 ##
@@ -33,7 +33,7 @@ type
 ##
   {{$el.Name}}* = object
     {{range $field := $el.Fields}}
-    {{covKeyword $field.Name}}: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
+    {{covKeyword $field.Name}}*: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
     {{end}}
   {{else if eq $el.Kind "enum"}}
 ##
@@ -59,9 +59,9 @@ type
 ##
 when defined({{$el.FieldArch}}):
   type
-    {{$el.Name}}* = object
+    {{$el.Name}}{{if ne $el.Name "TDWordFiller"}}*{{end}} = object
     {{range $field := $el.Fields}}
-      {{covKeyword $field.Name}}: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
+      {{covKeyword $field.Name}}{{if not (or (eq $field.Name "_UnusedMsg") (eq $field.Type "TDWordFiller"))}}*{{end}}: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
     {{end}}
   {{end}}
 {{end}}

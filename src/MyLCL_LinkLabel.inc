@@ -688,6 +688,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure LinkLabel_GetBoundsRect(AObj: TLinkLabel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -716,6 +717,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure LinkLabel_GetClientOrigin(AObj: TLinkLabel; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -723,6 +725,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure LinkLabel_GetClientRect(AObj: TLinkLabel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

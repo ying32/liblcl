@@ -1076,6 +1076,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CheckGroup_GetBoundsRect(AObj: TCheckGroup; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1090,6 +1091,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CheckGroup_GetClientOrigin(AObj: TCheckGroup; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1097,6 +1099,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CheckGroup_GetClientRect(AObj: TCheckGroup; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

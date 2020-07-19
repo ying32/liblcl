@@ -1686,6 +1686,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_GetBoundsRect(AObj: TTreeView; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1714,6 +1715,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_GetClientOrigin(AObj: TTreeView; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1721,6 +1723,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure TreeView_GetClientRect(AObj: TTreeView; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

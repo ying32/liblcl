@@ -1484,6 +1484,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_GetBoundsRect(AObj: TForm; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1498,6 +1499,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_GetClientOrigin(AObj: TForm; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1505,6 +1507,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Form_GetClientRect(AObj: TForm; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

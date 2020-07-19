@@ -375,6 +375,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Control_GetBoundsRect(AObj: TControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -403,6 +404,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Control_GetClientOrigin(AObj: TControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -410,6 +412,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Control_GetClientRect(AObj: TControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

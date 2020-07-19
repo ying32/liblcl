@@ -268,6 +268,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ListItem_GetPosition(AObj: TListItem; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

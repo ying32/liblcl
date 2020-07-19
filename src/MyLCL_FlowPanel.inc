@@ -1112,6 +1112,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure FlowPanel_GetBoundsRect(AObj: TFlowPanel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1140,6 +1141,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure FlowPanel_GetClientOrigin(AObj: TFlowPanel; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1147,6 +1149,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure FlowPanel_GetClientRect(AObj: TFlowPanel; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

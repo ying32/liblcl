@@ -900,6 +900,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_GetBoundsRect(AObj: TRadioGroup; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -928,6 +929,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_GetClientOrigin(AObj: TRadioGroup; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -935,6 +937,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure RadioGroup_GetClientRect(AObj: TRadioGroup; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

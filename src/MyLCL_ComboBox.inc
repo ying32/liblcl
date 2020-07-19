@@ -1203,6 +1203,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBox_GetBoundsRect(AObj: TComboBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1231,6 +1232,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBox_GetClientOrigin(AObj: TComboBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1238,6 +1240,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ComboBox_GetClientRect(AObj: TComboBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

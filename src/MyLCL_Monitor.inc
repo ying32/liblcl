@@ -119,6 +119,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Monitor_GetBoundsRect(AObj: TMonitor; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -126,6 +127,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Monitor_GetWorkareaRect(AObj: TMonitor; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

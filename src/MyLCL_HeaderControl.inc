@@ -945,6 +945,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure HeaderControl_GetBoundsRect(AObj: THeaderControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -973,6 +974,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure HeaderControl_GetClientOrigin(AObj: THeaderControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -980,6 +982,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure HeaderControl_GetClientRect(AObj: THeaderControl; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

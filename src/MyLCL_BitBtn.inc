@@ -1022,6 +1022,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_GetBoundsRect(AObj: TBitBtn; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1050,6 +1051,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_GetClientOrigin(AObj: TBitBtn; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1057,6 +1059,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure BitBtn_GetClientRect(AObj: TBitBtn; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

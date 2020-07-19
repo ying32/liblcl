@@ -91,6 +91,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Mouse_GetCursorPos(AObj: TMouse; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

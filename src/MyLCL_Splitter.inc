@@ -502,6 +502,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_GetBoundsRect(AObj: TSplitter; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -530,6 +531,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_GetClientOrigin(AObj: TSplitter; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -537,6 +539,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Splitter_GetClientRect(AObj: TSplitter; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

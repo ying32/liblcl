@@ -161,6 +161,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ReplaceDialog_GetPosition(AObj: TReplaceDialog; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

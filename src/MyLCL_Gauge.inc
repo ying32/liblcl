@@ -614,6 +614,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_GetBoundsRect(AObj: TGauge; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -642,6 +643,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_GetClientOrigin(AObj: TGauge; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -649,6 +651,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Gauge_GetClientRect(AObj: TGauge; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -1008,6 +1008,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CheckBox_GetBoundsRect(AObj: TCheckBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1036,6 +1037,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CheckBox_GetClientOrigin(AObj: TCheckBox; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1043,6 +1045,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure CheckBox_GetClientRect(AObj: TCheckBox; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

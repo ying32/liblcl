@@ -966,6 +966,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Button_GetBoundsRect(AObj: TButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -994,6 +995,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Button_GetClientOrigin(AObj: TButton; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1001,6 +1003,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Button_GetClientRect(AObj: TButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

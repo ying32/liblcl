@@ -774,6 +774,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_GetBoundsRect(AObj: TToolButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -802,6 +803,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_GetClientOrigin(AObj: TToolButton; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -809,6 +811,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure ToolButton_GetClientRect(AObj: TToolButton; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

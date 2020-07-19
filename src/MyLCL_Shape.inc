@@ -579,6 +579,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Shape_GetBoundsRect(AObj: TShape; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -607,6 +608,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Shape_GetClientOrigin(AObj: TShape; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -614,6 +616,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure Shape_GetClientRect(AObj: TShape; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -1242,6 +1242,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MaskEdit_GetBoundsRect(AObj: TMaskEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1270,6 +1271,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MaskEdit_GetClientOrigin(AObj: TMaskEdit; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1277,6 +1279,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure MaskEdit_GetClientRect(AObj: TMaskEdit; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

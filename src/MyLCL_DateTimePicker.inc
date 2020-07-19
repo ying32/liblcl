@@ -425,6 +425,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function DateTimePicker_GetDateTime(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -516,6 +517,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function DateTimePicker_GetDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -530,6 +532,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function DateTimePicker_GetTime(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -628,6 +631,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function DateTimePicker_GetMaxDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -642,6 +646,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 function DateTimePicker_GetMinDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -967,6 +972,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_GetBoundsRect(AObj: TDateTimePicker; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -995,6 +1001,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_GetClientOrigin(AObj: TDateTimePicker; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1002,6 +1009,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure DateTimePicker_GetClientRect(AObj: TDateTimePicker; var Result: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -996,6 +996,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StaticText_GetBoundsRect(AObj: TStaticText; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -1024,6 +1025,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StaticText_GetClientOrigin(AObj: TStaticText; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1031,6 +1033,7 @@ begin
   handleExceptionEnd
 end;
 
+//RETURNISLASTPARAM:
 procedure StaticText_GetClientRect(AObj: TStaticText; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
