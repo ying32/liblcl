@@ -805,11 +805,26 @@ begin
 end;
 
 
-//procedure SetGlobalFormScaled(AVal: LongBool); extdecl;
-//begin
-//  // 先移除掉，待后我有2k屏再说吧。
-//  // Application.Scaled := AVal;
-//end;
+function DPasswordBox(const ACaption, APrompt : PChar): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result := PChar(PasswordBox(ACaption, APrompt));
+  handleExceptionEnd
+end;
+
+function DInputCombo(const ACaption, APrompt: PChar; const AList: TStrings): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result := InputCombo(ACaption, APrompt, AList);
+  handleExceptionEnd
+end;
+
+function DInputComboEx(const ACaption, APrompt: PChar; const AList: TStrings; AllowCustomText: LongBool): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result := PChar(InputComboEx(ACaption, APrompt, AList, AllowCustomText));
+  handleExceptionEnd
+end;
 
 
 {$IFDEF WINDOWS}
@@ -1315,6 +1330,9 @@ exports
   DSelectDirectory2,
   DInputBox,
   DInputQuery,
+  DPasswordBox,
+  DInputCombo,
+  DInputComboEx,
 
 {$IFDEF WINDOWS}
   // ShortCut

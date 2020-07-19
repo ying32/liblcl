@@ -308,6 +308,20 @@ begin
   handleExceptionEnd
 end;
 
+function StringList_GetNameValueSeparator(AObj: TStringList): Char; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.NameValueSeparator;
+  handleExceptionEnd
+end;
+
+procedure StringList_SetNameValueSeparator(AObj: TStringList; AValue: Char); extdecl;
+begin
+  handleExceptionBegin
+  AObj.NameValueSeparator := AValue;
+  handleExceptionEnd
+end;
+
 function StringList_GetText(AObj: TStringList): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -423,6 +437,8 @@ exports
   StringList_GetCount,
   StringList_GetDelimiter,
   StringList_SetDelimiter,
+  StringList_GetNameValueSeparator,
+  StringList_SetNameValueSeparator,
   StringList_GetText,
   StringList_SetText,
   StringList_GetObjects,
