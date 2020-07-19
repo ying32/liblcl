@@ -20,13 +20,16 @@ char *UTF8Decode(char* str) {
 }
 #endif
 
+
+// 控件全局定义
+TMemo mmoText;
+TForm form2;
+
 // 按钮单击事件
 void onButton1Click(TObject sender) {
     ShowMessage("Hello world!");
 }
 
-// 全局定义
-TMemo mmoText;
 
 // 文件拖放事件
 void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
@@ -72,6 +75,12 @@ void onFormKeyDown(TObject sender, Char* key, TShiftState shift) {
 // 编辑框内容改变事件
 void onEditChange(TObject sender) {
     printf("%s\n", Edit_GetText(sender));
+}
+
+void onBtn2Click(TObject sender) {
+    if (form2) {
+        Form_Show(form2);
+    }
 }
 
 int main()
@@ -138,6 +147,51 @@ int main()
         Button_SetLeft(btn, 100);
 		// 设置按钮在Parent的顶边位置
         Button_SetTop(btn, 100);
+
+        //form2
+        form2 = Application_CreateForm(Application, FALSE);
+        Form_SetPosition(form2, poScreenCenter);
+        TStringGrid grid = StringGrid_Create(form2);
+        StringGrid_SetParent(grid, form2);
+        StringGrid_SetAlign(grid, alClient);
+        // 10x10
+        StringGrid_SetColCount(grid, 10);
+        StringGrid_SetRowCount(grid, 10);
+        int i, j, n;
+        int buffLen = 20;
+        char *buff = (char*)malloc(buffLen);
+        // 横第一行
+        for (i = 0; i < StringGrid_GetColCount(grid); i++){
+            n = sprintf_s(buff, buffLen, "%d", i);
+            buff[n] = 0;
+            StringGrid_SetCells(grid, i, 0, buff);
+        }
+        // 竖第一行
+        for (j = 0; j < StringGrid_GetColCount(grid); j++) {
+            n = sprintf_s(buff, buffLen, "%d", j);
+            buff[n] = 0;
+            StringGrid_SetCells(grid, 0, j, buff);
+        }
+        // 九九乘法表
+        for (i = 1; i <= 9; i++) {
+            for (j = i; j <= 9; j++) {
+                n = sprintf_s(buff, buffLen, "%dx%d=%d", i, j, i*j);
+                buff[n] = 0;
+                StringGrid_SetCells(grid, i, j, buff);
+            }
+        }
+        free((void*)buff);
+         
+
+
+        // btnOpenForm2 
+        TButton btn2 = Button_Create(form);
+        Button_SetParent(btn2, form);
+        Button_SetLeft(btn2, Button_GetLeft(btn));
+        Button_SetTop(btn2, Button_GetTop(btn) + 40);
+        Button_SetWidth(btn2, 120);
+        Button_SetCaption(btn2, "Open Form2");
+        Button_SetOnClick(btn2, onBtn2Click);
 		
         // 创建一个单行文件框（多行为TMemo）
         TEdit edit = Edit_Create(form);
@@ -149,6 +203,7 @@ int main()
         Edit_SetTop(edit, 10);
 		// 设置编辑器内容改变事件
         Edit_SetOnChange(edit, onEditChange);
+        Edit_SetWidth(edit, 200);
 
         // TMemo
         mmoText = Memo_Create(form);
