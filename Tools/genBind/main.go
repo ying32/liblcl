@@ -35,6 +35,7 @@ type TKeywordDict struct {
 
 type TLanguages struct {
 	Enabled     bool              `json:"enabled"`
+	LineBreak   string            `json:"line_break"`
 	TypeDict    map[string]string `json:"type_dict"`
 	KeywordDict map[string]string `json:"keyword_dict"`
 	Files       []TFile           `json:"files"`
@@ -88,9 +89,8 @@ func main() {
 		if lang.Enabled {
 			typeDict = lang.TypeDict
 			keyWordsDict = lang.KeywordDict
-
 			for _, file := range lang.Files {
-				execTemplate(objectFile, file)
+				execTemplate(objectFile, file, lang.LineBreak)
 			}
 		}
 	}
@@ -241,7 +241,7 @@ var templateFuncs = template.FuncMap{
 	"delDChar":     templateDelDChar,
 }
 
-func execTemplate(objFile define.TObjectFile, file TFile) {
+func execTemplate(objFile define.TObjectFile, file TFile, lineBreak string) {
 
 	tplFileBs, err := ioutil.ReadFile(file.TemplateFileName)
 	if err != nil {
@@ -278,8 +278,11 @@ func execTemplate(objFile define.TObjectFile, file TFile) {
 			}
 		}
 	}
-
-	err = ioutil.WriteFile(file.SaveFileName, buff.Bytes(), 0774)
+	bs := buff.Bytes()
+	if lineBreak != "" {
+		bs = bytes.Replace(bs, []byte("\n"), []byte(lineBreak), -1)
+	}
+	err = ioutil.WriteFile(file.SaveFileName, bs, 0774)
 	if err != nil {
 		panic(err)
 	}
