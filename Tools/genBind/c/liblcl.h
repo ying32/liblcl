@@ -521,7 +521,7 @@ static void* p##name;
 typedef uint32_t TSet;
 
 
-typedef enum { 
+typedef enum {
     alNone,
     alTop,
     alBottom,
@@ -533,7 +533,7 @@ typedef enum {
 
 typedef TSet TAlignSet;
 
-typedef enum { 
+typedef enum {
     bsNone,
     bsSingle,
     bsSizeable,
@@ -542,7 +542,7 @@ typedef enum {
     bsSizeToolWin,
 } TBorderStyle;
 
-typedef enum { 
+typedef enum {
     fsNormal,
     fsMDIChild,
     fsMDIForm,
@@ -551,7 +551,7 @@ typedef enum {
     fsSystemStayOnTop,
 } TFormStyle;
 
-typedef enum { 
+typedef enum {
     poDesigned, // use bounds from the designer (read from stream)
     poDefault, // LCL decision (normally window manager decides)
     poDefaultPosOnly, // designed size and LCL position
@@ -563,13 +563,13 @@ typedef enum {
     poWorkAreaCenter, // center form on working area (depends on DefaultMonitor)
 } TPosition;
 
-typedef enum { 
+typedef enum {
     soBeginning,
     soCurrent,
     soEnd,
 } TSeekOrigin;
 
-typedef enum { 
+typedef enum {
     pfDevice,
     pf1bit,
     pf4bit,
@@ -581,26 +581,26 @@ typedef enum {
     pfCustom,
 } TPixelFormat;
 
-typedef enum { 
+typedef enum {
     taLeftJustify,
     taRightJustify,
     taCenter,
 } TAlignment;
 
-typedef enum { 
+typedef enum {
     bdLeftToRight,
     bdRightToLeft,
     bdRightToLeftNoAlign,
     bdRightToLeftReadingOnly,
 } TBiDiMode;
 
-typedef enum { 
+typedef enum {
     taAlignTop,
     taAlignBottom,
     taVerticalCenter,
 } TVerticalAlignment;
 
-typedef enum { 
+typedef enum {
     csDropDown, // like an TEdit plus a button to drop down the list, default
     csSimple, // like an TEdit plus a TListBox
     csDropDownList, // like TLabel plus a button to drop down the list
@@ -610,70 +610,70 @@ typedef enum {
     csOwnerDrawEditableVariable, // like csOwnerDrawVariable, but with TEdit
 } TComboBoxStyle;
 
-typedef enum { 
+typedef enum {
     wsNormal,
     wsMinimized,
     wsMaximized,
     wsFullScreen,
 } TWindowState;
 
-typedef enum { 
+typedef enum {
     tlTop,
     tlCenter,
     tlBottom,
 } TTextLayout;
 
-typedef enum { 
+typedef enum {
     epNone,
     epPathEllipsis,
     epEndEllipsis,
     epWordEllipsis,
 } TEllipsisPosition;
 
-typedef enum { 
+typedef enum {
     lbStandard,
     lbOwnerDrawFixed,
     lbOwnerDrawVariable,
     lbVirtual,
 } TListBoxStyle;
 
-typedef enum { 
+typedef enum {
     paLeft,
     paRight,
     paCenter,
 } TPopupAlignment;
 
-typedef enum { 
+typedef enum {
     tbRightButton,
     tbLeftButton,
 } TTrackButton;
 
-typedef enum { 
+typedef enum {
     pbHorizontal,
     pbVertical,
     pbRightToLeft,
     pbTopDown,
 } TProgressBarOrientation;
 
-typedef enum { 
+typedef enum {
     pbstNormal,
     pbstMarquee,
 } TProgressBarStyle;
 
-typedef enum { 
+typedef enum {
     pbsNormal,
     pbsError,
     pbsPaused,
 } TProgressBarState;
 
-typedef enum { 
+typedef enum {
     blGlyphLeft,
     blGlyphRight,
     blGlyphTop,
     blGlyphBottom,
 } TButtonLayout;
 
-typedef enum { 
+typedef enum {
     bsUp, // button is up
     bsDisabled, // button disabled (grayed)
     bsDown, // button is down
@@ -681,19 +681,19 @@ typedef enum {
     bsHot, // button is under mouse
 } TButtonState;
 
-typedef enum { 
+typedef enum {
     bsAutoDetect,
     bsWin31,
     bsNew,
 } TButtonStyle;
 
-typedef enum { 
+typedef enum {
     sbsNone,
     sbsSingle,
     sbsSunken,
 } TStaticBorderStyle;
 
-typedef enum { 
+typedef enum {
     fsBold,
     fsItalic,
     fsUnderline,
@@ -702,7 +702,7 @@ typedef enum {
 
 typedef TSet TFontStyles;
 
-typedef enum { 
+typedef enum {
     ssNone,
     ssHorizontal,
     ssVertical,
@@ -712,14 +712,14 @@ typedef enum {
     ssAutoBoth,
 } TScrollStyle;
 
-typedef enum { 
+typedef enum {
     stNone,
     stData,
     stText,
     stBoth,
 } TSortType;
 
-typedef enum { 
+typedef enum {
     arAlignBottom,
     arAlignLeft,
     arAlignRight,
@@ -728,14 +728,14 @@ typedef enum {
     arSnapToGrid,
 } TListArrangement;
 
-typedef enum { 
+typedef enum {
     vsIcon,
     vsSmallIcon,
     vsList,
     vsReport,
 } TViewStyle;
 
-typedef enum { 
+typedef enum {
     isNone,
     isCut,
     isDropHilited,
@@ -746,20 +746,20 @@ typedef enum {
 
 typedef TSet TItemStates;
 
-typedef enum { 
+typedef enum {
     ctText,
     ctImage,
     ctState,
 } TItemChange;
 
-typedef enum { 
+typedef enum {
     ifData,
     ifPartialString,
     ifExactString,
     ifNearest,
 } TItemFind;
 
-typedef enum { 
+typedef enum {
     sdLeft,
     sdRight,
     sdAbove,
@@ -767,7 +767,7 @@ typedef enum {
     sdAll,
 } TSearchDirection;
 
-typedef enum { 
+typedef enum {
     htHandPoint,
     htUnderlineCold,
     htUnderlineHot,
@@ -775,7 +775,7 @@ typedef enum {
 
 typedef TSet TListHotTrackStyles;
 
-typedef enum { 
+typedef enum {
     irText,
     irImage,
     irParam,
@@ -783,7 +783,7 @@ typedef enum {
     irIndent,
 } TItemRequests;
 
-typedef enum { 
+typedef enum {
     bsSolid,
     bsClear,
     bsHorizontal,
@@ -796,7 +796,7 @@ typedef enum {
     bsPattern,
 } TBrushStyle;
 
-typedef enum { 
+typedef enum {
     psSolid,
     psDash,
     psDot,
@@ -807,31 +807,31 @@ typedef enum {
     psClear,
 } TPenStyle;
 
-typedef enum { 
+typedef enum {
     btNext,
     btPrev,
 } TUDBtnType;
 
-typedef enum { 
+typedef enum {
     tpTop,
     tpBottom,
     tpLeft,
     tpRight,
 } TTabPosition;
 
-typedef enum { 
+typedef enum {
     tsTabs,
     tsButtons,
     tsFlatButtons,
 } TTabStyle;
 
-typedef enum { 
+typedef enum {
     fpDefault,
     fpVariable,
     fpFixed,
 } TFontPitch;
 
-typedef enum { 
+typedef enum {
     pmBlack,
     pmWhite,
     pmNop,
@@ -850,17 +850,17 @@ typedef enum {
     pmNotXor,
 } TPenMode;
 
-typedef enum { 
+typedef enum {
     trHorizontal,
     trVertical,
 } TTrackBarOrientation;
 
-typedef enum { 
+typedef enum {
     udHorizontal,
     udVertical,
 } TUDOrientation;
 
-typedef enum { 
+typedef enum {
     fqDefault,
     fqDraft,
     fqProof,
@@ -870,21 +870,21 @@ typedef enum {
     fqClearTypeNatural,
 } TFontQuality;
 
-typedef enum { 
+typedef enum {
     caNone,
     caHide,
     caFree,
     caMinimize,
 } TCloseAction;
 
-typedef enum { 
+typedef enum {
     bfNone,
     bfInfo,
     bfWarning,
     bfError,
 } TBalloonFlags;
 
-typedef enum { 
+typedef enum {
     mtWarning,
     mtError,
     mtInformation,
@@ -892,7 +892,7 @@ typedef enum {
     mtCustom,
 } TMsgDlgType;
 
-typedef enum { 
+typedef enum {
     mbYes,
     mbNo,
     mbOK,
@@ -909,22 +909,22 @@ typedef enum {
 
 typedef TSet TMsgDlgButtons;
 
-typedef enum { 
+typedef enum {
     sltURL,
     sltID,
 } TSysLinkType;
 
-typedef enum { 
+typedef enum {
     psText,
     psOwnerDraw,
 } TStatusPanelStyle;
 
-typedef enum { 
+typedef enum {
     jpBestQuality,
     jpBestSpeed,
 } TJPEGPerformance;
 
-typedef enum { 
+typedef enum {
     nsCut,
     nsDropHilite, // = Node.DropTarget
     nsFocused, // = Node.Focused
@@ -937,7 +937,7 @@ typedef enum {
     nsBound, // bound to a tree, e.g. has Parent or is top lvl node
 } TNodeState;
 
-typedef enum { 
+typedef enum {
     naAdd, // add as last sibling of Destination
     naAddFirst, // add as first sibling of Destination
     naAddChild, // add as last child of Destination
@@ -946,13 +946,13 @@ typedef enum {
     naInsertBehind, // insert behind Destination
 } TNodeAttachMode;
 
-typedef enum { 
+typedef enum {
     taAddFirst,
     taAdd,
     taInsert,
 } TAddMode;
 
-typedef enum { 
+typedef enum {
     msControlSelect,
     msShiftSelect,
     msVisibleOnly,
@@ -961,36 +961,36 @@ typedef enum {
 
 typedef TSet TMultiSelectStyle;
 
-typedef enum { 
+typedef enum {
     asNormal,
     asSuspended,
     asSuspendedEnabled,
 } TActionListState;
 
-typedef enum { 
+typedef enum {
     gdHorizontal,
     gdVertical,
 } TGradientDirection;
 
-typedef enum { 
+typedef enum {
     dSFocus,
     dSSelected,
     dSNormal,
     dSTransparent,
 } TDrawingStyle;
 
-typedef enum { 
+typedef enum {
     itImage,
     itMask,
 } TImageType;
 
-typedef enum { 
+typedef enum {
     rtBitmap,
     rtCursor,
     rtIcon,
 } TResType;
 
-typedef enum { 
+typedef enum {
     lrDefaultColor,
     lrDefaultSize,
     lrFromFile,
@@ -1001,7 +1001,7 @@ typedef enum {
 
 typedef TSet TLoadResources;
 
-typedef enum { 
+typedef enum {
     cdDefault,
     cdDeviceDependent,
     cd4Bit,
@@ -1011,13 +1011,13 @@ typedef enum {
     cd32Bit,
 } TColorDepth;
 
-typedef enum { 
+typedef enum {
     cbUnchecked,
     cbChecked,
     cbGrayed,
 } TCheckBoxState;
 
-typedef enum { 
+typedef enum {
     tbsButton, // button (can be clicked)
     tbsCheck, // check item (click to toggle state, can be grouped)
     tbsDropDown, // button with dropdown button to show a popup menu
@@ -1026,14 +1026,14 @@ typedef enum {
     tbsButtonDrop, // button with arrow (not separated from each other)
 } TToolButtonStyle;
 
-typedef enum { 
+typedef enum {
     gdoHotTrack,
     gdoGradient,
 } TTBGradientDrawingOption;
 
 typedef TSet TTBGradientDrawingOptions;
 
-typedef enum { 
+typedef enum {
     cdFullOpen,
     cdPreventFullOpen,
     cdShowHelp,
@@ -1043,7 +1043,7 @@ typedef enum {
 
 typedef TSet TColorDialogOptions;
 
-typedef enum { 
+typedef enum {
     biSystemMenu,
     biMinimize,
     biMaximize,
@@ -1052,7 +1052,7 @@ typedef enum {
 
 typedef TSet TBorderIcons;
 
-typedef enum { 
+typedef enum {
     fdAnsiOnly,
     fdTrueTypeOnly,
     fdEffects,
@@ -1073,7 +1073,7 @@ typedef enum {
 
 typedef TSet TFontDialogOptions;
 
-typedef enum { 
+typedef enum {
     ofReadOnly,
     ofOverwritePrompt, // if selected file exists shows a message, that file
     ofHideReadOnly, // hide read only file
@@ -1103,20 +1103,20 @@ typedef enum {
 
 typedef TSet TOpenOptions;
 
-typedef enum { 
+typedef enum {
     ofExNoPlacesBar,
 } TOpenOptionEx;
 
 typedef TSet TOpenOptionsEx;
 
-typedef enum { 
+typedef enum {
     prAllPages,
     prSelection,
     prPageNums,
     prCurrentPage,
 } TPrintRange;
 
-typedef enum { 
+typedef enum {
     poPrintToFile,
     poPageNums,
     poSelection,
@@ -1128,7 +1128,7 @@ typedef enum {
 
 typedef TSet TPrintDialogOptions;
 
-typedef enum { 
+typedef enum {
     psoDefaultMinMargins,
     psoDisableMargins,
     psoDisableOrientation,
@@ -1144,23 +1144,23 @@ typedef enum {
 
 typedef TSet TPageSetupDialogOptions;
 
-typedef enum { 
+typedef enum {
     pkDotMatrix,
     pkHPPCL,
 } TPrinterKind;
 
-typedef enum { 
+typedef enum {
     ptEnvelope,
     ptPaper,
 } TPageType;
 
-typedef enum { 
+typedef enum {
     pmDefault,
     pmMillimeters,
     pmInches,
 } TPageMeasureUnits;
 
-typedef enum { 
+typedef enum {
     soStrictDelimiter,
     soWriteBOM,
     soTrailingLineBreak,
@@ -1169,7 +1169,7 @@ typedef enum {
 
 typedef TSet TStringsOptions;
 
-typedef enum { 
+typedef enum {
     ssShift,
     ssAlt,
     ssCtrl,
@@ -1192,7 +1192,7 @@ typedef enum {
 
 typedef TSet TShiftState;
 
-typedef enum { 
+typedef enum {
     mbLeft,
     mbRight,
     mbMiddle,
@@ -1200,17 +1200,17 @@ typedef enum {
     mbExtra2,
 } TMouseButton;
 
-typedef enum { 
+typedef enum {
     fsSurface,
     fsBorder,
 } TFillStyle;
 
-typedef enum { 
+typedef enum {
     fmAlternate,
     fmWinding,
 } TFillMode;
 
-typedef enum { 
+typedef enum {
     csHandleValid,
     csFontValid,
     csPenValid,
@@ -1220,12 +1220,12 @@ typedef enum {
 
 typedef TSet TCanvasState;
 
-typedef enum { 
+typedef enum {
     coLeftToRight,
     coRightToLeft,
 } TCanvasOrientation;
 
-typedef enum { 
+typedef enum {
     tfBottom,
     tfCalcRect,
     tfCenter,
@@ -1254,14 +1254,14 @@ typedef enum {
 
 typedef TSet TTextFormat;
 
-typedef enum { 
+typedef enum {
     bvNone,
     bvLowered,
     bvRaised,
     bvSpace,
 } TBevelCut;
 
-typedef enum { 
+typedef enum {
     beLeft,
     beTop,
     beRight,
@@ -1270,26 +1270,26 @@ typedef enum {
 
 typedef TSet TBevelEdges;
 
-typedef enum { 
+typedef enum {
     bkNone,
     bkTile,
     bkSoft,
     bkFlat,
 } TBevelKind;
 
-typedef enum { 
+typedef enum {
     tmBottomRight,
     tmTopLeft,
     tmBoth,
 } TTickMark;
 
-typedef enum { 
+typedef enum {
     tsNone,
     tsAuto,
     tsManual,
 } TTickStyle;
 
-typedef enum { 
+typedef enum {
     ptNone,
     ptTop,
     ptLeft,
@@ -1297,30 +1297,30 @@ typedef enum {
     ptRight,
 } TPositionToolTip;
 
-typedef enum { 
+typedef enum {
     dtkDate,
     dtkTime,
     dtkDateTime,
 } TDateTimeKind;
 
-typedef enum { 
+typedef enum {
     dmComboBox,
     dmUpDown,
     dmNone,
 } TDTDateMode;
 
-typedef enum { 
+typedef enum {
     dfShort,
     dfLong,
 } TDTDateFormat;
 
-typedef enum { 
+typedef enum {
     dtaLeft,
     dtaRight,
     dtaDefault,
 } TDTCalAlignment;
 
-typedef enum { 
+typedef enum {
     dowMonday,
     dowTuesday,
     dowWednesday,
@@ -1331,24 +1331,24 @@ typedef enum {
     dowLocaleDefault,
 } TCalDayOfWeek;
 
-typedef enum { 
+typedef enum {
     stWholeWord,
     stMatchCase,
 } TSearchType;
 
 typedef TSet TSearchTypes;
 
-typedef enum { 
+typedef enum {
     nsNone,
     nsBullte,
 } TNumberingStyle;
 
-typedef enum { 
+typedef enum {
     atSelected,
     atDefaultText,
 } TAttributeType;
 
-typedef enum { 
+typedef enum {
     caBold,
     caColor,
     caFace,
@@ -1361,18 +1361,18 @@ typedef enum {
 
 typedef TSet TConsistentAttributes;
 
-typedef enum { 
+typedef enum {
     iaTop,
     iaLeft,
 } TIconArrangement;
 
-typedef enum { 
+typedef enum {
     hsGradient,
     hsImage,
     hsThemed,
 } THeaderStyle;
 
-typedef enum { 
+typedef enum {
     iiaLeft,
     iiaRight,
     iiaTop,
@@ -1380,7 +1380,7 @@ typedef enum {
     iiaCenter,
 } TImageAlignment;
 
-typedef enum { 
+typedef enum {
     akTop,
     akLeft,
     akRight,
@@ -1389,7 +1389,7 @@ typedef enum {
 
 typedef TSet TAnchors;
 
-typedef enum { 
+typedef enum {
     odSelected,
     odGrayed,
     odDisabled,
@@ -1408,7 +1408,7 @@ typedef enum {
 
 typedef TSet TOwnerDrawState;
 
-typedef enum { 
+typedef enum {
     bkCustom,
     bkOK,
     bkCancel,
@@ -1424,18 +1424,18 @@ typedef enum {
     bkYesToAll,
 } TBitBtnKind;
 
-typedef enum { 
+typedef enum {
     sbHorizontal,
     sbVertical,
 } TScrollBarKind;
 
-typedef enum { 
+typedef enum {
     ssRegular,
     ssFlat,
     ssHotTrack,
 } TScrollBarStyle;
 
-typedef enum { 
+typedef enum {
     stRectangle,
     stSquare,
     stRoundRect,
@@ -1452,7 +1452,7 @@ typedef enum {
     stStarDown,
 } TShapeType;
 
-typedef enum { 
+typedef enum {
     bsBox,
     bsFrame,
     bsTopLine,
@@ -1462,7 +1462,7 @@ typedef enum {
     bsSpacer,
 } TBevelShape;
 
-typedef enum { 
+typedef enum {
     gkText,
     gkHorizontalBar,
     gkVerticalBar,
@@ -1471,20 +1471,20 @@ typedef enum {
     gkHalfPie,
 } TGaugeKind;
 
-typedef enum { 
+typedef enum {
     dtControl,
     dtItem,
     dtSubItem,
 } TCustomDrawTarget;
 
-typedef enum { 
+typedef enum {
     cdPrePaint,
     cdPostPaint,
     cdPreErase,
     cdPostErase,
 } TCustomDrawStage;
 
-typedef enum { 
+typedef enum {
     cdsSelected,
     cdsGrayed,
     cdsDisabled,
@@ -1498,14 +1498,14 @@ typedef enum {
 
 typedef TSet TCustomDrawState;
 
-typedef enum { 
+typedef enum {
     drBounds,
     drIcon,
     drLabel,
     drSelectBounds,
 } TDisplayCode;
 
-typedef enum { 
+typedef enum {
     sdAllowCreate,
     sdPerformCreate,
     sdPrompt,
@@ -1513,7 +1513,7 @@ typedef enum {
 
 typedef TSet TSelectDirOpts;
 
-typedef enum { 
+typedef enum {
     frDown,
     frFindNext,
     frHideMatchCase,
@@ -1536,29 +1536,29 @@ typedef enum {
 
 typedef TSet TFindOptions;
 
-typedef enum { 
+typedef enum {
     dmManual,
     dmAutomatic,
 } TDragMode;
 
-typedef enum { 
+typedef enum {
     dsDragEnter,
     dsDragLeave,
     dsDragMove,
 } TDragState;
 
-typedef enum { 
+typedef enum {
     dkDrag,
     dkDock,
 } TDragKind;
 
-typedef enum { 
+typedef enum {
     ecNormal,
     ecUpperCase,
     ecLowerCase,
 } TEditCharCase;
 
-typedef enum { 
+typedef enum {
     ebLeft,
     ebTop,
     ebRight,
@@ -1567,19 +1567,19 @@ typedef enum {
 
 typedef TSet TEdgeBorders;
 
-typedef enum { 
+typedef enum {
     esNone,
     esRaised,
     esLowered,
 } TEdgeStyle;
 
-typedef enum { 
+typedef enum {
     gdsClassic,
     gdsThemed,
     gdsGradient,
 } TGridDrawingStyle;
 
-typedef enum { 
+typedef enum {
     goFixedVertLine,
     goFixedHorzLine,
     goVertLine,
@@ -1616,7 +1616,7 @@ typedef enum {
 
 typedef TSet TGridOptions;
 
-typedef enum { 
+typedef enum {
     gdSelected,
     gdFocused,
     gdFixed,
@@ -1627,19 +1627,19 @@ typedef enum {
 
 typedef TSet TGridDrawState;
 
-typedef enum { 
+typedef enum {
     hsText,
     hsOwnerDraw,
 } THeaderSectionStyle;
 
-typedef enum { 
+typedef enum {
     lpAbove,
     lpBelow,
     lpLeft,
     lpRight,
 } TLabelPosition;
 
-typedef enum { 
+typedef enum {
     fsLeftRightTopBottom,
     fsRightLeftTopBottom,
     fsLeftRightBottomTop,
@@ -1650,25 +1650,25 @@ typedef enum {
     fsBottomTopRightLeft,
 } TFlowStyle;
 
-typedef enum { 
+typedef enum {
     bmNone,
     bmClick,
     bmDblClick,
 } TCoolBandMaximize;
 
-typedef enum { 
+typedef enum {
     mbNone,
     mbBreak,
     mbBarBreak,
 } TMenuBreak;
 
-typedef enum { 
+typedef enum {
     tsTrackBegin,
     tsTrackMove,
     tsTrackEnd,
 } TSectionTrackState;
 
-typedef enum { 
+typedef enum {
     csLButtonDown,
     csClicked,
     csPalette,
@@ -1684,7 +1684,7 @@ typedef enum {
 
 typedef TSet TControlState;
 
-typedef enum { 
+typedef enum {
     csAcceptsControls, // can have children in the designer
     csCaptureMouse, // auto capture mouse when clicked
     csDesignInteractive, // wants mouse events in design mode
@@ -1721,7 +1721,7 @@ typedef enum {
 
 typedef TSet TControlStyle;
 
-typedef enum { 
+typedef enum {
     maDefault,
     maActivate,
     maActivateAndEat,
@@ -1729,7 +1729,7 @@ typedef enum {
     maNoActivateAndEat,
 } TMouseActivate;
 
-typedef enum { 
+typedef enum {
     none,
     indeterminate,
     normal,
@@ -1737,26 +1737,26 @@ typedef enum {
     paused,
 } TTaskBarProgressState;
 
-typedef enum { 
+typedef enum {
     bmDIB,
     bmDDB,
 } TBitmapHandleType;
 
-typedef enum { 
+typedef enum {
     psNoDefine,
     psReady,
     psPrinting,
     psStopped,
 } TPrinterState;
 
-typedef enum { 
+typedef enum {
     poPortrait,
     poLandscape,
     poReverseLandscape,
     poReversePortrait,
 } TPrinterOrientation;
 
-typedef enum { 
+typedef enum {
     pcCopies,
     pcOrientation,
     pcCollation,
@@ -1764,12 +1764,12 @@ typedef enum {
 
 typedef TSet TPrinterCapabilities;
 
-typedef enum { 
+typedef enum {
     ptLocal,
     ptNetWork,
 } TPrinterType;
 
-typedef enum { 
+typedef enum {
     rsUninitialized,
     rsLoading,
     rsLoaded,
@@ -1777,20 +1777,20 @@ typedef enum {
     rsComplete,
 } TReadyState;
 
-typedef enum { 
+typedef enum {
     seUnknown,
     seANSI,
     seUnicode,
     seUTF8,
 } TStringEncoding;
 
-typedef enum { 
+typedef enum {
     stDefault, // use default rules for showing taskbar item
     stAlways, // always show taskbar item for the form
     stNever, // never show taskbar item for the form
 } TShowInTaskbar;
 
-typedef enum { 
+typedef enum {
     tcbOk,
     tcbYes,
     tcbNo,
@@ -1801,7 +1801,7 @@ typedef enum {
 
 typedef TSet TTaskDialogCommonButtons;
 
-typedef enum { 
+typedef enum {
     tfEnableHyperlinks,
     tfUseHiconMain,
     tfUseHiconFooter,
@@ -1822,7 +1822,7 @@ typedef enum {
 
 typedef TSet TTaskDialogFlags;
 
-typedef enum { 
+typedef enum {
     tdiNone,
     tdiWarning,
     tdiError,
@@ -1831,13 +1831,13 @@ typedef enum {
     tdiQuestion,
 } TTaskDialogIcon;
 
-typedef enum { 
+typedef enum {
     csExDropDown,
     csExSimple,
     csExDropDownList,
 } TComboBoxExStyle;
 
-typedef enum { 
+typedef enum {
     csExCaseSensitive,
     csExNoEditImage,
     csExNoEditImageIndent,
@@ -1847,7 +1847,7 @@ typedef enum {
 
 typedef TSet TComboBoxExStyles;
 
-typedef enum { 
+typedef enum {
     acoAutoSuggest,
     acoAutoAppend,
     acoSearch,
@@ -1859,49 +1859,49 @@ typedef enum {
 
 typedef TSet TAutoCompleteOptions;
 
-typedef enum { 
+typedef enum {
     dmDesktop,
     dmPrimary,
     dmMainForm,
     dmActiveForm,
 } TDefaultMonitor;
 
-typedef enum { 
+typedef enum {
     tmAuto,
     tmFixed,
 } TTransparentMode;
 
-typedef enum { 
+typedef enum {
     dimNormal,
     dimCenter,
     dimStretch,
 } TDrawImageMode;
 
-typedef enum { 
+typedef enum {
     lboDrawFocusRect, // draw focus rect in case of owner drawing
 } TListBoxOption;
 
 typedef TSet TListBoxOptions;
 
-typedef enum { 
+typedef enum {
     amDontCare, // default antialiasing
     amOn, // enabled
     amOff, // disabled
 } TAntialiasingMode;
 
-typedef enum { 
+typedef enum {
     sdAscending,
     sdDescending,
 } TSortDirection;
 
-typedef enum { 
+typedef enum {
     tvestTheme, // use themed sign
     tvestPlusMinus, // use &#43;/- sign
     tvestArrow, // use blank arrow
     tvestArrowFill, // use filled arrow
 } TTreeViewExpandSignType;
 
-typedef enum { 
+typedef enum {
     tvoAllowMultiselect,
     tvoAutoExpand,
     tvoAutoInsertMark,
@@ -1923,14 +1923,14 @@ typedef enum {
 
 typedef TSet TTreeViewOptions;
 
-typedef enum { 
+typedef enum {
     gsmAlways, // always show
     gsmNever, // never show
     gsmApplication, // depends on application settings
     gsmSystem, // depends on system settings
 } TGlyphShowMode;
 
-typedef enum { 
+typedef enum {
     nboShowCloseButtons,
     nboMultiLine,
     nboHidePageListPopup,
@@ -1941,13 +1941,13 @@ typedef enum {
 
 typedef TSet TCTabControlOptions;
 
-typedef enum { 
+typedef enum {
     asrTop,
     asrBottom,
     asrCenter,
 } TAnchorSideReference;
 
-typedef enum { 
+typedef enum {
     ccaFill,
     ccaLeftTop,
     ccaRightBottom,
@@ -1956,31 +1956,31 @@ typedef enum {
 
 typedef TSet TControlCellAligns;
 
-typedef enum { 
+typedef enum {
     crsAnchorAligning, // (like Delphi)
     crsScaleChilds, // scale children equally, keep space between children fixed
     crsHomogenousChildResize, // enlarge children equally (i.e. by the same amount of pixel)
     crsHomogenousSpaceResize, // enlarge space between children equally
 } TChildControlResizeStyle;
 
-typedef enum { 
+typedef enum {
     cclNone,
     cclLeftToRightThenTopToBottom, // if BiDiMode &lt;&gt; bdLeftToRight then it becomes RightToLeft
     cclTopToBottomThenLeftToRight,
 } TControlChildrenLayout;
 
-typedef enum { 
+typedef enum {
     clHorizontalThenVertical,
     clVerticalThenHorizontal,
 } TColumnLayout;
 
-typedef enum { 
+typedef enum {
     siNone,
     siAscending,
     siDescending,
 } TSortIndicator;
 
-typedef enum { 
+typedef enum {
     cbsAuto,
     cbsEllipsis,
     cbsNone,
@@ -1990,7 +1990,7 @@ typedef enum {
     cbsButtonColumn,
 } TColumnButtonStyle;
 
-typedef enum { 
+typedef enum {
     gzNormal,
     gzFixedCols,
     gzFixedRows,
@@ -2000,12 +2000,12 @@ typedef enum {
 
 typedef TSet TGridZoneSet;
 
-typedef enum { 
+typedef enum {
     soAscending,
     soDescending,
 } TSortOrder;
 
-typedef enum { 
+typedef enum {
     aaNone,
     aaDown,
     aaRight,
@@ -2016,55 +2016,55 @@ typedef enum {
     aaLeftUp,
 } TAutoAdvance;
 
-typedef enum { 
+typedef enum {
     chpAll,
     chpAllNoDefault,
     chpTruncOnly,
 } TCellHintPriority;
 
-typedef enum { 
+typedef enum {
     mwCursor,
     mwGrid,
 } TMouseWheelOption;
 
-typedef enum { 
+typedef enum {
     goScrollToLastCol, // allow scrolling to last column (so that last column can be leftcol)
     goScrollToLastRow, // allow scrolling to last row (so that last row can be toprow)
 } TGridOption2;
 
 typedef TSet TGridOptions2;
 
-typedef enum { 
+typedef enum {
     rsmSingle,
     rsmMulti,
 } TRangeSelectMode;
 
-typedef enum { 
+typedef enum {
     tsLazarus,
     tsStandard,
     tsNative,
 } TTitleStyle;
 
-typedef enum { 
+typedef enum {
     poNone,
     poHeaderClick,
 } TPrefixOption;
 
 /*--------------------类型定义--------------------*/
 
-typedef struct TPoint { 
+typedef struct TPoint {
     int32_t x;
     int32_t y;
 } TPoint;
 
-typedef struct TRect { 
+typedef struct TRect {
     int32_t left;
     int32_t top;
     int32_t right;
     int32_t bottom;
 } TRect;
 
-typedef struct TSize { 
+typedef struct TSize {
     int32_t cx;
     int32_t cy;
 } TSize;
@@ -2149,7 +2149,7 @@ typedef uint16_t TAtom;
 
 typedef uintptr_t SIZE_T;
 
-typedef struct TMsg { 
+typedef struct TMsg {
     HWND hwnd;
     uint32_t message;
     uintptr_t wParam;
@@ -2158,14 +2158,14 @@ typedef struct TMsg {
     TPoint pt;
 } TMsg;
 
-typedef struct TCursorInfo { 
+typedef struct TCursorInfo {
     uint32_t cbSize;
     uint32_t flags;
     HCURSOR hCursor;
     TPoint ptScreenPos;
 } TCursorInfo;
 
-typedef struct TWndClass { 
+typedef struct TWndClass {
     uint32_t style;
     uintptr_t lpfnWndProc;
     int32_t cbClsExtra;
@@ -2210,7 +2210,7 @@ typedef uintptr_t TClass;
 
 typedef uintptr_t TThreadID;
 
-typedef struct TGridCoord { 
+typedef struct TGridCoord {
     int32_t x;
     int32_t y;
 } TGridCoord;
@@ -2221,7 +2221,7 @@ typedef TRect TGridRect;
 
 typedef uintptr_t IObjectArray;
 
-typedef struct TSysLocale { 
+typedef struct TSysLocale {
     int32_t defaultLCID;
     int32_t priLangID;
     int32_t subLangID;
@@ -2229,31 +2229,31 @@ typedef struct TSysLocale {
     BOOL middleEast;
 } TSysLocale;
 
-typedef struct TSmallPoint { 
+typedef struct TSmallPoint {
     int16_t x;
     int16_t y;
 } TSmallPoint;
 
-typedef struct TGUID { 
+typedef struct TGUID {
     uint32_t d1;
     uint16_t d2;
     uint16_t d3;
     uint8_t d4[8];
 } TGUID;
 
-typedef struct TLibResource { 
+typedef struct TLibResource {
     char* name;
     uintptr_t ptr;
 } TLibResource;
 
-typedef struct TResItem { 
+typedef struct TResItem {
     uintptr_t name;
     uintptr_t value;
 } TResItem;
 
 typedef int32_t TConstraintSize;
 
-typedef struct TAlignInfo { 
+typedef struct TAlignInfo {
     uintptr_t alignList;
     int32_t controlIndex;
     TAlign align;
@@ -2284,11 +2284,11 @@ typedef int32_t TLibType;
 
 #if defined(_WIN64) || defined(__x86_64__)
 
-typedef struct TDWordFiller { 
+typedef struct TDWordFiller {
     uint8_t filler[4];
 } TDWordFiller;
 
-typedef struct TWMKey { 
+typedef struct TWMKey {
     uint32_t msg;
     TDWordFiller msgFiller;
     uint16_t charCode[2];
@@ -2298,7 +2298,7 @@ typedef struct TWMKey {
     uintptr_t result;
 } TWMKey;
 
-typedef struct TMessage { 
+typedef struct TMessage {
     uint32_t msg;
     uint32_t _UnusedMsg;
     WPARAM wParam;
@@ -2307,10 +2307,10 @@ typedef struct TMessage {
 } TMessage;
 #else
 
-typedef struct TDWordFiller { 
+typedef struct TDWordFiller {
 } TDWordFiller;
 
-typedef struct TWMKey { 
+typedef struct TWMKey {
     uint32_t msg;
     TDWordFiller msgFiller;
     uint16_t charCode[2];
@@ -2320,7 +2320,7 @@ typedef struct TWMKey {
     uintptr_t result;
 } TWMKey;
 
-typedef struct TMessage { 
+typedef struct TMessage {
     uint32_t msg;
     WPARAM wParam;
     LPARAM lParam;

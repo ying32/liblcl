@@ -147,7 +147,7 @@ var baseTypes = map[string]string{
 	"Byte":                 "i8",
 	"TBorderWidth":         "i32",
 	"TCustomImageList":     "TImageList",
-	"TUnixDateTime":        "u32",
+	"TUnixDateTime":        "datetime",
 	"TCustomListView":      "TListView",
 	"TCustomTreeView":      "TTreeView",
 	"TImageIndex":          "i32",

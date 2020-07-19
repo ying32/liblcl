@@ -258,22 +258,18 @@ func execTemplate(objFile define.TObjectFile, file TFile, lineBreak string) {
 	if err != nil {
 		panic(err)
 	}
-	endFlag := []byte("#--end--")
 	spFlag := []byte("##")
 	bsArr := bytes.Split(bytes.Replace(buff.Bytes(), []byte("\r"), nil, -1), []byte("\n"))
 	buff.Reset()
 
 	for i := 0; i < len(bsArr); i++ {
 		s := bsArr[i]
-		if bytes.HasSuffix(bytes.TrimSpace(s), endFlag) {
-			buff.WriteByte('\n')
-		}
 		if len(bytes.TrimSpace(s)) != 0 {
 			// 是##标识，替换为空的
 			if bytes.Compare(bytes.TrimSpace(s), spFlag) == 0 {
 				buff.WriteByte('\n')
 			} else {
-				buff.Write(bytes.Replace(s, endFlag, nil, 1))
+				buff.Write(s)
 				buff.WriteByte('\n')
 			}
 		}

@@ -17,7 +17,8 @@
         "i64": "int64",
         "f32": "float32",
         "f64": "float64",
-        "PPoint": "var TPoint"
+        "PPoint": "var TPoint",
+        "datetime": "uint32"
       },
       "keyword_dict": {
         "ptr": "valPtr",
@@ -57,7 +58,8 @@
         "f64": "double",
         "PPoint": "TPoint*",
         "bool": "BOOL",
-        "pointer": "void*"
+        "pointer": "void*",
+        "datetime": "uint32_t"
       },
       "keyword_dict": {},
       "files": [

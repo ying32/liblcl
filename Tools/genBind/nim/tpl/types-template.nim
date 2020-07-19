@@ -3,24 +3,24 @@
    Author: ying32
    https://github.com/ying32  
 ]#
-
-{{/* 用于消除模板产生的空行 */}}
-{{$endFlag := "#--end--"}}
-
-type{{$endFlag}}
+##
+type
 {{/* 基础类型定义 */}}
 
 {{range $tidex, $el := .BaseTypes}}
 {{if isEmpty $el.FieldArch}}
   {{if eq $el.Kind "struct"}}
-  {{$el.Name}}* = object {{$endFlag}}
+##
+  {{$el.Name}}* = object
     {{range $field := $el.Fields}}
     {{covKeyword $field.Name}}: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
     {{end}}
   {{else if eq $el.Kind "set"}}
-  {{$el.Name}}* = set[{{$el.SetOf}}] {{$endFlag}}
+##
+  {{$el.Name}}* = set[{{$el.SetOf}}]
   {{else}}
-  {{$el.Name}}* = {{covType $el.Type}} {{$endFlag}}
+##
+  {{$el.Name}}* = {{covType $el.Type}}
   {{end}}
 {{end}}
 {{end}}
@@ -30,19 +30,23 @@ type{{$endFlag}}
 {{/* 类型，包含结构和枚举 */}}
 {{range $el := .Types}}
   {{if eq $el.Kind "struct"}}
-  {{$el.Name}}* = object {{$endFlag}}
+##
+  {{$el.Name}}* = object
     {{range $field := $el.Fields}}
     {{covKeyword $field.Name}}: {{if $field.IsArr}}array[0..{{Dec $field.ArrLength}}, {{end}}{{covType $field.Type}}{{if $field.IsArr}}]{{end}}
     {{end}}
   {{else if eq $el.Kind "enum"}}
-  {{$el.Name}}* = enum {{$endFlag}}
+##
+  {{$el.Name}}* = enum
     {{range $enum := $el.Enums}}
     {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} # {{$enum.Comment}}{{end}}
     {{end}}
   {{else if eq $el.Kind "set"}}
-  {{$el.Name}}* = set[{{$el.SetOf}}] {{$endFlag}}
+##
+  {{$el.Name}}* = set[{{$el.SetOf}}]
   {{else}}
-  {{$el.Name}}* = {{covType $el.Type}} {{$endFlag}}
+##
+  {{$el.Name}}* = {{covType $el.Type}}
   {{end}}
 {{end}}
 
@@ -52,7 +56,8 @@ type{{$endFlag}}
 {{range $tidex, $el := .BaseTypes}}
 {{if not (isEmpty $el.FieldArch)}}
   {{if eq $el.Kind "struct"}}
-when defined({{$el.FieldArch}}):{{$endFlag}}
+##
+when defined({{$el.FieldArch}}):
   type
     {{$el.Name}}* = object
     {{range $field := $el.Fields}}
@@ -78,22 +83,27 @@ when defined(macos):
 
 
 {{/* 事件定义 */}}
-type{{$endFlag}}
+##
+type
 {{range $el := .Events}}
   {{if isEmpty $el.ReDefine}}
-  {{$el.Name}}* = proc({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}pointer{{else}}{{if $ps.IsVar}}var {{end}}{{covType $ps.Type}}{{end}}{{end}}) {.nimcall.}{{$endFlag}}
+##
+  {{$el.Name}}* = proc({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}pointer{{else}}{{if $ps.IsVar}}var {{end}}{{covType $ps.Type}}{{end}}{{end}}) {.nimcall.}
   {{else}}
-  {{$el.Name}}* = {{$el.ReDefine}}{{$endFlag}}
+##
+  {{$el.Name}}* = {{$el.ReDefine}}
   {{end}}
 {{end}}
 
 
 {{/* 常量定义 */}}
-const{{$endFlag}}
+##
+const
 {{range $el := .Consts}}
   {{if not (isEmpty $el.Name)}}
   {{$el.Name}}* = {{$el.Value}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}}{{if not (isEmpty $el.Comment)}} # {{$el.Comment}}{{end}}
   {{else}}
-  # {{$el.Comment}}{{$endFlag}}
+##
+  # {{$el.Comment}}
   {{end}}
 {{end}}

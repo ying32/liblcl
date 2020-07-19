@@ -3,8 +3,7 @@
    Author: ying32
    https://github.com/ying32  
 */
-{{/* 用于消除模板产生的空行 */}}
-{{$endFlag := "#--end--"}}
+
 ##
 ##
 #ifndef _LIBLCL_H
@@ -94,7 +93,8 @@ static void* p##name;
     {{end}}
 #define {{$el.Name}}  {{$el.Value}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}}{{if not (isEmpty $el.Comment)}} // {{$el.Comment}}{{end}}
   {{else}}
-// {{$el.Comment}}{{$endFlag}}
+##
+// {{$el.Comment}}
   {{end}}
     {{if eq $el.Name "CF_LOCALE"}}
 ##
@@ -108,13 +108,15 @@ typedef uint32_t TSet;
 ##
 {{range $el := .Types}}
   {{if eq $el.Kind "enum"}}
-typedef enum { {{$endFlag}}
+##
+typedef enum {
       {{range $enum := $el.Enums}}
     {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} // {{$enum.Comment}}{{end}}
       {{end}}
 } {{$el.Name}};
   {{else if eq $el.Kind "set"}}
-typedef TSet {{$el.Name}};{{$endFlag}}
+##
+typedef TSet {{$el.Name}};
   {{end}}
 {{end}}
 
@@ -126,7 +128,8 @@ typedef TSet {{$el.Name}};{{$endFlag}}
 {{range $tidex, $el := .BaseTypes}}
   {{if isEmpty $el.FieldArch}}
     {{if eq $el.Kind "struct"}}
-typedef struct {{$el.Name}} { {{$endFlag}}
+##
+typedef struct {{$el.Name}} {
       {{range $field := $el.Fields}}
     {{covType $field.Type}} {{covKeyword $field.Name}}{{if $field.IsArr}}[{{$field.ArrLength}}]{{end}};
       {{end}}
@@ -138,7 +141,8 @@ typedef struct {{$el.Name}} { {{$endFlag}}
 #ifndef _WIN32
 ##
         {{end}}
-typedef {{covType $el.Type}} {{$el.Name}};{{$endFlag}}
+##
+typedef {{covType $el.Type}} {{$el.Name}};
 
         {{if or (or (eq $el.Name "HGLOBAL") (eq $el.Name "LRESULT")) (eq $el.Name "HCURSOR")}}
 ##
@@ -154,13 +158,15 @@ typedef {{covType $el.Type}} {{$el.Name}};{{$endFlag}}
 {{range $el := .Types}}
   {{if isEmpty $el.FieldArch}}
     {{if eq $el.Kind "struct"}}
-typedef struct {{$el.Name}} { {{$endFlag}}
+##
+typedef struct {{$el.Name}} {
       {{range $field := $el.Fields}}
     {{covType $field.Type}} {{covKeyword $field.Name}}{{if $field.IsArr}}[{{$field.ArrLength}}]{{end}};
       {{end}}
 } {{$el.Name}};
   {{else if eq $el.Kind "type"}}
-typedef {{covType $el.Type}} {{$el.Name}};{{$endFlag}}
+##
+typedef {{covType $el.Type}} {{$el.Name}};
     {{end}}
   {{end}}
 {{end}}
@@ -170,7 +176,8 @@ typedef {{covType $el.Type}} {{$el.Name}};{{$endFlag}}
 {{range $el := .BaseTypes}}
   {{if eq $el.FieldArch "amd64"}}
     {{if eq $el.Kind "struct"}}
-typedef struct {{$el.Name}} { {{$endFlag}}
+##
+typedef struct {{$el.Name}} {
       {{range $field := $el.Fields}}
     {{covType $field.Type}} {{covKeyword $field.Name}}{{if $field.IsArr}}[{{$field.ArrLength}}]{{end}};
       {{end}}
@@ -182,7 +189,8 @@ typedef struct {{$el.Name}} { {{$endFlag}}
 {{range $el := .BaseTypes}}
   {{if eq $el.FieldArch "i386"}}
     {{if eq $el.Kind "struct"}}
-typedef struct {{$el.Name}} { {{$endFlag}}
+##
+typedef struct {{$el.Name}} {
       {{range $field := $el.Fields}}
     {{covType $field.Type}} {{covKeyword $field.Name}}{{if $field.IsArr}}[{{$field.ArrLength}}]{{end}};
       {{end}}
@@ -348,8 +356,8 @@ void close_liblcl() {
 ##
 {{end}}
 
-
-DEFINE_FUNC_PTR({{$el.Name}}){{$endFlag}}
+##
+DEFINE_FUNC_PTR({{$el.Name}})
 {{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{delDChar $el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
     GET_FUNC_ADDR({{$el.Name}})
     {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});
@@ -367,10 +375,12 @@ DEFINE_FUNC_PTR({{$el.Name}}){{$endFlag}}
 
 /*--------------------类成员函数--------------------*/
 {{range $obj := .Objects}}
-// -------------------{{$obj.ClassName}}-------------------{{$endFlag}}
+##
+// -------------------{{$obj.ClassName}}-------------------
   {{range $el := $obj.Methods}}
 
-DEFINE_FUNC_PTR({{$el.Name}}){{$endFlag}}
+##
+DEFINE_FUNC_PTR({{$el.Name}})
 {{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{$el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
     GET_FUNC_ADDR({{$el.Name}})
     {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});

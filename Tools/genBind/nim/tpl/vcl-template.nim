@@ -3,27 +3,26 @@
    Author: ying32
    https://github.com/ying32  
 ]#
-
-
-{{/* 用于消除模板产生的空行 */}}
-{{$endFlag := "#--end--"}}
 ##
 ##
-import liblcl, types{{$endFlag}}
+import liblcl, types
 ##
 ##
-type{{$endFlag}}
+##
+type
 
 {{/* 基类定义 */}}
 {{range $el := .BaseObjects}}
-  {{$el.ClassName}}*{{if isEmpty $el.BaseClassName}} {.inheritable.}{{end}} = ref object{{if not (isEmpty $el.BaseClassName)}} of {{$el.BaseClassName}}{{end}}{{$endFlag}}
+##
+  {{$el.ClassName}}*{{if isEmpty $el.BaseClassName}} {.inheritable.}{{end}} = ref object{{if not (isEmpty $el.BaseClassName)}} of {{$el.BaseClassName}}{{end}}
   {{if isEmpty $el.BaseClassName}}  FInstance: pointer{{end}}
 {{end}}
 
 {{/* 剩下的类定义 */}}
 {{range $el := .Objects}}
 {{if not (isBaseObj $el.ClassName)}}
-  {{$el.ClassName}}* = ref object of {{$el.BaseClassName}}{{$endFlag}}
+##
+  {{$el.ClassName}}* = ref object of {{$el.BaseClassName}}
 {{end}}
 {{end}}
 
@@ -54,23 +53,28 @@ proc LoadResFormFile*(fileName: string, root: TObject) =
 
 {{/* 开始生成方法 */}}
 {{range $el := .Objects}}
-#------------------------- {{$el.ClassName}} -------------------------{{$endFlag}}
+##
+#------------------------- {{$el.ClassName}} -------------------------
 {{$className := $el.ClassName}}
-{{$classN := rmObjectT $className}}{{$endFlag}}
+##
+{{$classN := rmObjectT $className}}
 {{range $mm := $el.Methods}}
 {{if eq $mm.RealName "Create"}}
 proc New{{$classN}}*({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{covType2 $ps.Type}}{{end}}): {{$className}} =
    new(result)
    result.FInstance = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
-{{else if eq $mm.RealName "Free"}}{{$endFlag}}
+##
+{{else if eq $mm.RealName "Free"}}
 method Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}} =
   if this != nil:
      {{$mm.Name}}(this.FInstance)
      this.{{if ne $className "TObject"}}TObject.{{end}}FInstance = nil
-{{else if $mm.IsStatic}}{{$endFlag}}
+##
+{{else if $mm.IsStatic}}
 proc {{$className}}Class*(): TClass =
   return {{$mm.Name}}()
-{{else}}{{$endFlag}}
+##
+{{else}}
 {{if not $mm.IsStatic}}
 {{/* 累了，不想弄，直接写好的得了 */}}
 {{if eq $mm.RealName "TextRect2"}}
@@ -79,6 +83,7 @@ method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var str
   result = Canvas_TextRect2(this.FInstance, Rect, Text, outstr, TextFormat)
   AOutStr = $outstr
 {{else}}
+##
 method {{propGetName $mm}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{end}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}} =
   {{if not (isEmpty $mm.Return)}}
     {{if isObject $mm.Return}}
