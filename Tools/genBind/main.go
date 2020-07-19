@@ -259,6 +259,9 @@ var templateFuncs = template.FuncMap{
 	"delDChar":     templateDelDChar,
 	"lastParam":    templateGetLastParam,
 	"canOutParam":  templateCanOutParam,
+	"hasPrefix":    strings.HasPrefix,
+	"hasSuffix":    strings.HasSuffix,
+	"trim":         strings.TrimSpace,
 }
 
 func execTemplate(objFile define.TObjectFile, file TFile, lineBreak string) {
