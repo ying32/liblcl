@@ -337,6 +337,8 @@ void close_liblcl() {
 /*--------------------一些其它函数--------------------*/
 {{range $el := .Functions}}
 
+{{if ne $el.Name "DMove"}}
+
 {{if eq $el.Name "DSendMessage"}}
 #ifndef _WIN32
 ##
@@ -369,7 +371,7 @@ DEFINE_FUNC_PTR({{$el.Name}})
 #endif
 ##
 {{end}}
-
+{{end}}
 {{end}}
 
 
@@ -385,11 +387,14 @@ DEFINE_FUNC_PTR({{$el.Name}})
     GET_FUNC_ADDR({{$el.Name}})
     {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});
 }
-
   {{end}}
 {{end}}
-
-
+##
+##
+/* ------------------函数重定义------------------------------- */
+inline static char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
+    return GetStringArrOf(P, AIndex);
+}
 
 
 ##

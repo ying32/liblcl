@@ -40,10 +40,10 @@ void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
         
 #ifdef _WIN32
         // 由于liblcl使用的是UTF-8编码，所以获取或者传入的在Windows下都要经过UTF-8编/解码 
-        char *filename = UTF8Decode(GetStringArrOf(aFileNames, i));
+        char *filename = UTF8Decode(GetFPStringArrayMember(aFileNames, i));
 #else
 	    // Linux与macOS默认都是UTF-8，则无需编/解码
-        char *filename = GetStringArrOf(aFileNames, i);
+        char *filename = GetFPStringArrayMember(aFileNames, i);
 #endif
         if (mmoText) {
             Memo_Append(mmoText, filename);

@@ -3051,12 +3051,6 @@ intptr_t StrLen(CChar char* p) {
     return (intptr_t)MySyscall(pDStrLen, 1, p ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(DMove)
-void Move(void* Src, void* Dest, intptr_t Len) {
-    GET_FUNC_ADDR(DMove)
-    MySyscall(pDMove, 3, Src, Dest, Len ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
 DEFINE_FUNC_PTR(DShowMessage)
 void ShowMessage(CChar char* AMsg) {
     GET_FUNC_ADDR(DShowMessage)
@@ -85611,6 +85605,12 @@ DEFINE_FUNC_PTR(GridColumns_StaticClassType)
 TClass GridColumns_StaticClassType() {
     GET_FUNC_ADDR(GridColumns_StaticClassType)
     return (TClass)MySyscall(pGridColumns_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+
+/* ------------------函数重定义------------------------------- */
+inline static char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
+    return GetStringArrOf(P, AIndex);
 }
 
 // 不知道有什么方法可以简化下
