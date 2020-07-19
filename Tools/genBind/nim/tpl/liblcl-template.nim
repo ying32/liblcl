@@ -25,6 +25,8 @@ import types
 {{range $el := .Functions}}
 {{if eq $el.Platform "windows"}}when defined(windows):{{end}}
 {{if eq $el.Platform "linux,macos"}}when not defined(windows):{{end}}
+{{if eq $el.Platform "macos"}}when defined(macos):{{end}}
+{{if eq $el.Platform "linux"}}when defined(linux):{{end}}
 {{if ne $el.Platform "all"}}  {{end}}proc {{$el.Name}}*({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if not (isObject $ps.Type)}}{{if $ps.IsVar}}var {{end}}{{covType $ps.Type}}{{else}}pointer{{end}}{{end}}){{if not (isEmpty $el.Return)}}: {{if not (isObject $el.Return)}}{{covType $el.Return}}{{else}}pointer{{end}}{{end}} {.importc: "{{$el.Name}}", dynlib: dllname.}
 {{end}}
 ##

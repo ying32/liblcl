@@ -195,7 +195,10 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 				cs = strings.TrimSpace(cs)
 				// 起始不要D开头的，然后不要_Instance结束的
 				if cs[0] != 'D' && !strings.Contains(cs, "_Instance") {
-					if idx := strings.Index(cs, "_"); idx > 0 {
+					if idx := strings.Index(cs, "_"); idx > 0 &&
+						!strings.HasPrefix(cs, "GtkWidget_") &&
+						!strings.HasPrefix(cs, "GdkWindow_") &&
+						!strings.HasPrefix(cs, "NSWindow_") {
 						name := strings.TrimSpace(cs[:idx])
 						if name != "Exception" {
 							name = "T" + name
@@ -212,9 +215,6 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 						continue
 					}
 				}
-			}
-			if strings.HasPrefix(s, "ResFormLoadFrom") {
-				panic("ResFormLoadFrom")
 			}
 			parseFunc(s, isClass, eventType, className, baseClassName, isLastReturn, isMethod)
 		}

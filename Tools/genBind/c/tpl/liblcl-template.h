@@ -54,16 +54,18 @@
 ##
 // 非Windows下的类型定义
 #ifndef _WIN32
-
+    typedef int32_t BOOL;
 #endif
 ##
 #ifdef __linux__
-
+    typedef void* PGdkWindow;
+    typedef uintptr_t TXId;
+    typedef void* PGtkFixed;
 #endif
 ##
 #ifdef __APPLE__
-   //#include <Cocoa/Cocoa.h>
-//typedef *void MyNSWindow;
+    //#include <Cocoa/Cocoa.h>
+    typedef void* MyNSWindow;
 #endif
 ##
 // printf("GetFunc: %s=%p\n", ""#name"", p##name);
@@ -335,6 +337,17 @@ void close_liblcl() {
 #ifdef _WIN32
 ##
 {{end}}
+{{if eq $el.Name "GtkWidget_GetGtkFixed"}}
+##
+#ifdef __linux__
+##
+{{end}}
+{{if eq $el.Name "NSWindow_FromForm"}}
+##
+#ifdef __APPLE__
+##
+{{end}}
+
 
 DEFINE_FUNC_PTR({{$el.Name}}){{$endFlag}}
 {{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{delDChar $el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
@@ -343,9 +356,10 @@ DEFINE_FUNC_PTR({{$el.Name}}){{$endFlag}}
 }
 
 
-{{if or (eq $el.Name "DWindowFromPoint") (eq $el.Name "DCreateShortCut")}}
+{{if or (or (or (eq $el.Name "DWindowFromPoint") (eq $el.Name "DCreateShortCut")) (eq $el.Name "NSWindow_FromForm")) (eq $el.Name "GtkWidget_Window")}}
 ##
 #endif
+##
 {{end}}
 
 {{end}}

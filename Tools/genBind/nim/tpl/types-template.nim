@@ -62,6 +62,20 @@ when defined({{$el.FieldArch}}):{{$endFlag}}
 {{end}}
 {{end}}
 
+##
+when defined(linux):
+  type
+    PGdkWindow* = pointer
+    TXId* = usize
+    PGtkFixed* = pointer
+##
+##
+when defined(macos):
+  type
+    MyNSWindow* = pointer
+##
+
+
 
 {{/* 事件定义 */}}
 type{{$endFlag}}

@@ -34,6 +34,7 @@ type TKeywordDict struct {
 }
 
 type TLanguages struct {
+	Enabled     bool              `json:"enabled"`
 	TypeDict    map[string]string `json:"type_dict"`
 	KeywordDict map[string]string `json:"keyword_dict"`
 	Files       []TFile           `json:"files"`
@@ -84,12 +85,13 @@ func main() {
 	}
 
 	for _, lang := range conf.Languages {
+		if lang.Enabled {
+			typeDict = lang.TypeDict
+			keyWordsDict = lang.KeywordDict
 
-		typeDict = lang.TypeDict
-		keyWordsDict = lang.KeywordDict
-
-		for _, file := range lang.Files {
-			execTemplate(objectFile, file)
+			for _, file := range lang.Files {
+				execTemplate(objectFile, file)
+			}
 		}
 	}
 }

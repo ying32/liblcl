@@ -163,6 +163,11 @@ var baseTypes = map[string]string{
 	"TLMessage":            "TMessage",
 	"BOOL":                 "bool",
 	"TStream":              "TObject",
+	"WParam":               "WPARAM",
+	"LParam":               "LPARAM",
+	"LResult":              "LRESULT",
+	"NaturalNumber":        "i32",
+	"TCustomGrid":          "TStringGrid",
 }
 
 func GetTypes(s string) string {
