@@ -25,6 +25,9 @@ void onButton1Click(TObject sender) {
     ShowMessage("Hello world!");
 }
 
+// 全局定义
+TMemo mmoText;
+
 // 文件拖放事件
 void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
     printf("aFileNames: %p, len=%d\n", aFileNames, len);
@@ -39,6 +42,9 @@ void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
 	    // Linux与macOS默认都是UTF-8，则无需编/解码
         char *filename = GetStringArrOf(aFileNames, i);
 #endif
+        if (mmoText) {
+            Memo_Append(mmoText, filename);
+        }
         printf("file[%d]=%s\n", i+1, filename);
 #ifdef _WIN32
         free((void*)filename);
@@ -143,6 +149,16 @@ int main()
         Edit_SetTop(edit, 10);
 		// 设置编辑器内容改变事件
         Edit_SetOnChange(edit, onEditChange);
+
+        // TMemo
+        mmoText = Memo_Create(form);
+        Memo_SetParent(mmoText, form);
+        Memo_SetLeft(mmoText, 10);
+        Memo_SetTop(mmoText, 10);
+        Memo_SetWidth(mmoText, 400);
+        //Memo_SetHeight(mmoText, 300);
+        Memo_SetAlign(mmoText, alRight);
+        Memo_SetScrollBars(mmoText, ssAutoVertical);
 
         // 运行app
         Application_Run(Application);
