@@ -165,25 +165,43 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 	if len(appendBytes) > 0 {
 		bs = append(bs, appendBytes...)
 	}
+
+	cmpPrevLine := func(line1, line2 *string, cmpStr string) bool {
+		return strings.HasPrefix(*line1, cmpStr) || strings.HasPrefix(*line2, cmpStr)
+	}
+
 	sps := bytes.Split(bs, []byte("\n"))
 	for i, line := range sps {
 		s := string(bytes.TrimSpace(line))
 		if (strings.HasPrefix(strings.ToLower(s), "function") || strings.HasPrefix(strings.ToLower(s), "procedure")) && strings.HasSuffix(s, "extdecl;") {
 			prevLine := ""
+			prevLine2 := ""
 
 			eventType := ""
 			isLastReturn := false
 			isMethod := false
 			if i > 0 {
 				prevLine = string(bytes.TrimSpace(sps[i-1]))
-				if strings.HasPrefix(prevLine, "//EVENT_TYPE:") {
-					//fmt.Println("事件：", prevLine)
+				if i > 1 {
+					prevLine2 = string(bytes.TrimSpace(sps[i-2]))
+				}
+				if cmpPrevLine(&prevLine, &prevLine2, "//EVENT_TYPE:") {
 					eventType = strings.TrimSpace(strings.TrimPrefix(prevLine, "//EVENT_TYPE:"))
-				} else if strings.HasPrefix(prevLine, "//RETURNISLASTPARAM:") {
+				}
+				if cmpPrevLine(&prevLine, &prevLine2, "//RETURNISLASTPARAM:") {
 					isLastReturn = true
-				} else if strings.HasPrefix(prevLine, "//CLASSMETHOD:") {
+				}
+				if cmpPrevLine(&prevLine, &prevLine2, "//CLASSMETHOD:") {
 					isMethod = true
 				}
+
+				//if strings.HasPrefix(prevLine, "//EVENT_TYPE:") || strings.HasPrefix(prevLine2, "//EVENT_TYPE:") {
+				//	eventType = strings.TrimSpace(strings.TrimPrefix(prevLine, "//EVENT_TYPE:"))
+				//} else if strings.HasPrefix(prevLine, "//RETURNISLASTPARAM:") || strings.HasPrefix(prevLine2, "//RETURNISLASTPARAM:") {
+				//	isLastReturn = true
+				//} else if strings.HasPrefix(prevLine, "//CLASSMETHOD:") || strings.HasPrefix(prevLine2, "//CLASSMETHOD:") {
+				//	isMethod = true
+				//}
 			}
 			if !isClass {
 				cs := s
@@ -206,7 +224,12 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 						mArr, _ := defClassMethods[name]
 						temp := ""
 						if eventType != "" || isLastReturn || isMethod {
-							temp += prevLine + "\r\n"
+							if strings.HasPrefix(prevLine, "//") {
+								temp += prevLine + "\r\n"
+							}
+							if strings.HasPrefix(prevLine2, "//") {
+								temp += prevLine2 + "\r\n"
+							}
 						}
 						temp += s + "\r\n"
 

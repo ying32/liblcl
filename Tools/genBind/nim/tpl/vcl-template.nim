@@ -96,7 +96,9 @@ method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var str
   AOutStr = $outstr
 {{else}}
 ##
-method {{propGetName $mm}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}} =
+{{$isSetProp := isSetter $mm}}
+{{$notProp := not (isProp $mm)}}
+{{if $notProp}}method{{else}}proc{{end}} {{if $isSetProp}}`{{end}}{{getPropRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}}{{else}} {.inline.}{{end}} =
   {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.FInstance{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
 {{end}}
 {{end}}
