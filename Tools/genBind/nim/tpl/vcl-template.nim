@@ -10,12 +10,12 @@ import liblcl, types
 ##
 ##
 type
-
+{{$instName := "Instance"}}
 {{/* 基类定义 */}}
 {{range $el := .BaseObjects}}
 ##
   {{$el.ClassName}}*{{if isEmpty $el.BaseClassName}} {.inheritable.}{{end}} = ref object{{if not (isEmpty $el.BaseClassName)}} of {{$el.BaseClassName}}{{end}}
-  {{if isEmpty $el.BaseClassName}}  FInstance: pointer{{end}}
+  {{if isEmpty $el.BaseClassName}}  {{$instName}}: pointer{{end}}
 {{end}}
 
 {{/* 剩下的类定义 */}}
@@ -31,7 +31,7 @@ type
 ##
 proc CheckPtr*(obj: TObject): pointer =
   if obj != nil:
-    return obj.FInstance
+    return obj.{{$instName}}
   else:
     return nil
 ##
@@ -44,7 +44,7 @@ proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
   if obj == nil:
     return nil
   new(result)
-  result.FInstance = obj
+  result.{{$instName}} = obj
 {{end}}
 ##
 
@@ -63,19 +63,18 @@ proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
 {{if eq $mm.RealName "Create"}}
 proc New{{$classN}}*({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{covType2 $ps.Type}}{{end}}): {{$className}} =
    new(result)
-   result.FInstance = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
+   result.{{$instName}} = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
 ##
 {{else if eq $mm.RealName "Free"}}
-method Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}} =
+proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {{end}} =
   if this != nil:
-     {{$mm.Name}}(this.FInstance)
-     this.{{if ne $className "TObject"}}TObject.{{end}}FInstance = nil
+     {{$mm.Name}}(this.{{$instName}})
+     this.{{if ne $className "TObject"}}TObject.{{end}}{{$instName}} = nil
 ##
-{{/*基类，添加一个Instance方法*/}}
-{{if eq $className "TObject"}}
-method Instance*(this: TObject): pointer {.base.} =
+{{if eq $el.ClassName "TObject"}}
+proc Instance*(this: {{$className}}): pointer =
   if this != nil:
-    return this.FInstance
+    return this.{{$instName}}
   else:
     return nil
 {{end}}
@@ -90,24 +89,24 @@ proc {{$className}}Class*(): TClass =
 {{/* 累了，不想弄，直接写好的得了 */}}
 {{if eq $mm.RealName "TextRect2"}}
 ##
-method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 {.base.} =
+proc TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
   var outstr: cstring
-  result = Canvas_TextRect2(this.FInstance, Rect, Text, outstr, TextFormat)
+  result = Canvas_TextRect2(this.{{$instName}}, Rect, Text, outstr, TextFormat)
   AOutStr = $outstr
 {{else if eq $mm.RealName "CreateForm"}}
 ##
 proc CreateForm*[T](this: TApplication, x: var T) {.inline.} =
     new(x)
-    x.FInstance = Application_CreateForm(this.FInstance, false)
+    x.{{$instName}} = Application_CreateForm(this.{{$instName}}, false)
 ##
 proc CreateForm*(this: TApplication): TForm {.inline.} =
-  AsForm(Application_CreateForm(this.FInstance, false))
+  AsForm(Application_CreateForm(this.{{$instName}}, false))
 {{else}}
 ##
 {{$isSetProp := isSetter $mm}}
 {{$notProp := not (isProp $mm)}}
-{{if $notProp}}method{{else}}proc{{end}} {{if $isSetProp}}`{{end}}{{getPropRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.base.}{{end}}{{else}} {.inline.}{{end}} =
-  {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.FInstance{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
+{{if $notProp}}proc{{else}}proc{{end}} {{if $isSetProp}}`{{end}}{{getPropRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.inline.}{{end}}{{else}} {.inline.}{{end}} =
+  {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
 {{end}}
 {{end}}
 {{end}}
