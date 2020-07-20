@@ -11,11 +11,12 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"html/template"
 	"io/ioutil"
 	"strings"
 
-	"../genAST/define"
+	"./ast"
 )
 
 type TFile struct {
@@ -53,9 +54,20 @@ var (
 	methodDict = map[string]map[string]string{}
 	// 用作导入时判断类型是否为对象的
 	Objs = map[string]string{}
+
+	// 命令行
+	genAST       = flag.Bool("ast", false, "生成AST文件'liblcl.json'。")
+	afterGenBind = flag.Bool("bind", false, "生成AST后接着生成绑定代码，需要与'--ast'一起使用才生效。")
 )
 
 func main() {
+	flag.Parse()
+	if *genAST {
+		ast.GenAst()
+		if !*afterGenBind {
+			return
+		}
+	}
 	// 读配置
 	bs, err := ioutil.ReadFile("app.json")
 	var conf TConfig
@@ -68,8 +80,8 @@ func main() {
 	}
 
 	// 读AST文件
-	var objectFile define.TObjectFile
-	err = define.ReadObjectFile(conf.ASTFileName, &objectFile)
+	var objectFile ast.TObjectFile
+	err = ast.ReadObjectFile(conf.ASTFileName, &objectFile)
 	if err != nil {
 		panic(err)
 	}
@@ -138,19 +150,19 @@ func templateDec(val int) int {
 	return val - 1
 }
 
-func templateNextType(obj []define.TType, idx int) define.TType {
+func templateNextType(obj []ast.TType, idx int) ast.TType {
 	if idx+1 < len(obj) {
 		return obj[idx+1]
 	}
-	return define.TType{}
+	return ast.TType{}
 }
 
-func templatePrevType(obj []define.TType, idx int) define.TType {
+func templatePrevType(obj []ast.TType, idx int) ast.TType {
 	if idx-1 > 0 {
 		//fmt.Println("index:", idx, obj[idx-1], obj[idx])
 		return obj[idx-1]
 	}
-	return define.TType{}
+	return ast.TType{}
 }
 
 func templateIsBaseObject(s string) bool {
@@ -164,11 +176,11 @@ func templateRMObjectT(s string) string {
 	return s
 }
 
-func templateParamsEmpty(ps []define.TFuncParam) bool {
+func templateParamsEmpty(ps []ast.TFuncParam) bool {
 	return len(ps) == 0
 }
 
-func templatePropGetName(fn define.TFunction) string {
+func templatePropGetName(fn ast.TFunction) string {
 	if !fn.IsMethod {
 		if strings.HasPrefix(fn.RealName, "Get") {
 			return strings.TrimPrefix(fn.RealName, "Get")
@@ -206,7 +218,7 @@ func templateText(s string) template.HTML {
 	return template.HTML(s)
 }
 
-func templateCPsZero(params []define.TFuncParam) string {
+func templateCPsZero(params []ast.TFuncParam) string {
 	if len(params) > 0 {
 		ns := ""
 		for i := 0; i < 12-len(params); i++ {
@@ -226,42 +238,42 @@ func templateDelDChar(s string) string {
 	return s
 }
 
-func templateGetLastParam(pss []define.TFuncParam) define.TFuncParam {
+func templateGetLastParam(pss []ast.TFuncParam) ast.TFuncParam {
 	if len(pss) == 0 {
-		return define.TFuncParam{}
+		return ast.TFuncParam{}
 	}
 	return pss[len(pss)-1]
 }
 
-func templateCanOutParam(mm define.TFunction, idx int) bool {
+func templateCanOutParam(mm ast.TFunction, idx int) bool {
 	if !mm.LastIsReturn {
 		return true
 	}
 	return idx < len(mm.Params)-1
 }
 
-func templateIsProp(mm define.TFunction) bool {
+func templateIsProp(mm ast.TFunction) bool {
 	if !mm.IsMethod {
 		return true
 	}
 	return false
 }
 
-func templateIsGetter(mm define.TFunction) bool {
+func templateIsGetter(mm ast.TFunction) bool {
 	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Get") {
 		return true
 	}
 	return false
 }
 
-func templateIsSetter(mm define.TFunction) bool {
+func templateIsSetter(mm ast.TFunction) bool {
 	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Set") {
 		return true
 	}
 	return false
 }
 
-func templateGetPropRealName(mm define.TFunction) string {
+func templateGetPropRealName(mm ast.TFunction) string {
 	if !mm.IsMethod && (strings.HasPrefix(mm.RealName, "Get") || strings.HasPrefix(mm.RealName, "Set")) {
 		return mm.RealName[3:]
 	}
@@ -296,7 +308,7 @@ var templateFuncs = template.FuncMap{
 	"getPropRealName": templateGetPropRealName,
 }
 
-func execTemplate(objFile define.TObjectFile, file TFile, lineBreak string) {
+func execTemplate(objFile ast.TObjectFile, file TFile, lineBreak string) {
 
 	tplFileBs, err := ioutil.ReadFile(file.TemplateFileName)
 	if err != nil {

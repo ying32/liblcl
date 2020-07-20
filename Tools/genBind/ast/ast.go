@@ -6,7 +6,7 @@
 //
 //----------------------------------------
 
-package main
+package ast
 
 import (
 	"bytes"
@@ -17,23 +17,21 @@ import (
 	"os"
 	"regexp"
 	"strings"
-
-	. "./define"
 )
 
 var (
 	paramsExpr  = regexp.MustCompile(`\((.+?)\)`)
 	incFileExpr = regexp.MustCompile(`\{\$I\s(MyLCL\_.+?\.inc)\}\s\s\/\/BASECLASS\:(T[a-z,A-Z]*)`) //`\{\$I\s(MyLCL\_.+?\.inc)\}`)
 
-	funcsMap        = make(map[string]string, 0)
+	functionsMap    = make(map[string]string, 0)
 	classArray      = make([]string, 0)
 	objsMap         = make(map[string]string)
 	defClassMethods = make(map[string][]string, 0)
 
-	ObjectFile TObjectFile
+	objectFile TObjectFile
 )
 
-func main() {
+func GenAst() {
 
 	govclPath := ""
 	goPath, ok := os.LookupEnv("GOPATH")
@@ -44,7 +42,7 @@ func main() {
 	paths := strings.Split(goPath, ";")
 	for _, path := range paths {
 		path += "/src/github.com/ying32/govcl"
-		if FileExists(path) {
+		if fileExists(path) {
 			govclPath = path
 		}
 	}
@@ -52,23 +50,23 @@ func main() {
 		panic("未在$GOPATH中到找govcl源代码目录，请go get github.com/ying32/govcl")
 	}
 
-	funcsMap["MySyscall"] = ""     // 排除此函数，手动构建
-	funcsMap["DGetClassName"] = "" // 已经废弃，govcl中也没引用
+	functionsMap["MySyscall"] = ""     // 排除此函数，手动构建
+	functionsMap["DGetClassName"] = "" // 已经废弃，govcl中也没引用
 	// 已经是c语言的了，则不需要这些了
-	funcsMap["NSWindow_titleVisibility"] = ""
-	funcsMap["NSWindow_setTitleVisibility"] = ""
-	funcsMap["NSWindow_titlebarAppearsTransparent"] = ""
-	funcsMap["NSWindow_setTitlebarAppearsTransparent"] = ""
-	funcsMap["NSWindow_styleMask"] = ""
-	funcsMap["NSWindow_setStyleMask"] = ""
-	funcsMap["NSWindow_setRepresentedURL"] = ""
-	funcsMap["NSWindow_release"] = ""
+	functionsMap["NSWindow_titleVisibility"] = ""
+	functionsMap["NSWindow_setTitleVisibility"] = ""
+	functionsMap["NSWindow_titlebarAppearsTransparent"] = ""
+	functionsMap["NSWindow_setTitlebarAppearsTransparent"] = ""
+	functionsMap["NSWindow_styleMask"] = ""
+	functionsMap["NSWindow_setStyleMask"] = ""
+	functionsMap["NSWindow_setRepresentedURL"] = ""
+	functionsMap["NSWindow_release"] = ""
 
 	// 预定义的基类
-	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TObject", BaseClassName: ""})
-	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TComponent", BaseClassName: "TObject"})
-	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TControl", BaseClassName: "TComponent"})
-	ObjectFile.BaseObjects = append(ObjectFile.BaseObjects, TBaseObject{ClassName: "TWinControl", BaseClassName: "TControl"})
+	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TObject", BaseClassName: ""})
+	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TComponent", BaseClassName: "TObject"})
+	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TControl", BaseClassName: "TComponent"})
+	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TWinControl", BaseClassName: "TControl"})
 
 	parseFile("LazarusDef.inc", false, nil, "", "")
 
@@ -99,22 +97,22 @@ func main() {
 	parseBaseType(govclPath+"/vcl/types/message.go", "i386")
 	parseBaseType(govclPath+"/vcl/types/message_posix.go", "amd64")
 
-	SortObjects()
+	sortObjects()
 	// 保存分析文件
-	SaveObjectFile("../genBind/liblcl.json", ObjectFile)
+	SaveObjectFile("liblcl.json", objectFile)
 
 }
 
 // 把基类放最新面
-func SortObjects() {
+func sortObjects() {
 
 	move := func(src, dest int, o TClass) {
-		temp := ObjectFile.Objects[dest] // 备份目标位置的
-		ObjectFile.Objects[dest] = o     // 替换目标位置的为新的
-		ObjectFile.Objects[src] = temp   // 将原来的替换到当前位置
+		temp := objectFile.Objects[dest] // 备份目标位置的
+		objectFile.Objects[dest] = o     // 替换目标位置的为新的
+		objectFile.Objects[src] = temp   // 将原来的替换到当前位置
 	}
 
-	for i, o := range ObjectFile.Objects {
+	for i, o := range objectFile.Objects {
 		if o.ClassName == "TObject" {
 			o.BaseClassName = ""
 			move(i, 0, o)
@@ -132,7 +130,7 @@ func SortObjects() {
 	}
 }
 
-func FileExists(path string) bool {
+func fileExists(path string) bool {
 	_, err := os.Stat(path)
 	if err == nil {
 		return true
@@ -143,7 +141,7 @@ func FileExists(path string) bool {
 	return false
 }
 
-func ReadFile(fileName string) ([]byte, error) {
+func readFile(fileName string) ([]byte, error) {
 	bs, err := ioutil.ReadFile("../../src/" + fileName)
 	if err != nil {
 		return nil, err
@@ -152,7 +150,7 @@ func ReadFile(fileName string) ([]byte, error) {
 }
 
 func parseFile(fileName string, isClass bool, appendBytes []byte, className, baseClassName string) {
-	bs, err := ReadFile(fileName)
+	bs, err := readFile(fileName)
 	if err != nil {
 		panic(err)
 	}
@@ -245,7 +243,7 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 }
 
 func parseClassFiles(fileName string) {
-	bs, err := ReadFile(fileName)
+	bs, err := readFile(fileName)
 	if err != nil {
 		panic(err)
 	}
@@ -283,7 +281,7 @@ func parseClassFiles(fileName string) {
 			//rustFile.W("\r\n")
 
 			parseFile(incFileName, true, []byte(appendStr), className, baseClassName)
-			ObjectFile.Objects = append(ObjectFile.Objects, currentClass)
+			objectFile.Objects = append(objectFile.Objects, currentClass)
 		}
 	}
 
@@ -338,10 +336,10 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 
 	params := parseParams(paramsStr, eventType)
 
-	if _, ok := funcsMap[funcName]; ok {
+	if _, ok := functionsMap[funcName]; ok {
 		return
 	}
-	funcsMap[funcName] = ""
+	functionsMap[funcName] = ""
 
 	nameSuffix := func(sName string) bool {
 		return strings.HasSuffix(funcName, sName)
@@ -390,7 +388,7 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 
 	// 添加到对象文件中
 	if !isClass {
-		ObjectFile.Functions = append(ObjectFile.Functions, item)
+		objectFile.Functions = append(objectFile.Functions, item)
 	} else {
 		if currentClass.ClassName != className && className != "" {
 			currentClass.ClassName = className
@@ -471,7 +469,7 @@ func parseParams(s string, eventType string) []TFuncParam {
 
 func parseEnums(fileName string) {
 
-	_, lines, err := ReadFileLines(fileName)
+	_, lines, err := readFileLines(fileName)
 	if err != nil {
 		panic(err)
 	}
@@ -573,7 +571,7 @@ func parseEnums(fileName string) {
 				// 转换类型
 				item.Type = GetTypes(item.Type)
 
-				ObjectFile.Types = append(ObjectFile.Types, item)
+				objectFile.Types = append(objectFile.Types, item)
 			}
 		}
 		i++
@@ -582,7 +580,7 @@ func parseEnums(fileName string) {
 }
 
 func parseEvents(fileName string) {
-	_, lines, err := ReadFileLines(fileName)
+	_, lines, err := readFileLines(fileName)
 	if err != nil {
 		panic(err)
 	}
@@ -621,7 +619,7 @@ func parseEvents(fileName string) {
 				item := TEvent{}
 				item.Name = strings.TrimSpace(sp[0])
 				item.ReDefine = strings.TrimSpace(sp[1])
-				ObjectFile.Events = append(ObjectFile.Events, item)
+				objectFile.Events = append(objectFile.Events, item)
 				continue
 			}
 
@@ -683,7 +681,7 @@ func parseEvents(fileName string) {
 			item.Name = name
 			item.Params = params
 
-			ObjectFile.Events = append(ObjectFile.Events, item)
+			objectFile.Events = append(objectFile.Events, item)
 
 		}
 	}
@@ -691,7 +689,7 @@ func parseEvents(fileName string) {
 
 func parseConst(filename string) {
 
-	_, lines, err := ReadFileLines(filename)
+	_, lines, err := readFileLines(filename)
 	if err != nil {
 		panic(err)
 	}
@@ -707,7 +705,7 @@ func parseConst(filename string) {
 			item.Comment = strings.Replace(s, "//", "", -1)
 			item.Comment = strings.Replace(item.Comment, "/*", "", -1)
 			item.Comment = strings.TrimSpace(strings.Replace(item.Comment, "*/", "", -1))
-			ObjectFile.Consts = append(ObjectFile.Consts, item)
+			objectFile.Consts = append(objectFile.Consts, item)
 
 		}
 	}
@@ -749,7 +747,7 @@ func parseConst(filename string) {
 							}
 
 						}
-						ObjectFile.Consts = append(ObjectFile.Consts, item)
+						objectFile.Consts = append(objectFile.Consts, item)
 					}
 				}
 				i++
@@ -762,7 +760,7 @@ func parseConst(filename string) {
 
 func parseBaseType(filename, arch string) {
 
-	_, lines, err := ReadFileLines(filename)
+	_, lines, err := readFileLines(filename)
 	if err != nil {
 		panic(err)
 	}
@@ -835,7 +833,7 @@ func parseBaseType(filename, arch string) {
 				}
 			}
 			if item.Name != "" {
-				ObjectFile.BaseTypes = append(ObjectFile.BaseTypes, item)
+				objectFile.BaseTypes = append(objectFile.BaseTypes, item)
 			}
 		}
 		i++
@@ -851,7 +849,7 @@ func firstLowerChar(sx string) string {
 	return sx
 }
 
-func ReadFileLines(filename string) (*bytes.Buffer, [][]byte, error) {
+func readFileLines(filename string) (*bytes.Buffer, [][]byte, error) {
 	buff := bytes.NewBuffer(nil)
 	buff.WriteString("//" + filename)
 	buff.WriteString("\n")

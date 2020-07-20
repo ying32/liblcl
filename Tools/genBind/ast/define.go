@@ -6,7 +6,7 @@
 //
 //----------------------------------------
 
-package define
+package ast
 
 import (
 	"encoding/json"
