@@ -94,6 +94,14 @@ method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var str
   var outstr: cstring
   result = Canvas_TextRect2(this.FInstance, Rect, Text, outstr, TextFormat)
   AOutStr = $outstr
+{{else if eq $mm.RealName "CreateForm"}}
+##
+method CreateForm*[T](this: TApplication, x: var T) {.base.} =
+    new(x)
+    x.FInstance = Application_CreateForm(this.FInstance, false)
+##
+method CreateForm*(this: TApplication): TForm {.base.} =
+  AsForm(Application_CreateForm(this.FInstance, false))
 {{else}}
 ##
 {{$isSetProp := isSetter $mm}}
