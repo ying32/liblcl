@@ -37,17 +37,17 @@ proc CheckPtr*(obj: TObject): pointer =
 ##
 ## -------------------- 转换对象定义 ------------------------------------------
 ##
-{{/* As<xxx>方法定义 */}}
-{{range $el := .Objects}}
-## {{/*这里添加一个强制转换的*/}}
-proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
+template defaultPointerAs =
   if obj == nil:
     return nil
   new(result)
-  result.{{$instName}} = obj
-{{end}}
-##
+  result.Instance = obj
 
+{{/* As<xxx>方法定义 */}}
+## {{/*这里添加一个强制转换的*/}}
+{{range $el := .Objects}}
+proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} = defaultPointerAs{{end}}
+##
 
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}}: {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
@@ -55,6 +55,13 @@ proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
 {{define "getFree"}}{{if or (eq . "TObject") (eq . "")}}, Free{{end}}{{end}}
 
 {{/* 开始生成方法 */}}
+{{/* 默认的free过程 */}}
+template defaultFree(pName) =
+  if (this != nil) and (this.Instance != nil):
+     pName(this.Instance)
+     this.Instance = nil
+
+ 
 {{range $el := .Objects}}
 ##
 #------------------------- {{$el.ClassName}} -------------------------
@@ -64,18 +71,14 @@ proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
 {{range $mm := $el.Methods}}
 {{if eq $mm.RealName "Create"}}
 
-proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {{end}} =
-  if (this != nil) and (this.{{$instName}} != nil):
-     {{$classN}}_Free(this.{{$instName}})
-     this.{{if ne $className "TObject"}}TObject.{{end}}{{$instName}} = nil
+proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {{end}} = defaultFree: {{$classN}}_Free
 ##
 proc New{{$classN}}*({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{covType2 $ps.Type}}{{end}}): {{$className}} =
    new(result{{template "getFree" $el.BaseClassName}})
    result.{{$instName}} = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
-##
+   
 {{else if eq $mm.RealName "Free"}}
 
-##
 {{if eq $el.ClassName "TObject"}}
 proc Instance*(this: {{$className}}): pointer =
   if this != nil:
@@ -86,8 +89,7 @@ proc Instance*(this: {{$className}}): pointer =
 
 {{else if $mm.IsStatic}}
 ##
-proc {{$className}}Class*(): TClass =
-  return {{$mm.Name}}()
+proc {{$className}}Class*(): TClass = {{$mm.Name}}()
 ##
 {{else}}
 {{if not $mm.IsStatic}}
