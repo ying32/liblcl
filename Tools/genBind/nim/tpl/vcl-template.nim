@@ -49,6 +49,14 @@ template defaultPointerAs =
 proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} = defaultPointerAs{{end}}
 ##
 
+##
+proc Instance*(this: TObject): pointer =
+  if this != nil:
+    return this.{{$instName}}
+  else:
+    return nil
+##
+##
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}}: {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
 {{/*当父类为TObject或者为空时，设置构造函数*/}}
@@ -76,17 +84,7 @@ proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {
 proc New{{$classN}}*({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{covType2 $ps.Type}}{{end}}): {{$className}} =
    new(result{{template "getFree" $el.BaseClassName}})
    result.{{$instName}} = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
-   
 {{else if eq $mm.RealName "Free"}}
-
-{{if eq $el.ClassName "TObject"}}
-proc Instance*(this: {{$className}}): pointer =
-  if this != nil:
-    return this.{{$instName}}
-  else:
-    return nil
-{{end}}
-
 {{else if $mm.IsStatic}}
 ##
 proc {{$className}}Class*(): TClass = {{$mm.Name}}()
@@ -102,17 +100,17 @@ proc TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var strin
   AOutStr = $outstr
 {{else if eq $mm.RealName "CreateForm"}}
 ##
-proc CreateForm*[T](this: TApplication, x: var T) {.inline.} =
+proc CreateForm*[T](this: TApplication, x: var T) =
     new(x)
     x.{{$instName}} = Application_CreateForm(this.{{$instName}}, false)
 ##
-proc CreateForm*(this: TApplication): TForm {.inline.} =
+proc CreateForm*(this: TApplication): TForm =
   AsForm(Application_CreateForm(this.{{$instName}}, false))
 {{else}}
 ##
 {{$isSetProp := isSetter $mm}}
 {{$notProp := not (isProp $mm)}}
-{{if $notProp}}proc{{else}}proc{{end}} {{if $isSetProp}}`{{end}}{{getPropRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {.inline.}{{end}}{{else}} {.inline.}{{end}} =
+{{if $notProp}}proc{{else}}proc{{end}} {{if $isSetProp}}`{{end}}{{getPropRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} =
   {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
 {{end}}
 {{end}}
