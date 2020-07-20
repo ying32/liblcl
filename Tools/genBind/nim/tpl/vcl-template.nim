@@ -96,11 +96,11 @@ method TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var str
   AOutStr = $outstr
 {{else if eq $mm.RealName "CreateForm"}}
 ##
-method CreateForm*[T](this: TApplication, x: var T) {.base.} =
+proc CreateForm*[T](this: TApplication, x: var T) {.inline.} =
     new(x)
     x.FInstance = Application_CreateForm(this.FInstance, false)
 ##
-method CreateForm*(this: TApplication): TForm {.base.} =
+proc CreateForm*(this: TApplication): TForm {.inline.} =
   AsForm(Application_CreateForm(this.FInstance, false))
 {{else}}
 ##
