@@ -34,12 +34,26 @@ proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var str
   if result:
     AOut = $ps4
 ##
+proc GetLibResourceItem*(AIndex: int32): TResItem =
+  DGetLibResourceItem(AIndex, result)
+##
+proc StringToGUID*(AGUIDStr: string): TGUID =
+  DStringToGUID(AGUIDStr, result)
+##
+proc CreateGUID*(): TGUID =
+  DCreateGUID(result)
+##
+when defined(linux):
+  proc GdkWindow_GetXId*(AW: PGdkWindow): TXId =
+    GdkWindow_GetXId(AW, result)
+##
+##
 {{define "getps1"}}{{range $idx, $ps := .Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if $ps.IsVar}}{{if ne $ps.Flag "nonPtr"}}var {{end}}{{end}}{{covType2 $ps.Type}}{{end}}{{end}}
 {{define "getps2"}}{{range $idx, $ps := .Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{end}}{{if ne $ps.Flag "nonPtr"}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{if isObject $ps.Type}}){{end}}{{end}}{{end}}
 {{define "emptyStr"}}{{if ne .Platform "all"}}  {{end}}{{end}}
 
 {{range $el := .Functions}}
-  {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery")}}
+  {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
     {{if not (contains $el.Name "_Instance")}}
 ##
 {{if eq $el.Platform "windows"}}when defined(windows):{{end}}

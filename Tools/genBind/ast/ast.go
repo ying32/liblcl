@@ -398,7 +398,7 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 		for _, a := range strings.Split(paramFlags, ",") {
 			as := strings.Split(a, "=")
 			if len(as) == 2 {
-				if idx, err := strconv.Atoi(strings.TrimSpace(as[0])); err == nil && idx < len(item.Params) {
+				if idx, err := strconv.Atoi(strings.TrimSpace(as[0])); err == nil {
 					item.Params[idx-1].Flag = strings.TrimSpace(as[1])
 				}
 			}
