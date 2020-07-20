@@ -19,17 +19,20 @@ proc GetFPStringArrayMember*(p: pointer, index: int): string =
 proc SelectDirectory*(Directory: var string, Options: TSelectDirOpts, HelpCtx: int32): bool =
   var ps1: cstring = Directory
   result = DSelectDirectory1(ps1, Options, HelpCtx)
-  Directory = $ps1
+  if result:
+    Directory = $ps1
 ##
 proc SelectDirectory*(Caption: string, Root: string, AShowHidden: bool, Directory: var string): bool =
   var ps4: cstring = Directory
   result = DSelectDirectory2(Caption, Root, AShowHidden, ps4)
-  Directory = $ps4
+  if result:
+    Directory = $ps4
 ##
 proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var string): bool =
   var ps4: cstring = AOut
   result = DInputQuery(ACaption, APrompt, Value, ps4)
-  AOut = $ps4
+  if result:
+    AOut = $ps4
 ##
 {{define "getps1"}}{{range $idx, $ps := .Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if $ps.IsVar}}{{if ne $ps.Flag "nonPtr"}}var {{end}}{{end}}{{covType2 $ps.Type}}{{end}}{{end}}
 {{define "getps2"}}{{range $idx, $ps := .Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{end}}{{if ne $ps.Flag "nonPtr"}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{if isObject $ps.Type}}){{end}}{{end}}{{end}}
