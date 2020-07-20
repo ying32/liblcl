@@ -21,6 +21,7 @@ type (
 		Type    string `json:"type"`
 		IsVar   bool   `json:"is_var"`
 		IsArray bool   `json:"is_array"`
+		Flag    string `json:"flag"`
 	}
 
 	// 函数定义
@@ -33,6 +34,8 @@ type (
 		Platform     string       `json:"platform"`
 		LastIsReturn bool         `json:"last_is_return"`
 		IsMethod     bool         `json:"is_method"` // 不是方法就是属性
+		IsOverload   bool         `json:"is_overload"`
+		OverloadName string       `json:"overload_name"`
 	}
 
 	TClass struct {
@@ -44,6 +47,7 @@ type (
 	TEvent struct {
 		Name     string       `json:"name"`
 		ReDefine string       `json:"re_define"`
+		IsFunc   bool         `json:"is_func"`
 		Params   []TFuncParam `json:"params"`
 	}
 

@@ -36,6 +36,10 @@
         {
           "template_file_name": "./nim/tpl/vcl-template.nim",
           "save_file_name": "J:\\NimLang\\Hello\\src\\vcl.nim"
+        },
+        {
+          "template_file_name": "./nim/tpl/fns-template.nim",
+          "save_file_name": "J:\\NimLang\\Hello\\src\\fns.nim"
         }
       ]
     },

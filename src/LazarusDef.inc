@@ -300,6 +300,7 @@ end;
 // Canvas_TextRect2
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr,4=nonPtr
 procedure Canvas_BrushCopy(AObj: TCanvas; var Dest: TRect; Bitmap: TBitmap; var Source: TRect; Color: TColor); extdecl;
 begin
   handleExceptionBegin
@@ -308,6 +309,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr,4=nonPtr
 procedure Canvas_CopyRect(AObj: TCanvas; var Dest: TRect; Canvas: TCanvas; var Source: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -332,6 +334,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure Canvas_DrawFocusRect(AObj: TCanvas; var ARect: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -340,6 +343,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure Canvas_FillRect(AObj: TCanvas; var Rect: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -348,6 +352,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure Canvas_FrameRect(AObj: TCanvas; var Rect: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -356,6 +361,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure Canvas_StretchDraw(AObj: TCanvas; var Rect: TRect; Graphic: TGraphic); extdecl;
 begin
   handleExceptionBegin
@@ -364,6 +370,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure Canvas_TextRect1(AObj: TCanvas; var Rect: TRect; X, Y: Integer; const Text: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -538,7 +545,6 @@ end;
 
 
 
-// TBitmap
 //CLASSMETHOD:
 procedure Bitmap_Clear(AObj: TBitmap); extdecl;
 begin
@@ -952,7 +958,7 @@ begin
 end;
 
 
-//GUIDToString
+//PARAMS:1=nonPtr
 function DGUIDToString(var AGUID: TGUID): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -960,7 +966,7 @@ begin
   handleExceptionEnd
 end;
 
-//StringToGUID
+//RETURNISLASTPARAM:
 procedure DStringToGUID(AGUIDStr: PChar; out AGUID: TGUID); extdecl;
 begin
   handleExceptionBegin
@@ -968,7 +974,7 @@ begin
   handleExceptionEnd
 end;
 
-//CreateGUID
+//RETURNISLASTPARAM:
 procedure DCreateGUID(out AGUID: TGUID); extdecl;
 begin
   handleExceptionBegin
@@ -1210,6 +1216,7 @@ begin
   Result := FindControl(AHandle);
 end;
 
+//PARAMS:1=nonPtr
 function DFindLCLControl(var AScreenPos: TPoint): TControl; extdecl;
 begin
   Result := FindLCLControl(AScreenPos);
@@ -1220,16 +1227,19 @@ begin
   Result := FindOwnerControl(Handle);
 end;
 
+//PARAMS:1=nonPtr
 function DFindControlAtPosition(var APosition: TPoint; AllowDisabled: LongBool): TControl; extdecl;
 begin
   Result := FindControlAtPosition(APosition, AllowDisabled);
 end;
 
+//PARAMS:1=nonPtr
 function DFindLCLWindow(var AScreenPos: TPoint; AllowDisabled: LongBool): TWinControl; extdecl;
 begin
   Result := FindLCLWindow(AScreenPos, AllowDisabled);
 end;
 
+//PARAMS:1=nonPtr
 function DFindDragTarget(var APosition: TPoint; AllowDisabled: LongBool): TControl; extdecl;
 begin
   Result := FindDragTarget(APosition, AllowDisabled);

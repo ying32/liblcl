@@ -3,6 +3,7 @@
    Author: ying32
    https://github.com/ying32  
 ]#
+#{.experimental: "codeReordering".}
 ##
 ##
 import liblcl, types
@@ -59,8 +60,12 @@ proc Instance*(this: TObject): pointer =
 ##
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}}: {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
+
 {{/*当父类为TObject或者为空时，设置构造函数*/}}
 {{define "getFree"}}{{if or (eq . "TObject") (eq . "")}}, Free{{end}}{{end}}
+
+{{/*如果是重载的函数，输出重载函数名，返之输出实际函数*/}}
+{{define "getOverloadName"}}{{if .IsOverload}}{{.OverloadName}}{{else}}{{.RealName}}{{end}}{{end}}
 
 {{/* 开始生成方法 */}}
 {{/* 默认的free过程 */}}
@@ -69,7 +74,7 @@ template defaultFree(pName) =
      pName(this.Instance)
      this.Instance = nil
 
- 
+
 {{range $el := .Objects}}
 ##
 #------------------------- {{$el.ClassName}} -------------------------
@@ -94,7 +99,7 @@ proc {{$className}}Class*(): TClass = {{$mm.Name}}()
 {{/* 累了，不想弄，直接写好的得了 */}}
 {{if eq $mm.RealName "TextRect2"}}
 ##
-proc TextRect2*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
+proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
   var outstr: cstring
   result = Canvas_TextRect2(this.{{$instName}}, Rect, Text, outstr, TextFormat)
   AOutStr = $outstr
@@ -110,8 +115,14 @@ proc CreateForm*(this: TApplication): TForm =
 ##
 {{$isSetProp := isSetter $mm}}
 {{$notProp := not (isProp $mm)}}
-{{if $notProp}}proc{{else}}proc{{end}} {{if $isSetProp}}`{{end}}{{getPropRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} =
-  {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
+proc {{if $isSetProp}}`{{end}}{{getRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}{{if not (eq $ps.Flag "nonPtr")}}var {{end}}{{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} =
+  {{/*这里生成不需要var的变量*/}}
+  {{range $ips, $ps := $mm.Params}}
+    {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
+  var ps{{$ips}} = {{$ps.Name}}
+    {{end}}
+  {{end}}
+  {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{if not (eq $ps.Flag "nonPtr")}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
 {{end}}
 {{end}}
 {{end}}

@@ -164,8 +164,20 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 		bs = append(bs, appendBytes...)
 	}
 
-	cmpPrevLine := func(line1, line2 *string, cmpStr string) bool {
-		return strings.HasPrefix(*line1, cmpStr) || strings.HasPrefix(*line2, cmpStr)
+	cmpPrevLine := func(line1, line2 *string, cmpStr string, result *string) bool {
+		if strings.HasPrefix(*line1, cmpStr) {
+			if result != nil {
+				*result = *line1
+			}
+			return true
+		}
+		if strings.HasPrefix(*line2, cmpStr) {
+			if result != nil {
+				*result = *line2
+			}
+			return true
+		}
+		return false
 	}
 
 	sps := bytes.Split(bs, []byte("\n"))
@@ -178,28 +190,25 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 			eventType := ""
 			isLastReturn := false
 			isMethod := false
+			paramFlags := ""
+			lineStr := ""
 			if i > 0 {
 				prevLine = string(bytes.TrimSpace(sps[i-1]))
 				if i > 1 {
 					prevLine2 = string(bytes.TrimSpace(sps[i-2]))
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//EVENT_TYPE:") {
-					eventType = strings.TrimSpace(strings.TrimPrefix(prevLine, "//EVENT_TYPE:"))
+				if cmpPrevLine(&prevLine, &prevLine2, "//EVENT_TYPE:", &lineStr) {
+					eventType = strings.TrimSpace(strings.TrimPrefix(lineStr, "//EVENT_TYPE:"))
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//RETURNISLASTPARAM:") {
+				if cmpPrevLine(&prevLine, &prevLine2, "//RETURNISLASTPARAM:", nil) {
 					isLastReturn = true
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//CLASSMETHOD:") {
+				if cmpPrevLine(&prevLine, &prevLine2, "//CLASSMETHOD:", nil) {
 					isMethod = true
 				}
-
-				//if strings.HasPrefix(prevLine, "//EVENT_TYPE:") || strings.HasPrefix(prevLine2, "//EVENT_TYPE:") {
-				//	eventType = strings.TrimSpace(strings.TrimPrefix(prevLine, "//EVENT_TYPE:"))
-				//} else if strings.HasPrefix(prevLine, "//RETURNISLASTPARAM:") || strings.HasPrefix(prevLine2, "//RETURNISLASTPARAM:") {
-				//	isLastReturn = true
-				//} else if strings.HasPrefix(prevLine, "//CLASSMETHOD:") || strings.HasPrefix(prevLine2, "//CLASSMETHOD:") {
-				//	isMethod = true
-				//}
+				if cmpPrevLine(&prevLine, &prevLine2, "//PARAMS:", &paramFlags) {
+					paramFlags = strings.TrimSpace(strings.TrimPrefix(paramFlags, "//PARAMS:"))
+				}
 			}
 			if !isClass {
 				cs := s
@@ -237,7 +246,7 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 					}
 				}
 			}
-			parseFunc(s, isClass, eventType, className, baseClassName, isLastReturn, isMethod)
+			parseFunc(s, isClass, eventType, className, baseClassName, isLastReturn, isMethod, paramFlags)
 		}
 	}
 }
@@ -268,7 +277,7 @@ func parseClassFiles(fileName string) {
 			objsMap[className] = className
 			// 生成类型定义用的
 			classArray = append(classArray, className)
-			fmt.Println(incFileName)
+			//fmt.Println(incFileName)
 
 			appendStr := ""
 			if mArr, ok := defClassMethods[className]; ok {
@@ -292,7 +301,7 @@ var (
 	currentClass TClass
 )
 
-func parseFunc(s string, isClass bool, eventType, className, baseClassName string, isLastReturn, isMethod bool) {
+func parseFunc(s string, isClass bool, eventType, className, baseClassName string, isLastReturn, isMethod bool, paramFlags string) {
 	isFunc := strings.HasPrefix(strings.ToLower(s), "function")
 	if isFunc {
 		s = strings.TrimPrefix(s, "function")
@@ -385,6 +394,16 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 	if item.Return == "datetime" {
 		item.LastIsReturn = false
 	}
+	if paramFlags != "" {
+		for _, a := range strings.Split(paramFlags, ",") {
+			as := strings.Split(a, "=")
+			if len(as) == 2 {
+				if idx, err := strconv.Atoi(strings.TrimSpace(as[0])); err == nil && idx < len(item.Params) {
+					item.Params[idx-1].Flag = strings.TrimSpace(as[1])
+				}
+			}
+		}
+	}
 
 	// 添加到对象文件中
 	if !isClass {
@@ -410,14 +429,15 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 			item.IsStatic = false // 这里不知道为啥生成错误
 		}
 
+		if item.IsMethod && item.RealName != "" {
+			nIdx := item.RealName[len(item.RealName)-1]
+			item.IsOverload = nIdx >= '0' && nIdx <= '9'
+			if item.IsOverload {
+				item.OverloadName = strings.Trim(item.RealName, string(nIdx))
+			}
+		}
 		currentClass.Methods = append(currentClass.Methods, item)
 	}
-
-	//MakeCFunc(funcName, returnType, params, isClass)
-	//
-	//MakeRustImport(funcName, returnType, params, isClass)
-	//
-	//MakeNimImport(funcName, returnType, params, isClass)
 }
 
 func parseParams(s string, eventType string) []TFuncParam {
@@ -604,11 +624,13 @@ func parseEvents(fileName string) {
 				s = s[:i]
 			}
 			s = strings.TrimSpace(s)
+			isFunc := false
 			// 检测是否有返回值，有则移到参数后面
 			if i := strings.Index(s, ")"); i != -1 {
 				retVal := strings.TrimSpace(s[i+1:])
 				if len(retVal) > 3 {
 					s = s[:i] + ", result " + retVal + ")" // 重新处理这个返回值
+					isFunc = true
 				}
 			}
 
@@ -680,6 +702,7 @@ func parseEvents(fileName string) {
 			item := TEvent{}
 			item.Name = name
 			item.Params = params
+			item.IsFunc = isFunc
 
 			objectFile.Events = append(objectFile.Events, item)
 

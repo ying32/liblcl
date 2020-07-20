@@ -273,39 +273,53 @@ func templateIsSetter(mm ast.TFunction) bool {
 	return false
 }
 
-func templateGetPropRealName(mm ast.TFunction) string {
+func templateGetRealName(mm ast.TFunction) string {
 	if !mm.IsMethod && (strings.HasPrefix(mm.RealName, "Get") || strings.HasPrefix(mm.RealName, "Set")) {
 		return mm.RealName[3:]
+	}
+	if mm.IsMethod && mm.IsOverload {
+		return mm.OverloadName
 	}
 	return mm.RealName
 }
 
+func templateInStrArray(s string, args ...string) bool {
+	for _, l := range args {
+		if l == s {
+			return true
+		}
+	}
+	return false
+}
+
 var templateFuncs = template.FuncMap{
-	"isEmpty":         templateIsEmpty,
-	"covType":         templateCovType,
-	"covType2":        templateCovType2,
-	"isObject":        templateIsObject,
-	"Dec":             templateDec,
-	"covKeyword":      templateCovKeyWord,
-	"nextType":        templateNextType,
-	"prevType":        templatePrevType,
-	"isBaseObj":       templateIsBaseObject,
-	"rmObjectT":       templateRMObjectT,
-	"paramsEmpty":     templateParamsEmpty,
-	"propGetName":     templatePropGetName,
-	"isBaseMethod":    templateIsBaseMethod,
-	"html":            templateText,
-	"cPsZero":         templateCPsZero,
-	"delDChar":        templateDelDChar,
-	"lastParam":       templateGetLastParam,
-	"canOutParam":     templateCanOutParam,
-	"hasPrefix":       strings.HasPrefix,
-	"hasSuffix":       strings.HasSuffix,
-	"trim":            strings.TrimSpace,
-	"isProp":          templateIsProp,
-	"isGetter":        templateIsGetter,
-	"isSetter":        templateIsSetter,
-	"getPropRealName": templateGetPropRealName,
+	"isEmpty":      templateIsEmpty,
+	"covType":      templateCovType,
+	"covType2":     templateCovType2,
+	"isObject":     templateIsObject,
+	"Dec":          templateDec,
+	"covKeyword":   templateCovKeyWord,
+	"nextType":     templateNextType,
+	"prevType":     templatePrevType,
+	"isBaseObj":    templateIsBaseObject,
+	"rmObjectT":    templateRMObjectT,
+	"paramsEmpty":  templateParamsEmpty,
+	"propGetName":  templatePropGetName,
+	"isBaseMethod": templateIsBaseMethod,
+	//"html":         templateText,
+	"cPsZero":     templateCPsZero,
+	"delDChar":    templateDelDChar,
+	"lastParam":   templateGetLastParam,
+	"canOutParam": templateCanOutParam,
+	"hasPrefix":   strings.HasPrefix,
+	"hasSuffix":   strings.HasSuffix,
+	"trim":        strings.TrimSpace,
+	"contains":    strings.Contains,
+	"isProp":      templateIsProp,
+	"isGetter":    templateIsGetter,
+	"isSetter":    templateIsSetter,
+	"getRealName": templateGetRealName,
+	"inStrArray":  templateInStrArray,
 }
 
 func execTemplate(objFile ast.TObjectFile, file TFile, lineBreak string) {

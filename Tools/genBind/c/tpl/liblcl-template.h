@@ -376,6 +376,7 @@ DEFINE_FUNC_PTR({{$el.Name}})
 
 
 /*--------------------类成员函数--------------------*/
+
 {{range $obj := .Objects}}
 ##
 // -------------------{{$obj.ClassName}}-------------------
@@ -383,6 +384,7 @@ DEFINE_FUNC_PTR({{$el.Name}})
 
 ##
 DEFINE_FUNC_PTR({{$el.Name}})
+
 {{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{$el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
     GET_FUNC_ADDR({{$el.Name}})
     {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});
@@ -391,8 +393,9 @@ DEFINE_FUNC_PTR({{$el.Name}})
 {{end}}
 ##
 ##
+
 /* ------------------函数重定义------------------------------- */
-inline static char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
+static inline char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
     return GetStringArrOf(P, AIndex);
 }
 

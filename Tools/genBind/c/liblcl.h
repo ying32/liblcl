@@ -2789,7 +2789,7 @@ typedef void(*TValidateEntryEvent)(TObject, int32_t, int32_t, char*, char**);
 
 // 集合加法，val...中存储为位的索引，下标为0
 TSet Include(TSet s, uint8_t val) {
-    return (TSet)(s | (1 << val));
+    return (TSet)(s | (1 &lt;&lt; val));
 }
 //TSet Include(TSet s, ...) {
 //    uint32_t r = (uint32_t)s;
@@ -2797,7 +2797,7 @@ TSet Include(TSet s, uint8_t val) {
 //    va_start(varlist, s);
 //    uint8_t val;
 //    while ((val = va_arg(varlist, int)) != -1) {
-//        r |= (1 << (uint8_t)val);
+//        r |= (1 &lt;&lt; (uint8_t)val);
 //    }
 //    va_end(varlist);
 //    return (TSet)r;
@@ -2805,7 +2805,7 @@ TSet Include(TSet s, uint8_t val) {
 
 // 集合减法，val...中存储为位的索引，下标为0
 TSet Exclude(TSet s, uint8_t val) {
-    return (TSet)(s & (~(1 << val)));
+    return (TSet)(s & (~(1 &lt;&lt; val)));
 }
 //TSet Exclude(TSet s, ...) {
 //    uint32_t r = (uint32_t)s;
@@ -2813,7 +2813,7 @@ TSet Exclude(TSet s, uint8_t val) {
 //    va_start(varlist, s);
 //    uint8_t val;
 //    while ((val = va_arg(varlist, int)) != -1) {
-//        r &= ~(1 << (uint8_t)val);
+//        r &= ~(1 &lt;&lt; (uint8_t)val);
 //    }
 //    va_end(varlist);
 //    return (TSet)r;
@@ -2821,7 +2821,7 @@ TSet Exclude(TSet s, uint8_t val) {
 
 // 集合类型的判断，val表示位数，下标为0
 BOOL InSet(uint32_t s, uint8_t val) {
-    if ((s&(1 << val)) != 0) {
+    if ((s&(1 &lt;&lt; val)) != 0) {
         return TRUE;
     }
     return FALSE;
@@ -85609,7 +85609,7 @@ TClass GridColumns_StaticClassType() {
 
 
 /* ------------------函数重定义------------------------------- */
-inline static char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
+static inline char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
     return GetStringArrOf(P, AIndex);
 }
 
