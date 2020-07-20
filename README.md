@@ -20,7 +20,7 @@
 
 * 完成度较高的语言：
 
-  * nim（Test）: https://github.com/ying32/nim-vcl  
+  * nim（Beta）: https://github.com/ying32/nim-vcl  
 
 * 测试中的语言    
 
