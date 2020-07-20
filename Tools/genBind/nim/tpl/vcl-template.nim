@@ -51,6 +51,8 @@ proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
 
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}}: {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
+{{/*当父类为TObject或者为空时，设置构造函数*/}}
+{{define "getFree"}}{{if or (eq . "TObject") (eq . "")}}, Free{{end}}{{end}}
 
 {{/* 开始生成方法 */}}
 {{range $el := .Objects}}
@@ -61,15 +63,18 @@ proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} =
 {{$classN := rmObjectT $className}}
 {{range $mm := $el.Methods}}
 {{if eq $mm.RealName "Create"}}
+
+proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {{end}} =
+  if (this != nil) and (this.{{$instName}} != nil):
+     {{$classN}}_Free(this.{{$instName}})
+     this.{{if ne $className "TObject"}}TObject.{{end}}{{$instName}} = nil
+##
 proc New{{$classN}}*({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{covType2 $ps.Type}}{{end}}): {{$className}} =
-   new(result)
+   new(result{{template "getFree" $el.BaseClassName}})
    result.{{$instName}} = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
 ##
 {{else if eq $mm.RealName "Free"}}
-proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {{end}} =
-  if this != nil:
-     {{$mm.Name}}(this.{{$instName}})
-     this.{{if ne $className "TObject"}}TObject.{{end}}{{$instName}} = nil
+
 ##
 {{if eq $el.ClassName "TObject"}}
 proc Instance*(this: {{$className}}): pointer =
@@ -78,7 +83,7 @@ proc Instance*(this: {{$className}}): pointer =
   else:
     return nil
 {{end}}
-##
+
 {{else if $mm.IsStatic}}
 ##
 proc {{$className}}Class*(): TClass =
