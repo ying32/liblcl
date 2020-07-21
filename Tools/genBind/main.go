@@ -345,6 +345,13 @@ func templateHaveFree(mts []ast.TFunction) bool {
 	return false
 }
 
+func templateFirstLowerCase(s string) string {
+	if len(s) > 0 {
+		return strings.ToLower(string(s[0])) + s[1:]
+	}
+	return s
+}
+
 var templateFuncs = template.FuncMap{
 	"isEmpty":      templateIsEmpty,
 	"covType":      templateCovType,
@@ -378,6 +385,7 @@ var templateFuncs = template.FuncMap{
 	"isIntf":       templateIsIntf,
 	"getRealName2": templateGetRealName2,
 	"haveFree":     templateHaveFree,
+	"fLowCase":     templateFirstLowerCase,
 }
 
 func execTemplate(objFile ast.TObjectFile, file TFile, lineBreak string) {

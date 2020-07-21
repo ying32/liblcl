@@ -41,9 +41,9 @@ pub struct {{$el.ClassName}}(usize,bool);
 impl {{$className}} {
   {{range $mm := $el.Methods}}
       {{if eq $mm.RealName "Create"}}
-      pub fn new({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}) -> Self {
+      pub fn new({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{fLowCase $ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}) -> Self {
           {{$className}} {
-              0: unsafe { {{$classN}}_Create({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CString::new({{$ps.Name}}).unwrap().as_ptr(){{else}}{{$ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{end}}) },
+              0: unsafe { {{$classN}}_Create({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CString::new({{fLowCase $ps.Name}}).unwrap().as_ptr(){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{end}}) },
               1: true,
           }
       }
@@ -78,11 +78,11 @@ impl {{$className}} {
       {{if not (inStrArray $mm.RealName "TextRect2")}}
 
       {{$notProp := not (isProp $mm)}}
-      pub fn {{getRealName2 $mm}}{{if eq $mm.Return "string"}}{{html "<'a>"}}{{end}}(&self{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{$ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{if $ps.IsVar}}{{/*{{if not (eq $ps.Flag "nonPtr")}}*mut {{end}}*/}}*mut {{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}{{/*{{end}}*/}}{{end}}){{if not (isEmpty $mm.Return)}} -> {{if eq $mm.Return "string"}}{{html "Cow<'a, str>"}}{{else}}{{covType2 $mm.Return}}{{end}}{{else}}{{/*{{template "getlastPs" $mm}}*/}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} {
+      pub fn {{getRealName2 $mm}}{{if eq $mm.Return "string"}}{{html "<'a>"}}{{end}}(&self{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{fLowCase $ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{if $ps.IsVar}}{{/*{{if not (eq $ps.Flag "nonPtr")}}*mut {{end}}*/}}*mut {{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}{{/*{{end}}*/}}{{end}}){{if not (isEmpty $mm.Return)}} -> {{if eq $mm.Return "string"}}{{html "Cow<'a, str>"}}{{else}}{{covType2 $mm.Return}}{{end}}{{else}}{{/*{{template "getlastPs" $mm}}*/}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} {
           {{/*这里生成不需要var的变量*/}}
       {{/*{{range $ips, $ps := $mm.Params}}
             {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-          var ps{{$ips}} = {{$ps.Name}}
+          var ps{{$ips}} = {{fLowCase $ps.Name}}
             {{end}}
           {{end}}
       */}}
@@ -94,7 +94,7 @@ impl {{$className}} {
           {{/*{{if $mm.LastIsReturn}}
           let result: {{covType (lastParam $mm.Params).Type}};
           {{end}} */}}
-          {{if $retIsObj}}    0: {{end}}unsafe { {{if $retIsStr}}CStr::from_ptr({{end}}{{$mm.Name}}(self.0{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{if not (eq $ps.Flag "nonPtr")}}{{if eq $ps.Type "string"}}CString::new({{$ps.Name}}).unwrap().as_ptr(){{else}}{{$ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{else}}{{/*ps{{$idx}}*/}}{{$ps.Name}}{{end}}{{/*{{end}}*/}}{{else}}{{/*{{if $mm.LastIsReturn}}, result{{end}}*/}}{{end}}{{end}}){{if $retIsStr}}).to_string_lossy() {{end}} }
+          {{if $retIsObj}}    0: {{end}}unsafe { {{if $retIsStr}}CStr::from_ptr({{end}}{{$mm.Name}}(self.0{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{if not (eq $ps.Flag "nonPtr")}}{{if eq $ps.Type "string"}}CString::new({{fLowCase $ps.Name}}).unwrap().as_ptr(){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{else}}{{/*ps{{$idx}}*/}}{{fLowCase $ps.Name}}{{end}}{{/*{{end}}*/}}{{else}}{{/*{{if $mm.LastIsReturn}}, result{{end}}*/}}{{end}}{{end}}){{if $retIsStr}}).to_string_lossy() {{end}} }
           {{/*{{if $mm.LastIsReturn}}
           return result;
           {{end}}*/}}
@@ -166,4 +166,8 @@ fn getApplication() -> TApplication {
 ##
 lazy_static! {
     pub static ref Application: TApplication = getApplication();
+    pub static ref Screen: TScreen = TScreen::As(unsafe { Screen_Instance() });
+    pub static ref Mouse: TMouse = TMouse::As(unsafe { Mouse_Instance() });
+    pub static ref Clipboard: TClipboard = TClipboard::As(unsafe { Clipboard_Instance() });
+    pub static ref Printer: TPrinter = TPrinter::As(unsafe { Printer_Instance() });
 }
