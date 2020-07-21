@@ -292,6 +292,17 @@ func templateInStrArray(s string, args ...string) bool {
 	return false
 }
 
+func templateGetConstVal2(s string) string {
+	p1 := strings.Index(s, "(")
+	if p1 > 0 {
+		p2 := strings.Index(s, ")")
+		if p2 > 0 {
+			return s[p1+1 : p2]
+		}
+	}
+	return s
+}
+
 var templateFuncs = template.FuncMap{
 	"isEmpty":      templateIsEmpty,
 	"covType":      templateCovType,
@@ -307,19 +318,20 @@ var templateFuncs = template.FuncMap{
 	"propGetName":  templatePropGetName,
 	"isBaseMethod": templateIsBaseMethod,
 	//"html":         templateText,
-	"cPsZero":     templateCPsZero,
-	"delDChar":    templateDelDChar,
-	"lastParam":   templateGetLastParam,
-	"canOutParam": templateCanOutParam,
-	"hasPrefix":   strings.HasPrefix,
-	"hasSuffix":   strings.HasSuffix,
-	"trim":        strings.TrimSpace,
-	"contains":    strings.Contains,
-	"isProp":      templateIsProp,
-	"isGetter":    templateIsGetter,
-	"isSetter":    templateIsSetter,
-	"getRealName": templateGetRealName,
-	"inStrArray":  templateInStrArray,
+	"cPsZero":      templateCPsZero,
+	"delDChar":     templateDelDChar,
+	"lastParam":    templateGetLastParam,
+	"canOutParam":  templateCanOutParam,
+	"hasPrefix":    strings.HasPrefix,
+	"hasSuffix":    strings.HasSuffix,
+	"trim":         strings.TrimSpace,
+	"contains":     strings.Contains,
+	"isProp":       templateIsProp,
+	"isGetter":     templateIsGetter,
+	"isSetter":     templateIsSetter,
+	"getRealName":  templateGetRealName,
+	"inStrArray":   templateInStrArray,
+	"getConstVal2": templateGetConstVal2,
 }
 
 func execTemplate(objFile ast.TObjectFile, file TFile, lineBreak string) {

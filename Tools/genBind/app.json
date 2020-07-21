@@ -2,7 +2,7 @@
   "ast_file_name": "./liblcl.json",
   "languages": [
     {
-      "enabled": true,
+      "enabled": false,
       "type_dict": {
         "i32": "int32",
         "u32": "uint32",
@@ -74,20 +74,24 @@
       ]
     },
     {
-      "enabled": false,
-      "line_break": "\r\n",
+      "enabled": true,
+      "line_break": "",
       "type_dict": {
-        "string": "*const char",
-        "PPoint": "TPoint*",
-        "bool": "BOOL",
-        "pointer": "void*",
-        "datetime": "u32"
+        "string": "*const c_char",
+        "PPoint": "*mut TPoint",
+        "pointer": "usize",
+        "datetime": "u32",
+        "int": "isize"
       },
       "keyword_dict": {},
       "files": [
         {
-          "template_file_name": "./rust/tpl/liblcl-template.rs",
-          "save_file_name": "./rust/imports.rs"
+          "template_file_name": "./rust/tpl/liblcl-template.tpl",
+          "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\imports.rs"
+        },
+        {
+          "template_file_name": "./rust/tpl/types-template.tpl",
+          "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\types.rs"
         }
       ]
     }
