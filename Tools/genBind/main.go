@@ -317,7 +317,7 @@ var templateFuncs = template.FuncMap{
 	"paramsEmpty":  templateParamsEmpty,
 	"propGetName":  templatePropGetName,
 	"isBaseMethod": templateIsBaseMethod,
-	//"html":         templateText,
+	"html":         templateText,
 	"cPsZero":      templateCPsZero,
 	"delDChar":     templateDelDChar,
 	"lastParam":    templateGetLastParam,
