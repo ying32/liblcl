@@ -45,7 +45,7 @@
       ]
     },
     {
-      "enabled": false,
+      "enabled": true,
       "name": "c/c++",
       "line_break": "\r\n",
       "type_dict": {
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "Rust",
       "line_break": "",
       "type_dict": {

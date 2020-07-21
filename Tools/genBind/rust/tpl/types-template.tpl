@@ -25,7 +25,7 @@ use std::os::raw::c_char;
 #[repr(C)]
 pub struct {{$el.Name}} {
     {{range $field := $el.Fields}}
-    {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
+    pub {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
     {{end}}
 }
 ##
@@ -49,7 +49,7 @@ pub type {{$el.Name}} = {{covType $el.Type}};
 #[repr(C)]
 pub struct {{$el.Name}} {
     {{range $field := $el.Fields}}
-    {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
+    pub {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
     {{end}}
 }
   {{else if eq $el.Kind "enum"}}
@@ -86,7 +86,7 @@ pub type {{$el.Name}} = {{covType $el.Type}};
 #[repr(C)]
 {{if ne $el.Name "TDWordFiller"}}pub {{end}}struct {{$el.Name}} {
     {{range $field := $el.Fields}}
-      {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
+      {{if not (or (eq $field.Name "_UnusedMsg") (eq $field.Type "TDWordFiller"))}}pub {{end}}{{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
     {{end}}
 }
   {{end}}
@@ -113,7 +113,7 @@ pub type MyNSWindow = usize;
 {{range $el := .Events}}
   {{if isEmpty $el.ReDefine}}
 ##
-// fn ({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if $ps.IsVar}}*mut {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}pointer{{else}}{{covType $ps.Type}}{{end}}{{end}})
+// fn ({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if $ps.IsVar}}*mut {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}usize{{else}}{{covType $ps.Type}}{{end}}{{end}})
 pub type {{$el.Name}} = fn({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if $ps.IsVar}}*mut {{end}}{{if isObject $ps.Type}}usize{{else}}{{covType $ps.Type}}{{end}}{{end}});
   {{else}}
 ##

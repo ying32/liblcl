@@ -334,6 +334,23 @@ void close_liblcl() {
 }
 ##
 
+{{define "genFunc"}}
+{{$el := .}}
+{{$isPsRet := $el.LastIsReturn}}
+DEFINE_FUNC_PTR({{$el.Name}})
+{{if isEmpty $el.Return}}{{if $isPsRet}}{{covType (lastParam $el.Params).Type}}{{else}}void{{end}}{{else}}{{covType $el.Return}}{{end}}
+{{delDChar $el.Name}}({{range $idx, $ps := $el.Params}}{{if canOutParam $el $idx}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}{{if ne $ps.Flag "nonPtr"}}*{{end}}{{end}} {{$ps.Name}}{{end}}{{end}}) {
+    GET_FUNC_ADDR({{$el.Name}})
+  {{if $isPsRet}}
+    {{covType (lastParam $el.Params).Type}} result;
+  {{end}}
+    {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}{{if canOutParam $el $idx}}, {{if and $ps.IsVar (eq $ps.Flag "nonPtr")}}&{{end}}{{$ps.Name}}{{end}}{{end}}{{if $isPsRet}}, &result{{end}}{{cPsZero $el.Params}});
+  {{if $isPsRet}}
+    return result;
+  {{end}}
+}
+{{end}}
+
 /*--------------------一些其它函数--------------------*/
 {{range $el := .Functions}}
 
@@ -359,12 +376,8 @@ void close_liblcl() {
 {{end}}
 
 ##
-DEFINE_FUNC_PTR({{$el.Name}})
-{{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{delDChar $el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
-    GET_FUNC_ADDR({{$el.Name}})
-    {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});
-}
 
+{{template "genFunc" $el}}
 
 {{if or (or (or (eq $el.Name "DWindowFromPoint") (eq $el.Name "DCreateShortCut")) (eq $el.Name "NSWindow_FromForm")) (eq $el.Name "GtkWidget_Window")}}
 ##
@@ -383,14 +396,16 @@ DEFINE_FUNC_PTR({{$el.Name}})
   {{range $el := $obj.Methods}}
 
 ##
+{{template "genFunc" $el}}
+{{/*
 DEFINE_FUNC_PTR({{$el.Name}})
-
 {{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{$el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
     GET_FUNC_ADDR({{$el.Name}})
     {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});
-}
+}*/}}
   {{end}}
 {{end}}
+
 ##
 ##
 
