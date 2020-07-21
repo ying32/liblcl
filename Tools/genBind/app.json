@@ -3,6 +3,7 @@
   "languages": [
     {
       "enabled": false,
+      "name": "Nim",
       "type_dict": {
         "i32": "int32",
         "u32": "uint32",
@@ -45,6 +46,7 @@
     },
     {
       "enabled": false,
+      "name": "c/c++",
       "line_break": "\r\n",
       "type_dict": {
         "i32": "int32_t",
@@ -75,6 +77,7 @@
     },
     {
       "enabled": true,
+      "name": "Rust",
       "line_break": "",
       "type_dict": {
         "string": "*const c_char",

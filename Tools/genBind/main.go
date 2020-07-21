@@ -12,6 +12,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"html/template"
 	"io/ioutil"
 	"strings"
@@ -36,6 +37,7 @@ type TKeywordDict struct {
 
 type TLanguages struct {
 	Enabled     bool              `json:"enabled"`
+	Name        string            `json:"name"`
 	LineBreak   string            `json:"line_break"`
 	TypeDict    map[string]string `json:"type_dict"`
 	KeywordDict map[string]string `json:"keyword_dict"`
@@ -98,10 +100,16 @@ func main() {
 	}
 
 	for _, lang := range conf.Languages {
+		if !lang.Enabled {
+			fmt.Println(lang.Name, "语言未启用，跳过生成。")
+		} else {
+			fmt.Println("正在生成", lang.Name, "语言的代码...")
+		}
 		if lang.Enabled {
 			typeDict = lang.TypeDict
 			keyWordsDict = lang.KeywordDict
 			for _, file := range lang.Files {
+				fmt.Println("执行模板文件：", file.TemplateFileName, "，保存目标文件：", file.SaveFileName)
 				execTemplate(objectFile, file, lang.LineBreak)
 			}
 		}
