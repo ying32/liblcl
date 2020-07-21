@@ -122,7 +122,7 @@ proc {{if $isSetProp}}`{{end}}{{getRealName $mm}}{{if $isSetProp}}=`{{end}}*(thi
   var ps{{$ips}} = {{$ps.Name}}
     {{end}}
   {{end}}
-  {{if not (isEmpty $mm.Return)}}return {{if isObject $mm.Return}}As{{rmObjectT $mm.Return}}({{end}}{{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{if not (eq $ps.Flag "nonPtr")}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}){{end}}
+  {{if not (isEmpty $mm.Return)}}return {{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{if not (eq $ps.Flag "nonPtr")}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}.As{{rmObjectT $mm.Return}}{{end}}
 {{end}}
 {{end}}
 {{end}}

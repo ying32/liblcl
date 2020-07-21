@@ -4,13 +4,12 @@
     https://github.com/ying32
 */
 ##
-##
 #![allow(non_snake_case)]
 #![allow(improper_ctypes)]
-// use std::ffi::{CStr, CString};
-use std::os::raw::c_char;
 ##
-use crate::callbacks::*;
+use std::os::raw::c_char;
+use std::mem::{size_of, transmute};
+##
 use crate::types::*;
 ##
 // MSVC 编译器，静态加载
@@ -38,11 +37,66 @@ extern "system" {
 ##
 }
 ##
-pub fn init_lib_lcl() {
+##
+##
+// 根据索引获取参数
+#[inline]
+unsafe fn getParamOf(index: usize, ptr: usize) -> usize {
+    return *((ptr + index * size_of::<usize>()) as *const usize);
+}
+##
+// 回调函数
+##
+extern "system" fn doEventCallback(f: usize, args: usize, arg_count: i32) -> usize {
+    macro_rules! tt {
+        ($x:expr) => {
+            usize
+        };
+    }
+    macro_rules! sys_call {
+        () => {
+            transmute::<usize, fn()>(f)()
+        };
+        ($($arg:expr),*) => {
+            transmute::<usize, fn( $( tt!($arg)),*)>(f)( $(getParamOf($arg, args)),* )
+        };
+    }
+    unsafe {
+        match arg_count {
+            00 => sys_call!(),
+            01 => sys_call!(0),
+            02 => sys_call!(0, 1),
+            03 => sys_call!(0, 1, 2),
+            04 => sys_call!(0, 1, 2, 3),
+            05 => sys_call!(0, 1, 2, 3, 4),
+            06 => sys_call!(0, 1, 2, 3, 4, 5),
+            07 => sys_call!(0, 1, 2, 3, 4, 5, 6),
+            08 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7),
+            09 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8),
+            10 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+            11 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+            12 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+            _ => println!("none"),
+        }
+    }
+    return 0;
+}
+##
+// 消息回调
+extern "system" fn doMessageCallback(_f: usize, _msg: usize) -> usize {
+    return 0;
+}
+##
+// 线程同步回调
+extern "system" fn doThreadSyncCallback() -> usize {
+    return 0;
+}
+##
+pub fn initLibLCLCallback() {
     unsafe {
         // 基本事件回调
-        SetEventCallback(do_event_callback as usize);
-        SetMessageCallback(do_message_callback as usize);
-        SetThreadSyncCallback(do_thread_sync_callback as usize);
+        SetEventCallback(doEventCallback as usize);
+        SetMessageCallback(doMessageCallback as usize);
+        SetThreadSyncCallback(doThreadSyncCallback as usize);
     }
 }

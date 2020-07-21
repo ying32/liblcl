@@ -291,7 +291,7 @@ static void* p##name;
 #define vkDelete  0x2E // 46
 #define vkHelp  0x2F // 47
 
-// vk0 thru vk9 are the same as ASCII &#39;0&#39; thru &#39;9&#39; (0x30 - 0x39)
+// vk0 thru vk9 are the same as ASCII '0' thru '9' (0x30 - 0x39)
 #define vk0  0x30 // 48
 #define vk1  0x31 // 49
 #define vk2  0x32 // 50
@@ -303,7 +303,7 @@ static void* p##name;
 #define vk8  0x38 // 56
 #define vk9  0x39 // 57
 
-// vkA thru vkZ are the same as ASCII &#39;A&#39; thru &#39;Z&#39; (0x41 - 0x5A)
+// vkA thru vkZ are the same as ASCII 'A' thru 'Z' (0x41 - 0x5A)
 #define vkA  0x41 // 65
 #define vkB  0x42 // 66
 #define vkC  0x43 // 67
@@ -1609,7 +1609,7 @@ typedef enum {
     goDontScrollPartCell, // clicking partially visible cells will not scroll
     goCellHints, // show individual cell hints
     goTruncCellHints, // show cell hints if cell text is too long
-    goCellEllipsis, // show &#34;...&#34; if cell text is too long
+    goCellEllipsis, // show "..." if cell text is too long
     goAutoAddRowsSkipContentCheck, // BB Also add a row (if AutoAddRows in Options) if last row is empty
     goRowHighlight, // Highlight the current Row
 } TGridOption;
@@ -1896,7 +1896,7 @@ typedef enum {
 
 typedef enum {
     tvestTheme, // use themed sign
-    tvestPlusMinus, // use &#43;/- sign
+    tvestPlusMinus, // use +/- sign
     tvestArrow, // use blank arrow
     tvestArrowFill, // use filled arrow
 } TTreeViewExpandSignType;
@@ -1965,7 +1965,7 @@ typedef enum {
 
 typedef enum {
     cclNone,
-    cclLeftToRightThenTopToBottom, // if BiDiMode &lt;&gt; bdLeftToRight then it becomes RightToLeft
+    cclLeftToRightThenTopToBottom, // if BiDiMode <> bdLeftToRight then it becomes RightToLeft
     cclTopToBottomThenLeftToRight,
 } TControlChildrenLayout;
 
@@ -2789,7 +2789,7 @@ typedef void(*TValidateEntryEvent)(TObject, int32_t, int32_t, char*, char**);
 
 // 集合加法，val...中存储为位的索引，下标为0
 TSet Include(TSet s, uint8_t val) {
-    return (TSet)(s | (1 &lt;&lt; val));
+    return (TSet)(s | (1 << val));
 }
 //TSet Include(TSet s, ...) {
 //    uint32_t r = (uint32_t)s;
@@ -2797,7 +2797,7 @@ TSet Include(TSet s, uint8_t val) {
 //    va_start(varlist, s);
 //    uint8_t val;
 //    while ((val = va_arg(varlist, int)) != -1) {
-//        r |= (1 &lt;&lt; (uint8_t)val);
+//        r |= (1 << (uint8_t)val);
 //    }
 //    va_end(varlist);
 //    return (TSet)r;
@@ -2805,7 +2805,7 @@ TSet Include(TSet s, uint8_t val) {
 
 // 集合减法，val...中存储为位的索引，下标为0
 TSet Exclude(TSet s, uint8_t val) {
-    return (TSet)(s & (~(1 &lt;&lt; val)));
+    return (TSet)(s & (~(1 << val)));
 }
 //TSet Exclude(TSet s, ...) {
 //    uint32_t r = (uint32_t)s;
@@ -2813,7 +2813,7 @@ TSet Exclude(TSet s, uint8_t val) {
 //    va_start(varlist, s);
 //    uint8_t val;
 //    while ((val = va_arg(varlist, int)) != -1) {
-//        r &= ~(1 &lt;&lt; (uint8_t)val);
+//        r &= ~(1 << (uint8_t)val);
 //    }
 //    va_end(varlist);
 //    return (TSet)r;
@@ -2821,7 +2821,7 @@ TSet Exclude(TSet s, uint8_t val) {
 
 // 集合类型的判断，val表示位数，下标为0
 BOOL InSet(uint32_t s, uint8_t val) {
-    if ((s&(1 &lt;&lt; val)) != 0) {
+    if ((s&(1 << val)) != 0) {
         return TRUE;
     }
     return FALSE;

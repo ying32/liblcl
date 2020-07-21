@@ -40,7 +40,7 @@ type
 ##
   {{$el.Name}}* = enum
     {{range $enum := $el.Enums}}
-    {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} # {{$enum.Comment}}{{end}}
+    {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} # {{html $enum.Comment}}{{end}}
     {{end}}
   {{else if eq $el.Kind "set"}}
 ##
@@ -102,9 +102,9 @@ type
 const
 {{range $el := .Consts}}
   {{if not (isEmpty $el.Name)}}
-  {{$el.Name}}* = {{$el.Value}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}}{{if not (isEmpty $el.Comment)}} # {{$el.Comment}}{{end}}
+  {{$el.Name}}* = {{$el.Value}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}}{{if not (isEmpty $el.Comment)}} # {{html $el.Comment}}{{end}}
   {{else}}
 ##
-  # {{$el.Comment}}
+  # {{html $el.Comment}}
   {{end}}
 {{end}}

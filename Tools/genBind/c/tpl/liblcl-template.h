@@ -91,10 +91,10 @@ static void* p##name;
 #ifndef _WIN32
 ##
     {{end}}
-#define {{$el.Name}}  {{$el.Value}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}}{{if not (isEmpty $el.Comment)}} // {{$el.Comment}}{{end}}
+#define {{$el.Name}}  {{$el.Value}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}}{{if not (isEmpty $el.Comment)}} // {{html $el.Comment}}{{end}}
   {{else}}
 ##
-// {{$el.Comment}}
+// {{html $el.Comment}}
   {{end}}
     {{if eq $el.Name "CF_LOCALE"}}
 ##
@@ -111,7 +111,7 @@ typedef uint32_t TSet;
 ##
 typedef enum {
       {{range $enum := $el.Enums}}
-    {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} // {{$enum.Comment}}{{end}}
+    {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} // {{html $enum.Comment}}{{end}}
       {{end}}
 } {{$el.Name}};
   {{else if eq $el.Kind "set"}}
