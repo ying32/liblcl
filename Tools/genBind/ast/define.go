@@ -147,7 +147,7 @@ var baseTypes = map[string]string{
 	"IWinControl":          "TWinControl",
 	"IComponent":           "TComponent",
 	"TBasicAction":         "TAction",
-	"TPersistent":          "pointer",
+	"TPersistent":          "TObject",
 	"Byte":                 "i8",
 	"TBorderWidth":         "i32",
 	"TCustomImageList":     "TImageList",

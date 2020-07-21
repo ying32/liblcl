@@ -21,10 +21,10 @@
 * 完成度较高的语言：
 
   * nim（Beta）: https://github.com/ying32/nim-vcl  
+  * rust（test）: https://github.com/ying32/rust-vcl  
 
 * 测试中的语言    
 
-  * rust（Test only）: https://github.com/ying32/rust-vcl  
 
 ----
 

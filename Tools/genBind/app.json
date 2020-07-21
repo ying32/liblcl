@@ -81,6 +81,7 @@
       "line_break": "",
       "type_dict": {
         "string": "*const c_char",
+        "string2": "&str",
         "PPoint": "*mut TPoint",
         "pointer": "usize",
         "datetime": "u32",
@@ -95,6 +96,10 @@
         {
           "template_file_name": "./rust/tpl/types-template.tpl",
           "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\types.rs"
+        },
+        {
+          "template_file_name": "./rust/tpl/vcl-template.tpl",
+          "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\vcl.rs"
         }
       ]
     }

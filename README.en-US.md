@@ -22,10 +22,11 @@ A common cross-platform GUI library, the core uses Lazarus LCL.
 * Highly completed languages:  
 
   * nim(Beta): https://github.com/ying32/nim-vcl  
+  * rust(Test): https://github.com/ying32/rust-vcl  
 
 * Language under test  
 
-  * rust(Test only): https://github.com/ying32/rust-vcl  
+
 
 
 ----

@@ -120,22 +120,25 @@ func templateIsEmpty(s string) bool {
 	return s == ""
 }
 
-func templateCovType(s string) string {
+func templateCovType(s string) template.HTML {
 	if v, ok := typeDict[s]; ok {
-		return v
+		return template.HTML(v)
 	}
-	return s
+	return template.HTML(s)
 }
 
 // 不包含字符串的转换
-func templateCovType2(s string) string {
+func templateCovType2(s string) template.HTML {
 	if s == "string" {
-		return s
+		if v, ok := typeDict["string2"]; ok {
+			return template.HTML(v)
+		}
+		return template.HTML(s)
 	}
 	if v, ok := typeDict[s]; ok {
-		return v
+		return template.HTML(v)
 	}
-	return s
+	return template.HTML(s)
 }
 
 func templateCovKeyWord(s string) string {
@@ -291,6 +294,13 @@ func templateGetRealName(mm ast.TFunction) string {
 	return mm.RealName
 }
 
+func templateGetRealName2(mm ast.TFunction) string {
+	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Get") {
+		return mm.RealName[3:]
+	}
+	return mm.RealName
+}
+
 func templateInStrArray(s string, args ...string) bool {
 	for _, l := range args {
 		if l == s {
@@ -309,6 +319,30 @@ func templateGetConstVal2(s string) string {
 		}
 	}
 	return s
+}
+
+func templateIsIntf(s string) bool {
+	switch s {
+	case "TObject", "TComponent", "TControl", "TWinControl":
+		return true
+	}
+	return false
+}
+
+func templateGetIntfName(s string) string {
+	if templateIsIntf(s) {
+		return "I" + s[1:]
+	}
+	return s
+}
+
+func templateHaveFree(mts []ast.TFunction) bool {
+	for _, m := range mts {
+		if m.RealName == "Free" {
+			return true
+		}
+	}
+	return false
 }
 
 var templateFuncs = template.FuncMap{
@@ -340,6 +374,10 @@ var templateFuncs = template.FuncMap{
 	"getRealName":  templateGetRealName,
 	"inStrArray":   templateInStrArray,
 	"getConstVal2": templateGetConstVal2,
+	"getIntfName":  templateGetIntfName,
+	"isIntf":       templateIsIntf,
+	"getRealName2": templateGetRealName2,
+	"haveFree":     templateHaveFree,
 }
 
 func execTemplate(objFile ast.TObjectFile, file TFile, lineBreak string) {

@@ -3428,7 +3428,7 @@ BOOL Component_HasParent(TComponent AObj) {
 }
 
 DEFINE_FUNC_PTR(Component_Assign)
-void Component_Assign(TComponent AObj, void* Source) {
+void Component_Assign(TComponent AObj, TObject Source) {
     GET_FUNC_ADDR(Component_Assign)
     MySyscall(pComponent_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -3676,7 +3676,7 @@ char* Control_GetNamePath(TControl AObj) {
 }
 
 DEFINE_FUNC_PTR(Control_Assign)
-void Control_Assign(TControl AObj, void* Source) {
+void Control_Assign(TControl AObj, TObject Source) {
     GET_FUNC_ADDR(Control_Assign)
     MySyscall(pControl_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -4374,7 +4374,7 @@ char* WinControl_GetNamePath(TWinControl AObj) {
 }
 
 DEFINE_FUNC_PTR(WinControl_Assign)
-void WinControl_Assign(TWinControl AObj, void* Source) {
+void WinControl_Assign(TWinControl AObj, TObject Source) {
     GET_FUNC_ADDR(WinControl_Assign)
     MySyscall(pWinControl_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -5024,7 +5024,7 @@ BOOL MainMenu_HasParent(TMainMenu AObj) {
 }
 
 DEFINE_FUNC_PTR(MainMenu_Assign)
-void MainMenu_Assign(TMainMenu AObj, void* Source) {
+void MainMenu_Assign(TMainMenu AObj, TObject Source) {
     GET_FUNC_ADDR(MainMenu_Assign)
     MySyscall(pMainMenu_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -5242,7 +5242,7 @@ BOOL PopupMenu_HasParent(TPopupMenu AObj) {
 }
 
 DEFINE_FUNC_PTR(PopupMenu_Assign)
-void PopupMenu_Assign(TPopupMenu AObj, void* Source) {
+void PopupMenu_Assign(TPopupMenu AObj, TObject Source) {
     GET_FUNC_ADDR(PopupMenu_Assign)
     MySyscall(pPopupMenu_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -5724,7 +5724,7 @@ char* Memo_GetNamePath(TMemo AObj) {
 }
 
 DEFINE_FUNC_PTR(Memo_Assign)
-void Memo_Assign(TMemo AObj, void* Source) {
+void Memo_Assign(TMemo AObj, TObject Source) {
     GET_FUNC_ADDR(Memo_Assign)
     MySyscall(pMemo_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -7004,7 +7004,7 @@ char* CheckBox_GetNamePath(TCheckBox AObj) {
 }
 
 DEFINE_FUNC_PTR(CheckBox_Assign)
-void CheckBox_Assign(TCheckBox AObj, void* Source) {
+void CheckBox_Assign(TCheckBox AObj, TObject Source) {
     GET_FUNC_ADDR(CheckBox_Assign)
     MySyscall(pCheckBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -8116,7 +8116,7 @@ char* RadioButton_GetNamePath(TRadioButton AObj) {
 }
 
 DEFINE_FUNC_PTR(RadioButton_Assign)
-void RadioButton_Assign(TRadioButton AObj, void* Source) {
+void RadioButton_Assign(TRadioButton AObj, TObject Source) {
     GET_FUNC_ADDR(RadioButton_Assign)
     MySyscall(pRadioButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -9204,7 +9204,7 @@ char* GroupBox_GetNamePath(TGroupBox AObj) {
 }
 
 DEFINE_FUNC_PTR(GroupBox_Assign)
-void GroupBox_Assign(TGroupBox AObj, void* Source) {
+void GroupBox_Assign(TGroupBox AObj, TObject Source) {
     GET_FUNC_ADDR(GroupBox_Assign)
     MySyscall(pGroupBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -10196,7 +10196,7 @@ char* Label_GetNamePath(TLabel AObj) {
 }
 
 DEFINE_FUNC_PTR(Label_Assign)
-void Label_Assign(TLabel AObj, void* Source) {
+void Label_Assign(TLabel AObj, TObject Source) {
     GET_FUNC_ADDR(Label_Assign)
     MySyscall(pLabel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -11224,7 +11224,7 @@ char* ListBox_GetNamePath(TListBox AObj) {
 }
 
 DEFINE_FUNC_PTR(ListBox_Assign)
-void ListBox_Assign(TListBox AObj, void* Source) {
+void ListBox_Assign(TListBox AObj, TObject Source) {
     GET_FUNC_ADDR(ListBox_Assign)
     MySyscall(pListBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -12492,7 +12492,7 @@ char* ComboBox_GetNamePath(TComboBox AObj) {
 }
 
 DEFINE_FUNC_PTR(ComboBox_Assign)
-void ComboBox_Assign(TComboBox AObj, void* Source) {
+void ComboBox_Assign(TComboBox AObj, TObject Source) {
     GET_FUNC_ADDR(ComboBox_Assign)
     MySyscall(pComboBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -13736,7 +13736,7 @@ char* Panel_GetNamePath(TPanel AObj) {
 }
 
 DEFINE_FUNC_PTR(Panel_Assign)
-void Panel_Assign(TPanel AObj, void* Source) {
+void Panel_Assign(TPanel AObj, TObject Source) {
     GET_FUNC_ADDR(Panel_Assign)
     MySyscall(pPanel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -14830,7 +14830,7 @@ char* Image_GetNamePath(TImage AObj) {
 }
 
 DEFINE_FUNC_PTR(Image_Assign)
-void Image_Assign(TImage AObj, void* Source) {
+void Image_Assign(TImage AObj, TObject Source) {
     GET_FUNC_ADDR(Image_Assign)
     MySyscall(pImage_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -15684,7 +15684,7 @@ char* LinkLabel_GetNamePath(TLinkLabel AObj) {
 }
 
 DEFINE_FUNC_PTR(LinkLabel_Assign)
-void LinkLabel_Assign(TLinkLabel AObj, void* Source) {
+void LinkLabel_Assign(TLinkLabel AObj, TObject Source) {
     GET_FUNC_ADDR(LinkLabel_Assign)
     MySyscall(pLinkLabel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -16508,7 +16508,7 @@ char* SpeedButton_GetNamePath(TSpeedButton AObj) {
 }
 
 DEFINE_FUNC_PTR(SpeedButton_Assign)
-void SpeedButton_Assign(TSpeedButton AObj, void* Source) {
+void SpeedButton_Assign(TSpeedButton AObj, TObject Source) {
     GET_FUNC_ADDR(SpeedButton_Assign)
     MySyscall(pSpeedButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -17374,7 +17374,7 @@ char* Splitter_GetNamePath(TSplitter AObj) {
 }
 
 DEFINE_FUNC_PTR(Splitter_Assign)
-void Splitter_Assign(TSplitter AObj, void* Source) {
+void Splitter_Assign(TSplitter AObj, TObject Source) {
     GET_FUNC_ADDR(Splitter_Assign)
     MySyscall(pSplitter_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -18132,7 +18132,7 @@ char* RadioGroup_GetNamePath(TRadioGroup AObj) {
 }
 
 DEFINE_FUNC_PTR(RadioGroup_Assign)
-void RadioGroup_Assign(TRadioGroup AObj, void* Source) {
+void RadioGroup_Assign(TRadioGroup AObj, TObject Source) {
     GET_FUNC_ADDR(RadioGroup_Assign)
     MySyscall(pRadioGroup_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -19160,7 +19160,7 @@ char* StaticText_GetNamePath(TStaticText AObj) {
 }
 
 DEFINE_FUNC_PTR(StaticText_Assign)
-void StaticText_Assign(TStaticText AObj, void* Source) {
+void StaticText_Assign(TStaticText AObj, TObject Source) {
     GET_FUNC_ADDR(StaticText_Assign)
     MySyscall(pStaticText_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -20296,7 +20296,7 @@ char* ColorBox_GetNamePath(TColorBox AObj) {
 }
 
 DEFINE_FUNC_PTR(ColorBox_Assign)
-void ColorBox_Assign(TColorBox AObj, void* Source) {
+void ColorBox_Assign(TColorBox AObj, TObject Source) {
     GET_FUNC_ADDR(ColorBox_Assign)
     MySyscall(pColorBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -21540,7 +21540,7 @@ char* ColorListBox_GetNamePath(TColorListBox AObj) {
 }
 
 DEFINE_FUNC_PTR(ColorListBox_Assign)
-void ColorListBox_Assign(TColorListBox AObj, void* Source) {
+void ColorListBox_Assign(TColorListBox AObj, TObject Source) {
     GET_FUNC_ADDR(ColorListBox_Assign)
     MySyscall(pColorListBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -22502,7 +22502,7 @@ BOOL TrayIcon_HasParent(TTrayIcon AObj) {
 }
 
 DEFINE_FUNC_PTR(TrayIcon_Assign)
-void TrayIcon_Assign(TTrayIcon AObj, void* Source) {
+void TrayIcon_Assign(TTrayIcon AObj, TObject Source) {
     GET_FUNC_ADDR(TrayIcon_Assign)
     MySyscall(pTrayIcon_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -22786,7 +22786,7 @@ BOOL OpenDialog_HasParent(TOpenDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(OpenDialog_Assign)
-void OpenDialog_Assign(TOpenDialog AObj, void* Source) {
+void OpenDialog_Assign(TOpenDialog AObj, TObject Source) {
     GET_FUNC_ADDR(OpenDialog_Assign)
     MySyscall(pOpenDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -23040,7 +23040,7 @@ BOOL SaveDialog_HasParent(TSaveDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(SaveDialog_Assign)
-void SaveDialog_Assign(TSaveDialog AObj, void* Source) {
+void SaveDialog_Assign(TSaveDialog AObj, TObject Source) {
     GET_FUNC_ADDR(SaveDialog_Assign)
     MySyscall(pSaveDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -23294,7 +23294,7 @@ BOOL ColorDialog_HasParent(TColorDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(ColorDialog_Assign)
-void ColorDialog_Assign(TColorDialog AObj, void* Source) {
+void ColorDialog_Assign(TColorDialog AObj, TObject Source) {
     GET_FUNC_ADDR(ColorDialog_Assign)
     MySyscall(pColorDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -23470,7 +23470,7 @@ BOOL FontDialog_HasParent(TFontDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(FontDialog_Assign)
-void FontDialog_Assign(TFontDialog AObj, void* Source) {
+void FontDialog_Assign(TFontDialog AObj, TObject Source) {
     GET_FUNC_ADDR(FontDialog_Assign)
     MySyscall(pFontDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -23658,7 +23658,7 @@ BOOL PrintDialog_HasParent(TPrintDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(PrintDialog_Assign)
-void PrintDialog_Assign(TPrintDialog AObj, void* Source) {
+void PrintDialog_Assign(TPrintDialog AObj, TObject Source) {
     GET_FUNC_ADDR(PrintDialog_Assign)
     MySyscall(pPrintDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -23930,7 +23930,7 @@ BOOL OpenPictureDialog_HasParent(TOpenPictureDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(OpenPictureDialog_Assign)
-void OpenPictureDialog_Assign(TOpenPictureDialog AObj, void* Source) {
+void OpenPictureDialog_Assign(TOpenPictureDialog AObj, TObject Source) {
     GET_FUNC_ADDR(OpenPictureDialog_Assign)
     MySyscall(pOpenPictureDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -24184,7 +24184,7 @@ BOOL SavePictureDialog_HasParent(TSavePictureDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(SavePictureDialog_Assign)
-void SavePictureDialog_Assign(TSavePictureDialog AObj, void* Source) {
+void SavePictureDialog_Assign(TSavePictureDialog AObj, TObject Source) {
     GET_FUNC_ADDR(SavePictureDialog_Assign)
     MySyscall(pSavePictureDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -24438,7 +24438,7 @@ BOOL SelectDirectoryDialog_HasParent(TSelectDirectoryDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(SelectDirectoryDialog_Assign)
-void SelectDirectoryDialog_Assign(TSelectDirectoryDialog AObj, void* Source) {
+void SelectDirectoryDialog_Assign(TSelectDirectoryDialog AObj, TObject Source) {
     GET_FUNC_ADDR(SelectDirectoryDialog_Assign)
     MySyscall(pSelectDirectoryDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -24932,7 +24932,7 @@ char* RichEdit_GetNamePath(TRichEdit AObj) {
 }
 
 DEFINE_FUNC_PTR(RichEdit_Assign)
-void RichEdit_Assign(TRichEdit AObj, void* Source) {
+void RichEdit_Assign(TRichEdit AObj, TObject Source) {
     GET_FUNC_ADDR(RichEdit_Assign)
     MySyscall(pRichEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -26278,7 +26278,7 @@ char* TrackBar_GetNamePath(TTrackBar AObj) {
 }
 
 DEFINE_FUNC_PTR(TrackBar_Assign)
-void TrackBar_Assign(TTrackBar AObj, void* Source) {
+void TrackBar_Assign(TTrackBar AObj, TObject Source) {
     GET_FUNC_ADDR(TrackBar_Assign)
     MySyscall(pTrackBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -27192,7 +27192,7 @@ void ImageList_ShowDragImage(TImageList AObj) {
 }
 
 DEFINE_FUNC_PTR(ImageList_Assign)
-void ImageList_Assign(TImageList AObj, void* Source) {
+void ImageList_Assign(TImageList AObj, TObject Source) {
     GET_FUNC_ADDR(ImageList_Assign)
     MySyscall(pImageList_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -27788,7 +27788,7 @@ char* UpDown_GetNamePath(TUpDown AObj) {
 }
 
 DEFINE_FUNC_PTR(UpDown_Assign)
-void UpDown_Assign(TUpDown AObj, void* Source) {
+void UpDown_Assign(TUpDown AObj, TObject Source) {
     GET_FUNC_ADDR(UpDown_Assign)
     MySyscall(pUpDown_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -28804,7 +28804,7 @@ char* ProgressBar_GetNamePath(TProgressBar AObj) {
 }
 
 DEFINE_FUNC_PTR(ProgressBar_Assign)
-void ProgressBar_Assign(TProgressBar AObj, void* Source) {
+void ProgressBar_Assign(TProgressBar AObj, TObject Source) {
     GET_FUNC_ADDR(ProgressBar_Assign)
     MySyscall(pProgressBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -29874,7 +29874,7 @@ char* DateTimePicker_GetNamePath(TDateTimePicker AObj) {
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_Assign)
-void DateTimePicker_Assign(TDateTimePicker AObj, void* Source) {
+void DateTimePicker_Assign(TDateTimePicker AObj, TObject Source) {
     GET_FUNC_ADDR(DateTimePicker_Assign)
     MySyscall(pDateTimePicker_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -30956,7 +30956,7 @@ char* MonthCalendar_GetNamePath(TMonthCalendar AObj) {
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_Assign)
-void MonthCalendar_Assign(TMonthCalendar AObj, void* Source) {
+void MonthCalendar_Assign(TMonthCalendar AObj, TObject Source) {
     GET_FUNC_ADDR(MonthCalendar_Assign)
     MySyscall(pMonthCalendar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -32038,7 +32038,7 @@ char* ListView_GetNamePath(TListView AObj) {
 }
 
 DEFINE_FUNC_PTR(ListView_Assign)
-void ListView_Assign(TListView AObj, void* Source) {
+void ListView_Assign(TListView AObj, TObject Source) {
     GET_FUNC_ADDR(ListView_Assign)
     MySyscall(pListView_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -33768,7 +33768,7 @@ char* TreeView_GetNamePath(TTreeView AObj) {
 }
 
 DEFINE_FUNC_PTR(TreeView_Assign)
-void TreeView_Assign(TTreeView AObj, void* Source) {
+void TreeView_Assign(TTreeView AObj, TObject Source) {
     GET_FUNC_ADDR(TreeView_Assign)
     MySyscall(pTreeView_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -35378,7 +35378,7 @@ char* StatusBar_GetNamePath(TStatusBar AObj) {
 }
 
 DEFINE_FUNC_PTR(StatusBar_Assign)
-void StatusBar_Assign(TStatusBar AObj, void* Source) {
+void StatusBar_Assign(TStatusBar AObj, TObject Source) {
     GET_FUNC_ADDR(StatusBar_Assign)
     MySyscall(pStatusBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -36514,7 +36514,7 @@ char* ToolBar_GetNamePath(TToolBar AObj) {
 }
 
 DEFINE_FUNC_PTR(ToolBar_Assign)
-void ToolBar_Assign(TToolBar AObj, void* Source) {
+void ToolBar_Assign(TToolBar AObj, TObject Source) {
     GET_FUNC_ADDR(ToolBar_Assign)
     MySyscall(pToolBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -37788,7 +37788,7 @@ char* BitBtn_GetNamePath(TBitBtn AObj) {
 }
 
 DEFINE_FUNC_PTR(BitBtn_Assign)
-void BitBtn_Assign(TBitBtn AObj, void* Source) {
+void BitBtn_Assign(TBitBtn AObj, TObject Source) {
     GET_FUNC_ADDR(BitBtn_Assign)
     MySyscall(pBitBtn_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -38690,7 +38690,7 @@ void Icon_Free(TIcon AObj) {
 }
 
 DEFINE_FUNC_PTR(Icon_Assign)
-void Icon_Assign(TIcon AObj, void* Source) {
+void Icon_Assign(TIcon AObj, TObject Source) {
     GET_FUNC_ADDR(Icon_Assign)
     MySyscall(pIcon_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -38908,7 +38908,7 @@ void Bitmap_Free(TBitmap AObj) {
 }
 
 DEFINE_FUNC_PTR(Bitmap_Assign)
-void Bitmap_Assign(TBitmap AObj, void* Source) {
+void Bitmap_Assign(TBitmap AObj, TObject Source) {
     GET_FUNC_ADDR(Bitmap_Assign)
     MySyscall(pBitmap_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -39362,7 +39362,7 @@ void Font_Free(TFont AObj) {
 }
 
 DEFINE_FUNC_PTR(Font_Assign)
-void Font_Assign(TFont AObj, void* Source) {
+void Font_Assign(TFont AObj, TObject Source) {
     GET_FUNC_ADDR(Font_Assign)
     MySyscall(pFont_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -39598,7 +39598,7 @@ void Strings_Append(TStrings AObj, CChar char* S) {
 }
 
 DEFINE_FUNC_PTR(Strings_Assign)
-void Strings_Assign(TStrings AObj, void* Source) {
+void Strings_Assign(TStrings AObj, TObject Source) {
     GET_FUNC_ADDR(Strings_Assign)
     MySyscall(pStrings_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -39882,7 +39882,7 @@ int32_t StringList_AddObject(TStringList AObj, CChar char* S, TObject AObject) {
 }
 
 DEFINE_FUNC_PTR(StringList_Assign)
-void StringList_Assign(TStringList AObj, void* Source) {
+void StringList_Assign(TStringList AObj, TObject Source) {
     GET_FUNC_ADDR(StringList_Assign)
     MySyscall(pStringList_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -40184,7 +40184,7 @@ void Brush_Free(TBrush AObj) {
 }
 
 DEFINE_FUNC_PTR(Brush_Assign)
-void Brush_Assign(TBrush AObj, void* Source) {
+void Brush_Assign(TBrush AObj, TObject Source) {
     GET_FUNC_ADDR(Brush_Assign)
     MySyscall(pBrush_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -40312,7 +40312,7 @@ void Pen_Free(TPen AObj) {
 }
 
 DEFINE_FUNC_PTR(Pen_Assign)
-void Pen_Assign(TPen AObj, void* Source) {
+void Pen_Assign(TPen AObj, TObject Source) {
     GET_FUNC_ADDR(Pen_Assign)
     MySyscall(pPen_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -40506,7 +40506,7 @@ char* MenuItem_GetNamePath(TMenuItem AObj) {
 }
 
 DEFINE_FUNC_PTR(MenuItem_Assign)
-void MenuItem_Assign(TMenuItem AObj, void* Source) {
+void MenuItem_Assign(TMenuItem AObj, TObject Source) {
     GET_FUNC_ADDR(MenuItem_Assign)
     MySyscall(pMenuItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -40844,7 +40844,7 @@ void Picture_SaveToStream(TPicture AObj, TObject Stream) {
 }
 
 DEFINE_FUNC_PTR(Picture_Assign)
-void Picture_Assign(TPicture AObj, void* Source) {
+void Picture_Assign(TPicture AObj, TObject Source) {
     GET_FUNC_ADDR(Picture_Assign)
     MySyscall(pPicture_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -40984,7 +40984,7 @@ TListView ListColumns_Owner(TListColumns AObj) {
 }
 
 DEFINE_FUNC_PTR(ListColumns_Assign)
-void ListColumns_Assign(TListColumns AObj, void* Source) {
+void ListColumns_Assign(TListColumns AObj, TObject Source) {
     GET_FUNC_ADDR(ListColumns_Assign)
     MySyscall(pListColumns_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -41118,7 +41118,7 @@ TListItem ListItems_Add(TListItems AObj) {
 }
 
 DEFINE_FUNC_PTR(ListItems_Assign)
-void ListItems_Assign(TListItems AObj, void* Source) {
+void ListItems_Assign(TListItems AObj, TObject Source) {
     GET_FUNC_ADDR(ListItems_Assign)
     MySyscall(pListItems_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -41312,7 +41312,7 @@ TTreeNode TreeNodes_Add(TTreeNodes AObj, TTreeNode Sibling, CChar char* S) {
 }
 
 DEFINE_FUNC_PTR(TreeNodes_Assign)
-void TreeNodes_Assign(TTreeNodes AObj, void* Source) {
+void TreeNodes_Assign(TTreeNodes AObj, TObject Source) {
     GET_FUNC_ADDR(TreeNodes_Assign)
     MySyscall(pTreeNodes_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -41458,7 +41458,7 @@ void ListItem_DisplayRectSubItem(TListItem AObj, int32_t subItem, TDisplayCode C
 }
 
 DEFINE_FUNC_PTR(ListItem_Assign)
-void ListItem_Assign(TListItem AObj, void* Source) {
+void ListItem_Assign(TListItem AObj, TObject Source) {
     GET_FUNC_ADDR(ListItem_Assign)
     MySyscall(pListItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -41742,7 +41742,7 @@ void TreeNode_Free(TTreeNode AObj) {
 }
 
 DEFINE_FUNC_PTR(TreeNode_Assign)
-void TreeNode_Assign(TTreeNode AObj, void* Source) {
+void TreeNode_Assign(TTreeNode AObj, TObject Source) {
     GET_FUNC_ADDR(TreeNode_Assign)
     MySyscall(pTreeNode_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -42302,7 +42302,7 @@ char* PageControl_GetNamePath(TPageControl AObj) {
 }
 
 DEFINE_FUNC_PTR(PageControl_Assign)
-void PageControl_Assign(TPageControl AObj, void* Source) {
+void PageControl_Assign(TPageControl AObj, TObject Source) {
     GET_FUNC_ADDR(PageControl_Assign)
     MySyscall(pPageControl_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -43456,7 +43456,7 @@ char* TabSheet_GetNamePath(TTabSheet AObj) {
 }
 
 DEFINE_FUNC_PTR(TabSheet_Assign)
-void TabSheet_Assign(TTabSheet AObj, void* Source) {
+void TabSheet_Assign(TTabSheet AObj, TObject Source) {
     GET_FUNC_ADDR(TabSheet_Assign)
     MySyscall(pTabSheet_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -44520,7 +44520,7 @@ char* Button_GetNamePath(TButton AObj) {
 }
 
 DEFINE_FUNC_PTR(Button_Assign)
-void Button_Assign(TButton AObj, void* Source) {
+void Button_Assign(TButton AObj, TObject Source) {
     GET_FUNC_ADDR(Button_Assign)
     MySyscall(pButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -45632,7 +45632,7 @@ char* Edit_GetNamePath(TEdit AObj) {
 }
 
 DEFINE_FUNC_PTR(Edit_Assign)
-void Edit_Assign(TEdit AObj, void* Source) {
+void Edit_Assign(TEdit AObj, TObject Source) {
     GET_FUNC_ADDR(Edit_Assign)
     MySyscall(pEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -46690,7 +46690,7 @@ BOOL Screen_HasParent(TScreen AObj) {
 }
 
 DEFINE_FUNC_PTR(Screen_Assign)
-void Screen_Assign(TScreen AObj, void* Source) {
+void Screen_Assign(TScreen AObj, TObject Source) {
     GET_FUNC_ADDR(Screen_Assign)
     MySyscall(pScreen_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -47072,7 +47072,7 @@ void ListColumn_Free(TListColumn AObj) {
 }
 
 DEFINE_FUNC_PTR(ListColumn_Assign)
-void ListColumn_Assign(TListColumn AObj, void* Source) {
+void ListColumn_Assign(TListColumn AObj, TObject Source) {
     GET_FUNC_ADDR(ListColumn_Assign)
     MySyscall(pListColumn_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -47296,7 +47296,7 @@ char* CollectionItem_GetNamePath(TCollectionItem AObj) {
 }
 
 DEFINE_FUNC_PTR(CollectionItem_Assign)
-void CollectionItem_Assign(TCollectionItem AObj, void* Source) {
+void CollectionItem_Assign(TCollectionItem AObj, TObject Source) {
     GET_FUNC_ADDR(CollectionItem_Assign)
     MySyscall(pCollectionItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -47412,13 +47412,13 @@ TStatusPanel StatusPanels_Insert(TStatusPanels AObj, int32_t Index) {
 }
 
 DEFINE_FUNC_PTR(StatusPanels_Owner)
-void* StatusPanels_Owner(TStatusPanels AObj) {
+TObject StatusPanels_Owner(TStatusPanels AObj) {
     GET_FUNC_ADDR(StatusPanels_Owner)
-    return (void*)MySyscall(pStatusPanels_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pStatusPanels_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusPanels_Assign)
-void StatusPanels_Assign(TStatusPanels AObj, void* Source) {
+void StatusPanels_Assign(TStatusPanels AObj, TObject Source) {
     GET_FUNC_ADDR(StatusPanels_Assign)
     MySyscall(pStatusPanels_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -47552,7 +47552,7 @@ void StatusPanel_Free(TStatusPanel AObj) {
 }
 
 DEFINE_FUNC_PTR(StatusPanel_Assign)
-void StatusPanel_Assign(TStatusPanel AObj, void* Source) {
+void StatusPanel_Assign(TStatusPanel AObj, TObject Source) {
     GET_FUNC_ADDR(StatusPanel_Assign)
     MySyscall(pStatusPanel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -47980,7 +47980,7 @@ char* SpinEdit_GetNamePath(TSpinEdit AObj) {
 }
 
 DEFINE_FUNC_PTR(SpinEdit_Assign)
-void SpinEdit_Assign(TSpinEdit AObj, void* Source) {
+void SpinEdit_Assign(TSpinEdit AObj, TObject Source) {
     GET_FUNC_ADDR(SpinEdit_Assign)
     MySyscall(pSpinEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -49200,7 +49200,7 @@ char* MiniWebview_GetNamePath(TMiniWebview AObj) {
 }
 
 DEFINE_FUNC_PTR(MiniWebview_Assign)
-void MiniWebview_Assign(TMiniWebview AObj, void* Source) {
+void MiniWebview_Assign(TMiniWebview AObj, TObject Source) {
     GET_FUNC_ADDR(MiniWebview_Assign)
     MySyscall(pMiniWebview_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -49958,7 +49958,7 @@ int32_t Canvas_TextWidth(TCanvas AObj, CChar char* Text) {
 }
 
 DEFINE_FUNC_PTR(Canvas_Assign)
-void Canvas_Assign(TCanvas AObj, void* Source) {
+void Canvas_Assign(TCanvas AObj, TObject Source) {
     GET_FUNC_ADDR(Canvas_Assign)
     MySyscall(pCanvas_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -50290,7 +50290,7 @@ BOOL Application_HasParent(TApplication AObj) {
 }
 
 DEFINE_FUNC_PTR(Application_Assign)
-void Application_Assign(TApplication AObj, void* Source) {
+void Application_Assign(TApplication AObj, TObject Source) {
     GET_FUNC_ADDR(Application_Assign)
     MySyscall(pApplication_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -50736,7 +50736,7 @@ void Graphic_SaveToStream(TGraphic AObj, TObject Stream) {
 }
 
 DEFINE_FUNC_PTR(Graphic_Assign)
-void Graphic_Assign(TGraphic AObj, void* Source) {
+void Graphic_Assign(TGraphic AObj, TObject Source) {
     GET_FUNC_ADDR(Graphic_Assign)
     MySyscall(pGraphic_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -50888,7 +50888,7 @@ void PngImage_Free(TPngImage AObj) {
 }
 
 DEFINE_FUNC_PTR(PngImage_Assign)
-void PngImage_Assign(TPngImage AObj, void* Source) {
+void PngImage_Assign(TPngImage AObj, TObject Source) {
     GET_FUNC_ADDR(PngImage_Assign)
     MySyscall(pPngImage_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -51082,7 +51082,7 @@ void JPEGImage_Free(TJPEGImage AObj) {
 }
 
 DEFINE_FUNC_PTR(JPEGImage_Assign)
-void JPEGImage_Assign(TJPEGImage AObj, void* Source) {
+void JPEGImage_Assign(TJPEGImage AObj, TObject Source) {
     GET_FUNC_ADDR(JPEGImage_Assign)
     MySyscall(pJPEGImage_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -51318,7 +51318,7 @@ void GIFImage_Clear(TGIFImage AObj) {
 }
 
 DEFINE_FUNC_PTR(GIFImage_Assign)
-void GIFImage_Assign(TGIFImage AObj, void* Source) {
+void GIFImage_Assign(TGIFImage AObj, TObject Source) {
     GET_FUNC_ADDR(GIFImage_Assign)
     MySyscall(pGIFImage_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -51512,7 +51512,7 @@ BOOL ActionList_HasParent(TActionList AObj) {
 }
 
 DEFINE_FUNC_PTR(ActionList_Assign)
-void ActionList_Assign(TActionList AObj, void* Source) {
+void ActionList_Assign(TActionList AObj, TObject Source) {
     GET_FUNC_ADDR(ActionList_Assign)
     MySyscall(pActionList_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -51694,7 +51694,7 @@ char* Action_GetNamePath(TAction AObj) {
 }
 
 DEFINE_FUNC_PTR(Action_Assign)
-void Action_Assign(TAction AObj, void* Source) {
+void Action_Assign(TAction AObj, TObject Source) {
     GET_FUNC_ADDR(Action_Assign)
     MySyscall(pAction_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -52086,7 +52086,7 @@ char* ToolButton_GetNamePath(TToolButton AObj) {
 }
 
 DEFINE_FUNC_PTR(ToolButton_Assign)
-void ToolButton_Assign(TToolButton AObj, void* Source) {
+void ToolButton_Assign(TToolButton AObj, TObject Source) {
     GET_FUNC_ADDR(ToolButton_Assign)
     MySyscall(pToolButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -53346,7 +53346,7 @@ void Clipboard_Free(TClipboard AObj) {
 }
 
 DEFINE_FUNC_PTR(Clipboard_Assign)
-void Clipboard_Assign(TClipboard AObj, void* Source) {
+void Clipboard_Assign(TClipboard AObj, TObject Source) {
     GET_FUNC_ADDR(Clipboard_Assign)
     MySyscall(pClipboard_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -53734,7 +53734,7 @@ char* PaintBox_GetNamePath(TPaintBox AObj) {
 }
 
 DEFINE_FUNC_PTR(PaintBox_Assign)
-void PaintBox_Assign(TPaintBox AObj, void* Source) {
+void PaintBox_Assign(TPaintBox AObj, TObject Source) {
     GET_FUNC_ADDR(PaintBox_Assign)
     MySyscall(pPaintBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -54402,7 +54402,7 @@ BOOL Timer_HasParent(TTimer AObj) {
 }
 
 DEFINE_FUNC_PTR(Timer_Assign)
-void Timer_Assign(TTimer AObj, void* Source) {
+void Timer_Assign(TTimer AObj, TObject Source) {
     GET_FUNC_ADDR(Timer_Assign)
     MySyscall(pTimer_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -54940,7 +54940,7 @@ char* Form_GetNamePath(TForm AObj) {
 }
 
 DEFINE_FUNC_PTR(Form_Assign)
-void Form_Assign(TForm AObj, void* Source) {
+void Form_Assign(TForm AObj, TObject Source) {
     GET_FUNC_ADDR(Form_Assign)
     MySyscall(pForm_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -56184,7 +56184,7 @@ void Form_InheritedWndProc(TForm AObj, TMessage* AMsg) {
 // -------------------TParaAttributes-------------------
 
 DEFINE_FUNC_PTR(ParaAttributes_Assign)
-void ParaAttributes_Assign(TParaAttributes AObj, void* Source) {
+void ParaAttributes_Assign(TParaAttributes AObj, TObject Source) {
     GET_FUNC_ADDR(ParaAttributes_Assign)
     MySyscall(pParaAttributes_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -56330,7 +56330,7 @@ TClass ParaAttributes_StaticClassType() {
 // -------------------TTextAttributes-------------------
 
 DEFINE_FUNC_PTR(TextAttributes_Assign)
-void TextAttributes_Assign(TTextAttributes AObj, void* Source) {
+void TextAttributes_Assign(TTextAttributes AObj, TObject Source) {
     GET_FUNC_ADDR(TextAttributes_Assign)
     MySyscall(pTextAttributes_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -56476,7 +56476,7 @@ TClass TextAttributes_StaticClassType() {
 // -------------------TIconOptions-------------------
 
 DEFINE_FUNC_PTR(IconOptions_Assign)
-void IconOptions_Assign(TIconOptions AObj, void* Source) {
+void IconOptions_Assign(TIconOptions AObj, TObject Source) {
     GET_FUNC_ADDR(IconOptions_Assign)
     MySyscall(pIconOptions_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -56858,7 +56858,7 @@ char* ScrollBar_GetNamePath(TScrollBar AObj) {
 }
 
 DEFINE_FUNC_PTR(ScrollBar_Assign)
-void ScrollBar_Assign(TScrollBar AObj, void* Source) {
+void ScrollBar_Assign(TScrollBar AObj, TObject Source) {
     GET_FUNC_ADDR(ScrollBar_Assign)
     MySyscall(pScrollBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -57946,7 +57946,7 @@ char* MaskEdit_GetNamePath(TMaskEdit AObj) {
 }
 
 DEFINE_FUNC_PTR(MaskEdit_Assign)
-void MaskEdit_Assign(TMaskEdit AObj, void* Source) {
+void MaskEdit_Assign(TMaskEdit AObj, TObject Source) {
     GET_FUNC_ADDR(MaskEdit_Assign)
     MySyscall(pMaskEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -59112,7 +59112,7 @@ char* Shape_GetNamePath(TShape AObj) {
 }
 
 DEFINE_FUNC_PTR(Shape_Assign)
-void Shape_Assign(TShape AObj, void* Source) {
+void Shape_Assign(TShape AObj, TObject Source) {
     GET_FUNC_ADDR(Shape_Assign)
     MySyscall(pShape_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -59852,7 +59852,7 @@ char* Bevel_GetNamePath(TBevel AObj) {
 }
 
 DEFINE_FUNC_PTR(Bevel_Assign)
-void Bevel_Assign(TBevel AObj, void* Source) {
+void Bevel_Assign(TBevel AObj, TObject Source) {
     GET_FUNC_ADDR(Bevel_Assign)
     MySyscall(pBevel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -60592,7 +60592,7 @@ char* ScrollBox_GetNamePath(TScrollBox AObj) {
 }
 
 DEFINE_FUNC_PTR(ScrollBox_Assign)
-void ScrollBox_Assign(TScrollBox AObj, void* Source) {
+void ScrollBox_Assign(TScrollBox AObj, TObject Source) {
     GET_FUNC_ADDR(ScrollBox_Assign)
     MySyscall(pScrollBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -61788,7 +61788,7 @@ char* CheckListBox_GetNamePath(TCheckListBox AObj) {
 }
 
 DEFINE_FUNC_PTR(CheckListBox_Assign)
-void CheckListBox_Assign(TCheckListBox AObj, void* Source) {
+void CheckListBox_Assign(TCheckListBox AObj, TObject Source) {
     GET_FUNC_ADDR(CheckListBox_Assign)
     MySyscall(pCheckListBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -62954,7 +62954,7 @@ char* Gauge_GetNamePath(TGauge AObj) {
 }
 
 DEFINE_FUNC_PTR(Gauge_Assign)
-void Gauge_Assign(TGauge AObj, void* Source) {
+void Gauge_Assign(TGauge AObj, TObject Source) {
     GET_FUNC_ADDR(Gauge_Assign)
     MySyscall(pGauge_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -63730,7 +63730,7 @@ char* ImageButton_GetNamePath(TImageButton AObj) {
 }
 
 DEFINE_FUNC_PTR(ImageButton_Assign)
-void ImageButton_Assign(TImageButton AObj, void* Source) {
+void ImageButton_Assign(TImageButton AObj, TObject Source) {
     GET_FUNC_ADDR(ImageButton_Assign)
     MySyscall(pImageButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -64470,7 +64470,7 @@ BOOL FindDialog_HasParent(TFindDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(FindDialog_Assign)
-void FindDialog_Assign(TFindDialog AObj, void* Source) {
+void FindDialog_Assign(TFindDialog AObj, TObject Source) {
     GET_FUNC_ADDR(FindDialog_Assign)
     MySyscall(pFindDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -64706,7 +64706,7 @@ BOOL ReplaceDialog_HasParent(TReplaceDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(ReplaceDialog_Assign)
-void ReplaceDialog_Assign(TReplaceDialog AObj, void* Source) {
+void ReplaceDialog_Assign(TReplaceDialog AObj, TObject Source) {
     GET_FUNC_ADDR(ReplaceDialog_Assign)
     MySyscall(pReplaceDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -64954,7 +64954,7 @@ BOOL PrinterSetupDialog_HasParent(TPrinterSetupDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(PrinterSetupDialog_Assign)
-void PrinterSetupDialog_Assign(TPrinterSetupDialog AObj, void* Source) {
+void PrinterSetupDialog_Assign(TPrinterSetupDialog AObj, TObject Source) {
     GET_FUNC_ADDR(PrinterSetupDialog_Assign)
     MySyscall(pPrinterSetupDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -65118,7 +65118,7 @@ BOOL PageSetupDialog_HasParent(TPageSetupDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(PageSetupDialog_Assign)
-void PageSetupDialog_Assign(TPageSetupDialog AObj, void* Source) {
+void PageSetupDialog_Assign(TPageSetupDialog AObj, TObject Source) {
     GET_FUNC_ADDR(PageSetupDialog_Assign)
     MySyscall(pPageSetupDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -66084,7 +66084,7 @@ char* StringGrid_GetNamePath(TStringGrid AObj) {
 }
 
 DEFINE_FUNC_PTR(StringGrid_Assign)
-void StringGrid_Assign(TStringGrid AObj, void* Source) {
+void StringGrid_Assign(TStringGrid AObj, TObject Source) {
     GET_FUNC_ADDR(StringGrid_Assign)
     MySyscall(pStringGrid_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -68072,7 +68072,7 @@ char* DrawGrid_GetNamePath(TDrawGrid AObj) {
 }
 
 DEFINE_FUNC_PTR(DrawGrid_Assign)
-void DrawGrid_Assign(TDrawGrid AObj, void* Source) {
+void DrawGrid_Assign(TDrawGrid AObj, TObject Source) {
     GET_FUNC_ADDR(DrawGrid_Assign)
     MySyscall(pDrawGrid_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -69484,7 +69484,7 @@ char* ValueListEditor_GetNamePath(TValueListEditor AObj) {
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_Assign)
-void ValueListEditor_Assign(TValueListEditor AObj, void* Source) {
+void ValueListEditor_Assign(TValueListEditor AObj, TObject Source) {
     GET_FUNC_ADDR(ValueListEditor_Assign)
     MySyscall(pValueListEditor_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -70896,7 +70896,7 @@ char* HeaderControl_GetNamePath(THeaderControl AObj) {
 }
 
 DEFINE_FUNC_PTR(HeaderControl_Assign)
-void HeaderControl_Assign(THeaderControl AObj, void* Source) {
+void HeaderControl_Assign(THeaderControl AObj, TObject Source) {
     GET_FUNC_ADDR(HeaderControl_Assign)
     MySyscall(pHeaderControl_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -71738,7 +71738,7 @@ void HeaderSection_Free(THeaderSection AObj) {
 }
 
 DEFINE_FUNC_PTR(HeaderSection_Assign)
-void HeaderSection_Assign(THeaderSection AObj, void* Source) {
+void HeaderSection_Assign(THeaderSection AObj, TObject Source) {
     GET_FUNC_ADDR(HeaderSection_Assign)
     MySyscall(pHeaderSection_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -71950,13 +71950,13 @@ THeaderSection HeaderSections_Insert(THeaderSections AObj, int32_t Index) {
 }
 
 DEFINE_FUNC_PTR(HeaderSections_Owner)
-void* HeaderSections_Owner(THeaderSections AObj) {
+TObject HeaderSections_Owner(THeaderSections AObj) {
     GET_FUNC_ADDR(HeaderSections_Owner)
-    return (void*)MySyscall(pHeaderSections_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pHeaderSections_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderSections_Assign)
-void HeaderSections_Assign(THeaderSections AObj, void* Source) {
+void HeaderSections_Assign(THeaderSections AObj, TObject Source) {
     GET_FUNC_ADDR(HeaderSections_Assign)
     MySyscall(pHeaderSections_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -72336,7 +72336,7 @@ char* LabeledEdit_GetNamePath(TLabeledEdit AObj) {
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_Assign)
-void LabeledEdit_Assign(TLabeledEdit AObj, void* Source) {
+void LabeledEdit_Assign(TLabeledEdit AObj, TObject Source) {
     GET_FUNC_ADDR(LabeledEdit_Assign)
     MySyscall(pLabeledEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -73514,7 +73514,7 @@ char* BoundLabel_GetNamePath(TBoundLabel AObj) {
 }
 
 DEFINE_FUNC_PTR(BoundLabel_Assign)
-void BoundLabel_Assign(TBoundLabel AObj, void* Source) {
+void BoundLabel_Assign(TBoundLabel AObj, TObject Source) {
     GET_FUNC_ADDR(BoundLabel_Assign)
     MySyscall(pBoundLabel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -74410,7 +74410,7 @@ char* FlowPanel_GetNamePath(TFlowPanel AObj) {
 }
 
 DEFINE_FUNC_PTR(FlowPanel_Assign)
-void FlowPanel_Assign(TFlowPanel AObj, void* Source) {
+void FlowPanel_Assign(TFlowPanel AObj, TObject Source) {
     GET_FUNC_ADDR(FlowPanel_Assign)
     MySyscall(pFlowPanel_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -75588,7 +75588,7 @@ char* CoolBar_GetNamePath(TCoolBar AObj) {
 }
 
 DEFINE_FUNC_PTR(CoolBar_Assign)
-void CoolBar_Assign(TCoolBar AObj, void* Source) {
+void CoolBar_Assign(TCoolBar AObj, TObject Source) {
     GET_FUNC_ADDR(CoolBar_Assign)
     MySyscall(pCoolBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -76616,13 +76616,13 @@ TCoolBand CoolBands_FindBand(TCoolBands AObj, TControl AControl) {
 }
 
 DEFINE_FUNC_PTR(CoolBands_Owner)
-void* CoolBands_Owner(TCoolBands AObj) {
+TObject CoolBands_Owner(TCoolBands AObj) {
     GET_FUNC_ADDR(CoolBands_Owner)
-    return (void*)MySyscall(pCoolBands_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pCoolBands_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBands_Assign)
-void CoolBands_Assign(TCoolBands AObj, void* Source) {
+void CoolBands_Assign(TCoolBands AObj, TObject Source) {
     GET_FUNC_ADDR(CoolBands_Assign)
     MySyscall(pCoolBands_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -76750,7 +76750,7 @@ void CoolBand_Free(TCoolBand AObj) {
 }
 
 DEFINE_FUNC_PTR(CoolBand_Assign)
-void CoolBand_Assign(TCoolBand AObj, void* Source) {
+void CoolBand_Assign(TCoolBand AObj, TObject Source) {
     GET_FUNC_ADDR(CoolBand_Assign)
     MySyscall(pCoolBand_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -77058,9 +77058,9 @@ void Collection_Free(TCollection AObj) {
 }
 
 DEFINE_FUNC_PTR(Collection_Owner)
-void* Collection_Owner(TCollection AObj) {
+TObject Collection_Owner(TCollection AObj) {
     GET_FUNC_ADDR(Collection_Owner)
-    return (void*)MySyscall(pCollection_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pCollection_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Collection_Add)
@@ -77070,7 +77070,7 @@ TCollectionItem Collection_Add(TCollection AObj) {
 }
 
 DEFINE_FUNC_PTR(Collection_Assign)
-void Collection_Assign(TCollection AObj, void* Source) {
+void Collection_Assign(TCollection AObj, TObject Source) {
     GET_FUNC_ADDR(Collection_Assign)
     MySyscall(pCollection_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -77416,7 +77416,7 @@ BOOL TaskDialog_HasParent(TTaskDialog AObj) {
 }
 
 DEFINE_FUNC_PTR(TaskDialog_Assign)
-void TaskDialog_Assign(TTaskDialog AObj, void* Source) {
+void TaskDialog_Assign(TTaskDialog AObj, TObject Source) {
     GET_FUNC_ADDR(TaskDialog_Assign)
     MySyscall(pTaskDialog_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -77742,13 +77742,13 @@ TTaskDialogBaseButtonItem TaskDialogButtons_FindButton(TTaskDialogButtons AObj, 
 }
 
 DEFINE_FUNC_PTR(TaskDialogButtons_Owner)
-void* TaskDialogButtons_Owner(TTaskDialogButtons AObj) {
+TObject TaskDialogButtons_Owner(TTaskDialogButtons AObj) {
     GET_FUNC_ADDR(TaskDialogButtons_Owner)
-    return (void*)MySyscall(pTaskDialogButtons_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pTaskDialogButtons_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TaskDialogButtons_Assign)
-void TaskDialogButtons_Assign(TTaskDialogButtons AObj, void* Source) {
+void TaskDialogButtons_Assign(TTaskDialogButtons AObj, TObject Source) {
     GET_FUNC_ADDR(TaskDialogButtons_Assign)
     MySyscall(pTaskDialogButtons_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -77894,7 +77894,7 @@ char* TaskDialogButtonItem_GetNamePath(TTaskDialogButtonItem AObj) {
 }
 
 DEFINE_FUNC_PTR(TaskDialogButtonItem_Assign)
-void TaskDialogButtonItem_Assign(TTaskDialogButtonItem AObj, void* Source) {
+void TaskDialogButtonItem_Assign(TTaskDialogButtonItem AObj, TObject Source) {
     GET_FUNC_ADDR(TaskDialogButtonItem_Assign)
     MySyscall(pTaskDialogButtonItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -78040,7 +78040,7 @@ char* TaskDialogRadioButtonItem_GetNamePath(TTaskDialogRadioButtonItem AObj) {
 }
 
 DEFINE_FUNC_PTR(TaskDialogRadioButtonItem_Assign)
-void TaskDialogRadioButtonItem_Assign(TTaskDialogRadioButtonItem AObj, void* Source) {
+void TaskDialogRadioButtonItem_Assign(TTaskDialogRadioButtonItem AObj, TObject Source) {
     GET_FUNC_ADDR(TaskDialogRadioButtonItem_Assign)
     MySyscall(pTaskDialogRadioButtonItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -78186,7 +78186,7 @@ char* TaskDialogBaseButtonItem_GetNamePath(TTaskDialogBaseButtonItem AObj) {
 }
 
 DEFINE_FUNC_PTR(TaskDialogBaseButtonItem_Assign)
-void TaskDialogBaseButtonItem_Assign(TTaskDialogBaseButtonItem AObj, void* Source) {
+void TaskDialogBaseButtonItem_Assign(TTaskDialogBaseButtonItem AObj, TObject Source) {
     GET_FUNC_ADDR(TaskDialogBaseButtonItem_Assign)
     MySyscall(pTaskDialogBaseButtonItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -78572,7 +78572,7 @@ char* ComboBoxEx_GetNamePath(TComboBoxEx AObj) {
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_Assign)
-void ComboBoxEx_Assign(TComboBoxEx AObj, void* Source) {
+void ComboBoxEx_Assign(TComboBoxEx AObj, TObject Source) {
     GET_FUNC_ADDR(ComboBoxEx_Assign)
     MySyscall(pComboBoxEx_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -79600,13 +79600,13 @@ TComboExItem ComboExItems_Insert(TComboExItems AObj, int32_t Index) {
 }
 
 DEFINE_FUNC_PTR(ComboExItems_Owner)
-void* ComboExItems_Owner(TComboExItems AObj) {
+TObject ComboExItems_Owner(TComboExItems AObj) {
     GET_FUNC_ADDR(ComboExItems_Owner)
-    return (void*)MySyscall(pComboExItems_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pComboExItems_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboExItems_Assign)
-void ComboExItems_Assign(TComboExItems AObj, void* Source) {
+void ComboExItems_Assign(TComboExItems AObj, TObject Source) {
     GET_FUNC_ADDR(ComboExItems_Assign)
     MySyscall(pComboExItems_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -79710,7 +79710,7 @@ TClass ComboExItems_StaticClassType() {
 // -------------------TComboExItem-------------------
 
 DEFINE_FUNC_PTR(ComboExItem_Assign)
-void ComboExItem_Assign(TComboExItem AObj, void* Source) {
+void ComboExItem_Assign(TComboExItem AObj, TObject Source) {
     GET_FUNC_ADDR(ComboExItem_Assign)
     MySyscall(pComboExItem_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -80102,7 +80102,7 @@ char* Frame_GetNamePath(TFrame AObj) {
 }
 
 DEFINE_FUNC_PTR(Frame_Assign)
-void Frame_Assign(TFrame AObj, void* Source) {
+void Frame_Assign(TFrame AObj, TObject Source) {
     GET_FUNC_ADDR(Frame_Assign)
     MySyscall(pFrame_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -81016,7 +81016,7 @@ TClass Frame_StaticClassType() {
 // -------------------TControlScrollBar-------------------
 
 DEFINE_FUNC_PTR(ControlScrollBar_Assign)
-void ControlScrollBar_Assign(TControlScrollBar AObj, void* Source) {
+void ControlScrollBar_Assign(TControlScrollBar AObj, TObject Source) {
     GET_FUNC_ADDR(ControlScrollBar_Assign)
     MySyscall(pControlScrollBar_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -81162,7 +81162,7 @@ TClass ControlScrollBar_StaticClassType() {
 // -------------------TSizeConstraints-------------------
 
 DEFINE_FUNC_PTR(SizeConstraints_Assign)
-void SizeConstraints_Assign(TSizeConstraints AObj, void* Source) {
+void SizeConstraints_Assign(TSizeConstraints AObj, TObject Source) {
     GET_FUNC_ADDR(SizeConstraints_Assign)
     MySyscall(pSizeConstraints_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -81416,7 +81416,7 @@ char* XButton_GetNamePath(TXButton AObj) {
 }
 
 DEFINE_FUNC_PTR(XButton_Assign)
-void XButton_Assign(TXButton AObj, void* Source) {
+void XButton_Assign(TXButton AObj, TObject Source) {
     GET_FUNC_ADDR(XButton_Assign)
     MySyscall(pXButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -82120,7 +82120,7 @@ TClass XButton_StaticClassType() {
 // -------------------TAnchorSide-------------------
 
 DEFINE_FUNC_PTR(AnchorSide_Assign)
-void AnchorSide_Assign(TAnchorSide AObj, void* Source) {
+void AnchorSide_Assign(TAnchorSide AObj, TObject Source) {
     GET_FUNC_ADDR(AnchorSide_Assign)
     MySyscall(pAnchorSide_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -82212,7 +82212,7 @@ TClass AnchorSide_StaticClassType() {
 // -------------------TControlBorderSpacing-------------------
 
 DEFINE_FUNC_PTR(ControlBorderSpacing_Assign)
-void ControlBorderSpacing_Assign(TControlBorderSpacing AObj, void* Source) {
+void ControlBorderSpacing_Assign(TControlBorderSpacing AObj, TObject Source) {
     GET_FUNC_ADDR(ControlBorderSpacing_Assign)
     MySyscall(pControlBorderSpacing_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -82454,7 +82454,7 @@ TClass ControlBorderSpacing_StaticClassType() {
 // -------------------TControlChildSizing-------------------
 
 DEFINE_FUNC_PTR(ControlChildSizing_Assign)
-void ControlChildSizing_Assign(TControlChildSizing AObj, void* Source) {
+void ControlChildSizing_Assign(TControlChildSizing AObj, TObject Source) {
     GET_FUNC_ADDR(ControlChildSizing_Assign)
     MySyscall(pControlChildSizing_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -82882,7 +82882,7 @@ char* CheckGroup_GetNamePath(TCheckGroup AObj) {
 }
 
 DEFINE_FUNC_PTR(CheckGroup_Assign)
-void CheckGroup_Assign(TCheckGroup AObj, void* Source) {
+void CheckGroup_Assign(TCheckGroup AObj, TObject Source) {
     GET_FUNC_ADDR(CheckGroup_Assign)
     MySyscall(pCheckGroup_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -84042,7 +84042,7 @@ char* ToggleBox_GetNamePath(TToggleBox AObj) {
 }
 
 DEFINE_FUNC_PTR(ToggleBox_Assign)
-void ToggleBox_Assign(TToggleBox AObj, void* Source) {
+void ToggleBox_Assign(TToggleBox AObj, TObject Source) {
     GET_FUNC_ADDR(ToggleBox_Assign)
     MySyscall(pToggleBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -84908,7 +84908,7 @@ TClass ToggleBox_StaticClassType() {
 // -------------------TGridColumnTitle-------------------
 
 DEFINE_FUNC_PTR(GridColumnTitle_Assign)
-void GridColumnTitle_Assign(TGridColumnTitle AObj, void* Source) {
+void GridColumnTitle_Assign(TGridColumnTitle AObj, TObject Source) {
     GET_FUNC_ADDR(GridColumnTitle_Assign)
     MySyscall(pGridColumnTitle_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -85096,7 +85096,7 @@ TClass GridColumnTitle_StaticClassType() {
 // -------------------TGridColumn-------------------
 
 DEFINE_FUNC_PTR(GridColumn_Assign)
-void GridColumn_Assign(TGridColumn AObj, void* Source) {
+void GridColumn_Assign(TGridColumn AObj, TObject Source) {
     GET_FUNC_ADDR(GridColumn_Assign)
     MySyscall(pGridColumn_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -85476,13 +85476,13 @@ BOOL GridColumns_HasIndex(TGridColumns AObj, int32_t Index) {
 }
 
 DEFINE_FUNC_PTR(GridColumns_Owner)
-void* GridColumns_Owner(TGridColumns AObj) {
+TObject GridColumns_Owner(TGridColumns AObj) {
     GET_FUNC_ADDR(GridColumns_Owner)
-    return (void*)MySyscall(pGridColumns_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TObject)MySyscall(pGridColumns_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GridColumns_Assign)
-void GridColumns_Assign(TGridColumns AObj, void* Source) {
+void GridColumns_Assign(TGridColumns AObj, TObject Source) {
     GET_FUNC_ADDR(GridColumns_Assign)
     MySyscall(pGridColumns_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
