@@ -48,6 +48,12 @@ impl {{$className}} {
           }
       }
 ##
+      pub fn As(inst: usize) -> Self {
+          {{$className}} { 0: inst, 1: false }
+      }
+
+
+##
       {{else if eq $mm.RealName "Free"}}
       pub fn Free(&mut self) {
           unsafe {
