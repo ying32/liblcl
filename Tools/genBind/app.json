@@ -91,15 +91,15 @@
       "files": [
         {
           "template_file_name": "./rust/tpl/liblcl-template.tpl",
-          "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\imports.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\imports.rs"
         },
         {
           "template_file_name": "./rust/tpl/types-template.tpl",
-          "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\types.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\types.rs"
         },
         {
           "template_file_name": "./rust/tpl/vcl-template.tpl",
-          "save_file_name": "C:\\Users\\zhuying\\IdeaProjects\\rust-vcl\\src\\vcl.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\vcl.rs"
         }
       ]
     }
