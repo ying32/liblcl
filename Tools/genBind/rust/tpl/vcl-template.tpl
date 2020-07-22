@@ -7,6 +7,7 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]
 #![allow(dead_code)]
+#![allow(unused_unsafe)]
 ##
 use crate::imports::*;
 use crate::types::*;
@@ -22,6 +23,8 @@ pub trait IComponent: IObject {}
 pub trait IControl: IComponent {}
 pub trait IWinControl: IControl {}
 ##
+
+
 ##
 {{/* usize是指向实例对象的指针，bool是标识能自动drop的，一般只有通过new的才可以 */}}
 /* 先定义所有的类 */
@@ -42,34 +45,23 @@ impl {{$className}} {
   {{range $mm := $el.Methods}}
       {{if eq $mm.RealName "Create"}}
       pub fn new({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{fLowCase $ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}) -> Self {
-          {{$className}} {
+         {{/* {{$className}} {*/}}
+		  
+		 macro_proc_Create!({{$className}}, {{$classN}}_Create, {{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}to_CString!({{fLowCase $ps.Name}}){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{end}});
+		  {{/*
               0: unsafe { {{$classN}}_Create({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CString::new({{fLowCase $ps.Name}}).unwrap().as_ptr(){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{end}}) },
               1: true,
-          }
+          } */}}
       }
 ##
-      pub fn As(inst: usize) -> Self {
-          {{$className}} { 0: inst, 1: false }
-      }
-
-
+      impl_As_method!({{$className}});
 ##
       {{else if eq $mm.RealName "Free"}}
-      pub fn Free(&mut self) {
-          unsafe {
-              if self.0 > 0 {
-                  {{$classN}}_Free(self.0);
-                  self.0 = 0;
-              }
-          }
-      }
+	  impl_Free_method!({{$classN}}_Free);
 ##
       {{else if eq $mm.RealName "CreateForm"}}
       pub fn CreateForm(&self) -> TForm  {
-          TForm {
-              0: unsafe { Application_CreateForm(self.0, false) },
-              1: false,
-          }
+	      return callProc2!(TForm, Application_CreateForm, self.0, false);
       }
 ##
       {{else}}
@@ -79,69 +71,52 @@ impl {{$className}} {
 
       {{$notProp := not (isProp $mm)}}
       pub fn {{getRealName2 $mm}}{{if eq $mm.Return "string"}}{{html "<'a>"}}{{end}}(&self{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{fLowCase $ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{if $ps.IsVar}}{{/*{{if not (eq $ps.Flag "nonPtr")}}*mut {{end}}*/}}*mut {{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}{{/*{{end}}*/}}{{end}}){{if not (isEmpty $mm.Return)}} -> {{if eq $mm.Return "string"}}{{html "Cow<'a, str>"}}{{else}}{{covType2 $mm.Return}}{{end}}{{else}}{{/*{{template "getlastPs" $mm}}*/}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} {
-          {{/*这里生成不需要var的变量*/}}
-      {{/*{{range $ips, $ps := $mm.Params}}
-            {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-          var ps{{$ips}} = {{fLowCase $ps.Name}}
-            {{end}}
-          {{end}}
-      */}}
+          
+
           {{$retIsObj := isObject $mm.Return}}
           {{$retIsStr := eq $mm.Return "string"}}
-          {{if $retIsObj}}
-          {{$mm.Return}} {
-          {{end}}
-          {{/*{{if $mm.LastIsReturn}}
-          let result: {{covType (lastParam $mm.Params).Type}};
-          {{end}} */}}
-          {{if $retIsObj}}    0: {{end}}unsafe { {{if $retIsStr}}CStr::from_ptr({{end}}{{$mm.Name}}(self.0{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{if not (eq $ps.Flag "nonPtr")}}{{if eq $ps.Type "string"}}CString::new({{fLowCase $ps.Name}}).unwrap().as_ptr(){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{else}}{{/*ps{{$idx}}*/}}{{fLowCase $ps.Name}}{{end}}{{/*{{end}}*/}}{{else}}{{/*{{if $mm.LastIsReturn}}, result{{end}}*/}}{{end}}{{end}}){{if $retIsStr}}).to_string_lossy() {{end}} }
-          {{/*{{if $mm.LastIsReturn}}
-          return result;
-          {{end}}*/}}
-          {{if $retIsObj}}
-              , 1: false,
-          }
-          {{end}}
+		  
+		  {{if not (isEmpty $mm.Return)}}return {{end}}{{if $retIsStr}}to_RustString!( {{end}}callProc{{if $retIsObj}}2{{else}}1{{end}}!(
+		    {{if $retIsObj}}{{$mm.Return}}, {{end}}{{$mm.Name}}, self.0{{range $idx, $ps := $mm.Params}}{{if gt $idx 0}},
+			     {{if eq $ps.Type "string"}}
+			to_CString!({{fLowCase $ps.Name}})
+				 {{else}}
+			{{fLowCase $ps.Name}}{{if isObject $ps.Type}}.Instance(){{end}}
+				 {{end}}
+			  {{end}}  
+			{{end}}
+		  ){{if $retIsStr}}){{end}}; {{/*返回字符串结束*/}}
       }
 
       {{end}}
 ##
          {{else}}
       // static class
-      pub fn Class() -> TClass {
-          unsafe { {{$mm.Name}}() }
-      }
+	  impl_Class_method!({{$mm.Name}});
          {{end}}
       {{end}}
   {{end}}
 }
 ##
-impl IObject for {{$className}} {
-    fn Instance(&self) -> usize { self.0 }
-}
-##
+impl_IObject!({{$className}});
 {{if or (or (or (eq $baseClass "TComponent") (eq $baseClass "TControl")) (eq $baseClass "TWinControl")) (eq $className "TComponent")}}
-impl IComponent for {{$className}} {}
+impl_IComponent!({{$className}});
 {{end}}
 
 {{if or (or (eq $baseClass "TControl") (eq $baseClass "TWinControl")) (eq $className "TControl")}}
-impl IControl for {{$className}} {}
+impl_IControl!({{$className}});
 {{end}}
 
 {{if or (eq $baseClass "TWinControl") (eq $className "TWinControl")}}
-impl IWinControl for {{$className}} {}
+impl_IWinControl!({{$className}});
 {{end}}
 
 {{/* 所有不为TComponent和TControl和TWinControl的实现drop方法 */}}
 {{if haveFree $el.Methods}}
   {{if or (eq $baseClass "TObject") (eq $className "TObject")}}
-impl Drop for {{$className}} {
-     fn drop(&mut self) {
-         if self.1 {
-             self.Free();
-         }
-     }
-}
+ 
+impl_Drop_method!({{$className}});
+
   {{end}}
 {{end}}
 
