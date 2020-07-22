@@ -89,7 +89,13 @@ proc doMessageCallbackProc(f: pointer, msg: pointer): uint =
   return 0
 ##
 # 线程同步专用回调
+var
+  threadSyncProc*: TThreadProc
+##
 proc doThreadSyncCallbackProc(): uint =
+  if threadSyncProc != nil:
+    threadSyncProc()
+    threadSyncProc = nil
   return 0
 ##
 # set callback
