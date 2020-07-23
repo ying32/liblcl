@@ -142,7 +142,7 @@ Printer = Printer_Instance();
 
 // Callback function prototype
 // f:        Id or function pointer passed in through SetOnXXX 
-// args:     Parameter group number pointer, Get each member by getParamOf
+// args:     Parameter array pointer, Get each member by getParamOf
 // argcount: Parameter array length
 static void* LCLAPI doEventCallbackProc(void* f, void* args, long argCount) {
  
