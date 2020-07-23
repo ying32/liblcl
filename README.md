@@ -28,7 +28,7 @@
 
 ----
 
-语言绑定工具生成器：[genBind](Tools/genBind)，目前已经生成了c/c++、nim的，详细参考这两种语言的绑定模板文件。
+语言绑定工具生成器：[genBind](Tools/genBind)，目前已经生成了c/c++、rust、nim的，详细参考这两种语言的绑定模板文件。
 
 ----
 
