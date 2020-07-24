@@ -12,27 +12,74 @@ use std::mem::{size_of, transmute};
 ##
 use crate::types::*;
 ##
+
+{{define "genFunc"}}
+    {{$el := .}}
+    {{$buff := newBuffer}}
+
+    {{if eq $el.Platform "windows"}}
+        {{$buff.Writeln "  #[cfg(target_os = \"windows\")]"}}
+    {{end}}
+    {{if eq $el.Platform "linux,macos"}}
+        {{$buff.Writeln "  #[cfg(not(target_os = \"windows\"))]"}}
+    {{end}}
+    {{if eq $el.Platform "macos"}}
+        {{$buff.Writeln "  #[cfg(target_os = \"macos\")]"}}
+    {{end}}
+    {{if eq $el.Platform "linux"}}
+        {{$buff.Writeln "  #[cfg(target_os = \"linux\")]"}}
+    {{end}}
+    {{$buff.Write "  "}}
+    {{if not (inStrArray $el.Name "SetEventCallback" "SetMessageCallback" "SetThreadSyncCallback")}}
+        {{$buff.Write "pub "}}
+    {{end}}
+
+    {{$buff.Write "fn " $el.Name "("}}
+    {{range $idx, $ps := $el.Params}}
+        {{if gt $idx 0}}
+            {{$buff.Write ", "}}
+        {{end}}
+        {{$buff.Write $ps.Name ": "}}
+        {{if not (isObject $ps.Type)}}
+            {{if $ps.IsVar}}
+                {{$buff.Write "*mut "}}
+            {{end}}
+            {{covType $ps.Type|$buff.Write}}
+        {{else}}
+            {{$buff.Write "usize"}}
+        {{end}}
+    {{end}}
+    {{$buff.Write ")"}}
+    {{if not (isEmpty $el.Return)}}
+        {{$buff.Write " -> "}}
+        {{if not (isObject $el.Return)}}
+            {{covType $el.Return|$buff.Write}}
+        {{else}}
+            {{$buff.Write "usize"}}
+        {{end}}
+    {{end}}
+    {{$buff.Writeln ";"}}
+
+
+{{$buff.ToStr}}
+{{end}}
+
 // MSVC 编译器，静态加载
 #[link(name = "liblcl")]
 extern "system" {
 ##
-{{define "getPub"}}{{if not (inStrArray . "SetEventCallback" "SetMessageCallback" "SetThreadSyncCallback")}}pub {{end}}{{end}}
 ##
 {{range $el := .Functions}}
-{{if eq $el.Platform "windows"}}  #[cfg(target_os = "windows")]{{end}}
-{{if eq $el.Platform "linux,macos"}}  #[cfg(not(target_os = "windows"))]{{end}}
-{{if eq $el.Platform "macos"}}  #[cfg(target_os = "macos")]{{end}}
-{{if eq $el.Platform "linux"}}  #[cfg(target_os = "linux")]{{end}}
-  {{template "getPub" $el.Name}}fn {{$el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if not (isObject $ps.Type)}}{{if $ps.IsVar}}*mut {{end}}{{covType $ps.Type}}{{else}}usize{{end}}{{end}}){{if not (isEmpty $el.Return)}} -> {{if not (isObject $el.Return)}}{{covType $el.Return}}{{else}}usize{{end}}{{end}};
+    {{template "genFunc" $el}}
 {{end}}
 ##
 ##
 {{range $el := .Objects}}
 ##
   // ----------------- {{$el.ClassName}} ----------------------
-{{range $fn := $el.Methods}}
-  pub fn {{$fn.Name}}({{range $idx, $ps := $fn.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if not (isObject $ps.Type)}}{{if $ps.IsVar}}*mut {{end}}{{covType $ps.Type}}{{else}}usize{{end}}{{end}}){{if not (isEmpty $fn.Return)}} -> {{if not (isObject $fn.Return)}}{{covType $fn.Return}}{{else}}usize{{end}}{{end}};
-{{end}}
+    {{range $fn := $el.Methods}}
+        {{template "genFunc" $fn}}
+    {{end}}
 {{end}}
 ##
 }

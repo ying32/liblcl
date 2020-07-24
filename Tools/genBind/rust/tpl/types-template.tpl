@@ -106,35 +106,100 @@ pub type PGtkFixed = usize;
 pub type MyNSWindow = usize;
 ##
 
-
+{{$buff := newBuffer}}
 
 {{/* 事件定义 */}}
 ##
 {{range $el := .Events}}
-  {{if isEmpty $el.ReDefine}}
-##
-// fn ({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if $ps.IsVar}}*mut {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}usize{{else}}{{covType $ps.Type}}{{end}}{{end}})
-pub type {{$el.Name}} = fn({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if $ps.IsVar}}*mut {{end}}{{if isObject $ps.Type}}usize{{else}}{{covType $ps.Type}}{{end}}{{end}});
-  {{else}}
-##
-pub type {{$el.Name}} = {{$el.ReDefine}};
-  {{end}}
+    {{if isEmpty $el.ReDefine}}
+        {{$buff.Writeln "##"}}
+        
+        {{/* 注释 */}}
+        {{$buff.Write "// fn ("}}
+        {{range $idx, $ps := $el.Params}}
+            {{if gt $idx 0}}
+                {{$buff.Write ", "}}
+            {{end}}
+            {{if $ps.IsVar}}
+                {{$buff.Write "*mut "}}
+            {{end}}
+            {{$buff.Write $ps.Name ": "}}
+            {{if isObject $ps.Type}}
+                {{$buff.Write "usize"}}
+            {{else}}
+                {{covType $ps.Type|$buff.Write}}
+            {{end}}
+         {{end}}
+        {{$buff.Writeln ")"}}
+
+        {{/* 类型定义 */}}
+        {{$buff.Write "pub type " $el.Name " = fn("}}
+        {{range $idx, $ps := $el.Params}}
+            {{if gt $idx 0}}
+                {{$buff.Write ", "}}
+            {{end}}
+            {{if $ps.IsVar}}
+                {{$buff.Write "*mut "}}
+            {{end}}
+            {{if isObject $ps.Type}}
+                {{$buff.Write "usize"}}
+            {{else}}
+                {{covType $ps.Type|$buff.Write}}
+            {{end}}
+        {{end}}
+        {{$buff.Writeln ");"}}
+
+
+    {{else}}
+        {{$buff.Writeln "##"}}
+        {{$buff.Writeln "pub type " $el.Name " = " $el.ReDefine}}
+    {{end}}
 {{end}}
 
 
 {{/* 常量定义 */}}
 ##
-{{define "getColorType"}}{{if hasPrefix .Name "cl"}}: TColor{{end}}{{end}}
-{{define "getKeyType"}}{{if hasPrefix .Name "vk"}}: Char{{end}}{{end}}
-{{define "getCursorType"}}{{end}}
-{{define "getOtherType"}}{{if or (or (hasPrefix .Name "id") (hasPrefix .Name "mr")) (hasPrefix .Name "CF_")}}: u8{{end}}{{end}}
+
+
 
 {{range $el := .Consts}}
-  {{if not (isEmpty $el.Name)}}
-  {{$isCur := hasPrefix $el.Name "cr"}}
-const {{$el.Name}}{{template "getColorType" $el}}{{template "getKeyType" $el}}{{template "getOtherType" $el}}{{if $isCur}}: TCursor{{end}} = {{if $isCur}}{{getConstVal2 $el.Value}}{{else}}{{$el.Value}}{{end}}{{if not (isEmpty $el.Value2)}} + {{$el.Value2}}{{end}};{{if not (isEmpty $el.Comment)}} // {{html $el.Comment}}{{end}}
-  {{else}}
-##
-// {{$el.Comment}}
-  {{end}}
+    {{if not (isEmpty $el.Name)}}
+
+        {{$isCur := hasPrefix $el.Name "cr"}}
+
+        {{$buff.Write "const " $el.Name}}
+
+        {{if hasPrefix $el.Name "cl"}}
+            {{$buff.Write ": TColor"}}
+        {{else if hasPrefix $el.Name "vk"}}
+            {{$buff.Write ": Char"}}
+        {{else if $isCur}}
+            {{$buff.Write ": TCursor"}}
+        {{else}}
+            {{if or (or (hasPrefix .Name "id") (hasPrefix .Name "mr")) (hasPrefix .Name "CF_")}}
+                {{$buff.Write ": u8"}}
+            {{end}}
+        {{end}}
+        {{$buff.Write " = "}}
+        {{if $isCur}}
+            {{getConstVal2 $el.Value|$buff.Write}}
+        {{else}}
+            {{$buff.Write $el.Value}}
+        {{end}}
+        {{if not (isEmpty $el.Value2)}}
+            {{$buff.Write " + " $el.Value2}}
+        {{end}}
+        {{$buff.Write ";"}}
+        {{if not (isEmpty $el.Comment)}}
+            {{$buff.Write " // " $el.Comment}}
+        {{end}}
+        {{$buff.Writeln}}
+
+    {{else}}
+        {{$buff.Writeln "##"}}
+        {{$buff.Writeln "// " $el.Comment}}
+    {{end}}
 {{end}}
+
+
+{{$buff.ToStr}}
