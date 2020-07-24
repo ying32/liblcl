@@ -352,6 +352,16 @@ func templateFirstLowerCase(s string) string {
 	return s
 }
 
+func templateNewBuffer() *TMyBuffer {
+	b := new(TMyBuffer)
+	b.buff = bytes.NewBuffer(nil)
+	return b
+}
+
+//func templateUnescape(s string) string {
+//	return html.UnescapeString(s)
+//}
+
 var templateFuncs = template.FuncMap{
 	"isEmpty":      templateIsEmpty,
 	"covType":      templateCovType,
@@ -386,6 +396,8 @@ var templateFuncs = template.FuncMap{
 	"getRealName2": templateGetRealName2,
 	"haveFree":     templateHaveFree,
 	"fLowCase":     templateFirstLowerCase,
+	"newBuffer":    templateNewBuffer,
+	//"unescape":     templateUnescape,
 }
 
 func execTemplate(objFile ast.TObjectFile, file TFile, lineBreak string) {

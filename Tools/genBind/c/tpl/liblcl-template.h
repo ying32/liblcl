@@ -334,22 +334,82 @@ void close_liblcl() {
 }
 ##
 
+
 {{define "genFunc"}}
-{{$el := .}}
-{{$isPsRet := $el.LastIsReturn}}
-DEFINE_FUNC_PTR({{$el.Name}})
-{{if isEmpty $el.Return}}{{if $isPsRet}}{{covType (lastParam $el.Params).Type}}{{else}}void{{end}}{{else}}{{covType $el.Return}}{{end}}
-{{delDChar $el.Name}}({{range $idx, $ps := $el.Params}}{{if canOutParam $el $idx}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}{{if ne $ps.Flag "nonPtr"}}*{{end}}{{end}} {{$ps.Name}}{{end}}{{end}}) {
-    GET_FUNC_ADDR({{$el.Name}})
-  {{if $isPsRet}}
-    {{covType (lastParam $el.Params).Type}} result;
-  {{end}}
-    {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}{{if canOutParam $el $idx}}, {{if and $ps.IsVar (eq $ps.Flag "nonPtr")}}&{{end}}{{$ps.Name}}{{end}}{{end}}{{if $isPsRet}}, &result{{end}}{{cPsZero $el.Params}});
-  {{if $isPsRet}}
-    return result;
-  {{end}}
-}
+    {{$el := .}}
+    {{$isPsRet := $el.LastIsReturn}}
+    {{$buff := newBuffer}}
+    {{/*dll函数指针变量声明*/}}
+    {{$buff.Writeln "DEFINE_FUNC_PTR(" $el.Name ")" }}
+    {{/*返回值确认*/}}
+    {{if isEmpty $el.Return}}
+       {{if $isPsRet}}
+          {{covType (lastParam $el.Params).Type|$buff.Writeln}}
+       {{else}}
+          {{$buff.Writeln "void"}}
+       {{end}}
+    {{else}}
+       {{covType $el.Return|$buff.Writeln}}
+    {{end}}
+    {{/*函数名*/}}
+    {{delDChar $el.Name|$buff.Write}}
+    {{$buff.Write "("}}
+    {{/*函数声明参数*/}}
+    {{range $idx, $ps := $el.Params}}
+       {{if canOutParam $el $idx}}
+          {{if gt $idx 0}}
+            {{$buff.Write ", "}}
+          {{end}}
+          {{if eq $ps.Type "string"}}
+            {{$buff.Write "CChar "}}
+          {{end}}
+          {{covType $ps.Type|$buff.Write}}
+          {{if $ps.IsVar}}
+            {{if ne $ps.Flag "nonPtr"}}
+              {{$buff.Write "*"}}
+            {{end}}
+          {{end}}
+          {{$buff.Write " " $ps.Name}}
+       {{end}}
+    {{end}}
+    {{$buff.Writeln ") {"}}
+    {{/*获取dll函数*/}}
+    {{$buff.Writeln "    GET_FUNC_ADDR(" $el.Name ")"}}
+    {{/*使用参数返回的，重新定义一个result变量来接收*/}}
+    {{if $isPsRet}}
+       {{$buff.Writeln "    " (covType (lastParam $el.Params).Type) " result;"}}
+    {{end}}
+
+    {{$buff.Write "    "}}
+    {{if not (isEmpty $el.Return)}}
+       {{$buff.Write "return (" (covType $el.Return) ")"}}
+    {{end}}
+    {{$buff.Write "MySyscall(p" $el.Name ", " (len $el.Params)}}
+    {{/*参数传递*/}}
+    {{range $idx, $ps := $el.Params}}
+      {{if canOutParam $el $idx}}
+        {{$buff.Write ", "}}
+        {{if and $ps.IsVar (eq $ps.Flag "nonPtr")}}
+          {{$buff.Write "&"}}
+        {{end}}
+        {{$buff.Write $ps.Name}}
+      {{end}}
+    {{end}}
+    {{if $isPsRet}}
+      {{$buff.Write ", &result"}}
+    {{end}}
+    {{cPsZero $el.Params|$buff.Write}}
+    {{$buff.Writeln ");"}}
+
+    {{if $isPsRet}}
+       {{$buff.Writeln "    return result;"}}
+    {{end}}
+    {{$buff.Writeln "}"}}
+{{$buff.ToStr}}
 {{end}}
+
+
+
 
 /*--------------------一些其它函数--------------------*/
 {{range $el := .Functions}}
@@ -394,15 +454,8 @@ DEFINE_FUNC_PTR({{$el.Name}})
 ##
 // -------------------{{$obj.ClassName}}-------------------
   {{range $el := $obj.Methods}}
-
 ##
 {{template "genFunc" $el}}
-{{/*
-DEFINE_FUNC_PTR({{$el.Name}})
-{{if isEmpty $el.Return}}void{{else}}{{covType $el.Return}}{{end}} {{$el.Name}}({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CChar {{end}}{{covType $ps.Type}}{{if $ps.IsVar}}*{{end}} {{$ps.Name}}{{end}}) {
-    GET_FUNC_ADDR({{$el.Name}})
-    {{if not (isEmpty $el.Return)}}return ({{covType $el.Return}}){{end}}MySyscall(p{{$el.Name}}, {{len $el.Params}}{{range $idx, $ps := $el.Params}}, {{$ps.Name}}{{end}}{{cPsZero $el.Params}});
-}*/}}
   {{end}}
 {{end}}
 
