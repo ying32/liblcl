@@ -29,7 +29,7 @@ pub trait IWinControl: IControl {}
 {{/* usize是指向实例对象的指针，bool是标识能自动drop的，一般只有通过new的才可以 */}}
 /* 先定义所有的类 */
 {{range $el := .Objects}}
-pub struct {{$el.ClassName}}(usize,bool);
+pub struct {{$el.ClassName}}(usize, bool);
 {{end}}
 
 {{/*模板定义*/}}
@@ -41,17 +41,51 @@ pub struct {{$el.ClassName}}(usize,bool);
 {{$baseClass := $el.BaseClassName}}
 {{$classN := rmObjectT $className}}
 ##
+{{$buff := newBuffer}}
+
+
 impl {{$className}} {
   {{range $mm := $el.Methods}}
       {{if eq $mm.RealName "Create"}}
-      pub fn new({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{fLowCase $ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}) -> Self {
-         {{/* {{$className}} {*/}}
-		  
-		 macro_proc_Create!({{$className}}, {{$classN}}_Create, {{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}to_CString!({{fLowCase $ps.Name}}){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{end}});
-		  {{/*
-              0: unsafe { {{$classN}}_Create({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if eq $ps.Type "string"}}CString::new({{fLowCase $ps.Name}}).unwrap().as_ptr(){{else}}{{fLowCase $ps.Name}}{{end}}{{if isObject $ps.Type}}.Instance(){{end}}{{end}}) },
-              1: true,
-          } */}}
+          {{$buff.Clear}}
+          {{/* TXXX::new  */}}
+
+          {{$buff.Write "pub fn new("}}
+          {{range $idx, $ps := $mm.Params}}
+              {{if gt $idx 0}}
+                  {{$buff.Write ", "}}
+              {{end}}
+              {{fLowCase $ps.Name|$buff.Write}}
+              {{$buff.Write ": "}}
+              {{if isObject $ps.Type}}
+                  {{$buff.Write "&"}}
+                  {{if isIntf $ps.Type}}
+                      {{$buff.Write "dyn "}}
+                  {{end}}
+              {{end}}
+              {{covType2 (getIntfName $ps.Type)|$buff.Write}}
+          {{end}}
+          {{$buff.Write ")"}}
+          {{$buff.Writeln " -> Self {"}}
+
+          {{$buff.Write "        "}}
+          {{$buff.Write "macro_proc_Create!(" $className ", " $classN "_Create" ", "}}
+		  {{range $idx, $ps := $mm.Params}}
+		      {{if gt $idx 0}}
+		          {{$buff.Write ", "}}
+		      {{end}}
+		      {{if eq $ps.Type "string"}}
+		          {{$buff.Write "to_CString!(" (fLowCase $ps.Name) ")"}}
+		      {{else}}
+		          {{fLowCase $ps.Name|$buff.Write}}
+		      {{end}}
+		      {{if isObject $ps.Type}}
+		          {{$buff.Write ".Instance()"}}
+		      {{end}}
+		  {{end}}
+		  {{$buff.Writeln ");"}}
+
+      {{$buff.ToStr}}
       }
 ##
       impl_As_method!({{$className}});
@@ -65,35 +99,105 @@ impl {{$className}} {
       }
 ##
       {{else}}
-         {{if not $mm.IsStatic}}
+          {{if not $mm.IsStatic}}
+              {{if not (inStrArray $mm.RealName "TextRect2")}}
 
-      {{if not (inStrArray $mm.RealName "TextRect2")}}
+                  {{$notProp := not (isProp $mm)}}
+                  {{$buff.Clear}}
+                  {{$buff.Write "pub fn " (getRealName2 $mm)}}
+                  {{if eq $mm.Return "string"}}
+                      {{$buff.Write "<'a>"}}
+                  {{end}}
+                  {{$buff.Write "(&self"}}
 
-      {{$notProp := not (isProp $mm)}}
-      pub fn {{getRealName2 $mm}}{{if eq $mm.Return "string"}}{{html "<'a>"}}{{end}}(&self{{range $idx, $ps := $mm.Params}}{{/*{{if canOutParam $mm $idx}}*/}}{{if gt $idx 0}}, {{fLowCase $ps.Name}}: {{if isObject $ps.Type}}&{{if isIntf $ps.Type}}dyn {{end}}{{end}}{{if $ps.IsVar}}{{/*{{if not (eq $ps.Flag "nonPtr")}}*mut {{end}}*/}}*mut {{end}}{{covType2 (getIntfName $ps.Type)}}{{end}}{{/*{{end}}*/}}{{end}}){{if not (isEmpty $mm.Return)}} -> {{if eq $mm.Return "string"}}{{html "Cow<'a, str>"}}{{else}}{{covType2 $mm.Return}}{{end}}{{else}}{{/*{{template "getlastPs" $mm}}*/}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} {
-          
 
-          {{$retIsObj := isObject $mm.Return}}
-          {{$retIsStr := eq $mm.Return "string"}}
-		  
-		  {{if not (isEmpty $mm.Return)}}return {{end}}{{if $retIsStr}}to_RustString!( {{end}}callProc{{if $retIsObj}}2{{else}}1{{end}}!(
-		    {{if $retIsObj}}{{$mm.Return}}, {{end}}{{$mm.Name}}, self.0{{range $idx, $ps := $mm.Params}}{{if gt $idx 0}},
-			     {{if eq $ps.Type "string"}}
-			to_CString!({{fLowCase $ps.Name}})
-				 {{else}}
-			{{fLowCase $ps.Name}}{{if isObject $ps.Type}}.Instance(){{end}}
-				 {{end}}
-			  {{end}}  
-			{{end}}
-		  ){{if $retIsStr}}){{end}}; {{/*返回字符串结束*/}}
+                  {{range $idx, $ps := $mm.Params}}
+                      {{if gt $idx 0}}
+                          {{$buff.Write ", " (fLowCase $ps.Name) ": "}}
+                          {{if isObject $ps.Type}}
+                              {{$buff.Write "&"}}
+                              {{if isIntf $ps.Type}}
+                                  {{$buff.Write "dyn "}}
+                              {{end}}
+                          {{end}}
+                          {{if $ps.IsVar}}
+                              {{$buff.Write "*mut "}}
+                          {{end}}
+                          {{covType2 (getIntfName $ps.Type)|$buff.Write}}
+                      {{end}}
+                  {{end}}
+                  {{$buff.Write ")"}}
+                  {{if not (isEmpty $mm.Return)}}
+                      {{$buff.Write " -> "}}
+                      {{if eq $mm.Return "string"}}
+                          {{$buff.Write "Cow<'a, str>"}}
+                      {{else}}
+                          {{covType2 $mm.Return|$buff.Write}}
+                      {{end}}
+                  {{else}}
+
+                  {{end}}
+                  {{if $notProp}}
+                      {{if isBaseMethod $el.ClassName $mm.RealName}}
+                          {{$buff.Write " "}}
+                      {{end}}
+                  {{else}}
+                      {{$buff.Write " "}}
+                  {{end}}
+                  {{$buff.Writeln " {"}}
+
+                  {{/* ---------------- call func ---------------- */}}
+                  {{$retIsObj := isObject $mm.Return}}
+                  {{$retIsStr := eq $mm.Return "string"}}
+
+                  {{$buff.Write "          "}}
+                  {{if not (isEmpty $mm.Return)}}
+                      {{$buff.Write "return "}}
+                  {{end}}
+                  {{if $retIsStr}}
+                      {{$buff.Write "to_RustString!("}}
+                  {{end}}
+                  {{$buff.Write "callProc"}}
+                  {{if $retIsObj}}
+                      {{$buff.Write 2}}
+                  {{else}}
+                      {{$buff.Write 1}}
+                  {{end}}
+                  {{$buff.Write "!("}}
+                  {{if $retIsObj}}
+                      {{$buff.Write $mm.Return ", "}}
+                  {{end}}
+                  {{$buff.Write $mm.Name ", self.0"}}
+
+		          {{range $idx, $ps := $mm.Params}}
+		              {{if gt $idx 0}}
+		                  {{$buff.Write ", "}}
+			              {{if eq $ps.Type "string"}}
+			                  {{$buff.Write "to_CString!(" (fLowCase $ps.Name) ")"}}
+				          {{else}}
+		                      {{fLowCase $ps.Name|$buff.Write}}
+		                      {{if isObject $ps.Type}}
+		                          {{$buff.Write ".Instance()"}}
+		                      {{end}}
+				          {{end}}
+			           {{end}}
+			      {{end}}
+			      {{$buff.Write ")"}}
+		          {{if $retIsStr}}
+		              {{$buff.Write ")"}}
+		          {{end}}
+                  {{$buff.Writeln ";"}}
+
+	  {{$buff.ToStr}}
       }
 
-      {{end}}
+               {{end}}
 ##
-         {{else}}
+           {{else}}
       // static class
 	  impl_Class_method!({{$mm.Name}});
-         {{end}}
+
+           {{end}}
       {{end}}
   {{end}}
 }

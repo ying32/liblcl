@@ -51,98 +51,98 @@ when defined(linux):
 
 
 {{define "getFunc"}}
-  {{$el := .}}
-  {{$buff := newBuffer}}
+    {{$el := .}}
+    {{$buff := newBuffer}}
 
-  {{$isNotAll := ne .Platform "all"}}
+    {{$isNotAll := ne .Platform "all"}}
 
-  {{if eq $el.Platform "windows"}}
-    {{$buff.Writeln "when defined(windows):"}}
-  {{else if eq $el.Platform "linux,macos"}}
-    {{$buff.Writeln "when not defined(windows):"}}
-  {{else if eq $el.Platform "macos"}}
-    {{$buff.Writeln "when defined(macosx):"}}
-  {{else if eq $el.Platform "linux"}}
-    {{$buff.Writeln "when defined(linux):"}}
-  {{end}}
-  {{if $isNotAll}}
-    {{$buff.Write "  "}}
-  {{end}}
-
-  {{$buff.Write "proc " (delDChar $el.Name) "*("}}
-  {{range $idx, $ps := .Params}}
-    {{if gt $idx 0}}
-      {{$buff.Write ", "}}
+    {{if eq $el.Platform "windows"}}
+        {{$buff.Writeln "when defined(windows):"}}
+    {{else if eq $el.Platform "linux,macos"}}
+        {{$buff.Writeln "when not defined(windows):"}}
+    {{else if eq $el.Platform "macos"}}
+        {{$buff.Writeln "when defined(macosx):"}}
+    {{else if eq $el.Platform "linux"}}
+        {{$buff.Writeln "when defined(linux):"}}
     {{end}}
-    {{$buff.Write $ps.Name ": "}}
-    {{if $ps.IsVar}}
-      {{if ne $ps.Flag "nonPtr"}}
-        {{$buff.Write "var "}}
-      {{end}}
-    {{end}}
-    {{covType2 $ps.Type|$buff.Write}}
-  {{end}}
-
-  {{$buff.Write ")"}}
-  {{if not (isEmpty $el.Return)}}
-    {{$buff.Write ": " (covType2 $el.Return)}}
-  {{end}}
-  {{$buff.Writeln " ="}}
-
-  {{/*这里生成不需要var的变量*/}}
-  {{range $ips, $ps := $el.Params}}
-    {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-      {{if $isNotAll}}
+    {{if $isNotAll}}
         {{$buff.Write "  "}}
-      {{end}}
-      {{$buff.Writeln "  var ps" $ips " = " $ps.Name}}
     {{end}}
-  {{end}}
 
-  {{$buff.Write "  "}}
-  {{if $isNotAll}}
+    {{$buff.Write "proc " (delDChar $el.Name) "*("}}
+    {{range $idx, $ps := .Params}}
+        {{if gt $idx 0}}
+            {{$buff.Write ", "}}
+        {{end}}
+        {{$buff.Write $ps.Name ": "}}
+        {{if $ps.IsVar}}
+            {{if ne $ps.Flag "nonPtr"}}
+                {{$buff.Write "var "}}
+            {{end}}
+        {{end}}
+        {{covType2 $ps.Type|$buff.Write}}
+    {{end}}
+
+    {{$buff.Write ")"}}
+    {{if not (isEmpty $el.Return)}}
+        {{$buff.Write ": " (covType2 $el.Return)}}
+    {{end}}
+    {{$buff.Writeln " ="}}
+
+    {{/*这里生成不需要var的变量*/}}
+    {{range $ips, $ps := $el.Params}}
+        {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
+            {{if $isNotAll}}
+                {{$buff.Write "  "}}
+            {{end}}
+            {{$buff.Writeln "  var ps" $ips " = " $ps.Name}}
+        {{end}}
+    {{end}}
+
     {{$buff.Write "  "}}
-  {{end}}
-  {{if not (isEmpty $el.Return)}}
-    {{$buff.Write "return "}}
-  {{end}}
-  {{if eq $el.Return "string"}}
-    {{$buff.Write "$"}}
-  {{end}}
-  {{$buff.Write $el.Name "("}}
+    {{if $isNotAll}}
+        {{$buff.Write "  "}}
+    {{end}}
+    {{if not (isEmpty $el.Return)}}
+        {{$buff.Write "return "}}
+    {{end}}
+    {{if eq $el.Return "string"}}
+        {{$buff.Write "$"}}
+    {{end}}
+    {{$buff.Write $el.Name "("}}
 
-  {{range $idx, $ps := .Params}}
-    {{if gt $idx 0}}
-      {{$buff.Write ", "}}
+    {{range $idx, $ps := .Params}}
+        {{if gt $idx 0}}
+            {{$buff.Write ", "}}
+        {{end}}
+        {{$lIsObj := isObject $ps.Type}}
+        {{if $lIsObj}}
+            {{$buff.Write "CheckPtr("}}
+        {{end}}
+        {{if ne $ps.Flag "nonPtr"}}
+            {{$buff.Write $ps.Name}}
+        {{else}}
+            {{$buff.Write "ps" $idx}}
+        {{end}}
+        {{if $lIsObj}}
+            {{$buff.Write ")"}}
+        {{end}}
     {{end}}
-    {{$lIsObj := isObject $ps.Type}}
-    {{if $lIsObj}}
-      {{$buff.Write "CheckPtr("}}
-    {{end}}
-    {{if ne $ps.Flag "nonPtr"}}
-      {{$buff.Write $ps.Name}}
-    {{else}}
-      {{$buff.Write "ps" $idx}}
-    {{end}}
-    {{if $lIsObj}}
-      {{$buff.Write ")"}}
-    {{end}}
-  {{end}}
 
-  {{$buff.Write ")"}}
-  {{if isObject $el.Return}}
-    {{$buff.Write ".As" (rmObjectT $el.Return)}}
-  {{end}}
+    {{$buff.Write ")"}}
+    {{if isObject $el.Return}}
+        {{$buff.Write ".As" (rmObjectT $el.Return)}}
+    {{end}}
 
 {{$buff.ToStr}}
 {{end}}
 
 {{/*执行模板*/}}
 {{range $el := .Functions}}
-  {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
-    {{if not (contains $el.Name "_Instance")}}
+    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
+        {{if not (contains $el.Name "_Instance")}}
       ##
-      {{template "getFunc" $el}}
+            {{template "getFunc" $el}}
+        {{end}}
     {{end}}
-  {{end}}
 {{end}}

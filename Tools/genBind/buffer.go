@@ -25,6 +25,7 @@ func (b *TMyBuffer) Write(ss ...interface{}) string {
 
 func (b *TMyBuffer) Writeln(ss ...interface{}) string {
 	b.Write(ss...)
+	b.buff.WriteByte('\r')
 	b.buff.WriteByte('\n')
 	return ""
 }

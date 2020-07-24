@@ -89,7 +89,7 @@ type
 {{range $el := .Events}}
   {{if isEmpty $el.ReDefine}}
 ##
-  {{$el.Name}}* = proc({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if isObject $ps.Type}}pointer{{else}}{{if $ps.IsVar}}var {{end}}{{covType $ps.Type}}{{end}}{{end}}) {.nimcall.}
+  {{$el.Name}}* = proc({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{if isObject $ps.Type}}pointer{{else}}{{covType $ps.Type}}{{end}}{{end}}) {.nimcall.}
   {{else}}
 ##
   {{$el.Name}}* = {{$el.ReDefine}}

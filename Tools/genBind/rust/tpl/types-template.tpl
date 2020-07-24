@@ -113,7 +113,7 @@ pub type MyNSWindow = usize;
 {{range $el := .Events}}
     {{if isEmpty $el.ReDefine}}
         {{$buff.Writeln "##"}}
-        
+
         {{/* 注释 */}}
         {{$buff.Write "// fn ("}}
         {{range $idx, $ps := $el.Params}}
@@ -152,7 +152,7 @@ pub type MyNSWindow = usize;
 
     {{else}}
         {{$buff.Writeln "##"}}
-        {{$buff.Writeln "pub type " $el.Name " = " $el.ReDefine}}
+        {{$buff.Writeln "pub type " $el.Name " = " $el.ReDefine ";"}}
     {{end}}
 {{end}}
 

@@ -24,62 +24,62 @@ import types
 ##
 
 {{define "getFunc"}}
-  {{$el := .}}
-  {{$buff := newBuffer}}
+    {{$el := .}}
+    {{$buff := newBuffer}}
 
-  {{if eq $el.Platform "windows"}}
-    {{$buff.Writeln "when defined(windows):"}}
-  {{else if eq $el.Platform "linux,macos"}}
-    {{$buff.Writeln "when not defined(windows):"}}
-  {{else if eq $el.Platform "macos"}}
-    {{$buff.Writeln "when defined(macosx):"}}
-  {{else if eq $el.Platform "linux"}}
-    {{$buff.Writeln "when defined(linux):"}}
-  {{end}}
-  {{/*平台不为all的则起始就得空2格了*/}}
-  {{if ne $el.Platform "all"}}
-    {{$buff.Write "  "}}
-  {{end}}
-  {{$buff.Write "proc " $el.Name "*("}}
-  {{range $idx, $ps := $el.Params}}
-    {{if gt $idx 0}}
-      {{$buff.Write ", "}}
+    {{if eq $el.Platform "windows"}}
+        {{$buff.Writeln "when defined(windows):"}}
+    {{else if eq $el.Platform "linux,macos"}}
+        {{$buff.Writeln "when not defined(windows):"}}
+    {{else if eq $el.Platform "macos"}}
+        {{$buff.Writeln "when defined(macosx):"}}
+    {{else if eq $el.Platform "linux"}}
+        {{$buff.Writeln "when defined(linux):"}}
     {{end}}
-    {{$buff.Write $ps.Name ": "}}
-    {{if not (isObject $ps.Type)}}
-      {{if $ps.IsVar}}
-        {{$buff.Write "var "}}
-      {{end}}
-      {{covType $ps.Type|$buff.Write}}
-    {{else}}
-      {{$buff.Write "pointer"}}
+    {{/*平台不为all的则起始就得空2格了*/}}
+    {{if ne $el.Platform "all"}}
+        {{$buff.Write "  "}}
     {{end}}
-  {{end}}
-  {{$buff.Write ")"}}
-  {{if not (isEmpty $el.Return)}}
-    {{$buff.Write ": "}}
-    {{if not (isObject $el.Return)}}
-      {{covType $el.Return|$buff.Write}}
-    {{else}}
-      {{$buff.Write "pointer"}}
+    {{$buff.Write "proc " $el.Name "*("}}
+    {{range $idx, $ps := $el.Params}}
+        {{if gt $idx 0}}
+           {{$buff.Write ", "}}
+        {{end}}
+        {{$buff.Write $ps.Name ": "}}
+        {{if $ps.IsVar}}
+            {{$buff.Write "var "}}
+        {{end}}
+        {{if not (isObject $ps.Type)}}
+            {{covType $ps.Type|$buff.Write}}
+        {{else}}
+            {{$buff.Write "pointer"}}
+        {{end}}
     {{end}}
-  {{end}}
-  {{$buff.Writeln " {.importc: \"" $el.Name "\", dynlib: dllname.}"}}
+    {{$buff.Write ")"}}
+    {{if not (isEmpty $el.Return)}}
+        {{$buff.Write ": "}}
+        {{if not (isObject $el.Return)}}
+            {{covType $el.Return|$buff.Write}}
+        {{else}}
+            {{$buff.Write "pointer"}}
+        {{end}}
+    {{end}}
+    {{$buff.Writeln " {.importc: \"" $el.Name "\", dynlib: dllname.}"}}
 
 {{$buff.ToStr}}
 {{end}}
 
 {{range $el := .Functions}}
-  {{template "getFunc" $el}}
+    {{template "getFunc" $el}}
 {{end}}
 
 ##
 ##
 {{range $el := .Objects}}
 # ----------------- {{$el.ClassName}} ----------------------
-  {{range $fn := $el.Methods}}
-    {{template "getFunc" $fn}}
-  {{end}}
+    {{range $fn := $el.Methods}}
+        {{template "getFunc" $fn}}
+    {{end}}
 {{end}}
 
 ##

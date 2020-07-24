@@ -296,6 +296,13 @@ func parseClassFiles(fileName string) {
 
 }
 
+func isObj(s string) bool {
+	if _, ok := objsMap[strings.TrimSpace(s)]; ok {
+		return true
+	}
+	return false
+}
+
 var (
 	nonWinFunc   bool
 	currentClass TClass
@@ -658,7 +665,14 @@ func parseEvents(fileName string) {
 				}
 				if len(subps) >= 2 {
 					item.Type = strings.Trim(strings.TrimSpace(subps[1]), "*")
-					item.IsVar = strings.HasPrefix(strings.TrimSpace(subps[1]), "*")
+					starCount := strings.Count(strings.TrimSpace(subps[1]), "*")
+					if starCount > 0 {
+						item.IsVar = true
+					}
+					if isObj(item.Type) && starCount < 2 {
+						item.IsVar = false
+					}
+					//item.IsVar = strings.HasPrefix(strings.TrimSpace(subps[1]), "*")
 					item.IsArray = strings.HasPrefix(strings.TrimSpace(subps[1]), "[]")
 				}
 				if item.IsArray {

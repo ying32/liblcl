@@ -2484,14 +2484,14 @@ typedef void(*TCloseEvent)(TObject, TCloseAction*);
 // void (TObject sender, BOOL* canClose)
 typedef void(*TCloseQueryEvent)(TObject, BOOL*);
 
-// void (TObject sender, TMenuItem* source, BOOL rebuild)
-typedef void(*TMenuChangeEvent)(TObject, TMenuItem*, BOOL);
+// void (TObject sender, TMenuItem source, BOOL rebuild)
+typedef void(*TMenuChangeEvent)(TObject, TMenuItem, BOOL);
 
 // void (TObject sender, char* link, TSysLinkType linkType)
 typedef void(*TSysLinkEvent)(TObject, char*, TSysLinkType);
 
-// void (TObject sender, Exception* e)
-typedef void(*TExceptionEvent)(TObject, Exception*);
+// void (TObject sender, Exception e)
+typedef void(*TExceptionEvent)(TObject, Exception);
 
 // void (TObject sender, Char* key, TShiftState shift)
 typedef void(*TKeyEvent)(TObject, Char*, TShiftState);
@@ -2511,59 +2511,59 @@ typedef void(*TMouseWheelEvent)(TObject, TShiftState, int32_t, int32_t, int32_t,
 // void (TWinControl control, int32_t index, TRect* aRect, TOwnerDrawState state)
 typedef void(*TDrawItemEvent)(TWinControl, int32_t, TRect*, TOwnerDrawState);
 
-// void (TObject sender, TCanvas* aCanvas, TRect* aRect, BOOL selected)
-typedef void(*TMenuDrawItemEvent)(TObject, TCanvas*, TRect*, BOOL);
+// void (TObject sender, TCanvas aCanvas, TRect* aRect, BOOL selected)
+typedef void(*TMenuDrawItemEvent)(TObject, TCanvas, TRect*, BOOL);
 
-// void (TObject sender, TListColumn* column)
-typedef void(*TLVColumnClickEvent)(TObject, TListColumn*);
+// void (TObject sender, TListColumn column)
+typedef void(*TLVColumnClickEvent)(TObject, TListColumn);
 
-// void (TObject sender, TListColumn* column, TPoint* point)
-typedef void(*TLVColumnRClickEvent)(TObject, TListColumn*, TPoint*);
+// void (TObject sender, TListColumn column, TPoint* point)
+typedef void(*TLVColumnRClickEvent)(TObject, TListColumn, TPoint*);
 
-// void (TObject sender, TListItem* item, BOOL selected)
-typedef void(*TLVSelectItemEvent)(TObject, TListItem*, BOOL);
+// void (TObject sender, TListItem item, BOOL selected)
+typedef void(*TLVSelectItemEvent)(TObject, TListItem, BOOL);
 
-// void (TObject sender, TListItem* item)
-typedef void(*TLVCheckedItemEvent)(TObject, TListItem*);
+// void (TObject sender, TListItem item)
+typedef void(*TLVCheckedItemEvent)(TObject, TListItem);
 
-// void (TObject sender, TListItem* item1, TListItem* item2, int32_t data, int32_t* compare)
-typedef void(*TLVCompareEvent)(TObject, TListItem*, TListItem*, int32_t, int32_t*);
+// void (TObject sender, TListItem item1, TListItem item2, int32_t data, int32_t* compare)
+typedef void(*TLVCompareEvent)(TObject, TListItem, TListItem, int32_t, int32_t*);
 
-// void (TObject sender, TListItem* item, TItemChange change)
-typedef void(*TLVChangeEvent)(TObject, TListItem*, TItemChange);
+// void (TObject sender, TListItem item, TItemChange change)
+typedef void(*TLVChangeEvent)(TObject, TListItem, TItemChange);
 
-// void (TObject sender, TListItem* item)
-typedef void(*TLVNotifyEvent)(TObject, TListItem*);
+// void (TObject sender, TListItem item)
+typedef void(*TLVNotifyEvent)(TObject, TListItem);
 
-// void (TListView* sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TLVAdvancedCustomDrawEvent)(TListView*, TRect*, TCustomDrawStage, BOOL*);
+// void (TListView sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TLVAdvancedCustomDrawEvent)(TListView, TRect*, TCustomDrawStage, BOOL*);
 
-// void (TListView* sender, TListItem* item, TCustomDrawState state, TCustomDrawStage Stage, BOOL* defaultDraw)
-typedef void(*TLVAdvancedCustomDrawItemEvent)(TListView*, TListItem*, TCustomDrawState, TCustomDrawStage, BOOL*);
+// void (TListView sender, TListItem item, TCustomDrawState state, TCustomDrawStage Stage, BOOL* defaultDraw)
+typedef void(*TLVAdvancedCustomDrawItemEvent)(TListView, TListItem, TCustomDrawState, TCustomDrawStage, BOOL*);
 
-// void (TListView* sender, TListItem* item, int32_t subItem, TCustomDrawState state, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TLVAdvancedCustomDrawSubItemEvent)(TListView*, TListItem*, int32_t, TCustomDrawState, TCustomDrawStage, BOOL*);
+// void (TListView sender, TListItem item, int32_t subItem, TCustomDrawState state, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TLVAdvancedCustomDrawSubItemEvent)(TListView, TListItem, int32_t, TCustomDrawState, TCustomDrawStage, BOOL*);
 
-// void (TObject sender, TTreeNode* node1, TTreeNode* node2, int32_t data, int32_t* compare)
-typedef void(*TTVCompareEvent)(TObject, TTreeNode*, TTreeNode*, int32_t, int32_t*);
+// void (TObject sender, TTreeNode node1, TTreeNode node2, int32_t data, int32_t* compare)
+typedef void(*TTVCompareEvent)(TObject, TTreeNode, TTreeNode, int32_t, int32_t*);
 
-// void (TObject sender, TTreeNode* node)
-typedef void(*TTVExpandedEvent)(TObject, TTreeNode*);
+// void (TObject sender, TTreeNode node)
+typedef void(*TTVExpandedEvent)(TObject, TTreeNode);
 
-// void (TObject sender, TTreeNode* node)
-typedef void(*TTVChangedEvent)(TObject, TTreeNode*);
+// void (TObject sender, TTreeNode node)
+typedef void(*TTVChangedEvent)(TObject, TTreeNode);
 
-// void (TTreeView* sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TTVAdvancedCustomDrawEvent)(TTreeView*, TRect*, TCustomDrawStage, BOOL*);
+// void (TTreeView sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TTVAdvancedCustomDrawEvent)(TTreeView, TRect*, TCustomDrawStage, BOOL*);
 
-// void (TTreeView* sender, TTreeNode* node, TCustomDrawState state, TCustomDrawStage stage, BOOL* paintImages, BOOL* defaultDraw)
-typedef void(*TTVAdvancedCustomDrawItemEvent)(TTreeView*, TTreeNode*, TCustomDrawState, TCustomDrawStage, BOOL*, BOOL*);
+// void (TTreeView sender, TTreeNode node, TCustomDrawState state, TCustomDrawStage stage, BOOL* paintImages, BOOL* defaultDraw)
+typedef void(*TTVAdvancedCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawState, TCustomDrawStage, BOOL*, BOOL*);
 
 // void (TObject sender, int32_t tabIndex, int32_t* imageIndex)
 typedef void(*TTabGetImageEvent)(TObject, int32_t, int32_t*);
 
-// void (TToolBar* sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
-typedef void(*TTBAdvancedCustomDrawEvent)(TToolBar*, TRect*, TCustomDrawStage, BOOL*);
+// void (TToolBar sender, TRect* aRect, TCustomDrawStage stage, BOOL* defaultDraw)
+typedef void(*TTBAdvancedCustomDrawEvent)(TToolBar, TRect*, TCustomDrawStage, BOOL*);
 
 // void ()
 typedef void(*TThreadProc)();
@@ -2592,20 +2592,20 @@ typedef void(*TDragDropEvent)(TObject, TObject, int32_t, int32_t);
 // void (TObject sender, TObject target, int32_t x, int32_t y)
 typedef void(*TEndDragEvent)(TObject, TObject, int32_t, int32_t);
 
-// void (TObject sender, TDragDockObject* source, int32_t x, int32_t y)
-typedef void(*TDockDropEvent)(TObject, TDragDockObject*, int32_t, int32_t);
+// void (TObject sender, TDragDockObject source, int32_t x, int32_t y)
+typedef void(*TDockDropEvent)(TObject, TDragDockObject, int32_t, int32_t);
 
-// void (TObject sender, TDragDockObject* source, int32_t x, int32_t y, TDragState state, BOOL* accept)
-typedef void(*TDockOverEvent)(TObject, TDragDockObject*, int32_t, int32_t, TDragState, BOOL*);
+// void (TObject sender, TDragDockObject source, int32_t x, int32_t y, TDragState state, BOOL* accept)
+typedef void(*TDockOverEvent)(TObject, TDragDockObject, int32_t, int32_t, TDragState, BOOL*);
 
-// void (TObject sender, TControl* client, TControl* newTarget, BOOL* allow)
-typedef void(*TUnDockEvent)(TObject, TControl*, TControl*, BOOL*);
+// void (TObject sender, TControl client, TControl newTarget, BOOL* allow)
+typedef void(*TUnDockEvent)(TObject, TControl, TControl, BOOL*);
 
 // void (TObject sender, TDragDockObject* dragObject)
 typedef void(*TStartDockEvent)(TObject, TDragDockObject*);
 
-// void (TObject sender, TControl* dockClient, TRect* influenceRect, TPoint* mousePos, BOOL* canDock)
-typedef void(*TGetSiteInfoEvent)(TObject, TControl*, TRect*, TPoint*, BOOL*);
+// void (TObject sender, TControl dockClient, TRect* influenceRect, TPoint* mousePos, BOOL* canDock)
+typedef void(*TGetSiteInfoEvent)(TObject, TControl, TRect*, TPoint*, BOOL*);
 
 // void (TObject sender, TShiftState shift, TPoint* mousePos, BOOL* handled)
 typedef void(*TMouseWheelUpDownEvent)(TObject, TShiftState, TPoint*, BOOL*);
@@ -2628,77 +2628,77 @@ typedef void(*TSelectCellEvent)(TObject, int32_t, int32_t, BOOL*);
 // void (TObject sender, int32_t aCol, int32_t aRow, char* value)
 typedef void(*TSetEditEvent)(TObject, int32_t, int32_t, char*);
 
-// void (THeaderControl* headerControl, THeaderSection* section, TRect* aRect, BOOL pressed)
-typedef void(*TDrawSectionEvent)(THeaderControl*, THeaderSection*, TRect*, BOOL);
+// void (THeaderControl headerControl, THeaderSection section, TRect* aRect, BOOL pressed)
+typedef void(*TDrawSectionEvent)(THeaderControl, THeaderSection, TRect*, BOOL);
 
-// void (THeaderControl* headerControl, THeaderSection* section)
-typedef void(*TSectionNotifyEvent)(THeaderControl*, THeaderSection*);
+// void (THeaderControl headerControl, THeaderSection section)
+typedef void(*TSectionNotifyEvent)(THeaderControl, THeaderSection);
 
-// void (THeaderControl* headerControl, THeaderSection* section, int32_t width, TSectionTrackState state)
-typedef void(*TSectionTrackEvent)(THeaderControl*, THeaderSection*, int32_t, TSectionTrackState);
+// void (THeaderControl headerControl, THeaderSection section, int32_t width, TSectionTrackState state)
+typedef void(*TSectionTrackEvent)(THeaderControl, THeaderSection, int32_t, TSectionTrackState);
 
-// void (TObject sender, THeaderSection* fromSection, THeaderSection* toSection, BOOL* allowDrag)
-typedef void(*TSectionDragEvent)(TObject, THeaderSection*, THeaderSection*, BOOL*);
+// void (TObject sender, THeaderSection fromSection, THeaderSection toSection, BOOL* allowDrag)
+typedef void(*TSectionDragEvent)(TObject, THeaderSection, THeaderSection, BOOL*);
 
-// void (THeaderControl* headerControl, THeaderSection* section)
-typedef void(*TCustomSectionNotifyEvent)(THeaderControl*, THeaderSection*);
+// void (THeaderControl headerControl, THeaderSection section)
+typedef void(*TCustomSectionNotifyEvent)(THeaderControl, THeaderSection);
 
 // void (TObject sender, TMouseButton button, TShiftState shift, int32_t x, int32_t y, int32_t hitTest, TMouseActivate* mouseActivate)
 typedef void(*TMouseActivateEvent)(TObject, TMouseButton, TShiftState, int32_t, int32_t, int32_t, TMouseActivate*);
 
-// void (TWinControl* control, int32_t index, char** data)
-typedef void(*TLBGetDataEvent)(TWinControl*, int32_t, char**);
+// void (TWinControl control, int32_t index, char** data)
+typedef void(*TLBGetDataEvent)(TWinControl, int32_t, char**);
 
-// void (TWinControl* control, int32_t index, TObject dataObject)
-typedef void(*TLBGetDataObjectEvent)(TWinControl*, int32_t, TObject);
+// void (TWinControl control, int32_t index, TObject dataObject)
+typedef void(*TLBGetDataObjectEvent)(TWinControl, int32_t, TObject);
 
-// void (TWinControl* control, char* findString, int32_t result)
-typedef void(*TLBFindDataEvent)(TWinControl*, char*, int32_t);
+// void (TWinControl control, char* findString, int32_t result)
+typedef void(*TLBFindDataEvent)(TWinControl, char*, int32_t);
 
-// void (TWinControl* control, int32_t index, int32_t* height)
-typedef void(*TMeasureItemEvent)(TWinControl*, int32_t, int32_t*);
+// void (TWinControl control, int32_t index, int32_t* height)
+typedef void(*TMeasureItemEvent)(TWinControl, int32_t, int32_t*);
 
-// void (TObject sender, TListItem* item, TItemChange change, BOOL* allowChange)
-typedef void(*TLVChangingEvent)(TObject, TListItem*, TItemChange, BOOL*);
+// void (TObject sender, TListItem item, TItemChange change, BOOL* allowChange)
+typedef void(*TLVChangingEvent)(TObject, TListItem, TItemChange, BOOL*);
 
-// void (TObject sender, TListItem* item)
-typedef void(*TLVOwnerDataEvent)(TObject, TListItem*);
+// void (TObject sender, TListItem item)
+typedef void(*TLVOwnerDataEvent)(TObject, TListItem);
 
 // void (TObject sender, TItemFind find, char* findString, TPoint* findPosition, TCustomData findData, int32_t startIndex, TSearchDirection direction, BOOL warp, int32_t* index)
 typedef void(*TLVOwnerDataFindEvent)(TObject, TItemFind, char*, TPoint*, TCustomData, int32_t, TSearchDirection, BOOL, int32_t*);
 
-// void (TObject sender, TListItem* item)
-typedef void(*TLVDeletedEvent)(TObject, TListItem*);
+// void (TObject sender, TListItem item)
+typedef void(*TLVDeletedEvent)(TObject, TListItem);
 
-// void (TObject sender, TListItem* item, BOOL* allowEdit)
-typedef void(*TLVEditingEvent)(TObject, TListItem*, BOOL*);
+// void (TObject sender, TListItem item, BOOL* allowEdit)
+typedef void(*TLVEditingEvent)(TObject, TListItem, BOOL*);
 
-// void (TObject sender, TListItem* item, char** s)
-typedef void(*TLVEditedEvent)(TObject, TListItem*, char**);
+// void (TObject sender, TListItem item, char** s)
+typedef void(*TLVEditedEvent)(TObject, TListItem, char**);
 
-// void (TObject sender, TCanvas* aCanvas, int32_t* width, int32_t* height)
-typedef void(*TMenuMeasureItemEvent)(TObject, TCanvas*, int32_t*, int32_t*);
+// void (TObject sender, TCanvas aCanvas, int32_t* width, int32_t* height)
+typedef void(*TMenuMeasureItemEvent)(TObject, TCanvas, int32_t*, int32_t*);
 
 // void (TObject sender, BOOL* allowChange)
 typedef void(*TTabChangingEvent)(TObject, BOOL*);
 
-// void (TObject sender, TTreeNode* node, BOOL* allowChange)
-typedef void(*TTVChangingEvent)(TObject, TTreeNode*, BOOL*);
+// void (TObject sender, TTreeNode node, BOOL* allowChange)
+typedef void(*TTVChangingEvent)(TObject, TTreeNode, BOOL*);
 
-// void (TObject sender, TTreeNode* node, BOOL* allowCollapse)
-typedef void(*TTVCollapsingEvent)(TObject, TTreeNode*, BOOL*);
+// void (TObject sender, TTreeNode node, BOOL* allowCollapse)
+typedef void(*TTVCollapsingEvent)(TObject, TTreeNode, BOOL*);
 
-// void (TObject sender, TTreeNode* node, char** s)
-typedef void(*TTVEditedEvent)(TObject, TTreeNode*, char**);
+// void (TObject sender, TTreeNode node, char** s)
+typedef void(*TTVEditedEvent)(TObject, TTreeNode, char**);
 
-// void (TObject sender, TTreeNode* node, BOOL* allowEdit)
-typedef void(*TTVEditingEvent)(TObject, TTreeNode*, BOOL*);
+// void (TObject sender, TTreeNode node, BOOL* allowEdit)
+typedef void(*TTVEditingEvent)(TObject, TTreeNode, BOOL*);
 
-// void (TObject sender, TTreeNode* node, BOOL* allowExpansion)
-typedef void(*TTVExpandingEvent)(TObject, TTreeNode*, BOOL*);
+// void (TObject sender, TTreeNode node, BOOL* allowExpansion)
+typedef void(*TTVExpandingEvent)(TObject, TTreeNode, BOOL*);
 
-// void (TObject sender, TTreeNode* node, char** hint)
-typedef void(*TTVHintEvent)(TObject, TTreeNode*, char**);
+// void (TObject sender, TTreeNode node, char** hint)
+typedef void(*TTVHintEvent)(TObject, TTreeNode, char**);
 
 // void (TObject sender, BOOL* allowChange)
 typedef void(*TUDChangingEvent)(TObject, BOOL*);
@@ -2706,17 +2706,17 @@ typedef void(*TUDChangingEvent)(TObject, BOOL*);
 // void (TObject sender, uint32_t winErrorCode, char* errorDescription, BOOL* handled)
 typedef void(*TCreatingListErrorEvent)(TObject, uint32_t, char*, BOOL*);
 
-// void (TListView* sender, TRect* aRect, BOOL* defaultDraw)
-typedef void(*TLVCustomDrawEvent)(TListView*, TRect*, BOOL*);
+// void (TListView sender, TRect* aRect, BOOL* defaultDraw)
+typedef void(*TLVCustomDrawEvent)(TListView, TRect*, BOOL*);
 
-// void (TListView* sender, TListItem* item, TCustomDrawStage state, BOOL* defaultDraw)
-typedef void(*TLVCustomDrawItemEvent)(TListView*, TListItem*, TCustomDrawStage, BOOL*);
+// void (TListView sender, TListItem item, TCustomDrawStage state, BOOL* defaultDraw)
+typedef void(*TLVCustomDrawItemEvent)(TListView, TListItem, TCustomDrawStage, BOOL*);
 
-// void (TListView* sender, TListItem* item, int32_t subItem, TCustomDrawStage state, BOOL* defaultDraw)
-typedef void(*TLVCustomDrawSubItemEvent)(TListView*, TListItem*, int32_t, TCustomDrawStage, BOOL*);
+// void (TListView sender, TListItem item, int32_t subItem, TCustomDrawStage state, BOOL* defaultDraw)
+typedef void(*TLVCustomDrawSubItemEvent)(TListView, TListItem, int32_t, TCustomDrawStage, BOOL*);
 
-// void (TListView* sender, TListItem* item, TRect* rect, TOwnerDrawState state)
-typedef void(*TLVDrawItemEvent)(TListView*, TListItem*, TRect*, TOwnerDrawState);
+// void (TListView sender, TListItem item, TRect* rect, TOwnerDrawState state)
+typedef void(*TLVDrawItemEvent)(TListView, TListItem, TRect*, TOwnerDrawState);
 
 // void (TObject sender, int32_t startIndex, int32_t endIndex)
 typedef void(*TLVDataHintEvent)(TObject, int32_t, int32_t);
@@ -2724,11 +2724,11 @@ typedef void(*TLVDataHintEvent)(TObject, int32_t, int32_t);
 // void ()
 typedef void(*TLVOwnerDataHintEvent)();
 
-// void (TTreeView* sender, TRect* aRect, BOOL* defaultDraw)
-typedef void(*TTVCustomDrawEvent)(TTreeView*, TRect*, BOOL*);
+// void (TTreeView sender, TRect* aRect, BOOL* defaultDraw)
+typedef void(*TTVCustomDrawEvent)(TTreeView, TRect*, BOOL*);
 
-// void (TTreeView* sender, TTreeNode* node, TCustomDrawStage state, BOOL* defaultDraw)
-typedef void(*TTVCustomDrawItemEvent)(TTreeView*, TTreeNode*, TCustomDrawStage, BOOL*);
+// void (TTreeView sender, TTreeNode node, TCustomDrawStage state, BOOL* defaultDraw)
+typedef void(*TTVCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawStage, BOOL*);
 
 // void (TMessage* msg)
 typedef void(*TWndProcEvent)(TMessage*);
@@ -2745,8 +2745,8 @@ typedef void(*TTaskDlgClickEvent)(TObject, TModalResult, BOOL*);
 // void (TObject sender, uint32_t tickCount, BOOL* reset)
 typedef void(*TTaskDlgTimerEvent)(TObject, uint32_t, BOOL*);
 
-// void (TWinControl* sender, TControl* control, int32_t* newLeft, int32_t* newTop, int32_t* newWidth, int32_t* newHeight, TRect* alignRect, TAlignInfo alignInfo)
-typedef void(*TAlignPositionEvent)(TWinControl*, TControl*, int32_t*, int32_t*, int32_t*, int32_t*, TRect*, TAlignInfo);
+// void (TWinControl sender, TControl control, int32_t* newLeft, int32_t* newTop, int32_t* newWidth, int32_t* newHeight, TRect* alignRect, TAlignInfo alignInfo)
+typedef void(*TAlignPositionEvent)(TWinControl, TControl, int32_t*, int32_t*, int32_t*, int32_t*, TRect*, TAlignInfo);
 
 // void (TObject sender, int32_t index)
 typedef void(*TCheckGroupClicked)(TObject, int32_t);
