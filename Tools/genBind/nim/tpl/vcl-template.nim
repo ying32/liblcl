@@ -75,6 +75,9 @@ template defaultFree(pName) =
      this.Instance = nil
 
 
+
+{{$buff := newBuffer}}
+
 {{range $el := .Objects}}
 ##
 #------------------------- {{$el.ClassName}} -------------------------
@@ -86,9 +89,38 @@ template defaultFree(pName) =
 
 proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {{end}} = defaultFree: {{$classN}}_Free
 ##
-proc New{{$classN}}*({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{covType2 $ps.Type}}{{end}}): {{$className}} =
-   new(result{{template "getFree" $el.BaseClassName}})
-   result.{{$instName}} = {{$mm.Name}}({{range $idx, $ps := $mm.Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{$ps.Name}}{{end}}{{end}})
+  {{/* newXXXX  */}}
+  {{$buff.Clear}}
+  {{$buff.Write "proc New" (rmObjectT $className) "*("}}
+  {{range $idx, $ps := $mm.Params}}
+    {{if gt $idx 0}}
+      {{$buff.Write ", "}}
+    {{end}}
+    {{$buff.Write $ps.Name ": " (covType2 $ps.Type)}}
+  {{end}}
+  {{$buff.Writeln "): " $className " ="}}
+
+  {{$buff.Write "  new(result"}}
+  {{if or (eq $className "TObject") (eq $className "")}}
+    {{$buff.Write ", Free"}}
+  {{end}}
+  {{$buff.Writeln ")"}}
+  {{$buff.Write "  result." $instName " = " $mm.Name "("}}
+  {{range $idx, $ps := $mm.Params}}
+    {{if gt $idx 0}}
+      {{$buff.Write ", "}}
+    {{end}}
+    {{if isObject $ps.Type}}
+      {{$buff.Write "CheckPtr(" $ps.Name ")"}}
+    {{else}}
+      {{$buff.Write $ps.Name}}
+    {{end}}
+  {{end}}
+  {{$buff.Writeln ")"}}
+
+{{$buff.ToStr}}
+
+
 {{else if eq $mm.RealName "Free"}}
 {{else if $mm.IsStatic}}
 ##
@@ -113,16 +145,99 @@ proc CreateForm*(this: TApplication): TForm =
   AsForm(Application_CreateForm(this.{{$instName}}, false))
 {{else}}
 ##
-{{$isSetProp := isSetter $mm}}
-{{$notProp := not (isProp $mm)}}
-proc {{if $isSetProp}}`{{end}}{{getRealName $mm}}{{if $isSetProp}}=`{{end}}*(this: {{$className}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{$ps.Name}}: {{if $ps.IsVar}}{{if not (eq $ps.Flag "nonPtr")}}var {{end}}{{end}}{{covType2 $ps.Type}}{{end}}{{end}}{{end}}){{if not (isEmpty $mm.Return)}}: {{covType2 $mm.Return}}{{else}}{{template "getlastPs" $mm}}{{end}}{{if $notProp}}{{if isBaseMethod $el.ClassName $mm.RealName}} {{end}}{{else}} {{end}} =
+  {{/* 其他方法生成 */}}
+  {{$isSetProp := isSetter $mm}}
+  {{$notProp := not (isProp $mm)}}
+
+  {{$buff.Clear}}
+  {{$buff.Write "proc "}}
+  {{if $isSetProp}}
+    {{$buff.Write "`"}}
+  {{end}}
+  {{$buff.Write (getRealName $mm)}}
+  {{if $isSetProp}}
+    {{$buff.Write "=`"}}
+  {{end}}
+  {{$buff.Write "*(this: " $className}}
+
+
+  {{range $idx, $ps := $mm.Params}}
+    {{if canOutParam $mm $idx}}
+      {{if gt $idx 0}}
+        {{$buff.Write ", " $ps.Name ": "}}
+        {{if $ps.IsVar}}
+          {{if not (eq $ps.Flag "nonPtr")}}
+            {{$buff.Write "var "}}
+          {{end}}
+        {{end}}
+          {{covType2 $ps.Type|$buff.Write}}
+      {{end}}
+    {{end}}
+  {{end}}
+  {{$buff.Write ")"}}
+
+  {{if not (isEmpty $mm.Return)}}
+    {{$buff.Write ": " (covType2 $mm.Return)}}
+  {{else}}
+    {{if .LastIsReturn}}
+      {{$buff.Write ": "}}
+      {{$ps := lastParam .Params}}
+      {{covType $ps.Type|$buff.Write}}
+    {{end}}
+  {{end}}
+  {{if $notProp}}
+    {{if isBaseMethod $el.ClassName $mm.RealName}}
+      {{$buff.Write " "}}
+    {{end}}
+  {{else}}
+    {{$buff.Write " "}}
+  {{end}}
+  {{$buff.Writeln " ="}}
+
   {{/*这里生成不需要var的变量*/}}
   {{range $ips, $ps := $mm.Params}}
     {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-  var ps{{$ips}} = {{$ps.Name}}
+       {{$buff.Writeln "  var ps" $ips " = " $ps.Name}}
     {{end}}
   {{end}}
-  {{if not (isEmpty $mm.Return)}}return {{if eq $mm.Return "string"}}${{end}}{{end}}{{$mm.Name}}(this.{{$instName}}{{range $idx, $ps := $mm.Params}}{{if canOutParam $mm $idx}}{{if gt $idx 0}}, {{if isObject $ps.Type}}CheckPtr({{$ps.Name}}){{else}}{{if not (eq $ps.Flag "nonPtr")}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{end}}{{end}}{{else}}{{if $mm.LastIsReturn}}, result{{end}}{{end}}{{end}}){{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}.As{{rmObjectT $mm.Return}}{{end}}
+
+  {{$buff.Write "  "}}
+  {{if not (isEmpty $mm.Return)}}
+    {{$buff.Write "return "}}
+    {{if eq $mm.Return "string"}}
+      {{$buff.Write "$"}}
+    {{end}}
+  {{end}}
+  {{$buff.Write $mm.Name}}
+  {{$buff.Write "(this." $instName}}
+  {{range $idx, $ps := $mm.Params}}
+    {{if canOutParam $mm $idx}}
+      {{if gt $idx 0}}
+        {{$buff.Write ", "}}
+        {{if isObject $ps.Type}}
+          {{$buff.Write "CheckPtr(" $ps.Name ")"}}
+        {{else}}
+          {{if not (eq $ps.Flag "nonPtr")}}
+            {{$buff.Write $ps.Name}}
+          {{else}}
+            {{$buff.Write "ps" $idx}}
+          {{end}}
+        {{end}}
+      {{end}}
+    {{else}}
+      {{if $mm.LastIsReturn}}
+        {{$buff.Write ", result"}}
+      {{end}}
+    {{end}}
+  {{end}}
+  {{$buff.Write ")"}}
+  {{if and (not (isEmpty $mm.Return)) (isObject $mm.Return)}}
+    {{$buff.Write ".As" (rmObjectT $mm.Return)}}
+  {{end}}
+  {{$buff.Writeln}}
+
+{{$buff.ToStr}}
+
 {{end}}
 {{end}}
 {{end}}
