@@ -22,20 +22,64 @@ else:
 import types
 ##
 ##
-{{range $el := .Functions}}
-{{if eq $el.Platform "windows"}}when defined(windows):{{end}}
-{{if eq $el.Platform "linux,macos"}}when not defined(windows):{{end}}
-{{if eq $el.Platform "macos"}}when defined(macosx):{{end}}
-{{if eq $el.Platform "linux"}}when defined(linux):{{end}}
-{{if ne $el.Platform "all"}}  {{end}}proc {{$el.Name}}*({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if not (isObject $ps.Type)}}{{if $ps.IsVar}}var {{end}}{{covType $ps.Type}}{{else}}pointer{{end}}{{end}}){{if not (isEmpty $el.Return)}}: {{if not (isObject $el.Return)}}{{covType $el.Return}}{{else}}pointer{{end}}{{end}} {.importc: "{{$el.Name}}", dynlib: dllname.}
+
+{{define "getFunc"}}
+  {{$el := .}}
+  {{$buff := newBuffer}}
+
+  {{if eq $el.Platform "windows"}}
+    {{$buff.Writeln "when defined(windows):"}}
+  {{else if eq $el.Platform "linux,macos"}}
+    {{$buff.Writeln "when not defined(windows):"}}
+  {{else if eq $el.Platform "macos"}}
+    {{$buff.Writeln "when defined(macosx):"}}
+  {{else if eq $el.Platform "linux"}}
+    {{$buff.Writeln "when defined(linux):"}}
+  {{end}}
+  {{/*平台不为all的则起始就得空2格了*/}}
+  {{if ne $el.Platform "all"}}
+    {{$buff.Write "  "}}
+  {{end}}
+  {{$buff.Write "proc " $el.Name "*("}}
+  {{range $idx, $ps := $el.Params}}
+    {{if gt $idx 0}}
+      {{$buff.Write ", "}}
+    {{end}}
+    {{$buff.Write $ps.Name ": "}}
+    {{if not (isObject $ps.Type)}}
+      {{if $ps.IsVar}}
+        {{$buff.Write "var "}}
+      {{end}}
+      {{covType $ps.Type|$buff.Write}}
+    {{else}}
+      {{$buff.Write "pointer"}}
+    {{end}}
+  {{end}}
+  {{$buff.Write ")"}}
+  {{if not (isEmpty $el.Return)}}
+    {{$buff.Write ": "}}
+    {{if not (isObject $el.Return)}}
+      {{covType $el.Return|$buff.Write}}
+    {{else}}
+      {{$buff.Write "pointer"}}
+    {{end}}
+  {{end}}
+  {{$buff.Writeln " {.importc: \"" $el.Name "\", dynlib: dllname.}"}}
+
+{{$buff.ToStr}}
 {{end}}
+
+{{range $el := .Functions}}
+  {{template "getFunc" $el}}
+{{end}}
+
 ##
 ##
 {{range $el := .Objects}}
 # ----------------- {{$el.ClassName}} ----------------------
-{{range $fn := $el.Methods}}
-proc {{$fn.Name}}*({{range $idx, $ps := $fn.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if not (isObject $ps.Type)}}{{if $ps.IsVar}}var {{end}}{{covType $ps.Type}}{{else}}pointer{{end}}{{end}}){{if not (isEmpty $fn.Return)}}: {{if not (isObject $fn.Return)}}{{covType $fn.Return}}{{else}}pointer{{end}}{{end}} {.importc: "{{$fn.Name}}", dynlib: dllname.}
-{{end}}
+  {{range $fn := $el.Methods}}
+    {{template "getFunc" $fn}}
+  {{end}}
 {{end}}
 
 ##

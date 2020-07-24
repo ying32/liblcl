@@ -48,26 +48,101 @@ when defined(linux):
     GdkWindow_GetXId(AW, result)
 ##
 ##
-{{define "getps1"}}{{range $idx, $ps := .Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if $ps.IsVar}}{{if ne $ps.Flag "nonPtr"}}var {{end}}{{end}}{{covType2 $ps.Type}}{{end}}{{end}}
-{{define "getps2"}}{{range $idx, $ps := .Params}}{{if gt $idx 0}}, {{end}}{{if isObject $ps.Type}}CheckPtr({{end}}{{if ne $ps.Flag "nonPtr"}}{{$ps.Name}}{{else}}ps{{$idx}}{{end}}{{if isObject $ps.Type}}){{end}}{{end}}{{end}}
-{{define "emptyStr"}}{{if ne .Platform "all"}}  {{end}}{{end}}
 
-{{range $el := .Functions}}
-  {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
-    {{if not (contains $el.Name "_Instance")}}
-##
-{{if eq $el.Platform "windows"}}when defined(windows):{{end}}
-{{if eq $el.Platform "linux,macos"}}when not defined(windows):{{end}}
-{{if eq $el.Platform "macos"}}when defined(macosx):{{end}}
-{{if eq $el.Platform "linux"}}when defined(linux):{{end}}
-{{template "emptyStr" $el}}proc {{delDChar $el.Name}}*({{template "getps1" $el}}){{if not (isEmpty $el.Return)}}: {{covType2 $el.Return}}{{end}} =
+
+{{define "getFunc"}}
+  {{$el := .}}
+  {{$buff := newBuffer}}
+
+  {{$isNotAll := ne .Platform "all"}}
+
+  {{if eq $el.Platform "windows"}}
+    {{$buff.Writeln "when defined(windows):"}}
+  {{else if eq $el.Platform "linux,macos"}}
+    {{$buff.Writeln "when not defined(windows):"}}
+  {{else if eq $el.Platform "macos"}}
+    {{$buff.Writeln "when defined(macosx):"}}
+  {{else if eq $el.Platform "linux"}}
+    {{$buff.Writeln "when defined(linux):"}}
+  {{end}}
+  {{if $isNotAll}}
+    {{$buff.Write "  "}}
+  {{end}}
+
+  {{$buff.Write "proc " (delDChar $el.Name) "*("}}
+  {{range $idx, $ps := .Params}}
+    {{if gt $idx 0}}
+      {{$buff.Write ", "}}
+    {{end}}
+    {{$buff.Write $ps.Name ": "}}
+    {{if $ps.IsVar}}
+      {{if ne $ps.Flag "nonPtr"}}
+        {{$buff.Write "var "}}
+      {{end}}
+    {{end}}
+    {{covType2 $ps.Type|$buff.Write}}
+  {{end}}
+
+  {{$buff.Write ")"}}
+  {{if not (isEmpty $el.Return)}}
+    {{$buff.Write ": " (covType2 $el.Return)}}
+  {{end}}
+  {{$buff.Writeln " ="}}
+
   {{/*这里生成不需要var的变量*/}}
   {{range $ips, $ps := $el.Params}}
     {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-{{template "emptyStr" $el}}  var ps{{$ips}} = {{$ps.Name}}
+      {{if $isNotAll}}
+        {{$buff.Write "  "}}
+      {{end}}
+      {{$buff.Writeln "  var ps" $ips " = " $ps.Name}}
     {{end}}
   {{end}}
-{{template "emptyStr" $el}}  {{if not (isEmpty $el.Return)}}return {{end}}{{if eq $el.Return "string"}}${{end}}{{$el.Name}}({{template "getps2" $el}}){{if isObject $el.Return}}.As{{rmObjectT $el.Return}}{{end}}
+
+  {{$buff.Write "  "}}
+  {{if $isNotAll}}
+    {{$buff.Write "  "}}
+  {{end}}
+  {{if not (isEmpty $el.Return)}}
+    {{$buff.Write "return "}}
+  {{end}}
+  {{if eq $el.Return "string"}}
+    {{$buff.Write "$"}}
+  {{end}}
+  {{$buff.Write $el.Name "("}}
+
+  {{range $idx, $ps := .Params}}
+    {{if gt $idx 0}}
+      {{$buff.Write ", "}}
+    {{end}}
+    {{$lIsObj := isObject $ps.Type}}
+    {{if $lIsObj}}
+      {{$buff.Write "CheckPtr("}}
+    {{end}}
+    {{if ne $ps.Flag "nonPtr"}}
+      {{$buff.Write $ps.Name}}
+    {{else}}
+      {{$buff.Write "ps" $idx}}
+    {{end}}
+    {{if $lIsObj}}
+      {{$buff.Write ")"}}
+    {{end}}
+  {{end}}
+
+  {{$buff.Write ")"}}
+  {{if isObject $el.Return}}
+    {{$buff.Write ".As" (rmObjectT $el.Return)}}
+  {{end}}
+
+{{$buff.ToStr}}
+{{end}}
+
+{{/*执行模板*/}}
+{{range $el := .Functions}}
+  {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
+    {{if not (contains $el.Name "_Instance")}}
+      ##
+      {{template "getFunc" $el}}
     {{end}}
   {{end}}
 {{end}}
