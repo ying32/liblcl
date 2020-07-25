@@ -2,7 +2,7 @@
   "ast_file_name": "./liblcl.json",
   "languages": [
     {
-      "enabled": true,
+      "enabled": false,
       "name": "Nim",
       "type_dict": {
         "i32": "int32",
@@ -28,19 +28,23 @@
       "files": [
         {
           "template_file_name": "./nim/tpl/liblcl-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\lclapi.nim"
+          "save_file_name": "J:\\NimLang\\Hello\\src\\lclapi.nim",
+          "enabled": true
         },
         {
           "template_file_name": "./nim/tpl/types-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\types.nim"
+          "save_file_name": "J:\\NimLang\\Hello\\src\\types.nim",
+          "enabled": true
         },
         {
           "template_file_name": "./nim/tpl/vcl-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\vcl.nim"
+          "save_file_name": "J:\\NimLang\\Hello\\src\\vcl.nim",
+          "enabled": true
         },
         {
           "template_file_name": "./nim/tpl/fns-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\fns.nim"
+          "save_file_name": "J:\\NimLang\\Hello\\src\\fns.nim",
+          "enabled": true
         }
       ]
     },
@@ -71,12 +75,13 @@
       "files": [
         {
           "template_file_name": "./c/tpl/liblcl-template.h",
-          "save_file_name": "./c/liblcl.h"
+          "save_file_name": "./c/liblcl.h",
+          "enabled": true
         }
       ]
     },
     {
-      "enabled": false,
+      "enabled": true,
       "name": "Rust",
       "line_break": "",
       "type_dict": {
@@ -91,15 +96,23 @@
       "files": [
         {
           "template_file_name": "./rust/tpl/liblcl-template.tpl",
-          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\lclapi.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\lclapi.rs",
+          "enabled": true
         },
         {
           "template_file_name": "./rust/tpl/types-template.tpl",
-          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\types.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\types.rs",
+          "enabled": true
         },
         {
           "template_file_name": "./rust/tpl/vcl-template.tpl",
-          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\vcl.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\vcl.rs",
+          "enabled": true
+        },
+        {
+          "template_file_name": "./rust/tpl/fns-template.tpl",
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\fns.rs",
+          "enabled": false
         }
       ]
     }

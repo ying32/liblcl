@@ -23,6 +23,7 @@ import (
 type TFile struct {
 	TemplateFileName string `json:"template_file_name"`
 	SaveFileName     string `json:"save_file_name"`
+	Enabled          bool   `json:"enabled"`
 }
 
 type TTypeDict struct {
@@ -109,6 +110,10 @@ func main() {
 			typeDict = lang.TypeDict
 			keyWordsDict = lang.KeywordDict
 			for _, file := range lang.Files {
+				if !file.Enabled {
+					fmt.Println("模板文件：", file.TemplateFileName, " 未启用，跳过...")
+					continue
+				}
 				fmt.Println("执行模板文件：", file.TemplateFileName, "，保存目标文件：", file.SaveFileName)
 				execTemplate(objectFile, file, lang.LineBreak)
 			}

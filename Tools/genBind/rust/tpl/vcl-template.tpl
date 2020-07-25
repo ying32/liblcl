@@ -9,8 +9,8 @@
 #![allow(dead_code)]
 #![allow(unused_unsafe)]
 ##
-use crate::lclapi::*;
-use crate::types::*;
+use lclapi::*;
+use types::*;
 ##
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
