@@ -6,7 +6,7 @@
 #{.experimental: "codeReordering".}
 ##
 ##
-import liblcl, types
+import lclapi, types
 ##
 ##
 ##

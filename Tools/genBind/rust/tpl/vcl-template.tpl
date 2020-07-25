@@ -9,7 +9,7 @@
 #![allow(dead_code)]
 #![allow(unused_unsafe)]
 ##
-use crate::imports::*;
+use crate::lclapi::*;
 use crate::types::*;
 ##
 use std::borrow::Cow;
@@ -69,7 +69,7 @@ impl {{$className}} {
           {{$buff.Writeln " -> Self {"}}
 
           {{$buff.Write "        "}}
-          {{$buff.Write "macro_proc_Create!(" $className ", " $classN "_Create" ", "}}
+          {{$buff.Write "method_Create!(" $className ", " $classN "_Create" ", "}}
 		  {{range $idx, $ps := $mm.Params}}
 		      {{if gt $idx 0}}
 		          {{$buff.Write ", "}}
@@ -95,7 +95,7 @@ impl {{$className}} {
 ##
       {{else if eq $mm.RealName "CreateForm"}}
       pub fn CreateForm(&self) -> TForm  {
-	      return callProc2!(TForm, Application_CreateForm, self.0, false);
+	      return method_Call_2!(TForm, Application_CreateForm, self.0, false);
       }
 ##
       {{else}}
@@ -157,7 +157,7 @@ impl {{$className}} {
                   {{if $retIsStr}}
                       {{$buff.Write "to_RustString!("}}
                   {{end}}
-                  {{$buff.Write "callProc"}}
+                  {{$buff.Write "method_Call_"}}
                   {{if $retIsObj}}
                       {{$buff.Write 2}}
                   {{else}}

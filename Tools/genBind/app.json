@@ -28,7 +28,7 @@
       "files": [
         {
           "template_file_name": "./nim/tpl/liblcl-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\liblcl.nim"
+          "save_file_name": "J:\\NimLang\\Hello\\src\\lclapi.nim"
         },
         {
           "template_file_name": "./nim/tpl/types-template.nim",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "c/c++",
       "line_break": "\r\n",
       "type_dict": {
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "Rust",
       "line_break": "",
       "type_dict": {
@@ -91,7 +91,7 @@
       "files": [
         {
           "template_file_name": "./rust/tpl/liblcl-template.tpl",
-          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\imports.rs"
+          "save_file_name": "J:\\RustLang\\rust-vcl\\src\\lclapi.rs"
         },
         {
           "template_file_name": "./rust/tpl/types-template.tpl",

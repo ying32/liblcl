@@ -6,7 +6,7 @@
 {.experimental: "codeReordering".}
 ##
 ##
-import liblcl, vcl, types, strutils
+import lclapi, vcl, types, strutils
 ##
 
 ##
