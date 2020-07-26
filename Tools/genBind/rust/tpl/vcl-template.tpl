@@ -112,18 +112,20 @@ impl {{$className}} {
 
 
                   {{range $idx, $ps := $mm.Params}}
-                      {{if gt $idx 0}}
-                          {{$buff.Write ", " (fLowCase $ps.Name) ": "}}
-                          {{if isObject $ps.Type}}
-                              {{$buff.Write "&"}}
-                              {{if isIntf $ps.Type}}
-                                  {{$buff.Write "dyn "}}
+                      {{if canOutParam $mm $idx}}
+                          {{if gt $idx 0}}
+                              {{$buff.Write ", " (fLowCase $ps.Name) ": "}}
+                              {{if isObject $ps.Type}}
+                                  {{$buff.Write "&"}}
+                                  {{if isIntf $ps.Type}}
+                                      {{$buff.Write "dyn "}}
+                                  {{end}}
                               {{end}}
+                              {{if $ps.IsVar}}
+                                  {{$buff.Write "*mut "}}
+                              {{end}}
+                              {{covType2 (getIntfName $ps.Type)|$buff.Write}}
                           {{end}}
-                          {{if $ps.IsVar}}
-                              {{$buff.Write "*mut "}}
-                          {{end}}
-                          {{covType2 (getIntfName $ps.Type)|$buff.Write}}
                       {{end}}
                   {{end}}
                   {{$buff.Write ")"}}
@@ -135,7 +137,10 @@ impl {{$className}} {
                           {{covType2 $mm.Return|$buff.Write}}
                       {{end}}
                   {{else}}
-
+                      {{if $mm.LastIsReturn}}
+                          {{$buff.Write " -> "}}
+                          {{covType2 (lastParam $mm.Params).Type|$buff.Write}}
+                      {{end}}
                   {{end}}
                   {{if $notProp}}
                       {{if isBaseMethod $el.ClassName $mm.RealName}}
@@ -149,6 +154,17 @@ impl {{$className}} {
                   {{/* ---------------- call func ---------------- */}}
                   {{$retIsObj := isObject $mm.Return}}
                   {{$retIsStr := eq $mm.Return "string"}}
+
+                  {{if $mm.LastIsReturn}}
+                      {{$lastP := lastParam $mm.Params}}
+                      {{$buff.Write "          let mut result = "}}
+                      {{if inStrArray $lastP.Type "TRect" "TSize" "TPoint" "TGUID" "TGridRect" "TGridCoord"}}
+                          {{$buff.Write (covType2 $lastP.Type) "::Empty()"}}
+                      {{else}}
+                          {{$buff.Write "0 as " (covType2 $lastP.Type)}}
+                      {{end}}
+                      {{$buff.Writeln ";"}}
+                  {{end}}
 
                   {{$buff.Write "          "}}
                   {{if not (isEmpty $mm.Return)}}
@@ -170,23 +186,34 @@ impl {{$className}} {
                   {{$buff.Write $mm.Name ", self.0"}}
 
 		          {{range $idx, $ps := $mm.Params}}
-		              {{if gt $idx 0}}
-		                  {{$buff.Write ", "}}
-			              {{if eq $ps.Type "string"}}
-			                  {{$buff.Write "to_CString!(" (fLowCase $ps.Name) ")"}}
-				          {{else}}
-		                      {{fLowCase $ps.Name|$buff.Write}}
-		                      {{if isObject $ps.Type}}
-		                          {{$buff.Write ".Instance()"}}
-		                      {{end}}
-				          {{end}}
-			           {{end}}
+		              {{if canOutParam $mm $idx}}
+                          {{if gt $idx 0}}
+                              {{$buff.Write ", "}}
+                              {{if eq $ps.Type "string"}}
+                                  {{$buff.Write "to_CString!(" (fLowCase $ps.Name) ")"}}
+                              {{else}}
+                                  {{fLowCase $ps.Name|$buff.Write}}
+                                  {{if isObject $ps.Type}}
+                                      {{$buff.Write ".Instance()"}}
+                                  {{end}}
+                              {{end}}
+                          {{end}}
+			          {{end}}
+			      {{end}}
+			      {{if $mm.LastIsReturn}}
+			          {{$buff.Write ", &mut result"}}
 			      {{end}}
 			      {{$buff.Write ")"}}
 		          {{if $retIsStr}}
 		              {{$buff.Write ")"}}
 		          {{end}}
                   {{$buff.Writeln ";"}}
+
+
+                  {{if $mm.LastIsReturn}}
+                        {{$buff.Writeln "          return result;"}}
+                  {{end}}
+
 
 	  {{$buff.ToStr}}
       }

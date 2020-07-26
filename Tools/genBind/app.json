@@ -97,12 +97,12 @@
         {
           "template_file_name": "./rust/tpl/liblcl-template.tpl",
           "save_file_name": "J:\\RustLang\\rust-vcl\\src\\lclapi.rs",
-          "enabled": true
+          "enabled": false
         },
         {
           "template_file_name": "./rust/tpl/types-template.tpl",
           "save_file_name": "J:\\RustLang\\rust-vcl\\src\\types.rs",
-          "enabled": true
+          "enabled": false
         },
         {
           "template_file_name": "./rust/tpl/vcl-template.tpl",

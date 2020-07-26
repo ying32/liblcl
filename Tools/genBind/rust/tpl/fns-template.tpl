@@ -5,19 +5,15 @@
 */
 ##
 #![allow(non_snake_case)]
+#![allow(unused_unsafe)]
 ##
 use lclapi;
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
 use types::*;
+use vcl::{TControl, TWinControl, IObject, IComponent, TStrings};
 ##
-pub fn ShowMessage(s: &str) {
-    unsafe {
-        lclapi::DShowMessage(to_CString!(s));
-    }
-}
-##
-pub fn GetFPStringArrayMember<'a>(ptr: usize, index: isize) -> Cow<'a, str> {
+pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{html "<'a, str>"}} {
     return to_RustString!(lclapi::DGetStringArrOf(ptr, index));
 }
 ##
@@ -60,85 +56,114 @@ pub fn GdkWindow_GetXId(AW: PGdkWindow) -> TXId {
     {{$el := .}}
     {{$buff := newBuffer}}
 
-    {{$isNotAll := ne .Platform "all"}}
-
     {{if eq $el.Platform "windows"}}
-        {{$buff.Writeln "when defined(windows):"}}
+        {{$buff.Writeln "#[cfg(target_os = \"windows\")]"}}
     {{else if eq $el.Platform "linux,macos"}}
-        {{$buff.Writeln "when not defined(windows):"}}
+        {{$buff.Writeln "#[cfg(not(target_os = \"windows\"))]"}}
     {{else if eq $el.Platform "macos"}}
-        {{$buff.Writeln "when defined(macosx):"}}
+        {{$buff.Writeln "#[cfg(target_os = \"macos\")]"}}
     {{else if eq $el.Platform "linux"}}
-        {{$buff.Writeln "when defined(linux):"}}
-    {{end}}
-    {{if $isNotAll}}
-        {{$buff.Write "  "}}
+        {{$buff.Writeln "#[cfg(target_os = \"linux\")]"}}
     {{end}}
 
-    {{$buff.Write "proc " (delDChar $el.Name) "*("}}
+
+    {{$retIsStr := eq $el.Return "string"}}
+
+    {{$buff.Write "pub fn " (delDChar $el.Name)}}
+    {{if $retIsStr}}
+        {{$buff.Write "<'a>"}}
+    {{end}}
+    {{$buff.Write "("}}
     {{range $idx, $ps := .Params}}
         {{if gt $idx 0}}
             {{$buff.Write ", "}}
         {{end}}
-        {{$buff.Write $ps.Name ": "}}
+        {{$buff.Write (fLowCase $ps.Name) ": "}}
         {{if $ps.IsVar}}
             {{if ne $ps.Flag "nonPtr"}}
-                {{$buff.Write "var "}}
+                {{$buff.Write "*mut "}}
+            {{else}}
+                {{$buff.Write "&"}}
             {{end}}
         {{end}}
-        {{covType2 $ps.Type|$buff.Write}}
+        {{if isObject $ps.Type}}
+            {{$buff.Write "&"}}
+            {{if isIntf $ps.Type}}
+                {{$buff.Write "dyn "}}
+            {{end}}
+            {{getIntfName $ps.Type|$buff.Write}}
+        {{else}}
+            {{covType2 $ps.Type|$buff.Write}}
+        {{end}}
     {{end}}
 
     {{$buff.Write ")"}}
     {{if not (isEmpty $el.Return)}}
-        {{$buff.Write ": " (covType2 $el.Return)}}
+        {{$buff.Write " -> "}}
+        {{if $retIsStr}}
+           {{$buff.Write "Cow<'a, str>"}}
+        {{else}}
+           {{$buff.Write (covType2 $el.Return)}}
+        {{end}}
     {{end}}
-    {{$buff.Writeln " ="}}
+    {{$buff.Writeln " {"}}
 
     {{/*这里生成不需要var的变量*/}}
     {{range $ips, $ps := $el.Params}}
         {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-            {{if $isNotAll}}
-                {{$buff.Write "  "}}
-            {{end}}
-            {{$buff.Writeln "  var ps" $ips " = " $ps.Name}}
+            {{$buff.Writeln "    let mut ps" $ips " = " (covType $ps.Type) "::From(" (fLowCase $ps.Name) ");"}}
         {{end}}
     {{end}}
 
-    {{$buff.Write "  "}}
-    {{if $isNotAll}}
-        {{$buff.Write "  "}}
-    {{end}}
+    {{$buff.Write "    unsafe { "}}
     {{if not (isEmpty $el.Return)}}
         {{$buff.Write "return "}}
     {{end}}
-    {{if eq $el.Return "string"}}
-        {{$buff.Write "$"}}
+
+    {{if isObject $el.Return}}
+        {{$buff.Write $el.Return "::As("}}
     {{end}}
-    {{$buff.Write $el.Name "("}}
+
+
+    {{if $retIsStr}}
+        {{$buff.Write "to_RustString!("}}
+    {{end}}
+    {{$buff.Write "lclapi::" $el.Name "("}}
 
     {{range $idx, $ps := .Params}}
         {{if gt $idx 0}}
             {{$buff.Write ", "}}
         {{end}}
         {{$lIsObj := isObject $ps.Type}}
-        {{if $lIsObj}}
-            {{$buff.Write "CheckPtr("}}
-        {{end}}
         {{if ne $ps.Flag "nonPtr"}}
-            {{$buff.Write $ps.Name}}
+            {{$isStr := eq $ps.Type "string"}}
+            {{if $isStr}}
+                {{$buff.Write "to_CString!("}}
+            {{end}}
+            {{$buff.Write (fLowCase $ps.Name)}}
+            {{if $isStr}}
+                {{$buff.Write ")"}}
+            {{end}}
         {{else}}
-            {{$buff.Write "ps" $idx}}
+            {{$buff.Write "&mut ps" $idx}}
         {{end}}
         {{if $lIsObj}}
-            {{$buff.Write ")"}}
+            {{$buff.Write ".Instance()"}}
         {{end}}
     {{end}}
 
     {{$buff.Write ")"}}
-    {{if isObject $el.Return}}
-        {{$buff.Write ".As" (rmObjectT $el.Return)}}
+    {{if $retIsStr}}
+        {{$buff.Write ")"}}
     {{end}}
+
+    {{if isObject $el.Return}}
+        {{$buff.Write ")"}}
+    {{end}}
+
+    {{$buff.Writeln "}"}}
+
+    {{$buff.Writeln "}"}}
 
 {{$buff.ToStr}}
 {{end}}
