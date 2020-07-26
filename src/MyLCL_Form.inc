@@ -94,6 +94,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function Form_ControlAtPos(AObj: TForm; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +232,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Form_ClientToScreen(AObj: TForm; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +242,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Form_ClientToParent(AObj: TForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -281,6 +284,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Form_ScreenToClient(AObj: TForm; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -290,6 +294,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Form_ParentToClient(AObj: TForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

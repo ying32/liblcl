@@ -54,6 +54,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ColorListBox_ItemAtPos(AObj: TColorListBox; var Pos: TPoint; Existing: LongBool): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -95,6 +96,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ColorListBox_ControlAtPos(AObj: TColorListBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +242,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorListBox_ClientToScreen(AObj: TColorListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +252,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorListBox_ClientToParent(AObj: TColorListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +302,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorListBox_ScreenToClient(AObj: TColorListBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -307,6 +312,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorListBox_ParentToClient(AObj: TColorListBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

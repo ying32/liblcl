@@ -46,6 +46,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function Button_ControlAtPos(AObj: TButton; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +192,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Button_ClientToScreen(AObj: TButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +202,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Button_ClientToParent(AObj: TButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +252,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Button_ScreenToClient(AObj: TButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +262,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Button_ParentToClient(AObj: TButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

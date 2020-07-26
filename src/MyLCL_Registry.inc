@@ -110,7 +110,6 @@ begin
 end;
 
 //CLASSMETHOD:
-//RETURNISLASTPARAM:
 function Registry_ReadDate(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -119,7 +118,6 @@ begin
 end;
 
 //CLASSMETHOD:
-//RETURNISLASTPARAM:
 function Registry_ReadDateTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -153,7 +151,6 @@ begin
 end;
 
 //CLASSMETHOD:
-//RETURNISLASTPARAM:
 function Registry_ReadTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -242,6 +239,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:3=nonPtr
 procedure Registry_WriteFloat(AObj: TRegistry; Name: PChar; var Value: Double); extdecl;
 begin
   handleExceptionBegin

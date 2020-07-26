@@ -102,6 +102,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function LabeledEdit_ControlAtPos(AObj: TLabeledEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -239,6 +240,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LabeledEdit_ClientToScreen(AObj: TLabeledEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -248,6 +250,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LabeledEdit_ClientToParent(AObj: TLabeledEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -297,6 +300,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LabeledEdit_ScreenToClient(AObj: TLabeledEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -306,6 +310,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LabeledEdit_ParentToClient(AObj: TLabeledEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

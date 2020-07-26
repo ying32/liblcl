@@ -46,6 +46,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ScrollBar_ControlAtPos(AObj: TScrollBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +192,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ScrollBar_ClientToScreen(AObj: TScrollBar; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +202,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ScrollBar_ClientToParent(AObj: TScrollBar; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +252,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ScrollBar_ScreenToClient(AObj: TScrollBar; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +262,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ScrollBar_ParentToClient(AObj: TScrollBar; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

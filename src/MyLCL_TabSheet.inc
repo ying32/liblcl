@@ -38,6 +38,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function TabSheet_ControlAtPos(AObj: TTabSheet; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +184,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TabSheet_ClientToScreen(AObj: TTabSheet; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -192,6 +194,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TabSheet_ClientToParent(AObj: TTabSheet; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +244,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TabSheet_ScreenToClient(AObj: TTabSheet; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -250,6 +254,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TabSheet_ParentToClient(AObj: TTabSheet; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

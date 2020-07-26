@@ -31,6 +31,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Label_ClientToScreen(AObj: TLabel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -40,6 +41,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Label_ClientToParent(AObj: TLabel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +107,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Label_ScreenToClient(AObj: TLabel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +117,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Label_ParentToClient(AObj: TLabel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -31,6 +31,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Image_ClientToScreen(AObj: TImage; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -40,6 +41,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Image_ClientToParent(AObj: TImage; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -105,6 +107,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Image_ScreenToClient(AObj: TImage; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -114,6 +117,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Image_ParentToClient(AObj: TImage; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

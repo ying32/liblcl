@@ -126,6 +126,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function MiniWebview_ControlAtPos(AObj: TMiniWebview; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +264,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MiniWebview_ClientToScreen(AObj: TMiniWebview; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -272,6 +274,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MiniWebview_ClientToParent(AObj: TMiniWebview; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -313,6 +316,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MiniWebview_ScreenToClient(AObj: TMiniWebview; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -322,6 +326,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MiniWebview_ParentToClient(AObj: TMiniWebview; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

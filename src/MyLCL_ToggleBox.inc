@@ -38,6 +38,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ToggleBox_ControlAtPos(AObj: TToggleBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +184,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToggleBox_ClientToScreen(AObj: TToggleBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -192,6 +194,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToggleBox_ClientToParent(AObj: TToggleBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +244,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToggleBox_ScreenToClient(AObj: TToggleBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -250,6 +254,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToggleBox_ParentToClient(AObj: TToggleBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

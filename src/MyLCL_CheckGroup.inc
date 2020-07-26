@@ -54,6 +54,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function CheckGroup_ControlAtPos(AObj: TCheckGroup; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +192,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure CheckGroup_ClientToScreen(AObj: TCheckGroup; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +202,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure CheckGroup_ClientToParent(AObj: TCheckGroup; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +252,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure CheckGroup_ScreenToClient(AObj: TCheckGroup; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +262,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure CheckGroup_ParentToClient(AObj: TCheckGroup; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

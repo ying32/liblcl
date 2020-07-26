@@ -54,6 +54,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function FlowPanel_ControlAtPos(AObj: TFlowPanel; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -199,6 +200,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure FlowPanel_ClientToScreen(AObj: TFlowPanel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -208,6 +210,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure FlowPanel_ClientToParent(AObj: TFlowPanel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -257,6 +260,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure FlowPanel_ScreenToClient(AObj: TFlowPanel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -266,6 +270,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure FlowPanel_ParentToClient(AObj: TFlowPanel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

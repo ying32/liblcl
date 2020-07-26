@@ -22,6 +22,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure Application_ActivateHint(AObj: TApplication; var CursorPos: TPoint); extdecl;
 begin
   handleExceptionBegin

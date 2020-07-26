@@ -38,6 +38,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function DateTimePicker_ControlAtPos(AObj: TDateTimePicker; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +184,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure DateTimePicker_ClientToScreen(AObj: TDateTimePicker; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -192,6 +194,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure DateTimePicker_ClientToParent(AObj: TDateTimePicker; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +244,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure DateTimePicker_ScreenToClient(AObj: TDateTimePicker; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -250,6 +254,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure DateTimePicker_ParentToClient(AObj: TDateTimePicker; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -808,6 +813,14 @@ procedure DateTimePicker_SetOnContextPopup(AObj: TDateTimePicker; AEventId: Nati
 begin
   {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
   {$DEFINE EventName := OnContextPopup}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure DateTimePicker_SetOnDropDown(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
@@ -1444,6 +1457,7 @@ exports
   DateTimePicker_SetOnClick,
   DateTimePicker_SetOnChange,
   DateTimePicker_SetOnContextPopup,
+  DateTimePicker_SetOnDropDown,
   DateTimePicker_SetOnEnter,
   DateTimePicker_SetOnExit,
   DateTimePicker_SetOnKeyDown,

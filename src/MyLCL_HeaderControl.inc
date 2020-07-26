@@ -46,6 +46,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function HeaderControl_ControlAtPos(AObj: THeaderControl; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -183,6 +184,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure HeaderControl_ClientToScreen(AObj: THeaderControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -192,6 +194,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure HeaderControl_ClientToParent(AObj: THeaderControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -241,6 +244,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure HeaderControl_ScreenToClient(AObj: THeaderControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -250,6 +254,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure HeaderControl_ParentToClient(AObj: THeaderControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

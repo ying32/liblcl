@@ -126,6 +126,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function TreeView_ControlAtPos(AObj: TTreeView; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -271,6 +272,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TreeView_ClientToScreen(AObj: TTreeView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -280,6 +282,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TreeView_ClientToParent(AObj: TTreeView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -329,6 +332,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TreeView_ScreenToClient(AObj: TTreeView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -338,6 +342,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TreeView_ParentToClient(AObj: TTreeView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -80,6 +80,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ValueListEditor_ControlAtPos(AObj: TValueListEditor; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -225,6 +226,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ValueListEditor_ClientToScreen(AObj: TValueListEditor; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -234,6 +236,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ValueListEditor_ClientToParent(AObj: TValueListEditor; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -275,6 +278,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ValueListEditor_ScreenToClient(AObj: TValueListEditor; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +288,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ValueListEditor_ParentToClient(AObj: TValueListEditor; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

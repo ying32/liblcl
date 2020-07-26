@@ -3667,19 +3667,19 @@ Control_BringToFront(TControl AObj) {
 
 DEFINE_FUNC_PTR(Control_ClientToScreen)
 TPoint
-Control_ClientToScreen(TControl AObj, TPoint* Point) {
+Control_ClientToScreen(TControl AObj, TPoint Point) {
     GET_FUNC_ADDR(Control_ClientToScreen)
     TPoint result;
-    MySyscall(pControl_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControl_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Control_ClientToParent)
 TPoint
-Control_ClientToParent(TControl AObj, TPoint* Point, TWinControl AParent) {
+Control_ClientToParent(TControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Control_ClientToParent)
     TPoint result;
-    MySyscall(pControl_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControl_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -3734,19 +3734,19 @@ Control_Repaint(TControl AObj) {
 
 DEFINE_FUNC_PTR(Control_ScreenToClient)
 TPoint
-Control_ScreenToClient(TControl AObj, TPoint* Point) {
+Control_ScreenToClient(TControl AObj, TPoint Point) {
     GET_FUNC_ADDR(Control_ScreenToClient)
     TPoint result;
-    MySyscall(pControl_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControl_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Control_ParentToClient)
 TPoint
-Control_ParentToClient(TControl AObj, TPoint* Point, TWinControl AParent) {
+Control_ParentToClient(TControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Control_ParentToClient)
     TPoint result;
-    MySyscall(pControl_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControl_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -4397,9 +4397,9 @@ WinControl_ContainsControl(TWinControl AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(WinControl_ControlAtPos)
 TControl
-WinControl_ControlAtPos(TWinControl AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+WinControl_ControlAtPos(TWinControl AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(WinControl_ControlAtPos)
-    return (TControl)MySyscall(pWinControl_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pWinControl_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(WinControl_DisableAlign)
@@ -4523,19 +4523,19 @@ WinControl_BringToFront(TWinControl AObj) {
 
 DEFINE_FUNC_PTR(WinControl_ClientToScreen)
 TPoint
-WinControl_ClientToScreen(TWinControl AObj, TPoint* Point) {
+WinControl_ClientToScreen(TWinControl AObj, TPoint Point) {
     GET_FUNC_ADDR(WinControl_ClientToScreen)
     TPoint result;
-    MySyscall(pWinControl_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pWinControl_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(WinControl_ClientToParent)
 TPoint
-WinControl_ClientToParent(TWinControl AObj, TPoint* Point, TWinControl AParent) {
+WinControl_ClientToParent(TWinControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(WinControl_ClientToParent)
     TPoint result;
-    MySyscall(pWinControl_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pWinControl_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -4576,19 +4576,19 @@ WinControl_Refresh(TWinControl AObj) {
 
 DEFINE_FUNC_PTR(WinControl_ScreenToClient)
 TPoint
-WinControl_ScreenToClient(TWinControl AObj, TPoint* Point) {
+WinControl_ScreenToClient(TWinControl AObj, TPoint Point) {
     GET_FUNC_ADDR(WinControl_ScreenToClient)
     TPoint result;
-    MySyscall(pWinControl_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pWinControl_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(WinControl_ParentToClient)
 TPoint
-WinControl_ParentToClient(TWinControl AObj, TPoint* Point, TWinControl AParent) {
+WinControl_ParentToClient(TWinControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(WinControl_ParentToClient)
     TPoint result;
-    MySyscall(pWinControl_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pWinControl_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -5987,9 +5987,9 @@ Memo_ContainsControl(TMemo AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(Memo_ControlAtPos)
 TControl
-Memo_ControlAtPos(TMemo AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+Memo_ControlAtPos(TMemo AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(Memo_ControlAtPos)
-    return (TControl)MySyscall(pMemo_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pMemo_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_DisableAlign)
@@ -6113,19 +6113,19 @@ Memo_BringToFront(TMemo AObj) {
 
 DEFINE_FUNC_PTR(Memo_ClientToScreen)
 TPoint
-Memo_ClientToScreen(TMemo AObj, TPoint* Point) {
+Memo_ClientToScreen(TMemo AObj, TPoint Point) {
     GET_FUNC_ADDR(Memo_ClientToScreen)
     TPoint result;
-    MySyscall(pMemo_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Memo_ClientToParent)
 TPoint
-Memo_ClientToParent(TMemo AObj, TPoint* Point, TWinControl AParent) {
+Memo_ClientToParent(TMemo AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Memo_ClientToParent)
     TPoint result;
-    MySyscall(pMemo_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -6166,19 +6166,19 @@ Memo_Refresh(TMemo AObj) {
 
 DEFINE_FUNC_PTR(Memo_ScreenToClient)
 TPoint
-Memo_ScreenToClient(TMemo AObj, TPoint* Point) {
+Memo_ScreenToClient(TMemo AObj, TPoint Point) {
     GET_FUNC_ADDR(Memo_ScreenToClient)
     TPoint result;
-    MySyscall(pMemo_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Memo_ParentToClient)
 TPoint
-Memo_ParentToClient(TMemo AObj, TPoint* Point, TWinControl AParent) {
+Memo_ParentToClient(TMemo AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Memo_ParentToClient)
     TPoint result;
-    MySyscall(pMemo_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -7496,9 +7496,9 @@ CheckBox_ContainsControl(TCheckBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(CheckBox_ControlAtPos)
 TControl
-CheckBox_ControlAtPos(TCheckBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+CheckBox_ControlAtPos(TCheckBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(CheckBox_ControlAtPos)
-    return (TControl)MySyscall(pCheckBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pCheckBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_DisableAlign)
@@ -7622,19 +7622,19 @@ CheckBox_BringToFront(TCheckBox AObj) {
 
 DEFINE_FUNC_PTR(CheckBox_ClientToScreen)
 TPoint
-CheckBox_ClientToScreen(TCheckBox AObj, TPoint* Point) {
+CheckBox_ClientToScreen(TCheckBox AObj, TPoint Point) {
     GET_FUNC_ADDR(CheckBox_ClientToScreen)
     TPoint result;
-    MySyscall(pCheckBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CheckBox_ClientToParent)
 TPoint
-CheckBox_ClientToParent(TCheckBox AObj, TPoint* Point, TWinControl AParent) {
+CheckBox_ClientToParent(TCheckBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CheckBox_ClientToParent)
     TPoint result;
-    MySyscall(pCheckBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -7675,19 +7675,19 @@ CheckBox_Refresh(TCheckBox AObj) {
 
 DEFINE_FUNC_PTR(CheckBox_ScreenToClient)
 TPoint
-CheckBox_ScreenToClient(TCheckBox AObj, TPoint* Point) {
+CheckBox_ScreenToClient(TCheckBox AObj, TPoint Point) {
     GET_FUNC_ADDR(CheckBox_ScreenToClient)
     TPoint result;
-    MySyscall(pCheckBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CheckBox_ParentToClient)
 TPoint
-CheckBox_ParentToClient(TCheckBox AObj, TPoint* Point, TWinControl AParent) {
+CheckBox_ParentToClient(TCheckBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CheckBox_ParentToClient)
     TPoint result;
-    MySyscall(pCheckBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -8807,9 +8807,9 @@ RadioButton_ContainsControl(TRadioButton AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(RadioButton_ControlAtPos)
 TControl
-RadioButton_ControlAtPos(TRadioButton AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+RadioButton_ControlAtPos(TRadioButton AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(RadioButton_ControlAtPos)
-    return (TControl)MySyscall(pRadioButton_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pRadioButton_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_DisableAlign)
@@ -8933,19 +8933,19 @@ RadioButton_BringToFront(TRadioButton AObj) {
 
 DEFINE_FUNC_PTR(RadioButton_ClientToScreen)
 TPoint
-RadioButton_ClientToScreen(TRadioButton AObj, TPoint* Point) {
+RadioButton_ClientToScreen(TRadioButton AObj, TPoint Point) {
     GET_FUNC_ADDR(RadioButton_ClientToScreen)
     TPoint result;
-    MySyscall(pRadioButton_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(RadioButton_ClientToParent)
 TPoint
-RadioButton_ClientToParent(TRadioButton AObj, TPoint* Point, TWinControl AParent) {
+RadioButton_ClientToParent(TRadioButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(RadioButton_ClientToParent)
     TPoint result;
-    MySyscall(pRadioButton_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -8986,19 +8986,19 @@ RadioButton_Refresh(TRadioButton AObj) {
 
 DEFINE_FUNC_PTR(RadioButton_ScreenToClient)
 TPoint
-RadioButton_ScreenToClient(TRadioButton AObj, TPoint* Point) {
+RadioButton_ScreenToClient(TRadioButton AObj, TPoint Point) {
     GET_FUNC_ADDR(RadioButton_ScreenToClient)
     TPoint result;
-    MySyscall(pRadioButton_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(RadioButton_ParentToClient)
 TPoint
-RadioButton_ParentToClient(TRadioButton AObj, TPoint* Point, TWinControl AParent) {
+RadioButton_ParentToClient(TRadioButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(RadioButton_ParentToClient)
     TPoint result;
-    MySyscall(pRadioButton_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -10090,9 +10090,9 @@ GroupBox_ContainsControl(TGroupBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(GroupBox_ControlAtPos)
 TControl
-GroupBox_ControlAtPos(TGroupBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+GroupBox_ControlAtPos(TGroupBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(GroupBox_ControlAtPos)
-    return (TControl)MySyscall(pGroupBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pGroupBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_DisableAlign)
@@ -10216,19 +10216,19 @@ GroupBox_BringToFront(TGroupBox AObj) {
 
 DEFINE_FUNC_PTR(GroupBox_ClientToScreen)
 TPoint
-GroupBox_ClientToScreen(TGroupBox AObj, TPoint* Point) {
+GroupBox_ClientToScreen(TGroupBox AObj, TPoint Point) {
     GET_FUNC_ADDR(GroupBox_ClientToScreen)
     TPoint result;
-    MySyscall(pGroupBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(GroupBox_ClientToParent)
 TPoint
-GroupBox_ClientToParent(TGroupBox AObj, TPoint* Point, TWinControl AParent) {
+GroupBox_ClientToParent(TGroupBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(GroupBox_ClientToParent)
     TPoint result;
-    MySyscall(pGroupBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -10269,19 +10269,19 @@ GroupBox_Refresh(TGroupBox AObj) {
 
 DEFINE_FUNC_PTR(GroupBox_ScreenToClient)
 TPoint
-GroupBox_ScreenToClient(TGroupBox AObj, TPoint* Point) {
+GroupBox_ScreenToClient(TGroupBox AObj, TPoint Point) {
     GET_FUNC_ADDR(GroupBox_ScreenToClient)
     TPoint result;
-    MySyscall(pGroupBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(GroupBox_ParentToClient)
 TPoint
-GroupBox_ParentToClient(TGroupBox AObj, TPoint* Point, TWinControl AParent) {
+GroupBox_ParentToClient(TGroupBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(GroupBox_ParentToClient)
     TPoint result;
-    MySyscall(pGroupBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -11359,19 +11359,19 @@ Label_BringToFront(TLabel AObj) {
 
 DEFINE_FUNC_PTR(Label_ClientToScreen)
 TPoint
-Label_ClientToScreen(TLabel AObj, TPoint* Point) {
+Label_ClientToScreen(TLabel AObj, TPoint Point) {
     GET_FUNC_ADDR(Label_ClientToScreen)
     TPoint result;
-    MySyscall(pLabel_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Label_ClientToParent)
 TPoint
-Label_ClientToParent(TLabel AObj, TPoint* Point, TWinControl AParent) {
+Label_ClientToParent(TLabel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Label_ClientToParent)
     TPoint result;
-    MySyscall(pLabel_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -11426,19 +11426,19 @@ Label_Repaint(TLabel AObj) {
 
 DEFINE_FUNC_PTR(Label_ScreenToClient)
 TPoint
-Label_ScreenToClient(TLabel AObj, TPoint* Point) {
+Label_ScreenToClient(TLabel AObj, TPoint Point) {
     GET_FUNC_ADDR(Label_ScreenToClient)
     TPoint result;
-    MySyscall(pLabel_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Label_ParentToClient)
 TPoint
-Label_ParentToClient(TLabel AObj, TPoint* Point, TWinControl AParent) {
+Label_ParentToClient(TLabel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Label_ParentToClient)
     TPoint result;
-    MySyscall(pLabel_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -12439,9 +12439,9 @@ ListBox_DeleteSelected(TListBox AObj) {
 
 DEFINE_FUNC_PTR(ListBox_ItemAtPos)
 int32_t
-ListBox_ItemAtPos(TListBox AObj, TPoint* Pos, BOOL Existing) {
+ListBox_ItemAtPos(TListBox AObj, TPoint Pos, BOOL Existing) {
     GET_FUNC_ADDR(ListBox_ItemAtPos)
-    return (int32_t)MySyscall(pListBox_ItemAtPos, 3, AObj, Pos, Existing ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (int32_t)MySyscall(pListBox_ItemAtPos, 3, AObj, &Pos, Existing ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_ItemRect)
@@ -12476,9 +12476,9 @@ ListBox_ContainsControl(TListBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ListBox_ControlAtPos)
 TControl
-ListBox_ControlAtPos(TListBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ListBox_ControlAtPos(TListBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ListBox_ControlAtPos)
-    return (TControl)MySyscall(pListBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pListBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_DisableAlign)
@@ -12602,19 +12602,19 @@ ListBox_BringToFront(TListBox AObj) {
 
 DEFINE_FUNC_PTR(ListBox_ClientToScreen)
 TPoint
-ListBox_ClientToScreen(TListBox AObj, TPoint* Point) {
+ListBox_ClientToScreen(TListBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ListBox_ClientToScreen)
     TPoint result;
-    MySyscall(pListBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ListBox_ClientToParent)
 TPoint
-ListBox_ClientToParent(TListBox AObj, TPoint* Point, TWinControl AParent) {
+ListBox_ClientToParent(TListBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ListBox_ClientToParent)
     TPoint result;
-    MySyscall(pListBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -12655,19 +12655,19 @@ ListBox_Refresh(TListBox AObj) {
 
 DEFINE_FUNC_PTR(ListBox_ScreenToClient)
 TPoint
-ListBox_ScreenToClient(TListBox AObj, TPoint* Point) {
+ListBox_ScreenToClient(TListBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ListBox_ScreenToClient)
     TPoint result;
-    MySyscall(pListBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ListBox_ParentToClient)
 TPoint
-ListBox_ParentToClient(TListBox AObj, TPoint* Point, TWinControl AParent) {
+ListBox_ParentToClient(TListBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ListBox_ParentToClient)
     TPoint result;
-    MySyscall(pListBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -13976,9 +13976,9 @@ ComboBox_ContainsControl(TComboBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ComboBox_ControlAtPos)
 TControl
-ComboBox_ControlAtPos(TComboBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ComboBox_ControlAtPos(TComboBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ComboBox_ControlAtPos)
-    return (TControl)MySyscall(pComboBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pComboBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_DisableAlign)
@@ -14095,19 +14095,19 @@ ComboBox_BringToFront(TComboBox AObj) {
 
 DEFINE_FUNC_PTR(ComboBox_ClientToScreen)
 TPoint
-ComboBox_ClientToScreen(TComboBox AObj, TPoint* Point) {
+ComboBox_ClientToScreen(TComboBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ComboBox_ClientToScreen)
     TPoint result;
-    MySyscall(pComboBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ComboBox_ClientToParent)
 TPoint
-ComboBox_ClientToParent(TComboBox AObj, TPoint* Point, TWinControl AParent) {
+ComboBox_ClientToParent(TComboBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ComboBox_ClientToParent)
     TPoint result;
-    MySyscall(pComboBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -14148,19 +14148,19 @@ ComboBox_Refresh(TComboBox AObj) {
 
 DEFINE_FUNC_PTR(ComboBox_ScreenToClient)
 TPoint
-ComboBox_ScreenToClient(TComboBox AObj, TPoint* Point) {
+ComboBox_ScreenToClient(TComboBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ComboBox_ScreenToClient)
     TPoint result;
-    MySyscall(pComboBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ComboBox_ParentToClient)
 TPoint
-ComboBox_ParentToClient(TComboBox AObj, TPoint* Point, TWinControl AParent) {
+ComboBox_ParentToClient(TComboBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ComboBox_ParentToClient)
     TPoint result;
-    MySyscall(pComboBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -14778,6 +14778,13 @@ void
 ComboBox_SetOnDrawItem(TComboBox AObj, TDrawItemEvent AEventId) {
     GET_FUNC_ADDR(ComboBox_SetOnDrawItem)
     MySyscall(pComboBox_SetOnDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_SetOnDropDown)
+void
+ComboBox_SetOnDropDown(TComboBox AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(ComboBox_SetOnDropDown)
+    MySyscall(pComboBox_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnEndDrag)
@@ -15434,9 +15441,9 @@ Panel_ContainsControl(TPanel AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(Panel_ControlAtPos)
 TControl
-Panel_ControlAtPos(TPanel AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+Panel_ControlAtPos(TPanel AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(Panel_ControlAtPos)
-    return (TControl)MySyscall(pPanel_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pPanel_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_DisableAlign)
@@ -15560,19 +15567,19 @@ Panel_BringToFront(TPanel AObj) {
 
 DEFINE_FUNC_PTR(Panel_ClientToScreen)
 TPoint
-Panel_ClientToScreen(TPanel AObj, TPoint* Point) {
+Panel_ClientToScreen(TPanel AObj, TPoint Point) {
     GET_FUNC_ADDR(Panel_ClientToScreen)
     TPoint result;
-    MySyscall(pPanel_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Panel_ClientToParent)
 TPoint
-Panel_ClientToParent(TPanel AObj, TPoint* Point, TWinControl AParent) {
+Panel_ClientToParent(TPanel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Panel_ClientToParent)
     TPoint result;
-    MySyscall(pPanel_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -15613,19 +15620,19 @@ Panel_Refresh(TPanel AObj) {
 
 DEFINE_FUNC_PTR(Panel_ScreenToClient)
 TPoint
-Panel_ScreenToClient(TPanel AObj, TPoint* Point) {
+Panel_ScreenToClient(TPanel AObj, TPoint Point) {
     GET_FUNC_ADDR(Panel_ScreenToClient)
     TPoint result;
-    MySyscall(pPanel_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Panel_ParentToClient)
 TPoint
-Panel_ParentToClient(TPanel AObj, TPoint* Point, TWinControl AParent) {
+Panel_ParentToClient(TPanel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Panel_ParentToClient)
     TPoint result;
-    MySyscall(pPanel_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -16822,19 +16829,19 @@ Image_BringToFront(TImage AObj) {
 
 DEFINE_FUNC_PTR(Image_ClientToScreen)
 TPoint
-Image_ClientToScreen(TImage AObj, TPoint* Point) {
+Image_ClientToScreen(TImage AObj, TPoint Point) {
     GET_FUNC_ADDR(Image_ClientToScreen)
     TPoint result;
-    MySyscall(pImage_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Image_ClientToParent)
 TPoint
-Image_ClientToParent(TImage AObj, TPoint* Point, TWinControl AParent) {
+Image_ClientToParent(TImage AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Image_ClientToParent)
     TPoint result;
-    MySyscall(pImage_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -16889,19 +16896,19 @@ Image_Repaint(TImage AObj) {
 
 DEFINE_FUNC_PTR(Image_ScreenToClient)
 TPoint
-Image_ScreenToClient(TImage AObj, TPoint* Point) {
+Image_ScreenToClient(TImage AObj, TPoint Point) {
     GET_FUNC_ADDR(Image_ScreenToClient)
     TPoint result;
-    MySyscall(pImage_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Image_ParentToClient)
 TPoint
-Image_ParentToClient(TImage AObj, TPoint* Point, TWinControl AParent) {
+Image_ParentToClient(TImage AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Image_ParentToClient)
     TPoint result;
-    MySyscall(pImage_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -17860,19 +17867,19 @@ LinkLabel_BringToFront(TLinkLabel AObj) {
 
 DEFINE_FUNC_PTR(LinkLabel_ClientToScreen)
 TPoint
-LinkLabel_ClientToScreen(TLinkLabel AObj, TPoint* Point) {
+LinkLabel_ClientToScreen(TLinkLabel AObj, TPoint Point) {
     GET_FUNC_ADDR(LinkLabel_ClientToScreen)
     TPoint result;
-    MySyscall(pLinkLabel_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(LinkLabel_ClientToParent)
 TPoint
-LinkLabel_ClientToParent(TLinkLabel AObj, TPoint* Point, TWinControl AParent) {
+LinkLabel_ClientToParent(TLinkLabel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(LinkLabel_ClientToParent)
     TPoint result;
-    MySyscall(pLinkLabel_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -17913,19 +17920,19 @@ LinkLabel_Refresh(TLinkLabel AObj) {
 
 DEFINE_FUNC_PTR(LinkLabel_ScreenToClient)
 TPoint
-LinkLabel_ScreenToClient(TLinkLabel AObj, TPoint* Point) {
+LinkLabel_ScreenToClient(TLinkLabel AObj, TPoint Point) {
     GET_FUNC_ADDR(LinkLabel_ScreenToClient)
     TPoint result;
-    MySyscall(pLinkLabel_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(LinkLabel_ParentToClient)
 TPoint
-LinkLabel_ParentToClient(TLinkLabel AObj, TPoint* Point, TWinControl AParent) {
+LinkLabel_ParentToClient(TLinkLabel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(LinkLabel_ParentToClient)
     TPoint result;
-    MySyscall(pLinkLabel_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -18807,19 +18814,19 @@ SpeedButton_BringToFront(TSpeedButton AObj) {
 
 DEFINE_FUNC_PTR(SpeedButton_ClientToScreen)
 TPoint
-SpeedButton_ClientToScreen(TSpeedButton AObj, TPoint* Point) {
+SpeedButton_ClientToScreen(TSpeedButton AObj, TPoint Point) {
     GET_FUNC_ADDR(SpeedButton_ClientToScreen)
     TPoint result;
-    MySyscall(pSpeedButton_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(SpeedButton_ClientToParent)
 TPoint
-SpeedButton_ClientToParent(TSpeedButton AObj, TPoint* Point, TWinControl AParent) {
+SpeedButton_ClientToParent(TSpeedButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(SpeedButton_ClientToParent)
     TPoint result;
-    MySyscall(pSpeedButton_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -18874,19 +18881,19 @@ SpeedButton_Repaint(TSpeedButton AObj) {
 
 DEFINE_FUNC_PTR(SpeedButton_ScreenToClient)
 TPoint
-SpeedButton_ScreenToClient(TSpeedButton AObj, TPoint* Point) {
+SpeedButton_ScreenToClient(TSpeedButton AObj, TPoint Point) {
     GET_FUNC_ADDR(SpeedButton_ScreenToClient)
     TPoint result;
-    MySyscall(pSpeedButton_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(SpeedButton_ParentToClient)
 TPoint
-SpeedButton_ParentToClient(TSpeedButton AObj, TPoint* Point, TWinControl AParent) {
+SpeedButton_ParentToClient(TSpeedButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(SpeedButton_ParentToClient)
     TPoint result;
-    MySyscall(pSpeedButton_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -19831,19 +19838,19 @@ Splitter_BringToFront(TSplitter AObj) {
 
 DEFINE_FUNC_PTR(Splitter_ClientToScreen)
 TPoint
-Splitter_ClientToScreen(TSplitter AObj, TPoint* Point) {
+Splitter_ClientToScreen(TSplitter AObj, TPoint Point) {
     GET_FUNC_ADDR(Splitter_ClientToScreen)
     TPoint result;
-    MySyscall(pSplitter_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSplitter_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Splitter_ClientToParent)
 TPoint
-Splitter_ClientToParent(TSplitter AObj, TPoint* Point, TWinControl AParent) {
+Splitter_ClientToParent(TSplitter AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Splitter_ClientToParent)
     TPoint result;
-    MySyscall(pSplitter_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSplitter_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -19898,19 +19905,19 @@ Splitter_Repaint(TSplitter AObj) {
 
 DEFINE_FUNC_PTR(Splitter_ScreenToClient)
 TPoint
-Splitter_ScreenToClient(TSplitter AObj, TPoint* Point) {
+Splitter_ScreenToClient(TSplitter AObj, TPoint Point) {
     GET_FUNC_ADDR(Splitter_ScreenToClient)
     TPoint result;
-    MySyscall(pSplitter_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSplitter_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Splitter_ParentToClient)
 TPoint
-Splitter_ParentToClient(TSplitter AObj, TPoint* Point, TWinControl AParent) {
+Splitter_ParentToClient(TSplitter AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Splitter_ParentToClient)
     TPoint result;
-    MySyscall(pSplitter_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSplitter_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -20638,9 +20645,9 @@ RadioGroup_ContainsControl(TRadioGroup AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(RadioGroup_ControlAtPos)
 TControl
-RadioGroup_ControlAtPos(TRadioGroup AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+RadioGroup_ControlAtPos(TRadioGroup AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(RadioGroup_ControlAtPos)
-    return (TControl)MySyscall(pRadioGroup_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pRadioGroup_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_DisableAlign)
@@ -20757,19 +20764,19 @@ RadioGroup_BringToFront(TRadioGroup AObj) {
 
 DEFINE_FUNC_PTR(RadioGroup_ClientToScreen)
 TPoint
-RadioGroup_ClientToScreen(TRadioGroup AObj, TPoint* Point) {
+RadioGroup_ClientToScreen(TRadioGroup AObj, TPoint Point) {
     GET_FUNC_ADDR(RadioGroup_ClientToScreen)
     TPoint result;
-    MySyscall(pRadioGroup_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(RadioGroup_ClientToParent)
 TPoint
-RadioGroup_ClientToParent(TRadioGroup AObj, TPoint* Point, TWinControl AParent) {
+RadioGroup_ClientToParent(TRadioGroup AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(RadioGroup_ClientToParent)
     TPoint result;
-    MySyscall(pRadioGroup_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -20810,19 +20817,19 @@ RadioGroup_Refresh(TRadioGroup AObj) {
 
 DEFINE_FUNC_PTR(RadioGroup_ScreenToClient)
 TPoint
-RadioGroup_ScreenToClient(TRadioGroup AObj, TPoint* Point) {
+RadioGroup_ScreenToClient(TRadioGroup AObj, TPoint Point) {
     GET_FUNC_ADDR(RadioGroup_ScreenToClient)
     TPoint result;
-    MySyscall(pRadioGroup_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(RadioGroup_ParentToClient)
 TPoint
-RadioGroup_ParentToClient(TRadioGroup AObj, TPoint* Point, TWinControl AParent) {
+RadioGroup_ParentToClient(TRadioGroup AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(RadioGroup_ParentToClient)
     TPoint result;
-    MySyscall(pRadioGroup_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -21844,9 +21851,9 @@ StaticText_ContainsControl(TStaticText AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(StaticText_ControlAtPos)
 TControl
-StaticText_ControlAtPos(TStaticText AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+StaticText_ControlAtPos(TStaticText AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(StaticText_ControlAtPos)
-    return (TControl)MySyscall(pStaticText_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pStaticText_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_DisableAlign)
@@ -21970,19 +21977,19 @@ StaticText_BringToFront(TStaticText AObj) {
 
 DEFINE_FUNC_PTR(StaticText_ClientToScreen)
 TPoint
-StaticText_ClientToScreen(TStaticText AObj, TPoint* Point) {
+StaticText_ClientToScreen(TStaticText AObj, TPoint Point) {
     GET_FUNC_ADDR(StaticText_ClientToScreen)
     TPoint result;
-    MySyscall(pStaticText_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StaticText_ClientToParent)
 TPoint
-StaticText_ClientToParent(TStaticText AObj, TPoint* Point, TWinControl AParent) {
+StaticText_ClientToParent(TStaticText AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(StaticText_ClientToParent)
     TPoint result;
-    MySyscall(pStaticText_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -22023,19 +22030,19 @@ StaticText_Refresh(TStaticText AObj) {
 
 DEFINE_FUNC_PTR(StaticText_ScreenToClient)
 TPoint
-StaticText_ScreenToClient(TStaticText AObj, TPoint* Point) {
+StaticText_ScreenToClient(TStaticText AObj, TPoint Point) {
     GET_FUNC_ADDR(StaticText_ScreenToClient)
     TPoint result;
-    MySyscall(pStaticText_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StaticText_ParentToClient)
 TPoint
-StaticText_ParentToClient(TStaticText AObj, TPoint* Point, TWinControl AParent) {
+StaticText_ParentToClient(TStaticText AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(StaticText_ParentToClient)
     TPoint result;
-    MySyscall(pStaticText_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -23190,9 +23197,9 @@ ColorBox_ContainsControl(TColorBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ColorBox_ControlAtPos)
 TControl
-ColorBox_ControlAtPos(TColorBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ColorBox_ControlAtPos(TColorBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ColorBox_ControlAtPos)
-    return (TControl)MySyscall(pColorBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pColorBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_DisableAlign)
@@ -23309,19 +23316,19 @@ ColorBox_BringToFront(TColorBox AObj) {
 
 DEFINE_FUNC_PTR(ColorBox_ClientToScreen)
 TPoint
-ColorBox_ClientToScreen(TColorBox AObj, TPoint* Point) {
+ColorBox_ClientToScreen(TColorBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ColorBox_ClientToScreen)
     TPoint result;
-    MySyscall(pColorBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ColorBox_ClientToParent)
 TPoint
-ColorBox_ClientToParent(TColorBox AObj, TPoint* Point, TWinControl AParent) {
+ColorBox_ClientToParent(TColorBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ColorBox_ClientToParent)
     TPoint result;
-    MySyscall(pColorBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -23362,19 +23369,19 @@ ColorBox_Refresh(TColorBox AObj) {
 
 DEFINE_FUNC_PTR(ColorBox_ScreenToClient)
 TPoint
-ColorBox_ScreenToClient(TColorBox AObj, TPoint* Point) {
+ColorBox_ScreenToClient(TColorBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ColorBox_ScreenToClient)
     TPoint result;
-    MySyscall(pColorBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ColorBox_ParentToClient)
 TPoint
-ColorBox_ParentToClient(TColorBox AObj, TPoint* Point, TWinControl AParent) {
+ColorBox_ParentToClient(TColorBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ColorBox_ParentToClient)
     TPoint result;
-    MySyscall(pColorBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -23908,6 +23915,13 @@ void
 ColorBox_SetOnDragOver(TColorBox AObj, TDragOverEvent AEventId) {
     GET_FUNC_ADDR(ColorBox_SetOnDragOver)
     MySyscall(pColorBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_SetOnDropDown)
+void
+ColorBox_SetOnDropDown(TColorBox AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(ColorBox_SetOnDropDown)
+    MySyscall(pColorBox_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnEndDrag)
@@ -24613,9 +24627,9 @@ ColorListBox_DeleteSelected(TColorListBox AObj) {
 
 DEFINE_FUNC_PTR(ColorListBox_ItemAtPos)
 int32_t
-ColorListBox_ItemAtPos(TColorListBox AObj, TPoint* Pos, BOOL Existing) {
+ColorListBox_ItemAtPos(TColorListBox AObj, TPoint Pos, BOOL Existing) {
     GET_FUNC_ADDR(ColorListBox_ItemAtPos)
-    return (int32_t)MySyscall(pColorListBox_ItemAtPos, 3, AObj, Pos, Existing ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (int32_t)MySyscall(pColorListBox_ItemAtPos, 3, AObj, &Pos, Existing ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_ItemRect)
@@ -24650,9 +24664,9 @@ ColorListBox_ContainsControl(TColorListBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ColorListBox_ControlAtPos)
 TControl
-ColorListBox_ControlAtPos(TColorListBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ColorListBox_ControlAtPos(TColorListBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ColorListBox_ControlAtPos)
-    return (TControl)MySyscall(pColorListBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pColorListBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_DisableAlign)
@@ -24776,19 +24790,19 @@ ColorListBox_BringToFront(TColorListBox AObj) {
 
 DEFINE_FUNC_PTR(ColorListBox_ClientToScreen)
 TPoint
-ColorListBox_ClientToScreen(TColorListBox AObj, TPoint* Point) {
+ColorListBox_ClientToScreen(TColorListBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ColorListBox_ClientToScreen)
     TPoint result;
-    MySyscall(pColorListBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ColorListBox_ClientToParent)
 TPoint
-ColorListBox_ClientToParent(TColorListBox AObj, TPoint* Point, TWinControl AParent) {
+ColorListBox_ClientToParent(TColorListBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ColorListBox_ClientToParent)
     TPoint result;
-    MySyscall(pColorListBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -24829,19 +24843,19 @@ ColorListBox_Refresh(TColorListBox AObj) {
 
 DEFINE_FUNC_PTR(ColorListBox_ScreenToClient)
 TPoint
-ColorListBox_ScreenToClient(TColorListBox AObj, TPoint* Point) {
+ColorListBox_ScreenToClient(TColorListBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ColorListBox_ScreenToClient)
     TPoint result;
-    MySyscall(pColorListBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ColorListBox_ParentToClient)
 TPoint
-ColorListBox_ParentToClient(TColorListBox AObj, TPoint* Point, TWinControl AParent) {
+ColorListBox_ParentToClient(TColorListBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ColorListBox_ParentToClient)
     TPoint result;
-    MySyscall(pColorListBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -28618,9 +28632,9 @@ RichEdit_ContainsControl(TRichEdit AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(RichEdit_ControlAtPos)
 TControl
-RichEdit_ControlAtPos(TRichEdit AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+RichEdit_ControlAtPos(TRichEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(RichEdit_ControlAtPos)
-    return (TControl)MySyscall(pRichEdit_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pRichEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_DisableAlign)
@@ -28744,19 +28758,19 @@ RichEdit_BringToFront(TRichEdit AObj) {
 
 DEFINE_FUNC_PTR(RichEdit_ClientToScreen)
 TPoint
-RichEdit_ClientToScreen(TRichEdit AObj, TPoint* Point) {
+RichEdit_ClientToScreen(TRichEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(RichEdit_ClientToScreen)
     TPoint result;
-    MySyscall(pRichEdit_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(RichEdit_ClientToParent)
 TPoint
-RichEdit_ClientToParent(TRichEdit AObj, TPoint* Point, TWinControl AParent) {
+RichEdit_ClientToParent(TRichEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(RichEdit_ClientToParent)
     TPoint result;
-    MySyscall(pRichEdit_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -28797,19 +28811,19 @@ RichEdit_Refresh(TRichEdit AObj) {
 
 DEFINE_FUNC_PTR(RichEdit_ScreenToClient)
 TPoint
-RichEdit_ScreenToClient(TRichEdit AObj, TPoint* Point) {
+RichEdit_ScreenToClient(TRichEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(RichEdit_ScreenToClient)
     TPoint result;
-    MySyscall(pRichEdit_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(RichEdit_ParentToClient)
 TPoint
-RichEdit_ParentToClient(TRichEdit AObj, TPoint* Point, TWinControl AParent) {
+RichEdit_ParentToClient(TRichEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(RichEdit_ParentToClient)
     TPoint result;
-    MySyscall(pRichEdit_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -30204,9 +30218,9 @@ TrackBar_ContainsControl(TTrackBar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(TrackBar_ControlAtPos)
 TControl
-TrackBar_ControlAtPos(TTrackBar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+TrackBar_ControlAtPos(TTrackBar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(TrackBar_ControlAtPos)
-    return (TControl)MySyscall(pTrackBar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pTrackBar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_DisableAlign)
@@ -30330,19 +30344,19 @@ TrackBar_BringToFront(TTrackBar AObj) {
 
 DEFINE_FUNC_PTR(TrackBar_ClientToScreen)
 TPoint
-TrackBar_ClientToScreen(TTrackBar AObj, TPoint* Point) {
+TrackBar_ClientToScreen(TTrackBar AObj, TPoint Point) {
     GET_FUNC_ADDR(TrackBar_ClientToScreen)
     TPoint result;
-    MySyscall(pTrackBar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(TrackBar_ClientToParent)
 TPoint
-TrackBar_ClientToParent(TTrackBar AObj, TPoint* Point, TWinControl AParent) {
+TrackBar_ClientToParent(TTrackBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(TrackBar_ClientToParent)
     TPoint result;
-    MySyscall(pTrackBar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -30383,19 +30397,19 @@ TrackBar_Refresh(TTrackBar AObj) {
 
 DEFINE_FUNC_PTR(TrackBar_ScreenToClient)
 TPoint
-TrackBar_ScreenToClient(TTrackBar AObj, TPoint* Point) {
+TrackBar_ScreenToClient(TTrackBar AObj, TPoint Point) {
     GET_FUNC_ADDR(TrackBar_ScreenToClient)
     TPoint result;
-    MySyscall(pTrackBar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(TrackBar_ParentToClient)
 TPoint
-TrackBar_ParentToClient(TTrackBar AObj, TPoint* Point, TWinControl AParent) {
+TrackBar_ParentToClient(TTrackBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(TrackBar_ParentToClient)
     TPoint result;
-    MySyscall(pTrackBar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -31981,9 +31995,9 @@ UpDown_ContainsControl(TUpDown AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(UpDown_ControlAtPos)
 TControl
-UpDown_ControlAtPos(TUpDown AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+UpDown_ControlAtPos(TUpDown AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(UpDown_ControlAtPos)
-    return (TControl)MySyscall(pUpDown_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pUpDown_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_DisableAlign)
@@ -32107,19 +32121,19 @@ UpDown_BringToFront(TUpDown AObj) {
 
 DEFINE_FUNC_PTR(UpDown_ClientToScreen)
 TPoint
-UpDown_ClientToScreen(TUpDown AObj, TPoint* Point) {
+UpDown_ClientToScreen(TUpDown AObj, TPoint Point) {
     GET_FUNC_ADDR(UpDown_ClientToScreen)
     TPoint result;
-    MySyscall(pUpDown_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(UpDown_ClientToParent)
 TPoint
-UpDown_ClientToParent(TUpDown AObj, TPoint* Point, TWinControl AParent) {
+UpDown_ClientToParent(TUpDown AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(UpDown_ClientToParent)
     TPoint result;
-    MySyscall(pUpDown_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -32160,19 +32174,19 @@ UpDown_Refresh(TUpDown AObj) {
 
 DEFINE_FUNC_PTR(UpDown_ScreenToClient)
 TPoint
-UpDown_ScreenToClient(TUpDown AObj, TPoint* Point) {
+UpDown_ScreenToClient(TUpDown AObj, TPoint Point) {
     GET_FUNC_ADDR(UpDown_ScreenToClient)
     TPoint result;
-    MySyscall(pUpDown_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(UpDown_ParentToClient)
 TPoint
-UpDown_ParentToClient(TUpDown AObj, TPoint* Point, TWinControl AParent) {
+UpDown_ParentToClient(TUpDown AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(UpDown_ParentToClient)
     TPoint result;
-    MySyscall(pUpDown_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -33180,9 +33194,9 @@ ProgressBar_ContainsControl(TProgressBar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ProgressBar_ControlAtPos)
 TControl
-ProgressBar_ControlAtPos(TProgressBar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ProgressBar_ControlAtPos(TProgressBar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ProgressBar_ControlAtPos)
-    return (TControl)MySyscall(pProgressBar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pProgressBar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_DisableAlign)
@@ -33306,19 +33320,19 @@ ProgressBar_BringToFront(TProgressBar AObj) {
 
 DEFINE_FUNC_PTR(ProgressBar_ClientToScreen)
 TPoint
-ProgressBar_ClientToScreen(TProgressBar AObj, TPoint* Point) {
+ProgressBar_ClientToScreen(TProgressBar AObj, TPoint Point) {
     GET_FUNC_ADDR(ProgressBar_ClientToScreen)
     TPoint result;
-    MySyscall(pProgressBar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ProgressBar_ClientToParent)
 TPoint
-ProgressBar_ClientToParent(TProgressBar AObj, TPoint* Point, TWinControl AParent) {
+ProgressBar_ClientToParent(TProgressBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ProgressBar_ClientToParent)
     TPoint result;
-    MySyscall(pProgressBar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -33359,19 +33373,19 @@ ProgressBar_Refresh(TProgressBar AObj) {
 
 DEFINE_FUNC_PTR(ProgressBar_ScreenToClient)
 TPoint
-ProgressBar_ScreenToClient(TProgressBar AObj, TPoint* Point) {
+ProgressBar_ScreenToClient(TProgressBar AObj, TPoint Point) {
     GET_FUNC_ADDR(ProgressBar_ScreenToClient)
     TPoint result;
-    MySyscall(pProgressBar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ProgressBar_ParentToClient)
 TPoint
-ProgressBar_ParentToClient(TProgressBar AObj, TPoint* Point, TWinControl AParent) {
+ProgressBar_ParentToClient(TProgressBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ProgressBar_ParentToClient)
     TPoint result;
-    MySyscall(pProgressBar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -34442,9 +34456,9 @@ ateTimePicker_ContainsControl(TDateTimePicker AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(DateTimePicker_ControlAtPos)
 TControl
-ateTimePicker_ControlAtPos(TDateTimePicker AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ateTimePicker_ControlAtPos(TDateTimePicker AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(DateTimePicker_ControlAtPos)
-    return (TControl)MySyscall(pDateTimePicker_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pDateTimePicker_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_DisableAlign)
@@ -34568,19 +34582,19 @@ ateTimePicker_BringToFront(TDateTimePicker AObj) {
 
 DEFINE_FUNC_PTR(DateTimePicker_ClientToScreen)
 TPoint
-ateTimePicker_ClientToScreen(TDateTimePicker AObj, TPoint* Point) {
+ateTimePicker_ClientToScreen(TDateTimePicker AObj, TPoint Point) {
     GET_FUNC_ADDR(DateTimePicker_ClientToScreen)
     TPoint result;
-    MySyscall(pDateTimePicker_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_ClientToParent)
 TPoint
-ateTimePicker_ClientToParent(TDateTimePicker AObj, TPoint* Point, TWinControl AParent) {
+ateTimePicker_ClientToParent(TDateTimePicker AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(DateTimePicker_ClientToParent)
     TPoint result;
-    MySyscall(pDateTimePicker_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -34621,19 +34635,19 @@ ateTimePicker_Refresh(TDateTimePicker AObj) {
 
 DEFINE_FUNC_PTR(DateTimePicker_ScreenToClient)
 TPoint
-ateTimePicker_ScreenToClient(TDateTimePicker AObj, TPoint* Point) {
+ateTimePicker_ScreenToClient(TDateTimePicker AObj, TPoint Point) {
     GET_FUNC_ADDR(DateTimePicker_ScreenToClient)
     TPoint result;
-    MySyscall(pDateTimePicker_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_ParentToClient)
 TPoint
-ateTimePicker_ParentToClient(TDateTimePicker AObj, TPoint* Point, TWinControl AParent) {
+ateTimePicker_ParentToClient(TDateTimePicker AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(DateTimePicker_ParentToClient)
     TPoint result;
-    MySyscall(pDateTimePicker_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -35160,6 +35174,13 @@ void
 ateTimePicker_SetOnContextPopup(TDateTimePicker AObj, TContextPopupEvent AEventId) {
     GET_FUNC_ADDR(DateTimePicker_SetOnContextPopup)
     MySyscall(pDateTimePicker_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetOnDropDown)
+void
+ateTimePicker_SetOnDropDown(TDateTimePicker AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(DateTimePicker_SetOnDropDown)
+    MySyscall(pDateTimePicker_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnEnter)
@@ -35718,9 +35739,9 @@ MonthCalendar_ContainsControl(TMonthCalendar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(MonthCalendar_ControlAtPos)
 TControl
-MonthCalendar_ControlAtPos(TMonthCalendar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+MonthCalendar_ControlAtPos(TMonthCalendar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(MonthCalendar_ControlAtPos)
-    return (TControl)MySyscall(pMonthCalendar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pMonthCalendar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_DisableAlign)
@@ -35844,19 +35865,19 @@ MonthCalendar_BringToFront(TMonthCalendar AObj) {
 
 DEFINE_FUNC_PTR(MonthCalendar_ClientToScreen)
 TPoint
-MonthCalendar_ClientToScreen(TMonthCalendar AObj, TPoint* Point) {
+MonthCalendar_ClientToScreen(TMonthCalendar AObj, TPoint Point) {
     GET_FUNC_ADDR(MonthCalendar_ClientToScreen)
     TPoint result;
-    MySyscall(pMonthCalendar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_ClientToParent)
 TPoint
-MonthCalendar_ClientToParent(TMonthCalendar AObj, TPoint* Point, TWinControl AParent) {
+MonthCalendar_ClientToParent(TMonthCalendar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(MonthCalendar_ClientToParent)
     TPoint result;
-    MySyscall(pMonthCalendar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -35897,19 +35918,19 @@ MonthCalendar_Refresh(TMonthCalendar AObj) {
 
 DEFINE_FUNC_PTR(MonthCalendar_ScreenToClient)
 TPoint
-MonthCalendar_ScreenToClient(TMonthCalendar AObj, TPoint* Point) {
+MonthCalendar_ScreenToClient(TMonthCalendar AObj, TPoint Point) {
     GET_FUNC_ADDR(MonthCalendar_ScreenToClient)
     TPoint result;
-    MySyscall(pMonthCalendar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_ParentToClient)
 TPoint
-MonthCalendar_ParentToClient(TMonthCalendar AObj, TPoint* Point, TWinControl AParent) {
+MonthCalendar_ParentToClient(TMonthCalendar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(MonthCalendar_ParentToClient)
     TPoint result;
-    MySyscall(pMonthCalendar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -36994,9 +37015,9 @@ ListView_ContainsControl(TListView AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ListView_ControlAtPos)
 TControl
-ListView_ControlAtPos(TListView AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ListView_ControlAtPos(TListView AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ListView_ControlAtPos)
-    return (TControl)MySyscall(pListView_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pListView_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_DisableAlign)
@@ -37120,19 +37141,19 @@ ListView_BringToFront(TListView AObj) {
 
 DEFINE_FUNC_PTR(ListView_ClientToScreen)
 TPoint
-ListView_ClientToScreen(TListView AObj, TPoint* Point) {
+ListView_ClientToScreen(TListView AObj, TPoint Point) {
     GET_FUNC_ADDR(ListView_ClientToScreen)
     TPoint result;
-    MySyscall(pListView_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ListView_ClientToParent)
 TPoint
-ListView_ClientToParent(TListView AObj, TPoint* Point, TWinControl AParent) {
+ListView_ClientToParent(TListView AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ListView_ClientToParent)
     TPoint result;
-    MySyscall(pListView_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -37173,19 +37194,19 @@ ListView_Refresh(TListView AObj) {
 
 DEFINE_FUNC_PTR(ListView_ScreenToClient)
 TPoint
-ListView_ScreenToClient(TListView AObj, TPoint* Point) {
+ListView_ScreenToClient(TListView AObj, TPoint Point) {
     GET_FUNC_ADDR(ListView_ScreenToClient)
     TPoint result;
-    MySyscall(pListView_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ListView_ParentToClient)
 TPoint
-ListView_ParentToClient(TListView AObj, TPoint* Point, TWinControl AParent) {
+ListView_ParentToClient(TListView AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ListView_ParentToClient)
     TPoint result;
-    MySyscall(pListView_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -39026,9 +39047,9 @@ TreeView_ContainsControl(TTreeView AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(TreeView_ControlAtPos)
 TControl
-TreeView_ControlAtPos(TTreeView AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+TreeView_ControlAtPos(TTreeView AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(TreeView_ControlAtPos)
-    return (TControl)MySyscall(pTreeView_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pTreeView_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_DisableAlign)
@@ -39152,19 +39173,19 @@ TreeView_BringToFront(TTreeView AObj) {
 
 DEFINE_FUNC_PTR(TreeView_ClientToScreen)
 TPoint
-TreeView_ClientToScreen(TTreeView AObj, TPoint* Point) {
+TreeView_ClientToScreen(TTreeView AObj, TPoint Point) {
     GET_FUNC_ADDR(TreeView_ClientToScreen)
     TPoint result;
-    MySyscall(pTreeView_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(TreeView_ClientToParent)
 TPoint
-TreeView_ClientToParent(TTreeView AObj, TPoint* Point, TWinControl AParent) {
+TreeView_ClientToParent(TTreeView AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(TreeView_ClientToParent)
     TPoint result;
-    MySyscall(pTreeView_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -39205,19 +39226,19 @@ TreeView_Refresh(TTreeView AObj) {
 
 DEFINE_FUNC_PTR(TreeView_ScreenToClient)
 TPoint
-TreeView_ScreenToClient(TTreeView AObj, TPoint* Point) {
+TreeView_ScreenToClient(TTreeView AObj, TPoint Point) {
     GET_FUNC_ADDR(TreeView_ScreenToClient)
     TPoint result;
-    MySyscall(pTreeView_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(TreeView_ParentToClient)
 TPoint
-TreeView_ParentToClient(TTreeView AObj, TPoint* Point, TWinControl AParent) {
+TreeView_ParentToClient(TTreeView AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(TreeView_ParentToClient)
     TPoint result;
-    MySyscall(pTreeView_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -40932,9 +40953,9 @@ StatusBar_ContainsControl(TStatusBar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(StatusBar_ControlAtPos)
 TControl
-StatusBar_ControlAtPos(TStatusBar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+StatusBar_ControlAtPos(TStatusBar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(StatusBar_ControlAtPos)
-    return (TControl)MySyscall(pStatusBar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pStatusBar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_DisableAlign)
@@ -41044,19 +41065,19 @@ StatusBar_BringToFront(TStatusBar AObj) {
 
 DEFINE_FUNC_PTR(StatusBar_ClientToScreen)
 TPoint
-StatusBar_ClientToScreen(TStatusBar AObj, TPoint* Point) {
+StatusBar_ClientToScreen(TStatusBar AObj, TPoint Point) {
     GET_FUNC_ADDR(StatusBar_ClientToScreen)
     TPoint result;
-    MySyscall(pStatusBar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StatusBar_ClientToParent)
 TPoint
-StatusBar_ClientToParent(TStatusBar AObj, TPoint* Point, TWinControl AParent) {
+StatusBar_ClientToParent(TStatusBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(StatusBar_ClientToParent)
     TPoint result;
-    MySyscall(pStatusBar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -41097,19 +41118,19 @@ StatusBar_Refresh(TStatusBar AObj) {
 
 DEFINE_FUNC_PTR(StatusBar_ScreenToClient)
 TPoint
-StatusBar_ScreenToClient(TStatusBar AObj, TPoint* Point) {
+StatusBar_ScreenToClient(TStatusBar AObj, TPoint Point) {
     GET_FUNC_ADDR(StatusBar_ScreenToClient)
     TPoint result;
-    MySyscall(pStatusBar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StatusBar_ParentToClient)
 TPoint
-StatusBar_ParentToClient(TStatusBar AObj, TPoint* Point, TWinControl AParent) {
+StatusBar_ParentToClient(TStatusBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(StatusBar_ParentToClient)
     TPoint result;
-    MySyscall(pStatusBar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -42264,9 +42285,9 @@ ToolBar_ContainsControl(TToolBar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ToolBar_ControlAtPos)
 TControl
-ToolBar_ControlAtPos(TToolBar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ToolBar_ControlAtPos(TToolBar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ToolBar_ControlAtPos)
-    return (TControl)MySyscall(pToolBar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pToolBar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_DisableAlign)
@@ -42383,19 +42404,19 @@ ToolBar_BringToFront(TToolBar AObj) {
 
 DEFINE_FUNC_PTR(ToolBar_ClientToScreen)
 TPoint
-ToolBar_ClientToScreen(TToolBar AObj, TPoint* Point) {
+ToolBar_ClientToScreen(TToolBar AObj, TPoint Point) {
     GET_FUNC_ADDR(ToolBar_ClientToScreen)
     TPoint result;
-    MySyscall(pToolBar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ToolBar_ClientToParent)
 TPoint
-ToolBar_ClientToParent(TToolBar AObj, TPoint* Point, TWinControl AParent) {
+ToolBar_ClientToParent(TToolBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ToolBar_ClientToParent)
     TPoint result;
-    MySyscall(pToolBar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -42436,19 +42457,19 @@ ToolBar_Refresh(TToolBar AObj) {
 
 DEFINE_FUNC_PTR(ToolBar_ScreenToClient)
 TPoint
-ToolBar_ScreenToClient(TToolBar AObj, TPoint* Point) {
+ToolBar_ScreenToClient(TToolBar AObj, TPoint Point) {
     GET_FUNC_ADDR(ToolBar_ScreenToClient)
     TPoint result;
-    MySyscall(pToolBar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ToolBar_ParentToClient)
 TPoint
-ToolBar_ParentToClient(TToolBar AObj, TPoint* Point, TWinControl AParent) {
+ToolBar_ParentToClient(TToolBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ToolBar_ParentToClient)
     TPoint result;
-    MySyscall(pToolBar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -43757,9 +43778,9 @@ BitBtn_ContainsControl(TBitBtn AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(BitBtn_ControlAtPos)
 TControl
-BitBtn_ControlAtPos(TBitBtn AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+BitBtn_ControlAtPos(TBitBtn AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(BitBtn_ControlAtPos)
-    return (TControl)MySyscall(pBitBtn_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pBitBtn_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_DisableAlign)
@@ -43883,19 +43904,19 @@ BitBtn_BringToFront(TBitBtn AObj) {
 
 DEFINE_FUNC_PTR(BitBtn_ClientToScreen)
 TPoint
-BitBtn_ClientToScreen(TBitBtn AObj, TPoint* Point) {
+BitBtn_ClientToScreen(TBitBtn AObj, TPoint Point) {
     GET_FUNC_ADDR(BitBtn_ClientToScreen)
     TPoint result;
-    MySyscall(pBitBtn_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(BitBtn_ClientToParent)
 TPoint
-BitBtn_ClientToParent(TBitBtn AObj, TPoint* Point, TWinControl AParent) {
+BitBtn_ClientToParent(TBitBtn AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(BitBtn_ClientToParent)
     TPoint result;
-    MySyscall(pBitBtn_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -43936,19 +43957,19 @@ BitBtn_Refresh(TBitBtn AObj) {
 
 DEFINE_FUNC_PTR(BitBtn_ScreenToClient)
 TPoint
-BitBtn_ScreenToClient(TBitBtn AObj, TPoint* Point) {
+BitBtn_ScreenToClient(TBitBtn AObj, TPoint Point) {
     GET_FUNC_ADDR(BitBtn_ScreenToClient)
     TPoint result;
-    MySyscall(pBitBtn_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(BitBtn_ParentToClient)
 TPoint
-BitBtn_ParentToClient(TBitBtn AObj, TPoint* Point, TWinControl AParent) {
+BitBtn_ParentToClient(TBitBtn AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(BitBtn_ParentToClient)
     TPoint result;
-    MySyscall(pBitBtn_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -45695,10 +45716,10 @@ MemoryStream_LoadFromFile(TMemoryStream AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(MemoryStream_Seek)
 int64_t
-MemoryStream_Seek(TMemoryStream AObj, int64_t* Offset, TSeekOrigin Origin) {
+MemoryStream_Seek(TMemoryStream AObj, int64_t Offset, TSeekOrigin Origin) {
     GET_FUNC_ADDR(MemoryStream_Seek)
     int64_t result;
-    MySyscall(pMemoryStream_Seek, 4, AObj, Offset, Origin, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemoryStream_Seek, 4, AObj, &Offset, Origin, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -45718,10 +45739,10 @@ MemoryStream_SaveToFile(TMemoryStream AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(MemoryStream_CopyFrom)
 int64_t
-MemoryStream_CopyFrom(TMemoryStream AObj, TObject Source, int64_t* Count) {
+MemoryStream_CopyFrom(TMemoryStream AObj, TObject Source, int64_t Count) {
     GET_FUNC_ADDR(MemoryStream_CopyFrom)
     int64_t result;
-    MySyscall(pMemoryStream_CopyFrom, 4, AObj, Source, Count, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemoryStream_CopyFrom, 4, AObj, Source, &Count, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -49050,9 +49071,9 @@ PageControl_ContainsControl(TPageControl AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(PageControl_ControlAtPos)
 TControl
-PageControl_ControlAtPos(TPageControl AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+PageControl_ControlAtPos(TPageControl AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(PageControl_ControlAtPos)
-    return (TControl)MySyscall(pPageControl_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pPageControl_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_DisableAlign)
@@ -49176,19 +49197,19 @@ PageControl_BringToFront(TPageControl AObj) {
 
 DEFINE_FUNC_PTR(PageControl_ClientToScreen)
 TPoint
-PageControl_ClientToScreen(TPageControl AObj, TPoint* Point) {
+PageControl_ClientToScreen(TPageControl AObj, TPoint Point) {
     GET_FUNC_ADDR(PageControl_ClientToScreen)
     TPoint result;
-    MySyscall(pPageControl_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(PageControl_ClientToParent)
 TPoint
-PageControl_ClientToParent(TPageControl AObj, TPoint* Point, TWinControl AParent) {
+PageControl_ClientToParent(TPageControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(PageControl_ClientToParent)
     TPoint result;
-    MySyscall(pPageControl_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -49229,19 +49250,19 @@ PageControl_Refresh(TPageControl AObj) {
 
 DEFINE_FUNC_PTR(PageControl_ScreenToClient)
 TPoint
-PageControl_ScreenToClient(TPageControl AObj, TPoint* Point) {
+PageControl_ScreenToClient(TPageControl AObj, TPoint Point) {
     GET_FUNC_ADDR(PageControl_ScreenToClient)
     TPoint result;
-    MySyscall(pPageControl_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(PageControl_ParentToClient)
 TPoint
-PageControl_ParentToClient(TPageControl AObj, TPoint* Point, TWinControl AParent) {
+PageControl_ParentToClient(TPageControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(PageControl_ParentToClient)
     TPoint result;
-    MySyscall(pPageControl_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -50410,9 +50431,9 @@ TabSheet_ContainsControl(TTabSheet AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(TabSheet_ControlAtPos)
 TControl
-TabSheet_ControlAtPos(TTabSheet AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+TabSheet_ControlAtPos(TTabSheet AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(TabSheet_ControlAtPos)
-    return (TControl)MySyscall(pTabSheet_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pTabSheet_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_DisableAlign)
@@ -50536,19 +50557,19 @@ TabSheet_BringToFront(TTabSheet AObj) {
 
 DEFINE_FUNC_PTR(TabSheet_ClientToScreen)
 TPoint
-TabSheet_ClientToScreen(TTabSheet AObj, TPoint* Point) {
+TabSheet_ClientToScreen(TTabSheet AObj, TPoint Point) {
     GET_FUNC_ADDR(TabSheet_ClientToScreen)
     TPoint result;
-    MySyscall(pTabSheet_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(TabSheet_ClientToParent)
 TPoint
-TabSheet_ClientToParent(TTabSheet AObj, TPoint* Point, TWinControl AParent) {
+TabSheet_ClientToParent(TTabSheet AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(TabSheet_ClientToParent)
     TPoint result;
-    MySyscall(pTabSheet_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -50589,19 +50610,19 @@ TabSheet_Refresh(TTabSheet AObj) {
 
 DEFINE_FUNC_PTR(TabSheet_ScreenToClient)
 TPoint
-TabSheet_ScreenToClient(TTabSheet AObj, TPoint* Point) {
+TabSheet_ScreenToClient(TTabSheet AObj, TPoint Point) {
     GET_FUNC_ADDR(TabSheet_ScreenToClient)
     TPoint result;
-    MySyscall(pTabSheet_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(TabSheet_ParentToClient)
 TPoint
-TabSheet_ParentToClient(TTabSheet AObj, TPoint* Point, TWinControl AParent) {
+TabSheet_ParentToClient(TTabSheet AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(TabSheet_ParentToClient)
     TPoint result;
-    MySyscall(pTabSheet_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -51665,9 +51686,9 @@ Button_ContainsControl(TButton AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(Button_ControlAtPos)
 TControl
-Button_ControlAtPos(TButton AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+Button_ControlAtPos(TButton AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(Button_ControlAtPos)
-    return (TControl)MySyscall(pButton_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pButton_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_DisableAlign)
@@ -51791,19 +51812,19 @@ Button_BringToFront(TButton AObj) {
 
 DEFINE_FUNC_PTR(Button_ClientToScreen)
 TPoint
-Button_ClientToScreen(TButton AObj, TPoint* Point) {
+Button_ClientToScreen(TButton AObj, TPoint Point) {
     GET_FUNC_ADDR(Button_ClientToScreen)
     TPoint result;
-    MySyscall(pButton_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Button_ClientToParent)
 TPoint
-Button_ClientToParent(TButton AObj, TPoint* Point, TWinControl AParent) {
+Button_ClientToParent(TButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Button_ClientToParent)
     TPoint result;
-    MySyscall(pButton_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -51844,19 +51865,19 @@ Button_Refresh(TButton AObj) {
 
 DEFINE_FUNC_PTR(Button_ScreenToClient)
 TPoint
-Button_ScreenToClient(TButton AObj, TPoint* Point) {
+Button_ScreenToClient(TButton AObj, TPoint Point) {
     GET_FUNC_ADDR(Button_ScreenToClient)
     TPoint result;
-    MySyscall(pButton_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Button_ParentToClient)
 TPoint
-Button_ParentToClient(TButton AObj, TPoint* Point, TWinControl AParent) {
+Button_ParentToClient(TButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Button_ParentToClient)
     TPoint result;
-    MySyscall(pButton_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -52976,9 +52997,9 @@ Edit_ContainsControl(TEdit AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(Edit_ControlAtPos)
 TControl
-Edit_ControlAtPos(TEdit AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+Edit_ControlAtPos(TEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(Edit_ControlAtPos)
-    return (TControl)MySyscall(pEdit_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_DisableAlign)
@@ -53102,19 +53123,19 @@ Edit_BringToFront(TEdit AObj) {
 
 DEFINE_FUNC_PTR(Edit_ClientToScreen)
 TPoint
-Edit_ClientToScreen(TEdit AObj, TPoint* Point) {
+Edit_ClientToScreen(TEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(Edit_ClientToScreen)
     TPoint result;
-    MySyscall(pEdit_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Edit_ClientToParent)
 TPoint
-Edit_ClientToParent(TEdit AObj, TPoint* Point, TWinControl AParent) {
+Edit_ClientToParent(TEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Edit_ClientToParent)
     TPoint result;
-    MySyscall(pEdit_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -53155,19 +53176,19 @@ Edit_Refresh(TEdit AObj) {
 
 DEFINE_FUNC_PTR(Edit_ScreenToClient)
 TPoint
-Edit_ScreenToClient(TEdit AObj, TPoint* Point) {
+Edit_ScreenToClient(TEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(Edit_ScreenToClient)
     TPoint result;
-    MySyscall(pEdit_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Edit_ParentToClient)
 TPoint
-Edit_ParentToClient(TEdit AObj, TPoint* Point, TWinControl AParent) {
+Edit_ParentToClient(TEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Edit_ParentToClient)
     TPoint result;
-    MySyscall(pEdit_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -55733,9 +55754,9 @@ SpinEdit_ContainsControl(TSpinEdit AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(SpinEdit_ControlAtPos)
 TControl
-SpinEdit_ControlAtPos(TSpinEdit AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+SpinEdit_ControlAtPos(TSpinEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(SpinEdit_ControlAtPos)
-    return (TControl)MySyscall(pSpinEdit_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pSpinEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_DisableAlign)
@@ -55859,19 +55880,19 @@ SpinEdit_BringToFront(TSpinEdit AObj) {
 
 DEFINE_FUNC_PTR(SpinEdit_ClientToScreen)
 TPoint
-SpinEdit_ClientToScreen(TSpinEdit AObj, TPoint* Point) {
+SpinEdit_ClientToScreen(TSpinEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(SpinEdit_ClientToScreen)
     TPoint result;
-    MySyscall(pSpinEdit_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(SpinEdit_ClientToParent)
 TPoint
-SpinEdit_ClientToParent(TSpinEdit AObj, TPoint* Point, TWinControl AParent) {
+SpinEdit_ClientToParent(TSpinEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(SpinEdit_ClientToParent)
     TPoint result;
-    MySyscall(pSpinEdit_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -55912,19 +55933,19 @@ SpinEdit_Refresh(TSpinEdit AObj) {
 
 DEFINE_FUNC_PTR(SpinEdit_ScreenToClient)
 TPoint
-SpinEdit_ScreenToClient(TSpinEdit AObj, TPoint* Point) {
+SpinEdit_ScreenToClient(TSpinEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(SpinEdit_ScreenToClient)
     TPoint result;
-    MySyscall(pSpinEdit_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(SpinEdit_ParentToClient)
 TPoint
-SpinEdit_ParentToClient(TSpinEdit AObj, TPoint* Point, TWinControl AParent) {
+SpinEdit_ParentToClient(TSpinEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(SpinEdit_ParentToClient)
     TPoint result;
-    MySyscall(pSpinEdit_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -57184,9 +57205,9 @@ MiniWebview_ContainsControl(TMiniWebview AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(MiniWebview_ControlAtPos)
 TControl
-MiniWebview_ControlAtPos(TMiniWebview AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+MiniWebview_ControlAtPos(TMiniWebview AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(MiniWebview_ControlAtPos)
-    return (TControl)MySyscall(pMiniWebview_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pMiniWebview_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MiniWebview_DisableAlign)
@@ -57303,19 +57324,19 @@ MiniWebview_BringToFront(TMiniWebview AObj) {
 
 DEFINE_FUNC_PTR(MiniWebview_ClientToScreen)
 TPoint
-MiniWebview_ClientToScreen(TMiniWebview AObj, TPoint* Point) {
+MiniWebview_ClientToScreen(TMiniWebview AObj, TPoint Point) {
     GET_FUNC_ADDR(MiniWebview_ClientToScreen)
     TPoint result;
-    MySyscall(pMiniWebview_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(MiniWebview_ClientToParent)
 TPoint
-MiniWebview_ClientToParent(TMiniWebview AObj, TPoint* Point, TWinControl AParent) {
+MiniWebview_ClientToParent(TMiniWebview AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(MiniWebview_ClientToParent)
     TPoint result;
-    MySyscall(pMiniWebview_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -57349,19 +57370,19 @@ MiniWebview_Perform(TMiniWebview AObj, uint32_t Msg, uintptr_t WParam, intptr_t 
 
 DEFINE_FUNC_PTR(MiniWebview_ScreenToClient)
 TPoint
-MiniWebview_ScreenToClient(TMiniWebview AObj, TPoint* Point) {
+MiniWebview_ScreenToClient(TMiniWebview AObj, TPoint Point) {
     GET_FUNC_ADDR(MiniWebview_ScreenToClient)
     TPoint result;
-    MySyscall(pMiniWebview_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(MiniWebview_ParentToClient)
 TPoint
-MiniWebview_ParentToClient(TMiniWebview AObj, TPoint* Point, TWinControl AParent) {
+MiniWebview_ParentToClient(TMiniWebview AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(MiniWebview_ParentToClient)
     TPoint result;
-    MySyscall(pMiniWebview_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -58194,9 +58215,9 @@ Canvas_ArcTo(TCanvas AObj, int32_t X1, int32_t Y1, int32_t X2, int32_t Y2, int32
 
 DEFINE_FUNC_PTR(Canvas_AngleArc)
 void
-Canvas_AngleArc(TCanvas AObj, int32_t X, int32_t Y, uint32_t Radius, float* StartAngle, float* SweepAngle) {
+Canvas_AngleArc(TCanvas AObj, int32_t X, int32_t Y, uint32_t Radius, float StartAngle, float SweepAngle) {
     GET_FUNC_ADDR(Canvas_AngleArc)
-    MySyscall(pCanvas_AngleArc, 6, AObj, X, Y, Radius, StartAngle, SweepAngle ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCanvas_AngleArc, 6, AObj, X, Y, Radius, &StartAngle, &SweepAngle ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Canvas_Chord)
@@ -58583,9 +58604,9 @@ Application_Free(TApplication AObj) {
 
 DEFINE_FUNC_PTR(Application_ActivateHint)
 void
-Application_ActivateHint(TApplication AObj, TPoint* CursorPos) {
+Application_ActivateHint(TApplication AObj, TPoint CursorPos) {
     GET_FUNC_ADDR(Application_ActivateHint)
-    MySyscall(pApplication_ActivateHint, 2, AObj, CursorPos ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_ActivateHint, 2, AObj, &CursorPos ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_BringToFront)
@@ -60655,19 +60676,19 @@ ToolButton_BringToFront(TToolButton AObj) {
 
 DEFINE_FUNC_PTR(ToolButton_ClientToScreen)
 TPoint
-ToolButton_ClientToScreen(TToolButton AObj, TPoint* Point) {
+ToolButton_ClientToScreen(TToolButton AObj, TPoint Point) {
     GET_FUNC_ADDR(ToolButton_ClientToScreen)
     TPoint result;
-    MySyscall(pToolButton_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ToolButton_ClientToParent)
 TPoint
-ToolButton_ClientToParent(TToolButton AObj, TPoint* Point, TWinControl AParent) {
+ToolButton_ClientToParent(TToolButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ToolButton_ClientToParent)
     TPoint result;
-    MySyscall(pToolButton_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -60722,19 +60743,19 @@ ToolButton_Repaint(TToolButton AObj) {
 
 DEFINE_FUNC_PTR(ToolButton_ScreenToClient)
 TPoint
-ToolButton_ScreenToClient(TToolButton AObj, TPoint* Point) {
+ToolButton_ScreenToClient(TToolButton AObj, TPoint Point) {
     GET_FUNC_ADDR(ToolButton_ScreenToClient)
     TPoint result;
-    MySyscall(pToolButton_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ToolButton_ParentToClient)
 TPoint
-ToolButton_ParentToClient(TToolButton AObj, TPoint* Point, TWinControl AParent) {
+ToolButton_ParentToClient(TToolButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ToolButton_ParentToClient)
     TPoint result;
-    MySyscall(pToolButton_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -61777,10 +61798,10 @@ IniFile_ReadDateTime(TIniFile AObj, CChar char* Section, CChar char* Name, uint3
 
 DEFINE_FUNC_PTR(IniFile_ReadFloat)
 double
-IniFile_ReadFloat(TIniFile AObj, CChar char* Section, CChar char* Name, double* Default) {
+IniFile_ReadFloat(TIniFile AObj, CChar char* Section, CChar char* Name, double Default) {
     GET_FUNC_ADDR(IniFile_ReadFloat)
     double result;
-    MySyscall(pIniFile_ReadFloat, 5, AObj, Section, Name, Default, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pIniFile_ReadFloat, 5, AObj, Section, Name, &Default, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -61807,9 +61828,9 @@ IniFile_WriteDateTime(TIniFile AObj, CChar char* Section, CChar char* Name, uint
 
 DEFINE_FUNC_PTR(IniFile_WriteFloat)
 void
-IniFile_WriteFloat(TIniFile AObj, CChar char* Section, CChar char* Name, double* Value) {
+IniFile_WriteFloat(TIniFile AObj, CChar char* Section, CChar char* Name, double Value) {
     GET_FUNC_ADDR(IniFile_WriteFloat)
-    MySyscall(pIniFile_WriteFloat, 4, AObj, Section, Name, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pIniFile_WriteFloat, 4, AObj, Section, Name, &Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(IniFile_WriteTime)
@@ -62098,9 +62119,9 @@ Registry_WriteDateTime(TRegistry AObj, CChar char* Name, uint32_t Value) {
 
 DEFINE_FUNC_PTR(Registry_WriteFloat)
 void
-Registry_WriteFloat(TRegistry AObj, CChar char* Name, double* Value) {
+Registry_WriteFloat(TRegistry AObj, CChar char* Name, double Value) {
     GET_FUNC_ADDR(Registry_WriteFloat)
-    MySyscall(pRegistry_WriteFloat, 3, AObj, Name, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRegistry_WriteFloat, 3, AObj, Name, &Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Registry_WriteInteger)
@@ -62591,19 +62612,19 @@ PaintBox_BringToFront(TPaintBox AObj) {
 
 DEFINE_FUNC_PTR(PaintBox_ClientToScreen)
 TPoint
-PaintBox_ClientToScreen(TPaintBox AObj, TPoint* Point) {
+PaintBox_ClientToScreen(TPaintBox AObj, TPoint Point) {
     GET_FUNC_ADDR(PaintBox_ClientToScreen)
     TPoint result;
-    MySyscall(pPaintBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(PaintBox_ClientToParent)
 TPoint
-PaintBox_ClientToParent(TPaintBox AObj, TPoint* Point, TWinControl AParent) {
+PaintBox_ClientToParent(TPaintBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(PaintBox_ClientToParent)
     TPoint result;
-    MySyscall(pPaintBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -62658,19 +62679,19 @@ PaintBox_Repaint(TPaintBox AObj) {
 
 DEFINE_FUNC_PTR(PaintBox_ScreenToClient)
 TPoint
-PaintBox_ScreenToClient(TPaintBox AObj, TPoint* Point) {
+PaintBox_ScreenToClient(TPaintBox AObj, TPoint Point) {
     GET_FUNC_ADDR(PaintBox_ScreenToClient)
     TPoint result;
-    MySyscall(pPaintBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(PaintBox_ParentToClient)
 TPoint
-PaintBox_ParentToClient(TPaintBox AObj, TPoint* Point, TWinControl AParent) {
+PaintBox_ParentToClient(TPaintBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(PaintBox_ParentToClient)
     TPoint result;
-    MySyscall(pPaintBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -63934,9 +63955,9 @@ Form_ContainsControl(TForm AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(Form_ControlAtPos)
 TControl
-Form_ControlAtPos(TForm AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+Form_ControlAtPos(TForm AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(Form_ControlAtPos)
-    return (TControl)MySyscall(pForm_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pForm_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_DisableAlign)
@@ -64053,19 +64074,19 @@ Form_BringToFront(TForm AObj) {
 
 DEFINE_FUNC_PTR(Form_ClientToScreen)
 TPoint
-Form_ClientToScreen(TForm AObj, TPoint* Point) {
+Form_ClientToScreen(TForm AObj, TPoint Point) {
     GET_FUNC_ADDR(Form_ClientToScreen)
     TPoint result;
-    MySyscall(pForm_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Form_ClientToParent)
 TPoint
-Form_ClientToParent(TForm AObj, TPoint* Point, TWinControl AParent) {
+Form_ClientToParent(TForm AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Form_ClientToParent)
     TPoint result;
-    MySyscall(pForm_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -64099,19 +64120,19 @@ Form_Refresh(TForm AObj) {
 
 DEFINE_FUNC_PTR(Form_ScreenToClient)
 TPoint
-Form_ScreenToClient(TForm AObj, TPoint* Point) {
+Form_ScreenToClient(TForm AObj, TPoint Point) {
     GET_FUNC_ADDR(Form_ScreenToClient)
     TPoint result;
-    MySyscall(pForm_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Form_ParentToClient)
 TPoint
-Form_ParentToClient(TForm AObj, TPoint* Point, TWinControl AParent) {
+Form_ParentToClient(TForm AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Form_ParentToClient)
     TPoint result;
-    MySyscall(pForm_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -66163,9 +66184,9 @@ ScrollBar_ContainsControl(TScrollBar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ScrollBar_ControlAtPos)
 TControl
-ScrollBar_ControlAtPos(TScrollBar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ScrollBar_ControlAtPos(TScrollBar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ScrollBar_ControlAtPos)
-    return (TControl)MySyscall(pScrollBar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pScrollBar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_DisableAlign)
@@ -66289,19 +66310,19 @@ ScrollBar_BringToFront(TScrollBar AObj) {
 
 DEFINE_FUNC_PTR(ScrollBar_ClientToScreen)
 TPoint
-ScrollBar_ClientToScreen(TScrollBar AObj, TPoint* Point) {
+ScrollBar_ClientToScreen(TScrollBar AObj, TPoint Point) {
     GET_FUNC_ADDR(ScrollBar_ClientToScreen)
     TPoint result;
-    MySyscall(pScrollBar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ScrollBar_ClientToParent)
 TPoint
-ScrollBar_ClientToParent(TScrollBar AObj, TPoint* Point, TWinControl AParent) {
+ScrollBar_ClientToParent(TScrollBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ScrollBar_ClientToParent)
     TPoint result;
-    MySyscall(pScrollBar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -66342,19 +66363,19 @@ ScrollBar_Refresh(TScrollBar AObj) {
 
 DEFINE_FUNC_PTR(ScrollBar_ScreenToClient)
 TPoint
-ScrollBar_ScreenToClient(TScrollBar AObj, TPoint* Point) {
+ScrollBar_ScreenToClient(TScrollBar AObj, TPoint Point) {
     GET_FUNC_ADDR(ScrollBar_ScreenToClient)
     TPoint result;
-    MySyscall(pScrollBar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ScrollBar_ParentToClient)
 TPoint
-ScrollBar_ParentToClient(TScrollBar AObj, TPoint* Point, TWinControl AParent) {
+ScrollBar_ParentToClient(TScrollBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ScrollBar_ParentToClient)
     TPoint result;
-    MySyscall(pScrollBar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -67453,9 +67474,9 @@ MaskEdit_ContainsControl(TMaskEdit AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(MaskEdit_ControlAtPos)
 TControl
-MaskEdit_ControlAtPos(TMaskEdit AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+MaskEdit_ControlAtPos(TMaskEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(MaskEdit_ControlAtPos)
-    return (TControl)MySyscall(pMaskEdit_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pMaskEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_DisableAlign)
@@ -67579,19 +67600,19 @@ MaskEdit_BringToFront(TMaskEdit AObj) {
 
 DEFINE_FUNC_PTR(MaskEdit_ClientToScreen)
 TPoint
-MaskEdit_ClientToScreen(TMaskEdit AObj, TPoint* Point) {
+MaskEdit_ClientToScreen(TMaskEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(MaskEdit_ClientToScreen)
     TPoint result;
-    MySyscall(pMaskEdit_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(MaskEdit_ClientToParent)
 TPoint
-MaskEdit_ClientToParent(TMaskEdit AObj, TPoint* Point, TWinControl AParent) {
+MaskEdit_ClientToParent(TMaskEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(MaskEdit_ClientToParent)
     TPoint result;
-    MySyscall(pMaskEdit_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -67632,19 +67653,19 @@ MaskEdit_Refresh(TMaskEdit AObj) {
 
 DEFINE_FUNC_PTR(MaskEdit_ScreenToClient)
 TPoint
-MaskEdit_ScreenToClient(TMaskEdit AObj, TPoint* Point) {
+MaskEdit_ScreenToClient(TMaskEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(MaskEdit_ScreenToClient)
     TPoint result;
-    MySyscall(pMaskEdit_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(MaskEdit_ParentToClient)
 TPoint
-MaskEdit_ParentToClient(TMaskEdit AObj, TPoint* Point, TWinControl AParent) {
+MaskEdit_ParentToClient(TMaskEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(MaskEdit_ParentToClient)
     TPoint result;
-    MySyscall(pMaskEdit_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -68918,19 +68939,19 @@ Shape_BringToFront(TShape AObj) {
 
 DEFINE_FUNC_PTR(Shape_ClientToScreen)
 TPoint
-Shape_ClientToScreen(TShape AObj, TPoint* Point) {
+Shape_ClientToScreen(TShape AObj, TPoint Point) {
     GET_FUNC_ADDR(Shape_ClientToScreen)
     TPoint result;
-    MySyscall(pShape_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Shape_ClientToParent)
 TPoint
-Shape_ClientToParent(TShape AObj, TPoint* Point, TWinControl AParent) {
+Shape_ClientToParent(TShape AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Shape_ClientToParent)
     TPoint result;
-    MySyscall(pShape_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -68985,19 +69006,19 @@ Shape_Repaint(TShape AObj) {
 
 DEFINE_FUNC_PTR(Shape_ScreenToClient)
 TPoint
-Shape_ScreenToClient(TShape AObj, TPoint* Point) {
+Shape_ScreenToClient(TShape AObj, TPoint Point) {
     GET_FUNC_ADDR(Shape_ScreenToClient)
     TPoint result;
-    MySyscall(pShape_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Shape_ParentToClient)
 TPoint
-Shape_ParentToClient(TShape AObj, TPoint* Point, TWinControl AParent) {
+Shape_ParentToClient(TShape AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Shape_ParentToClient)
     TPoint result;
-    MySyscall(pShape_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -69795,19 +69816,19 @@ Bevel_BringToFront(TBevel AObj) {
 
 DEFINE_FUNC_PTR(Bevel_ClientToScreen)
 TPoint
-Bevel_ClientToScreen(TBevel AObj, TPoint* Point) {
+Bevel_ClientToScreen(TBevel AObj, TPoint Point) {
     GET_FUNC_ADDR(Bevel_ClientToScreen)
     TPoint result;
-    MySyscall(pBevel_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBevel_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Bevel_ClientToParent)
 TPoint
-Bevel_ClientToParent(TBevel AObj, TPoint* Point, TWinControl AParent) {
+Bevel_ClientToParent(TBevel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Bevel_ClientToParent)
     TPoint result;
-    MySyscall(pBevel_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBevel_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -69862,19 +69883,19 @@ Bevel_Repaint(TBevel AObj) {
 
 DEFINE_FUNC_PTR(Bevel_ScreenToClient)
 TPoint
-Bevel_ScreenToClient(TBevel AObj, TPoint* Point) {
+Bevel_ScreenToClient(TBevel AObj, TPoint Point) {
     GET_FUNC_ADDR(Bevel_ScreenToClient)
     TPoint result;
-    MySyscall(pBevel_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBevel_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Bevel_ParentToClient)
 TPoint
-Bevel_ParentToClient(TBevel AObj, TPoint* Point, TWinControl AParent) {
+Bevel_ParentToClient(TBevel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Bevel_ParentToClient)
     TPoint result;
-    MySyscall(pBevel_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBevel_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -70574,9 +70595,9 @@ ScrollBox_ContainsControl(TScrollBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ScrollBox_ControlAtPos)
 TControl
-ScrollBox_ControlAtPos(TScrollBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ScrollBox_ControlAtPos(TScrollBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ScrollBox_ControlAtPos)
-    return (TControl)MySyscall(pScrollBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pScrollBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_DisableAlign)
@@ -70700,19 +70721,19 @@ ScrollBox_BringToFront(TScrollBox AObj) {
 
 DEFINE_FUNC_PTR(ScrollBox_ClientToScreen)
 TPoint
-ScrollBox_ClientToScreen(TScrollBox AObj, TPoint* Point) {
+ScrollBox_ClientToScreen(TScrollBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ScrollBox_ClientToScreen)
     TPoint result;
-    MySyscall(pScrollBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ScrollBox_ClientToParent)
 TPoint
-ScrollBox_ClientToParent(TScrollBox AObj, TPoint* Point, TWinControl AParent) {
+ScrollBox_ClientToParent(TScrollBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ScrollBox_ClientToParent)
     TPoint result;
-    MySyscall(pScrollBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -70753,19 +70774,19 @@ ScrollBox_Refresh(TScrollBox AObj) {
 
 DEFINE_FUNC_PTR(ScrollBox_ScreenToClient)
 TPoint
-ScrollBox_ScreenToClient(TScrollBox AObj, TPoint* Point) {
+ScrollBox_ScreenToClient(TScrollBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ScrollBox_ScreenToClient)
     TPoint result;
-    MySyscall(pScrollBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ScrollBox_ParentToClient)
 TPoint
-ScrollBox_ParentToClient(TScrollBox AObj, TPoint* Point, TWinControl AParent) {
+ScrollBox_ParentToClient(TScrollBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ScrollBox_ParentToClient)
     TPoint result;
-    MySyscall(pScrollBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -71948,9 +71969,9 @@ CheckListBox_DeleteSelected(TCheckListBox AObj) {
 
 DEFINE_FUNC_PTR(CheckListBox_ItemAtPos)
 int32_t
-CheckListBox_ItemAtPos(TCheckListBox AObj, TPoint* Pos, BOOL Existing) {
+CheckListBox_ItemAtPos(TCheckListBox AObj, TPoint Pos, BOOL Existing) {
     GET_FUNC_ADDR(CheckListBox_ItemAtPos)
-    return (int32_t)MySyscall(pCheckListBox_ItemAtPos, 3, AObj, Pos, Existing ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (int32_t)MySyscall(pCheckListBox_ItemAtPos, 3, AObj, &Pos, Existing ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_ItemRect)
@@ -71985,9 +72006,9 @@ CheckListBox_ContainsControl(TCheckListBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(CheckListBox_ControlAtPos)
 TControl
-CheckListBox_ControlAtPos(TCheckListBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+CheckListBox_ControlAtPos(TCheckListBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(CheckListBox_ControlAtPos)
-    return (TControl)MySyscall(pCheckListBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pCheckListBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_DisableAlign)
@@ -72111,19 +72132,19 @@ CheckListBox_BringToFront(TCheckListBox AObj) {
 
 DEFINE_FUNC_PTR(CheckListBox_ClientToScreen)
 TPoint
-CheckListBox_ClientToScreen(TCheckListBox AObj, TPoint* Point) {
+CheckListBox_ClientToScreen(TCheckListBox AObj, TPoint Point) {
     GET_FUNC_ADDR(CheckListBox_ClientToScreen)
     TPoint result;
-    MySyscall(pCheckListBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CheckListBox_ClientToParent)
 TPoint
-CheckListBox_ClientToParent(TCheckListBox AObj, TPoint* Point, TWinControl AParent) {
+CheckListBox_ClientToParent(TCheckListBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CheckListBox_ClientToParent)
     TPoint result;
-    MySyscall(pCheckListBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -72164,19 +72185,19 @@ CheckListBox_Refresh(TCheckListBox AObj) {
 
 DEFINE_FUNC_PTR(CheckListBox_ScreenToClient)
 TPoint
-CheckListBox_ScreenToClient(TCheckListBox AObj, TPoint* Point) {
+CheckListBox_ScreenToClient(TCheckListBox AObj, TPoint Point) {
     GET_FUNC_ADDR(CheckListBox_ScreenToClient)
     TPoint result;
-    MySyscall(pCheckListBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CheckListBox_ParentToClient)
 TPoint
-CheckListBox_ParentToClient(TCheckListBox AObj, TPoint* Point, TWinControl AParent) {
+CheckListBox_ParentToClient(TCheckListBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CheckListBox_ParentToClient)
     TPoint result;
-    MySyscall(pCheckListBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -73457,19 +73478,19 @@ Gauge_BringToFront(TGauge AObj) {
 
 DEFINE_FUNC_PTR(Gauge_ClientToScreen)
 TPoint
-Gauge_ClientToScreen(TGauge AObj, TPoint* Point) {
+Gauge_ClientToScreen(TGauge AObj, TPoint Point) {
     GET_FUNC_ADDR(Gauge_ClientToScreen)
     TPoint result;
-    MySyscall(pGauge_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGauge_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Gauge_ClientToParent)
 TPoint
-Gauge_ClientToParent(TGauge AObj, TPoint* Point, TWinControl AParent) {
+Gauge_ClientToParent(TGauge AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Gauge_ClientToParent)
     TPoint result;
-    MySyscall(pGauge_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGauge_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -73524,19 +73545,19 @@ Gauge_Repaint(TGauge AObj) {
 
 DEFINE_FUNC_PTR(Gauge_ScreenToClient)
 TPoint
-Gauge_ScreenToClient(TGauge AObj, TPoint* Point) {
+Gauge_ScreenToClient(TGauge AObj, TPoint Point) {
     GET_FUNC_ADDR(Gauge_ScreenToClient)
     TPoint result;
-    MySyscall(pGauge_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGauge_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Gauge_ParentToClient)
 TPoint
-Gauge_ParentToClient(TGauge AObj, TPoint* Point, TWinControl AParent) {
+Gauge_ParentToClient(TGauge AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Gauge_ParentToClient)
     TPoint result;
-    MySyscall(pGauge_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGauge_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -74376,19 +74397,19 @@ ImageButton_BringToFront(TImageButton AObj) {
 
 DEFINE_FUNC_PTR(ImageButton_ClientToScreen)
 TPoint
-ImageButton_ClientToScreen(TImageButton AObj, TPoint* Point) {
+ImageButton_ClientToScreen(TImageButton AObj, TPoint Point) {
     GET_FUNC_ADDR(ImageButton_ClientToScreen)
     TPoint result;
-    MySyscall(pImageButton_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ImageButton_ClientToParent)
 TPoint
-ImageButton_ClientToParent(TImageButton AObj, TPoint* Point, TWinControl AParent) {
+ImageButton_ClientToParent(TImageButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ImageButton_ClientToParent)
     TPoint result;
-    MySyscall(pImageButton_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -74443,19 +74464,19 @@ ImageButton_Repaint(TImageButton AObj) {
 
 DEFINE_FUNC_PTR(ImageButton_ScreenToClient)
 TPoint
-ImageButton_ScreenToClient(TImageButton AObj, TPoint* Point) {
+ImageButton_ScreenToClient(TImageButton AObj, TPoint Point) {
     GET_FUNC_ADDR(ImageButton_ScreenToClient)
     TPoint result;
-    MySyscall(pImageButton_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ImageButton_ParentToClient)
 TPoint
-ImageButton_ParentToClient(TImageButton AObj, TPoint* Point, TWinControl AParent) {
+ImageButton_ParentToClient(TImageButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ImageButton_ParentToClient)
     TPoint result;
-    MySyscall(pImageButton_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -76984,9 +77005,9 @@ StringGrid_InvalidateCol(TStringGrid AObj, int32_t ACol) {
 
 DEFINE_FUNC_PTR(StringGrid_InvalidateRange)
 void
-StringGrid_InvalidateRange(TStringGrid AObj, TRect* aRange) {
+StringGrid_InvalidateRange(TStringGrid AObj, TRect aRange) {
     GET_FUNC_ADDR(StringGrid_InvalidateRange)
-    MySyscall(pStringGrid_InvalidateRange, 2, AObj, aRange ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_InvalidateRange, 2, AObj, &aRange ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_InvalidateRow)
@@ -77021,19 +77042,19 @@ StringGrid_MouseCoord(TStringGrid AObj, int32_t X, int32_t Y) {
 
 DEFINE_FUNC_PTR(StringGrid_MouseToCell)
 TPoint
-StringGrid_MouseToCell(TStringGrid AObj, TPoint* Mouse) {
+StringGrid_MouseToCell(TStringGrid AObj, TPoint Mouse) {
     GET_FUNC_ADDR(StringGrid_MouseToCell)
     TPoint result;
-    MySyscall(pStringGrid_MouseToCell, 3, AObj, Mouse, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_MouseToCell, 3, AObj, &Mouse, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StringGrid_MouseToLogcell)
 TPoint
-StringGrid_MouseToLogcell(TStringGrid AObj, TPoint* Mouse) {
+StringGrid_MouseToLogcell(TStringGrid AObj, TPoint Mouse) {
     GET_FUNC_ADDR(StringGrid_MouseToLogcell)
     TPoint result;
-    MySyscall(pStringGrid_MouseToLogcell, 3, AObj, Mouse, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_MouseToLogcell, 3, AObj, &Mouse, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -77060,9 +77081,9 @@ StringGrid_ContainsControl(TStringGrid AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(StringGrid_ControlAtPos)
 TControl
-StringGrid_ControlAtPos(TStringGrid AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+StringGrid_ControlAtPos(TStringGrid AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(StringGrid_ControlAtPos)
-    return (TControl)MySyscall(pStringGrid_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pStringGrid_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_DisableAlign)
@@ -77186,19 +77207,19 @@ StringGrid_BringToFront(TStringGrid AObj) {
 
 DEFINE_FUNC_PTR(StringGrid_ClientToScreen)
 TPoint
-StringGrid_ClientToScreen(TStringGrid AObj, TPoint* Point) {
+StringGrid_ClientToScreen(TStringGrid AObj, TPoint Point) {
     GET_FUNC_ADDR(StringGrid_ClientToScreen)
     TPoint result;
-    MySyscall(pStringGrid_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StringGrid_ClientToParent)
 TPoint
-StringGrid_ClientToParent(TStringGrid AObj, TPoint* Point, TWinControl AParent) {
+StringGrid_ClientToParent(TStringGrid AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(StringGrid_ClientToParent)
     TPoint result;
-    MySyscall(pStringGrid_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -77239,19 +77260,19 @@ StringGrid_Refresh(TStringGrid AObj) {
 
 DEFINE_FUNC_PTR(StringGrid_ScreenToClient)
 TPoint
-StringGrid_ScreenToClient(TStringGrid AObj, TPoint* Point) {
+StringGrid_ScreenToClient(TStringGrid AObj, TPoint Point) {
     GET_FUNC_ADDR(StringGrid_ScreenToClient)
     TPoint result;
-    MySyscall(pStringGrid_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(StringGrid_ParentToClient)
 TPoint
-StringGrid_ParentToClient(TStringGrid AObj, TPoint* Point, TWinControl AParent) {
+StringGrid_ParentToClient(TStringGrid AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(StringGrid_ParentToClient)
     TPoint result;
-    MySyscall(pStringGrid_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -79399,9 +79420,9 @@ rawGrid_ContainsControl(TDrawGrid AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(DrawGrid_ControlAtPos)
 TControl
-rawGrid_ControlAtPos(TDrawGrid AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+rawGrid_ControlAtPos(TDrawGrid AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(DrawGrid_ControlAtPos)
-    return (TControl)MySyscall(pDrawGrid_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pDrawGrid_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_DisableAlign)
@@ -79525,19 +79546,19 @@ rawGrid_BringToFront(TDrawGrid AObj) {
 
 DEFINE_FUNC_PTR(DrawGrid_ClientToScreen)
 TPoint
-rawGrid_ClientToScreen(TDrawGrid AObj, TPoint* Point) {
+rawGrid_ClientToScreen(TDrawGrid AObj, TPoint Point) {
     GET_FUNC_ADDR(DrawGrid_ClientToScreen)
     TPoint result;
-    MySyscall(pDrawGrid_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(DrawGrid_ClientToParent)
 TPoint
-rawGrid_ClientToParent(TDrawGrid AObj, TPoint* Point, TWinControl AParent) {
+rawGrid_ClientToParent(TDrawGrid AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(DrawGrid_ClientToParent)
     TPoint result;
-    MySyscall(pDrawGrid_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -79578,19 +79599,19 @@ rawGrid_Refresh(TDrawGrid AObj) {
 
 DEFINE_FUNC_PTR(DrawGrid_ScreenToClient)
 TPoint
-rawGrid_ScreenToClient(TDrawGrid AObj, TPoint* Point) {
+rawGrid_ScreenToClient(TDrawGrid AObj, TPoint Point) {
     GET_FUNC_ADDR(DrawGrid_ScreenToClient)
     TPoint result;
-    MySyscall(pDrawGrid_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(DrawGrid_ParentToClient)
 TPoint
-rawGrid_ParentToClient(TDrawGrid AObj, TPoint* Point, TWinControl AParent) {
+rawGrid_ParentToClient(TDrawGrid AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(DrawGrid_ParentToClient)
     TPoint result;
-    MySyscall(pDrawGrid_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -81073,9 +81094,9 @@ ValueListEditor_ContainsControl(TValueListEditor AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ValueListEditor_ControlAtPos)
 TControl
-ValueListEditor_ControlAtPos(TValueListEditor AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ValueListEditor_ControlAtPos(TValueListEditor AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ValueListEditor_ControlAtPos)
-    return (TControl)MySyscall(pValueListEditor_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pValueListEditor_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_DisableAlign)
@@ -81199,19 +81220,19 @@ ValueListEditor_BringToFront(TValueListEditor AObj) {
 
 DEFINE_FUNC_PTR(ValueListEditor_ClientToScreen)
 TPoint
-ValueListEditor_ClientToScreen(TValueListEditor AObj, TPoint* Point) {
+ValueListEditor_ClientToScreen(TValueListEditor AObj, TPoint Point) {
     GET_FUNC_ADDR(ValueListEditor_ClientToScreen)
     TPoint result;
-    MySyscall(pValueListEditor_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_ClientToParent)
 TPoint
-ValueListEditor_ClientToParent(TValueListEditor AObj, TPoint* Point, TWinControl AParent) {
+ValueListEditor_ClientToParent(TValueListEditor AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ValueListEditor_ClientToParent)
     TPoint result;
-    MySyscall(pValueListEditor_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -81245,19 +81266,19 @@ ValueListEditor_Perform(TValueListEditor AObj, uint32_t Msg, uintptr_t WParam, i
 
 DEFINE_FUNC_PTR(ValueListEditor_ScreenToClient)
 TPoint
-ValueListEditor_ScreenToClient(TValueListEditor AObj, TPoint* Point) {
+ValueListEditor_ScreenToClient(TValueListEditor AObj, TPoint Point) {
     GET_FUNC_ADDR(ValueListEditor_ScreenToClient)
     TPoint result;
-    MySyscall(pValueListEditor_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_ParentToClient)
 TPoint
-ValueListEditor_ParentToClient(TValueListEditor AObj, TPoint* Point, TWinControl AParent) {
+ValueListEditor_ParentToClient(TValueListEditor AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ValueListEditor_ParentToClient)
     TPoint result;
-    MySyscall(pValueListEditor_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -82736,9 +82757,9 @@ HeaderControl_ContainsControl(THeaderControl AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(HeaderControl_ControlAtPos)
 TControl
-HeaderControl_ControlAtPos(THeaderControl AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+HeaderControl_ControlAtPos(THeaderControl AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(HeaderControl_ControlAtPos)
-    return (TControl)MySyscall(pHeaderControl_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pHeaderControl_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_DisableAlign)
@@ -82855,19 +82876,19 @@ HeaderControl_BringToFront(THeaderControl AObj) {
 
 DEFINE_FUNC_PTR(HeaderControl_ClientToScreen)
 TPoint
-HeaderControl_ClientToScreen(THeaderControl AObj, TPoint* Point) {
+HeaderControl_ClientToScreen(THeaderControl AObj, TPoint Point) {
     GET_FUNC_ADDR(HeaderControl_ClientToScreen)
     TPoint result;
-    MySyscall(pHeaderControl_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(HeaderControl_ClientToParent)
 TPoint
-HeaderControl_ClientToParent(THeaderControl AObj, TPoint* Point, TWinControl AParent) {
+HeaderControl_ClientToParent(THeaderControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(HeaderControl_ClientToParent)
     TPoint result;
-    MySyscall(pHeaderControl_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -82908,19 +82929,19 @@ HeaderControl_Refresh(THeaderControl AObj) {
 
 DEFINE_FUNC_PTR(HeaderControl_ScreenToClient)
 TPoint
-HeaderControl_ScreenToClient(THeaderControl AObj, TPoint* Point) {
+HeaderControl_ScreenToClient(THeaderControl AObj, TPoint Point) {
     GET_FUNC_ADDR(HeaderControl_ScreenToClient)
     TPoint result;
-    MySyscall(pHeaderControl_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(HeaderControl_ParentToClient)
 TPoint
-HeaderControl_ParentToClient(THeaderControl AObj, TPoint* Point, TWinControl AParent) {
+HeaderControl_ParentToClient(THeaderControl AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(HeaderControl_ParentToClient)
     TPoint result;
-    MySyscall(pHeaderControl_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -84429,9 +84450,9 @@ LabeledEdit_ContainsControl(TLabeledEdit AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(LabeledEdit_ControlAtPos)
 TControl
-LabeledEdit_ControlAtPos(TLabeledEdit AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+LabeledEdit_ControlAtPos(TLabeledEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(LabeledEdit_ControlAtPos)
-    return (TControl)MySyscall(pLabeledEdit_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pLabeledEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_DisableAlign)
@@ -84548,19 +84569,19 @@ LabeledEdit_BringToFront(TLabeledEdit AObj) {
 
 DEFINE_FUNC_PTR(LabeledEdit_ClientToScreen)
 TPoint
-LabeledEdit_ClientToScreen(TLabeledEdit AObj, TPoint* Point) {
+LabeledEdit_ClientToScreen(TLabeledEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(LabeledEdit_ClientToScreen)
     TPoint result;
-    MySyscall(pLabeledEdit_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_ClientToParent)
 TPoint
-LabeledEdit_ClientToParent(TLabeledEdit AObj, TPoint* Point, TWinControl AParent) {
+LabeledEdit_ClientToParent(TLabeledEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(LabeledEdit_ClientToParent)
     TPoint result;
-    MySyscall(pLabeledEdit_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -84601,19 +84622,19 @@ LabeledEdit_Refresh(TLabeledEdit AObj) {
 
 DEFINE_FUNC_PTR(LabeledEdit_ScreenToClient)
 TPoint
-LabeledEdit_ScreenToClient(TLabeledEdit AObj, TPoint* Point) {
+LabeledEdit_ScreenToClient(TLabeledEdit AObj, TPoint Point) {
     GET_FUNC_ADDR(LabeledEdit_ScreenToClient)
     TPoint result;
-    MySyscall(pLabeledEdit_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_ParentToClient)
 TPoint
-LabeledEdit_ParentToClient(TLabeledEdit AObj, TPoint* Point, TWinControl AParent) {
+LabeledEdit_ParentToClient(TLabeledEdit AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(LabeledEdit_ParentToClient)
     TPoint result;
-    MySyscall(pLabeledEdit_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -85908,19 +85929,19 @@ BoundLabel_BringToFront(TBoundLabel AObj) {
 
 DEFINE_FUNC_PTR(BoundLabel_ClientToScreen)
 TPoint
-BoundLabel_ClientToScreen(TBoundLabel AObj, TPoint* Point) {
+BoundLabel_ClientToScreen(TBoundLabel AObj, TPoint Point) {
     GET_FUNC_ADDR(BoundLabel_ClientToScreen)
     TPoint result;
-    MySyscall(pBoundLabel_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(BoundLabel_ClientToParent)
 TPoint
-BoundLabel_ClientToParent(TBoundLabel AObj, TPoint* Point, TWinControl AParent) {
+BoundLabel_ClientToParent(TBoundLabel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(BoundLabel_ClientToParent)
     TPoint result;
-    MySyscall(pBoundLabel_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -85975,19 +85996,19 @@ BoundLabel_Repaint(TBoundLabel AObj) {
 
 DEFINE_FUNC_PTR(BoundLabel_ScreenToClient)
 TPoint
-BoundLabel_ScreenToClient(TBoundLabel AObj, TPoint* Point) {
+BoundLabel_ScreenToClient(TBoundLabel AObj, TPoint Point) {
     GET_FUNC_ADDR(BoundLabel_ScreenToClient)
     TPoint result;
-    MySyscall(pBoundLabel_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(BoundLabel_ParentToClient)
 TPoint
-BoundLabel_ParentToClient(TBoundLabel AObj, TPoint* Point, TWinControl AParent) {
+BoundLabel_ParentToClient(TBoundLabel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(BoundLabel_ParentToClient)
     TPoint result;
-    MySyscall(pBoundLabel_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -86869,9 +86890,9 @@ FlowPanel_ContainsControl(TFlowPanel AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(FlowPanel_ControlAtPos)
 TControl
-FlowPanel_ControlAtPos(TFlowPanel AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+FlowPanel_ControlAtPos(TFlowPanel AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(FlowPanel_ControlAtPos)
-    return (TControl)MySyscall(pFlowPanel_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pFlowPanel_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_DisableAlign)
@@ -86995,19 +87016,19 @@ FlowPanel_BringToFront(TFlowPanel AObj) {
 
 DEFINE_FUNC_PTR(FlowPanel_ClientToScreen)
 TPoint
-FlowPanel_ClientToScreen(TFlowPanel AObj, TPoint* Point) {
+FlowPanel_ClientToScreen(TFlowPanel AObj, TPoint Point) {
     GET_FUNC_ADDR(FlowPanel_ClientToScreen)
     TPoint result;
-    MySyscall(pFlowPanel_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(FlowPanel_ClientToParent)
 TPoint
-FlowPanel_ClientToParent(TFlowPanel AObj, TPoint* Point, TWinControl AParent) {
+FlowPanel_ClientToParent(TFlowPanel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(FlowPanel_ClientToParent)
     TPoint result;
-    MySyscall(pFlowPanel_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -87048,19 +87069,19 @@ FlowPanel_Refresh(TFlowPanel AObj) {
 
 DEFINE_FUNC_PTR(FlowPanel_ScreenToClient)
 TPoint
-FlowPanel_ScreenToClient(TFlowPanel AObj, TPoint* Point) {
+FlowPanel_ScreenToClient(TFlowPanel AObj, TPoint Point) {
     GET_FUNC_ADDR(FlowPanel_ScreenToClient)
     TPoint result;
-    MySyscall(pFlowPanel_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(FlowPanel_ParentToClient)
 TPoint
-FlowPanel_ParentToClient(TFlowPanel AObj, TPoint* Point, TWinControl AParent) {
+FlowPanel_ParentToClient(TFlowPanel AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(FlowPanel_ParentToClient)
     TPoint result;
-    MySyscall(pFlowPanel_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -88271,9 +88292,9 @@ CoolBar_ContainsControl(TCoolBar AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(CoolBar_ControlAtPos)
 TControl
-CoolBar_ControlAtPos(TCoolBar AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+CoolBar_ControlAtPos(TCoolBar AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(CoolBar_ControlAtPos)
-    return (TControl)MySyscall(pCoolBar_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pCoolBar_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_DisableAlign)
@@ -88383,19 +88404,19 @@ CoolBar_BringToFront(TCoolBar AObj) {
 
 DEFINE_FUNC_PTR(CoolBar_ClientToScreen)
 TPoint
-CoolBar_ClientToScreen(TCoolBar AObj, TPoint* Point) {
+CoolBar_ClientToScreen(TCoolBar AObj, TPoint Point) {
     GET_FUNC_ADDR(CoolBar_ClientToScreen)
     TPoint result;
-    MySyscall(pCoolBar_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CoolBar_ClientToParent)
 TPoint
-CoolBar_ClientToParent(TCoolBar AObj, TPoint* Point, TWinControl AParent) {
+CoolBar_ClientToParent(TCoolBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CoolBar_ClientToParent)
     TPoint result;
-    MySyscall(pCoolBar_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -88436,19 +88457,19 @@ CoolBar_Refresh(TCoolBar AObj) {
 
 DEFINE_FUNC_PTR(CoolBar_ScreenToClient)
 TPoint
-CoolBar_ScreenToClient(TCoolBar AObj, TPoint* Point) {
+CoolBar_ScreenToClient(TCoolBar AObj, TPoint Point) {
     GET_FUNC_ADDR(CoolBar_ScreenToClient)
     TPoint result;
-    MySyscall(pCoolBar_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CoolBar_ParentToClient)
 TPoint
-CoolBar_ParentToClient(TCoolBar AObj, TPoint* Point, TWinControl AParent) {
+CoolBar_ParentToClient(TCoolBar AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CoolBar_ParentToClient)
     TPoint result;
-    MySyscall(pCoolBar_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -91756,9 +91777,9 @@ ComboBoxEx_ContainsControl(TComboBoxEx AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ComboBoxEx_ControlAtPos)
 TControl
-ComboBoxEx_ControlAtPos(TComboBoxEx AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ComboBoxEx_ControlAtPos(TComboBoxEx AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ComboBoxEx_ControlAtPos)
-    return (TControl)MySyscall(pComboBoxEx_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pComboBoxEx_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_DisableAlign)
@@ -91875,19 +91896,19 @@ ComboBoxEx_BringToFront(TComboBoxEx AObj) {
 
 DEFINE_FUNC_PTR(ComboBoxEx_ClientToScreen)
 TPoint
-ComboBoxEx_ClientToScreen(TComboBoxEx AObj, TPoint* Point) {
+ComboBoxEx_ClientToScreen(TComboBoxEx AObj, TPoint Point) {
     GET_FUNC_ADDR(ComboBoxEx_ClientToScreen)
     TPoint result;
-    MySyscall(pComboBoxEx_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_ClientToParent)
 TPoint
-ComboBoxEx_ClientToParent(TComboBoxEx AObj, TPoint* Point, TWinControl AParent) {
+ComboBoxEx_ClientToParent(TComboBoxEx AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ComboBoxEx_ClientToParent)
     TPoint result;
-    MySyscall(pComboBoxEx_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -91928,19 +91949,19 @@ ComboBoxEx_Refresh(TComboBoxEx AObj) {
 
 DEFINE_FUNC_PTR(ComboBoxEx_ScreenToClient)
 TPoint
-ComboBoxEx_ScreenToClient(TComboBoxEx AObj, TPoint* Point) {
+ComboBoxEx_ScreenToClient(TComboBoxEx AObj, TPoint Point) {
     GET_FUNC_ADDR(ComboBoxEx_ScreenToClient)
     TPoint result;
-    MySyscall(pComboBoxEx_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_ParentToClient)
 TPoint
-ComboBoxEx_ParentToClient(TComboBoxEx AObj, TPoint* Point, TWinControl AParent) {
+ComboBoxEx_ParentToClient(TComboBoxEx AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ComboBoxEx_ParentToClient)
     TPoint result;
-    MySyscall(pComboBoxEx_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -92523,6 +92544,13 @@ void
 ComboBoxEx_SetOnDragOver(TComboBoxEx AObj, TDragOverEvent AEventId) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnDragOver)
     MySyscall(pComboBoxEx_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_SetOnDropDown)
+void
+ComboBoxEx_SetOnDropDown(TComboBoxEx AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(ComboBoxEx_SetOnDropDown)
+    MySyscall(pComboBoxEx_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnEndDock)
@@ -93547,9 +93575,9 @@ Frame_ContainsControl(TFrame AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(Frame_ControlAtPos)
 TControl
-Frame_ControlAtPos(TFrame AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+Frame_ControlAtPos(TFrame AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(Frame_ControlAtPos)
-    return (TControl)MySyscall(pFrame_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pFrame_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_DisableAlign)
@@ -93673,19 +93701,19 @@ Frame_BringToFront(TFrame AObj) {
 
 DEFINE_FUNC_PTR(Frame_ClientToScreen)
 TPoint
-Frame_ClientToScreen(TFrame AObj, TPoint* Point) {
+Frame_ClientToScreen(TFrame AObj, TPoint Point) {
     GET_FUNC_ADDR(Frame_ClientToScreen)
     TPoint result;
-    MySyscall(pFrame_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Frame_ClientToParent)
 TPoint
-Frame_ClientToParent(TFrame AObj, TPoint* Point, TWinControl AParent) {
+Frame_ClientToParent(TFrame AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Frame_ClientToParent)
     TPoint result;
-    MySyscall(pFrame_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -93726,19 +93754,19 @@ Frame_Refresh(TFrame AObj) {
 
 DEFINE_FUNC_PTR(Frame_ScreenToClient)
 TPoint
-Frame_ScreenToClient(TFrame AObj, TPoint* Point) {
+Frame_ScreenToClient(TFrame AObj, TPoint Point) {
     GET_FUNC_ADDR(Frame_ScreenToClient)
     TPoint result;
-    MySyscall(pFrame_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(Frame_ParentToClient)
 TPoint
-Frame_ParentToClient(TFrame AObj, TPoint* Point, TWinControl AParent) {
+Frame_ParentToClient(TFrame AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(Frame_ParentToClient)
     TPoint result;
-    MySyscall(pFrame_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -95191,19 +95219,19 @@ XButton_BringToFront(TXButton AObj) {
 
 DEFINE_FUNC_PTR(XButton_ClientToScreen)
 TPoint
-XButton_ClientToScreen(TXButton AObj, TPoint* Point) {
+XButton_ClientToScreen(TXButton AObj, TPoint Point) {
     GET_FUNC_ADDR(XButton_ClientToScreen)
     TPoint result;
-    MySyscall(pXButton_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(XButton_ClientToParent)
 TPoint
-XButton_ClientToParent(TXButton AObj, TPoint* Point, TWinControl AParent) {
+XButton_ClientToParent(TXButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(XButton_ClientToParent)
     TPoint result;
-    MySyscall(pXButton_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -95258,19 +95286,19 @@ XButton_Repaint(TXButton AObj) {
 
 DEFINE_FUNC_PTR(XButton_ScreenToClient)
 TPoint
-XButton_ScreenToClient(TXButton AObj, TPoint* Point) {
+XButton_ScreenToClient(TXButton AObj, TPoint Point) {
     GET_FUNC_ADDR(XButton_ScreenToClient)
     TPoint result;
-    MySyscall(pXButton_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(XButton_ParentToClient)
 TPoint
-XButton_ParentToClient(TXButton AObj, TPoint* Point, TWinControl AParent) {
+XButton_ParentToClient(TXButton AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(XButton_ParentToClient)
     TPoint result;
-    MySyscall(pXButton_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -96823,9 +96851,9 @@ CheckGroup_ContainsControl(TCheckGroup AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(CheckGroup_ControlAtPos)
 TControl
-CheckGroup_ControlAtPos(TCheckGroup AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+CheckGroup_ControlAtPos(TCheckGroup AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(CheckGroup_ControlAtPos)
-    return (TControl)MySyscall(pCheckGroup_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pCheckGroup_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_DisableAlign)
@@ -96942,19 +96970,19 @@ CheckGroup_BringToFront(TCheckGroup AObj) {
 
 DEFINE_FUNC_PTR(CheckGroup_ClientToScreen)
 TPoint
-CheckGroup_ClientToScreen(TCheckGroup AObj, TPoint* Point) {
+CheckGroup_ClientToScreen(TCheckGroup AObj, TPoint Point) {
     GET_FUNC_ADDR(CheckGroup_ClientToScreen)
     TPoint result;
-    MySyscall(pCheckGroup_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CheckGroup_ClientToParent)
 TPoint
-CheckGroup_ClientToParent(TCheckGroup AObj, TPoint* Point, TWinControl AParent) {
+CheckGroup_ClientToParent(TCheckGroup AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CheckGroup_ClientToParent)
     TPoint result;
-    MySyscall(pCheckGroup_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -96995,19 +97023,19 @@ CheckGroup_Refresh(TCheckGroup AObj) {
 
 DEFINE_FUNC_PTR(CheckGroup_ScreenToClient)
 TPoint
-CheckGroup_ScreenToClient(TCheckGroup AObj, TPoint* Point) {
+CheckGroup_ScreenToClient(TCheckGroup AObj, TPoint Point) {
     GET_FUNC_ADDR(CheckGroup_ScreenToClient)
     TPoint result;
-    MySyscall(pCheckGroup_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(CheckGroup_ParentToClient)
 TPoint
-CheckGroup_ParentToClient(TCheckGroup AObj, TPoint* Point, TWinControl AParent) {
+CheckGroup_ParentToClient(TCheckGroup AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(CheckGroup_ParentToClient)
     TPoint result;
-    MySyscall(pCheckGroup_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -98183,9 +98211,9 @@ ToggleBox_ContainsControl(TToggleBox AObj, TControl Control) {
 
 DEFINE_FUNC_PTR(ToggleBox_ControlAtPos)
 TControl
-ToggleBox_ControlAtPos(TToggleBox AObj, TPoint* Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+ToggleBox_ControlAtPos(TToggleBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
     GET_FUNC_ADDR(ToggleBox_ControlAtPos)
-    return (TControl)MySyscall(pToggleBox_ControlAtPos, 4, AObj, Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TControl)MySyscall(pToggleBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_DisableAlign)
@@ -98309,19 +98337,19 @@ ToggleBox_BringToFront(TToggleBox AObj) {
 
 DEFINE_FUNC_PTR(ToggleBox_ClientToScreen)
 TPoint
-ToggleBox_ClientToScreen(TToggleBox AObj, TPoint* Point) {
+ToggleBox_ClientToScreen(TToggleBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ToggleBox_ClientToScreen)
     TPoint result;
-    MySyscall(pToggleBox_ClientToScreen, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ToggleBox_ClientToParent)
 TPoint
-ToggleBox_ClientToParent(TToggleBox AObj, TPoint* Point, TWinControl AParent) {
+ToggleBox_ClientToParent(TToggleBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ToggleBox_ClientToParent)
     TPoint result;
-    MySyscall(pToggleBox_ClientToParent, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
@@ -98362,19 +98390,19 @@ ToggleBox_Refresh(TToggleBox AObj) {
 
 DEFINE_FUNC_PTR(ToggleBox_ScreenToClient)
 TPoint
-ToggleBox_ScreenToClient(TToggleBox AObj, TPoint* Point) {
+ToggleBox_ScreenToClient(TToggleBox AObj, TPoint Point) {
     GET_FUNC_ADDR(ToggleBox_ScreenToClient)
     TPoint result;
-    MySyscall(pToggleBox_ScreenToClient, 3, AObj, Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 
 DEFINE_FUNC_PTR(ToggleBox_ParentToClient)
 TPoint
-ToggleBox_ParentToClient(TToggleBox AObj, TPoint* Point, TWinControl AParent) {
+ToggleBox_ParentToClient(TToggleBox AObj, TPoint Point, TWinControl AParent) {
     GET_FUNC_ADDR(ToggleBox_ParentToClient)
     TPoint result;
-    MySyscall(pToggleBox_ParentToClient, 4, AObj, Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
     return result;
 }
 

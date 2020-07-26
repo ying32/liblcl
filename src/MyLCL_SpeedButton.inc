@@ -39,6 +39,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpeedButton_ClientToScreen(AObj: TSpeedButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -48,6 +49,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpeedButton_ClientToParent(AObj: TSpeedButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -113,6 +115,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpeedButton_ScreenToClient(AObj: TSpeedButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -122,6 +125,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpeedButton_ParentToClient(AObj: TSpeedButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -46,6 +46,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function BitBtn_ControlAtPos(AObj: TBitBtn; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +192,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure BitBtn_ClientToScreen(AObj: TBitBtn; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +202,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure BitBtn_ClientToParent(AObj: TBitBtn; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +252,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure BitBtn_ScreenToClient(AObj: TBitBtn; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +262,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure BitBtn_ParentToClient(AObj: TBitBtn; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

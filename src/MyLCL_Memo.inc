@@ -102,6 +102,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function Memo_ControlAtPos(AObj: TMemo; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +248,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Memo_ClientToScreen(AObj: TMemo; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +258,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Memo_ClientToParent(AObj: TMemo; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +308,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Memo_ScreenToClient(AObj: TMemo; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +318,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure Memo_ParentToClient(AObj: TMemo; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

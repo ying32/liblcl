@@ -215,6 +215,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 procedure StringGrid_InvalidateRange(AObj: TStringGrid; var aRange: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -257,6 +258,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure StringGrid_MouseToCell(AObj: TStringGrid; var Mouse: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -266,6 +268,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure StringGrid_MouseToLogcell(AObj: TStringGrid; var Mouse: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -298,6 +301,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function StringGrid_ControlAtPos(AObj: TStringGrid; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +447,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure StringGrid_ClientToScreen(AObj: TStringGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -452,6 +457,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure StringGrid_ClientToParent(AObj: TStringGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -501,6 +507,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure StringGrid_ScreenToClient(AObj: TStringGrid; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -510,6 +517,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure StringGrid_ParentToClient(AObj: TStringGrid; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

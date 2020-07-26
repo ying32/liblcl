@@ -110,7 +110,6 @@ impl {{$className}} {
                   {{end}}
                   {{$buff.Write "(&self"}}
 
-
                   {{range $idx, $ps := $mm.Params}}
                       {{if canOutParam $mm $idx}}
                           {{if gt $idx 0}}
@@ -122,12 +121,19 @@ impl {{$className}} {
                                   {{end}}
                               {{end}}
                               {{if $ps.IsVar}}
-                                  {{$buff.Write "*mut "}}
+                                  {{if ne $ps.Flag "nonPtr"}}
+                                      {{$buff.Write "*mut "}}
+                                  {{else}}
+                                      {{if inStrArray $ps.Type "TRect" "TSize" "TPoint" "TGUID" "TGridRect" "TGridCoord"}}
+                                           {{$buff.Write "&"}}
+                                      {{end}}
+                                  {{end}}
                               {{end}}
                               {{covType2 (getIntfName $ps.Type)|$buff.Write}}
                           {{end}}
                       {{end}}
                   {{end}}
+
                   {{$buff.Write ")"}}
                   {{if not (isEmpty $mm.Return)}}
                       {{$buff.Write " -> "}}
@@ -166,6 +172,19 @@ impl {{$className}} {
                       {{$buff.Writeln ";"}}
                   {{end}}
 
+                  {{/* 参数不需要指针的 */}}
+                  {{range $idx, $ps := $mm.Params}}
+                      {{if eq $ps.Flag "nonPtr"}}
+                          {{$buff.Write "          let mut ps" $idx " = "}}
+                          {{if inStrArray $ps.Type "TRect" "TSize" "TPoint" "TGUID" "TGridRect" "TGridCoord"}}
+                              {{$buff.Write (covType2 $ps.Type) "::From(" (fLowCase $ps.Name) ")"}}
+                          {{else}}
+                              {{$buff.Write (fLowCase $ps.Name)}}
+                          {{end}}
+                          {{$buff.Writeln ";"}}
+                      {{end}}
+                  {{end}}
+
                   {{$buff.Write "          "}}
                   {{if not (isEmpty $mm.Return)}}
                       {{$buff.Write "return "}}
@@ -192,9 +211,14 @@ impl {{$className}} {
                               {{if eq $ps.Type "string"}}
                                   {{$buff.Write "to_CString!(" (fLowCase $ps.Name) ")"}}
                               {{else}}
-                                  {{fLowCase $ps.Name|$buff.Write}}
+                                  {{if eq $ps.Flag "nonPtr"}}
+                                       {{$buff.Write "&mut ps" $idx}}
+                                  {{else}}
+                                       {{fLowCase $ps.Name|$buff.Write}}
+                                  {{end}}
+
                                   {{if isObject $ps.Type}}
-                                      {{$buff.Write ".Instance()"}}
+                                       {{$buff.Write ".Instance()"}}
                                   {{end}}
                               {{end}}
                           {{end}}

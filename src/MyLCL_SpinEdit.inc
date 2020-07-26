@@ -94,6 +94,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function SpinEdit_ControlAtPos(AObj: TSpinEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -239,6 +240,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpinEdit_ClientToScreen(AObj: TSpinEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -248,6 +250,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpinEdit_ClientToParent(AObj: TSpinEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -297,6 +300,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpinEdit_ScreenToClient(AObj: TSpinEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -306,6 +310,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure SpinEdit_ParentToClient(AObj: TSpinEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

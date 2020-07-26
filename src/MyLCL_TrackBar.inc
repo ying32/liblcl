@@ -46,6 +46,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function TrackBar_ControlAtPos(AObj: TTrackBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -191,6 +192,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TrackBar_ClientToScreen(AObj: TTrackBar; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +202,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TrackBar_ClientToParent(AObj: TTrackBar; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +252,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TrackBar_ScreenToClient(AObj: TTrackBar; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +262,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure TrackBar_ParentToClient(AObj: TTrackBar; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

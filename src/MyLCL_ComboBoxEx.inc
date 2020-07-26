@@ -86,6 +86,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ComboBoxEx_ControlAtPos(AObj: TComboBoxEx; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +224,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ComboBoxEx_ClientToScreen(AObj: TComboBoxEx; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -232,6 +234,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ComboBoxEx_ClientToParent(AObj: TComboBoxEx; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -281,6 +284,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ComboBoxEx_ScreenToClient(AObj: TComboBoxEx; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -290,6 +294,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ComboBoxEx_ParentToClient(AObj: TComboBoxEx; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -902,6 +907,14 @@ procedure ComboBoxEx_SetOnDragOver(AObj: TComboBoxEx; AEventId: NativeUInt); ext
 begin
   {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
   {$DEFINE EventName := OnDragOver}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure ComboBoxEx_SetOnDropDown(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
@@ -1680,6 +1693,7 @@ exports
   ComboBoxEx_SetOnDblClick,
   ComboBoxEx_SetOnDragDrop,
   ComboBoxEx_SetOnDragOver,
+  ComboBoxEx_SetOnDropDown,
   ComboBoxEx_SetOnEndDock,
   ComboBoxEx_SetOnEndDrag,
   ComboBoxEx_SetOnEnter,

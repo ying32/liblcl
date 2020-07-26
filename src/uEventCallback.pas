@@ -103,6 +103,7 @@ type
     class procedure OnTNotifyEvent_OnTopLeftChanged(Sender: TObject);
     class procedure OnTNotifyEvent_OnSectionEndDrag(Sender: TObject);
     class procedure OnTNotifyEvent_OnDestroy(Sender: TObject);
+    class procedure OnTNotifyEvent_OnDropDown(Sender: TObject);
 
 
 
@@ -502,6 +503,11 @@ end;
 class procedure TEventClass.OnTNotifyEvent_OnDestroy(Sender: TObject);
 begin
   SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnDestroy, [Sender]);
+end;
+
+class procedure TEventClass.OnTNotifyEvent_OnDropDown(Sender: TObject);
+begin
+  SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnDropDown, [Sender]);
 end;
 
 class function TEventClass.OnTHelpEvent_OnHelp(Command: Word; Data: PtrInt;

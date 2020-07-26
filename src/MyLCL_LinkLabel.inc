@@ -63,6 +63,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LinkLabel_ClientToScreen(AObj: TLinkLabel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +73,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LinkLabel_ClientToParent(AObj: TLinkLabel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -121,6 +123,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LinkLabel_ScreenToClient(AObj: TLinkLabel; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +133,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure LinkLabel_ParentToClient(AObj: TLinkLabel; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

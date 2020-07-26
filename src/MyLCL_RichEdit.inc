@@ -102,6 +102,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function RichEdit_ControlAtPos(AObj: TRichEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +248,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure RichEdit_ClientToScreen(AObj: TRichEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +258,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure RichEdit_ClientToParent(AObj: TRichEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +308,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure RichEdit_ScreenToClient(AObj: TRichEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +318,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure RichEdit_ParentToClient(AObj: TRichEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -55,6 +55,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToolButton_ClientToScreen(AObj: TToolButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +65,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToolButton_ClientToParent(AObj: TToolButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -129,6 +131,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToolButton_ScreenToClient(AObj: TToolButton; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -138,6 +141,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ToolButton_ParentToClient(AObj: TToolButton; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -55,6 +55,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function PageControl_ControlAtPos(AObj: TPageControl; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -200,6 +201,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure PageControl_ClientToScreen(AObj: TPageControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -209,6 +211,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure PageControl_ClientToParent(AObj: TPageControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -258,6 +261,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure PageControl_ScreenToClient(AObj: TPageControl; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -267,6 +271,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure PageControl_ParentToClient(AObj: TPageControl; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

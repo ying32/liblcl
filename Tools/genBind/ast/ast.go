@@ -164,7 +164,7 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 		bs = append(bs, appendBytes...)
 	}
 
-	cmpPrevLine := func(line1, line2 *string, cmpStr string, result *string) bool {
+	cmpPrevLine := func(line1, line2, line3, line4 *string, cmpStr string, result *string) bool {
 		if strings.HasPrefix(*line1, cmpStr) {
 			if result != nil {
 				*result = *line1
@@ -177,6 +177,26 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 			}
 			return true
 		}
+		if strings.HasPrefix(*line3, cmpStr) {
+			if result != nil {
+				*result = *line3
+			}
+			return true
+		}
+		if strings.HasPrefix(*line4, cmpStr) {
+			if result != nil {
+				*result = *line4
+			}
+			return true
+		}
+		return false
+	}
+
+	isEndFlag := func(s string) bool {
+		s = strings.TrimSpace(s)
+		if strings.HasPrefix(s, "end") || strings.HasPrefix(s, "function") || strings.HasPrefix(s, "procedure") {
+			return true
+		}
 		return false
 	}
 
@@ -184,8 +204,11 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 	for i, line := range sps {
 		s := string(bytes.TrimSpace(line))
 		if (strings.HasPrefix(strings.ToLower(s), "function") || strings.HasPrefix(strings.ToLower(s), "procedure")) && strings.HasSuffix(s, "extdecl;") {
+			// 目前最多4行
 			prevLine := ""
 			prevLine2 := ""
+			prevLine3 := ""
+			prevLine4 := ""
 
 			eventType := ""
 			isLastReturn := false
@@ -193,20 +216,40 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 			paramFlags := ""
 			lineStr := ""
 			if i > 0 {
+				// 获取
 				prevLine = string(bytes.TrimSpace(sps[i-1]))
 				if i > 1 {
 					prevLine2 = string(bytes.TrimSpace(sps[i-2]))
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//EVENT_TYPE:", &lineStr) {
+				if i > 2 {
+					prevLine3 = string(bytes.TrimSpace(sps[i-3]))
+				}
+				if i > 3 {
+					prevLine4 = string(bytes.TrimSpace(sps[i-4]))
+				}
+				// 进一步处理
+				if isEndFlag(prevLine) {
+					prevLine = ""
+				}
+				if isEndFlag(prevLine2) {
+					prevLine2 = ""
+				}
+				if isEndFlag(prevLine3) {
+					prevLine3 = ""
+				}
+				if isEndFlag(prevLine4) {
+					prevLine4 = ""
+				}
+				if cmpPrevLine(&prevLine, &prevLine2, &prevLine3, &prevLine4, "//EVENT_TYPE:", &lineStr) {
 					eventType = strings.TrimSpace(strings.TrimPrefix(lineStr, "//EVENT_TYPE:"))
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//RETURNISLASTPARAM:", nil) {
+				if cmpPrevLine(&prevLine, &prevLine2, &prevLine3, &prevLine4, "//RETURNISLASTPARAM:", nil) {
 					isLastReturn = true
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//CLASSMETHOD:", nil) {
+				if cmpPrevLine(&prevLine, &prevLine2, &prevLine3, &prevLine4, "//CLASSMETHOD:", nil) {
 					isMethod = true
 				}
-				if cmpPrevLine(&prevLine, &prevLine2, "//PARAMS:", &paramFlags) {
+				if cmpPrevLine(&prevLine, &prevLine2, &prevLine3, &prevLine4, "//PARAMS:", &paramFlags) {
 					paramFlags = strings.TrimSpace(strings.TrimPrefix(paramFlags, "//PARAMS:"))
 				}
 			}
@@ -230,16 +273,26 @@ func parseFile(fileName string, isClass bool, appendBytes []byte, className, bas
 						}
 						mArr, _ := defClassMethods[name]
 						temp := ""
-						if eventType != "" || isLastReturn || isMethod {
-							if strings.HasPrefix(prevLine, "//") {
-								temp += prevLine + "\r\n"
-							}
-							if strings.HasPrefix(prevLine2, "//") {
-								temp += prevLine2 + "\r\n"
-							}
-						}
-						temp += s + "\r\n"
 
+						if eventType != "" || isLastReturn || isMethod {
+							if strings.HasPrefix(prevLine4, "//") {
+								temp += prevLine4
+							}
+							temp += "\r\n"
+							if strings.HasPrefix(prevLine3, "//") {
+								temp += prevLine3
+							}
+							temp += "\r\n"
+							if strings.HasPrefix(prevLine2, "//") {
+								temp += prevLine2
+							}
+							temp += "\r\n"
+							if strings.HasPrefix(prevLine, "//") {
+								temp += prevLine
+							}
+							temp += "\r\n"
+						}
+						temp += s + "\r\nbegin\r\n  handleExceptionBegin\r\n  handleExceptionEnd\r\nend;\r\n"
 						mArr = append(mArr, temp)
 						defClassMethods[name] = mArr
 						continue

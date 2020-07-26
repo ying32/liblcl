@@ -86,6 +86,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ColorBox_ControlAtPos(AObj: TColorBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +224,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorBox_ClientToScreen(AObj: TColorBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -232,6 +234,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorBox_ClientToParent(AObj: TColorBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -281,6 +284,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorBox_ScreenToClient(AObj: TColorBox; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -290,6 +294,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ColorBox_ParentToClient(AObj: TColorBox; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -852,6 +857,14 @@ procedure ColorBox_SetOnDragOver(AObj: TColorBox; AEventId: NativeUInt); extdecl
 begin
   {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
   {$DEFINE EventName := OnDragOver}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure ColorBox_SetOnDropDown(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
@@ -1629,6 +1642,7 @@ exports
   ColorBox_SetOnContextPopup,
   ColorBox_SetOnDragDrop,
   ColorBox_SetOnDragOver,
+  ColorBox_SetOnDropDown,
   ColorBox_SetOnEndDrag,
   ColorBox_SetOnEnter,
   ColorBox_SetOnExit,

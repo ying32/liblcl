@@ -269,7 +269,7 @@ begin
 end;
 
 // TMemoryStream
-// function Write(const Buffer; Count: Longint): Longint;
+
 //CLASSMETHOD:
 function MemoryStream_Write(AObj: TMemoryStream; Buffer: Pointer; Count: Longint): Longint; extdecl;
 begin
@@ -278,7 +278,6 @@ begin
   handleExceptionEnd
 end;
 
-// function Read(var Buffer; Count: Longint): Longint;
 //CLASSMETHOD:
 function MemoryStream_Read(AObj: TMemoryStream; Buffer: Pointer; Count: Longint): Longint; extdecl;
 begin

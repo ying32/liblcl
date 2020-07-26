@@ -102,6 +102,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function ListView_ControlAtPos(AObj: TListView; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -247,6 +248,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ListView_ClientToScreen(AObj: TListView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -256,6 +258,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ListView_ClientToParent(AObj: TListView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +308,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ListView_ScreenToClient(AObj: TListView; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -314,6 +318,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure ListView_ParentToClient(AObj: TListView; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin

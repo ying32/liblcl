@@ -38,6 +38,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:5=nonPtr,6=nonPtr
 procedure Canvas_AngleArc(AObj: TCanvas; X: Integer; Y: Integer; Radius: Cardinal; var StartAngle: Single; var SweepAngle: Single); extdecl;
 begin
   handleExceptionBegin

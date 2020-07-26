@@ -47,6 +47,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MemoryStream_Seek(AObj: TMemoryStream; var Offset: Int64; Origin: TSeekOrigin; var Result: Int64); extdecl;
 begin
   handleExceptionBegin
@@ -72,6 +73,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:3=nonPtr
 procedure MemoryStream_CopyFrom(AObj: TMemoryStream; Source: TStream; var Count: Int64; var Result: Int64); extdecl;
 begin
   handleExceptionBegin

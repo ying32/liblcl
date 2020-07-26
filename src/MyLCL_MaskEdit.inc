@@ -110,6 +110,7 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
 function MaskEdit_ControlAtPos(AObj: TMaskEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -255,6 +256,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MaskEdit_ClientToScreen(AObj: TMaskEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -264,6 +266,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MaskEdit_ClientToParent(AObj: TMaskEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -313,6 +316,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MaskEdit_ScreenToClient(AObj: TMaskEdit; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -322,6 +326,7 @@ end;
 
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
+//PARAMS:2=nonPtr
 procedure MaskEdit_ParentToClient(AObj: TMaskEdit; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
