@@ -92,6 +92,8 @@ func main() {
 	for _, o := range objectFile.Objects {
 		Objs[o.ClassName] = o.BaseClassName
 	}
+	// 添加一个
+	Objs["TStream"] = "TObject"
 	for _, o := range objectFile.Objects {
 		dict := make(map[string]string, 0)
 		for _, m := range o.Methods {
@@ -328,7 +330,7 @@ func templateGetConstVal2(s string) string {
 
 func templateIsIntf(s string) bool {
 	switch s {
-	case "TObject", "TComponent", "TControl", "TWinControl", "TStrings":
+	case "TObject", "TComponent", "TControl", "TWinControl", "TStrings", "TStream":
 		return true
 	}
 	return false

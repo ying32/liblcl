@@ -97,14 +97,14 @@ func GenAst() {
 	parseBaseType(govclPath+"/vcl/types/message.go", "i386")
 	parseBaseType(govclPath+"/vcl/types/message_posix.go", "amd64")
 
-	sortObjects()
+	fixAndSortObjects()
 	// 保存分析文件
 	SaveObjectFile("liblcl.json", objectFile)
 
 }
 
 // 把基类放最新面
-func sortObjects() {
+func fixAndSortObjects() {
 
 	move := func(src, dest int, o TClass) {
 		temp := objectFile.Objects[dest] // 备份目标位置的
@@ -127,6 +127,9 @@ func sortObjects() {
 			move(i, 3, o)
 		} else if o.ClassName == "TStringList" {
 			o.BaseClassName = "TStrings"
+			objectFile.Objects[i] = o
+		} else if o.ClassName == "TStrings" {
+			o.BaseClassName = "TObject"
 			objectFile.Objects[i] = o
 		}
 
@@ -346,6 +349,10 @@ func parseClassFiles(fileName string) {
 			//rustFile.W("\r\n")
 
 			parseFile(incFileName, true, []byte(appendStr), className, baseClassName)
+			// 当前是TMemoryStream，添加一个TStream的空类型
+			if className == "TMemoryStream" {
+				objectFile.Objects = append(objectFile.Objects, TClass{ClassName: "TStream", BaseClassName: "TObject"})
+			}
 			objectFile.Objects = append(objectFile.Objects, currentClass)
 		}
 	}

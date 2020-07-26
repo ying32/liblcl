@@ -2375,6 +2375,7 @@ typedef void* TToolBar;
 typedef void* TBitBtn;
 typedef void* TIcon;
 typedef void* TBitmap;
+typedef void* TStream;
 typedef void* TMemoryStream;
 typedef void* TFont;
 typedef void* TStrings;
@@ -2469,7 +2470,6 @@ typedef void* TToggleBox;
 typedef void* TGridColumnTitle;
 typedef void* TGridColumn;
 typedef void* TGridColumns;
-typedef void* TStream;
 
 /*--------------------事件定义--------------------*/
 // void (TObject sender)
@@ -3401,7 +3401,7 @@ ResFormLoadFromFile(CChar char* AFileName, TComponent ARoot) {
 
 DEFINE_FUNC_PTR(ResFormLoadFromStream)
 void
-ResFormLoadFromStream(TObject AStream, TComponent ARoot) {
+ResFormLoadFromStream(TStream AStream, TComponent ARoot) {
     GET_FUNC_ADDR(ResFormLoadFromStream)
     MySyscall(pResFormLoadFromStream, 2, AStream, ARoot ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -38998,7 +38998,7 @@ TreeView_LoadFromFile(TTreeView AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(TreeView_LoadFromStream)
 void
-TreeView_LoadFromStream(TTreeView AObj, TObject Stream) {
+TreeView_LoadFromStream(TTreeView AObj, TStream Stream) {
     GET_FUNC_ADDR(TreeView_LoadFromStream)
     MySyscall(pTreeView_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -39012,7 +39012,7 @@ TreeView_SaveToFile(TTreeView AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(TreeView_SaveToStream)
 void
-TreeView_SaveToStream(TTreeView AObj, TObject Stream) {
+TreeView_SaveToStream(TTreeView AObj, TStream Stream) {
     GET_FUNC_ADDR(TreeView_SaveToStream)
     MySyscall(pTreeView_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -45096,14 +45096,14 @@ Icon_HandleAllocated(TIcon AObj) {
 
 DEFINE_FUNC_PTR(Icon_LoadFromStream)
 void
-Icon_LoadFromStream(TIcon AObj, TObject Stream) {
+Icon_LoadFromStream(TIcon AObj, TStream Stream) {
     GET_FUNC_ADDR(Icon_LoadFromStream)
     MySyscall(pIcon_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Icon_SaveToStream)
 void
-Icon_SaveToStream(TIcon AObj, TObject Stream) {
+Icon_SaveToStream(TIcon AObj, TStream Stream) {
     GET_FUNC_ADDR(Icon_SaveToStream)
     MySyscall(pIcon_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -45357,14 +45357,14 @@ Bitmap_HandleAllocated(TBitmap AObj) {
 
 DEFINE_FUNC_PTR(Bitmap_LoadFromStream)
 void
-Bitmap_LoadFromStream(TBitmap AObj, TObject Stream) {
+Bitmap_LoadFromStream(TBitmap AObj, TStream Stream) {
     GET_FUNC_ADDR(Bitmap_LoadFromStream)
     MySyscall(pBitmap_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Bitmap_SaveToStream)
 void
-Bitmap_SaveToStream(TBitmap AObj, TObject Stream) {
+Bitmap_SaveToStream(TBitmap AObj, TStream Stream) {
     GET_FUNC_ADDR(Bitmap_SaveToStream)
     MySyscall(pBitmap_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -45677,6 +45677,8 @@ Bitmap_LoadFromDevice(TBitmap AObj, HDC ADc) {
     MySyscall(pBitmap_LoadFromDevice, 2, AObj, ADc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+// -------------------TStream-------------------
+
 // -------------------TMemoryStream-------------------
 
 DEFINE_FUNC_PTR(MemoryStream_Create)
@@ -45702,7 +45704,7 @@ MemoryStream_Clear(TMemoryStream AObj) {
 
 DEFINE_FUNC_PTR(MemoryStream_LoadFromStream)
 void
-MemoryStream_LoadFromStream(TMemoryStream AObj, TObject Stream) {
+MemoryStream_LoadFromStream(TMemoryStream AObj, TStream Stream) {
     GET_FUNC_ADDR(MemoryStream_LoadFromStream)
     MySyscall(pMemoryStream_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -45725,7 +45727,7 @@ MemoryStream_Seek(TMemoryStream AObj, int64_t Offset, TSeekOrigin Origin) {
 
 DEFINE_FUNC_PTR(MemoryStream_SaveToStream)
 void
-MemoryStream_SaveToStream(TMemoryStream AObj, TObject Stream) {
+MemoryStream_SaveToStream(TMemoryStream AObj, TStream Stream) {
     GET_FUNC_ADDR(MemoryStream_SaveToStream)
     MySyscall(pMemoryStream_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -45739,7 +45741,7 @@ MemoryStream_SaveToFile(TMemoryStream AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(MemoryStream_CopyFrom)
 int64_t
-MemoryStream_CopyFrom(TMemoryStream AObj, TObject Source, int64_t Count) {
+MemoryStream_CopyFrom(TMemoryStream AObj, TStream Source, int64_t Count) {
     GET_FUNC_ADDR(MemoryStream_CopyFrom)
     int64_t result;
     MySyscall(pMemoryStream_CopyFrom, 4, AObj, Source, &Count, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
@@ -46232,7 +46234,7 @@ Strings_LoadFromFile(TStrings AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(Strings_LoadFromStream)
 void
-Strings_LoadFromStream(TStrings AObj, TObject Stream) {
+Strings_LoadFromStream(TStrings AObj, TStream Stream) {
     GET_FUNC_ADDR(Strings_LoadFromStream)
     MySyscall(pStrings_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -46253,7 +46255,7 @@ Strings_SaveToFile(TStrings AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(Strings_SaveToStream)
 void
-Strings_SaveToStream(TStrings AObj, TObject Stream) {
+Strings_SaveToStream(TStrings AObj, TStream Stream) {
     GET_FUNC_ADDR(Strings_SaveToStream)
     MySyscall(pStrings_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -46570,7 +46572,7 @@ StringList_LoadFromFile(TStringList AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(StringList_LoadFromStream)
 void
-StringList_LoadFromStream(TStringList AObj, TObject Stream) {
+StringList_LoadFromStream(TStringList AObj, TStream Stream) {
     GET_FUNC_ADDR(StringList_LoadFromStream)
     MySyscall(pStringList_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -46591,7 +46593,7 @@ StringList_SaveToFile(TStringList AObj, CChar char* FileName) {
 
 DEFINE_FUNC_PTR(StringList_SaveToStream)
 void
-StringList_SaveToStream(TStringList AObj, TObject Stream) {
+StringList_SaveToStream(TStringList AObj, TStream Stream) {
     GET_FUNC_ADDR(StringList_SaveToStream)
     MySyscall(pStringList_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -47586,14 +47588,14 @@ Picture_SaveToFile(TPicture AObj, CChar char* Filename) {
 
 DEFINE_FUNC_PTR(Picture_LoadFromStream)
 void
-Picture_LoadFromStream(TPicture AObj, TObject Stream) {
+Picture_LoadFromStream(TPicture AObj, TStream Stream) {
     GET_FUNC_ADDR(Picture_LoadFromStream)
     MySyscall(pPicture_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Picture_SaveToStream)
 void
-Picture_SaveToStream(TPicture AObj, TObject Stream) {
+Picture_SaveToStream(TPicture AObj, TStream Stream) {
     GET_FUNC_ADDR(Picture_SaveToStream)
     MySyscall(pPicture_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -59222,14 +59224,14 @@ Graphic_SaveToFile(TGraphic AObj, CChar char* Filename) {
 
 DEFINE_FUNC_PTR(Graphic_LoadFromStream)
 void
-Graphic_LoadFromStream(TGraphic AObj, TObject Stream) {
+Graphic_LoadFromStream(TGraphic AObj, TStream Stream) {
     GET_FUNC_ADDR(Graphic_LoadFromStream)
     MySyscall(pGraphic_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Graphic_SaveToStream)
 void
-Graphic_SaveToStream(TGraphic AObj, TObject Stream) {
+Graphic_SaveToStream(TGraphic AObj, TStream Stream) {
     GET_FUNC_ADDR(Graphic_SaveToStream)
     MySyscall(pGraphic_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -59420,14 +59422,14 @@ PngImage_Assign(TPngImage AObj, TObject Source) {
 
 DEFINE_FUNC_PTR(PngImage_LoadFromStream)
 void
-PngImage_LoadFromStream(TPngImage AObj, TObject Stream) {
+PngImage_LoadFromStream(TPngImage AObj, TStream Stream) {
     GET_FUNC_ADDR(PngImage_LoadFromStream)
     MySyscall(pPngImage_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PngImage_SaveToStream)
 void
-PngImage_SaveToStream(TPngImage AObj, TObject Stream) {
+PngImage_SaveToStream(TPngImage AObj, TStream Stream) {
     GET_FUNC_ADDR(PngImage_SaveToStream)
     MySyscall(pPngImage_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -59646,14 +59648,14 @@ JPEGImage_Assign(TJPEGImage AObj, TObject Source) {
 
 DEFINE_FUNC_PTR(JPEGImage_LoadFromStream)
 void
-JPEGImage_LoadFromStream(TJPEGImage AObj, TObject Stream) {
+JPEGImage_LoadFromStream(TJPEGImage AObj, TStream Stream) {
     GET_FUNC_ADDR(JPEGImage_LoadFromStream)
     MySyscall(pJPEGImage_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(JPEGImage_SaveToStream)
 void
-JPEGImage_SaveToStream(TJPEGImage AObj, TObject Stream) {
+JPEGImage_SaveToStream(TJPEGImage AObj, TStream Stream) {
     GET_FUNC_ADDR(JPEGImage_SaveToStream)
     MySyscall(pJPEGImage_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -59893,14 +59895,14 @@ GIFImage_Free(TGIFImage AObj) {
 
 DEFINE_FUNC_PTR(GIFImage_SaveToStream)
 void
-GIFImage_SaveToStream(TGIFImage AObj, TObject Stream) {
+GIFImage_SaveToStream(TGIFImage AObj, TStream Stream) {
     GET_FUNC_ADDR(GIFImage_SaveToStream)
     MySyscall(pGIFImage_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GIFImage_LoadFromStream)
 void
-GIFImage_LoadFromStream(TGIFImage AObj, TObject Stream) {
+GIFImage_LoadFromStream(TGIFImage AObj, TStream Stream) {
     GET_FUNC_ADDR(GIFImage_LoadFromStream)
     MySyscall(pGIFImage_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }

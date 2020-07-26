@@ -206,7 +206,6 @@ typedef struct {{$el.Name}} {
 {{range $el := .Objects}}
 typedef void* {{$el.ClassName}};
 {{end}}
-typedef void* TStream;
 
 ##
 /*--------------------事件定义--------------------*/

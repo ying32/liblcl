@@ -11,7 +11,7 @@ use lclapi;
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
 use types::*;
-use vcl::{TControl, TWinControl, IObject, IComponent, IStrings};
+use vcl::{TControl, TWinControl, IObject, IComponent, IStrings, IStream};
 ##
 pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{html "<'a, str>"}} {
     return to_RustString!(lclapi::DGetStringArrOf(ptr, index));
@@ -44,13 +44,32 @@ pub fn GdkWindow_GetXId(AW: PGdkWindow) -> TXId {
     return result;
 }
 ##
+/*
 
-
+// 几个待实现的函数
+proc ShowMessageFmt*(formatstr: string, a: varargs[string, `$`]) =
+  ShowMessage(strutils.format(formatstr, a))
 ##
-
+proc SelectDirectory*(Directory: var string, Options: TSelectDirOpts, HelpCtx: int32): bool =
+  var ps1: cstring = Directory
+  result = lclapi.DSelectDirectory1(ps1, Options, HelpCtx)
+  if result:
+    Directory = $ps1
 ##
+proc SelectDirectory*(Caption: string, Root: string, AShowHidden: bool, Directory: var string): bool =
+  var ps4: cstring = Directory
+  result = lclapi.DSelectDirectory2(Caption, Root, AShowHidden, ps4)
+  if result:
+    Directory = $ps4
 ##
+proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var string): bool =
+  var ps4: cstring = AOut
+  result = lclapi.DInputQuery(ACaption, APrompt, Value, ps4)
+  if result:
+    AOut = $ps4
 
+*/
+##
 
 {{define "getFunc"}}
     {{$el := .}}

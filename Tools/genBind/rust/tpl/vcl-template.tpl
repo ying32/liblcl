@@ -23,6 +23,7 @@ pub trait IComponent: IObject {}
 pub trait IControl: IComponent {}
 pub trait IWinControl: IControl {}
 pub trait IStrings: IObject {}
+pub trait IStream: IObject {}
 ##
 
 
@@ -271,9 +272,13 @@ impl_IWinControl!({{$className}});
 impl_IStrings!({{$className}});
 {{end}}
 
+{{if or (eq $className "TStream") (eq $className "TMemoryStream")}}
+impl_IStream!({{$className}});
+{{end}}
+
 {{/* 所有不为TComponent和TControl和TWinControl的实现drop方法 */}}
 {{if haveFree $el.Methods}}
-  {{if or (eq $baseClass "TObject") (eq $className "TObject")}}
+  {{if or (or (or (or (or (eq $baseClass "TObject") (eq $className "TObject")) (eq $className "TStrings")) (eq $className "TStringList")) (eq $className "TStream")) (eq $className "TMemoryStream")  }}
  
 impl_Drop_method!({{$className}});
 

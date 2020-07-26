@@ -27,10 +27,10 @@
 {$I MyLCL_BitBtn.inc}  //BASECLASS:TWinControl
 {$I MyLCL_Icon.inc}  //BASECLASS:TObject
 {$I MyLCL_Bitmap.inc}  //BASECLASS:TObject
-{$I MyLCL_MemoryStream.inc}  //BASECLASS:TObject
+{$I MyLCL_MemoryStream.inc}  //BASECLASS:TStream
 {$I MyLCL_Font.inc}  //BASECLASS:TObject
-{$I MyLCL_Strings.inc}  //BASECLASS:TObject
-{$I MyLCL_StringList.inc}  //BASECLASS:TObject
+{$I MyLCL_Strings.inc}  //BASECLASS:TStrings
+{$I MyLCL_StringList.inc}  //BASECLASS:TStrings
 {$I MyLCL_Brush.inc}  //BASECLASS:TObject
 {$I MyLCL_Pen.inc}  //BASECLASS:TObject
 {$I MyLCL_MenuItem.inc}  //BASECLASS:TComponent
