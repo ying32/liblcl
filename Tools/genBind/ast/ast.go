@@ -125,6 +125,9 @@ func sortObjects() {
 		} else if o.ClassName == "TWinControl" {
 			o.BaseClassName = "TControl"
 			move(i, 3, o)
+		} else if o.ClassName == "TStringList" {
+			o.BaseClassName = "TStrings"
+			objectFile.Objects[i] = o
 		}
 
 	}

@@ -22,6 +22,7 @@ pub trait IObject {
 pub trait IComponent: IObject {}
 pub trait IControl: IComponent {}
 pub trait IWinControl: IControl {}
+pub trait IStrings: IObject {}
 ##
 
 
@@ -264,6 +265,10 @@ impl_IControl!({{$className}});
 
 {{if or (eq $baseClass "TWinControl") (eq $className "TWinControl")}}
 impl_IWinControl!({{$className}});
+{{end}}
+
+{{if or (eq $className "TStrings") (eq $className "TStringList")}}
+impl_IStrings!({{$className}});
 {{end}}
 
 {{/* 所有不为TComponent和TControl和TWinControl的实现drop方法 */}}

@@ -112,7 +112,7 @@
         {
           "template_file_name": "./rust/tpl/fns-template.tpl",
           "save_file_name": "J:\\RustLang\\rust-vcl\\src\\fns.rs",
-          "enabled": false
+          "enabled": true
         }
       ]
     }

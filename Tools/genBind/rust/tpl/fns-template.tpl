@@ -11,7 +11,7 @@ use lclapi;
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
 use types::*;
-use vcl::{TControl, TWinControl, IObject, IComponent, TStrings};
+use vcl::{TControl, TWinControl, IObject, IComponent, IStrings};
 ##
 pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{html "<'a, str>"}} {
     return to_RustString!(lclapi::DGetStringArrOf(ptr, index));

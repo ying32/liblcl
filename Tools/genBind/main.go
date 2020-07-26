@@ -328,7 +328,7 @@ func templateGetConstVal2(s string) string {
 
 func templateIsIntf(s string) bool {
 	switch s {
-	case "TObject", "TComponent", "TControl", "TWinControl":
+	case "TObject", "TComponent", "TControl", "TWinControl", "TStrings":
 		return true
 	}
 	return false
