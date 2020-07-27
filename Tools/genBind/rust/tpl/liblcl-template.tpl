@@ -6,6 +6,7 @@
 ##
 #![allow(non_snake_case)]
 #![allow(improper_ctypes)]
+#![allow(dead_code)]
 ##
 use std::os::raw::c_char;
 use std::mem::{size_of, transmute};
@@ -30,7 +31,7 @@ use types::*;
         {{$buff.Writeln "  #[cfg(target_os = \"linux\")]"}}
     {{end}}
     {{$buff.Write "  "}}
-    {{if not (inStrArray $el.Name "SetEventCallback" "SetMessageCallback" "SetThreadSyncCallback")}}
+    {{if not (inStrArray $el.Name "SetEventCallback" "SetMessageCallback" "SetThreadSyncCallback" "SetExceptionHandlerCallback")}}
         {{$buff.Write "pub "}}
     {{end}}
 

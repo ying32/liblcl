@@ -22,6 +22,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Form_Cascade(AObj: TForm); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Cascade;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Form_Close(AObj: TForm); extdecl;
 begin
   handleExceptionBegin
@@ -1773,6 +1781,7 @@ end;
 exports
   Form_Create,
   Form_Free,
+  Form_Cascade,
   Form_Close,
   Form_FocusControl,
   Form_Hide,

@@ -430,6 +430,20 @@ begin
   handleExceptionEnd
 end;
 
+function MonthCalendar_GetDateTime(AObj: TMonthCalendar): TUnixDateTime; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  ToUnixTime(AObj.DateTime);
+  handleExceptionEnd
+end;
+
+procedure MonthCalendar_SetDateTime(AObj: TMonthCalendar; AValue: TUnixDateTime); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DateTime := UnixToTime(AValue);
+  handleExceptionEnd
+end;
+
 function MonthCalendar_GetAlign(AObj: TMonthCalendar): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -514,7 +528,6 @@ begin
   handleExceptionEnd
 end;
 
-//RETURNISLASTPARAM:
 function MonthCalendar_GetDate(AObj: TMonthCalendar): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -1340,6 +1353,8 @@ exports
   MonthCalendar_AnchorVerticalCenterTo,
   MonthCalendar_AnchorAsAlign,
   MonthCalendar_AnchorClient,
+  MonthCalendar_GetDateTime,
+  MonthCalendar_SetDateTime,
   MonthCalendar_GetAlign,
   MonthCalendar_SetAlign,
   MonthCalendar_GetAnchors,

@@ -189,7 +189,7 @@ proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var str
 
 {{/*执行模板*/}}
 {{range $el := .Functions}}
-    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
+    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem" "SetExceptionHandlerCallback")}}
         {{if not (contains $el.Name "_Instance")}}
       ##
             {{template "getFunc" $el}}

@@ -30,15 +30,13 @@ uses
   fgl;
 
 const
-  // 线程同步消息
-  //THREAD_SYNC_MESSAGE = WM_USER + $9090;
   // call最长参数数，与导出的MySyscall一致，暂定为12个
   CALL_MAX_PARAM = 12;
 
 type
   TEventCallbackPtr = function(f: NativeUInt; args: Pointer; argcout: NativeInt): Pointer; extdecl;
   TMessageCallbackPtr = function(f: NativeUInt; msg: Pointer): Pointer; extdecl;
-  TThreadSyncCallbackPtr = function{(f: NativeUInt)}: Pointer; extdecl;
+  TThreadSyncCallbackPtr = function: Pointer; extdecl;
 
 var
   GEventCallbackPtr: TEventCallbackPtr;

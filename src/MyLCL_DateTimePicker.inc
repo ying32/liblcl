@@ -22,6 +22,30 @@ begin
 end;
 
 //CLASSMETHOD:
+function DateTimePicker_DateIsNull(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DateIsNull;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DateTimePicker_SelectDate(AObj: TDateTimePicker); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SelectDate;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DateTimePicker_SelectTime(AObj: TDateTimePicker); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SelectTime;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function DateTimePicker_CanFocus(AObj: TDateTimePicker): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -430,7 +454,279 @@ begin
   handleExceptionEnd
 end;
 
-//RETURNISLASTPARAM:
+function DateTimePicker_GetArrowShape(AObj: TDateTimePicker): TArrowShape; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ArrowShape;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetArrowShape(AObj: TDateTimePicker; AValue: TArrowShape); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ArrowShape := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetAutoAdvance(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AutoAdvance;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetAutoAdvance(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdvance := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetAutoButtonSize(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AutoButtonSize;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetAutoButtonSize(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoButtonSize := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetCascade(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Cascade;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetCascade(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Cascade := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetCenturyFrom(AObj: TDateTimePicker): Word; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.CenturyFrom;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetCenturyFrom(AObj: TDateTimePicker; AValue: Word); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CenturyFrom := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetDateDisplayOrder(AObj: TDateTimePicker): TDateDisplayOrder; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DateDisplayOrder;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetDateDisplayOrder(AObj: TDateTimePicker; AValue: TDateDisplayOrder); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DateDisplayOrder := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetDateSeparator(AObj: TDateTimePicker): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  PChar(AObj.DateSeparator);
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetDateSeparator(AObj: TDateTimePicker; AValue: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DateSeparator := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetLeadingZeros(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.LeadingZeros;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetLeadingZeros(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.LeadingZeros := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetMonthNames(AObj: TDateTimePicker): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  PChar(AObj.MonthNames);
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetMonthNames(AObj: TDateTimePicker; AValue: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MonthNames := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetShowMonthNames(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ShowMonthNames;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetShowMonthNames(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ShowMonthNames := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetNullInputAllowed(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.NullInputAllowed;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetNullInputAllowed(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.NullInputAllowed := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetOptions(AObj: TDateTimePicker): TDateTimePickerOptions; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Options;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetOptions(AObj: TDateTimePicker; AValue: TDateTimePickerOptions); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Options := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetShowCheckBox(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ShowCheckBox;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetShowCheckBox(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ShowCheckBox := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetReadOnly(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ReadOnly;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetReadOnly(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ReadOnly := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetTextForNullDate(AObj: TDateTimePicker): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  PChar(AObj.TextForNullDate);
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetTextForNullDate(AObj: TDateTimePicker; AValue: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TextForNullDate := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetTimeDisplay(AObj: TDateTimePicker): TTimeDisplay; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TimeDisplay;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetTimeDisplay(AObj: TDateTimePicker; AValue: TTimeDisplay); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TimeDisplay := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetTimeSeparator(AObj: TDateTimePicker): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  PChar(AObj.TimeSeparator);
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetTimeSeparator(AObj: TDateTimePicker; AValue: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TimeSeparator := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetTrailingSeparator(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TrailingSeparator;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetTrailingSeparator(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TrailingSeparator := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetUseDefaultSeparators(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.UseDefaultSeparators;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetUseDefaultSeparators(AObj: TDateTimePicker; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.UseDefaultSeparators := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetDroppedDown(AObj: TDateTimePicker): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DroppedDown;
+  handleExceptionEnd
+end;
+
 function DateTimePicker_GetDateTime(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -442,13 +738,6 @@ procedure DateTimePicker_SetDateTime(AObj: TDateTimePicker; AValue: TUnixDateTim
 begin
   handleExceptionBegin
   AObj.DateTime := UnixToTime(AValue);
-  handleExceptionEnd
-end;
-
-function DateTimePicker_GetDroppedDown(AObj: TDateTimePicker): LongBool; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.DroppedDown;
   handleExceptionEnd
 end;
 
@@ -522,7 +811,6 @@ begin
   handleExceptionEnd
 end;
 
-//RETURNISLASTPARAM:
 function DateTimePicker_GetDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -537,7 +825,6 @@ begin
   handleExceptionEnd
 end;
 
-//RETURNISLASTPARAM:
 function DateTimePicker_GetTime(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -636,7 +923,6 @@ begin
   handleExceptionEnd
 end;
 
-//RETURNISLASTPARAM:
 function DateTimePicker_GetMaxDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -651,7 +937,6 @@ begin
   handleExceptionEnd
 end;
 
-//RETURNISLASTPARAM:
 function DateTimePicker_GetMinDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -1353,6 +1638,9 @@ end;
 exports
   DateTimePicker_Create,
   DateTimePicker_Free,
+  DateTimePicker_DateIsNull,
+  DateTimePicker_SelectDate,
+  DateTimePicker_SelectTime,
   DateTimePicker_CanFocus,
   DateTimePicker_ContainsControl,
   DateTimePicker_ControlAtPos,
@@ -1403,9 +1691,47 @@ exports
   DateTimePicker_AnchorVerticalCenterTo,
   DateTimePicker_AnchorAsAlign,
   DateTimePicker_AnchorClient,
+  DateTimePicker_GetArrowShape,
+  DateTimePicker_SetArrowShape,
+  DateTimePicker_GetAutoAdvance,
+  DateTimePicker_SetAutoAdvance,
+  DateTimePicker_GetAutoButtonSize,
+  DateTimePicker_SetAutoButtonSize,
+  DateTimePicker_GetCascade,
+  DateTimePicker_SetCascade,
+  DateTimePicker_GetCenturyFrom,
+  DateTimePicker_SetCenturyFrom,
+  DateTimePicker_GetDateDisplayOrder,
+  DateTimePicker_SetDateDisplayOrder,
+  DateTimePicker_GetDateSeparator,
+  DateTimePicker_SetDateSeparator,
+  DateTimePicker_GetLeadingZeros,
+  DateTimePicker_SetLeadingZeros,
+  DateTimePicker_GetMonthNames,
+  DateTimePicker_SetMonthNames,
+  DateTimePicker_GetShowMonthNames,
+  DateTimePicker_SetShowMonthNames,
+  DateTimePicker_GetNullInputAllowed,
+  DateTimePicker_SetNullInputAllowed,
+  DateTimePicker_GetOptions,
+  DateTimePicker_SetOptions,
+  DateTimePicker_GetShowCheckBox,
+  DateTimePicker_SetShowCheckBox,
+  DateTimePicker_GetReadOnly,
+  DateTimePicker_SetReadOnly,
+  DateTimePicker_GetTextForNullDate,
+  DateTimePicker_SetTextForNullDate,
+  DateTimePicker_GetTimeDisplay,
+  DateTimePicker_SetTimeDisplay,
+  DateTimePicker_GetTimeSeparator,
+  DateTimePicker_SetTimeSeparator,
+  DateTimePicker_GetTrailingSeparator,
+  DateTimePicker_SetTrailingSeparator,
+  DateTimePicker_GetUseDefaultSeparators,
+  DateTimePicker_SetUseDefaultSeparators,
+  DateTimePicker_GetDroppedDown,
   DateTimePicker_GetDateTime,
   DateTimePicker_SetDateTime,
-  DateTimePicker_GetDroppedDown,
   DateTimePicker_GetAlign,
   DateTimePicker_SetAlign,
   DateTimePicker_GetAnchors,

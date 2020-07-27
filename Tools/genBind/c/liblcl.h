@@ -2050,6 +2050,63 @@ typedef enum {
     poHeaderClick,
 } TPrefixOption;
 
+typedef enum {
+    dsShowHeadings,
+    dsShowDayNames,
+    dsNoMonthChange,
+    dsShowWeekNumbers,
+    dsStartMonday,
+} TDisplaySetting;
+
+typedef enum {
+    tf12, // 12 hours format, with am/pm string
+    tf24, // 24 hours format
+} TTimeFormat;
+
+typedef enum {
+    tdHM, // hour and minute
+    tdHMS, // hour Minute and second
+    tdHMSMs, // hour Minute Second and milisecond
+} TTimeDisplay;
+
+typedef enum {
+    asClassicSmaller,
+    asClassicLarger,
+    asModernSmaller,
+    asModernLarger,
+    asYetAnotherShape,
+    asTheme,
+} TArrowShape;
+
+typedef enum {
+    ddoDMY,
+    ddoMDY,
+    ddoYMD,
+    ddoTryDefault,
+} TDateDisplayOrder;
+
+typedef enum {
+    dtpDay,
+    dtpMonth,
+    dtpYear,
+    dtpHour,
+    dtpMinute,
+    dtpSecond,
+    dtpMiliSec,
+    dtpAMPM,
+} TDateTimePart;
+
+typedef TSet TDateTimeParts;
+
+typedef enum {
+    dtpoDoChangeOnSetDateTime,
+    dtpoEnabledIfUnchecked,
+    dtpoAutoCheck,
+    dtpoFlatButton,
+} TDateTimePickerOption;
+
+typedef TSet TDateTimePickerOptions;
+
 /*--------------------类型定义--------------------*/
 
 typedef struct TPoint {
@@ -3059,6 +3116,13 @@ void
 SetThreadSyncCallback(void* APtr) {
     GET_FUNC_ADDR(SetThreadSyncCallback)
     MySyscall(pSetThreadSyncCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SetExceptionHandlerCallback)
+void
+SetExceptionHandlerCallback(void* APtr) {
+    GET_FUNC_ADDR(SetExceptionHandlerCallback)
+    MySyscall(pSetExceptionHandlerCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DGetStringArrOf)
@@ -34440,6 +34504,27 @@ ateTimePicker_Free(TDateTimePicker AObj) {
     MySyscall(pDateTimePicker_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DateTimePicker_DateIsNull)
+BOOL
+ateTimePicker_DateIsNull(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_DateIsNull)
+    return (BOOL)MySyscall(pDateTimePicker_DateIsNull, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SelectDate)
+void
+ateTimePicker_SelectDate(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_SelectDate)
+    MySyscall(pDateTimePicker_SelectDate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SelectTime)
+void
+ateTimePicker_SelectTime(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_SelectTime)
+    MySyscall(pDateTimePicker_SelectTime, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DateTimePicker_CanFocus)
 BOOL
 ateTimePicker_CanFocus(TDateTimePicker AObj) {
@@ -34798,6 +34883,279 @@ ateTimePicker_AnchorClient(TDateTimePicker AObj, int32_t ASpace) {
     MySyscall(pDateTimePicker_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DateTimePicker_GetArrowShape)
+TArrowShape
+ateTimePicker_GetArrowShape(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetArrowShape)
+    return (TArrowShape)MySyscall(pDateTimePicker_GetArrowShape, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetArrowShape)
+void
+ateTimePicker_SetArrowShape(TDateTimePicker AObj, TArrowShape AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetArrowShape)
+    MySyscall(pDateTimePicker_SetArrowShape, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetAutoAdvance)
+BOOL
+ateTimePicker_GetAutoAdvance(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetAutoAdvance)
+    return (BOOL)MySyscall(pDateTimePicker_GetAutoAdvance, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetAutoAdvance)
+void
+ateTimePicker_SetAutoAdvance(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetAutoAdvance)
+    MySyscall(pDateTimePicker_SetAutoAdvance, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetAutoButtonSize)
+BOOL
+ateTimePicker_GetAutoButtonSize(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetAutoButtonSize)
+    return (BOOL)MySyscall(pDateTimePicker_GetAutoButtonSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetAutoButtonSize)
+void
+ateTimePicker_SetAutoButtonSize(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetAutoButtonSize)
+    MySyscall(pDateTimePicker_SetAutoButtonSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetCascade)
+BOOL
+ateTimePicker_GetCascade(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetCascade)
+    return (BOOL)MySyscall(pDateTimePicker_GetCascade, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetCascade)
+void
+ateTimePicker_SetCascade(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetCascade)
+    MySyscall(pDateTimePicker_SetCascade, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetCenturyFrom)
+uint16_t
+ateTimePicker_GetCenturyFrom(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetCenturyFrom)
+    return (uint16_t)MySyscall(pDateTimePicker_GetCenturyFrom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetCenturyFrom)
+void
+ateTimePicker_SetCenturyFrom(TDateTimePicker AObj, uint16_t AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetCenturyFrom)
+    MySyscall(pDateTimePicker_SetCenturyFrom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetDateDisplayOrder)
+TDateDisplayOrder
+ateTimePicker_GetDateDisplayOrder(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetDateDisplayOrder)
+    return (TDateDisplayOrder)MySyscall(pDateTimePicker_GetDateDisplayOrder, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetDateDisplayOrder)
+void
+ateTimePicker_SetDateDisplayOrder(TDateTimePicker AObj, TDateDisplayOrder AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetDateDisplayOrder)
+    MySyscall(pDateTimePicker_SetDateDisplayOrder, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetDateSeparator)
+char*
+ateTimePicker_GetDateSeparator(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetDateSeparator)
+    return (char*)MySyscall(pDateTimePicker_GetDateSeparator, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetDateSeparator)
+void
+ateTimePicker_SetDateSeparator(TDateTimePicker AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetDateSeparator)
+    MySyscall(pDateTimePicker_SetDateSeparator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetLeadingZeros)
+BOOL
+ateTimePicker_GetLeadingZeros(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetLeadingZeros)
+    return (BOOL)MySyscall(pDateTimePicker_GetLeadingZeros, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetLeadingZeros)
+void
+ateTimePicker_SetLeadingZeros(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetLeadingZeros)
+    MySyscall(pDateTimePicker_SetLeadingZeros, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetMonthNames)
+char*
+ateTimePicker_GetMonthNames(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetMonthNames)
+    return (char*)MySyscall(pDateTimePicker_GetMonthNames, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetMonthNames)
+void
+ateTimePicker_SetMonthNames(TDateTimePicker AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetMonthNames)
+    MySyscall(pDateTimePicker_SetMonthNames, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetShowMonthNames)
+BOOL
+ateTimePicker_GetShowMonthNames(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetShowMonthNames)
+    return (BOOL)MySyscall(pDateTimePicker_GetShowMonthNames, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetShowMonthNames)
+void
+ateTimePicker_SetShowMonthNames(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetShowMonthNames)
+    MySyscall(pDateTimePicker_SetShowMonthNames, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetNullInputAllowed)
+BOOL
+ateTimePicker_GetNullInputAllowed(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetNullInputAllowed)
+    return (BOOL)MySyscall(pDateTimePicker_GetNullInputAllowed, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetNullInputAllowed)
+void
+ateTimePicker_SetNullInputAllowed(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetNullInputAllowed)
+    MySyscall(pDateTimePicker_SetNullInputAllowed, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetOptions)
+TDateTimePickerOptions
+ateTimePicker_GetOptions(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetOptions)
+    return (TDateTimePickerOptions)MySyscall(pDateTimePicker_GetOptions, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetOptions)
+void
+ateTimePicker_SetOptions(TDateTimePicker AObj, TDateTimePickerOptions AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetOptions)
+    MySyscall(pDateTimePicker_SetOptions, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetShowCheckBox)
+BOOL
+ateTimePicker_GetShowCheckBox(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetShowCheckBox)
+    return (BOOL)MySyscall(pDateTimePicker_GetShowCheckBox, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetShowCheckBox)
+void
+ateTimePicker_SetShowCheckBox(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetShowCheckBox)
+    MySyscall(pDateTimePicker_SetShowCheckBox, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetReadOnly)
+BOOL
+ateTimePicker_GetReadOnly(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetReadOnly)
+    return (BOOL)MySyscall(pDateTimePicker_GetReadOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetReadOnly)
+void
+ateTimePicker_SetReadOnly(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetReadOnly)
+    MySyscall(pDateTimePicker_SetReadOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetTextForNullDate)
+char*
+ateTimePicker_GetTextForNullDate(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetTextForNullDate)
+    return (char*)MySyscall(pDateTimePicker_GetTextForNullDate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetTextForNullDate)
+void
+ateTimePicker_SetTextForNullDate(TDateTimePicker AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetTextForNullDate)
+    MySyscall(pDateTimePicker_SetTextForNullDate, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetTimeDisplay)
+TTimeDisplay
+ateTimePicker_GetTimeDisplay(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetTimeDisplay)
+    return (TTimeDisplay)MySyscall(pDateTimePicker_GetTimeDisplay, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetTimeDisplay)
+void
+ateTimePicker_SetTimeDisplay(TDateTimePicker AObj, TTimeDisplay AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetTimeDisplay)
+    MySyscall(pDateTimePicker_SetTimeDisplay, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetTimeSeparator)
+char*
+ateTimePicker_GetTimeSeparator(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetTimeSeparator)
+    return (char*)MySyscall(pDateTimePicker_GetTimeSeparator, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetTimeSeparator)
+void
+ateTimePicker_SetTimeSeparator(TDateTimePicker AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetTimeSeparator)
+    MySyscall(pDateTimePicker_SetTimeSeparator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetTrailingSeparator)
+BOOL
+ateTimePicker_GetTrailingSeparator(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetTrailingSeparator)
+    return (BOOL)MySyscall(pDateTimePicker_GetTrailingSeparator, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetTrailingSeparator)
+void
+ateTimePicker_SetTrailingSeparator(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetTrailingSeparator)
+    MySyscall(pDateTimePicker_SetTrailingSeparator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetUseDefaultSeparators)
+BOOL
+ateTimePicker_GetUseDefaultSeparators(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetUseDefaultSeparators)
+    return (BOOL)MySyscall(pDateTimePicker_GetUseDefaultSeparators, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetUseDefaultSeparators)
+void
+ateTimePicker_SetUseDefaultSeparators(TDateTimePicker AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetUseDefaultSeparators)
+    MySyscall(pDateTimePicker_SetUseDefaultSeparators, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_GetDroppedDown)
+BOOL
+ateTimePicker_GetDroppedDown(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetDroppedDown)
+    return (BOOL)MySyscall(pDateTimePicker_GetDroppedDown, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DateTimePicker_GetDateTime)
 uint32_t
 ateTimePicker_GetDateTime(TDateTimePicker AObj) {
@@ -34810,13 +35168,6 @@ void
 ateTimePicker_SetDateTime(TDateTimePicker AObj, uint32_t AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetDateTime)
     MySyscall(pDateTimePicker_SetDateTime, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(DateTimePicker_GetDroppedDown)
-BOOL
-ateTimePicker_GetDroppedDown(TDateTimePicker AObj) {
-    GET_FUNC_ADDR(DateTimePicker_GetDroppedDown)
-    return (BOOL)MySyscall(pDateTimePicker_GetDroppedDown, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetAlign)
@@ -36079,6 +36430,20 @@ void
 MonthCalendar_AnchorClient(TMonthCalendar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(MonthCalendar_AnchorClient)
     MySyscall(pMonthCalendar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_GetDateTime)
+uint32_t
+MonthCalendar_GetDateTime(TMonthCalendar AObj) {
+    GET_FUNC_ADDR(MonthCalendar_GetDateTime)
+    return (uint32_t)MySyscall(pMonthCalendar_GetDateTime, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_SetDateTime)
+void
+MonthCalendar_SetDateTime(TMonthCalendar AObj, uint32_t AValue) {
+    GET_FUNC_ADDR(MonthCalendar_SetDateTime)
+    MySyscall(pMonthCalendar_SetDateTime, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_GetAlign)
@@ -63890,6 +64255,13 @@ void
 Form_Free(TForm AObj) {
     GET_FUNC_ADDR(Form_Free)
     MySyscall(pForm_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_Cascade)
+void
+Form_Cascade(TForm AObj) {
+    GET_FUNC_ADDR(Form_Cascade)
+    MySyscall(pForm_Cascade, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_Close)

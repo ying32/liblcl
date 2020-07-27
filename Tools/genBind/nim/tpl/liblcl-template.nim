@@ -142,8 +142,13 @@ proc doThreadSyncCallbackProc(): uint =
     threadSyncProc = nil
   return 0
 ##
+##
+proc doHandlerExceptionCallbackProc(msg: cstring): uint =
+  return 0
+
 # set callback
 SetEventCallback(cast[pointer](doEventCallbackProc))
 SetMessageCallback(cast[pointer](doMessageCallbackProc))
 SetThreadSyncCallback(cast[pointer](doThreadSyncCallbackProc))
+SetExceptionHandlerCallback(cast[pointer](doHandlerExceptionCallbackProc))
 

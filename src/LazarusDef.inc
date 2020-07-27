@@ -669,6 +669,11 @@ begin
   GThreadSyncCallbackPtr := APtr;
 end;
 
+procedure SetExceptionHandlerCallback(APtr: Pointer); extdecl;
+begin
+  GExceptionHandlerCallbackPtr := APtr;
+end;
+
 // 从string数组中获取成员
 function DGetStringArrOf(P: Pointer; AIndex: NativeInt): PChar; extdecl;
 begin
@@ -1173,16 +1178,7 @@ begin
     end;
   except
     on E: Exception do
-    begin
-      if Assigned(Application) then
-      begin
-        if Assigned(Application.OnException) then
-          Application.OnException(Application, E)
-        else
-          MessageDlg(E.Message,  mtError, [mbOK], 0);
-      end else
-        Writeln('Syscall' + ALen.ToString + ' Error: ' + E.Message);
-    end;
+      CallException(E);
   end;
 end;
 {$endif}
@@ -1318,6 +1314,7 @@ exports
   SetEventCallback,
   SetMessageCallback,
   SetThreadSyncCallback,
+  SetExceptionHandlerCallback,
 
   DGetStringArrOf,
   DStrLen,
