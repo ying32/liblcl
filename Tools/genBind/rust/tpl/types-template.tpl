@@ -96,8 +96,8 @@ pub type {{$el.Name}} = {{covType $el.Type}};
 ##
 #[cfg(target_os = "linux")]
 pub type PGdkWindow = usize;
-#[cfg(target_os = "linux")]
-pub type TXId = usize;
+//#[cfg(target_os = "linux")]
+//pub type TXId = usize;
 #[cfg(target_os = "linux")]
 pub type PGtkFixed = usize;
 ##

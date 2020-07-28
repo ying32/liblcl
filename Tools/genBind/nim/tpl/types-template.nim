@@ -72,7 +72,7 @@ when defined({{$el.FieldArch}}):
 when defined(linux):
   type
     PGdkWindow* = pointer
-    TXId* = usize
+    # TXId* = usize
     PGtkFixed* = pointer
 ##
 ##

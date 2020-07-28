@@ -28,22 +28,22 @@
       "files": [
         {
           "template_file_name": "./nim/tpl/liblcl-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\lclapi.nim",
+          "save_file_name": "J:\\NimLang\\nim_vcl\\src\\lclapi.nim",
           "enabled": true
         },
         {
           "template_file_name": "./nim/tpl/types-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\types.nim",
+          "save_file_name": "J:\\NimLang\\nim_vcl\\src\\types.nim",
           "enabled": true
         },
         {
           "template_file_name": "./nim/tpl/vcl-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\vcl.nim",
+          "save_file_name": "J:\\NimLang\\nim_vcl\\src\\vcl.nim",
           "enabled": true
         },
         {
           "template_file_name": "./nim/tpl/fns-template.nim",
-          "save_file_name": "J:\\NimLang\\Hello\\src\\fns.nim",
+          "save_file_name": "J:\\NimLang\\nim_vcl\\src\\fns.nim",
           "enabled": true
         }
       ]

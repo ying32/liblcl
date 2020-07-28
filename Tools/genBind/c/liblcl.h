@@ -57,7 +57,7 @@
 
 #ifdef __linux__
     typedef void* PGdkWindow;
-    typedef uintptr_t TXId;
+    //typedef uintptr_t TXId;
     typedef void* PGtkFixed;
 #endif
 
