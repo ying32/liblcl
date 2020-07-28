@@ -41,6 +41,9 @@ type (
 	TClass struct {
 		ClassName     string      `json:"class_name"`
 		BaseClassName string      `json:"base_class_name"`
+		IsComponent   bool        `json:"is_component"`
+		IsControl     bool        `json:"is_control"`
+		IsWinControl  bool        `json:"is_win_control"`
 		Methods       []TFunction `json:"functions"`
 	}
 

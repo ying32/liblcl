@@ -113,6 +113,21 @@ func fixAndSortObjects() {
 	}
 
 	for i, o := range objectFile.Objects {
+		// 这里先修改
+		if o.BaseClassName == "TComponent" {
+			o.IsComponent = true
+		}
+		if o.BaseClassName == "TControl" {
+			o.IsComponent = true
+			o.IsControl = true
+		}
+		if o.BaseClassName == "TWinControl" {
+			o.IsComponent = true
+			o.IsControl = true
+			o.IsWinControl = true
+		}
+		objectFile.Objects[i] = o
+
 		if o.ClassName == "TObject" {
 			o.BaseClassName = ""
 			move(i, 0, o)

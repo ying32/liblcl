@@ -256,15 +256,15 @@ impl {{$className}} {
 }
 ##
 impl_IObject!({{$className}});
-{{if or (or (or (eq $baseClass "TComponent") (eq $baseClass "TControl")) (eq $baseClass "TWinControl")) (eq $className "TComponent")}}
+{{if $el.IsComponent}}
 impl_IComponent!({{$className}});
 {{end}}
 
-{{if or (or (eq $baseClass "TControl") (eq $baseClass "TWinControl")) (eq $className "TControl")}}
+{{if $el.IsControl}}
 impl_IControl!({{$className}});
 {{end}}
 
-{{if or (eq $baseClass "TWinControl") (eq $className "TWinControl")}}
+{{if $el.IsWinControl}}
 impl_IWinControl!({{$className}});
 {{end}}
 
@@ -278,7 +278,7 @@ impl_IStream!({{$className}});
 
 {{/* 所有不为TComponent和TControl和TWinControl的实现drop方法 */}}
 {{if haveFree $el.Methods}}
-  {{if or (or (or (or (or (eq $baseClass "TObject") (eq $className "TObject")) (eq $className "TStrings")) (eq $className "TStringList")) (eq $className "TStream")) (eq $className "TMemoryStream")  }}
+  {{if not $el.IsComponent }}
  
 impl_Drop_method!({{$className}});
 

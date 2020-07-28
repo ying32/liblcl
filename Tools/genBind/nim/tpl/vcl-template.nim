@@ -101,7 +101,7 @@ proc Free*(this: {{$className}}){{if isBaseMethod $el.ClassName $mm.RealName}} {
   {{$buff.Writeln "): " $className " ="}}
 
   {{$buff.Write "  new(result"}}
-  {{if or (eq $className "TObject") (eq $className "")}}
+  {{if not $el.IsComponent}}
     {{$buff.Write ", Free"}}
   {{end}}
   {{$buff.Writeln ")"}}
