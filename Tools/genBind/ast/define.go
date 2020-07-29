@@ -91,14 +91,21 @@ type (
 		BaseClassName string `json:"base_class_name"`
 	}
 
+	TInstanceObject struct {
+		Name         string `json:"name"`
+		Type         string `json:"type"`
+		InstanceFunc string `json:"instance_func"`
+	}
+
 	TObjectFile struct {
-		Functions   []TFunction   `json:"functions"`
-		Objects     []TClass      `json:"objects"`
-		Events      []TEvent      `json:"events"`
-		Consts      []TConst      `json:"consts"`
-		Types       []TType       `json:"types"`
-		BaseTypes   []TType       `json:"base_types"`
-		BaseObjects []TBaseObject `json:"base_objects"`
+		Functions       []TFunction       `json:"functions"`
+		Objects         []TClass          `json:"objects"`
+		Events          []TEvent          `json:"events"`
+		Consts          []TConst          `json:"consts"`
+		Types           []TType           `json:"types"`
+		BaseTypes       []TType           `json:"base_types"`
+		BaseObjects     []TBaseObject     `json:"base_objects"`
+		InstanceObjects []TInstanceObject `json:"instance_objects"`
 	}
 )
 

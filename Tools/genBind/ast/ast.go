@@ -63,10 +63,22 @@ func GenAst() {
 	functionsMap["NSWindow_release"] = ""
 
 	// 预定义的基类
-	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TObject", BaseClassName: ""})
-	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TComponent", BaseClassName: "TObject"})
-	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TControl", BaseClassName: "TComponent"})
-	objectFile.BaseObjects = append(objectFile.BaseObjects, TBaseObject{ClassName: "TWinControl", BaseClassName: "TControl"})
+	objectFile.BaseObjects = append(objectFile.BaseObjects, []TBaseObject{
+		{ClassName: "TObject", BaseClassName: ""},
+		{ClassName: "TComponent", BaseClassName: "TObject"},
+		{ClassName: "TControl", BaseClassName: "TComponent"},
+		{ClassName: "TWinControl", BaseClassName: "TControl"},
+	}...)
+
+	// 实例类
+	objectFile.InstanceObjects = append(objectFile.InstanceObjects,
+		[]TInstanceObject{
+			{Name: "Application", Type: "TApplication", InstanceFunc: "Application_Instance"},
+			{Name: "Screen", Type: "TScreen", InstanceFunc: "Screen_Instance"},
+			{Name: "Mouse", Type: "TMouse", InstanceFunc: "Mouse_Instance"},
+			{Name: "Clipboard", Type: "TClipboard", InstanceFunc: "Clipboard_Instance"},
+			{Name: "Printer", Type: "TPrinter", InstanceFunc: "Printer_Instance"},
+		}...)
 
 	parseFile("LazarusDef.inc", false, nil, "", "")
 
