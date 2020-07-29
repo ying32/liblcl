@@ -274,11 +274,9 @@ static MYSYSCALL pMySyscall;
     pMySyscall((void*)addr, (intptr_t)len, COV_PARAM(a1), COV_PARAM(a2), COV_PARAM(a3), COV_PARAM(a4), COV_PARAM(a5), COV_PARAM(a6), COV_PARAM(a7), COV_PARAM(a8), COV_PARAM(a9), COV_PARAM(a10), COV_PARAM(a11), COV_PARAM(a12))
 ##
 // 全局实例类定义
-TApplication Application; // 应用程序
-TScreen Screen;           // 屏幕
-TMouse	Mouse;            // 鼠标
-TClipboard	Clipboard;    // 剪切板
-TPrinter Printer;         // 打印机
+{{range $el := .InstanceObjects}}
+{{$el.Type}} {{$el.Name}};
+{{end}}
 ##
 // 全局互斥锁
 #ifdef __GNUC__
@@ -569,11 +567,9 @@ static void init_lib_lcl() {
 	// 线程同步回调
 	SetThreadSyncCallback(GET_CALLBACK(doThreadSyncCallbackProc));
 ##
-	Application = Application_Instance();
-	Screen = Screen_Instance();
-	Mouse = Mouse_Instance();             // 鼠标
-	Clipboard = Clipboard_Instance();     // 剪切板
-	Printer = Printer_Instance();         // 打印机
+{{range $el := .InstanceObjects}}
+    {{$el.Name}} = {{$el.InstanceFunc}}();
+{{end}}
 ##
 }
 ##

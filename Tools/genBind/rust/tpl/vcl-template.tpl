@@ -305,9 +305,7 @@ fn getApplication() -> TApplication {
 // ------------------------------------ global vars ------------------------------------
 ##
 lazy_static! {
-    pub static ref Application: TApplication = getApplication();
-    pub static ref Screen: TScreen = TScreen::As(unsafe { Screen_Instance() });
-    pub static ref Mouse: TMouse = TMouse::As(unsafe { Mouse_Instance() });
-    pub static ref Clipboard: TClipboard = TClipboard::As(unsafe { Clipboard_Instance() });
-    pub static ref Printer: TPrinter = TPrinter::As(unsafe { Printer_Instance() });
+{{range $el := .InstanceObjects}}
+    pub static ref {{$el.Name}}: {{$el.Type}} = {{if eq $el.Name "Application"}}getApplication(){{else}}{{$el.Type}}::As(unsafe { {{$el.InstanceFunc}}() }){{end}};
+{{end}}
 }

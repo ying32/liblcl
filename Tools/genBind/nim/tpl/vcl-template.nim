@@ -266,8 +266,6 @@ initLock(syncLock)
 #------------ global vars ----------------------
 ##
 var
-  Application* = AsApplication(Application_Instance())
-  Screen* = AsScreen(Screen_Instance())
-  Mouse* = AsMouse(Mouse_Instance())
-  Clipboard* = AsClipboard(Clipboard_Instance())
-  Printer* = AsPrinter(Printer_Instance())
+{{range $el := .InstanceObjects}}
+  {{$el.Name}}* = As{{$el.Name}}({{$el.InstanceFunc}}())
+{{end}}
