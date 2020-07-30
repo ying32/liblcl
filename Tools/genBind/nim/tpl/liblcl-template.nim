@@ -76,9 +76,11 @@ import types
 ##
 ##
 {{range $el := .Objects}}
+    {{if ne $el.ClassName "Exception"}}
 # ----------------- {{$el.ClassName}} ----------------------
-    {{range $fn := $el.Methods}}
-        {{template "getFunc" $fn}}
+        {{range $fn := $el.Methods}}
+            {{template "getFunc" $fn}}
+        {{end}}
     {{end}}
 {{end}}
 
@@ -143,7 +145,14 @@ proc doThreadSyncCallbackProc(): uint =
   return 0
 ##
 ##
+var
+  exceptionProc*: TExceptionEvent;
+##
 proc doHandlerExceptionCallbackProc(msg: cstring): uint =
+  # 如果设置了全局的，则由全局的异常捕获，则不再直接抛出异常
+  if exceptionProc != nil:
+    exceptionProc(newException(Exception, $msg))
+    return
   raise newException(Exception, $msg)
 ##
 # set callback

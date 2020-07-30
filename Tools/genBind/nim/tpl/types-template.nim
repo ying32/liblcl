@@ -89,7 +89,12 @@ type
 {{range $el := .Events}}
   {{if isEmpty $el.ReDefine}}
 ##
+  {{/*因为这个事件会交由Nim自己处理了*/}}
+  {{if eq $el.Name "TExceptionEvent"}}
+  TExceptionEvent* = proc(e: ref Exception) {.nimcall.}
+  {{else}}
   {{$el.Name}}* = proc({{range $idx, $ps := $el.Params}}{{if gt $idx 0}}, {{end}}{{$ps.Name}}: {{if $ps.IsVar}}var {{end}}{{if isObject $ps.Type}}pointer{{else}}{{covType $ps.Type}}{{end}}{{end}}) {.nimcall.}
+  {{end}}
   {{else}}
 ##
   {{$el.Name}}* = {{$el.ReDefine}}

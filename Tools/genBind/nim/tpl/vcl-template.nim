@@ -23,7 +23,9 @@ type
 {{range $el := .Objects}}
 {{if not (isBaseObj $el.ClassName)}}
 ##
+  {{if ne $el.ClassName "Exception"}}
   {{$el.ClassName}}* = ref object of {{$el.BaseClassName}}
+  {{end}}
 {{end}}
 {{end}}
 
@@ -47,7 +49,7 @@ template defaultPointerAs =
 {{/* As<xxx>方法定义 */}}
 ## {{/*这里添加一个强制转换的*/}}
 {{range $el := .Objects}}
-proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} = defaultPointerAs{{end}}
+{{if ne $el.ClassName "Exception"}}proc As{{rmObjectT $el.ClassName}}*(obj: pointer): {{$el.ClassName}} = defaultPointerAs{{end}}{{end}}
 ##
 
 ##
@@ -79,11 +81,17 @@ template defaultFree(pName) =
 {{$buff := newBuffer}}
 
 {{range $el := .Objects}}
+
+{{/*不生成异常类，交由Nim自己处理*/}}
+{{if ne $el.ClassName "Exception"}}
 ##
 #------------------------- {{$el.ClassName}} -------------------------
 {{$className := $el.ClassName}}
 ##
 {{$classN := rmObjectT $className}}
+
+
+
 {{range $mm := $el.Methods}}
 {{if eq $mm.RealName "Create"}}
 
@@ -143,6 +151,9 @@ proc CreateForm*[T](this: TApplication, x: var T) =
 ##
 proc CreateForm*(this: TApplication): TForm =
   AsForm(Application_CreateForm(this.{{$instName}}, false))
+{{else if eq $mm.RealName "SetOnException"}}
+proc `OnException=`*(this: TApplication, AEventId: TExceptionEvent)  =
+  lclapi.exceptionProc = AEventId
 {{else}}
 ##
   {{/* 其他方法生成 */}}
@@ -238,6 +249,7 @@ proc CreateForm*(this: TApplication): TForm =
 
 {{$buff.ToStr}}
 
+{{end}}
 {{end}}
 {{end}}
 {{end}}
