@@ -262,6 +262,10 @@ func templateNewBuffer() *TMyBuffer {
 //	return html.UnescapeString(s)
 //}
 
+func templateMultiply(v1, v2 int) int {
+	return v1 * v2
+}
+
 var templateFuncs = template.FuncMap{
 	"isEmpty":      templateIsEmpty,
 	"covType":      templateCovType,
@@ -298,4 +302,7 @@ var templateFuncs = template.FuncMap{
 	"fLowCase":     templateFirstLowerCase,
 	"newBuffer":    templateNewBuffer,
 	//"unescape":     templateUnescape,
+	"multiply": templateMultiply,
 }
+
+//Add, subtract, multiply, divide

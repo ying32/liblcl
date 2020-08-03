@@ -2,7 +2,7 @@
   "ast_file_name": "./liblcl.json",
   "languages": [
     {
-      "enabled": true,
+      "enabled": false,
       "name": "Nim",
       "type_dict": {
         "i32": "int32",
@@ -112,6 +112,34 @@
         {
           "template_file_name": "./rust/tpl/fns-template.tpl",
           "save_file_name": "J:\\RustLang\\rust-vcl\\src\\fns.rs",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "name": "FASM",
+      "line_break": "\r\n",
+      "type_dict": {},
+      "keyword_dict": {},
+      "files": [
+        {
+          "template_file_name": "./fasm/tpl/liblcl-template.def",
+          "save_file_name": "./fasm/liblcl.def",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "enabled": true,
+      "name": "MASM",
+      "line_break": "\r\n",
+      "type_dict": {},
+      "keyword_dict": {},
+      "files": [
+        {
+          "template_file_name": "./masm/tpl/liblcl-template.inc",
+          "save_file_name": "./masm/liblcl.inc",
           "enabled": true
         }
       ]

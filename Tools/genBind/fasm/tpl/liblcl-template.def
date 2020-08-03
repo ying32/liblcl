@@ -1,0 +1,27 @@
+{{/* 此模板只是用来生成lib导入文件，利用fasm生成符合msvc stdcall修饰名的liblcl.lib */}}
+
+
+include 'implib.inc'
+##
+; KEEP_ORIGINAL_THUNKS equ 0 ; Uncomment to strip original thunks.
+##
+
+{{range $el := .Functions}}
+    {{if or (eq $el.Platform "windows") (eq $el.Platform "all")}}
+implib liblcl.dll, {{$el.Name}}, _{{$el.Name}}@{{multiply (len $el.Params) 4}}, __imp__{{$el.Name}}@{{multiply (len $el.Params) 4}}
+    {{end}}
+{{end}}
+
+
+##
+
+
+{{range $el := .Objects}}
+    {{range $fn := $el.Methods}}
+implib liblcl.dll, {{$fn.Name}}, _{{$fn.Name}}@{{multiply (len $fn.Params) 4}}, __imp__{{$fn.Name}}@{{multiply (len $fn.Params) 4}}
+    {{end}}
+{{end}}
+
+
+##
+endlib
