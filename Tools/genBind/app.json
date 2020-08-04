@@ -131,7 +131,7 @@
       ]
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "MASM",
       "line_break": "\r\n",
       "type_dict": {},
@@ -140,6 +140,20 @@
         {
           "template_file_name": "./masm/tpl/liblcl-template.inc",
           "save_file_name": "./masm/liblcl.inc",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "name": "implib",
+      "line_break": "",
+      "type_dict": {},
+      "keyword_dict": {},
+      "files": [
+        {
+          "template_file_name": "./implib/tpl/liblcl-template.xml",
+          "save_file_name": "./implib/liblcl.xml",
           "enabled": true
         }
       ]

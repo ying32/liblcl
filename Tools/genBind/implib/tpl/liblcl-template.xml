@@ -1,0 +1,24 @@
+{{/* 此模板只是用来lib导入文件，利用MakeImpLib生成符合msvc stdcall修饰名的liblcl.lib */}}
+
+{{define "genNode"}}
+<Import>
+    {{$idx := multiply (len .Params) 4}}
+    <LinkName>__imp__{{.Name}}@{{$idx}}</LinkName>
+    <StubName>_{{.Name}}@{{$idx}}</StubName>
+    <ImportName>{{.Name}}</ImportName>
+</Import>
+{{end}}
+
+<ImportLibrary>
+    <DllName>liblcl.dll</DllName>
+{{range $el := .Functions}}
+    {{if or (eq $el.Platform "windows") (eq $el.Platform "all")}}
+        {{template "genNode" $el}}
+    {{end}}
+{{end}}
+{{range $el := .Objects}}
+    {{range $fn := $el.Methods}}
+        {{template "genNode" $fn}}
+    {{end}}
+{{end}}
+</ImportLibrary>
