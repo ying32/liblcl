@@ -1,5 +1,5 @@
 ; --------------------------------------------------------------------------------------------------
-;                           kerbcli.inc Copyright The MASM32 SDK 1998-2010
+;                           liblcl.inc
 ; --------------------------------------------------------------------------------------------------
 IFNDEF LIBLCL_INC
 LIBLCL_INC equ <1>
@@ -13778,6 +13778,6 @@ GridColumns_StaticClassType PROTO STDCALL
 
 ELSE
   echo ------------------------------------------
-  echo WARNING duplicate include file kerbcli.inc
+  echo WARNING duplicate include file liblcl.inc
   echo ------------------------------------------
 ENDIF
