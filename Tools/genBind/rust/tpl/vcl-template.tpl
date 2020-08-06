@@ -291,8 +291,14 @@ impl_Drop_method!({{$className}});
 
 ##
 ##
-pub fn NullObject() -> TObject {
-   TObject { 0: 0, 1: false, }
+pub struct TNull(usize, bool);
+impl_IObject!(TNull);
+impl_IComponent!(TNull);
+impl_IControl!(TNull);
+impl_IWinControl!(TNull);
+
+pub fn Null() -> TNull {
+   TNull { 0: 0, 1: false, }
 }
 ##
 fn getApplication() -> TApplication {
