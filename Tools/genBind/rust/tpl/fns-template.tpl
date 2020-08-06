@@ -197,24 +197,3 @@ proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var str
         {{end}}
     {{end}}
 {{end}}
-
-##
-##
-##
-// 集合加法，val...中存储为位的索引，下标为0
-#[inline]
-pub fn Include(s: TSet, val: u8) -> TSet {
-    {{html "return s | (1 << val);"}}
-}
-
-// 集合减法，val...中存储为位的索引，下标为0
-#[inline]
-pub fn Exclude(s: TSet, val: u8) -> TSet {
-    {{html "return s & (!(1 << val));"}}
-}
-
-// 集合类型的判断，val表示位数，下标为0
-#[inline]
-pub fn InSet(s: u32, val: u8) -> bool {
-    {{html "return (s & (1 << val)) != 0;"}}
-}
