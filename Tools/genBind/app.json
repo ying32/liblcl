@@ -81,7 +81,7 @@
       ]
     },
     {
-      "enabled": false,
+      "enabled": true,
       "name": "Rust",
       "line_break": "",
       "type_dict": {

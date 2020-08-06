@@ -6,6 +6,7 @@
 ##
 #![allow(non_snake_case)]
 #![allow(unused_unsafe)]
+#![allow(dead_code)]
 ##
 use lclapi;
 use std::borrow::Cow;

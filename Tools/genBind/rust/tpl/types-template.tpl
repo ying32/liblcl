@@ -167,7 +167,7 @@ pub type MyNSWindow = usize;
 
         {{$isCur := hasPrefix $el.Name "cr"}}
 
-        {{$buff.Write "const " $el.Name}}
+        {{$buff.Write "pub const " $el.Name}}
 
         {{if hasPrefix $el.Name "cl"}}
             {{$buff.Write ": TColor"}}
@@ -176,7 +176,9 @@ pub type MyNSWindow = usize;
         {{else if $isCur}}
             {{$buff.Write ": TCursor"}}
         {{else}}
-            {{if or (or (hasPrefix .Name "id") (hasPrefix .Name "mr")) (hasPrefix .Name "CF_")}}
+            {{if or (hasPrefix .Name "id") (hasPrefix .Name "mr")}}
+			    {{$buff.Write ": i32"}}
+			{{else if hasPrefix .Name "CF_"}}
                 {{$buff.Write ": u8"}}
             {{end}}
         {{end}}
