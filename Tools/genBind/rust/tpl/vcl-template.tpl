@@ -24,6 +24,7 @@ pub trait IControl: IComponent {}
 pub trait IWinControl: IControl {}
 pub trait IStrings: IObject {}
 pub trait IStream: IObject {}
+pub trait IForm: IWinControl {}
 ##
 
 
@@ -274,6 +275,10 @@ impl_IStrings!({{$className}});
 
 {{if or (eq $className "TStream") (eq $className "TMemoryStream")}}
 impl_IStream!({{$className}});
+{{end}}
+
+{{if eq $className "TForm"}}
+impl IForm for {{$className}} {}
 {{end}}
 
 {{/* 所有不为TComponent和TControl和TWinControl的实现drop方法 */}}
