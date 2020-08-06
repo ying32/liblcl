@@ -120,10 +120,10 @@ pub type MyNSWindow = usize;
             {{if gt $idx 0}}
                 {{$buff.Write ", "}}
             {{end}}
+            {{$buff.Write $ps.Name ": "}}
             {{if $ps.IsVar}}
                 {{$buff.Write "*mut "}}
             {{end}}
-            {{$buff.Write $ps.Name ": "}}
             {{if isObject $ps.Type}}
                 {{$buff.Write "usize"}}
             {{else}}
