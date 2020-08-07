@@ -14,6 +14,7 @@ use types::*;
 ##
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
+use std::mem::{transmute};
 ##
 // IObject IComponent IControl IWinControl只是用来让编译器知道这几个的关系的
 pub trait IObject {
@@ -25,6 +26,9 @@ pub trait IWinControl: IControl {}
 pub trait IStrings: IObject {}
 pub trait IStream: IObject {}
 pub trait IForm: IWinControl {}
+pub trait ISId{
+    fn getSId(&self) -> usize;
+}
 ##
 
 
@@ -32,7 +36,8 @@ pub trait IForm: IWinControl {}
 {{/* usize是指向实例对象的指针，bool是标识能自动drop的，一般只有通过new的才可以 */}}
 /* 先定义所有的类 */
 {{range $el := .Objects}}
-pub struct {{$el.ClassName}}(usize, bool);
+{{/*#[derive(Copy, Clone)]*/}}
+pub struct {{$el.ClassName}}(usize, bool, usize);
 {{end}}
 
 {{/*模板定义*/}}
@@ -111,7 +116,14 @@ impl {{$className}} {
                   {{if eq $mm.Return "string"}}
                       {{$buff.Write "<'a>"}}
                   {{end}}
+				  {{$isEvent := hasPrefix $mm.RealName "SetOn"}}
+				  {{if $isEvent}}
+				      {{$buff.Write "<T>"}}
+				  {{end}}
                   {{$buff.Write "(&self"}}
+				  {{if $isEvent}}
+				      {{$buff.Write ", aRoot: usize"}}
+				  {{end}}
 
                   {{range $idx, $ps := $mm.Params}}
                       {{if canOutParam $mm $idx}}
@@ -133,6 +145,9 @@ impl {{$className}} {
                                   {{end}}
                               {{end}}
                               {{covType2 (getIntfName $ps.Type)|$buff.Write}}
+							  {{if and (hasPrefix $mm.RealName "SetOn") (eq $ps.Name "AEventId")}}
+				                   {{$buff.Write "<T>"}}
+				              {{end}}
                           {{end}}
                       {{end}}
                   {{end}}
@@ -217,7 +232,14 @@ impl {{$className}} {
                                   {{if eq $ps.Flag "nonPtr"}}
                                        {{$buff.Write "&mut ps" $idx}}
                                   {{else}}
+								       {{$isEvent := and (hasPrefix $mm.RealName "SetOn") (eq $ps.Name "AEventId")}}
+									   {{if $isEvent}}
+									       {{$buff.Write "insert_Id!("}}
+									   {{end}}
                                        {{fLowCase $ps.Name|$buff.Write}}
+									   {{if $isEvent}}
+									       {{$buff.Write ", aRoot)"}}
+									   {{end}}
                                   {{end}}
 
                                   {{if isObject $ps.Type}}
@@ -309,7 +331,7 @@ pub fn Null() -> TNull {
 fn getApplication() -> TApplication {
    initLibLCLCallback();
    TApplication {
-       0: unsafe { Application_Instance() }, 1: false,
+       0: unsafe { Application_Instance() }, 1: false, 2: 0,
    }
 }
 ##

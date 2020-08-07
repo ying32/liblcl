@@ -8,9 +8,10 @@
 #![allow(improper_ctypes)]
 #![allow(dead_code)]
 ##
-use std::os::raw::c_char;
+use std::collections::HashMap;
 use std::mem::{size_of, transmute};
-##
+use std::os::raw::c_char;
+use std::sync::Mutex;
 use types::*;
 ##
 
@@ -42,10 +43,14 @@ use types::*;
         {{end}}
         {{$buff.Write $ps.Name ": "}}
         {{if not (isObject $ps.Type)}}
-            {{if $ps.IsVar}}
-                {{$buff.Write "*mut "}}
-            {{end}}
-            {{covType $ps.Type|$buff.Write}}
+		    {{if and (hasPrefix $el.RealName "SetOn") (eq $ps.Name "AEventId")}}
+			    {{$buff.Write "usize"}}
+			{{else}}
+				{{if $ps.IsVar}}
+					{{$buff.Write "*mut "}}
+				{{end}}
+				{{covType $ps.Type|$buff.Write}}
+			{{end}}
         {{else}}
             {{$buff.Write "usize"}}
         {{end}}
@@ -105,25 +110,27 @@ extern "system" fn doEventCallback(f: usize, args: usize, arg_count: i32) -> usi
         () => {
             transmute::<usize, fn()>(f)()
         };
-        ($($arg:expr),*) => {
-            transmute::<usize, fn( $( tt!($arg)),*)>(f)( $(getParamOf($arg, args)),* )
+        ($sid: expr, $($arg:expr),*) => {
+            transmute::<usize, fn(usize, $( tt!($arg)),*)>(f)($sid, $(getParamOf($arg, args)),* )
         };
     }
     unsafe {
+        let sid = getSelfId(f);
+        //println!("sid={}, fid={}", sid, f);
         match arg_count {
             00 => sys_call!(),
-            01 => sys_call!(0),
-            02 => sys_call!(0, 1),
-            03 => sys_call!(0, 1, 2),
-            04 => sys_call!(0, 1, 2, 3),
-            05 => sys_call!(0, 1, 2, 3, 4),
-            06 => sys_call!(0, 1, 2, 3, 4, 5),
-            07 => sys_call!(0, 1, 2, 3, 4, 5, 6),
-            08 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7),
-            09 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8),
-            10 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
-            11 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-            12 => sys_call!(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+            01 => sys_call!(sid, 0),
+            02 => sys_call!(sid, 0, 1),
+            03 => sys_call!(sid, 0, 1, 2),
+            04 => sys_call!(sid, 0, 1, 2, 3),
+            05 => sys_call!(sid, 0, 1, 2, 3, 4),
+            06 => sys_call!(sid, 0, 1, 2, 3, 4, 5),
+            07 => sys_call!(sid, 0, 1, 2, 3, 4, 5, 6),
+            08 => sys_call!(sid, 0, 1, 2, 3, 4, 5, 6, 7),
+            09 => sys_call!(sid, 0, 1, 2, 3, 4, 5, 6, 7, 8),
+            10 => sys_call!(sid, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+            11 => sys_call!(sid, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+            12 => sys_call!(sid, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
             _ => println!("none"),
         }
     }
@@ -146,5 +153,25 @@ pub fn initLibLCLCallback() {
         SetEventCallback(doEventCallback as usize);
         SetMessageCallback(doMessageCallback as usize);
         SetThreadSyncCallback(doThreadSyncCallback as usize);
+    }
+}
+##
+##
+lazy_static! {
+    static ref EVENT_HASH: Mutex{{html "<HashMap<usize, usize>>"}} = {
+        let map: HashMap<usize, usize> = HashMap::new();
+        Mutex::new(map)
+    };
+}
+##
+pub fn insertMap(key: usize, val: usize) -> usize {
+    EVENT_HASH.lock().unwrap().insert(key, val);  
+    key
+}
+##
+fn getSelfId(eid: usize) -> usize {
+    match EVENT_HASH.lock().unwrap().get(&eid) {
+        Some(&number) => number,
+        _ => 0,
     }
 }

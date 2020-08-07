@@ -116,6 +116,9 @@ pub type MyNSWindow = usize;
 
         {{/* 注释 */}}
         {{$buff.Write "// fn ("}}
+		{{if ne $el.Name "TThreadProc"}}
+		    {{$buff.Write "&self, "}}
+		{{end}}
         {{range $idx, $ps := $el.Params}}
             {{if gt $idx 0}}
                 {{$buff.Write ", "}}
@@ -133,7 +136,12 @@ pub type MyNSWindow = usize;
         {{$buff.Writeln ")"}}
 
         {{/* 类型定义 */}}
-        {{$buff.Write "pub type " $el.Name " = fn("}}
+        {{$buff.Write "pub type " $el.Name}}
+		{{if ne $el.Name "TThreadProc"}}
+		    {{$buff.Write "<T> = fn(T, "}}
+		{{else}}
+		    {{$buff.Write " = fn("}}
+		{{end}}
         {{range $idx, $ps := $el.Params}}
             {{if gt $idx 0}}
                 {{$buff.Write ", "}}
@@ -152,7 +160,7 @@ pub type MyNSWindow = usize;
 
     {{else}}
         {{$buff.Writeln "##"}}
-        {{$buff.Writeln "pub type " $el.Name " = " $el.ReDefine ";"}}
+        {{$buff.Writeln "pub type " $el.Name "<T> = " $el.ReDefine "<T>;"}}
     {{end}}
 {{end}}
 
