@@ -11,6 +11,7 @@
 ##
 use lclapi::*;
 use types::*;
+use fns::{TextToShortCut, ShortCutToText};
 ##
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
@@ -40,7 +41,7 @@ pub trait IApplication {
 /* 先定义所有的类 */
 {{range $el := .Objects}}
 {{/*#[derive(Copy, Clone)]*/}}
-pub struct {{$el.ClassName}}(usize, bool, usize);
+pub struct {{$el.ClassName}}(usize, bool);
 {{end}}
 
 {{/*模板定义*/}}
@@ -100,6 +101,11 @@ impl {{$className}} {
       }
 ##
       impl_As_method!({{$className}});
+	  {{if eq $className "TMenuItem"}}
+##
+      impl_ShortCutText_method!();
+##	  
+	  {{end}}
 ##
       {{else if eq $mm.RealName "Free"}}
 	  impl_Free_method!({{$classN}}_Free);
@@ -113,19 +119,26 @@ impl {{$className}} {
           {{if not $mm.IsStatic}}
               {{if not (inStrArray $mm.RealName "TextRect2")}}
 
-                  {{$notProp := not (isProp $mm)}}
+                  {{$isSetProp := $mm.IsSetter}}
+                  {{$notProp := not $mm.IsProp}}
+				  
                   {{$buff.Clear}}
-                  {{$buff.Write "pub fn " (getRealName2 $mm)}}
+                  {{$buff.Write "pub fn "}}
+				  {{if and $mm.IsProp $mm.IsGetter}}
+				      {{$buff.Write $mm.PropName}}
+				  {{else}}
+				      {{$buff.Write $mm.RealName}}
+				  {{end}}
                   {{if eq $mm.Return "string"}}
                       {{$buff.Write "<'a>"}}
                   {{end}}
-				  {{$isEvent := hasPrefix $mm.RealName "SetOn"}}
-				  {{if $isEvent}}
+				  
+				  {{if $mm.IsSetEvent}}
 				      {{$buff.Write "<T>"}}
 				  {{end}}
                   {{$buff.Write "(&self"}}
-				  {{if $isEvent}}
-				      {{$buff.Write ", aRoot: usize"}}
+				  {{if $mm.IsSetEvent}}
+				      {{$buff.Write ", aSelfId: usize"}}
 				  {{end}}
 
                   {{range $idx, $ps := $mm.Params}}
@@ -148,7 +161,7 @@ impl {{$className}} {
                                   {{end}}
                               {{end}}
                               {{covType2 (getIntfName $ps.Type)|$buff.Write}}
-							  {{if and (hasPrefix $mm.RealName "SetOn") (eq $ps.Name "AEventId")}}
+							  {{if $mm.IsSetEvent}}
 				                   {{$buff.Write "<T>"}}
 				              {{end}}
                           {{end}}
@@ -167,6 +180,10 @@ impl {{$className}} {
                       {{if $mm.LastIsReturn}}
                           {{$buff.Write " -> "}}
                           {{covType2 (lastParam $mm.Params).Type|$buff.Write}}
+					  {{else}}
+					      {{/*if $isSetProp*/}}
+						      {{$buff.Write " -> &Self"}}
+						  {{/*end*/}}
                       {{end}}
                   {{end}}
                   {{if $notProp}}
@@ -235,13 +252,13 @@ impl {{$className}} {
                                   {{if eq $ps.Flag "nonPtr"}}
                                        {{$buff.Write "&mut ps" $idx}}
                                   {{else}}
-								       {{$isEvent := and (hasPrefix $mm.RealName "SetOn") (eq $ps.Name "AEventId")}}
-									   {{if $isEvent}}
+								        
+									   {{if $ps.IsEvent}}
 									       {{$buff.Write "insert_Id!("}}
 									   {{end}}
                                        {{fLowCase $ps.Name|$buff.Write}}
-									   {{if $isEvent}}
-									       {{$buff.Write ", aRoot)"}}
+									   {{if $ps.IsEvent}}
+									       {{$buff.Write ", aSelfId)"}}
 									   {{end}}
                                   {{end}}
 
@@ -265,6 +282,10 @@ impl {{$className}} {
                   {{if $mm.LastIsReturn}}
                         {{$buff.Writeln "          return result;"}}
                   {{end}}
+				  {{/*无返回值的，全都统一反回 self*/}}
+				  {{if and (isEmpty $mm.Return) (not $mm.LastIsReturn)}}
+				        {{$buff.Writeln "          return self;"}}
+				  {{end}}
 
 
 	  {{$buff.ToStr}}
@@ -334,7 +355,7 @@ pub fn Null() -> TNull {
 fn getApplication() -> TApplication {
    initLibLCLCallback();
    TApplication {
-       0: unsafe { Application_Instance() }, 1: false, 2: 0,
+       0: unsafe { Application_Instance() }, 1: false, 
    }
 }
 ##

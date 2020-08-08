@@ -533,6 +533,26 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 				item.OverloadName = strings.Trim(item.RealName, string(nIdx))
 			}
 		}
+		item.IsProp = item.IsMethod == false
+		item.IsGetter = item.IsProp && strings.HasPrefix(item.RealName, "Get")
+		item.IsSetter = item.IsProp && strings.HasPrefix(item.RealName, "Set")
+		if item.IsProp {
+			if item.IsGetter {
+				item.PropName = strings.TrimPrefix(item.RealName, "Get")
+			} else if item.IsSetter {
+				item.PropName = strings.TrimPrefix(item.RealName, "Set")
+			}
+			// 2个都不是，并且有返回值，那可能是没有Get
+			if !item.IsGetter && !item.IsSetter && item.Return != "" {
+				item.IsGetter = true
+				item.PropName = item.RealName
+			}
+		}
+
+		if eventType != "" && strings.HasPrefix(item.RealName, "SetOn") {
+			item.IsSetEvent = true
+		}
+
 		currentClass.Methods = append(currentClass.Methods, item)
 	}
 }
@@ -573,6 +593,7 @@ func parseParams(s string, eventType string) []TFuncParam {
 				item.Name = name
 				if eventType != "" && name == "AEventId" {
 					item.Type = eventType
+					item.IsEvent = true
 				} else {
 					item.Type = GetTypes(typeStr)
 				}

@@ -157,15 +157,23 @@ proc `OnException=`*(this: TApplication, AEventId: TExceptionEvent)  =
 {{else}}
 ##
   {{/* 其他方法生成 */}}
-  {{$isSetProp := isSetter $mm}}
-  {{$notProp := not (isProp $mm)}}
+  {{$isSetProp := $mm.IsSetter}}
+  {{$notProp := not $mm.IsProp}}
 
   {{$buff.Clear}}
   {{$buff.Write "proc "}}
   {{if $isSetProp}}
     {{$buff.Write "`"}}
   {{end}}
-  {{$buff.Write (getRealName $mm)}}
+
+  {{if $mm.IsProp}}
+      {{$buff.Write $mm.PropName}}
+  {{else if $mm.IsOverload}}
+      {{$buff.Write $mm.OverloadName}}
+  {{else}}
+      {{$buff.Write $mm.RealName}}
+  {{end}}
+
   {{if $isSetProp}}
     {{$buff.Write "=`"}}
   {{end}}
