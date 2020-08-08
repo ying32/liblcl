@@ -23,6 +23,7 @@ use std::os::raw::c_char;
 
 ##
 #[repr(C)]
+#[derive(PartialEq, Debug)]
 pub struct {{$el.Name}} {
     {{range $field := $el.Fields}}
     pub {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
@@ -47,6 +48,7 @@ pub type {{$el.Name}} = {{covType $el.Type}};
   {{if eq $el.Kind "struct"}}
 ##
 #[repr(C)]
+#[derive(PartialEq, Debug)]
 pub struct {{$el.Name}} {
     {{range $field := $el.Fields}}
     pub {{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
@@ -55,6 +57,7 @@ pub struct {{$el.Name}} {
   {{else if eq $el.Kind "enum"}}
 ##
 #[repr(C)]
+#[derive(PartialEq, Debug)]
 pub enum {{$el.Name}} {
     {{range $enum := $el.Enums}}
     {{$enum.Name}}{{if not (isEmpty $enum.Value)}} = {{$enum.Value}}{{end}},{{if not (isEmpty $enum.Comment)}} // {{html $enum.Comment}}{{end}}
@@ -84,6 +87,7 @@ pub type {{$el.Name}} = {{covType $el.Type}};
 #[cfg(not(target_arch = "x86_64"))]
 {{end}}
 #[repr(C)]
+#[derive(PartialEq, Debug)]
 {{if ne $el.Name "TDWordFiller"}}pub {{end}}struct {{$el.Name}} {
     {{range $field := $el.Fields}}
       {{if not (or (eq $field.Name "_UnusedMsg") (eq $field.Type "TDWordFiller"))}}pub {{end}}{{covKeyword $field.Name}}: {{if $field.IsArr}}[{{end}}{{covType $field.Type}}{{if $field.IsArr}};{{$field.ArrLength}}]{{end}},
