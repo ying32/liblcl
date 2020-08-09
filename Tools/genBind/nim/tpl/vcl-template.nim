@@ -144,10 +144,9 @@ proc {{$className}}Class*(): TClass = {{$mm.Name}}()
 {{/* 累了，不想弄，直接写好的得了 */}}
 {{if eq $mm.RealName "TextRect2"}}
 ##
-proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, AOutStr: var string, TextFormat: TTextFormat): int32 =
-  var outstr: cstring
-  result = Canvas_TextRect2(this.{{$instName}}, Rect, Text, outstr, TextFormat)
-  AOutStr = $outstr
+proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, TextFormat: TTextFormat): int32 =
+  var cstr: cstring = nil
+  result = Canvas_TextRect2(this.{{$instName}}, Rect, Text, cstr, TextFormat)
 {{else if eq $mm.RealName "CreateForm"}}
 ##
 proc CreateForm*[T](this: TApplication, x: var T) =

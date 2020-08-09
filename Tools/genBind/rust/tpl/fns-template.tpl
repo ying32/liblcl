@@ -45,30 +45,28 @@ pub fn GdkWindow_GetXId(AW: PGdkWindow) -> TXId {
     return result;
 }
 ##
+pub fn SelectDirectory{{html "<'a>"}}(Options: TSelectDirOpts, HelpCtx: i32) -> (bool, {{html "Cow<'a, str>"}}) {
+    let mut cstr = to_CString!("");
+    let result = unsafe { lclapi::DSelectDirectory1(&mut cstr, Options, HelpCtx) };
+    return (result, to_RustString!(cstr), );
+}
+##
+pub fn SelectDirectory2{{html "<'a>"}}(Caption: &str, Root: &str, AShowHidden: bool) -> (bool, {{html "Cow<'a, str>"}}) {
+    let mut cstr = to_CString!("");
+    let result = unsafe { lclapi::DSelectDirectory2(to_CString!(Caption), to_CString!(Root), AShowHidden, &mut cstr) };
+    return (result, to_RustString!(cstr), );
+}
+##
+pub fn InputQuery{{html "<'a>"}}(ACaption: &str, APrompt: &str, Value: &str)-> (bool, {{html "Cow<'a, str>"}}) {
+    let mut cstr = to_CString!("");
+    let result = unsafe { lclapi::DInputQuery(to_CString!(ACaption), to_CString!(APrompt), to_CString!(Value), &mut cstr) };
+    return (result, to_RustString!(cstr), );
+}
 /*
 
-// 几个待实现的函数
+// 待实现的函数
 proc ShowMessageFmt*(formatstr: string, a: varargs[string, `$`]) =
   ShowMessage(strutils.format(formatstr, a))
-##
-proc SelectDirectory*(Directory: var string, Options: TSelectDirOpts, HelpCtx: int32): bool =
-  var ps1: cstring = Directory
-  result = lclapi.DSelectDirectory1(ps1, Options, HelpCtx)
-  if result:
-    Directory = $ps1
-##
-proc SelectDirectory*(Caption: string, Root: string, AShowHidden: bool, Directory: var string): bool =
-  var ps4: cstring = Directory
-  result = lclapi.DSelectDirectory2(Caption, Root, AShowHidden, ps4)
-  if result:
-    Directory = $ps4
-##
-proc InputQuery*(ACaption: string, APrompt: string, Value: string, AOut: var string): bool =
-  var ps4: cstring = AOut
-  result = lclapi.DInputQuery(ACaption, APrompt, Value, ps4)
-  if result:
-    AOut = $ps4
-
 */
 ##
 

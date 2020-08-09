@@ -152,11 +152,21 @@ func fixAndSortObjects() {
 		} else if o.ClassName == "TWinControl" {
 			o.BaseClassName = "TControl"
 			move(i, 3, o)
+		} else if o.ClassName == "TGraphic" {
+			o.BaseClassName = "TObject"
+			move(i, 4, o)
 		} else if o.ClassName == "TStringList" {
 			o.BaseClassName = "TStrings"
 			objectFile.Objects[i] = o
 		} else if o.ClassName == "TStrings" {
 			o.BaseClassName = "TObject"
+			//objectFile.Objects[i] = o
+			move(i, 5, o)
+		} else if o.ClassName == "TStream" {
+			o.BaseClassName = "TObject"
+			move(i, 6, o)
+		} else if o.ClassName == "TBitmap" || o.ClassName == "TPngImage" || o.ClassName == "TJPEGImage" || o.ClassName == "TGIFImage" || o.ClassName == "TIcon" {
+			o.BaseClassName = "TGraphic"
 			objectFile.Objects[i] = o
 		}
 

@@ -170,29 +170,29 @@ func templateIsProp(mm ast.TFunction) bool {
 	return false
 }
 
-func templateIsGetter(mm ast.TFunction) bool {
-	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Get") {
-		return true
-	}
-	return false
-}
-
-func templateIsSetter(mm ast.TFunction) bool {
-	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Set") {
-		return true
-	}
-	return false
-}
-
-func templateGetRealName(mm ast.TFunction) string {
-	if !mm.IsMethod && (strings.HasPrefix(mm.RealName, "Get") || strings.HasPrefix(mm.RealName, "Set")) {
-		return mm.RealName[3:]
-	}
-	if mm.IsMethod && mm.IsOverload {
-		return mm.OverloadName
-	}
-	return mm.RealName
-}
+//func templateIsGetter(mm ast.TFunction) bool {
+//	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Get") {
+//		return true
+//	}
+//	return false
+//}
+//
+//func templateIsSetter(mm ast.TFunction) bool {
+//	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Set") {
+//		return true
+//	}
+//	return false
+//}
+//
+//func templateGetRealName(mm ast.TFunction) string {
+//	if !mm.IsMethod && (strings.HasPrefix(mm.RealName, "Get") || strings.HasPrefix(mm.RealName, "Set")) {
+//		return mm.RealName[3:]
+//	}
+//	if mm.IsMethod && mm.IsOverload {
+//		return mm.OverloadName
+//	}
+//	return mm.RealName
+//}
 
 func templateGetRealName2(mm ast.TFunction) string {
 	if !mm.IsMethod && strings.HasPrefix(mm.RealName, "Get") {
@@ -223,7 +223,7 @@ func templateGetConstVal2(s string) string {
 
 func templateIsIntf(s string) bool {
 	switch s {
-	case "TObject", "TComponent", "TControl", "TWinControl", "TStrings", "TStream":
+	case "TObject", "TComponent", "TControl", "TWinControl", "TStrings", "TStream", "TGraphic":
 		return true
 	}
 	return false
@@ -232,6 +232,17 @@ func templateIsIntf(s string) bool {
 func templateGetIntfName(s string) string {
 	if templateIsIntf(s) {
 		return "I" + s[1:]
+	}
+	return s
+}
+
+func templateCovIntf(s string) string {
+	if len(s) > 0 && (s[0] == 'T' || s == "Exception") {
+		if s[0] == 'T' {
+			return "I" + s[1:]
+		} else {
+			return "I" + s
+		}
 	}
 	return s
 }
@@ -290,9 +301,9 @@ var templateFuncs = template.FuncMap{
 	"trim":         strings.TrimSpace,
 	"contains":     strings.Contains,
 	"isProp":       templateIsProp,
-	"isGetter":     templateIsGetter,
-	"isSetter":     templateIsSetter,
-	"getRealName":  templateGetRealName,
+	//"isGetter":     templateIsGetter,
+	//"isSetter":     templateIsSetter,
+	//"getRealName":  templateGetRealName,
 	"inStrArray":   templateInStrArray,
 	"getConstVal2": templateGetConstVal2,
 	"getIntfName":  templateGetIntfName,
@@ -303,6 +314,7 @@ var templateFuncs = template.FuncMap{
 	"newBuffer": templateNewBuffer,
 	//"unescape":     templateUnescape,
 	"multiply": templateMultiply,
+	"covIntf":  templateCovIntf,
 }
 
 //Add, subtract, multiply, divide

@@ -17,16 +17,17 @@ use std::borrow::Cow;
 use std::ffi::{CStr, CString};
 use std::mem::{transmute};
 ##
-// IObject IComponent IControl IWinControl只是用来让编译器知道这几个的关系的
-pub trait IObject {
-    fn Instance(&self) -> usize;
-}
+
+{{/*IObject IComponent IControl IWinControl只是用来让编译器知道这几个的关系的*/}}
+pub trait IObject { fn Instance(&self) -> usize; }
 pub trait IComponent: IObject {}
 pub trait IControl: IComponent {}
 pub trait IWinControl: IControl {}
 pub trait IStrings: IObject {}
 pub trait IStream: IObject {}
 pub trait IForm: IWinControl {}
+pub trait IGraphic: IObject {}
+
 pub trait ISId{
     fn getSId(&self) -> usize;
 }
@@ -42,10 +43,24 @@ pub trait IApplication {
 {{range $el := .Objects}}
 {{/*#[derive(Copy, Clone)]*/}}
 pub struct {{$el.ClassName}}(usize, bool);
+{{/*
+   {{if ne $el.ClassName "TApplication"}}
+       {{if ne $el.ClassName "TObject"}}
+pub trait {{covIntf $el.ClassName}}: {{covIntf $el.BaseClassName}} {}
+       {{else}}
+pub trait IObject { fn Instance(&self) -> usize; }
+       {{end}}
+   {{end}}
+## */}}
 {{end}}
 
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}} -> {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
+{{define "getTextRect2"}}
+	  pub fn TextRect2(&self, rect: *mut TRect, text: &str, textFormat: TTextFormat) -> i32  {
+	     return method_Call_1!(Canvas_TextRect2, self.0, rect, to_CString!(text), &mut (0 as *const i8), textFormat);
+	  }
+{{end}}
 
 /* 开始实现接口 */
 {{range $el := .Objects}}
@@ -100,7 +115,7 @@ impl {{$className}} {
       {{$buff.ToStr}}
       }
 ##
-      impl_As_method!({{$className}});
+      impl_Object_methods!({{$className}});
 	  {{if eq $className "TMenuItem"}}
 ##
       impl_ShortCutText_method!();
@@ -117,7 +132,9 @@ impl {{$className}} {
 ##
       {{else}}
           {{if not $mm.IsStatic}}
-              {{if not (inStrArray $mm.RealName "TextRect2")}}
+              {{if inStrArray $mm.RealName "TextRect2"}} {{/* TextRect2 */}}		  
+                  {{template "getTextRect2" .}}
+			  {{else}}
 
                   {{$isSetProp := $mm.IsSetter}}
                   {{$notProp := not $mm.IsProp}}
@@ -284,7 +301,7 @@ impl {{$className}} {
                   {{end}}
 				  {{/*无返回值的，全都统一反回 self*/}}
 				  {{if and (isEmpty $mm.Return) (not $mm.LastIsReturn)}}
-				        {{$buff.Writeln "          return self;"}}
+				        {{$buff.Writeln "          return &self;"}}
 				  {{end}}
 
 
@@ -303,6 +320,9 @@ impl {{$className}} {
 }
 ##
 impl_IObject!({{$className}});
+
+
+
 {{if $el.IsComponent}}
 impl_IComponent!({{$className}});
 {{end}}
@@ -325,6 +345,10 @@ impl_IStream!({{$className}});
 
 {{if eq $className "TForm"}}
 impl IForm for {{$className}} {}
+{{end}}
+
+{{if or (eq $el.BaseClassName "TGraphic") (eq $className "TGraphic")}}
+impl IGraphic for {{$className}} {}
 {{end}}
 
 {{/* 所有不为TComponent和TControl和TWinControl的实现drop方法 */}}
