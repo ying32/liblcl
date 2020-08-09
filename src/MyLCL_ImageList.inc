@@ -22,6 +22,23 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:4=nonPtr
+procedure ImageList_StretchDraw(AObj: TImageList; ACanvas: TCanvas; AIndex: Integer; var ARect: TRect; AEnabled: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.StretchDraw(ACanvas, AIndex, ARect, AEnabled);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageList_AddSliced(AObj: TImageList; Image: TBitmap; AHorizontalCount: Integer; AVerticalCount: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AddSliced(Image, AHorizontalCount, AVerticalCount);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ImageList_GetHotSpot(AObj: TImageList; var Result: TPoint); extdecl;
 begin
@@ -479,6 +496,8 @@ end;
 exports
   ImageList_Create,
   ImageList_Free,
+  ImageList_StretchDraw,
+  ImageList_AddSliced,
   ImageList_GetHotSpot,
   ImageList_HideDragImage,
   ImageList_ShowDragImage,

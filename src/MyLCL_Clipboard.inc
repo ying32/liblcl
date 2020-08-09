@@ -22,6 +22,62 @@ begin
 end;
 
 //CLASSMETHOD:
+function Clipboard_FindPictureFormatID(AObj: TClipboard): TClipboardFormat; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FindPictureFormatID;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_FindFormatID(AObj: TClipboard; FormatName: PChar): TClipboardFormat; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FindFormatID(FormatName);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_GetAsHtml(AObj: TClipboard; ExtractFragmentOnly: LongBool): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  PChar(AObj.GetAsHtml(ExtractFragmentOnly));
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Clipboard_SupportedFormats(AObj: TClipboard; List: TStrings); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SupportedFormats(List);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_HasFormatName(AObj: TClipboard; FormatName: PChar): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HasFormatName(FormatName);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_HasPictureFormat(AObj: TClipboard): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HasPictureFormat;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Clipboard_SetAsHtml(AObj: TClipboard; Html: PChar; PlainText: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SetAsHtml(Html, PlainText);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Clipboard_Assign(AObj: TClipboard; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -42,14 +98,6 @@ procedure Clipboard_Close(AObj: TClipboard); extdecl;
 begin
   handleExceptionBegin
   AObj.Close;
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-function Clipboard_HasFormat(AObj: TClipboard; Format: Word): LongBool; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.HasFormat(Format);
   handleExceptionEnd
 end;
 
@@ -162,7 +210,7 @@ begin
   handleExceptionEnd
 end;
 
-function Clipboard_GetFormats(AObj: TClipboard; Index: Integer): Word; extdecl;
+function Clipboard_GetFormats(AObj: TClipboard; Index: Integer): TClipboardFormat; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Formats[Index];
@@ -177,10 +225,16 @@ end;
 exports
   Clipboard_Create,
   Clipboard_Free,
+  Clipboard_FindPictureFormatID,
+  Clipboard_FindFormatID,
+  Clipboard_GetAsHtml,
+  Clipboard_SupportedFormats,
+  Clipboard_HasFormatName,
+  Clipboard_HasPictureFormat,
+  Clipboard_SetAsHtml,
   Clipboard_Assign,
   Clipboard_Clear,
   Clipboard_Close,
-  Clipboard_HasFormat,
   Clipboard_Open,
   Clipboard_GetTextBuf,
   Clipboard_SetTextBuf,

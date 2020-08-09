@@ -127,6 +127,15 @@ begin
 end;
 
 //CLASSMETHOD:
+//PARAMS:2=nonPtr
+procedure Canvas_StretchDraw(AObj: TCanvas; var Rect: TRect; Graphic: TGraphic); extdecl;
+begin
+  handleExceptionBegin
+  AObj.StretchDraw(Rect, Graphic);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure Canvas_TextExtent(AObj: TCanvas; Text: PChar; var Result: TSize); extdecl;
 begin
@@ -325,6 +334,20 @@ begin
   EventMethodCode
 end;
 
+function Canvas_GetPixels(AObj: TCanvas; X: Integer; Y: Integer): TColor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Pixels[X, Y];
+  handleExceptionEnd
+end;
+
+procedure Canvas_SetPixels(AObj: TCanvas; X: Integer; Y: Integer; AValue: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Pixels[X, Y] := AValue;
+  handleExceptionEnd
+end;
+
 function Canvas_StaticClassType: TClass; extdecl;
 begin
   Result := TCanvas;
@@ -346,6 +369,7 @@ exports
   Canvas_Rectangle,
   Canvas_Refresh,
   Canvas_RoundRect,
+  Canvas_StretchDraw,
   Canvas_TextExtent,
   Canvas_TextOut,
   Canvas_Lock,
@@ -372,5 +396,7 @@ exports
   Canvas_SetPen,
   Canvas_SetOnChange,
   Canvas_SetOnChanging,
+  Canvas_GetPixels,
+  Canvas_SetPixels,
   Canvas_StaticClassType;
 

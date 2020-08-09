@@ -485,6 +485,20 @@ begin
   handleExceptionEnd
 end;
 
+function ImageButton_GetOrientation(AObj: TImageButton): TImageOrientation; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Orientation;
+  handleExceptionEnd
+end;
+
+procedure ImageButton_SetOrientation(AObj: TImageButton; AValue: TImageOrientation); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Orientation := AValue;
+  handleExceptionEnd
+end;
+
 function ImageButton_GetModalResult(AObj: TImageButton): TModalResult; extdecl;
 begin
   handleExceptionBegin
@@ -1107,6 +1121,8 @@ exports
   ImageButton_SetFont,
   ImageButton_GetImageCount,
   ImageButton_SetImageCount,
+  ImageButton_GetOrientation,
+  ImageButton_SetOrientation,
   ImageButton_GetModalResult,
   ImageButton_SetModalResult,
   ImageButton_GetParentShowHint,

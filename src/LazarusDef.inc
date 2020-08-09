@@ -17,7 +17,7 @@ end;
 function DLibVersion: Cardinal; extdecl;
 begin
   // 共8位，2位2位的
-  Result := $02000500;
+  Result := $02000600;
 end;
 
 // 一些初始
@@ -261,10 +261,51 @@ begin
   Result := Clipboard;
 end;
 
-function Clipboard_SetClipboard(NewClipboard: TClipboard): TClipboard; extdecl;
+
+//function CF_Text: TClipboardFormat;
+//function CF_Bitmap: TClipboardFormat;
+//function CF_Picture: TClipboardFormat;
+//function CF_MetaFilePict: TClipboardFormat;
+//function CF_Object: TClipboardFormat;
+//function CF_Component: TClipboardFormat;
+//function CF_HTML: TClipboardformat;
+
+//CLASSMETHOD:
+function Clipboard_HasFormat(AObj: TClipboard; AFormatID: TClipboardFormat): LongBool; extdecl;
+const
+  LCF_TEXT = 1;
+  LCF_BITMAP = 2;
+  LCF_METAFILEPICT = 3;
+  LCF_OBJECT = 230;
+  LCF_PICTURE = 700; // custom
+  LCF_HTML = 701; // custom
+  LCF_COMPONENT = 702; // custom
 begin
   handleExceptionBegin
-  Result := SetClipboard(NewClipboard);
+  case AFormatID of
+    LCF_TEXT: AFormatID := Clipbrd.CF_Text;
+    LCF_BITMAP: AFormatID := Clipbrd.CF_Bitmap;
+    LCF_METAFILEPICT: AFormatID := Clipbrd.CF_MetaFilePict;
+    LCF_OBJECT: AFormatID := Clipbrd.CF_Object;
+    LCF_PICTURE: AFormatID := Clipbrd.CF_Picture;
+    LCF_HTML: AFormatID := Clipbrd.CF_HTML;
+    LCF_COMPONENT: AFormatID := Clipbrd.CF_Component;
+  end;
+  AObj.HasFormat(AFormatID);
+  handleExceptionEnd
+end;
+
+function DSetClipboard(ANewClipboard: TClipboard): TClipboard; extdecl;
+begin
+  handleExceptionBegin
+  Result := SetClipboard(ANewClipboard);
+  handleExceptionEnd
+end;
+
+function DRegisterClipboardFormat(const AFormat: string): TClipboardFormat; extdecl;
+begin
+  handleExceptionBegin
+  Result := RegisterClipboardFormat(PChar(AFormat));
   handleExceptionEnd
 end;
 
@@ -361,15 +402,6 @@ end;
 
 //CLASSMETHOD:
 //PARAMS:2=nonPtr
-procedure Canvas_StretchDraw(AObj: TCanvas; var Rect: TRect; Graphic: TGraphic); extdecl;
-begin
-  handleExceptionBegin
-  AObj.StretchDraw(Rect, Graphic);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-//PARAMS:2=nonPtr
 procedure Canvas_TextRect1(AObj: TCanvas; var Rect: TRect; X, Y: Integer; const Text: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -411,7 +443,7 @@ type
 *)
 
 //CLASSMETHOD:
-function Canvas_TextRect2(AObj: TCanvas; var Rect: TRect; Text: PChar; var AOutStr: PChar; TextFormat: TTextFormat): Integer; extdecl;
+function Canvas_TextRect2(AObj: TCanvas; var Rect: TRect; Text: PChar; TextFormat: TTextFormat): Integer; extdecl;
 var
   LStyle: TTextStyle;
 begin
@@ -476,19 +508,19 @@ begin
   handleExceptionEnd
 end;
 
-function Canvas_Pixels(AObj: TCanvas; X, Y: Integer): TColor; extdecl;
-begin
-  handleExceptionBegin
-  Result := AObj.Pixels[X, Y];
-  handleExceptionEnd
-end;
-
-procedure Canvas_SetPixels(AObj: TCanvas; X, Y: Integer; AColor: TColor); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Pixels[X, Y] := AColor;
-  handleExceptionEnd
-end;
+//function Canvas_GetPixels(AObj: TCanvas; X, Y: Integer): TColor; extdecl;
+//begin
+//  handleExceptionBegin
+//  Result := AObj.Pixels[X, Y];
+//  handleExceptionEnd
+//end;
+//
+//procedure Canvas_SetPixels(AObj: TCanvas; X, Y: Integer; AColor: TColor); extdecl;
+//begin
+//  handleExceptionBegin
+//  AObj.Pixels[X, Y] := AColor;
+//  handleExceptionEnd
+//end;
 
 
 // TImageList
@@ -573,6 +605,23 @@ procedure Bitmap_LoadFromDevice(AObj: TBitmap; ADc: HDC); extdecl;
 begin
   handleExceptionBegin
   AObj.LoadFromDevice(ADc);
+  handleExceptionEnd
+end;
+
+
+// TMeuItem
+
+function MenuItem_GetShortCutText(AObj: TMenuItem): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result := PChar(ShortCutToText(AObj.ShortCut));
+  handleExceptionEnd
+end;
+
+procedure MenuItem_SetShortCutText(AObj: TMenuItem; Value: PChar); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ShortCut := TextToShortCut(Value);
   handleExceptionEnd
 end;
 
@@ -696,13 +745,6 @@ begin
   handleExceptionEnd
 end;
 
-//function DGetClassName(Obj: TObject): PChar; extdecl;
-//begin
-//  handleExceptionBegin
-//  Result := PChar(string(Obj.ClassName));
-//  handleExceptionEnd
-//end;
-
 procedure DShowMessage(AMsg: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -751,14 +793,9 @@ end;
 
 procedure DSysOpen(FileName: PChar); extdecl;
 begin
- //{$IFDEF WINDOWS}
-   //ShellExecuteW(0, nil, PWideChar(UTF8ToUTF16(string(FileName))), nil, nil, SW_SHOW);
- //{$ELSE}
-   OpenURL(FileName);
- //{$ENDIF}
+  OpenURL(FileName);
 end;
 
-// 不想导入包，所以干脆用delphi的得了
 function DExtractFilePath(AFileName: PChar): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -982,7 +1019,7 @@ end;
 procedure DCreateGUID(out AGUID: TGUID); extdecl;
 begin
   handleExceptionBegin
-  CreateGUID(AGUID);//TGUID.NewGuid;
+  CreateGUID(AGUID);
   handleExceptionEnd
 end;
 
@@ -999,44 +1036,15 @@ begin
   handleExceptionEnd
 end;
 
-
-function IsZhLang: Boolean;
-{$IFDEF WINDOWS}
-const
-   Langs:array[0..4] of Integer = (2052, 3076, 5124, 4100, 1028);
-{$ELSE}
-const
-   Langs:array[0..4] of string = ('zh_CN', 'zh_HK', 'zh_MO', 'zh_SG', 'zh_TW');
-{$ENDIF}
-var
-  I: Integer;
-begin
-  Result := False;
-  for I := 0 to High(Langs) do
-  begin
-  {$IFDEF MSWINDOWS}
-    if Langs[I] = SysLocale.DefaultLCID then
-  {$ELSE}
-    if Pos(Langs[I], GetEnvironmentVariable('LANG')) <> -1 then
-  {$ENDIF}
-      Exit(True);
-  end;
-end;
-
 function DLibAbout: PChar; extdecl;
 var
   LVal: string;
 begin
-  if IsZhLang then
-    LVal := '作者：不在乎y(ying32)'#13#10 +
-            '官网：https://z-kit.cc'#13#10 +
-            '基于Lazarus ' + lcl_version + '制作'#13#10 +
-            '第三方库列表：'#13#10#13#10
-  else
-    LVal := 'Author:不在乎y(ying32)'#13#10 +
-            'Official website:https://z-kit.cc'#13#10 +
-            'Based on Lazarus ' + lcl_version + #13#10 +
-            'Third party library list:'#13#10#13#10;
+  LVal := 'Author:不在乎y(ying32)'#13#10 +
+          'Official website: https://z-kit.cc'#13#10 +
+          'github: https://github.com/ying32'#13#10 +
+          'Based on Lazarus ' + lcl_version + #13#10 +
+          'Third party library list:'#13#10;
   LVal := LVal + '    TRichMemo'#13#10;
   LVal := LVal + '    TATGauge';
   Result := PChar(LVal);
@@ -1073,8 +1081,6 @@ const
     (Name: 'SMsgDlgOK'; ValuePtr: @rsMbOK),
     (Name: 'SMsgDlgCancel'; ValuePtr: @rsMbCancel),
     (Name: 'SMsgDlgHelp'; ValuePtr: @rsMbHelp),
-    //(Name: 'SMsgDlgHelpNone'; ValuePtr: @SMsgDlgHelpNone),
-    //(Name: 'SMsgDlgHelpHelp'; ValuePtr: @SMsgDlgHelpHelp),
     (Name: 'SMsgDlgAbort'; ValuePtr: @rsMbAbort),
     (Name: 'SMsgDlgRetry'; ValuePtr: @rsMbRetry),
     (Name: 'SMsgDlgIgnore'; ValuePtr: @rsMbIgnore),
@@ -1319,7 +1325,7 @@ exports
   DGetStringArrOf,
   DStrLen,
   DMove,
-  //DGetClassName,
+
   DShowMessage,
   DGetMainInstance,
   DSynchronize,
@@ -1356,7 +1362,9 @@ exports
 
   // TClipboard
   Clipboard_Instance,
-  Clipboard_SetClipboard,
+  Clipboard_HasFormat,
+  DSetClipboard,
+  DRegisterClipboardFormat,
 
   // TCanavs
   Canvas_BrushCopy,
@@ -1366,15 +1374,11 @@ exports
   Canvas_DrawFocusRect,
   Canvas_FillRect,
   Canvas_FrameRect,
-  Canvas_StretchDraw,
   Canvas_TextRect1,
   Canvas_TextRect2,
   Canvas_Polygon,
   Canvas_Polyline,
   Canvas_PolyBezier,
-  //Canvas_PolyBezierTo,
-  Canvas_Pixels,
-  Canvas_SetPixels,
 
   // TImageList
   ImageList_Draw1,
@@ -1389,6 +1393,10 @@ exports
   Bitmap_BeginUpdate,
   Bitmap_EndUpdate,
   Bitmap_LoadFromDevice,
+
+  // TMenuItem
+  MenuItem_GetShortCutText,
+  MenuItem_SetShortCutText,
 
   ResFormLoadFromStream,
   ResFormLoadFromFile,

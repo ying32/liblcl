@@ -12,9 +12,9 @@
   LazUTF8,
   InterfaceBase,
 {$ELSE}
-  LCLType,
   Types,
 {$ENDIF}
+  LCLType,
   typinfo,
   LCLProc,
   LCLIntf,

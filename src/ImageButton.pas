@@ -12,7 +12,7 @@
 /// 注： 一般使推荐使用png图片，当然jpg、bmp也是可以的。
 ///      一张png图的排序为 Normal, Hover, Down, Disabled，其中
 ///      Disabled状态可忽略
-///
+///  Orientation 分为横向排列和纵向排列的图片
 ///=======================================================
 
 unit ImageButton;
@@ -42,10 +42,15 @@ type
   TLMessage = TMessage;
 {$ENDIF}
 
+  { TImageButton }
+
+  TImageOrientation = (ioHorizontal, ioVertical);
+
   TImageButton = class(TGraphicControl)
   private type
     TButtonState = (bsNormal, bsHover, bsDown, bsDisabled);
   private
+    FOrientation: TImageOrientation;
     FState: TButtonState;
     FPicture: TPicture;
     FImageCount: Integer;
@@ -55,6 +60,11 @@ type
     FWordwarp: Boolean;
     FModalResult: TModalResult;
     FMouseLeave: Boolean;
+    FCacheBmps: TImageList;
+
+    procedure SetOrientation(AValue: TImageOrientation);
+    procedure UpdateCacheBmps;
+
     procedure SetPicture(const Value: TPicture);
     procedure OnPictureChanged(Sender: TObject);
     procedure OnFontChanged(Sender: TObject);
@@ -71,9 +81,10 @@ type
     procedure MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
     procedure Resize; override;
     procedure SetEnabled(Value: Boolean); override;
-    function  CanAutoSize(var NewWidth, NewHeight: Integer): Boolean; override;
+
     procedure Paint; override;
     procedure ResetSize;
+    procedure SetAutoSize(Value: Boolean); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -91,6 +102,7 @@ type
     property Enabled;
     property Font: TFont read FFont write SetFont;
     property ImageCount: Integer read FImageCount write SetImageCount default 3;
+    property Orientation: TImageOrientation read FOrientation write SetOrientation default ioHorizontal;
     property ModalResult: TModalResult read FModalResult write FModalResult default 0;
     property ParentShowHint;
     property ParentFont;
@@ -117,17 +129,23 @@ type
 implementation
 
 
+function IfThen(ABool: Boolean; ATrue, AFalse: Integer): Integer; inline;
+begin
+  if ABool then Result := ATrue else Result := AFalse;
+end;
 
 { TImageButton }
 
 constructor TImageButton.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
+  FCacheBmps := TImageList.Create(Self);
   FPicture := TPicture.Create;
   FPicture.OnChange := {$IFDEF FPC}@{$ENDIF}OnPictureChanged;
   FFont := TFont.Create;
   FFont.OnChange := {$IFDEF FPC}@{$ENDIF}OnFontChanged;
   FState := bsNormal;
+  FOrientation := ioHorizontal;
   FImageCount := 3;
   Width := 80;
   Height := 25;
@@ -138,6 +156,7 @@ end;
 
 destructor TImageButton.Destroy;
 begin
+  FCacheBmps.Free;
   FFont.Free;
   FPicture.Free;
   inherited;
@@ -156,7 +175,6 @@ end;
 
 procedure TImageButton.MouseMove(Shift: TShiftState; X, Y: Integer);
 begin
- // inherited;
   if csDesigning in ComponentState then Exit;
   if not Enabled then Exit;
   if FState = bsDown then Exit;
@@ -187,24 +205,11 @@ end;
 
 procedure TImageButton.OnPictureChanged(Sender: TObject);
 begin
-  if AutoSize and (Picture.Width > 0) and (Picture.Height > 0) then
-  begin
-    ResetSize;
-    SetEnabled(True);
-  end;
+  FCacheBmps.Clear;
+  UpdateCacheBmps;
+  ResetSize;
+  FState := bsNormal;  // 重设状态
   Invalidate;
-end;
-
-function TImageButton.CanAutoSize(var NewWidth, NewHeight: Integer): Boolean;
-begin
-  Result := True;
-  if (FPicture.Graphic <> nil) and ((FPicture.Width > 0) and (FPicture.Height > 0)) then
-  begin
-    if Align in [alNone, alLeft, alRight] then
-      NewWidth := FPicture.Width div FImageCount;
-    if Align in [alNone, alTop, alBottom] then
-      NewHeight := FPicture.Height;
-  end;
 end;
 
 procedure TImageButton.Click;
@@ -217,18 +222,6 @@ begin
 end;
 
 procedure TImageButton.Paint;
-
-//const
-//  ColorMatrix2: TColorMatrix = (
-//    (0.229, 0.229, 0.229, 0.0, 0.0),
-//    (0.587, 0.587, 0.587, 0.0, 0.0),
-//    (0.144, 0.144, 0.144, 0.0, 0.0),
-//    (0.0,  0.0,  0.0,  0.5, 0.0),
-//    (0.0,  0.0,  0.0,  0.0, 1.0));
-
-//var
-//  GP: TGPGraphics;
-
 {$IFDEF FPC}
   procedure DrawText;
   var
@@ -243,10 +236,7 @@ procedure TImageButton.Paint;
       LStyle.Layout := tlCenter;
       LStyle.Wordbreak := FWordwarp;
       LStyle.SingleLine := not FWordwarp;
-      //if FWordwarp then
-      //  Canvas.TextRect(LR, 0, 0, FCaption, LStyle);////[tfCenter, tfVerticalCenter, tfWordBreak])
-      //else
-        Canvas.TextRect(LR, 0, 0, FCaption, LStyle);//[tfCenter, tfSingleLine, tfVerticalCenter]);
+      Canvas.TextRect(LR, 0, 0, FCaption, LStyle);
     end;
   end;
 {$ELSE}
@@ -256,34 +246,8 @@ procedure TImageButton.Paint;
   end;
 {$ENDIF}
 
-  procedure PngBrushCopy(const Dest, Source: TRect);
-//  var
-//    R:TGPRectF;
-//    LImageAttributes: TGPImageAttributes;
-  begin
-//    R.X := 0;
-//    R.Y := 0;
-//    R.Width := Dest.Width;
-//    R.Height := Dest.Height;
-//    if FState = bsDisabled then
-//    begin
-//      LImageAttributes := TGPImageAttributes.Create;
-//      try
-//        LImageAttributes.SetColorMatrix(ColorMatrix2);
-//        GP.DrawImage(FGPBitmap, R, Source.Left, Source.Top, Source.Width, Source.Height, UnitPixel, LImageAttributes);
-//      finally
-//        LImageAttributes.Free;
-//      end;
-//    end
-//    else
-//      GP.DrawImage(FGPBitmap, R, Source.Left, Source.Top, Source.Width, Source.Height, UnitPixel);
-//    Canvas.Draw();
-    Canvas.Draw(-Source.Left, Dest.Top , FPicture.Graphic);
-  end;
-
 var
   R: TRect;
-  LNewWidth, LNewHeight: Integer;
 begin
   inherited Paint;
 
@@ -303,48 +267,60 @@ begin
     DrawText;
     Exit;
   end;
+{$ifdef fpc}
   R := ClientRect;
-  LNewWidth := Width;
-  LNewHeight := Height;
-  if (LNewWidth = 0) or (LNewHeight = 0) then
-    Exit;
-  case FState of
-    bsNormal :
-       PngBrushCopy(R, TRect.Create(Point(0, 0), LNewWidth, LNewHeight));
-    bsHover :
+  case FCacheBmps.Count of
+    1: FCacheBmps.StretchDraw(Canvas, 0, R);
+    2:
       begin
-        if FImageCount < 2 then
-          PngBrushCopy(R, TRect.Create(Point(0, 0), LNewWidth, LNewHeight))
+        if FState = bsNormal then
+          FCacheBmps.StretchDraw(Canvas, 0, R)
         else
-          PngBrushCopy(R, Rect(LNewWidth, 0, LNewWidth * 2, LNewHeight))
+          FCacheBmps.StretchDraw(Canvas, 1, R)
       end;
-    bsDown :
+    3:
       begin
-        if FImageCount < 3 then
-          PngBrushCopy(R, TRect.Create(Point(0, 0), LNewWidth, LNewHeight))
+        if FState = bsNormal then
+          FCacheBmps.StretchDraw(Canvas, 0, R)
+        else if FState = bsHover then
+          FCacheBmps.StretchDraw(Canvas, 1, R)
         else
-          PngBrushCopy(R, Rect(LNewWidth * 2, 0, LNewWidth * 3, LNewHeight));
+          FCacheBmps.StretchDraw(Canvas, 2, R)
       end;
-    bsDisabled :
+    4,5:
       begin
-        if FImageCount = 4 then
-          PngBrushCopy(R, Rect(LNewWidth * 3, 0, LNewWidth * 4, LNewHeight))
-        else  if FImageCount > 0 then
-          PngBrushCopy(R, TRect.Create(Point(0, 0), LNewWidth, LNewHeight))
+        if FState = bsNormal then
+          FCacheBmps.StretchDraw(Canvas, 0, R)
+        else if FState = bsHover then
+          FCacheBmps.StretchDraw(Canvas, 1, R)
+        else if FState = bsDown then
+          FCacheBmps.StretchDraw(Canvas, 2, R)
+        else
+          FCacheBmps.StretchDraw(Canvas, 3, R)
       end;
   end;
+{$endif}
   DrawText;
 end;
 
 procedure TImageButton.ResetSize;
 begin
-  if (FPicture.Graphic <> nil) and ((FPicture.Width > 0) and (FPicture.Height > 0)) then
+  if AutoSize then
   begin
-    if Align in [alNone, alLeft, alRight] then
-      Width := FPicture.Width div FImageCount;
-    if Align in [alNone, alTop, alBottom] then
-      Height := FPicture.Height;
+    if (FPicture.Graphic <> nil) and ((FPicture.Width > 0) and (FPicture.Height > 0)) then
+    begin
+      if Align in [alNone, alLeft, alRight] then
+        Width := FCacheBmps.Width; //IfThen(FOrientation = ioHorizontal, FPicture.Width div FImageCount, FPicture.Heigh;
+      if Align in [alNone, alTop, alBottom] then
+        Height := FCacheBmps.Height;//FPicture.Height;
+    end;
   end;
+end;
+
+procedure TImageButton.SetAutoSize(Value: Boolean);
+begin
+  inherited SetAutoSize(Value);
+  ResetSize;
 end;
 
 procedure TImageButton.Resize;
@@ -385,15 +361,67 @@ begin
     FImageCount := Value;
     if FImageCount <= 0 then
       FImageCount := 1;
-    if FImageCount > 4 then
-      FImageCount := 4;
+    if FImageCount > 5 then
+      FImageCount := 5; // 5状态没有，先弄个吧
+    FState := bsNormal;  // 重设状态
+    FCacheBmps.Clear;
+    UpdateCacheBmps;
     ResetSize;
     Invalidate;
   end;
 end;
 
+procedure TImageButton.UpdateCacheBmps;
+{$ifdef fpc}
+  procedure ReAdd;
+  begin
+    if FCacheBmps.Count <> 0 then
+      Exit;
+    FCacheBmps.BeginUpdate;
+    try
+      FCacheBmps.AddSliced(FPicture.Bitmap, IfThen(FOrientation = ioHorizontal, FImageCount, 1), IfThen(FOrientation = ioHorizontal, 1, FImageCount));
+    finally
+      FCacheBmps.EndUpdate;
+    end;
+  end;
+{$endif}
+
+var
+  LW, LH: Integer;
+begin
+  if FPicture.Graphic = nil then
+  begin
+    FCacheBmps.Clear;
+    Exit;
+  end;
+  LW := IfThen(FOrientation = ioHorizontal, FPicture.Width div FImageCount, FPicture.Width);
+  LH := IfThen(FOrientation = ioHorizontal, FPicture.Height, FPicture.Height div FImageCount);
+  FCacheBmps.Width := LW;
+  FCacheBmps.Height := LH;
+{$ifdef fpc}
+  ReAdd;
+  //// 貌似是个bug
+  if FCacheBmps.Count <> FImageCount then
+  begin
+    FCacheBmps.Clear;
+    ReAdd;
+  end;
+{$endif}
+end;
+
+procedure TImageButton.SetOrientation(AValue: TImageOrientation);
+begin
+  if FOrientation=AValue then Exit;
+  FOrientation:=AValue;
+  ResetSize;
+  FCacheBmps.Clear;
+  UpdateCacheBmps;
+  Invalidate;
+end;
+
 procedure TImageButton.SetPicture(const Value: TPicture);
 begin
+  FCacheBmps.Clear;
   FPicture.Assign(Value);
 end;
 
