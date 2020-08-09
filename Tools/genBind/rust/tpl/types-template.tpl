@@ -217,3 +217,57 @@ pub type MyNSWindow = usize;
 
 
 {{$buff.ToStr}}
+
+
+##
+##
+##
+//--------------------------- Types impl ---------------------------------
+{{/* 类形impl定义 */}}
+##
+
+impl TGUID {
+    pub fn empty() -> Self {
+        TGUID {
+            d1: 0,
+            d2: 0,
+            d3: 0,
+            d4: [0, 0, 0, 0, 0, 0, 0, 0],
+        }
+    }
+}
+
+impl TResItem {
+    pub fn empty() -> Self {
+        TResItem { name: 0, value: 0 }
+    }
+}
+
+impl TPoint {
+    pub fn empty() -> Self {
+        TPoint { x: 0, y: 0 }
+    }
+}
+
+impl TRect {
+    pub fn empty() -> Self {
+        TRect {
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+        }
+    }
+}
+
+impl TSize {
+    pub fn empty() -> Self {
+        TSize { cx: 0, cy: 0 }
+    }
+}
+
+impl TGridCoord {
+    pub fn empty() -> Self {
+        TGridCoord { x: 0, y: 0 }
+    }
+}

@@ -220,7 +220,7 @@ impl {{$className}} {
                       {{$lastP := lastParam $mm.Params}}
                       {{$buff.Write "          let mut result = "}}
                       {{if inStrArray $lastP.Type "TRect" "TSize" "TPoint" "TGUID" "TGridRect" "TGridCoord"}}
-                          {{$buff.Write (covType2 $lastP.Type) "::Empty()"}}
+                          {{$buff.Write (covType2 $lastP.Type) "::empty()"}}
                       {{else}}
                           {{$buff.Write "0 as " (covType2 $lastP.Type)}}
                       {{end}}
@@ -232,7 +232,7 @@ impl {{$className}} {
                       {{if eq $ps.Flag "nonPtr"}}
                           {{$buff.Write "          let mut ps" $idx " = "}}
                           {{if inStrArray $ps.Type "TRect" "TSize" "TPoint" "TGUID" "TGridRect" "TGridCoord"}}
-                              {{$buff.Write (covType2 $ps.Type) "::From(" (fLowCase $ps.Name) ")"}}
+                              {{$buff.Write (fLowCase $ps.Name) ".clone()"}}
                           {{else}}
                               {{$buff.Write (fLowCase $ps.Name)}}
                           {{end}}

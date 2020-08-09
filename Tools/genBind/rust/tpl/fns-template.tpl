@@ -19,7 +19,7 @@ pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{h
 }
 ##
 pub fn GetLibResourceItem(index: i32) -> TResItem {
-    let mut result = TResItem::Empty();
+    let mut result = TResItem::empty();
     unsafe {
         lclapi::DGetLibResourceItem(index, &mut result);
     }
@@ -27,13 +27,13 @@ pub fn GetLibResourceItem(index: i32) -> TResItem {
 }
 ##
 pub fn StringToGUID(guidStr: &str) -> TGUID {
-    let mut result = TGUID::Empty();
+    let mut result = TGUID::empty();
     unsafe { lclapi::DStringToGUID(to_CString!(guidStr), &mut result) }
     return result;
 }
 ##
 pub fn CreateGUID() -> TGUID {
-    let mut result = TGUID::Empty();
+    let mut result = TGUID::empty();
     unsafe { lclapi::DCreateGUID(&mut result) }
     return result;
 }
@@ -129,7 +129,7 @@ proc ShowMessageFmt*(formatstr: string, a: varargs[string, `$`]) =
     {{/*这里生成不需要var的变量*/}}
     {{range $ips, $ps := $el.Params}}
         {{if and ($ps.IsVar) (eq $ps.Flag "nonPtr")}}
-            {{$buff.Writeln "    let mut ps" $ips " = " (covType $ps.Type) "::From(" (fLowCase $ps.Name) ");"}}
+            {{$buff.Writeln "    let mut ps" $ips " = " (fLowCase $ps.Name) ".clone();"}}
         {{end}}
     {{end}}
 
