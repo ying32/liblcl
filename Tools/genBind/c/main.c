@@ -72,6 +72,13 @@ void onFormKeyDown(TObject sender, Char* key, TShiftState shift) {
     }
 }
 
+void onListBoxDrawItem(TListBox control, int32_t index, TRect* aRect, TOwnerDrawState state) {
+    TCanvas canvas = ListBox_GetCanvas(control);
+    TStrings items = ListBox_GetItems(control);
+    char* s = Strings_GetStrings(items, index);
+    Canvas_TextOut(canvas, aRect->left, aRect->top, s);
+}
+
 // 编辑框内容改变事件
 void onEditChange(TObject sender) {
     printf("%s\n", Edit_GetText(sender));
@@ -214,6 +221,24 @@ int main()
         //Memo_SetHeight(mmoText, 300);
         Memo_SetAlign(mmoText, alRight);
         Memo_SetScrollBars(mmoText, ssAutoVertical);
+
+
+        // TListBox
+        TListBox listbox = ListBox_Create(form);
+        ListBox_SetParent(listbox, form);
+        ListBox_SetItemHeight(listbox, 30);
+        ListBox_SetStyle(listbox, lbOwnerDrawFixed);
+        ListBox_SetLeft(listbox, 10);
+        ListBox_SetTop(listbox, Button_GetTop(btn2) + Button_GetHeight(btn2) + 10);
+        ListBox_SetWidth(listbox, 200);
+        ListBox_SetHeight(listbox,100);
+        ListBox_SetOnDrawItem(listbox, onListBoxDrawItem);
+
+        TStrings items = ListBox_GetItems(listbox);
+        for (i = 0; i<10; i++) {
+            Strings_Add(items, "item");
+        }
+
 
         // 运行app
         Application_Run(Application);
