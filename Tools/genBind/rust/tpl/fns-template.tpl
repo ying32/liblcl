@@ -12,7 +12,7 @@ use lclapi;
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
 use types::*;
-use vcl::{TControl, TWinControl, IObject, IComponent, IStrings, IStream};
+use vcl::{TControl, TWinControl, IObject, IComponent, IStrings, IStream, TClipboard};
 ##
 pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{html "<'a, str>"}} {
     return to_RustString!(lclapi::DGetStringArrOf(ptr, index));
@@ -62,12 +62,6 @@ pub fn InputQuery{{html "<'a>"}}(ACaption: &str, APrompt: &str, Value: &str)-> (
     let result = unsafe { lclapi::DInputQuery(to_CString!(ACaption), to_CString!(APrompt), to_CString!(Value), &mut cstr) };
     return (result, to_RustString!(cstr), );
 }
-/*
-
-// 待实现的函数
-proc ShowMessageFmt*(formatstr: string, a: varargs[string, `$`]) =
-  ShowMessage(strutils.format(formatstr, a))
-*/
 ##
 
 {{define "getFunc"}}

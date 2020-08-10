@@ -462,24 +462,38 @@ static void* p##name;
 // Predefined Clipboard Formats
 #ifndef _WIN32
 
-#define CF_TEXT  1
 #define CF_BITMAP  2
-#define CF_METAFILEPICT  3
-#define CF_SYLK  4
-#define CF_DIF  5
-#define CF_TIFF  6
-#define CF_OEMTEXT  7
 #define CF_DIB  8
 #define CF_PALETTE  9
-#define CF_PENDATA  10
-#define CF_RIFF  11
-#define CF_WAVE  12
-#define CF_UNICODETEXT  13
 #define CF_ENHMETAFILE  14
+#define CF_METAFILEPICT  3
+#define CF_OEMTEXT  7
+#define CF_TEXT  1
+#define CF_UNICODETEXT  13
+#define CF_DIF  5
+#define CF_DSPBITMAP  130
+#define CF_DSPENHMETAFILE  142
+#define CF_DSPMETAFILEPICT  131
+#define CF_DSPTEXT  129
+#define CF_GDIOBJFIRST  768
+#define CF_GDIOBJLAST  1023
 #define CF_HDROP  15
-#define CF_LOCALE  0x10
+#define CF_LOCALE  16
+#define CF_OWNERDISPLAY  128
+#define CF_PENDATA  10
+#define CF_PRIVATEFIRST  512
+#define CF_PRIVATELAST  767
+#define CF_RIFF  11
+#define CF_SYLK  4
+#define CF_WAVE  12
+#define CF_TIFF  6
 
 #endif
+
+// custom
+#define CF_PICTURE  700
+#define CF_HTML  701
+#define CF_COMPONENT  702
 
 // 光标定义
 #define crHigh  TCursor(0)
@@ -2107,6 +2121,11 @@ typedef enum {
 
 typedef TSet TDateTimePickerOptions;
 
+typedef enum {
+    ioHorizontal,
+    ioVertical,
+} TImageOrientation;
+
 /*--------------------类型定义--------------------*/
 
 typedef struct TPoint {
@@ -2267,6 +2286,8 @@ typedef uintptr_t TClass;
 
 typedef uintptr_t TThreadID;
 
+typedef uintptr_t TClipboardFormat;
+
 typedef struct TGridCoord {
     int32_t x;
     int32_t y;
@@ -2391,9 +2412,9 @@ typedef void* TObject;
 typedef void* TComponent;
 typedef void* TControl;
 typedef void* TWinControl;
-typedef void* TMainMenu;
-typedef void* TPopupMenu;
-typedef void* TMemo;
+typedef void* TGraphic;
+typedef void* TStrings;
+typedef void* TStream;
 typedef void* TCheckBox;
 typedef void* TRadioButton;
 typedef void* TGroupBox;
@@ -2432,10 +2453,10 @@ typedef void* TToolBar;
 typedef void* TBitBtn;
 typedef void* TIcon;
 typedef void* TBitmap;
-typedef void* TStream;
+typedef void* TMemo;
 typedef void* TMemoryStream;
 typedef void* TFont;
-typedef void* TStrings;
+typedef void* TPopupMenu;
 typedef void* TStringList;
 typedef void* TBrush;
 typedef void* TPen;
@@ -2460,7 +2481,7 @@ typedef void* TSpinEdit;
 typedef void* TMiniWebview;
 typedef void* TCanvas;
 typedef void* TApplication;
-typedef void* TGraphic;
+typedef void* TMainMenu;
 typedef void* TPngImage;
 typedef void* TJPEGImage;
 typedef void* TGIFImage;
@@ -3021,6 +3042,13 @@ Clipboard_Instance() {
     GET_FUNC_ADDR(Clipboard_Instance)
     return (TClipboard)MySyscall(pClipboard_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
+
+DEFINE_FUNC_PTR(DSetClipboard)
+TClipboard
+SetClipboard(TClipboard ANewClipboard) {
+    GET_FUNC_ADDR(DSetClipboard)
+    return (TClipboard)MySyscall(pDSetClipboard, 1, ANewClipboard ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
 #ifndef _WIN32
 
 
@@ -3085,6 +3113,13 @@ BOOL
 SetForegroundWindow(HWND hWnd) {
     GET_FUNC_ADDR(DSetForegroundWindow)
     return (BOOL)MySyscall(pDSetForegroundWindow, 1, hWnd ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DRegisterClipboardFormat)
+TClipboardFormat
+RegisterClipboardFormat(CChar char* AFormat) {
+    GET_FUNC_ADDR(DRegisterClipboardFormat)
+    return (TClipboardFormat)MySyscall(pDRegisterClipboardFormat, 1, AFormat ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DWindowFromPoint)
@@ -5432,2101 +5467,557 @@ WinControl_StaticClassType() {
     return (TClass)MySyscall(pWinControl_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-// -------------------TMainMenu-------------------
+// -------------------TGraphic-------------------
 
-DEFINE_FUNC_PTR(MainMenu_Create)
-TMainMenu
-MainMenu_Create(TComponent AOwner) {
-    GET_FUNC_ADDR(MainMenu_Create)
-    return (TMainMenu)MySyscall(pMainMenu_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(Graphic_Create)
+TGraphic
+Graphic_Create() {
+    GET_FUNC_ADDR(Graphic_Create)
+    return (TGraphic)MySyscall(pGraphic_Create, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_Free)
+DEFINE_FUNC_PTR(Graphic_Free)
 void
-MainMenu_Free(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_Free)
-    MySyscall(pMainMenu_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_Free(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_Free)
+    MySyscall(pGraphic_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_FindComponent)
-TComponent
-MainMenu_FindComponent(TMainMenu AObj, CChar char* AName) {
-    GET_FUNC_ADDR(MainMenu_FindComponent)
-    return (TComponent)MySyscall(pMainMenu_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetNamePath)
-char*
-MainMenu_GetNamePath(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetNamePath)
-    return (char*)MySyscall(pMainMenu_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_HasParent)
+DEFINE_FUNC_PTR(Graphic_Equals)
 BOOL
-MainMenu_HasParent(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_HasParent)
-    return (BOOL)MySyscall(pMainMenu_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_Equals(TGraphic AObj, TObject Obj) {
+    GET_FUNC_ADDR(Graphic_Equals)
+    return (BOOL)MySyscall(pGraphic_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_Assign)
+DEFINE_FUNC_PTR(Graphic_LoadFromFile)
 void
-MainMenu_Assign(TMainMenu AObj, TObject Source) {
-    GET_FUNC_ADDR(MainMenu_Assign)
-    MySyscall(pMainMenu_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_LoadFromFile(TGraphic AObj, CChar char* Filename) {
+    GET_FUNC_ADDR(Graphic_LoadFromFile)
+    MySyscall(pGraphic_LoadFromFile, 2, AObj, Filename ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_ClassType)
+DEFINE_FUNC_PTR(Graphic_SaveToFile)
+void
+Graphic_SaveToFile(TGraphic AObj, CChar char* Filename) {
+    GET_FUNC_ADDR(Graphic_SaveToFile)
+    MySyscall(pGraphic_SaveToFile, 2, AObj, Filename ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_LoadFromStream)
+void
+Graphic_LoadFromStream(TGraphic AObj, TStream Stream) {
+    GET_FUNC_ADDR(Graphic_LoadFromStream)
+    MySyscall(pGraphic_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_SaveToStream)
+void
+Graphic_SaveToStream(TGraphic AObj, TStream Stream) {
+    GET_FUNC_ADDR(Graphic_SaveToStream)
+    MySyscall(pGraphic_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_Assign)
+void
+Graphic_Assign(TGraphic AObj, TObject Source) {
+    GET_FUNC_ADDR(Graphic_Assign)
+    MySyscall(pGraphic_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_GetNamePath)
+char*
+Graphic_GetNamePath(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetNamePath)
+    return (char*)MySyscall(pGraphic_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_ClassType)
 TClass
-MainMenu_ClassType(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_ClassType)
-    return (TClass)MySyscall(pMainMenu_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_ClassType(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_ClassType)
+    return (TClass)MySyscall(pGraphic_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_ClassName)
+DEFINE_FUNC_PTR(Graphic_ClassName)
 char*
-MainMenu_ClassName(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_ClassName)
-    return (char*)MySyscall(pMainMenu_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_ClassName(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_ClassName)
+    return (char*)MySyscall(pGraphic_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_InstanceSize)
+DEFINE_FUNC_PTR(Graphic_InstanceSize)
 int32_t
-MainMenu_InstanceSize(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_InstanceSize)
-    return (int32_t)MySyscall(pMainMenu_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_InstanceSize(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_InstanceSize)
+    return (int32_t)MySyscall(pGraphic_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_InheritsFrom)
+DEFINE_FUNC_PTR(Graphic_InheritsFrom)
 BOOL
-MainMenu_InheritsFrom(TMainMenu AObj, TClass AClass) {
-    GET_FUNC_ADDR(MainMenu_InheritsFrom)
-    return (BOOL)MySyscall(pMainMenu_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_InheritsFrom(TGraphic AObj, TClass AClass) {
+    GET_FUNC_ADDR(Graphic_InheritsFrom)
+    return (BOOL)MySyscall(pGraphic_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_Equals)
-BOOL
-MainMenu_Equals(TMainMenu AObj, TObject Obj) {
-    GET_FUNC_ADDR(MainMenu_Equals)
-    return (BOOL)MySyscall(pMainMenu_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetHashCode)
+DEFINE_FUNC_PTR(Graphic_GetHashCode)
 int32_t
-MainMenu_GetHashCode(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetHashCode)
-    return (int32_t)MySyscall(pMainMenu_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_GetHashCode(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetHashCode)
+    return (int32_t)MySyscall(pGraphic_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_ToString)
+DEFINE_FUNC_PTR(Graphic_ToString)
 char*
-MainMenu_ToString(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_ToString)
-    return (char*)MySyscall(pMainMenu_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_ToString(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_ToString)
+    return (char*)MySyscall(pGraphic_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_GetImagesWidth)
-int32_t
-MainMenu_GetImagesWidth(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetImagesWidth)
-    return (int32_t)MySyscall(pMainMenu_GetImagesWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_SetImagesWidth)
-void
-MainMenu_SetImagesWidth(TMainMenu AObj, int32_t AValue) {
-    GET_FUNC_ADDR(MainMenu_SetImagesWidth)
-    MySyscall(pMainMenu_SetImagesWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetBiDiMode)
-TBiDiMode
-MainMenu_GetBiDiMode(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetBiDiMode)
-    return (TBiDiMode)MySyscall(pMainMenu_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_SetBiDiMode)
-void
-MainMenu_SetBiDiMode(TMainMenu AObj, TBiDiMode AValue) {
-    GET_FUNC_ADDR(MainMenu_SetBiDiMode)
-    MySyscall(pMainMenu_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetImages)
-TImageList
-MainMenu_GetImages(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetImages)
-    return (TImageList)MySyscall(pMainMenu_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_SetImages)
-void
-MainMenu_SetImages(TMainMenu AObj, TImageList AValue) {
-    GET_FUNC_ADDR(MainMenu_SetImages)
-    MySyscall(pMainMenu_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetOwnerDraw)
+DEFINE_FUNC_PTR(Graphic_GetEmpty)
 BOOL
-MainMenu_GetOwnerDraw(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetOwnerDraw)
-    return (BOOL)MySyscall(pMainMenu_GetOwnerDraw, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_GetEmpty(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetEmpty)
+    return (BOOL)MySyscall(pGraphic_GetEmpty, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_SetOwnerDraw)
-void
-MainMenu_SetOwnerDraw(TMainMenu AObj, BOOL AValue) {
-    GET_FUNC_ADDR(MainMenu_SetOwnerDraw)
-    MySyscall(pMainMenu_SetOwnerDraw, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_SetOnChange)
-void
-MainMenu_SetOnChange(TMainMenu AObj, TMenuChangeEvent AEventId) {
-    GET_FUNC_ADDR(MainMenu_SetOnChange)
-    MySyscall(pMainMenu_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetHandle)
-HMENU
-MainMenu_GetHandle(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetHandle)
-    return (HMENU)MySyscall(pMainMenu_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetItems)
-TMenuItem
-MainMenu_GetItems(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetItems)
-    return (TMenuItem)MySyscall(pMainMenu_GetItems, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetComponentCount)
+DEFINE_FUNC_PTR(Graphic_GetHeight)
 int32_t
-MainMenu_GetComponentCount(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetComponentCount)
-    return (int32_t)MySyscall(pMainMenu_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_GetHeight(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetHeight)
+    return (int32_t)MySyscall(pGraphic_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_GetComponentIndex)
+DEFINE_FUNC_PTR(Graphic_SetHeight)
+void
+Graphic_SetHeight(TGraphic AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Graphic_SetHeight)
+    MySyscall(pGraphic_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_GetModified)
+BOOL
+Graphic_GetModified(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetModified)
+    return (BOOL)MySyscall(pGraphic_GetModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_SetModified)
+void
+Graphic_SetModified(TGraphic AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Graphic_SetModified)
+    MySyscall(pGraphic_SetModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_GetPalette)
+HPALETTE
+Graphic_GetPalette(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetPalette)
+    return (HPALETTE)MySyscall(pGraphic_GetPalette, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_SetPalette)
+void
+Graphic_SetPalette(TGraphic AObj, HPALETTE AValue) {
+    GET_FUNC_ADDR(Graphic_SetPalette)
+    MySyscall(pGraphic_SetPalette, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_GetPaletteModified)
+BOOL
+Graphic_GetPaletteModified(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetPaletteModified)
+    return (BOOL)MySyscall(pGraphic_GetPaletteModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_SetPaletteModified)
+void
+Graphic_SetPaletteModified(TGraphic AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Graphic_SetPaletteModified)
+    MySyscall(pGraphic_SetPaletteModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_GetTransparent)
+BOOL
+Graphic_GetTransparent(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetTransparent)
+    return (BOOL)MySyscall(pGraphic_GetTransparent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_SetTransparent)
+void
+Graphic_SetTransparent(TGraphic AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Graphic_SetTransparent)
+    MySyscall(pGraphic_SetTransparent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Graphic_GetWidth)
 int32_t
-MainMenu_GetComponentIndex(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetComponentIndex)
-    return (int32_t)MySyscall(pMainMenu_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_GetWidth(TGraphic AObj) {
+    GET_FUNC_ADDR(Graphic_GetWidth)
+    return (int32_t)MySyscall(pGraphic_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_SetComponentIndex)
+DEFINE_FUNC_PTR(Graphic_SetWidth)
 void
-MainMenu_SetComponentIndex(TMainMenu AObj, int32_t AValue) {
-    GET_FUNC_ADDR(MainMenu_SetComponentIndex)
-    MySyscall(pMainMenu_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_SetWidth(TGraphic AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Graphic_SetWidth)
+    MySyscall(pGraphic_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_GetOwner)
-TComponent
-MainMenu_GetOwner(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetOwner)
-    return (TComponent)MySyscall(pMainMenu_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetName)
-char*
-MainMenu_GetName(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetName)
-    return (char*)MySyscall(pMainMenu_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_SetName)
+DEFINE_FUNC_PTR(Graphic_SetOnChange)
 void
-MainMenu_SetName(TMainMenu AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(MainMenu_SetName)
-    MySyscall(pMainMenu_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_SetOnChange(TGraphic AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Graphic_SetOnChange)
+    MySyscall(pGraphic_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(MainMenu_GetTag)
-intptr_t
-MainMenu_GetTag(TMainMenu AObj) {
-    GET_FUNC_ADDR(MainMenu_GetTag)
-    return (intptr_t)MySyscall(pMainMenu_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_SetTag)
-void
-MainMenu_SetTag(TMainMenu AObj, intptr_t AValue) {
-    GET_FUNC_ADDR(MainMenu_SetTag)
-    MySyscall(pMainMenu_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_GetComponents)
-TComponent
-MainMenu_GetComponents(TMainMenu AObj, int32_t AIndex) {
-    GET_FUNC_ADDR(MainMenu_GetComponents)
-    return (TComponent)MySyscall(pMainMenu_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(MainMenu_StaticClassType)
+DEFINE_FUNC_PTR(Graphic_StaticClassType)
 TClass
-MainMenu_StaticClassType() {
-    GET_FUNC_ADDR(MainMenu_StaticClassType)
-    return (TClass)MySyscall(pMainMenu_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Graphic_StaticClassType() {
+    GET_FUNC_ADDR(Graphic_StaticClassType)
+    return (TClass)MySyscall(pGraphic_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-// -------------------TPopupMenu-------------------
+// -------------------TStrings-------------------
 
-DEFINE_FUNC_PTR(PopupMenu_Create)
-TPopupMenu
-PopupMenu_Create(TComponent AOwner) {
-    GET_FUNC_ADDR(PopupMenu_Create)
-    return (TPopupMenu)MySyscall(pPopupMenu_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_Free)
-void
-PopupMenu_Free(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_Free)
-    MySyscall(pPopupMenu_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_CloseMenu)
-void
-PopupMenu_CloseMenu(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_CloseMenu)
-    MySyscall(pPopupMenu_CloseMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_Popup)
-void
-PopupMenu_Popup(TPopupMenu AObj, int32_t X, int32_t Y) {
-    GET_FUNC_ADDR(PopupMenu_Popup)
-    MySyscall(pPopupMenu_Popup, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_FindComponent)
-TComponent
-PopupMenu_FindComponent(TPopupMenu AObj, CChar char* AName) {
-    GET_FUNC_ADDR(PopupMenu_FindComponent)
-    return (TComponent)MySyscall(pPopupMenu_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetNamePath)
-char*
-PopupMenu_GetNamePath(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetNamePath)
-    return (char*)MySyscall(pPopupMenu_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_HasParent)
-BOOL
-PopupMenu_HasParent(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_HasParent)
-    return (BOOL)MySyscall(pPopupMenu_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_Assign)
-void
-PopupMenu_Assign(TPopupMenu AObj, TObject Source) {
-    GET_FUNC_ADDR(PopupMenu_Assign)
-    MySyscall(pPopupMenu_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_ClassType)
-TClass
-PopupMenu_ClassType(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_ClassType)
-    return (TClass)MySyscall(pPopupMenu_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_ClassName)
-char*
-PopupMenu_ClassName(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_ClassName)
-    return (char*)MySyscall(pPopupMenu_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_InstanceSize)
-int32_t
-PopupMenu_InstanceSize(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_InstanceSize)
-    return (int32_t)MySyscall(pPopupMenu_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_InheritsFrom)
-BOOL
-PopupMenu_InheritsFrom(TPopupMenu AObj, TClass AClass) {
-    GET_FUNC_ADDR(PopupMenu_InheritsFrom)
-    return (BOOL)MySyscall(pPopupMenu_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_Equals)
-BOOL
-PopupMenu_Equals(TPopupMenu AObj, TObject Obj) {
-    GET_FUNC_ADDR(PopupMenu_Equals)
-    return (BOOL)MySyscall(pPopupMenu_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetHashCode)
-int32_t
-PopupMenu_GetHashCode(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetHashCode)
-    return (int32_t)MySyscall(pPopupMenu_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_ToString)
-char*
-PopupMenu_ToString(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_ToString)
-    return (char*)MySyscall(pPopupMenu_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetImagesWidth)
-int32_t
-PopupMenu_GetImagesWidth(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetImagesWidth)
-    return (int32_t)MySyscall(pPopupMenu_GetImagesWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetImagesWidth)
-void
-PopupMenu_SetImagesWidth(TPopupMenu AObj, int32_t AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetImagesWidth)
-    MySyscall(pPopupMenu_SetImagesWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetPopupComponent)
-TComponent
-PopupMenu_GetPopupComponent(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetPopupComponent)
-    return (TComponent)MySyscall(pPopupMenu_GetPopupComponent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetPopupComponent)
-void
-PopupMenu_SetPopupComponent(TPopupMenu AObj, TComponent AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetPopupComponent)
-    MySyscall(pPopupMenu_SetPopupComponent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetPopupPoint)
-TPoint
-PopupMenu_GetPopupPoint(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetPopupPoint)
-    TPoint result;
-    MySyscall(pPopupMenu_GetPopupPoint, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetAlignment)
-TPopupAlignment
-PopupMenu_GetAlignment(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetAlignment)
-    return (TPopupAlignment)MySyscall(pPopupMenu_GetAlignment, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetAlignment)
-void
-PopupMenu_SetAlignment(TPopupMenu AObj, TPopupAlignment AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetAlignment)
-    MySyscall(pPopupMenu_SetAlignment, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetBiDiMode)
-TBiDiMode
-PopupMenu_GetBiDiMode(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetBiDiMode)
-    return (TBiDiMode)MySyscall(pPopupMenu_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetBiDiMode)
-void
-PopupMenu_SetBiDiMode(TPopupMenu AObj, TBiDiMode AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetBiDiMode)
-    MySyscall(pPopupMenu_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetImages)
-TImageList
-PopupMenu_GetImages(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetImages)
-    return (TImageList)MySyscall(pPopupMenu_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetImages)
-void
-PopupMenu_SetImages(TPopupMenu AObj, TImageList AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetImages)
-    MySyscall(pPopupMenu_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetOwnerDraw)
-BOOL
-PopupMenu_GetOwnerDraw(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetOwnerDraw)
-    return (BOOL)MySyscall(pPopupMenu_GetOwnerDraw, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetOwnerDraw)
-void
-PopupMenu_SetOwnerDraw(TPopupMenu AObj, BOOL AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetOwnerDraw)
-    MySyscall(pPopupMenu_SetOwnerDraw, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetOnPopup)
-void
-PopupMenu_SetOnPopup(TPopupMenu AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(PopupMenu_SetOnPopup)
-    MySyscall(pPopupMenu_SetOnPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetHandle)
-HMENU
-PopupMenu_GetHandle(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetHandle)
-    return (HMENU)MySyscall(pPopupMenu_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetItems)
-TMenuItem
-PopupMenu_GetItems(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetItems)
-    return (TMenuItem)MySyscall(pPopupMenu_GetItems, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetComponentCount)
-int32_t
-PopupMenu_GetComponentCount(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetComponentCount)
-    return (int32_t)MySyscall(pPopupMenu_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetComponentIndex)
-int32_t
-PopupMenu_GetComponentIndex(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetComponentIndex)
-    return (int32_t)MySyscall(pPopupMenu_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetComponentIndex)
-void
-PopupMenu_SetComponentIndex(TPopupMenu AObj, int32_t AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetComponentIndex)
-    MySyscall(pPopupMenu_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetOwner)
-TComponent
-PopupMenu_GetOwner(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetOwner)
-    return (TComponent)MySyscall(pPopupMenu_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetName)
-char*
-PopupMenu_GetName(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetName)
-    return (char*)MySyscall(pPopupMenu_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetName)
-void
-PopupMenu_SetName(TPopupMenu AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetName)
-    MySyscall(pPopupMenu_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetTag)
-intptr_t
-PopupMenu_GetTag(TPopupMenu AObj) {
-    GET_FUNC_ADDR(PopupMenu_GetTag)
-    return (intptr_t)MySyscall(pPopupMenu_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_SetTag)
-void
-PopupMenu_SetTag(TPopupMenu AObj, intptr_t AValue) {
-    GET_FUNC_ADDR(PopupMenu_SetTag)
-    MySyscall(pPopupMenu_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_GetComponents)
-TComponent
-PopupMenu_GetComponents(TPopupMenu AObj, int32_t AIndex) {
-    GET_FUNC_ADDR(PopupMenu_GetComponents)
-    return (TComponent)MySyscall(pPopupMenu_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(PopupMenu_StaticClassType)
-TClass
-PopupMenu_StaticClassType() {
-    GET_FUNC_ADDR(PopupMenu_StaticClassType)
-    return (TClass)MySyscall(pPopupMenu_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-// -------------------TMemo-------------------
-
-DEFINE_FUNC_PTR(Memo_Create)
-TMemo
-Memo_Create(TComponent AOwner) {
-    GET_FUNC_ADDR(Memo_Create)
-    return (TMemo)MySyscall(pMemo_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Free)
-void
-Memo_Free(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Free)
-    MySyscall(pMemo_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Append)
-void
-Memo_Append(TMemo AObj, CChar char* Value) {
-    GET_FUNC_ADDR(Memo_Append)
-    MySyscall(pMemo_Append, 2, AObj, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Clear)
-void
-Memo_Clear(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Clear)
-    MySyscall(pMemo_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ClearSelection)
-void
-Memo_ClearSelection(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_ClearSelection)
-    MySyscall(pMemo_ClearSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_CopyToClipboard)
-void
-Memo_CopyToClipboard(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_CopyToClipboard)
-    MySyscall(pMemo_CopyToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_CutToClipboard)
-void
-Memo_CutToClipboard(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_CutToClipboard)
-    MySyscall(pMemo_CutToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_PasteFromClipboard)
-void
-Memo_PasteFromClipboard(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_PasteFromClipboard)
-    MySyscall(pMemo_PasteFromClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Undo)
-void
-Memo_Undo(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Undo)
-    MySyscall(pMemo_Undo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SelectAll)
-void
-Memo_SelectAll(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_SelectAll)
-    MySyscall(pMemo_SelectAll, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_CanFocus)
-BOOL
-Memo_CanFocus(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_CanFocus)
-    return (BOOL)MySyscall(pMemo_CanFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ContainsControl)
-BOOL
-Memo_ContainsControl(TMemo AObj, TControl Control) {
-    GET_FUNC_ADDR(Memo_ContainsControl)
-    return (BOOL)MySyscall(pMemo_ContainsControl, 2, AObj, Control ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ControlAtPos)
-TControl
-Memo_ControlAtPos(TMemo AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
-    GET_FUNC_ADDR(Memo_ControlAtPos)
-    return (TControl)MySyscall(pMemo_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_DisableAlign)
-void
-Memo_DisableAlign(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_DisableAlign)
-    MySyscall(pMemo_DisableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_EnableAlign)
-void
-Memo_EnableAlign(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_EnableAlign)
-    MySyscall(pMemo_EnableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_FindChildControl)
-TControl
-Memo_FindChildControl(TMemo AObj, CChar char* ControlName) {
-    GET_FUNC_ADDR(Memo_FindChildControl)
-    return (TControl)MySyscall(pMemo_FindChildControl, 2, AObj, ControlName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_FlipChildren)
-void
-Memo_FlipChildren(TMemo AObj, BOOL AllLevels) {
-    GET_FUNC_ADDR(Memo_FlipChildren)
-    MySyscall(pMemo_FlipChildren, 2, AObj, AllLevels ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Focused)
-BOOL
-Memo_Focused(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Focused)
-    return (BOOL)MySyscall(pMemo_Focused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_HandleAllocated)
-BOOL
-Memo_HandleAllocated(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_HandleAllocated)
-    return (BOOL)MySyscall(pMemo_HandleAllocated, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_InsertControl)
-void
-Memo_InsertControl(TMemo AObj, TControl AControl) {
-    GET_FUNC_ADDR(Memo_InsertControl)
-    MySyscall(pMemo_InsertControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Invalidate)
-void
-Memo_Invalidate(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Invalidate)
-    MySyscall(pMemo_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_RemoveControl)
-void
-Memo_RemoveControl(TMemo AObj, TControl AControl) {
-    GET_FUNC_ADDR(Memo_RemoveControl)
-    MySyscall(pMemo_RemoveControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Realign)
-void
-Memo_Realign(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Realign)
-    MySyscall(pMemo_Realign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Repaint)
-void
-Memo_Repaint(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Repaint)
-    MySyscall(pMemo_Repaint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ScaleBy)
-void
-Memo_ScaleBy(TMemo AObj, int32_t M, int32_t D) {
-    GET_FUNC_ADDR(Memo_ScaleBy)
-    MySyscall(pMemo_ScaleBy, 3, AObj, M, D ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ScrollBy)
-void
-Memo_ScrollBy(TMemo AObj, int32_t DeltaX, int32_t DeltaY) {
-    GET_FUNC_ADDR(Memo_ScrollBy)
-    MySyscall(pMemo_ScrollBy, 3, AObj, DeltaX, DeltaY ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetBounds)
-void
-Memo_SetBounds(TMemo AObj, int32_t ALeft, int32_t ATop, int32_t AWidth, int32_t AHeight) {
-    GET_FUNC_ADDR(Memo_SetBounds)
-    MySyscall(pMemo_SetBounds, 5, AObj, ALeft, ATop, AWidth, AHeight ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetFocus)
-void
-Memo_SetFocus(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_SetFocus)
-    MySyscall(pMemo_SetFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Update)
-void
-Memo_Update(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Update)
-    MySyscall(pMemo_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_BringToFront)
-void
-Memo_BringToFront(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_BringToFront)
-    MySyscall(pMemo_BringToFront, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ClientToScreen)
-TPoint
-Memo_ClientToScreen(TMemo AObj, TPoint Point) {
-    GET_FUNC_ADDR(Memo_ClientToScreen)
-    TPoint result;
-    MySyscall(pMemo_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_ClientToParent)
-TPoint
-Memo_ClientToParent(TMemo AObj, TPoint Point, TWinControl AParent) {
-    GET_FUNC_ADDR(Memo_ClientToParent)
-    TPoint result;
-    MySyscall(pMemo_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_Dragging)
-BOOL
-Memo_Dragging(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Dragging)
-    return (BOOL)MySyscall(pMemo_Dragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_HasParent)
-BOOL
-Memo_HasParent(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_HasParent)
-    return (BOOL)MySyscall(pMemo_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Hide)
-void
-Memo_Hide(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Hide)
-    MySyscall(pMemo_Hide, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Perform)
-intptr_t
-Memo_Perform(TMemo AObj, uint32_t Msg, uintptr_t WParam, intptr_t LParam) {
-    GET_FUNC_ADDR(Memo_Perform)
-    return (intptr_t)MySyscall(pMemo_Perform, 4, AObj, Msg, WParam, LParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Refresh)
-void
-Memo_Refresh(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Refresh)
-    MySyscall(pMemo_Refresh, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ScreenToClient)
-TPoint
-Memo_ScreenToClient(TMemo AObj, TPoint Point) {
-    GET_FUNC_ADDR(Memo_ScreenToClient)
-    TPoint result;
-    MySyscall(pMemo_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_ParentToClient)
-TPoint
-Memo_ParentToClient(TMemo AObj, TPoint Point, TWinControl AParent) {
-    GET_FUNC_ADDR(Memo_ParentToClient)
-    TPoint result;
-    MySyscall(pMemo_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_SendToBack)
-void
-Memo_SendToBack(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_SendToBack)
-    MySyscall(pMemo_SendToBack, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Show)
-void
-Memo_Show(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_Show)
-    MySyscall(pMemo_Show, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTextBuf)
-int32_t
-Memo_GetTextBuf(TMemo AObj, CChar char* Buffer, int32_t BufSize) {
-    GET_FUNC_ADDR(Memo_GetTextBuf)
-    return (int32_t)MySyscall(pMemo_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTextLen)
-int32_t
-Memo_GetTextLen(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetTextLen)
-    return (int32_t)MySyscall(pMemo_GetTextLen, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetTextBuf)
-void
-Memo_SetTextBuf(TMemo AObj, CChar char* Buffer) {
-    GET_FUNC_ADDR(Memo_SetTextBuf)
-    MySyscall(pMemo_SetTextBuf, 2, AObj, Buffer ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_FindComponent)
-TComponent
-Memo_FindComponent(TMemo AObj, CChar char* AName) {
-    GET_FUNC_ADDR(Memo_FindComponent)
-    return (TComponent)MySyscall(pMemo_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetNamePath)
-char*
-Memo_GetNamePath(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetNamePath)
-    return (char*)MySyscall(pMemo_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Assign)
-void
-Memo_Assign(TMemo AObj, TObject Source) {
-    GET_FUNC_ADDR(Memo_Assign)
-    MySyscall(pMemo_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ClassType)
-TClass
-Memo_ClassType(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_ClassType)
-    return (TClass)MySyscall(pMemo_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ClassName)
-char*
-Memo_ClassName(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_ClassName)
-    return (char*)MySyscall(pMemo_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_InstanceSize)
-int32_t
-Memo_InstanceSize(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_InstanceSize)
-    return (int32_t)MySyscall(pMemo_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_InheritsFrom)
-BOOL
-Memo_InheritsFrom(TMemo AObj, TClass AClass) {
-    GET_FUNC_ADDR(Memo_InheritsFrom)
-    return (BOOL)MySyscall(pMemo_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_Equals)
-BOOL
-Memo_Equals(TMemo AObj, TObject Obj) {
-    GET_FUNC_ADDR(Memo_Equals)
-    return (BOOL)MySyscall(pMemo_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetHashCode)
-int32_t
-Memo_GetHashCode(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetHashCode)
-    return (int32_t)MySyscall(pMemo_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_ToString)
-char*
-Memo_ToString(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_ToString)
-    return (char*)MySyscall(pMemo_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_AnchorToNeighbour)
-void
-Memo_AnchorToNeighbour(TMemo AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
-    GET_FUNC_ADDR(Memo_AnchorToNeighbour)
-    MySyscall(pMemo_AnchorToNeighbour, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_AnchorParallel)
-void
-Memo_AnchorParallel(TMemo AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
-    GET_FUNC_ADDR(Memo_AnchorParallel)
-    MySyscall(pMemo_AnchorParallel, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_AnchorHorizontalCenterTo)
-void
-Memo_AnchorHorizontalCenterTo(TMemo AObj, TControl ASibling) {
-    GET_FUNC_ADDR(Memo_AnchorHorizontalCenterTo)
-    MySyscall(pMemo_AnchorHorizontalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_AnchorVerticalCenterTo)
-void
-Memo_AnchorVerticalCenterTo(TMemo AObj, TControl ASibling) {
-    GET_FUNC_ADDR(Memo_AnchorVerticalCenterTo)
-    MySyscall(pMemo_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_AnchorAsAlign)
-void
-Memo_AnchorAsAlign(TMemo AObj, TAlign ATheAlign, int32_t ASpace) {
-    GET_FUNC_ADDR(Memo_AnchorAsAlign)
-    MySyscall(pMemo_AnchorAsAlign, 3, AObj, ATheAlign, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_AnchorClient)
-void
-Memo_AnchorClient(TMemo AObj, int32_t ASpace) {
-    GET_FUNC_ADDR(Memo_AnchorClient)
-    MySyscall(pMemo_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAlign)
-TAlign
-Memo_GetAlign(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAlign)
-    return (TAlign)MySyscall(pMemo_GetAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAlign)
-void
-Memo_SetAlign(TMemo AObj, TAlign AValue) {
-    GET_FUNC_ADDR(Memo_SetAlign)
-    MySyscall(pMemo_SetAlign, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAlignment)
-TAlignment
-Memo_GetAlignment(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAlignment)
-    return (TAlignment)MySyscall(pMemo_GetAlignment, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAlignment)
-void
-Memo_SetAlignment(TMemo AObj, TAlignment AValue) {
-    GET_FUNC_ADDR(Memo_SetAlignment)
-    MySyscall(pMemo_SetAlignment, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAnchors)
-TAnchors
-Memo_GetAnchors(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAnchors)
-    return (TAnchors)MySyscall(pMemo_GetAnchors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAnchors)
-void
-Memo_SetAnchors(TMemo AObj, TAnchors AValue) {
-    GET_FUNC_ADDR(Memo_SetAnchors)
-    MySyscall(pMemo_SetAnchors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetBiDiMode)
-TBiDiMode
-Memo_GetBiDiMode(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetBiDiMode)
-    return (TBiDiMode)MySyscall(pMemo_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetBiDiMode)
-void
-Memo_SetBiDiMode(TMemo AObj, TBiDiMode AValue) {
-    GET_FUNC_ADDR(Memo_SetBiDiMode)
-    MySyscall(pMemo_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetBorderStyle)
-TBorderStyle
-Memo_GetBorderStyle(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetBorderStyle)
-    return (TBorderStyle)MySyscall(pMemo_GetBorderStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetBorderStyle)
-void
-Memo_SetBorderStyle(TMemo AObj, TBorderStyle AValue) {
-    GET_FUNC_ADDR(Memo_SetBorderStyle)
-    MySyscall(pMemo_SetBorderStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetCharCase)
-TEditCharCase
-Memo_GetCharCase(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetCharCase)
-    return (TEditCharCase)MySyscall(pMemo_GetCharCase, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetCharCase)
-void
-Memo_SetCharCase(TMemo AObj, TEditCharCase AValue) {
-    GET_FUNC_ADDR(Memo_SetCharCase)
-    MySyscall(pMemo_SetCharCase, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetColor)
-TColor
-Memo_GetColor(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetColor)
-    return (TColor)MySyscall(pMemo_GetColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetColor)
-void
-Memo_SetColor(TMemo AObj, TColor AValue) {
-    GET_FUNC_ADDR(Memo_SetColor)
-    MySyscall(pMemo_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetConstraints)
-TSizeConstraints
-Memo_GetConstraints(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetConstraints)
-    return (TSizeConstraints)MySyscall(pMemo_GetConstraints, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetConstraints)
-void
-Memo_SetConstraints(TMemo AObj, TSizeConstraints AValue) {
-    GET_FUNC_ADDR(Memo_SetConstraints)
-    MySyscall(pMemo_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDoubleBuffered)
-BOOL
-Memo_GetDoubleBuffered(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetDoubleBuffered)
-    return (BOOL)MySyscall(pMemo_GetDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetDoubleBuffered)
-void
-Memo_SetDoubleBuffered(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetDoubleBuffered)
-    MySyscall(pMemo_SetDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDragCursor)
-TCursor
-Memo_GetDragCursor(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetDragCursor)
-    return (TCursor)MySyscall(pMemo_GetDragCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetDragCursor)
-void
-Memo_SetDragCursor(TMemo AObj, TCursor AValue) {
-    GET_FUNC_ADDR(Memo_SetDragCursor)
-    MySyscall(pMemo_SetDragCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDragKind)
-TDragKind
-Memo_GetDragKind(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetDragKind)
-    return (TDragKind)MySyscall(pMemo_GetDragKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetDragKind)
-void
-Memo_SetDragKind(TMemo AObj, TDragKind AValue) {
-    GET_FUNC_ADDR(Memo_SetDragKind)
-    MySyscall(pMemo_SetDragKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDragMode)
-TDragMode
-Memo_GetDragMode(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetDragMode)
-    return (TDragMode)MySyscall(pMemo_GetDragMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetDragMode)
-void
-Memo_SetDragMode(TMemo AObj, TDragMode AValue) {
-    GET_FUNC_ADDR(Memo_SetDragMode)
-    MySyscall(pMemo_SetDragMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetEnabled)
-BOOL
-Memo_GetEnabled(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetEnabled)
-    return (BOOL)MySyscall(pMemo_GetEnabled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetEnabled)
-void
-Memo_SetEnabled(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetEnabled)
-    MySyscall(pMemo_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetFont)
-TFont
-Memo_GetFont(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetFont)
-    return (TFont)MySyscall(pMemo_GetFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetFont)
-void
-Memo_SetFont(TMemo AObj, TFont AValue) {
-    GET_FUNC_ADDR(Memo_SetFont)
-    MySyscall(pMemo_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetHideSelection)
-BOOL
-Memo_GetHideSelection(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetHideSelection)
-    return (BOOL)MySyscall(pMemo_GetHideSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetHideSelection)
-void
-Memo_SetHideSelection(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetHideSelection)
-    MySyscall(pMemo_SetHideSelection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetLines)
+DEFINE_FUNC_PTR(Strings_Create)
 TStrings
-Memo_GetLines(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetLines)
-    return (TStrings)MySyscall(pMemo_GetLines, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_Create() {
+    GET_FUNC_ADDR(Strings_Create)
+    return (TStrings)MySyscall(pStrings_Create, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_SetLines)
+DEFINE_FUNC_PTR(Strings_Free)
 void
-Memo_SetLines(TMemo AObj, TStrings AValue) {
-    GET_FUNC_ADDR(Memo_SetLines)
-    MySyscall(pMemo_SetLines, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_Free(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_Free)
+    MySyscall(pStrings_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_GetMaxLength)
+DEFINE_FUNC_PTR(Strings_Add)
 int32_t
-Memo_GetMaxLength(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetMaxLength)
-    return (int32_t)MySyscall(pMemo_GetMaxLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_Add(TStrings AObj, CChar char* S) {
+    GET_FUNC_ADDR(Strings_Add)
+    return (int32_t)MySyscall(pStrings_Add, 2, AObj, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_SetMaxLength)
-void
-Memo_SetMaxLength(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetMaxLength)
-    MySyscall(pMemo_SetMaxLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetParentColor)
-BOOL
-Memo_GetParentColor(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetParentColor)
-    return (BOOL)MySyscall(pMemo_GetParentColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetParentColor)
-void
-Memo_SetParentColor(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetParentColor)
-    MySyscall(pMemo_SetParentColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetParentDoubleBuffered)
-BOOL
-Memo_GetParentDoubleBuffered(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetParentDoubleBuffered)
-    return (BOOL)MySyscall(pMemo_GetParentDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetParentDoubleBuffered)
-void
-Memo_SetParentDoubleBuffered(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetParentDoubleBuffered)
-    MySyscall(pMemo_SetParentDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetParentFont)
-BOOL
-Memo_GetParentFont(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetParentFont)
-    return (BOOL)MySyscall(pMemo_GetParentFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetParentFont)
-void
-Memo_SetParentFont(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetParentFont)
-    MySyscall(pMemo_SetParentFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetParentShowHint)
-BOOL
-Memo_GetParentShowHint(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetParentShowHint)
-    return (BOOL)MySyscall(pMemo_GetParentShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetParentShowHint)
-void
-Memo_SetParentShowHint(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetParentShowHint)
-    MySyscall(pMemo_SetParentShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetPopupMenu)
-TPopupMenu
-Memo_GetPopupMenu(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetPopupMenu)
-    return (TPopupMenu)MySyscall(pMemo_GetPopupMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetPopupMenu)
-void
-Memo_SetPopupMenu(TMemo AObj, TPopupMenu AValue) {
-    GET_FUNC_ADDR(Memo_SetPopupMenu)
-    MySyscall(pMemo_SetPopupMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetReadOnly)
-BOOL
-Memo_GetReadOnly(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetReadOnly)
-    return (BOOL)MySyscall(pMemo_GetReadOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetReadOnly)
-void
-Memo_SetReadOnly(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetReadOnly)
-    MySyscall(pMemo_SetReadOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetScrollBars)
-TScrollStyle
-Memo_GetScrollBars(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetScrollBars)
-    return (TScrollStyle)MySyscall(pMemo_GetScrollBars, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetScrollBars)
-void
-Memo_SetScrollBars(TMemo AObj, TScrollStyle AValue) {
-    GET_FUNC_ADDR(Memo_SetScrollBars)
-    MySyscall(pMemo_SetScrollBars, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetShowHint)
-BOOL
-Memo_GetShowHint(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetShowHint)
-    return (BOOL)MySyscall(pMemo_GetShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetShowHint)
-void
-Memo_SetShowHint(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetShowHint)
-    MySyscall(pMemo_SetShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTabOrder)
-TTabOrder
-Memo_GetTabOrder(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetTabOrder)
-    return (TTabOrder)MySyscall(pMemo_GetTabOrder, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetTabOrder)
-void
-Memo_SetTabOrder(TMemo AObj, TTabOrder AValue) {
-    GET_FUNC_ADDR(Memo_SetTabOrder)
-    MySyscall(pMemo_SetTabOrder, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTabStop)
-BOOL
-Memo_GetTabStop(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetTabStop)
-    return (BOOL)MySyscall(pMemo_GetTabStop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetTabStop)
-void
-Memo_SetTabStop(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetTabStop)
-    MySyscall(pMemo_SetTabStop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetVisible)
-BOOL
-Memo_GetVisible(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetVisible)
-    return (BOOL)MySyscall(pMemo_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetVisible)
-void
-Memo_SetVisible(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetVisible)
-    MySyscall(pMemo_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetWantReturns)
-BOOL
-Memo_GetWantReturns(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetWantReturns)
-    return (BOOL)MySyscall(pMemo_GetWantReturns, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetWantReturns)
-void
-Memo_SetWantReturns(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetWantReturns)
-    MySyscall(pMemo_SetWantReturns, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetWantTabs)
-BOOL
-Memo_GetWantTabs(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetWantTabs)
-    return (BOOL)MySyscall(pMemo_GetWantTabs, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetWantTabs)
-void
-Memo_SetWantTabs(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetWantTabs)
-    MySyscall(pMemo_SetWantTabs, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetWordWrap)
-BOOL
-Memo_GetWordWrap(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetWordWrap)
-    return (BOOL)MySyscall(pMemo_GetWordWrap, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetWordWrap)
-void
-Memo_SetWordWrap(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetWordWrap)
-    MySyscall(pMemo_SetWordWrap, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnChange)
-void
-Memo_SetOnChange(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnChange)
-    MySyscall(pMemo_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnClick)
-void
-Memo_SetOnClick(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnClick)
-    MySyscall(pMemo_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnContextPopup)
-void
-Memo_SetOnContextPopup(TMemo AObj, TContextPopupEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnContextPopup)
-    MySyscall(pMemo_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnDblClick)
-void
-Memo_SetOnDblClick(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnDblClick)
-    MySyscall(pMemo_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnDragDrop)
-void
-Memo_SetOnDragDrop(TMemo AObj, TDragDropEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnDragDrop)
-    MySyscall(pMemo_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnDragOver)
-void
-Memo_SetOnDragOver(TMemo AObj, TDragOverEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnDragOver)
-    MySyscall(pMemo_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnEndDrag)
-void
-Memo_SetOnEndDrag(TMemo AObj, TEndDragEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnEndDrag)
-    MySyscall(pMemo_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnEnter)
-void
-Memo_SetOnEnter(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnEnter)
-    MySyscall(pMemo_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnExit)
-void
-Memo_SetOnExit(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnExit)
-    MySyscall(pMemo_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnKeyDown)
-void
-Memo_SetOnKeyDown(TMemo AObj, TKeyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnKeyDown)
-    MySyscall(pMemo_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnKeyPress)
-void
-Memo_SetOnKeyPress(TMemo AObj, TKeyPressEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnKeyPress)
-    MySyscall(pMemo_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnKeyUp)
-void
-Memo_SetOnKeyUp(TMemo AObj, TKeyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnKeyUp)
-    MySyscall(pMemo_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnMouseDown)
-void
-Memo_SetOnMouseDown(TMemo AObj, TMouseEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnMouseDown)
-    MySyscall(pMemo_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnMouseEnter)
-void
-Memo_SetOnMouseEnter(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnMouseEnter)
-    MySyscall(pMemo_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnMouseLeave)
-void
-Memo_SetOnMouseLeave(TMemo AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnMouseLeave)
-    MySyscall(pMemo_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnMouseMove)
-void
-Memo_SetOnMouseMove(TMemo AObj, TMouseMoveEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnMouseMove)
-    MySyscall(pMemo_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetOnMouseUp)
-void
-Memo_SetOnMouseUp(TMemo AObj, TMouseEvent AEventId) {
-    GET_FUNC_ADDR(Memo_SetOnMouseUp)
-    MySyscall(pMemo_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetCaretPos)
-TPoint
-Memo_GetCaretPos(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetCaretPos)
-    TPoint result;
-    MySyscall(pMemo_GetCaretPos, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_SetCaretPos)
-void
-Memo_SetCaretPos(TMemo AObj, TPoint* AValue) {
-    GET_FUNC_ADDR(Memo_SetCaretPos)
-    MySyscall(pMemo_SetCaretPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetCanUndo)
-BOOL
-Memo_GetCanUndo(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetCanUndo)
-    return (BOOL)MySyscall(pMemo_GetCanUndo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetModified)
-BOOL
-Memo_GetModified(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetModified)
-    return (BOOL)MySyscall(pMemo_GetModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetModified)
-void
-Memo_SetModified(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetModified)
-    MySyscall(pMemo_SetModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetSelLength)
+DEFINE_FUNC_PTR(Strings_AddObject)
 int32_t
-Memo_GetSelLength(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetSelLength)
-    return (int32_t)MySyscall(pMemo_GetSelLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_AddObject(TStrings AObj, CChar char* S, TObject AObject) {
+    GET_FUNC_ADDR(Strings_AddObject)
+    return (int32_t)MySyscall(pStrings_AddObject, 3, AObj, S, AObject ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_SetSelLength)
+DEFINE_FUNC_PTR(Strings_Append)
 void
-Memo_SetSelLength(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetSelLength)
-    MySyscall(pMemo_SetSelLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_Append(TStrings AObj, CChar char* S) {
+    GET_FUNC_ADDR(Strings_Append)
+    MySyscall(pStrings_Append, 2, AObj, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_GetSelStart)
+DEFINE_FUNC_PTR(Strings_Assign)
+void
+Strings_Assign(TStrings AObj, TObject Source) {
+    GET_FUNC_ADDR(Strings_Assign)
+    MySyscall(pStrings_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_BeginUpdate)
+void
+Strings_BeginUpdate(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_BeginUpdate)
+    MySyscall(pStrings_BeginUpdate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_Clear)
+void
+Strings_Clear(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_Clear)
+    MySyscall(pStrings_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_Delete)
+void
+Strings_Delete(TStrings AObj, int32_t Index) {
+    GET_FUNC_ADDR(Strings_Delete)
+    MySyscall(pStrings_Delete, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_EndUpdate)
+void
+Strings_EndUpdate(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_EndUpdate)
+    MySyscall(pStrings_EndUpdate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_Equals)
+BOOL
+Strings_Equals(TStrings AObj, TStrings Strings) {
+    GET_FUNC_ADDR(Strings_Equals)
+    return (BOOL)MySyscall(pStrings_Equals, 2, AObj, Strings ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_IndexOf)
 int32_t
-Memo_GetSelStart(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetSelStart)
-    return (int32_t)MySyscall(pMemo_GetSelStart, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_IndexOf(TStrings AObj, CChar char* S) {
+    GET_FUNC_ADDR(Strings_IndexOf)
+    return (int32_t)MySyscall(pStrings_IndexOf, 2, AObj, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_SetSelStart)
+DEFINE_FUNC_PTR(Strings_IndexOfName)
+int32_t
+Strings_IndexOfName(TStrings AObj, CChar char* Name) {
+    GET_FUNC_ADDR(Strings_IndexOfName)
+    return (int32_t)MySyscall(pStrings_IndexOfName, 2, AObj, Name ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_IndexOfObject)
+int32_t
+Strings_IndexOfObject(TStrings AObj, TObject AObject) {
+    GET_FUNC_ADDR(Strings_IndexOfObject)
+    return (int32_t)MySyscall(pStrings_IndexOfObject, 2, AObj, AObject ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_Insert)
 void
-Memo_SetSelStart(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetSelStart)
-    MySyscall(pMemo_SetSelStart, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_Insert(TStrings AObj, int32_t Index, CChar char* S) {
+    GET_FUNC_ADDR(Strings_Insert)
+    MySyscall(pStrings_Insert, 3, AObj, Index, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_GetSelText)
+DEFINE_FUNC_PTR(Strings_InsertObject)
+void
+Strings_InsertObject(TStrings AObj, int32_t Index, CChar char* S, TObject AObject) {
+    GET_FUNC_ADDR(Strings_InsertObject)
+    MySyscall(pStrings_InsertObject, 4, AObj, Index, S, AObject ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_LoadFromFile)
+void
+Strings_LoadFromFile(TStrings AObj, CChar char* FileName) {
+    GET_FUNC_ADDR(Strings_LoadFromFile)
+    MySyscall(pStrings_LoadFromFile, 2, AObj, FileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_LoadFromStream)
+void
+Strings_LoadFromStream(TStrings AObj, TStream Stream) {
+    GET_FUNC_ADDR(Strings_LoadFromStream)
+    MySyscall(pStrings_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_Move)
+void
+Strings_Move(TStrings AObj, int32_t CurIndex, int32_t NewIndex) {
+    GET_FUNC_ADDR(Strings_Move)
+    MySyscall(pStrings_Move, 3, AObj, CurIndex, NewIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SaveToFile)
+void
+Strings_SaveToFile(TStrings AObj, CChar char* FileName) {
+    GET_FUNC_ADDR(Strings_SaveToFile)
+    MySyscall(pStrings_SaveToFile, 2, AObj, FileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SaveToStream)
+void
+Strings_SaveToStream(TStrings AObj, TStream Stream) {
+    GET_FUNC_ADDR(Strings_SaveToStream)
+    MySyscall(pStrings_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetNamePath)
 char*
-Memo_GetSelText(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetSelText)
-    return (char*)MySyscall(pMemo_GetSelText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_GetNamePath(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetNamePath)
+    return (char*)MySyscall(pStrings_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Memo_SetSelText)
-void
-Memo_SetSelText(TMemo AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Memo_SetSelText)
-    MySyscall(pMemo_SetSelText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetText)
-char*
-Memo_GetText(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetText)
-    return (char*)MySyscall(pMemo_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetText)
-void
-Memo_SetText(TMemo AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Memo_SetText)
-    MySyscall(pMemo_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTextHint)
-char*
-Memo_GetTextHint(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetTextHint)
-    return (char*)MySyscall(pMemo_GetTextHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetTextHint)
-void
-Memo_SetTextHint(TMemo AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Memo_SetTextHint)
-    MySyscall(pMemo_SetTextHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDockClientCount)
-int32_t
-Memo_GetDockClientCount(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetDockClientCount)
-    return (int32_t)MySyscall(pMemo_GetDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDockSite)
-BOOL
-Memo_GetDockSite(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetDockSite)
-    return (BOOL)MySyscall(pMemo_GetDockSite, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetDockSite)
-void
-Memo_SetDockSite(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetDockSite)
-    MySyscall(pMemo_SetDockSite, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetMouseInClient)
-BOOL
-Memo_GetMouseInClient(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetMouseInClient)
-    return (BOOL)MySyscall(pMemo_GetMouseInClient, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetVisibleDockClientCount)
-int32_t
-Memo_GetVisibleDockClientCount(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetVisibleDockClientCount)
-    return (int32_t)MySyscall(pMemo_GetVisibleDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetBrush)
-TBrush
-Memo_GetBrush(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetBrush)
-    return (TBrush)MySyscall(pMemo_GetBrush, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetControlCount)
-int32_t
-Memo_GetControlCount(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetControlCount)
-    return (int32_t)MySyscall(pMemo_GetControlCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetHandle)
-HWND
-Memo_GetHandle(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetHandle)
-    return (HWND)MySyscall(pMemo_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetParentWindow)
-HWND
-Memo_GetParentWindow(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetParentWindow)
-    return (HWND)MySyscall(pMemo_GetParentWindow, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetParentWindow)
-void
-Memo_SetParentWindow(TMemo AObj, HWND AValue) {
-    GET_FUNC_ADDR(Memo_SetParentWindow)
-    MySyscall(pMemo_SetParentWindow, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetShowing)
-BOOL
-Memo_GetShowing(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetShowing)
-    return (BOOL)MySyscall(pMemo_GetShowing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetUseDockManager)
-BOOL
-Memo_GetUseDockManager(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetUseDockManager)
-    return (BOOL)MySyscall(pMemo_GetUseDockManager, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetUseDockManager)
-void
-Memo_SetUseDockManager(TMemo AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Memo_SetUseDockManager)
-    MySyscall(pMemo_SetUseDockManager, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAction)
-TAction
-Memo_GetAction(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAction)
-    return (TAction)MySyscall(pMemo_GetAction, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAction)
-void
-Memo_SetAction(TMemo AObj, TAction AValue) {
-    GET_FUNC_ADDR(Memo_SetAction)
-    MySyscall(pMemo_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetBoundsRect)
-TRect
-Memo_GetBoundsRect(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetBoundsRect)
-    TRect result;
-    MySyscall(pMemo_GetBoundsRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_SetBoundsRect)
-void
-Memo_SetBoundsRect(TMemo AObj, TRect* AValue) {
-    GET_FUNC_ADDR(Memo_SetBoundsRect)
-    MySyscall(pMemo_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetClientHeight)
-int32_t
-Memo_GetClientHeight(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetClientHeight)
-    return (int32_t)MySyscall(pMemo_GetClientHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetClientHeight)
-void
-Memo_SetClientHeight(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetClientHeight)
-    MySyscall(pMemo_SetClientHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetClientOrigin)
-TPoint
-Memo_GetClientOrigin(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetClientOrigin)
-    TPoint result;
-    MySyscall(pMemo_GetClientOrigin, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_GetClientRect)
-TRect
-Memo_GetClientRect(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetClientRect)
-    TRect result;
-    MySyscall(pMemo_GetClientRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
-}
-
-DEFINE_FUNC_PTR(Memo_GetClientWidth)
-int32_t
-Memo_GetClientWidth(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetClientWidth)
-    return (int32_t)MySyscall(pMemo_GetClientWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetClientWidth)
-void
-Memo_SetClientWidth(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetClientWidth)
-    MySyscall(pMemo_SetClientWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetControlState)
-TControlState
-Memo_GetControlState(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetControlState)
-    return (TControlState)MySyscall(pMemo_GetControlState, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetControlState)
-void
-Memo_SetControlState(TMemo AObj, TControlState AValue) {
-    GET_FUNC_ADDR(Memo_SetControlState)
-    MySyscall(pMemo_SetControlState, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetControlStyle)
-TControlStyle
-Memo_GetControlStyle(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetControlStyle)
-    return (TControlStyle)MySyscall(pMemo_GetControlStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetControlStyle)
-void
-Memo_SetControlStyle(TMemo AObj, TControlStyle AValue) {
-    GET_FUNC_ADDR(Memo_SetControlStyle)
-    MySyscall(pMemo_SetControlStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetFloating)
-BOOL
-Memo_GetFloating(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetFloating)
-    return (BOOL)MySyscall(pMemo_GetFloating, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetParent)
-TWinControl
-Memo_GetParent(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetParent)
-    return (TWinControl)MySyscall(pMemo_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetParent)
-void
-Memo_SetParent(TMemo AObj, TWinControl AValue) {
-    GET_FUNC_ADDR(Memo_SetParent)
-    MySyscall(pMemo_SetParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetLeft)
-int32_t
-Memo_GetLeft(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetLeft)
-    return (int32_t)MySyscall(pMemo_GetLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetLeft)
-void
-Memo_SetLeft(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetLeft)
-    MySyscall(pMemo_SetLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTop)
-int32_t
-Memo_GetTop(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetTop)
-    return (int32_t)MySyscall(pMemo_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetTop)
-void
-Memo_SetTop(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetTop)
-    MySyscall(pMemo_SetTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetWidth)
-int32_t
-Memo_GetWidth(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetWidth)
-    return (int32_t)MySyscall(pMemo_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetWidth)
-void
-Memo_SetWidth(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetWidth)
-    MySyscall(pMemo_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetHeight)
-int32_t
-Memo_GetHeight(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetHeight)
-    return (int32_t)MySyscall(pMemo_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetHeight)
-void
-Memo_SetHeight(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetHeight)
-    MySyscall(pMemo_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetCursor)
-TCursor
-Memo_GetCursor(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetCursor)
-    return (TCursor)MySyscall(pMemo_GetCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetCursor)
-void
-Memo_SetCursor(TMemo AObj, TCursor AValue) {
-    GET_FUNC_ADDR(Memo_SetCursor)
-    MySyscall(pMemo_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetHint)
-char*
-Memo_GetHint(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetHint)
-    return (char*)MySyscall(pMemo_GetHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetHint)
-void
-Memo_SetHint(TMemo AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Memo_SetHint)
-    MySyscall(pMemo_SetHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetComponentCount)
-int32_t
-Memo_GetComponentCount(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetComponentCount)
-    return (int32_t)MySyscall(pMemo_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetComponentIndex)
-int32_t
-Memo_GetComponentIndex(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetComponentIndex)
-    return (int32_t)MySyscall(pMemo_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetComponentIndex)
-void
-Memo_SetComponentIndex(TMemo AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Memo_SetComponentIndex)
-    MySyscall(pMemo_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetOwner)
-TComponent
-Memo_GetOwner(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetOwner)
-    return (TComponent)MySyscall(pMemo_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetName)
-char*
-Memo_GetName(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetName)
-    return (char*)MySyscall(pMemo_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetName)
-void
-Memo_SetName(TMemo AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Memo_SetName)
-    MySyscall(pMemo_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetTag)
-intptr_t
-Memo_GetTag(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetTag)
-    return (intptr_t)MySyscall(pMemo_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetTag)
-void
-Memo_SetTag(TMemo AObj, intptr_t AValue) {
-    GET_FUNC_ADDR(Memo_SetTag)
-    MySyscall(pMemo_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAnchorSideLeft)
-TAnchorSide
-Memo_GetAnchorSideLeft(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAnchorSideLeft)
-    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAnchorSideLeft)
-void
-Memo_SetAnchorSideLeft(TMemo AObj, TAnchorSide AValue) {
-    GET_FUNC_ADDR(Memo_SetAnchorSideLeft)
-    MySyscall(pMemo_SetAnchorSideLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAnchorSideTop)
-TAnchorSide
-Memo_GetAnchorSideTop(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAnchorSideTop)
-    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAnchorSideTop)
-void
-Memo_SetAnchorSideTop(TMemo AObj, TAnchorSide AValue) {
-    GET_FUNC_ADDR(Memo_SetAnchorSideTop)
-    MySyscall(pMemo_SetAnchorSideTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAnchorSideRight)
-TAnchorSide
-Memo_GetAnchorSideRight(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAnchorSideRight)
-    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAnchorSideRight)
-void
-Memo_SetAnchorSideRight(TMemo AObj, TAnchorSide AValue) {
-    GET_FUNC_ADDR(Memo_SetAnchorSideRight)
-    MySyscall(pMemo_SetAnchorSideRight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAnchorSideBottom)
-TAnchorSide
-Memo_GetAnchorSideBottom(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetAnchorSideBottom)
-    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideBottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetAnchorSideBottom)
-void
-Memo_SetAnchorSideBottom(TMemo AObj, TAnchorSide AValue) {
-    GET_FUNC_ADDR(Memo_SetAnchorSideBottom)
-    MySyscall(pMemo_SetAnchorSideBottom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetChildSizing)
-TControlChildSizing
-Memo_GetChildSizing(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetChildSizing)
-    return (TControlChildSizing)MySyscall(pMemo_GetChildSizing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetChildSizing)
-void
-Memo_SetChildSizing(TMemo AObj, TControlChildSizing AValue) {
-    GET_FUNC_ADDR(Memo_SetChildSizing)
-    MySyscall(pMemo_SetChildSizing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetBorderSpacing)
-TControlBorderSpacing
-Memo_GetBorderSpacing(TMemo AObj) {
-    GET_FUNC_ADDR(Memo_GetBorderSpacing)
-    return (TControlBorderSpacing)MySyscall(pMemo_GetBorderSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_SetBorderSpacing)
-void
-Memo_SetBorderSpacing(TMemo AObj, TControlBorderSpacing AValue) {
-    GET_FUNC_ADDR(Memo_SetBorderSpacing)
-    MySyscall(pMemo_SetBorderSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetDockClients)
-TControl
-Memo_GetDockClients(TMemo AObj, int32_t Index) {
-    GET_FUNC_ADDR(Memo_GetDockClients)
-    return (TControl)MySyscall(pMemo_GetDockClients, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetControls)
-TControl
-Memo_GetControls(TMemo AObj, int32_t Index) {
-    GET_FUNC_ADDR(Memo_GetControls)
-    return (TControl)MySyscall(pMemo_GetControls, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetComponents)
-TComponent
-Memo_GetComponents(TMemo AObj, int32_t AIndex) {
-    GET_FUNC_ADDR(Memo_GetComponents)
-    return (TComponent)MySyscall(pMemo_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_GetAnchorSide)
-TAnchorSide
-Memo_GetAnchorSide(TMemo AObj, TAnchorKind AKind) {
-    GET_FUNC_ADDR(Memo_GetAnchorSide)
-    return (TAnchorSide)MySyscall(pMemo_GetAnchorSide, 2, AObj, AKind ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Memo_StaticClassType)
+DEFINE_FUNC_PTR(Strings_ClassType)
 TClass
-Memo_StaticClassType() {
-    GET_FUNC_ADDR(Memo_StaticClassType)
-    return (TClass)MySyscall(pMemo_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+Strings_ClassType(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_ClassType)
+    return (TClass)MySyscall(pStrings_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
+
+DEFINE_FUNC_PTR(Strings_ClassName)
+char*
+Strings_ClassName(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_ClassName)
+    return (char*)MySyscall(pStrings_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_InstanceSize)
+int32_t
+Strings_InstanceSize(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_InstanceSize)
+    return (int32_t)MySyscall(pStrings_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_InheritsFrom)
+BOOL
+Strings_InheritsFrom(TStrings AObj, TClass AClass) {
+    GET_FUNC_ADDR(Strings_InheritsFrom)
+    return (BOOL)MySyscall(pStrings_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetHashCode)
+int32_t
+Strings_GetHashCode(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetHashCode)
+    return (int32_t)MySyscall(pStrings_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_ToString)
+char*
+Strings_ToString(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_ToString)
+    return (char*)MySyscall(pStrings_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetCapacity)
+int32_t
+Strings_GetCapacity(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetCapacity)
+    return (int32_t)MySyscall(pStrings_GetCapacity, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetCapacity)
+void
+Strings_SetCapacity(TStrings AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Strings_SetCapacity)
+    MySyscall(pStrings_SetCapacity, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetCommaText)
+char*
+Strings_GetCommaText(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetCommaText)
+    return (char*)MySyscall(pStrings_GetCommaText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetCommaText)
+void
+Strings_SetCommaText(TStrings AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Strings_SetCommaText)
+    MySyscall(pStrings_SetCommaText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetCount)
+int32_t
+Strings_GetCount(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetCount)
+    return (int32_t)MySyscall(pStrings_GetCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetDelimiter)
+Char
+Strings_GetDelimiter(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetDelimiter)
+    return (Char)MySyscall(pStrings_GetDelimiter, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetDelimiter)
+void
+Strings_SetDelimiter(TStrings AObj, Char AValue) {
+    GET_FUNC_ADDR(Strings_SetDelimiter)
+    MySyscall(pStrings_SetDelimiter, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetNameValueSeparator)
+Char
+Strings_GetNameValueSeparator(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetNameValueSeparator)
+    return (Char)MySyscall(pStrings_GetNameValueSeparator, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetNameValueSeparator)
+void
+Strings_SetNameValueSeparator(TStrings AObj, Char AValue) {
+    GET_FUNC_ADDR(Strings_SetNameValueSeparator)
+    MySyscall(pStrings_SetNameValueSeparator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetText)
+char*
+Strings_GetText(TStrings AObj) {
+    GET_FUNC_ADDR(Strings_GetText)
+    return (char*)MySyscall(pStrings_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetText)
+void
+Strings_SetText(TStrings AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Strings_SetText)
+    MySyscall(pStrings_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetObjects)
+TObject
+Strings_GetObjects(TStrings AObj, int32_t Index) {
+    GET_FUNC_ADDR(Strings_GetObjects)
+    return (TObject)MySyscall(pStrings_GetObjects, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetObjects)
+void
+Strings_SetObjects(TStrings AObj, int32_t Index, TObject AValue) {
+    GET_FUNC_ADDR(Strings_SetObjects)
+    MySyscall(pStrings_SetObjects, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetValues)
+char*
+Strings_GetValues(TStrings AObj, CChar char* Name) {
+    GET_FUNC_ADDR(Strings_GetValues)
+    return (char*)MySyscall(pStrings_GetValues, 2, AObj, Name ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetValues)
+void
+Strings_SetValues(TStrings AObj, CChar char* Name, CChar char* AValue) {
+    GET_FUNC_ADDR(Strings_SetValues)
+    MySyscall(pStrings_SetValues, 3, AObj, Name, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetValueFromIndex)
+char*
+Strings_GetValueFromIndex(TStrings AObj, int32_t Index) {
+    GET_FUNC_ADDR(Strings_GetValueFromIndex)
+    return (char*)MySyscall(pStrings_GetValueFromIndex, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetValueFromIndex)
+void
+Strings_SetValueFromIndex(TStrings AObj, int32_t Index, CChar char* AValue) {
+    GET_FUNC_ADDR(Strings_SetValueFromIndex)
+    MySyscall(pStrings_SetValueFromIndex, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_GetStrings)
+char*
+Strings_GetStrings(TStrings AObj, int32_t Index) {
+    GET_FUNC_ADDR(Strings_GetStrings)
+    return (char*)MySyscall(pStrings_GetStrings, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_SetStrings)
+void
+Strings_SetStrings(TStrings AObj, int32_t Index, CChar char* AValue) {
+    GET_FUNC_ADDR(Strings_SetStrings)
+    MySyscall(pStrings_SetStrings, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_StaticClassType)
+TClass
+Strings_StaticClassType() {
+    GET_FUNC_ADDR(Strings_StaticClassType)
+    return (TClass)MySyscall(pStrings_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+// -------------------TStream-------------------
 
 // -------------------TCheckBox-------------------
 
@@ -31577,6 +30068,20 @@ ImageList_Free(TImageList AObj) {
     MySyscall(pImageList_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ImageList_StretchDraw)
+void
+ImageList_StretchDraw(TImageList AObj, TCanvas ACanvas, int32_t AIndex, TRect ARect, BOOL AEnabled) {
+    GET_FUNC_ADDR(ImageList_StretchDraw)
+    MySyscall(pImageList_StretchDraw, 5, AObj, ACanvas, AIndex, &ARect, AEnabled ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_AddSliced)
+int32_t
+ImageList_AddSliced(TImageList AObj, TBitmap Image, int32_t AHorizontalCount, int32_t AVerticalCount) {
+    GET_FUNC_ADDR(ImageList_AddSliced)
+    return (int32_t)MySyscall(pImageList_AddSliced, 4, AObj, Image, AHorizontalCount, AVerticalCount ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ImageList_GetHotSpot)
 TPoint
 ImageList_GetHotSpot(TImageList AObj) {
@@ -46042,7 +44547,1570 @@ Bitmap_LoadFromDevice(TBitmap AObj, HDC ADc) {
     MySyscall(pBitmap_LoadFromDevice, 2, AObj, ADc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-// -------------------TStream-------------------
+// -------------------TMemo-------------------
+
+DEFINE_FUNC_PTR(Memo_Create)
+TMemo
+Memo_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(Memo_Create)
+    return (TMemo)MySyscall(pMemo_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Free)
+void
+Memo_Free(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Free)
+    MySyscall(pMemo_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Append)
+void
+Memo_Append(TMemo AObj, CChar char* Value) {
+    GET_FUNC_ADDR(Memo_Append)
+    MySyscall(pMemo_Append, 2, AObj, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Clear)
+void
+Memo_Clear(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Clear)
+    MySyscall(pMemo_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ClearSelection)
+void
+Memo_ClearSelection(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_ClearSelection)
+    MySyscall(pMemo_ClearSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_CopyToClipboard)
+void
+Memo_CopyToClipboard(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_CopyToClipboard)
+    MySyscall(pMemo_CopyToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_CutToClipboard)
+void
+Memo_CutToClipboard(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_CutToClipboard)
+    MySyscall(pMemo_CutToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_PasteFromClipboard)
+void
+Memo_PasteFromClipboard(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_PasteFromClipboard)
+    MySyscall(pMemo_PasteFromClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Undo)
+void
+Memo_Undo(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Undo)
+    MySyscall(pMemo_Undo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SelectAll)
+void
+Memo_SelectAll(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_SelectAll)
+    MySyscall(pMemo_SelectAll, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_CanFocus)
+BOOL
+Memo_CanFocus(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_CanFocus)
+    return (BOOL)MySyscall(pMemo_CanFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ContainsControl)
+BOOL
+Memo_ContainsControl(TMemo AObj, TControl Control) {
+    GET_FUNC_ADDR(Memo_ContainsControl)
+    return (BOOL)MySyscall(pMemo_ContainsControl, 2, AObj, Control ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ControlAtPos)
+TControl
+Memo_ControlAtPos(TMemo AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+    GET_FUNC_ADDR(Memo_ControlAtPos)
+    return (TControl)MySyscall(pMemo_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_DisableAlign)
+void
+Memo_DisableAlign(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_DisableAlign)
+    MySyscall(pMemo_DisableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_EnableAlign)
+void
+Memo_EnableAlign(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_EnableAlign)
+    MySyscall(pMemo_EnableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_FindChildControl)
+TControl
+Memo_FindChildControl(TMemo AObj, CChar char* ControlName) {
+    GET_FUNC_ADDR(Memo_FindChildControl)
+    return (TControl)MySyscall(pMemo_FindChildControl, 2, AObj, ControlName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_FlipChildren)
+void
+Memo_FlipChildren(TMemo AObj, BOOL AllLevels) {
+    GET_FUNC_ADDR(Memo_FlipChildren)
+    MySyscall(pMemo_FlipChildren, 2, AObj, AllLevels ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Focused)
+BOOL
+Memo_Focused(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Focused)
+    return (BOOL)MySyscall(pMemo_Focused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_HandleAllocated)
+BOOL
+Memo_HandleAllocated(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_HandleAllocated)
+    return (BOOL)MySyscall(pMemo_HandleAllocated, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_InsertControl)
+void
+Memo_InsertControl(TMemo AObj, TControl AControl) {
+    GET_FUNC_ADDR(Memo_InsertControl)
+    MySyscall(pMemo_InsertControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Invalidate)
+void
+Memo_Invalidate(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Invalidate)
+    MySyscall(pMemo_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_RemoveControl)
+void
+Memo_RemoveControl(TMemo AObj, TControl AControl) {
+    GET_FUNC_ADDR(Memo_RemoveControl)
+    MySyscall(pMemo_RemoveControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Realign)
+void
+Memo_Realign(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Realign)
+    MySyscall(pMemo_Realign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Repaint)
+void
+Memo_Repaint(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Repaint)
+    MySyscall(pMemo_Repaint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleBy)
+void
+Memo_ScaleBy(TMemo AObj, int32_t M, int32_t D) {
+    GET_FUNC_ADDR(Memo_ScaleBy)
+    MySyscall(pMemo_ScaleBy, 3, AObj, M, D ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScrollBy)
+void
+Memo_ScrollBy(TMemo AObj, int32_t DeltaX, int32_t DeltaY) {
+    GET_FUNC_ADDR(Memo_ScrollBy)
+    MySyscall(pMemo_ScrollBy, 3, AObj, DeltaX, DeltaY ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetBounds)
+void
+Memo_SetBounds(TMemo AObj, int32_t ALeft, int32_t ATop, int32_t AWidth, int32_t AHeight) {
+    GET_FUNC_ADDR(Memo_SetBounds)
+    MySyscall(pMemo_SetBounds, 5, AObj, ALeft, ATop, AWidth, AHeight ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetFocus)
+void
+Memo_SetFocus(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_SetFocus)
+    MySyscall(pMemo_SetFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Update)
+void
+Memo_Update(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Update)
+    MySyscall(pMemo_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_BringToFront)
+void
+Memo_BringToFront(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_BringToFront)
+    MySyscall(pMemo_BringToFront, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ClientToScreen)
+TPoint
+Memo_ClientToScreen(TMemo AObj, TPoint Point) {
+    GET_FUNC_ADDR(Memo_ClientToScreen)
+    TPoint result;
+    MySyscall(pMemo_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_ClientToParent)
+TPoint
+Memo_ClientToParent(TMemo AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(Memo_ClientToParent)
+    TPoint result;
+    MySyscall(pMemo_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_Dragging)
+BOOL
+Memo_Dragging(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Dragging)
+    return (BOOL)MySyscall(pMemo_Dragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_HasParent)
+BOOL
+Memo_HasParent(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_HasParent)
+    return (BOOL)MySyscall(pMemo_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Hide)
+void
+Memo_Hide(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Hide)
+    MySyscall(pMemo_Hide, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Perform)
+intptr_t
+Memo_Perform(TMemo AObj, uint32_t Msg, uintptr_t WParam, intptr_t LParam) {
+    GET_FUNC_ADDR(Memo_Perform)
+    return (intptr_t)MySyscall(pMemo_Perform, 4, AObj, Msg, WParam, LParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Refresh)
+void
+Memo_Refresh(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Refresh)
+    MySyscall(pMemo_Refresh, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScreenToClient)
+TPoint
+Memo_ScreenToClient(TMemo AObj, TPoint Point) {
+    GET_FUNC_ADDR(Memo_ScreenToClient)
+    TPoint result;
+    MySyscall(pMemo_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_ParentToClient)
+TPoint
+Memo_ParentToClient(TMemo AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(Memo_ParentToClient)
+    TPoint result;
+    MySyscall(pMemo_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_SendToBack)
+void
+Memo_SendToBack(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_SendToBack)
+    MySyscall(pMemo_SendToBack, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Show)
+void
+Memo_Show(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_Show)
+    MySyscall(pMemo_Show, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTextBuf)
+int32_t
+Memo_GetTextBuf(TMemo AObj, CChar char* Buffer, int32_t BufSize) {
+    GET_FUNC_ADDR(Memo_GetTextBuf)
+    return (int32_t)MySyscall(pMemo_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTextLen)
+int32_t
+Memo_GetTextLen(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetTextLen)
+    return (int32_t)MySyscall(pMemo_GetTextLen, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetTextBuf)
+void
+Memo_SetTextBuf(TMemo AObj, CChar char* Buffer) {
+    GET_FUNC_ADDR(Memo_SetTextBuf)
+    MySyscall(pMemo_SetTextBuf, 2, AObj, Buffer ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_FindComponent)
+TComponent
+Memo_FindComponent(TMemo AObj, CChar char* AName) {
+    GET_FUNC_ADDR(Memo_FindComponent)
+    return (TComponent)MySyscall(pMemo_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetNamePath)
+char*
+Memo_GetNamePath(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetNamePath)
+    return (char*)MySyscall(pMemo_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Assign)
+void
+Memo_Assign(TMemo AObj, TObject Source) {
+    GET_FUNC_ADDR(Memo_Assign)
+    MySyscall(pMemo_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ClassType)
+TClass
+Memo_ClassType(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_ClassType)
+    return (TClass)MySyscall(pMemo_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ClassName)
+char*
+Memo_ClassName(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_ClassName)
+    return (char*)MySyscall(pMemo_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_InstanceSize)
+int32_t
+Memo_InstanceSize(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_InstanceSize)
+    return (int32_t)MySyscall(pMemo_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_InheritsFrom)
+BOOL
+Memo_InheritsFrom(TMemo AObj, TClass AClass) {
+    GET_FUNC_ADDR(Memo_InheritsFrom)
+    return (BOOL)MySyscall(pMemo_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Equals)
+BOOL
+Memo_Equals(TMemo AObj, TObject Obj) {
+    GET_FUNC_ADDR(Memo_Equals)
+    return (BOOL)MySyscall(pMemo_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetHashCode)
+int32_t
+Memo_GetHashCode(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetHashCode)
+    return (int32_t)MySyscall(pMemo_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ToString)
+char*
+Memo_ToString(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_ToString)
+    return (char*)MySyscall(pMemo_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorToNeighbour)
+void
+Memo_AnchorToNeighbour(TMemo AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(Memo_AnchorToNeighbour)
+    MySyscall(pMemo_AnchorToNeighbour, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorParallel)
+void
+Memo_AnchorParallel(TMemo AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(Memo_AnchorParallel)
+    MySyscall(pMemo_AnchorParallel, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorHorizontalCenterTo)
+void
+Memo_AnchorHorizontalCenterTo(TMemo AObj, TControl ASibling) {
+    GET_FUNC_ADDR(Memo_AnchorHorizontalCenterTo)
+    MySyscall(pMemo_AnchorHorizontalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorVerticalCenterTo)
+void
+Memo_AnchorVerticalCenterTo(TMemo AObj, TControl ASibling) {
+    GET_FUNC_ADDR(Memo_AnchorVerticalCenterTo)
+    MySyscall(pMemo_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorAsAlign)
+void
+Memo_AnchorAsAlign(TMemo AObj, TAlign ATheAlign, int32_t ASpace) {
+    GET_FUNC_ADDR(Memo_AnchorAsAlign)
+    MySyscall(pMemo_AnchorAsAlign, 3, AObj, ATheAlign, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorClient)
+void
+Memo_AnchorClient(TMemo AObj, int32_t ASpace) {
+    GET_FUNC_ADDR(Memo_AnchorClient)
+    MySyscall(pMemo_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAlign)
+TAlign
+Memo_GetAlign(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAlign)
+    return (TAlign)MySyscall(pMemo_GetAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAlign)
+void
+Memo_SetAlign(TMemo AObj, TAlign AValue) {
+    GET_FUNC_ADDR(Memo_SetAlign)
+    MySyscall(pMemo_SetAlign, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAlignment)
+TAlignment
+Memo_GetAlignment(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAlignment)
+    return (TAlignment)MySyscall(pMemo_GetAlignment, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAlignment)
+void
+Memo_SetAlignment(TMemo AObj, TAlignment AValue) {
+    GET_FUNC_ADDR(Memo_SetAlignment)
+    MySyscall(pMemo_SetAlignment, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAnchors)
+TAnchors
+Memo_GetAnchors(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAnchors)
+    return (TAnchors)MySyscall(pMemo_GetAnchors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAnchors)
+void
+Memo_SetAnchors(TMemo AObj, TAnchors AValue) {
+    GET_FUNC_ADDR(Memo_SetAnchors)
+    MySyscall(pMemo_SetAnchors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetBiDiMode)
+TBiDiMode
+Memo_GetBiDiMode(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pMemo_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetBiDiMode)
+void
+Memo_SetBiDiMode(TMemo AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(Memo_SetBiDiMode)
+    MySyscall(pMemo_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetBorderStyle)
+TBorderStyle
+Memo_GetBorderStyle(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetBorderStyle)
+    return (TBorderStyle)MySyscall(pMemo_GetBorderStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetBorderStyle)
+void
+Memo_SetBorderStyle(TMemo AObj, TBorderStyle AValue) {
+    GET_FUNC_ADDR(Memo_SetBorderStyle)
+    MySyscall(pMemo_SetBorderStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetCharCase)
+TEditCharCase
+Memo_GetCharCase(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetCharCase)
+    return (TEditCharCase)MySyscall(pMemo_GetCharCase, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetCharCase)
+void
+Memo_SetCharCase(TMemo AObj, TEditCharCase AValue) {
+    GET_FUNC_ADDR(Memo_SetCharCase)
+    MySyscall(pMemo_SetCharCase, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetColor)
+TColor
+Memo_GetColor(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetColor)
+    return (TColor)MySyscall(pMemo_GetColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetColor)
+void
+Memo_SetColor(TMemo AObj, TColor AValue) {
+    GET_FUNC_ADDR(Memo_SetColor)
+    MySyscall(pMemo_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetConstraints)
+TSizeConstraints
+Memo_GetConstraints(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetConstraints)
+    return (TSizeConstraints)MySyscall(pMemo_GetConstraints, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetConstraints)
+void
+Memo_SetConstraints(TMemo AObj, TSizeConstraints AValue) {
+    GET_FUNC_ADDR(Memo_SetConstraints)
+    MySyscall(pMemo_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDoubleBuffered)
+BOOL
+Memo_GetDoubleBuffered(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetDoubleBuffered)
+    return (BOOL)MySyscall(pMemo_GetDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetDoubleBuffered)
+void
+Memo_SetDoubleBuffered(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetDoubleBuffered)
+    MySyscall(pMemo_SetDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDragCursor)
+TCursor
+Memo_GetDragCursor(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetDragCursor)
+    return (TCursor)MySyscall(pMemo_GetDragCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetDragCursor)
+void
+Memo_SetDragCursor(TMemo AObj, TCursor AValue) {
+    GET_FUNC_ADDR(Memo_SetDragCursor)
+    MySyscall(pMemo_SetDragCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDragKind)
+TDragKind
+Memo_GetDragKind(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetDragKind)
+    return (TDragKind)MySyscall(pMemo_GetDragKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetDragKind)
+void
+Memo_SetDragKind(TMemo AObj, TDragKind AValue) {
+    GET_FUNC_ADDR(Memo_SetDragKind)
+    MySyscall(pMemo_SetDragKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDragMode)
+TDragMode
+Memo_GetDragMode(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetDragMode)
+    return (TDragMode)MySyscall(pMemo_GetDragMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetDragMode)
+void
+Memo_SetDragMode(TMemo AObj, TDragMode AValue) {
+    GET_FUNC_ADDR(Memo_SetDragMode)
+    MySyscall(pMemo_SetDragMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetEnabled)
+BOOL
+Memo_GetEnabled(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetEnabled)
+    return (BOOL)MySyscall(pMemo_GetEnabled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetEnabled)
+void
+Memo_SetEnabled(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetEnabled)
+    MySyscall(pMemo_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetFont)
+TFont
+Memo_GetFont(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetFont)
+    return (TFont)MySyscall(pMemo_GetFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetFont)
+void
+Memo_SetFont(TMemo AObj, TFont AValue) {
+    GET_FUNC_ADDR(Memo_SetFont)
+    MySyscall(pMemo_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetHideSelection)
+BOOL
+Memo_GetHideSelection(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetHideSelection)
+    return (BOOL)MySyscall(pMemo_GetHideSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetHideSelection)
+void
+Memo_SetHideSelection(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetHideSelection)
+    MySyscall(pMemo_SetHideSelection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetLines)
+TStrings
+Memo_GetLines(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetLines)
+    return (TStrings)MySyscall(pMemo_GetLines, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetLines)
+void
+Memo_SetLines(TMemo AObj, TStrings AValue) {
+    GET_FUNC_ADDR(Memo_SetLines)
+    MySyscall(pMemo_SetLines, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetMaxLength)
+int32_t
+Memo_GetMaxLength(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetMaxLength)
+    return (int32_t)MySyscall(pMemo_GetMaxLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetMaxLength)
+void
+Memo_SetMaxLength(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetMaxLength)
+    MySyscall(pMemo_SetMaxLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetParentColor)
+BOOL
+Memo_GetParentColor(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetParentColor)
+    return (BOOL)MySyscall(pMemo_GetParentColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetParentColor)
+void
+Memo_SetParentColor(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetParentColor)
+    MySyscall(pMemo_SetParentColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetParentDoubleBuffered)
+BOOL
+Memo_GetParentDoubleBuffered(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetParentDoubleBuffered)
+    return (BOOL)MySyscall(pMemo_GetParentDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetParentDoubleBuffered)
+void
+Memo_SetParentDoubleBuffered(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetParentDoubleBuffered)
+    MySyscall(pMemo_SetParentDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetParentFont)
+BOOL
+Memo_GetParentFont(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetParentFont)
+    return (BOOL)MySyscall(pMemo_GetParentFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetParentFont)
+void
+Memo_SetParentFont(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetParentFont)
+    MySyscall(pMemo_SetParentFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetParentShowHint)
+BOOL
+Memo_GetParentShowHint(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetParentShowHint)
+    return (BOOL)MySyscall(pMemo_GetParentShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetParentShowHint)
+void
+Memo_SetParentShowHint(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetParentShowHint)
+    MySyscall(pMemo_SetParentShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetPopupMenu)
+TPopupMenu
+Memo_GetPopupMenu(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetPopupMenu)
+    return (TPopupMenu)MySyscall(pMemo_GetPopupMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetPopupMenu)
+void
+Memo_SetPopupMenu(TMemo AObj, TPopupMenu AValue) {
+    GET_FUNC_ADDR(Memo_SetPopupMenu)
+    MySyscall(pMemo_SetPopupMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetReadOnly)
+BOOL
+Memo_GetReadOnly(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetReadOnly)
+    return (BOOL)MySyscall(pMemo_GetReadOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetReadOnly)
+void
+Memo_SetReadOnly(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetReadOnly)
+    MySyscall(pMemo_SetReadOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetScrollBars)
+TScrollStyle
+Memo_GetScrollBars(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetScrollBars)
+    return (TScrollStyle)MySyscall(pMemo_GetScrollBars, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetScrollBars)
+void
+Memo_SetScrollBars(TMemo AObj, TScrollStyle AValue) {
+    GET_FUNC_ADDR(Memo_SetScrollBars)
+    MySyscall(pMemo_SetScrollBars, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetShowHint)
+BOOL
+Memo_GetShowHint(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetShowHint)
+    return (BOOL)MySyscall(pMemo_GetShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetShowHint)
+void
+Memo_SetShowHint(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetShowHint)
+    MySyscall(pMemo_SetShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTabOrder)
+TTabOrder
+Memo_GetTabOrder(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetTabOrder)
+    return (TTabOrder)MySyscall(pMemo_GetTabOrder, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetTabOrder)
+void
+Memo_SetTabOrder(TMemo AObj, TTabOrder AValue) {
+    GET_FUNC_ADDR(Memo_SetTabOrder)
+    MySyscall(pMemo_SetTabOrder, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTabStop)
+BOOL
+Memo_GetTabStop(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetTabStop)
+    return (BOOL)MySyscall(pMemo_GetTabStop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetTabStop)
+void
+Memo_SetTabStop(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetTabStop)
+    MySyscall(pMemo_SetTabStop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetVisible)
+BOOL
+Memo_GetVisible(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetVisible)
+    return (BOOL)MySyscall(pMemo_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetVisible)
+void
+Memo_SetVisible(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetVisible)
+    MySyscall(pMemo_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetWantReturns)
+BOOL
+Memo_GetWantReturns(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetWantReturns)
+    return (BOOL)MySyscall(pMemo_GetWantReturns, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetWantReturns)
+void
+Memo_SetWantReturns(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetWantReturns)
+    MySyscall(pMemo_SetWantReturns, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetWantTabs)
+BOOL
+Memo_GetWantTabs(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetWantTabs)
+    return (BOOL)MySyscall(pMemo_GetWantTabs, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetWantTabs)
+void
+Memo_SetWantTabs(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetWantTabs)
+    MySyscall(pMemo_SetWantTabs, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetWordWrap)
+BOOL
+Memo_GetWordWrap(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetWordWrap)
+    return (BOOL)MySyscall(pMemo_GetWordWrap, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetWordWrap)
+void
+Memo_SetWordWrap(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetWordWrap)
+    MySyscall(pMemo_SetWordWrap, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnChange)
+void
+Memo_SetOnChange(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnChange)
+    MySyscall(pMemo_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnClick)
+void
+Memo_SetOnClick(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnClick)
+    MySyscall(pMemo_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnContextPopup)
+void
+Memo_SetOnContextPopup(TMemo AObj, TContextPopupEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnContextPopup)
+    MySyscall(pMemo_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnDblClick)
+void
+Memo_SetOnDblClick(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnDblClick)
+    MySyscall(pMemo_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnDragDrop)
+void
+Memo_SetOnDragDrop(TMemo AObj, TDragDropEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnDragDrop)
+    MySyscall(pMemo_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnDragOver)
+void
+Memo_SetOnDragOver(TMemo AObj, TDragOverEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnDragOver)
+    MySyscall(pMemo_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnEndDrag)
+void
+Memo_SetOnEndDrag(TMemo AObj, TEndDragEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnEndDrag)
+    MySyscall(pMemo_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnEnter)
+void
+Memo_SetOnEnter(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnEnter)
+    MySyscall(pMemo_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnExit)
+void
+Memo_SetOnExit(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnExit)
+    MySyscall(pMemo_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnKeyDown)
+void
+Memo_SetOnKeyDown(TMemo AObj, TKeyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnKeyDown)
+    MySyscall(pMemo_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnKeyPress)
+void
+Memo_SetOnKeyPress(TMemo AObj, TKeyPressEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnKeyPress)
+    MySyscall(pMemo_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnKeyUp)
+void
+Memo_SetOnKeyUp(TMemo AObj, TKeyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnKeyUp)
+    MySyscall(pMemo_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnMouseDown)
+void
+Memo_SetOnMouseDown(TMemo AObj, TMouseEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnMouseDown)
+    MySyscall(pMemo_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnMouseEnter)
+void
+Memo_SetOnMouseEnter(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnMouseEnter)
+    MySyscall(pMemo_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnMouseLeave)
+void
+Memo_SetOnMouseLeave(TMemo AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnMouseLeave)
+    MySyscall(pMemo_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnMouseMove)
+void
+Memo_SetOnMouseMove(TMemo AObj, TMouseMoveEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnMouseMove)
+    MySyscall(pMemo_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetOnMouseUp)
+void
+Memo_SetOnMouseUp(TMemo AObj, TMouseEvent AEventId) {
+    GET_FUNC_ADDR(Memo_SetOnMouseUp)
+    MySyscall(pMemo_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetCaretPos)
+TPoint
+Memo_GetCaretPos(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetCaretPos)
+    TPoint result;
+    MySyscall(pMemo_GetCaretPos, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_SetCaretPos)
+void
+Memo_SetCaretPos(TMemo AObj, TPoint* AValue) {
+    GET_FUNC_ADDR(Memo_SetCaretPos)
+    MySyscall(pMemo_SetCaretPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetCanUndo)
+BOOL
+Memo_GetCanUndo(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetCanUndo)
+    return (BOOL)MySyscall(pMemo_GetCanUndo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetModified)
+BOOL
+Memo_GetModified(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetModified)
+    return (BOOL)MySyscall(pMemo_GetModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetModified)
+void
+Memo_SetModified(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetModified)
+    MySyscall(pMemo_SetModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetSelLength)
+int32_t
+Memo_GetSelLength(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetSelLength)
+    return (int32_t)MySyscall(pMemo_GetSelLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetSelLength)
+void
+Memo_SetSelLength(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetSelLength)
+    MySyscall(pMemo_SetSelLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetSelStart)
+int32_t
+Memo_GetSelStart(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetSelStart)
+    return (int32_t)MySyscall(pMemo_GetSelStart, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetSelStart)
+void
+Memo_SetSelStart(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetSelStart)
+    MySyscall(pMemo_SetSelStart, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetSelText)
+char*
+Memo_GetSelText(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetSelText)
+    return (char*)MySyscall(pMemo_GetSelText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetSelText)
+void
+Memo_SetSelText(TMemo AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Memo_SetSelText)
+    MySyscall(pMemo_SetSelText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetText)
+char*
+Memo_GetText(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetText)
+    return (char*)MySyscall(pMemo_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetText)
+void
+Memo_SetText(TMemo AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Memo_SetText)
+    MySyscall(pMemo_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTextHint)
+char*
+Memo_GetTextHint(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetTextHint)
+    return (char*)MySyscall(pMemo_GetTextHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetTextHint)
+void
+Memo_SetTextHint(TMemo AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Memo_SetTextHint)
+    MySyscall(pMemo_SetTextHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDockClientCount)
+int32_t
+Memo_GetDockClientCount(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetDockClientCount)
+    return (int32_t)MySyscall(pMemo_GetDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDockSite)
+BOOL
+Memo_GetDockSite(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetDockSite)
+    return (BOOL)MySyscall(pMemo_GetDockSite, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetDockSite)
+void
+Memo_SetDockSite(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetDockSite)
+    MySyscall(pMemo_SetDockSite, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetMouseInClient)
+BOOL
+Memo_GetMouseInClient(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetMouseInClient)
+    return (BOOL)MySyscall(pMemo_GetMouseInClient, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetVisibleDockClientCount)
+int32_t
+Memo_GetVisibleDockClientCount(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetVisibleDockClientCount)
+    return (int32_t)MySyscall(pMemo_GetVisibleDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetBrush)
+TBrush
+Memo_GetBrush(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetBrush)
+    return (TBrush)MySyscall(pMemo_GetBrush, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetControlCount)
+int32_t
+Memo_GetControlCount(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetControlCount)
+    return (int32_t)MySyscall(pMemo_GetControlCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetHandle)
+HWND
+Memo_GetHandle(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetHandle)
+    return (HWND)MySyscall(pMemo_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetParentWindow)
+HWND
+Memo_GetParentWindow(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetParentWindow)
+    return (HWND)MySyscall(pMemo_GetParentWindow, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetParentWindow)
+void
+Memo_SetParentWindow(TMemo AObj, HWND AValue) {
+    GET_FUNC_ADDR(Memo_SetParentWindow)
+    MySyscall(pMemo_SetParentWindow, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetShowing)
+BOOL
+Memo_GetShowing(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetShowing)
+    return (BOOL)MySyscall(pMemo_GetShowing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetUseDockManager)
+BOOL
+Memo_GetUseDockManager(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetUseDockManager)
+    return (BOOL)MySyscall(pMemo_GetUseDockManager, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetUseDockManager)
+void
+Memo_SetUseDockManager(TMemo AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Memo_SetUseDockManager)
+    MySyscall(pMemo_SetUseDockManager, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAction)
+TAction
+Memo_GetAction(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAction)
+    return (TAction)MySyscall(pMemo_GetAction, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAction)
+void
+Memo_SetAction(TMemo AObj, TAction AValue) {
+    GET_FUNC_ADDR(Memo_SetAction)
+    MySyscall(pMemo_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetBoundsRect)
+TRect
+Memo_GetBoundsRect(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetBoundsRect)
+    TRect result;
+    MySyscall(pMemo_GetBoundsRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_SetBoundsRect)
+void
+Memo_SetBoundsRect(TMemo AObj, TRect* AValue) {
+    GET_FUNC_ADDR(Memo_SetBoundsRect)
+    MySyscall(pMemo_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetClientHeight)
+int32_t
+Memo_GetClientHeight(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetClientHeight)
+    return (int32_t)MySyscall(pMemo_GetClientHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetClientHeight)
+void
+Memo_SetClientHeight(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetClientHeight)
+    MySyscall(pMemo_SetClientHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetClientOrigin)
+TPoint
+Memo_GetClientOrigin(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetClientOrigin)
+    TPoint result;
+    MySyscall(pMemo_GetClientOrigin, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_GetClientRect)
+TRect
+Memo_GetClientRect(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetClientRect)
+    TRect result;
+    MySyscall(pMemo_GetClientRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(Memo_GetClientWidth)
+int32_t
+Memo_GetClientWidth(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetClientWidth)
+    return (int32_t)MySyscall(pMemo_GetClientWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetClientWidth)
+void
+Memo_SetClientWidth(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetClientWidth)
+    MySyscall(pMemo_SetClientWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetControlState)
+TControlState
+Memo_GetControlState(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetControlState)
+    return (TControlState)MySyscall(pMemo_GetControlState, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetControlState)
+void
+Memo_SetControlState(TMemo AObj, TControlState AValue) {
+    GET_FUNC_ADDR(Memo_SetControlState)
+    MySyscall(pMemo_SetControlState, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetControlStyle)
+TControlStyle
+Memo_GetControlStyle(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetControlStyle)
+    return (TControlStyle)MySyscall(pMemo_GetControlStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetControlStyle)
+void
+Memo_SetControlStyle(TMemo AObj, TControlStyle AValue) {
+    GET_FUNC_ADDR(Memo_SetControlStyle)
+    MySyscall(pMemo_SetControlStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetFloating)
+BOOL
+Memo_GetFloating(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetFloating)
+    return (BOOL)MySyscall(pMemo_GetFloating, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetParent)
+TWinControl
+Memo_GetParent(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetParent)
+    return (TWinControl)MySyscall(pMemo_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetParent)
+void
+Memo_SetParent(TMemo AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(Memo_SetParent)
+    MySyscall(pMemo_SetParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetLeft)
+int32_t
+Memo_GetLeft(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetLeft)
+    return (int32_t)MySyscall(pMemo_GetLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetLeft)
+void
+Memo_SetLeft(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetLeft)
+    MySyscall(pMemo_SetLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTop)
+int32_t
+Memo_GetTop(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetTop)
+    return (int32_t)MySyscall(pMemo_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetTop)
+void
+Memo_SetTop(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetTop)
+    MySyscall(pMemo_SetTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetWidth)
+int32_t
+Memo_GetWidth(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetWidth)
+    return (int32_t)MySyscall(pMemo_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetWidth)
+void
+Memo_SetWidth(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetWidth)
+    MySyscall(pMemo_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetHeight)
+int32_t
+Memo_GetHeight(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetHeight)
+    return (int32_t)MySyscall(pMemo_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetHeight)
+void
+Memo_SetHeight(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetHeight)
+    MySyscall(pMemo_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetCursor)
+TCursor
+Memo_GetCursor(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetCursor)
+    return (TCursor)MySyscall(pMemo_GetCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetCursor)
+void
+Memo_SetCursor(TMemo AObj, TCursor AValue) {
+    GET_FUNC_ADDR(Memo_SetCursor)
+    MySyscall(pMemo_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetHint)
+char*
+Memo_GetHint(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetHint)
+    return (char*)MySyscall(pMemo_GetHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetHint)
+void
+Memo_SetHint(TMemo AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Memo_SetHint)
+    MySyscall(pMemo_SetHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetComponentCount)
+int32_t
+Memo_GetComponentCount(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetComponentCount)
+    return (int32_t)MySyscall(pMemo_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetComponentIndex)
+int32_t
+Memo_GetComponentIndex(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetComponentIndex)
+    return (int32_t)MySyscall(pMemo_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetComponentIndex)
+void
+Memo_SetComponentIndex(TMemo AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Memo_SetComponentIndex)
+    MySyscall(pMemo_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetOwner)
+TComponent
+Memo_GetOwner(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetOwner)
+    return (TComponent)MySyscall(pMemo_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetName)
+char*
+Memo_GetName(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetName)
+    return (char*)MySyscall(pMemo_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetName)
+void
+Memo_SetName(TMemo AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Memo_SetName)
+    MySyscall(pMemo_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetTag)
+intptr_t
+Memo_GetTag(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetTag)
+    return (intptr_t)MySyscall(pMemo_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetTag)
+void
+Memo_SetTag(TMemo AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(Memo_SetTag)
+    MySyscall(pMemo_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAnchorSideLeft)
+TAnchorSide
+Memo_GetAnchorSideLeft(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAnchorSideLeft)
+    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAnchorSideLeft)
+void
+Memo_SetAnchorSideLeft(TMemo AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(Memo_SetAnchorSideLeft)
+    MySyscall(pMemo_SetAnchorSideLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAnchorSideTop)
+TAnchorSide
+Memo_GetAnchorSideTop(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAnchorSideTop)
+    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAnchorSideTop)
+void
+Memo_SetAnchorSideTop(TMemo AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(Memo_SetAnchorSideTop)
+    MySyscall(pMemo_SetAnchorSideTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAnchorSideRight)
+TAnchorSide
+Memo_GetAnchorSideRight(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAnchorSideRight)
+    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAnchorSideRight)
+void
+Memo_SetAnchorSideRight(TMemo AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(Memo_SetAnchorSideRight)
+    MySyscall(pMemo_SetAnchorSideRight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAnchorSideBottom)
+TAnchorSide
+Memo_GetAnchorSideBottom(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetAnchorSideBottom)
+    return (TAnchorSide)MySyscall(pMemo_GetAnchorSideBottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetAnchorSideBottom)
+void
+Memo_SetAnchorSideBottom(TMemo AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(Memo_SetAnchorSideBottom)
+    MySyscall(pMemo_SetAnchorSideBottom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetChildSizing)
+TControlChildSizing
+Memo_GetChildSizing(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetChildSizing)
+    return (TControlChildSizing)MySyscall(pMemo_GetChildSizing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetChildSizing)
+void
+Memo_SetChildSizing(TMemo AObj, TControlChildSizing AValue) {
+    GET_FUNC_ADDR(Memo_SetChildSizing)
+    MySyscall(pMemo_SetChildSizing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetBorderSpacing)
+TControlBorderSpacing
+Memo_GetBorderSpacing(TMemo AObj) {
+    GET_FUNC_ADDR(Memo_GetBorderSpacing)
+    return (TControlBorderSpacing)MySyscall(pMemo_GetBorderSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_SetBorderSpacing)
+void
+Memo_SetBorderSpacing(TMemo AObj, TControlBorderSpacing AValue) {
+    GET_FUNC_ADDR(Memo_SetBorderSpacing)
+    MySyscall(pMemo_SetBorderSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetDockClients)
+TControl
+Memo_GetDockClients(TMemo AObj, int32_t Index) {
+    GET_FUNC_ADDR(Memo_GetDockClients)
+    return (TControl)MySyscall(pMemo_GetDockClients, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetControls)
+TControl
+Memo_GetControls(TMemo AObj, int32_t Index) {
+    GET_FUNC_ADDR(Memo_GetControls)
+    return (TControl)MySyscall(pMemo_GetControls, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetComponents)
+TComponent
+Memo_GetComponents(TMemo AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(Memo_GetComponents)
+    return (TComponent)MySyscall(pMemo_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_GetAnchorSide)
+TAnchorSide
+Memo_GetAnchorSide(TMemo AObj, TAnchorKind AKind) {
+    GET_FUNC_ADDR(Memo_GetAnchorSide)
+    return (TAnchorSide)MySyscall(pMemo_GetAnchorSide, 2, AObj, AKind ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_StaticClassType)
+TClass
+Memo_StaticClassType() {
+    GET_FUNC_ADDR(Memo_StaticClassType)
+    return (TClass)MySyscall(pMemo_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
 
 // -------------------TMemoryStream-------------------
 
@@ -46476,342 +46544,295 @@ Font_StaticClassType() {
     return (TClass)MySyscall(pFont_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-// -------------------TStrings-------------------
+// -------------------TPopupMenu-------------------
 
-DEFINE_FUNC_PTR(Strings_Create)
-TStrings
-Strings_Create() {
-    GET_FUNC_ADDR(Strings_Create)
-    return (TStrings)MySyscall(pStrings_Create, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_Create)
+TPopupMenu
+PopupMenu_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(PopupMenu_Create)
+    return (TPopupMenu)MySyscall(pPopupMenu_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_Free)
+DEFINE_FUNC_PTR(PopupMenu_Free)
 void
-Strings_Free(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_Free)
-    MySyscall(pStrings_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_Free(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_Free)
+    MySyscall(pPopupMenu_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_Add)
-int32_t
-Strings_Add(TStrings AObj, CChar char* S) {
-    GET_FUNC_ADDR(Strings_Add)
-    return (int32_t)MySyscall(pStrings_Add, 2, AObj, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_AddObject)
-int32_t
-Strings_AddObject(TStrings AObj, CChar char* S, TObject AObject) {
-    GET_FUNC_ADDR(Strings_AddObject)
-    return (int32_t)MySyscall(pStrings_AddObject, 3, AObj, S, AObject ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_Append)
+DEFINE_FUNC_PTR(PopupMenu_CloseMenu)
 void
-Strings_Append(TStrings AObj, CChar char* S) {
-    GET_FUNC_ADDR(Strings_Append)
-    MySyscall(pStrings_Append, 2, AObj, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_CloseMenu(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_CloseMenu)
+    MySyscall(pPopupMenu_CloseMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_Assign)
+DEFINE_FUNC_PTR(PopupMenu_Popup)
 void
-Strings_Assign(TStrings AObj, TObject Source) {
-    GET_FUNC_ADDR(Strings_Assign)
-    MySyscall(pStrings_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_Popup(TPopupMenu AObj, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(PopupMenu_Popup)
+    MySyscall(pPopupMenu_Popup, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_BeginUpdate)
-void
-Strings_BeginUpdate(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_BeginUpdate)
-    MySyscall(pStrings_BeginUpdate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_FindComponent)
+TComponent
+PopupMenu_FindComponent(TPopupMenu AObj, CChar char* AName) {
+    GET_FUNC_ADDR(PopupMenu_FindComponent)
+    return (TComponent)MySyscall(pPopupMenu_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_Clear)
-void
-Strings_Clear(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_Clear)
-    MySyscall(pStrings_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_GetNamePath)
+char*
+PopupMenu_GetNamePath(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetNamePath)
+    return (char*)MySyscall(pPopupMenu_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_Delete)
-void
-Strings_Delete(TStrings AObj, int32_t Index) {
-    GET_FUNC_ADDR(Strings_Delete)
-    MySyscall(pStrings_Delete, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_EndUpdate)
-void
-Strings_EndUpdate(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_EndUpdate)
-    MySyscall(pStrings_EndUpdate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_Equals)
+DEFINE_FUNC_PTR(PopupMenu_HasParent)
 BOOL
-Strings_Equals(TStrings AObj, TStrings Strings) {
-    GET_FUNC_ADDR(Strings_Equals)
-    return (BOOL)MySyscall(pStrings_Equals, 2, AObj, Strings ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_HasParent(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_HasParent)
+    return (BOOL)MySyscall(pPopupMenu_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_IndexOf)
-int32_t
-Strings_IndexOf(TStrings AObj, CChar char* S) {
-    GET_FUNC_ADDR(Strings_IndexOf)
-    return (int32_t)MySyscall(pStrings_IndexOf, 2, AObj, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_IndexOfName)
-int32_t
-Strings_IndexOfName(TStrings AObj, CChar char* Name) {
-    GET_FUNC_ADDR(Strings_IndexOfName)
-    return (int32_t)MySyscall(pStrings_IndexOfName, 2, AObj, Name ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_IndexOfObject)
-int32_t
-Strings_IndexOfObject(TStrings AObj, TObject AObject) {
-    GET_FUNC_ADDR(Strings_IndexOfObject)
-    return (int32_t)MySyscall(pStrings_IndexOfObject, 2, AObj, AObject ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_Insert)
+DEFINE_FUNC_PTR(PopupMenu_Assign)
 void
-Strings_Insert(TStrings AObj, int32_t Index, CChar char* S) {
-    GET_FUNC_ADDR(Strings_Insert)
-    MySyscall(pStrings_Insert, 3, AObj, Index, S ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_Assign(TPopupMenu AObj, TObject Source) {
+    GET_FUNC_ADDR(PopupMenu_Assign)
+    MySyscall(pPopupMenu_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_InsertObject)
-void
-Strings_InsertObject(TStrings AObj, int32_t Index, CChar char* S, TObject AObject) {
-    GET_FUNC_ADDR(Strings_InsertObject)
-    MySyscall(pStrings_InsertObject, 4, AObj, Index, S, AObject ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_LoadFromFile)
-void
-Strings_LoadFromFile(TStrings AObj, CChar char* FileName) {
-    GET_FUNC_ADDR(Strings_LoadFromFile)
-    MySyscall(pStrings_LoadFromFile, 2, AObj, FileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_LoadFromStream)
-void
-Strings_LoadFromStream(TStrings AObj, TStream Stream) {
-    GET_FUNC_ADDR(Strings_LoadFromStream)
-    MySyscall(pStrings_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_Move)
-void
-Strings_Move(TStrings AObj, int32_t CurIndex, int32_t NewIndex) {
-    GET_FUNC_ADDR(Strings_Move)
-    MySyscall(pStrings_Move, 3, AObj, CurIndex, NewIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_SaveToFile)
-void
-Strings_SaveToFile(TStrings AObj, CChar char* FileName) {
-    GET_FUNC_ADDR(Strings_SaveToFile)
-    MySyscall(pStrings_SaveToFile, 2, AObj, FileName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_SaveToStream)
-void
-Strings_SaveToStream(TStrings AObj, TStream Stream) {
-    GET_FUNC_ADDR(Strings_SaveToStream)
-    MySyscall(pStrings_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_GetNamePath)
-char*
-Strings_GetNamePath(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetNamePath)
-    return (char*)MySyscall(pStrings_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_ClassType)
+DEFINE_FUNC_PTR(PopupMenu_ClassType)
 TClass
-Strings_ClassType(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_ClassType)
-    return (TClass)MySyscall(pStrings_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_ClassType(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_ClassType)
+    return (TClass)MySyscall(pPopupMenu_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_ClassName)
+DEFINE_FUNC_PTR(PopupMenu_ClassName)
 char*
-Strings_ClassName(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_ClassName)
-    return (char*)MySyscall(pStrings_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_ClassName(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_ClassName)
+    return (char*)MySyscall(pPopupMenu_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_InstanceSize)
+DEFINE_FUNC_PTR(PopupMenu_InstanceSize)
 int32_t
-Strings_InstanceSize(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_InstanceSize)
-    return (int32_t)MySyscall(pStrings_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_InstanceSize(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_InstanceSize)
+    return (int32_t)MySyscall(pPopupMenu_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_InheritsFrom)
+DEFINE_FUNC_PTR(PopupMenu_InheritsFrom)
 BOOL
-Strings_InheritsFrom(TStrings AObj, TClass AClass) {
-    GET_FUNC_ADDR(Strings_InheritsFrom)
-    return (BOOL)MySyscall(pStrings_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_InheritsFrom(TPopupMenu AObj, TClass AClass) {
+    GET_FUNC_ADDR(PopupMenu_InheritsFrom)
+    return (BOOL)MySyscall(pPopupMenu_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetHashCode)
+DEFINE_FUNC_PTR(PopupMenu_Equals)
+BOOL
+PopupMenu_Equals(TPopupMenu AObj, TObject Obj) {
+    GET_FUNC_ADDR(PopupMenu_Equals)
+    return (BOOL)MySyscall(pPopupMenu_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetHashCode)
 int32_t
-Strings_GetHashCode(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetHashCode)
-    return (int32_t)MySyscall(pStrings_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_GetHashCode(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetHashCode)
+    return (int32_t)MySyscall(pPopupMenu_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_ToString)
+DEFINE_FUNC_PTR(PopupMenu_ToString)
 char*
-Strings_ToString(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_ToString)
-    return (char*)MySyscall(pStrings_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_ToString(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_ToString)
+    return (char*)MySyscall(pPopupMenu_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetCapacity)
+DEFINE_FUNC_PTR(PopupMenu_GetImagesWidth)
 int32_t
-Strings_GetCapacity(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetCapacity)
-    return (int32_t)MySyscall(pStrings_GetCapacity, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_GetImagesWidth(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetImagesWidth)
+    return (int32_t)MySyscall(pPopupMenu_GetImagesWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetCapacity)
+DEFINE_FUNC_PTR(PopupMenu_SetImagesWidth)
 void
-Strings_SetCapacity(TStrings AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Strings_SetCapacity)
-    MySyscall(pStrings_SetCapacity, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_SetImagesWidth(TPopupMenu AObj, int32_t AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetImagesWidth)
+    MySyscall(pPopupMenu_SetImagesWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetCommaText)
-char*
-Strings_GetCommaText(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetCommaText)
-    return (char*)MySyscall(pStrings_GetCommaText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_GetPopupComponent)
+TComponent
+PopupMenu_GetPopupComponent(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetPopupComponent)
+    return (TComponent)MySyscall(pPopupMenu_GetPopupComponent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetCommaText)
+DEFINE_FUNC_PTR(PopupMenu_SetPopupComponent)
 void
-Strings_SetCommaText(TStrings AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Strings_SetCommaText)
-    MySyscall(pStrings_SetCommaText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_SetPopupComponent(TPopupMenu AObj, TComponent AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetPopupComponent)
+    MySyscall(pPopupMenu_SetPopupComponent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetCount)
+DEFINE_FUNC_PTR(PopupMenu_GetPopupPoint)
+TPoint
+PopupMenu_GetPopupPoint(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetPopupPoint)
+    TPoint result;
+    MySyscall(pPopupMenu_GetPopupPoint, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetAlignment)
+TPopupAlignment
+PopupMenu_GetAlignment(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetAlignment)
+    return (TPopupAlignment)MySyscall(pPopupMenu_GetAlignment, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_SetAlignment)
+void
+PopupMenu_SetAlignment(TPopupMenu AObj, TPopupAlignment AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetAlignment)
+    MySyscall(pPopupMenu_SetAlignment, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetBiDiMode)
+TBiDiMode
+PopupMenu_GetBiDiMode(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pPopupMenu_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_SetBiDiMode)
+void
+PopupMenu_SetBiDiMode(TPopupMenu AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetBiDiMode)
+    MySyscall(pPopupMenu_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetImages)
+TImageList
+PopupMenu_GetImages(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetImages)
+    return (TImageList)MySyscall(pPopupMenu_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_SetImages)
+void
+PopupMenu_SetImages(TPopupMenu AObj, TImageList AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetImages)
+    MySyscall(pPopupMenu_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetOwnerDraw)
+BOOL
+PopupMenu_GetOwnerDraw(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetOwnerDraw)
+    return (BOOL)MySyscall(pPopupMenu_GetOwnerDraw, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_SetOwnerDraw)
+void
+PopupMenu_SetOwnerDraw(TPopupMenu AObj, BOOL AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetOwnerDraw)
+    MySyscall(pPopupMenu_SetOwnerDraw, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_SetOnPopup)
+void
+PopupMenu_SetOnPopup(TPopupMenu AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(PopupMenu_SetOnPopup)
+    MySyscall(pPopupMenu_SetOnPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetHandle)
+HMENU
+PopupMenu_GetHandle(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetHandle)
+    return (HMENU)MySyscall(pPopupMenu_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetItems)
+TMenuItem
+PopupMenu_GetItems(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetItems)
+    return (TMenuItem)MySyscall(pPopupMenu_GetItems, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_GetComponentCount)
 int32_t
-Strings_GetCount(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetCount)
-    return (int32_t)MySyscall(pStrings_GetCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_GetComponentCount(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetComponentCount)
+    return (int32_t)MySyscall(pPopupMenu_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetDelimiter)
-Char
-Strings_GetDelimiter(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetDelimiter)
-    return (Char)MySyscall(pStrings_GetDelimiter, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_GetComponentIndex)
+int32_t
+PopupMenu_GetComponentIndex(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetComponentIndex)
+    return (int32_t)MySyscall(pPopupMenu_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetDelimiter)
+DEFINE_FUNC_PTR(PopupMenu_SetComponentIndex)
 void
-Strings_SetDelimiter(TStrings AObj, Char AValue) {
-    GET_FUNC_ADDR(Strings_SetDelimiter)
-    MySyscall(pStrings_SetDelimiter, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_SetComponentIndex(TPopupMenu AObj, int32_t AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetComponentIndex)
+    MySyscall(pPopupMenu_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetNameValueSeparator)
-Char
-Strings_GetNameValueSeparator(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetNameValueSeparator)
-    return (Char)MySyscall(pStrings_GetNameValueSeparator, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_GetOwner)
+TComponent
+PopupMenu_GetOwner(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetOwner)
+    return (TComponent)MySyscall(pPopupMenu_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetNameValueSeparator)
-void
-Strings_SetNameValueSeparator(TStrings AObj, Char AValue) {
-    GET_FUNC_ADDR(Strings_SetNameValueSeparator)
-    MySyscall(pStrings_SetNameValueSeparator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_GetText)
+DEFINE_FUNC_PTR(PopupMenu_GetName)
 char*
-Strings_GetText(TStrings AObj) {
-    GET_FUNC_ADDR(Strings_GetText)
-    return (char*)MySyscall(pStrings_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_GetName(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetName)
+    return (char*)MySyscall(pPopupMenu_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetText)
+DEFINE_FUNC_PTR(PopupMenu_SetName)
 void
-Strings_SetText(TStrings AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Strings_SetText)
-    MySyscall(pStrings_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_SetName(TPopupMenu AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetName)
+    MySyscall(pPopupMenu_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetObjects)
-TObject
-Strings_GetObjects(TStrings AObj, int32_t Index) {
-    GET_FUNC_ADDR(Strings_GetObjects)
-    return (TObject)MySyscall(pStrings_GetObjects, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_GetTag)
+intptr_t
+PopupMenu_GetTag(TPopupMenu AObj) {
+    GET_FUNC_ADDR(PopupMenu_GetTag)
+    return (intptr_t)MySyscall(pPopupMenu_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetObjects)
+DEFINE_FUNC_PTR(PopupMenu_SetTag)
 void
-Strings_SetObjects(TStrings AObj, int32_t Index, TObject AValue) {
-    GET_FUNC_ADDR(Strings_SetObjects)
-    MySyscall(pStrings_SetObjects, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_SetTag(TPopupMenu AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(PopupMenu_SetTag)
+    MySyscall(pPopupMenu_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_GetValues)
-char*
-Strings_GetValues(TStrings AObj, CChar char* Name) {
-    GET_FUNC_ADDR(Strings_GetValues)
-    return (char*)MySyscall(pStrings_GetValues, 2, AObj, Name ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(PopupMenu_GetComponents)
+TComponent
+PopupMenu_GetComponents(TPopupMenu AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(PopupMenu_GetComponents)
+    return (TComponent)MySyscall(pPopupMenu_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Strings_SetValues)
-void
-Strings_SetValues(TStrings AObj, CChar char* Name, CChar char* AValue) {
-    GET_FUNC_ADDR(Strings_SetValues)
-    MySyscall(pStrings_SetValues, 3, AObj, Name, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_GetValueFromIndex)
-char*
-Strings_GetValueFromIndex(TStrings AObj, int32_t Index) {
-    GET_FUNC_ADDR(Strings_GetValueFromIndex)
-    return (char*)MySyscall(pStrings_GetValueFromIndex, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_SetValueFromIndex)
-void
-Strings_SetValueFromIndex(TStrings AObj, int32_t Index, CChar char* AValue) {
-    GET_FUNC_ADDR(Strings_SetValueFromIndex)
-    MySyscall(pStrings_SetValueFromIndex, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_GetStrings)
-char*
-Strings_GetStrings(TStrings AObj, int32_t Index) {
-    GET_FUNC_ADDR(Strings_GetStrings)
-    return (char*)MySyscall(pStrings_GetStrings, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_SetStrings)
-void
-Strings_SetStrings(TStrings AObj, int32_t Index, CChar char* AValue) {
-    GET_FUNC_ADDR(Strings_SetStrings)
-    MySyscall(pStrings_SetStrings, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Strings_StaticClassType)
+DEFINE_FUNC_PTR(PopupMenu_StaticClassType)
 TClass
-Strings_StaticClassType() {
-    GET_FUNC_ADDR(Strings_StaticClassType)
-    return (TClass)MySyscall(pStrings_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+PopupMenu_StaticClassType() {
+    GET_FUNC_ADDR(PopupMenu_StaticClassType)
+    return (TClass)MySyscall(pPopupMenu_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TStringList-------------------
@@ -47919,6 +47940,20 @@ TClass
 MenuItem_StaticClassType() {
     GET_FUNC_ADDR(MenuItem_StaticClassType)
     return (TClass)MySyscall(pMenuItem_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MenuItem_GetShortCutText)
+char*
+MenuItem_GetShortCutText(TMenuItem AObj) {
+    GET_FUNC_ADDR(MenuItem_GetShortCutText)
+    return (char*)MySyscall(pMenuItem_GetShortCutText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MenuItem_SetShortCutText)
+void
+MenuItem_SetShortCutText(TMenuItem AObj, CChar char* Value) {
+    GET_FUNC_ADDR(MenuItem_SetShortCutText)
+    MySyscall(pMenuItem_SetShortCutText, 2, AObj, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TPicture-------------------
@@ -58657,6 +58692,13 @@ Canvas_RoundRect(TCanvas AObj, int32_t X1, int32_t Y1, int32_t X2, int32_t Y2, i
     MySyscall(pCanvas_RoundRect, 7, AObj, X1, Y1, X2, Y2, X3, Y3 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Canvas_StretchDraw)
+void
+Canvas_StretchDraw(TCanvas AObj, TRect Rect, TGraphic Graphic) {
+    GET_FUNC_ADDR(Canvas_StretchDraw)
+    MySyscall(pCanvas_StretchDraw, 3, AObj, &Rect, Graphic ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Canvas_TextExtent)
 TSize
 Canvas_TextExtent(TCanvas AObj, CChar char* Text) {
@@ -58841,6 +58883,20 @@ Canvas_SetOnChanging(TCanvas AObj, TNotifyEvent AEventId) {
     MySyscall(pCanvas_SetOnChanging, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Canvas_GetPixels)
+TColor
+Canvas_GetPixels(TCanvas AObj, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Canvas_GetPixels)
+    return (TColor)MySyscall(pCanvas_GetPixels, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Canvas_SetPixels)
+void
+Canvas_SetPixels(TCanvas AObj, int32_t X, int32_t Y, TColor AValue) {
+    GET_FUNC_ADDR(Canvas_SetPixels)
+    MySyscall(pCanvas_SetPixels, 4, AObj, X, Y, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Canvas_StaticClassType)
 TClass
 Canvas_StaticClassType() {
@@ -58897,13 +58953,6 @@ Canvas_FrameRect(TCanvas AObj, TRect Rect) {
     MySyscall(pCanvas_FrameRect, 2, AObj, &Rect ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Canvas_StretchDraw)
-void
-Canvas_StretchDraw(TCanvas AObj, TRect Rect, TGraphic Graphic) {
-    GET_FUNC_ADDR(Canvas_StretchDraw)
-    MySyscall(pCanvas_StretchDraw, 3, AObj, &Rect, Graphic ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
 DEFINE_FUNC_PTR(Canvas_TextRect1)
 void
 Canvas_TextRect1(TCanvas AObj, TRect Rect, int32_t X, int32_t Y, CChar char* Text) {
@@ -58913,9 +58962,9 @@ Canvas_TextRect1(TCanvas AObj, TRect Rect, int32_t X, int32_t Y, CChar char* Tex
 
 DEFINE_FUNC_PTR(Canvas_TextRect2)
 int32_t
-Canvas_TextRect2(TCanvas AObj, TRect* Rect, CChar char* Text, CChar char** AOutStr, TTextFormat TextFormat) {
+Canvas_TextRect2(TCanvas AObj, TRect* Rect, CChar char* Text, TTextFormat TextFormat) {
     GET_FUNC_ADDR(Canvas_TextRect2)
-    return (int32_t)MySyscall(pCanvas_TextRect2, 5, AObj, Rect, Text, AOutStr, TextFormat ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (int32_t)MySyscall(pCanvas_TextRect2, 4, AObj, Rect, Text, TextFormat ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Canvas_Polygon)
@@ -58937,20 +58986,6 @@ void
 Canvas_PolyBezier(TCanvas AObj, TPoint* APoints, int32_t ALen) {
     GET_FUNC_ADDR(Canvas_PolyBezier)
     MySyscall(pCanvas_PolyBezier, 3, AObj, APoints, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_Pixels)
-TColor
-Canvas_Pixels(TCanvas AObj, int32_t X, int32_t Y) {
-    GET_FUNC_ADDR(Canvas_Pixels)
-    return (TColor)MySyscall(pCanvas_Pixels, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Canvas_SetPixels)
-void
-Canvas_SetPixels(TCanvas AObj, int32_t X, int32_t Y, TColor AColor) {
-    GET_FUNC_ADDR(Canvas_SetPixels)
-    MySyscall(pCanvas_SetPixels, 4, AObj, X, Y, AColor ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TApplication-------------------
@@ -59550,216 +59585,244 @@ Application_Run(TApplication AObj) {
     MySyscall(pApplication_Run, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-// -------------------TGraphic-------------------
+// -------------------TMainMenu-------------------
 
-DEFINE_FUNC_PTR(Graphic_Create)
-TGraphic
-Graphic_Create() {
-    GET_FUNC_ADDR(Graphic_Create)
-    return (TGraphic)MySyscall(pGraphic_Create, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(MainMenu_Create)
+TMainMenu
+MainMenu_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(MainMenu_Create)
+    return (TMainMenu)MySyscall(pMainMenu_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_Free)
+DEFINE_FUNC_PTR(MainMenu_Free)
 void
-Graphic_Free(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_Free)
-    MySyscall(pGraphic_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_Free(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_Free)
+    MySyscall(pMainMenu_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_Equals)
-BOOL
-Graphic_Equals(TGraphic AObj, TObject Obj) {
-    GET_FUNC_ADDR(Graphic_Equals)
-    return (BOOL)MySyscall(pGraphic_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(MainMenu_FindComponent)
+TComponent
+MainMenu_FindComponent(TMainMenu AObj, CChar char* AName) {
+    GET_FUNC_ADDR(MainMenu_FindComponent)
+    return (TComponent)MySyscall(pMainMenu_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_LoadFromFile)
-void
-Graphic_LoadFromFile(TGraphic AObj, CChar char* Filename) {
-    GET_FUNC_ADDR(Graphic_LoadFromFile)
-    MySyscall(pGraphic_LoadFromFile, 2, AObj, Filename ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_SaveToFile)
-void
-Graphic_SaveToFile(TGraphic AObj, CChar char* Filename) {
-    GET_FUNC_ADDR(Graphic_SaveToFile)
-    MySyscall(pGraphic_SaveToFile, 2, AObj, Filename ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_LoadFromStream)
-void
-Graphic_LoadFromStream(TGraphic AObj, TStream Stream) {
-    GET_FUNC_ADDR(Graphic_LoadFromStream)
-    MySyscall(pGraphic_LoadFromStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_SaveToStream)
-void
-Graphic_SaveToStream(TGraphic AObj, TStream Stream) {
-    GET_FUNC_ADDR(Graphic_SaveToStream)
-    MySyscall(pGraphic_SaveToStream, 2, AObj, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_Assign)
-void
-Graphic_Assign(TGraphic AObj, TObject Source) {
-    GET_FUNC_ADDR(Graphic_Assign)
-    MySyscall(pGraphic_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_GetNamePath)
+DEFINE_FUNC_PTR(MainMenu_GetNamePath)
 char*
-Graphic_GetNamePath(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetNamePath)
-    return (char*)MySyscall(pGraphic_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_GetNamePath(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetNamePath)
+    return (char*)MySyscall(pMainMenu_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_ClassType)
+DEFINE_FUNC_PTR(MainMenu_HasParent)
+BOOL
+MainMenu_HasParent(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_HasParent)
+    return (BOOL)MySyscall(pMainMenu_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_Assign)
+void
+MainMenu_Assign(TMainMenu AObj, TObject Source) {
+    GET_FUNC_ADDR(MainMenu_Assign)
+    MySyscall(pMainMenu_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_ClassType)
 TClass
-Graphic_ClassType(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_ClassType)
-    return (TClass)MySyscall(pGraphic_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_ClassType(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_ClassType)
+    return (TClass)MySyscall(pMainMenu_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_ClassName)
+DEFINE_FUNC_PTR(MainMenu_ClassName)
 char*
-Graphic_ClassName(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_ClassName)
-    return (char*)MySyscall(pGraphic_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_ClassName(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_ClassName)
+    return (char*)MySyscall(pMainMenu_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_InstanceSize)
+DEFINE_FUNC_PTR(MainMenu_InstanceSize)
 int32_t
-Graphic_InstanceSize(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_InstanceSize)
-    return (int32_t)MySyscall(pGraphic_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_InstanceSize(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_InstanceSize)
+    return (int32_t)MySyscall(pMainMenu_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_InheritsFrom)
+DEFINE_FUNC_PTR(MainMenu_InheritsFrom)
 BOOL
-Graphic_InheritsFrom(TGraphic AObj, TClass AClass) {
-    GET_FUNC_ADDR(Graphic_InheritsFrom)
-    return (BOOL)MySyscall(pGraphic_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_InheritsFrom(TMainMenu AObj, TClass AClass) {
+    GET_FUNC_ADDR(MainMenu_InheritsFrom)
+    return (BOOL)MySyscall(pMainMenu_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_GetHashCode)
+DEFINE_FUNC_PTR(MainMenu_Equals)
+BOOL
+MainMenu_Equals(TMainMenu AObj, TObject Obj) {
+    GET_FUNC_ADDR(MainMenu_Equals)
+    return (BOOL)MySyscall(pMainMenu_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_GetHashCode)
 int32_t
-Graphic_GetHashCode(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetHashCode)
-    return (int32_t)MySyscall(pGraphic_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_GetHashCode(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetHashCode)
+    return (int32_t)MySyscall(pMainMenu_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_ToString)
+DEFINE_FUNC_PTR(MainMenu_ToString)
 char*
-Graphic_ToString(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_ToString)
-    return (char*)MySyscall(pGraphic_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_ToString(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_ToString)
+    return (char*)MySyscall(pMainMenu_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_GetEmpty)
-BOOL
-Graphic_GetEmpty(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetEmpty)
-    return (BOOL)MySyscall(pGraphic_GetEmpty, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_GetHeight)
+DEFINE_FUNC_PTR(MainMenu_GetImagesWidth)
 int32_t
-Graphic_GetHeight(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetHeight)
-    return (int32_t)MySyscall(pGraphic_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_GetImagesWidth(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetImagesWidth)
+    return (int32_t)MySyscall(pMainMenu_GetImagesWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_SetHeight)
+DEFINE_FUNC_PTR(MainMenu_SetImagesWidth)
 void
-Graphic_SetHeight(TGraphic AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Graphic_SetHeight)
-    MySyscall(pGraphic_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_SetImagesWidth(TMainMenu AObj, int32_t AValue) {
+    GET_FUNC_ADDR(MainMenu_SetImagesWidth)
+    MySyscall(pMainMenu_SetImagesWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_GetModified)
+DEFINE_FUNC_PTR(MainMenu_GetBiDiMode)
+TBiDiMode
+MainMenu_GetBiDiMode(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pMainMenu_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_SetBiDiMode)
+void
+MainMenu_SetBiDiMode(TMainMenu AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(MainMenu_SetBiDiMode)
+    MySyscall(pMainMenu_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_GetImages)
+TImageList
+MainMenu_GetImages(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetImages)
+    return (TImageList)MySyscall(pMainMenu_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_SetImages)
+void
+MainMenu_SetImages(TMainMenu AObj, TImageList AValue) {
+    GET_FUNC_ADDR(MainMenu_SetImages)
+    MySyscall(pMainMenu_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_GetOwnerDraw)
 BOOL
-Graphic_GetModified(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetModified)
-    return (BOOL)MySyscall(pGraphic_GetModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_GetOwnerDraw(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetOwnerDraw)
+    return (BOOL)MySyscall(pMainMenu_GetOwnerDraw, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_SetModified)
+DEFINE_FUNC_PTR(MainMenu_SetOwnerDraw)
 void
-Graphic_SetModified(TGraphic AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Graphic_SetModified)
-    MySyscall(pGraphic_SetModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_SetOwnerDraw(TMainMenu AObj, BOOL AValue) {
+    GET_FUNC_ADDR(MainMenu_SetOwnerDraw)
+    MySyscall(pMainMenu_SetOwnerDraw, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_GetPalette)
-HPALETTE
-Graphic_GetPalette(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetPalette)
-    return (HPALETTE)MySyscall(pGraphic_GetPalette, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_SetPalette)
+DEFINE_FUNC_PTR(MainMenu_SetOnChange)
 void
-Graphic_SetPalette(TGraphic AObj, HPALETTE AValue) {
-    GET_FUNC_ADDR(Graphic_SetPalette)
-    MySyscall(pGraphic_SetPalette, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_SetOnChange(TMainMenu AObj, TMenuChangeEvent AEventId) {
+    GET_FUNC_ADDR(MainMenu_SetOnChange)
+    MySyscall(pMainMenu_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_GetPaletteModified)
-BOOL
-Graphic_GetPaletteModified(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetPaletteModified)
-    return (BOOL)MySyscall(pGraphic_GetPaletteModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(MainMenu_GetHandle)
+HMENU
+MainMenu_GetHandle(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetHandle)
+    return (HMENU)MySyscall(pMainMenu_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_SetPaletteModified)
-void
-Graphic_SetPaletteModified(TGraphic AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Graphic_SetPaletteModified)
-    MySyscall(pGraphic_SetPaletteModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(MainMenu_GetItems)
+TMenuItem
+MainMenu_GetItems(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetItems)
+    return (TMenuItem)MySyscall(pMainMenu_GetItems, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_GetTransparent)
-BOOL
-Graphic_GetTransparent(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetTransparent)
-    return (BOOL)MySyscall(pGraphic_GetTransparent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_SetTransparent)
-void
-Graphic_SetTransparent(TGraphic AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Graphic_SetTransparent)
-    MySyscall(pGraphic_SetTransparent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Graphic_GetWidth)
+DEFINE_FUNC_PTR(MainMenu_GetComponentCount)
 int32_t
-Graphic_GetWidth(TGraphic AObj) {
-    GET_FUNC_ADDR(Graphic_GetWidth)
-    return (int32_t)MySyscall(pGraphic_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_GetComponentCount(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetComponentCount)
+    return (int32_t)MySyscall(pMainMenu_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_SetWidth)
+DEFINE_FUNC_PTR(MainMenu_GetComponentIndex)
+int32_t
+MainMenu_GetComponentIndex(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetComponentIndex)
+    return (int32_t)MySyscall(pMainMenu_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_SetComponentIndex)
 void
-Graphic_SetWidth(TGraphic AObj, int32_t AValue) {
-    GET_FUNC_ADDR(Graphic_SetWidth)
-    MySyscall(pGraphic_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_SetComponentIndex(TMainMenu AObj, int32_t AValue) {
+    GET_FUNC_ADDR(MainMenu_SetComponentIndex)
+    MySyscall(pMainMenu_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_SetOnChange)
+DEFINE_FUNC_PTR(MainMenu_GetOwner)
+TComponent
+MainMenu_GetOwner(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetOwner)
+    return (TComponent)MySyscall(pMainMenu_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_GetName)
+char*
+MainMenu_GetName(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetName)
+    return (char*)MySyscall(pMainMenu_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_SetName)
 void
-Graphic_SetOnChange(TGraphic AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Graphic_SetOnChange)
-    MySyscall(pGraphic_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_SetName(TMainMenu AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(MainMenu_SetName)
+    MySyscall(pMainMenu_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Graphic_StaticClassType)
+DEFINE_FUNC_PTR(MainMenu_GetTag)
+intptr_t
+MainMenu_GetTag(TMainMenu AObj) {
+    GET_FUNC_ADDR(MainMenu_GetTag)
+    return (intptr_t)MySyscall(pMainMenu_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_SetTag)
+void
+MainMenu_SetTag(TMainMenu AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(MainMenu_SetTag)
+    MySyscall(pMainMenu_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_GetComponents)
+TComponent
+MainMenu_GetComponents(TMainMenu AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(MainMenu_GetComponents)
+    return (TComponent)MySyscall(pMainMenu_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_StaticClassType)
 TClass
-Graphic_StaticClassType() {
-    GET_FUNC_ADDR(Graphic_StaticClassType)
-    return (TClass)MySyscall(pGraphic_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+MainMenu_StaticClassType() {
+    GET_FUNC_ADDR(MainMenu_StaticClassType)
+    return (TClass)MySyscall(pMainMenu_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TPngImage-------------------
@@ -62661,6 +62724,55 @@ Clipboard_Free(TClipboard AObj) {
     MySyscall(pClipboard_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Clipboard_FindPictureFormatID)
+TClipboardFormat
+Clipboard_FindPictureFormatID(TClipboard AObj) {
+    GET_FUNC_ADDR(Clipboard_FindPictureFormatID)
+    return (TClipboardFormat)MySyscall(pClipboard_FindPictureFormatID, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_FindFormatID)
+TClipboardFormat
+Clipboard_FindFormatID(TClipboard AObj, CChar char* FormatName) {
+    GET_FUNC_ADDR(Clipboard_FindFormatID)
+    return (TClipboardFormat)MySyscall(pClipboard_FindFormatID, 2, AObj, FormatName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_GetAsHtml)
+char*
+Clipboard_GetAsHtml(TClipboard AObj, BOOL ExtractFragmentOnly) {
+    GET_FUNC_ADDR(Clipboard_GetAsHtml)
+    return (char*)MySyscall(pClipboard_GetAsHtml, 2, AObj, ExtractFragmentOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_SupportedFormats)
+void
+Clipboard_SupportedFormats(TClipboard AObj, TStrings List) {
+    GET_FUNC_ADDR(Clipboard_SupportedFormats)
+    MySyscall(pClipboard_SupportedFormats, 2, AObj, List ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_HasFormatName)
+BOOL
+Clipboard_HasFormatName(TClipboard AObj, CChar char* FormatName) {
+    GET_FUNC_ADDR(Clipboard_HasFormatName)
+    return (BOOL)MySyscall(pClipboard_HasFormatName, 2, AObj, FormatName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_HasPictureFormat)
+BOOL
+Clipboard_HasPictureFormat(TClipboard AObj) {
+    GET_FUNC_ADDR(Clipboard_HasPictureFormat)
+    return (BOOL)MySyscall(pClipboard_HasPictureFormat, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_SetAsHtml)
+void
+Clipboard_SetAsHtml(TClipboard AObj, CChar char* Html, CChar char* PlainText) {
+    GET_FUNC_ADDR(Clipboard_SetAsHtml)
+    MySyscall(pClipboard_SetAsHtml, 3, AObj, Html, PlainText ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Clipboard_Assign)
 void
 Clipboard_Assign(TClipboard AObj, TObject Source) {
@@ -62680,13 +62792,6 @@ void
 Clipboard_Close(TClipboard AObj) {
     GET_FUNC_ADDR(Clipboard_Close)
     MySyscall(pClipboard_Close, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Clipboard_HasFormat)
-BOOL
-Clipboard_HasFormat(TClipboard AObj, uint16_t Format) {
-    GET_FUNC_ADDR(Clipboard_HasFormat)
-    return (BOOL)MySyscall(pClipboard_HasFormat, 2, AObj, Format ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Clipboard_Open)
@@ -62788,10 +62893,10 @@ Clipboard_GetFormatCount(TClipboard AObj) {
 }
 
 DEFINE_FUNC_PTR(Clipboard_GetFormats)
-uint16_t
+TClipboardFormat
 Clipboard_GetFormats(TClipboard AObj, int32_t Index) {
     GET_FUNC_ADDR(Clipboard_GetFormats)
-    return (uint16_t)MySyscall(pClipboard_GetFormats, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (TClipboardFormat)MySyscall(pClipboard_GetFormats, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Clipboard_StaticClassType)
@@ -62801,11 +62906,11 @@ Clipboard_StaticClassType() {
     return (TClass)MySyscall(pClipboard_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Clipboard_SetClipboard)
-TClipboard
-Clipboard_SetClipboard(TClipboard NewClipboard) {
-    GET_FUNC_ADDR(Clipboard_SetClipboard)
-    return (TClipboard)MySyscall(pClipboard_SetClipboard, 1, NewClipboard ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(Clipboard_HasFormat)
+BOOL
+Clipboard_HasFormat(TClipboard AObj, TClipboardFormat AFormatID) {
+    GET_FUNC_ADDR(Clipboard_HasFormat)
+    return (BOOL)MySyscall(pClipboard_HasFormat, 2, AObj, AFormatID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TMonitor-------------------
@@ -75181,6 +75286,20 @@ void
 ImageButton_SetImageCount(TImageButton AObj, int32_t AValue) {
     GET_FUNC_ADDR(ImageButton_SetImageCount)
     MySyscall(pImageButton_SetImageCount, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_GetOrientation)
+TImageOrientation
+ImageButton_GetOrientation(TImageButton AObj) {
+    GET_FUNC_ADDR(ImageButton_GetOrientation)
+    return (TImageOrientation)MySyscall(pImageButton_GetOrientation, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_SetOrientation)
+void
+ImageButton_SetOrientation(TImageButton AObj, TImageOrientation AValue) {
+    GET_FUNC_ADDR(ImageButton_SetOrientation)
+    MySyscall(pImageButton_SetOrientation, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_GetModalResult)

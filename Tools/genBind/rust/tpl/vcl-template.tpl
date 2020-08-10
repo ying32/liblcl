@@ -11,7 +11,6 @@
 ##
 use lclapi::*;
 use types::*;
-use fns::{TextToShortCut, ShortCutToText};
 ##
 use std::borrow::Cow;
 use std::ffi::{CStr, CString};
@@ -41,26 +40,11 @@ pub trait IApplication {
 {{/* usize是指向实例对象的指针，bool是标识能自动drop的，一般只有通过new的才可以 */}}
 /* 先定义所有的类 */
 {{range $el := .Objects}}
-{{/*#[derive(Copy, Clone)]*/}}
 pub struct {{$el.ClassName}}(usize, bool);
-{{/*
-   {{if ne $el.ClassName "TApplication"}}
-       {{if ne $el.ClassName "TObject"}}
-pub trait {{covIntf $el.ClassName}}: {{covIntf $el.BaseClassName}} {}
-       {{else}}
-pub trait IObject { fn Instance(&self) -> usize; }
-       {{end}}
-   {{end}}
-## */}}
 {{end}}
 
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}} -> {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
-{{define "getTextRect2"}}
-	  pub fn TextRect2(&self, rect: *mut TRect, text: &str, textFormat: TTextFormat) -> i32  {
-	     return method_Call_1!(Canvas_TextRect2, self.0, rect, to_CString!(text), &mut (0 as *const i8), textFormat);
-	  }
-{{end}}
 
 /* 开始实现接口 */
 {{range $el := .Objects}}
@@ -114,13 +98,7 @@ impl {{$className}} {
 
       {{$buff.ToStr}}
       }
-##
-      impl_Object_methods!({{$className}});
-	  {{if eq $className "TMenuItem"}}
-##
-      impl_ShortCutText_method!();
-##	  
-	  {{end}}
+
 ##
       {{else if eq $mm.RealName "Free"}}
 	  impl_Free_method!({{$classN}}_Free);
@@ -132,8 +110,8 @@ impl {{$className}} {
 ##
       {{else}}
           {{if not $mm.IsStatic}}
-              {{if inStrArray $mm.RealName "TextRect2"}} {{/* TextRect2 */}}		  
-                  {{template "getTextRect2" .}}
+              {{if inStrArray $mm.RealName "------------"}}
+
 			  {{else}}
 
                   {{$isSetProp := $mm.IsSetter}}
@@ -311,6 +289,9 @@ impl {{$className}} {
                {{end}}
 ##
            {{else}}
+##
+      impl_Object_methods!({{$className}});
+##
       // static class
 	  impl_Class_method!({{$mm.Name}});
 

@@ -66,14 +66,6 @@ proc Instance*(this: TObject): pointer =
 {{/*如果是重载的函数，输出重载函数名，返之输出实际函数*/}}
 {{define "getOverloadName"}}{{if .IsOverload}}{{.OverloadName}}{{else}}{{.RealName}}{{end}}{{end}}
 
-{{/*TMenuItem增加的2个成员*/}}
-{{define "getMenuItemShortTextMethod"}}
-proc ShortCutText*(this: TMenuItem): string =
-  return $DShortCutToText(this.ShortCut)
-##
-proc `ShortCutText=`*(this: TMenuItem, text: string) =
-  `ShortCut=`(this, DTextToShortCut(text))
-{{end}}
 
 {{/* 开始生成方法 */}}
 {{/* 默认的free过程 */}}
@@ -141,13 +133,8 @@ proc {{$className}}Class*(): TClass = {{$mm.Name}}()
 ##
 {{else}}
 {{if not $mm.IsStatic}}
-{{/* 累了，不想弄，直接写好的得了 */}}
-{{if eq $mm.RealName "TextRect2"}}
-##
-proc TextRect*(this: TCanvas, Rect: var TRect, Text: string, TextFormat: TTextFormat): int32 =
-  var cstr: cstring = nil
-  result = Canvas_TextRect2(this.{{$instName}}, Rect, Text, cstr, TextFormat)
-{{else if eq $mm.RealName "CreateForm"}}
+
+{{if eq $mm.RealName "CreateForm"}}
 ##
 proc CreateForm*[T](this: TApplication, x: var T) =
     new(x)
@@ -265,11 +252,6 @@ proc `OnException=`*(this: TApplication, AEventId: TExceptionEvent)  =
 {{end}}
 {{end}}
 {{end}}
-{{end}}
-
-{{/*为TMenuItem增加快捷方式的*/}}
-{{if eq $el.ClassName "TMenuItem"}}
-{{template "getMenuItemShortTextMethod" .}}
 {{end}}
 
 {{end}}

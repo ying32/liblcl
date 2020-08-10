@@ -87,7 +87,7 @@ static void* p##name;
 /*--------------------常量定义--------------------*/
 {{range $el := .Consts}}
   {{if not (isEmpty $el.Name)}}
-    {{if eq $el.Name "CF_TEXT"}}
+    {{if eq $el.Name "CF_BITMAP"}}
 #ifndef _WIN32
 ##
     {{end}}
@@ -96,7 +96,7 @@ static void* p##name;
 ##
 // {{html $el.Comment}}
   {{end}}
-    {{if eq $el.Name "CF_LOCALE"}}
+    {{if eq $el.Name "CF_TIFF"}}
 ##
 #endif
     {{end}}

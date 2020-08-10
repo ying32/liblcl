@@ -191,7 +191,7 @@ pub type MyNSWindow = usize;
             {{if or (hasPrefix .Name "id") (hasPrefix .Name "mr")}}
 			    {{$buff.Write ": i32"}}
 			{{else if hasPrefix .Name "CF_"}}
-                {{$buff.Write ": u8"}}
+                {{$buff.Write ": TClipboardFormat"}}
             {{end}}
         {{end}}
         {{$buff.Write " = "}}

@@ -138,11 +138,13 @@ extern "system" fn doEventCallback(f: usize, args: usize, arg_count: i32) -> usi
 }
 ##
 // 消息回调
-extern "system" fn doMessageCallback(_f: usize, _msg: usize) -> usize {
+extern "system" fn doMessageCallback(f: usize, msg: usize) -> usize {
+    let sid = getSelfId(f);
+    unsafe { transmute::<usize, fn(usize, usize)>(f)(sid, msg) };
     return 0;
 }
 ##
-// 线程同步回调
+// 线程同步回调(未实现)
 extern "system" fn doThreadSyncCallback() -> usize {
     return 0;
 }

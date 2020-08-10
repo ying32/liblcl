@@ -302,13 +302,6 @@ begin
   handleExceptionEnd
 end;
 
-function DRegisterClipboardFormat(const AFormat: string): TClipboardFormat; extdecl;
-begin
-  handleExceptionBegin
-  Result := RegisterClipboardFormat(PChar(AFormat));
-  handleExceptionEnd
-end;
-
 // TMemoryStream
 
 //CLASSMETHOD:
@@ -687,6 +680,13 @@ function DSetForegroundWindow(hWnd: HWND): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result := LCLIntf.SetForegroundWindow(hWnd);
+  handleExceptionEnd
+end;
+
+function DRegisterClipboardFormat(const AFormat: string): TClipboardFormat; extdecl;
+begin
+  handleExceptionBegin
+  Result := RegisterClipboardFormat(PChar(AFormat));
   handleExceptionEnd
 end;
 
@@ -1294,6 +1294,7 @@ exports
   DGetDC,
   DReleaseDC,
   DSetForegroundWindow,
+  DRegisterClipboardFormat,
   DWindowFromPoint,
 {$ENDIF}
 
@@ -1364,7 +1365,7 @@ exports
   Clipboard_Instance,
   Clipboard_HasFormat,
   DSetClipboard,
-  DRegisterClipboardFormat,
+
 
   // TCanavs
   Canvas_BrushCopy,
