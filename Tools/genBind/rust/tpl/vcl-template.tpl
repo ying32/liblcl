@@ -11,9 +11,10 @@
 ##
 use lclapi::*;
 use types::*;
+use fns::ToRustString;
 ##
 use std::borrow::Cow;
-use std::ffi::{CStr, CString};
+use std::ffi::CString;
 use std::mem::{transmute};
 ##
 
@@ -223,7 +224,7 @@ impl {{$className}} {
                       {{$buff.Write "return "}}
                   {{end}}
                   {{if $retIsStr}}
-                      {{$buff.Write "to_RustString!("}}
+                      {{$buff.Write "ToRustString("}}
                   {{end}}
                   {{$buff.Write "method_Call_"}}
                   {{if $retIsObj}}

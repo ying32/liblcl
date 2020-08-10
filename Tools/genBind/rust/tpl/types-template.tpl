@@ -82,9 +82,9 @@ pub type {{$el.Name}} = {{covType $el.Type}};
 ##
 ##
 {{if eq $el.FieldArch "i386"}}
-#[cfg(not(target_arch = "x86"))]
+#[cfg(target_arch = "x86")]
 {{else}}
-#[cfg(not(target_arch = "x86_64"))]
+#[cfg(target_arch = "x86_64")]
 {{end}}
 #[repr(C)]
 #[derive(PartialEq, Debug, Clone)]

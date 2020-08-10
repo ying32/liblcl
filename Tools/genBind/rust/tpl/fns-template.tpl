@@ -7,6 +7,10 @@
 #![allow(non_snake_case)]
 #![allow(unused_unsafe)]
 #![allow(dead_code)]
+
+
+{{$toRustStr := "ToRustString"}}
+
 ##
 use lclapi;
 use std::borrow::Cow;
@@ -15,7 +19,7 @@ use types::*;
 use vcl::{TControl, TWinControl, IObject, IComponent, IStrings, IStream, TClipboard};
 ##
 pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{html "<'a, str>"}} {
-    return to_RustString!(lclapi::DGetStringArrOf(ptr, index));
+    return {{$toRustStr}}(unsafe { lclapi::DGetStringArrOf(ptr, index) });
 }
 ##
 pub fn GetLibResourceItem(index: i32) -> TResItem {
@@ -48,22 +52,29 @@ pub fn GdkWindow_GetXId(AW: PGdkWindow) -> TXId {
 pub fn SelectDirectory{{html "<'a>"}}(Options: TSelectDirOpts, HelpCtx: i32) -> (bool, {{html "Cow<'a, str>"}}) {
     let mut cstr = to_CString!("");
     let result = unsafe { lclapi::DSelectDirectory1(&mut cstr, Options, HelpCtx) };
-    return (result, to_RustString!(cstr), );
+    return (result, {{$toRustStr}}(cstr), );
 }
 ##
 pub fn SelectDirectory2{{html "<'a>"}}(Caption: &str, Root: &str, AShowHidden: bool) -> (bool, {{html "Cow<'a, str>"}}) {
     let mut cstr = to_CString!("");
     let result = unsafe { lclapi::DSelectDirectory2(to_CString!(Caption), to_CString!(Root), AShowHidden, &mut cstr) };
-    return (result, to_RustString!(cstr), );
+    return (result, {{$toRustStr}}(cstr), );
 }
 ##
 pub fn InputQuery{{html "<'a>"}}(ACaption: &str, APrompt: &str, Value: &str)-> (bool, {{html "Cow<'a, str>"}}) {
     let mut cstr = to_CString!("");
     let result = unsafe { lclapi::DInputQuery(to_CString!(ACaption), to_CString!(APrompt), to_CString!(Value), &mut cstr) };
-    return (result, to_RustString!(cstr), );
+    return (result, {{$toRustStr}}(cstr), );
 }
 ##
 
+pub fn {{$toRustStr}}{{html "<'a>"}}(s: *const i8) -> {{html "Cow<'a, str>"}} {
+    if s == 0 as *const i8 {
+        return Cow::Owned(String::from(""));
+    }
+    return unsafe { CStr::from_ptr(s).to_string_lossy() };
+}
+##
 {{define "getFunc"}}
     {{$el := .}}
     {{$buff := newBuffer}}
@@ -138,7 +149,7 @@ pub fn InputQuery{{html "<'a>"}}(ACaption: &str, APrompt: &str, Value: &str)-> (
 
 
     {{if $retIsStr}}
-        {{$buff.Write "to_RustString!("}}
+        {{$buff.Write "ToRustString("}}
     {{end}}
     {{$buff.Write "lclapi::" $el.Name "("}}
 
