@@ -112,6 +112,7 @@ type (
 		BaseTypes       []TType           `json:"base_types"`
 		BaseObjects     []TBaseObject     `json:"base_objects"`
 		InstanceObjects []TInstanceObject `json:"instance_objects"`
+		Messages        []TConst          `json:"messages"`
 	}
 )
 

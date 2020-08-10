@@ -95,10 +95,11 @@ func GenAst() {
 	parseEvents(govclPath + "/vcl/events.go")
 
 	// 常量
-	parseConst(govclPath + "/vcl/types/colors/colors.go")
-	parseConst(govclPath + "/vcl/types/keys/keys.go")
-	parseConst(govclPath + "/vcl/types/consts.go")
-	parseConst(govclPath + "/vcl/types/cursors.go")
+	parseConst(govclPath+"/vcl/types/colors/colors.go", false, true)
+	parseConst(govclPath+"/vcl/types/keys/keys.go", false, true)
+	parseConst(govclPath+"/vcl/types/consts.go", false, true)
+	parseConst(govclPath+"/vcl/types/cursors.go", false, true)
+	parseConst(govclPath+"/vcl/types/messages/message.go", true, false)
 
 	parseEnums(govclPath + "/vcl/types/enums.go")
 
@@ -845,7 +846,7 @@ func parseEvents(fileName string) {
 	}
 }
 
-func parseConst(filename string) {
+func parseConst(filename string, isMessage, firstLowerCase bool) {
 
 	_, lines, err := readFileLines(filename)
 	if err != nil {
@@ -863,8 +864,11 @@ func parseConst(filename string) {
 			item.Comment = strings.Replace(s, "//", "", -1)
 			item.Comment = strings.Replace(item.Comment, "/*", "", -1)
 			item.Comment = strings.TrimSpace(strings.Replace(item.Comment, "*/", "", -1))
-			objectFile.Consts = append(objectFile.Consts, item)
-
+			if isMessage {
+				objectFile.Messages = append(objectFile.Messages, item)
+			} else {
+				objectFile.Consts = append(objectFile.Consts, item)
+			}
 		}
 	}
 
@@ -885,9 +889,13 @@ func parseConst(filename string) {
 					if len(ss) == 2 {
 						item := TConst{}
 						item.Name = strings.TrimSpace(ss[0])
-						if !strings.HasPrefix(item.Name, "CF_") {
-							item.Name = firstLowerChar(item.Name)
+
+						if firstLowerCase {
+							if !strings.HasPrefix(item.Name, "CF_") {
+								item.Name = firstLowerChar(item.Name)
+							}
 						}
+
 						ssArr := strings.Split(ss[1], "//")
 						if len(ssArr) >= 2 {
 							item.Value = strings.TrimSpace(ssArr[0])
@@ -897,15 +905,32 @@ func parseConst(filename string) {
 						}
 						if strings.Contains(item.Value, "+") {
 							ssArr = strings.Split(item.Value, "+")
-							item.Value = firstLowerChar(strings.TrimSpace(ssArr[0]))
+							item.Value = strings.TrimSpace(ssArr[0])
+							if firstLowerCase {
+								item.Value = firstLowerChar(item.Value)
+							}
 							item.Value2 = strings.TrimSpace(ssArr[1])
 						} else {
 							if !strings.Contains(item.Value, "(") && !strings.Contains(item.Value, ")") {
-								item.Value = firstLowerChar(item.Value)
+								if firstLowerCase {
+									item.Value = firstLowerChar(item.Value)
+								}
 							}
-
 						}
-						objectFile.Consts = append(objectFile.Consts, item)
+
+						idx := strings.Index(item.Value, "/*")
+						if idx != -1 {
+							item.Comment += item.Value[idx+2:]
+							item.Value = strings.TrimSpace(item.Value[:idx])
+							item.Comment = strings.Replace(item.Comment, "*/", "", -1)
+						}
+
+						if isMessage {
+							objectFile.Messages = append(objectFile.Messages, item)
+						} else {
+							objectFile.Consts = append(objectFile.Consts, item)
+						}
+
 					}
 				}
 				i++
