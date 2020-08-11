@@ -432,6 +432,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure PageControl_AnchorSame(AObj: TPageControl; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure PageControl_AnchorAsAlign(AObj: TPageControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1500,6 +1508,7 @@ exports
   PageControl_AnchorParallel,
   PageControl_AnchorHorizontalCenterTo,
   PageControl_AnchorVerticalCenterTo,
+  PageControl_AnchorSame,
   PageControl_AnchorAsAlign,
   PageControl_AnchorClient,
   PageControl_GetOptions,

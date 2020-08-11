@@ -441,6 +441,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DrawGrid_AnchorSame(AObj: TDrawGrid; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DrawGrid_AnchorAsAlign(AObj: TDrawGrid; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1792,6 +1800,7 @@ exports
   DrawGrid_AnchorParallel,
   DrawGrid_AnchorHorizontalCenterTo,
   DrawGrid_AnchorVerticalCenterTo,
+  DrawGrid_AnchorSame,
   DrawGrid_AnchorAsAlign,
   DrawGrid_AnchorClient,
   DrawGrid_SetOnColRowMoved,

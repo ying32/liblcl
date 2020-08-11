@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure LinkLabel_AnchorSame(AObj: TLinkLabel; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure LinkLabel_AnchorAsAlign(AObj: TLinkLabel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1051,6 +1059,7 @@ exports
   LinkLabel_AnchorParallel,
   LinkLabel_AnchorHorizontalCenterTo,
   LinkLabel_AnchorVerticalCenterTo,
+  LinkLabel_AnchorSame,
   LinkLabel_AnchorAsAlign,
   LinkLabel_AnchorClient,
   LinkLabel_GetAlign,

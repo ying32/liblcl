@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StatusBar_AnchorSame(AObj: TStatusBar; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StatusBar_AnchorAsAlign(AObj: TStatusBar; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1456,6 +1464,7 @@ exports
   StatusBar_AnchorParallel,
   StatusBar_AnchorHorizontalCenterTo,
   StatusBar_AnchorVerticalCenterTo,
+  StatusBar_AnchorSame,
   StatusBar_AnchorAsAlign,
   StatusBar_AnchorClient,
   StatusBar_GetAction,

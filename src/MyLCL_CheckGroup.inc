@@ -423,6 +423,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckGroup_AnchorSame(AObj: TCheckGroup; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckGroup_AnchorAsAlign(AObj: TCheckGroup; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1498,6 +1506,7 @@ exports
   CheckGroup_AnchorParallel,
   CheckGroup_AnchorHorizontalCenterTo,
   CheckGroup_AnchorVerticalCenterTo,
+  CheckGroup_AnchorSame,
   CheckGroup_AnchorAsAlign,
   CheckGroup_AnchorClient,
   CheckGroup_GetAlign,

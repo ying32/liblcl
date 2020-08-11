@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StaticText_AnchorSame(AObj: TStaticText; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StaticText_AnchorAsAlign(AObj: TStaticText; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1417,6 +1425,7 @@ exports
   StaticText_AnchorParallel,
   StaticText_AnchorHorizontalCenterTo,
   StaticText_AnchorVerticalCenterTo,
+  StaticText_AnchorSame,
   StaticText_AnchorAsAlign,
   StaticText_AnchorClient,
   StaticText_GetAlign,

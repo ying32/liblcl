@@ -473,6 +473,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ListBox_AnchorSame(AObj: TListBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ListBox_AnchorAsAlign(AObj: TListBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1643,6 +1651,7 @@ exports
   ListBox_AnchorParallel,
   ListBox_AnchorHorizontalCenterTo,
   ListBox_AnchorVerticalCenterTo,
+  ListBox_AnchorSame,
   ListBox_AnchorAsAlign,
   ListBox_AnchorClient,
   ListBox_GetClickOnSelChange,

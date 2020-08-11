@@ -431,6 +431,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure FlowPanel_AnchorSame(AObj: TFlowPanel; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure FlowPanel_AnchorAsAlign(AObj: TFlowPanel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1535,6 +1543,7 @@ exports
   FlowPanel_AnchorParallel,
   FlowPanel_AnchorHorizontalCenterTo,
   FlowPanel_AnchorVerticalCenterTo,
+  FlowPanel_AnchorSame,
   FlowPanel_AnchorAsAlign,
   FlowPanel_AnchorClient,
   FlowPanel_GetAlign,

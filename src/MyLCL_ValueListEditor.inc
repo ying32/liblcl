@@ -449,6 +449,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ValueListEditor_AnchorSame(AObj: TValueListEditor; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ValueListEditor_AnchorAsAlign(AObj: TValueListEditor; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1828,6 +1836,7 @@ exports
   ValueListEditor_AnchorParallel,
   ValueListEditor_AnchorHorizontalCenterTo,
   ValueListEditor_AnchorVerticalCenterTo,
+  ValueListEditor_AnchorSame,
   ValueListEditor_AnchorAsAlign,
   ValueListEditor_AnchorClient,
   ValueListEditor_GetColCount,

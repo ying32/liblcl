@@ -423,6 +423,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Button_AnchorSame(AObj: TButton; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Button_AnchorAsAlign(AObj: TButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1388,6 +1396,7 @@ exports
   Button_AnchorParallel,
   Button_AnchorHorizontalCenterTo,
   Button_AnchorVerticalCenterTo,
+  Button_AnchorSame,
   Button_AnchorAsAlign,
   Button_AnchorClient,
   Button_GetAction,

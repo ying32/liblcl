@@ -455,6 +455,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Form_AnchorSame(AObj: TForm; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Form_AnchorAsAlign(AObj: TForm; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1834,6 +1842,7 @@ exports
   Form_AnchorParallel,
   Form_AnchorHorizontalCenterTo,
   Form_AnchorVerticalCenterTo,
+  Form_AnchorSame,
   Form_AnchorAsAlign,
   Form_AnchorClient,
   Form_GetAllowDropFiles,

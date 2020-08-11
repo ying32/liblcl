@@ -503,6 +503,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TreeView_AnchorSame(AObj: TTreeView; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TreeView_AnchorAsAlign(AObj: TTreeView; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -2125,6 +2133,7 @@ exports
   TreeView_AnchorParallel,
   TreeView_AnchorHorizontalCenterTo,
   TreeView_AnchorVerticalCenterTo,
+  TreeView_AnchorSame,
   TreeView_AnchorAsAlign,
   TreeView_AnchorClient,
   TreeView_GetDefaultItemHeight,

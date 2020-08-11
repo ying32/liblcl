@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TabSheet_AnchorSame(AObj: TTabSheet; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TabSheet_AnchorAsAlign(AObj: TTabSheet; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1364,6 +1372,7 @@ exports
   TabSheet_AnchorParallel,
   TabSheet_AnchorHorizontalCenterTo,
   TabSheet_AnchorVerticalCenterTo,
+  TabSheet_AnchorSame,
   TabSheet_AnchorAsAlign,
   TabSheet_AnchorClient,
   TabSheet_GetPageControl,

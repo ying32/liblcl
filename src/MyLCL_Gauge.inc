@@ -302,6 +302,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Gauge_AnchorSame(AObj: TGauge; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Gauge_AnchorAsAlign(AObj: TGauge; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -992,6 +1000,7 @@ exports
   Gauge_AnchorParallel,
   Gauge_AnchorHorizontalCenterTo,
   Gauge_AnchorVerticalCenterTo,
+  Gauge_AnchorSame,
   Gauge_AnchorAsAlign,
   Gauge_AnchorClient,
   Gauge_GetPercentDone,

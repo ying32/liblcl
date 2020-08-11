@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RadioGroup_AnchorSame(AObj: TRadioGroup; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RadioGroup_AnchorAsAlign(AObj: TRadioGroup; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1321,6 +1329,7 @@ exports
   RadioGroup_AnchorParallel,
   RadioGroup_AnchorHorizontalCenterTo,
   RadioGroup_AnchorVerticalCenterTo,
+  RadioGroup_AnchorSame,
   RadioGroup_AnchorAsAlign,
   RadioGroup_AnchorClient,
   RadioGroup_GetAlign,

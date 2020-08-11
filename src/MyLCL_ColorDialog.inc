@@ -131,6 +131,20 @@ begin
   handleExceptionEnd
 end;
 
+function ColorDialog_GetCustomColors(AObj: TColorDialog): TStrings; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.CustomColors;
+  handleExceptionEnd
+end;
+
+procedure ColorDialog_SetCustomColors(AObj: TColorDialog; AValue: TStrings); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CustomColors := AValue;
+  handleExceptionEnd
+end;
+
 function ColorDialog_GetHandle(AObj: TColorDialog): HWND; extdecl;
 begin
   handleExceptionBegin
@@ -239,6 +253,8 @@ exports
   ColorDialog_ToString,
   ColorDialog_GetColor,
   ColorDialog_SetColor,
+  ColorDialog_GetCustomColors,
+  ColorDialog_SetCustomColors,
   ColorDialog_GetHandle,
   ColorDialog_SetOnClose,
   ColorDialog_SetOnShow,

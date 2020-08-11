@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure PaintBox_AnchorSame(AObj: TPaintBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure PaintBox_AnchorAsAlign(AObj: TPaintBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1001,6 +1009,7 @@ exports
   PaintBox_AnchorParallel,
   PaintBox_AnchorHorizontalCenterTo,
   PaintBox_AnchorVerticalCenterTo,
+  PaintBox_AnchorSame,
   PaintBox_AnchorAsAlign,
   PaintBox_AnchorClient,
   PaintBox_GetCanvas,

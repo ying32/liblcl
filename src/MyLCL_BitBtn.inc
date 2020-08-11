@@ -423,6 +423,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure BitBtn_AnchorSame(AObj: TBitBtn; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure BitBtn_AnchorAsAlign(AObj: TBitBtn; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1444,6 +1452,7 @@ exports
   BitBtn_AnchorParallel,
   BitBtn_AnchorHorizontalCenterTo,
   BitBtn_AnchorVerticalCenterTo,
+  BitBtn_AnchorSame,
   BitBtn_AnchorAsAlign,
   BitBtn_AnchorClient,
   BitBtn_GetDefaultCaption,

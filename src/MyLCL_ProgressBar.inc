@@ -431,6 +431,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ProgressBar_AnchorSame(AObj: TProgressBar; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ProgressBar_AnchorAsAlign(AObj: TProgressBar; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1393,6 +1401,7 @@ exports
   ProgressBar_AnchorParallel,
   ProgressBar_AnchorHorizontalCenterTo,
   ProgressBar_AnchorVerticalCenterTo,
+  ProgressBar_AnchorSame,
   ProgressBar_AnchorAsAlign,
   ProgressBar_AnchorClient,
   ProgressBar_GetAlign,

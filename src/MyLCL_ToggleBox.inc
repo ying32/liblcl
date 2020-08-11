@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToggleBox_AnchorSame(AObj: TToggleBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToggleBox_AnchorAsAlign(AObj: TToggleBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1407,6 +1415,7 @@ exports
   ToggleBox_AnchorParallel,
   ToggleBox_AnchorHorizontalCenterTo,
   ToggleBox_AnchorVerticalCenterTo,
+  ToggleBox_AnchorSame,
   ToggleBox_AnchorAsAlign,
   ToggleBox_AnchorClient,
   ToggleBox_GetAllowGrayed,

@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckBox_AnchorSame(AObj: TCheckBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckBox_AnchorAsAlign(AObj: TCheckBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1429,6 +1437,7 @@ exports
   CheckBox_AnchorParallel,
   CheckBox_AnchorHorizontalCenterTo,
   CheckBox_AnchorVerticalCenterTo,
+  CheckBox_AnchorSame,
   CheckBox_AnchorAsAlign,
   CheckBox_AnchorClient,
   CheckBox_SetOnChange,

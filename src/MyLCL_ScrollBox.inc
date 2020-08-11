@@ -423,6 +423,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ScrollBox_AnchorSame(AObj: TScrollBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ScrollBox_AnchorAsAlign(AObj: TScrollBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1484,6 +1492,7 @@ exports
   ScrollBox_AnchorParallel,
   ScrollBox_AnchorHorizontalCenterTo,
   ScrollBox_AnchorVerticalCenterTo,
+  ScrollBox_AnchorSame,
   ScrollBox_AnchorAsAlign,
   ScrollBox_AnchorClient,
   ScrollBox_GetAlign,

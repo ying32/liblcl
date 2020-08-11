@@ -479,6 +479,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MaskEdit_AnchorSame(AObj: TMaskEdit; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MaskEdit_AnchorAsAlign(AObj: TMaskEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1671,6 +1679,7 @@ exports
   MaskEdit_AnchorParallel,
   MaskEdit_AnchorHorizontalCenterTo,
   MaskEdit_AnchorVerticalCenterTo,
+  MaskEdit_AnchorSame,
   MaskEdit_AnchorAsAlign,
   MaskEdit_AnchorClient,
   MaskEdit_GetAlign,

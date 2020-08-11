@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure BoundLabel_AnchorSame(AObj: TBoundLabel; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure BoundLabel_AnchorAsAlign(AObj: TBoundLabel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1019,6 +1027,7 @@ exports
   BoundLabel_AnchorParallel,
   BoundLabel_AnchorHorizontalCenterTo,
   BoundLabel_AnchorVerticalCenterTo,
+  BoundLabel_AnchorSame,
   BoundLabel_AnchorAsAlign,
   BoundLabel_AnchorClient,
   BoundLabel_GetBiDiMode,

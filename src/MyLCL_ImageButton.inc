@@ -302,6 +302,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ImageButton_AnchorSame(AObj: TImageButton; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ImageButton_AnchorAsAlign(AObj: TImageButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1095,6 +1103,7 @@ exports
   ImageButton_AnchorParallel,
   ImageButton_AnchorHorizontalCenterTo,
   ImageButton_AnchorVerticalCenterTo,
+  ImageButton_AnchorSame,
   ImageButton_AnchorAsAlign,
   ImageButton_AnchorClient,
   ImageButton_GetAction,

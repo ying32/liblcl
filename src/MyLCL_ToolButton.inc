@@ -310,6 +310,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToolButton_AnchorSame(AObj: TToolButton; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToolButton_AnchorAsAlign(AObj: TToolButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1139,6 +1147,7 @@ exports
   ToolButton_AnchorParallel,
   ToolButton_AnchorHorizontalCenterTo,
   ToolButton_AnchorVerticalCenterTo,
+  ToolButton_AnchorSame,
   ToolButton_AnchorAsAlign,
   ToolButton_AnchorClient,
   ToolButton_GetIndex,

@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToolBar_AnchorSame(AObj: TToolBar; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToolBar_AnchorAsAlign(AObj: TToolBar; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1611,6 +1619,7 @@ exports
   ToolBar_AnchorParallel,
   ToolBar_AnchorHorizontalCenterTo,
   ToolBar_AnchorVerticalCenterTo,
+  ToolBar_AnchorSame,
   ToolBar_AnchorAsAlign,
   ToolBar_AnchorClient,
   ToolBar_GetButtonCount,

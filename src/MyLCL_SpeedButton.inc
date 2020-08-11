@@ -302,6 +302,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure SpeedButton_AnchorSame(AObj: TSpeedButton; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure SpeedButton_AnchorAsAlign(AObj: TSpeedButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1111,6 +1119,7 @@ exports
   SpeedButton_AnchorParallel,
   SpeedButton_AnchorHorizontalCenterTo,
   SpeedButton_AnchorVerticalCenterTo,
+  SpeedButton_AnchorSame,
   SpeedButton_AnchorAsAlign,
   SpeedButton_AnchorClient,
   SpeedButton_GetImageIndex,

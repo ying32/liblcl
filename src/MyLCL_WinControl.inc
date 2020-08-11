@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure WinControl_AnchorSame(AObj: TWinControl; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure WinControl_AnchorAsAlign(AObj: TWinControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1105,6 +1113,7 @@ exports
   WinControl_AnchorParallel,
   WinControl_AnchorHorizontalCenterTo,
   WinControl_AnchorVerticalCenterTo,
+  WinControl_AnchorSame,
   WinControl_AnchorAsAlign,
   WinControl_AnchorClient,
   WinControl_GetDockClientCount,

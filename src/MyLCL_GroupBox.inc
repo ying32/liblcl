@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure GroupBox_AnchorSame(AObj: TGroupBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure GroupBox_AnchorAsAlign(AObj: TGroupBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1397,6 +1405,7 @@ exports
   GroupBox_AnchorParallel,
   GroupBox_AnchorHorizontalCenterTo,
   GroupBox_AnchorVerticalCenterTo,
+  GroupBox_AnchorSame,
   GroupBox_AnchorAsAlign,
   GroupBox_AnchorClient,
   GroupBox_GetAlign,

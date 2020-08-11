@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure HeaderControl_AnchorSame(AObj: THeaderControl; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure HeaderControl_AnchorAsAlign(AObj: THeaderControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1366,6 +1374,7 @@ exports
   HeaderControl_AnchorParallel,
   HeaderControl_AnchorHorizontalCenterTo,
   HeaderControl_AnchorVerticalCenterTo,
+  HeaderControl_AnchorSame,
   HeaderControl_AnchorAsAlign,
   HeaderControl_AnchorClient,
   HeaderControl_GetAlign,

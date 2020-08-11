@@ -471,6 +471,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Edit_AnchorSame(AObj: TEdit; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Edit_AnchorAsAlign(AObj: TEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1661,6 +1669,7 @@ exports
   Edit_AnchorParallel,
   Edit_AnchorHorizontalCenterTo,
   Edit_AnchorVerticalCenterTo,
+  Edit_AnchorSame,
   Edit_AnchorAsAlign,
   Edit_AnchorClient,
   Edit_GetAlign,

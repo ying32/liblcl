@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Label_AnchorSame(AObj: TLabel; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Label_AnchorAsAlign(AObj: TLabel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1141,6 +1149,7 @@ exports
   Label_AnchorParallel,
   Label_AnchorHorizontalCenterTo,
   Label_AnchorVerticalCenterTo,
+  Label_AnchorSame,
   Label_AnchorAsAlign,
   Label_AnchorClient,
   Label_GetOptimalFill,

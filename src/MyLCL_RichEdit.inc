@@ -479,6 +479,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RichEdit_AnchorSame(AObj: TRichEdit; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RichEdit_AnchorAsAlign(AObj: TRichEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1772,6 +1780,7 @@ exports
   RichEdit_AnchorParallel,
   RichEdit_AnchorHorizontalCenterTo,
   RichEdit_AnchorVerticalCenterTo,
+  RichEdit_AnchorSame,
   RichEdit_AnchorAsAlign,
   RichEdit_AnchorClient,
   RichEdit_GetAlign,

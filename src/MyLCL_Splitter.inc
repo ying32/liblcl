@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Splitter_AnchorSame(AObj: TSplitter; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Splitter_AnchorAsAlign(AObj: TSplitter; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -865,6 +873,7 @@ exports
   Splitter_AnchorParallel,
   Splitter_AnchorHorizontalCenterTo,
   Splitter_AnchorVerticalCenterTo,
+  Splitter_AnchorSame,
   Splitter_AnchorAsAlign,
   Splitter_AnchorClient,
   Splitter_GetResizeAnchor,

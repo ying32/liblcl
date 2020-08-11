@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RadioButton_AnchorSame(AObj: TRadioButton; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RadioButton_AnchorAsAlign(AObj: TRadioButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1401,6 +1409,7 @@ exports
   RadioButton_AnchorParallel,
   RadioButton_AnchorHorizontalCenterTo,
   RadioButton_AnchorVerticalCenterTo,
+  RadioButton_AnchorSame,
   RadioButton_AnchorAsAlign,
   RadioButton_AnchorClient,
   RadioButton_SetOnChange,

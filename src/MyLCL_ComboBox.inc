@@ -455,6 +455,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ComboBox_AnchorSame(AObj: TComboBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ComboBox_AnchorAsAlign(AObj: TComboBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1637,6 +1645,7 @@ exports
   ComboBox_AnchorParallel,
   ComboBox_AnchorHorizontalCenterTo,
   ComboBox_AnchorVerticalCenterTo,
+  ComboBox_AnchorSame,
   ComboBox_AnchorAsAlign,
   ComboBox_AnchorClient,
   ComboBox_GetAlign,

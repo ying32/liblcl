@@ -479,6 +479,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Memo_AnchorSame(AObj: TMemo; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Memo_AnchorAsAlign(AObj: TMemo; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1699,6 +1707,7 @@ exports
   Memo_AnchorParallel,
   Memo_AnchorHorizontalCenterTo,
   Memo_AnchorVerticalCenterTo,
+  Memo_AnchorSame,
   Memo_AnchorAsAlign,
   Memo_AnchorClient,
   Memo_GetAlign,

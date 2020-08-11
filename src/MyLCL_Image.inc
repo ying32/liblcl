@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Image_AnchorSame(AObj: TImage; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Image_AnchorAsAlign(AObj: TImage; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1091,6 +1099,7 @@ exports
   Image_AnchorParallel,
   Image_AnchorHorizontalCenterTo,
   Image_AnchorVerticalCenterTo,
+  Image_AnchorSame,
   Image_AnchorAsAlign,
   Image_AnchorClient,
   Image_GetAntialiasingMode,

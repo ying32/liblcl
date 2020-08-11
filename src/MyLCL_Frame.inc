@@ -423,6 +423,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Frame_AnchorSame(AObj: TFrame; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Frame_AnchorAsAlign(AObj: TFrame; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1480,6 +1488,7 @@ exports
   Frame_AnchorParallel,
   Frame_AnchorHorizontalCenterTo,
   Frame_AnchorVerticalCenterTo,
+  Frame_AnchorSame,
   Frame_AnchorAsAlign,
   Frame_AnchorClient,
   Frame_GetAlign,

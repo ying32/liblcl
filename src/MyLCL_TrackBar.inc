@@ -423,6 +423,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TrackBar_AnchorSame(AObj: TTrackBar; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TrackBar_AnchorAsAlign(AObj: TTrackBar; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1432,6 +1440,7 @@ exports
   TrackBar_AnchorParallel,
   TrackBar_AnchorHorizontalCenterTo,
   TrackBar_AnchorVerticalCenterTo,
+  TrackBar_AnchorSame,
   TrackBar_AnchorAsAlign,
   TrackBar_AnchorClient,
   TrackBar_GetAlign,

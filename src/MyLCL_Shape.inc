@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Shape_AnchorSame(AObj: TShape; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Shape_AnchorAsAlign(AObj: TShape; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -956,6 +964,7 @@ exports
   Shape_AnchorParallel,
   Shape_AnchorHorizontalCenterTo,
   Shape_AnchorVerticalCenterTo,
+  Shape_AnchorSame,
   Shape_AnchorAsAlign,
   Shape_AnchorClient,
   Shape_GetAlign,

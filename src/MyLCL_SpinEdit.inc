@@ -471,6 +471,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure SpinEdit_AnchorSame(AObj: TSpinEdit; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure SpinEdit_AnchorAsAlign(AObj: TSpinEdit; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1549,6 +1557,7 @@ exports
   SpinEdit_AnchorParallel,
   SpinEdit_AnchorHorizontalCenterTo,
   SpinEdit_AnchorVerticalCenterTo,
+  SpinEdit_AnchorSame,
   SpinEdit_AnchorAsAlign,
   SpinEdit_AnchorClient,
   SpinEdit_GetAnchors,

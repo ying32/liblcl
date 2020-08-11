@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Control_AnchorSame(AObj: TControl; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Control_AnchorAsAlign(AObj: TControl; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -794,6 +802,7 @@ exports
   Control_AnchorParallel,
   Control_AnchorHorizontalCenterTo,
   Control_AnchorVerticalCenterTo,
+  Control_AnchorSame,
   Control_AnchorAsAlign,
   Control_AnchorClient,
   Control_GetEnabled,

@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MonthCalendar_AnchorSame(AObj: TMonthCalendar; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MonthCalendar_AnchorAsAlign(AObj: TMonthCalendar; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1351,6 +1359,7 @@ exports
   MonthCalendar_AnchorParallel,
   MonthCalendar_AnchorHorizontalCenterTo,
   MonthCalendar_AnchorVerticalCenterTo,
+  MonthCalendar_AnchorSame,
   MonthCalendar_AnchorAsAlign,
   MonthCalendar_AnchorClient,
   MonthCalendar_GetDateTime,

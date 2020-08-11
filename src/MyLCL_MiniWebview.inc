@@ -487,6 +487,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MiniWebview_AnchorSame(AObj: TMiniWebview; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MiniWebview_AnchorAsAlign(AObj: TMiniWebview; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1209,6 +1217,7 @@ exports
   MiniWebview_AnchorParallel,
   MiniWebview_AnchorHorizontalCenterTo,
   MiniWebview_AnchorVerticalCenterTo,
+  MiniWebview_AnchorSame,
   MiniWebview_AnchorAsAlign,
   MiniWebview_AnchorClient,
   MiniWebview_GetReadyState,

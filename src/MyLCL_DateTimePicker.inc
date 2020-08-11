@@ -439,6 +439,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DateTimePicker_AnchorSame(AObj: TDateTimePicker; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DateTimePicker_AnchorAsAlign(AObj: TDateTimePicker; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1689,6 +1697,7 @@ exports
   DateTimePicker_AnchorParallel,
   DateTimePicker_AnchorHorizontalCenterTo,
   DateTimePicker_AnchorVerticalCenterTo,
+  DateTimePicker_AnchorSame,
   DateTimePicker_AnchorAsAlign,
   DateTimePicker_AnchorClient,
   DateTimePicker_GetArrowShape,

@@ -455,6 +455,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ColorBox_AnchorSame(AObj: TColorBox; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ColorBox_AnchorAsAlign(AObj: TColorBox; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1585,6 +1593,7 @@ exports
   ColorBox_AnchorParallel,
   ColorBox_AnchorHorizontalCenterTo,
   ColorBox_AnchorVerticalCenterTo,
+  ColorBox_AnchorSame,
   ColorBox_AnchorAsAlign,
   ColorBox_AnchorClient,
   ColorBox_GetAlign,

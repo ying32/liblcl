@@ -407,6 +407,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CoolBar_AnchorSame(AObj: TCoolBar; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CoolBar_AnchorAsAlign(AObj: TCoolBar; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1562,6 +1570,7 @@ exports
   CoolBar_AnchorParallel,
   CoolBar_AnchorHorizontalCenterTo,
   CoolBar_AnchorVerticalCenterTo,
+  CoolBar_AnchorSame,
   CoolBar_AnchorAsAlign,
   CoolBar_AnchorClient,
   CoolBar_GetAlign,

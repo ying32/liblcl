@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Bevel_AnchorSame(AObj: TBevel; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Bevel_AnchorAsAlign(AObj: TBevel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -836,6 +844,7 @@ exports
   Bevel_AnchorParallel,
   Bevel_AnchorHorizontalCenterTo,
   Bevel_AnchorVerticalCenterTo,
+  Bevel_AnchorSame,
   Bevel_AnchorAsAlign,
   Bevel_AnchorClient,
   Bevel_GetAlign,

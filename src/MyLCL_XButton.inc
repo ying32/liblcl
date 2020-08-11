@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure XButton_AnchorSame(AObj: TXButton; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure XButton_AnchorAsAlign(AObj: TXButton; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1074,6 +1082,7 @@ exports
   XButton_AnchorParallel,
   XButton_AnchorHorizontalCenterTo,
   XButton_AnchorVerticalCenterTo,
+  XButton_AnchorSame,
   XButton_AnchorAsAlign,
   XButton_AnchorClient,
   XButton_GetCaption,

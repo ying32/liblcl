@@ -479,6 +479,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ListView_AnchorSame(AObj: TListView; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ListView_AnchorAsAlign(AObj: TListView; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -2166,6 +2174,7 @@ exports
   ListView_AnchorParallel,
   ListView_AnchorHorizontalCenterTo,
   ListView_AnchorVerticalCenterTo,
+  ListView_AnchorSame,
   ListView_AnchorAsAlign,
   ListView_AnchorClient,
   ListView_GetAutoSort,

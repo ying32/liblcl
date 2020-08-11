@@ -678,6 +678,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StringGrid_AnchorSame(AObj: TStringGrid; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StringGrid_AnchorAsAlign(AObj: TStringGrid; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -2757,6 +2765,7 @@ exports
   StringGrid_AnchorParallel,
   StringGrid_AnchorHorizontalCenterTo,
   StringGrid_AnchorVerticalCenterTo,
+  StringGrid_AnchorSame,
   StringGrid_AnchorAsAlign,
   StringGrid_AnchorClient,
   StringGrid_GetSelectedColor,

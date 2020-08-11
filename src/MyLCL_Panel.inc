@@ -415,6 +415,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Panel_AnchorSame(AObj: TPanel; ASide: TAnchorKind; ASibling: TControl); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AnchorSame(ASide, ASibling);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Panel_AnchorAsAlign(AObj: TPanel; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
@@ -1517,6 +1525,7 @@ exports
   Panel_AnchorParallel,
   Panel_AnchorHorizontalCenterTo,
   Panel_AnchorVerticalCenterTo,
+  Panel_AnchorSame,
   Panel_AnchorAsAlign,
   Panel_AnchorClient,
   Panel_GetAlign,
