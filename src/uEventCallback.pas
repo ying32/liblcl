@@ -143,9 +143,9 @@ type
     class procedure OnTLVCustomDrawEvent_OnCustomDraw(Sender: TCustomListView; const ARect: TRect; var DefaultDraw: Boolean);
     class procedure OnTLVCustomDrawItemEvent_OnCustomDrawItem(Sender: TCustomListView; Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
     class procedure OnTLVCustomDrawSubItemEvent_OnCustomDrawSubItem(Sender: TCustomListView; Item: TListItem; SubItem: Integer; State: TCustomDrawState; var DefaultDraw: Boolean);
-    class procedure OnTLVOwnerDataEvent_OnData(Sender: TObject; Item: TListItem);
-    class procedure OnTLVOwnerDataFindEvent_OnDataFind(Sender: TObject; Find: TItemFind; const FindString: string; const FindPosition: TPoint; FindData: Pointer; StartIndex: Integer; Direction: TSearchDirection; Wrap: Boolean; var Index: Integer);
-    class procedure OnTLVOwnerDataHintEvent_OnDataHint(Sender: TObject; StartIndex, EndIndex: Integer);
+    class procedure OnTLVDataEvent_OnData(Sender: TObject; Item: TListItem);
+    class procedure OnTLVDataFindEvent_OnDataFind(Sender: TObject; Find: TItemFind; const FindString: string; const FindPosition: TPoint; FindData: Pointer; StartIndex: Integer; Direction: TSearchDirection; Wrap: Boolean; var Index: Integer);
+    class procedure OnTLVDataHintEvent_OnDataHint(Sender: TObject; StartIndex, EndIndex: Integer);
     class procedure OnTLVDeletedEvent_OnDeletion(Sender: TObject; Item: TListItem);
     class procedure OnTLVEditedEvent_OnEdited(Sender: TObject; Item: TListItem; var S: string);
     class procedure OnTLVEditingEvent_OnEditing(Sender: TObject; Item: TListItem; var AllowEdit: Boolean);
@@ -758,25 +758,25 @@ begin
   SendEvent(Sender, @TEventClass.OnTLVCustomDrawSubItemEvent_OnCustomDrawSubItem, [Sender, Item, SubItem, PWord(@State)^, @DefaultDraw]);
 end;
 
-class procedure TEventClass.OnTLVOwnerDataEvent_OnData(Sender: TObject; Item: TListItem
+class procedure TEventClass.OnTLVDataEvent_OnData(Sender: TObject; Item: TListItem
   );
 begin
-  SendEvent(Sender, @TEventClass.OnTLVOwnerDataEvent_OnData, [Sender, Item]);
+  SendEvent(Sender, @TEventClass.OnTLVDataEvent_OnData, [Sender, Item]);
 end;
 
-class procedure TEventClass.OnTLVOwnerDataFindEvent_OnDataFind(Sender: TObject;
+class procedure TEventClass.OnTLVDataFindEvent_OnDataFind(Sender: TObject;
   Find: TItemFind; const FindString: string; const FindPosition: TPoint;
   FindData: Pointer; StartIndex: Integer; Direction: TSearchDirection;
   Wrap: Boolean; var Index: Integer);
 begin
-  SendEvent(Sender, @TEventClass.OnTLVOwnerDataFindEvent_OnDataFind, [Sender, Ord(Find), PChar(FindString), @FindPosition, FindData, StartIndex,
+  SendEvent(Sender, @TEventClass.OnTLVDataFindEvent_OnDataFind, [Sender, Ord(Find), PChar(FindString), @FindPosition, FindData, StartIndex,
     Ord(Direction), Integer(Wrap), @Index]);
 end;
 
-class procedure TEventClass.OnTLVOwnerDataHintEvent_OnDataHint(Sender: TObject;
+class procedure TEventClass.OnTLVDataHintEvent_OnDataHint(Sender: TObject;
   StartIndex, EndIndex: Integer);
 begin
-  SendEvent(Sender, @TEventClass.OnTLVOwnerDataHintEvent_OnDataHint, [Sender, StartIndex, EndIndex]);
+  SendEvent(Sender, @TEventClass.OnTLVDataHintEvent_OnDataHint, [Sender, StartIndex, EndIndex]);
 end;
 
 class procedure TEventClass.OnTLVDeletedEvent_OnDeletion(Sender: TObject; Item: TListItem);

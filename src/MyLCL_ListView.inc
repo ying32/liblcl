@@ -1360,26 +1360,26 @@ begin
   EventMethodCode
 end;
 
-//EVENT_TYPE:TLVOwnerDataEvent
+//EVENT_TYPE:TLVDataEvent
 procedure ListView_SetOnData(AObj: TListView; AEventId: NativeUInt); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTLVOwnerDataEvent_OnData}
+  {$DEFINE EventMethodName := OnTLVDataEvent_OnData}
   {$DEFINE EventName := OnData}
   EventMethodCode
 end;
 
-//EVENT_TYPE:TLVOwnerDataFindEvent
+//EVENT_TYPE:TLVDataFindEvent
 procedure ListView_SetOnDataFind(AObj: TListView; AEventId: NativeUInt); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTLVOwnerDataFindEvent_OnDataFind}
+  {$DEFINE EventMethodName := OnTLVDataFindEvent_OnDataFind}
   {$DEFINE EventName := OnDataFind}
   EventMethodCode
 end;
 
-//EVENT_TYPE:TLVOwnerDataHintEvent
+//EVENT_TYPE:TLVDataHintEvent
 procedure ListView_SetOnDataHint(AObj: TListView; AEventId: NativeUInt); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTLVOwnerDataHintEvent_OnDataHint}
+  {$DEFINE EventMethodName := OnTLVDataHintEvent_OnDataHint}
   {$DEFINE EventName := OnDataHint}
   EventMethodCode
 end;
