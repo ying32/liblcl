@@ -2740,10 +2740,10 @@ typedef void(*TMeasureItemEvent)(TWinControl, int32_t, int32_t*);
 typedef void(*TLVChangingEvent)(TObject, TListItem, TItemChange, BOOL*);
 
 // void (TObject sender, TListItem item)
-typedef void(*TLVOwnerDataEvent)(TObject, TListItem);
+typedef void(*TLVDataEvent)(TObject, TListItem);
 
 // void (TObject sender, TItemFind find, char* findString, TPoint* findPosition, TCustomData findData, int32_t startIndex, TSearchDirection direction, BOOL warp, int32_t* index)
-typedef void(*TLVOwnerDataFindEvent)(TObject, TItemFind, char*, TPoint*, TCustomData, int32_t, TSearchDirection, BOOL, int32_t*);
+typedef void(*TLVDataFindEvent)(TObject, TItemFind, char*, TPoint*, TCustomData, int32_t, TSearchDirection, BOOL, int32_t*);
 
 // void (TObject sender, TListItem item)
 typedef void(*TLVDeletedEvent)(TObject, TListItem);
@@ -2798,9 +2798,6 @@ typedef void(*TLVDrawItemEvent)(TListView, TListItem, TRect*, TOwnerDrawState);
 
 // void (TObject sender, int32_t startIndex, int32_t endIndex)
 typedef void(*TLVDataHintEvent)(TObject, int32_t, int32_t);
-
-// void ()
-typedef void(*TLVOwnerDataHintEvent)();
 
 // void (TTreeView sender, TRect* aRect, BOOL* defaultDraw)
 typedef void(*TTVCustomDrawEvent)(TTreeView, TRect*, BOOL*);
@@ -3996,6 +3993,13 @@ Control_AnchorVerticalCenterTo(TControl AObj, TControl ASibling) {
     MySyscall(pControl_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Control_AnchorSame)
+void
+Control_AnchorSame(TControl AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Control_AnchorSame)
+    MySyscall(pControl_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Control_AnchorAsAlign)
 void
 Control_AnchorAsAlign(TControl AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -4822,6 +4826,13 @@ void
 WinControl_AnchorVerticalCenterTo(TWinControl AObj, TControl ASibling) {
     GET_FUNC_ADDR(WinControl_AnchorVerticalCenterTo)
     MySyscall(pWinControl_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_AnchorSame)
+void
+WinControl_AnchorSame(TWinControl AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(WinControl_AnchorSame)
+    MySyscall(pWinControl_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(WinControl_AnchorAsAlign)
@@ -6379,6 +6390,13 @@ CheckBox_AnchorVerticalCenterTo(TCheckBox AObj, TControl ASibling) {
     MySyscall(pCheckBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CheckBox_AnchorSame)
+void
+CheckBox_AnchorSame(TCheckBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(CheckBox_AnchorSame)
+    MySyscall(pCheckBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CheckBox_AnchorAsAlign)
 void
 CheckBox_AnchorAsAlign(TCheckBox AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -7690,6 +7708,13 @@ RadioButton_AnchorVerticalCenterTo(TRadioButton AObj, TControl ASibling) {
     MySyscall(pRadioButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RadioButton_AnchorSame)
+void
+RadioButton_AnchorSame(TRadioButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(RadioButton_AnchorSame)
+    MySyscall(pRadioButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RadioButton_AnchorAsAlign)
 void
 RadioButton_AnchorAsAlign(TRadioButton AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -8973,6 +8998,13 @@ GroupBox_AnchorVerticalCenterTo(TGroupBox AObj, TControl ASibling) {
     MySyscall(pGroupBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(GroupBox_AnchorSame)
+void
+GroupBox_AnchorSame(TGroupBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(GroupBox_AnchorSame)
+    MySyscall(pGroupBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(GroupBox_AnchorAsAlign)
 void
 GroupBox_AnchorAsAlign(TGroupBox AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -10142,6 +10174,13 @@ void
 Label_AnchorVerticalCenterTo(TLabel AObj, TControl ASibling) {
     GET_FUNC_ADDR(Label_AnchorVerticalCenterTo)
     MySyscall(pLabel_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_AnchorSame)
+void
+Label_AnchorSame(TLabel AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Label_AnchorSame)
+    MySyscall(pLabel_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_AnchorAsAlign)
@@ -11357,6 +11396,13 @@ void
 ListBox_AnchorVerticalCenterTo(TListBox AObj, TControl ASibling) {
     GET_FUNC_ADDR(ListBox_AnchorVerticalCenterTo)
     MySyscall(pListBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_AnchorSame)
+void
+ListBox_AnchorSame(TListBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ListBox_AnchorSame)
+    MySyscall(pListBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_AnchorAsAlign)
@@ -12852,6 +12898,13 @@ ComboBox_AnchorVerticalCenterTo(TComboBox AObj, TControl ASibling) {
     MySyscall(pComboBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ComboBox_AnchorSame)
+void
+ComboBox_AnchorSame(TComboBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ComboBox_AnchorSame)
+    MySyscall(pComboBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ComboBox_AnchorAsAlign)
 void
 ComboBox_AnchorAsAlign(TComboBox AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -14324,6 +14377,13 @@ Panel_AnchorVerticalCenterTo(TPanel AObj, TControl ASibling) {
     MySyscall(pPanel_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Panel_AnchorSame)
+void
+Panel_AnchorSame(TPanel AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Panel_AnchorSame)
+    MySyscall(pPanel_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Panel_AnchorAsAlign)
 void
 Panel_AnchorAsAlign(TPanel AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -15614,6 +15674,13 @@ Image_AnchorVerticalCenterTo(TImage AObj, TControl ASibling) {
     MySyscall(pImage_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Image_AnchorSame)
+void
+Image_AnchorSame(TImage AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Image_AnchorSame)
+    MySyscall(pImage_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Image_AnchorAsAlign)
 void
 Image_AnchorAsAlign(TImage AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -16624,6 +16691,13 @@ LinkLabel_AnchorVerticalCenterTo(TLinkLabel AObj, TControl ASibling) {
     MySyscall(pLinkLabel_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(LinkLabel_AnchorSame)
+void
+LinkLabel_AnchorSame(TLinkLabel AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(LinkLabel_AnchorSame)
+    MySyscall(pLinkLabel_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(LinkLabel_AnchorAsAlign)
 void
 LinkLabel_AnchorAsAlign(TLinkLabel AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -17597,6 +17671,13 @@ void
 SpeedButton_AnchorVerticalCenterTo(TSpeedButton AObj, TControl ASibling) {
     GET_FUNC_ADDR(SpeedButton_AnchorVerticalCenterTo)
     MySyscall(pSpeedButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_AnchorSame)
+void
+SpeedButton_AnchorSame(TSpeedButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(SpeedButton_AnchorSame)
+    MySyscall(pSpeedButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_AnchorAsAlign)
@@ -18623,6 +18704,13 @@ Splitter_AnchorVerticalCenterTo(TSplitter AObj, TControl ASibling) {
     MySyscall(pSplitter_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Splitter_AnchorSame)
+void
+Splitter_AnchorSame(TSplitter AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Splitter_AnchorSame)
+    MySyscall(pSplitter_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Splitter_AnchorAsAlign)
 void
 Splitter_AnchorAsAlign(TSplitter AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -19519,6 +19607,13 @@ void
 RadioGroup_AnchorVerticalCenterTo(TRadioGroup AObj, TControl ASibling) {
     GET_FUNC_ADDR(RadioGroup_AnchorVerticalCenterTo)
     MySyscall(pRadioGroup_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_AnchorSame)
+void
+RadioGroup_AnchorSame(TRadioGroup AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(RadioGroup_AnchorSame)
+    MySyscall(pRadioGroup_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_AnchorAsAlign)
@@ -20732,6 +20827,13 @@ void
 StaticText_AnchorVerticalCenterTo(TStaticText AObj, TControl ASibling) {
     GET_FUNC_ADDR(StaticText_AnchorVerticalCenterTo)
     MySyscall(pStaticText_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_AnchorSame)
+void
+StaticText_AnchorSame(TStaticText AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(StaticText_AnchorSame)
+    MySyscall(pStaticText_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_AnchorAsAlign)
@@ -22071,6 +22173,13 @@ void
 ColorBox_AnchorVerticalCenterTo(TColorBox AObj, TControl ASibling) {
     GET_FUNC_ADDR(ColorBox_AnchorVerticalCenterTo)
     MySyscall(pColorBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_AnchorSame)
+void
+ColorBox_AnchorSame(TColorBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ColorBox_AnchorSame)
+    MySyscall(pColorBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_AnchorAsAlign)
@@ -23545,6 +23654,13 @@ void
 ColorListBox_AnchorVerticalCenterTo(TColorListBox AObj, TControl ASibling) {
     GET_FUNC_ADDR(ColorListBox_AnchorVerticalCenterTo)
     MySyscall(pColorListBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_AnchorSame)
+void
+ColorListBox_AnchorSame(TColorListBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ColorListBox_AnchorSame)
+    MySyscall(pColorListBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_AnchorAsAlign)
@@ -25584,6 +25700,20 @@ ColorDialog_SetColor(TColorDialog AObj, TColor AValue) {
     MySyscall(pColorDialog_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ColorDialog_GetCustomColors)
+TStrings
+ColorDialog_GetCustomColors(TColorDialog AObj) {
+    GET_FUNC_ADDR(ColorDialog_GetCustomColors)
+    return (TStrings)MySyscall(pColorDialog_GetCustomColors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorDialog_SetCustomColors)
+void
+ColorDialog_SetCustomColors(TColorDialog AObj, TStrings AValue) {
+    GET_FUNC_ADDR(ColorDialog_SetCustomColors)
+    MySyscall(pColorDialog_SetCustomColors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ColorDialog_GetHandle)
 HWND
 ColorDialog_GetHandle(TColorDialog AObj) {
@@ -27515,6 +27645,13 @@ RichEdit_AnchorVerticalCenterTo(TRichEdit AObj, TControl ASibling) {
     MySyscall(pRichEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RichEdit_AnchorSame)
+void
+RichEdit_AnchorSame(TRichEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(RichEdit_AnchorSame)
+    MySyscall(pRichEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RichEdit_AnchorAsAlign)
 void
 RichEdit_AnchorAsAlign(TRichEdit AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -29099,6 +29236,13 @@ void
 TrackBar_AnchorVerticalCenterTo(TTrackBar AObj, TControl ASibling) {
     GET_FUNC_ADDR(TrackBar_AnchorVerticalCenterTo)
     MySyscall(pTrackBar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_AnchorSame)
+void
+TrackBar_AnchorSame(TTrackBar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(TrackBar_AnchorSame)
+    MySyscall(pTrackBar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_AnchorAsAlign)
@@ -30892,6 +31036,13 @@ UpDown_AnchorVerticalCenterTo(TUpDown AObj, TControl ASibling) {
     MySyscall(pUpDown_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(UpDown_AnchorSame)
+void
+UpDown_AnchorSame(TUpDown AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(UpDown_AnchorSame)
+    MySyscall(pUpDown_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(UpDown_AnchorAsAlign)
 void
 UpDown_AnchorAsAlign(TUpDown AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -32089,6 +32240,13 @@ void
 ProgressBar_AnchorVerticalCenterTo(TProgressBar AObj, TControl ASibling) {
     GET_FUNC_ADDR(ProgressBar_AnchorVerticalCenterTo)
     MySyscall(pProgressBar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_AnchorSame)
+void
+ProgressBar_AnchorSame(TProgressBar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ProgressBar_AnchorSame)
+    MySyscall(pProgressBar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_AnchorAsAlign)
@@ -33372,6 +33530,13 @@ void
 ateTimePicker_AnchorVerticalCenterTo(TDateTimePicker AObj, TControl ASibling) {
     GET_FUNC_ADDR(DateTimePicker_AnchorVerticalCenterTo)
     MySyscall(pDateTimePicker_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_AnchorSame)
+void
+ateTimePicker_AnchorSame(TDateTimePicker AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(DateTimePicker_AnchorSame)
+    MySyscall(pDateTimePicker_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_AnchorAsAlign)
@@ -34923,6 +35088,13 @@ MonthCalendar_AnchorVerticalCenterTo(TMonthCalendar AObj, TControl ASibling) {
     MySyscall(pMonthCalendar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(MonthCalendar_AnchorSame)
+void
+MonthCalendar_AnchorSame(TMonthCalendar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(MonthCalendar_AnchorSame)
+    MySyscall(pMonthCalendar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(MonthCalendar_AnchorAsAlign)
 void
 MonthCalendar_AnchorAsAlign(TMonthCalendar AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -36213,6 +36385,13 @@ ListView_AnchorVerticalCenterTo(TListView AObj, TControl ASibling) {
     MySyscall(pListView_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ListView_AnchorSame)
+void
+ListView_AnchorSame(TListView AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ListView_AnchorSame)
+    MySyscall(pListView_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ListView_AnchorAsAlign)
 void
 ListView_AnchorAsAlign(TListView AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -37076,21 +37255,21 @@ ListView_SetOnCustomDrawSubItem(TListView AObj, TLVCustomDrawSubItemEvent AEvent
 
 DEFINE_FUNC_PTR(ListView_SetOnData)
 void
-ListView_SetOnData(TListView AObj, TLVOwnerDataEvent AEventId) {
+ListView_SetOnData(TListView AObj, TLVDataEvent AEventId) {
     GET_FUNC_ADDR(ListView_SetOnData)
     MySyscall(pListView_SetOnData, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDataFind)
 void
-ListView_SetOnDataFind(TListView AObj, TLVOwnerDataFindEvent AEventId) {
+ListView_SetOnDataFind(TListView AObj, TLVDataFindEvent AEventId) {
     GET_FUNC_ADDR(ListView_SetOnDataFind)
     MySyscall(pListView_SetOnDataFind, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDataHint)
 void
-ListView_SetOnDataHint(TListView AObj, TLVOwnerDataHintEvent AEventId) {
+ListView_SetOnDataHint(TListView AObj, TLVDataHintEvent AEventId) {
     GET_FUNC_ADDR(ListView_SetOnDataHint)
     MySyscall(pListView_SetOnDataHint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
@@ -38243,6 +38422,13 @@ void
 TreeView_AnchorVerticalCenterTo(TTreeView AObj, TControl ASibling) {
     GET_FUNC_ADDR(TreeView_AnchorVerticalCenterTo)
     MySyscall(pTreeView_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_AnchorSame)
+void
+TreeView_AnchorSame(TTreeView AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(TreeView_AnchorSame)
+    MySyscall(pTreeView_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_AnchorAsAlign)
@@ -40137,6 +40323,13 @@ StatusBar_AnchorVerticalCenterTo(TStatusBar AObj, TControl ASibling) {
     MySyscall(pStatusBar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(StatusBar_AnchorSame)
+void
+StatusBar_AnchorSame(TStatusBar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(StatusBar_AnchorSame)
+    MySyscall(pStatusBar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(StatusBar_AnchorAsAlign)
 void
 StatusBar_AnchorAsAlign(TStatusBar AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -41474,6 +41667,13 @@ void
 ToolBar_AnchorVerticalCenterTo(TToolBar AObj, TControl ASibling) {
     GET_FUNC_ADDR(ToolBar_AnchorVerticalCenterTo)
     MySyscall(pToolBar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_AnchorSame)
+void
+ToolBar_AnchorSame(TToolBar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ToolBar_AnchorSame)
+    MySyscall(pToolBar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_AnchorAsAlign)
@@ -42974,6 +43174,13 @@ void
 BitBtn_AnchorVerticalCenterTo(TBitBtn AObj, TControl ASibling) {
     GET_FUNC_ADDR(BitBtn_AnchorVerticalCenterTo)
     MySyscall(pBitBtn_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_AnchorSame)
+void
+BitBtn_AnchorSame(TBitBtn AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(BitBtn_AnchorSame)
+    MySyscall(pBitBtn_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_AnchorAsAlign)
@@ -44961,6 +45168,13 @@ void
 Memo_AnchorVerticalCenterTo(TMemo AObj, TControl ASibling) {
     GET_FUNC_ADDR(Memo_AnchorVerticalCenterTo)
     MySyscall(pMemo_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AnchorSame)
+void
+Memo_AnchorSame(TMemo AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Memo_AnchorSame)
+    MySyscall(pMemo_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_AnchorAsAlign)
@@ -49801,6 +50015,13 @@ PageControl_AnchorVerticalCenterTo(TPageControl AObj, TControl ASibling) {
     MySyscall(pPageControl_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(PageControl_AnchorSame)
+void
+PageControl_AnchorSame(TPageControl AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(PageControl_AnchorSame)
+    MySyscall(pPageControl_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(PageControl_AnchorAsAlign)
 void
 PageControl_AnchorAsAlign(TPageControl AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -51161,6 +51382,13 @@ TabSheet_AnchorVerticalCenterTo(TTabSheet AObj, TControl ASibling) {
     MySyscall(pTabSheet_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TabSheet_AnchorSame)
+void
+TabSheet_AnchorSame(TTabSheet AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(TabSheet_AnchorSame)
+    MySyscall(pTabSheet_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TabSheet_AnchorAsAlign)
 void
 TabSheet_AnchorAsAlign(TTabSheet AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -52414,6 +52642,13 @@ void
 Button_AnchorVerticalCenterTo(TButton AObj, TControl ASibling) {
     GET_FUNC_ADDR(Button_AnchorVerticalCenterTo)
     MySyscall(pButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_AnchorSame)
+void
+Button_AnchorSame(TButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Button_AnchorSame)
+    MySyscall(pButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_AnchorAsAlign)
@@ -53725,6 +53960,13 @@ void
 Edit_AnchorVerticalCenterTo(TEdit AObj, TControl ASibling) {
     GET_FUNC_ADDR(Edit_AnchorVerticalCenterTo)
     MySyscall(pEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_AnchorSame)
+void
+Edit_AnchorSame(TEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Edit_AnchorSame)
+    MySyscall(pEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_AnchorAsAlign)
@@ -56484,6 +56726,13 @@ SpinEdit_AnchorVerticalCenterTo(TSpinEdit AObj, TControl ASibling) {
     MySyscall(pSpinEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(SpinEdit_AnchorSame)
+void
+SpinEdit_AnchorSame(TSpinEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(SpinEdit_AnchorSame)
+    MySyscall(pSpinEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(SpinEdit_AnchorAsAlign)
 void
 SpinEdit_AnchorAsAlign(TSpinEdit AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -57919,6 +58168,13 @@ void
 MiniWebview_AnchorVerticalCenterTo(TMiniWebview AObj, TControl ASibling) {
     GET_FUNC_ADDR(MiniWebview_AnchorVerticalCenterTo)
     MySyscall(pMiniWebview_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_AnchorSame)
+void
+MiniWebview_AnchorSame(TMiniWebview AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(MiniWebview_AnchorSame)
+    MySyscall(pMiniWebview_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MiniWebview_AnchorAsAlign)
@@ -61329,6 +61585,13 @@ ToolButton_AnchorVerticalCenterTo(TToolButton AObj, TControl ASibling) {
     MySyscall(pToolButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ToolButton_AnchorSame)
+void
+ToolButton_AnchorSame(TToolButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ToolButton_AnchorSame)
+    MySyscall(pToolButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ToolButton_AnchorAsAlign)
 void
 ToolButton_AnchorAsAlign(TToolButton AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -63314,6 +63577,13 @@ PaintBox_AnchorVerticalCenterTo(TPaintBox AObj, TControl ASibling) {
     MySyscall(pPaintBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(PaintBox_AnchorSame)
+void
+PaintBox_AnchorSame(TPaintBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(PaintBox_AnchorSame)
+    MySyscall(pPaintBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(PaintBox_AnchorAsAlign)
 void
 PaintBox_AnchorAsAlign(TPaintBox AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -64739,6 +65009,13 @@ void
 Form_AnchorVerticalCenterTo(TForm AObj, TControl ASibling) {
     GET_FUNC_ADDR(Form_AnchorVerticalCenterTo)
     MySyscall(pForm_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_AnchorSame)
+void
+Form_AnchorSame(TForm AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Form_AnchorSame)
+    MySyscall(pForm_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_AnchorAsAlign)
@@ -66991,6 +67268,13 @@ ScrollBar_AnchorVerticalCenterTo(TScrollBar AObj, TControl ASibling) {
     MySyscall(pScrollBar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ScrollBar_AnchorSame)
+void
+ScrollBar_AnchorSame(TScrollBar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ScrollBar_AnchorSame)
+    MySyscall(pScrollBar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ScrollBar_AnchorAsAlign)
 void
 ScrollBar_AnchorAsAlign(TScrollBar AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -68272,6 +68556,13 @@ void
 MaskEdit_AnchorVerticalCenterTo(TMaskEdit AObj, TControl ASibling) {
     GET_FUNC_ADDR(MaskEdit_AnchorVerticalCenterTo)
     MySyscall(pMaskEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_AnchorSame)
+void
+MaskEdit_AnchorSame(TMaskEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(MaskEdit_AnchorSame)
+    MySyscall(pMaskEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_AnchorAsAlign)
@@ -69648,6 +69939,13 @@ Shape_AnchorVerticalCenterTo(TShape AObj, TControl ASibling) {
     MySyscall(pShape_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Shape_AnchorSame)
+void
+Shape_AnchorSame(TShape AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Shape_AnchorSame)
+    MySyscall(pShape_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Shape_AnchorAsAlign)
 void
 Shape_AnchorAsAlign(TShape AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -70525,6 +70823,13 @@ Bevel_AnchorVerticalCenterTo(TBevel AObj, TControl ASibling) {
     MySyscall(pBevel_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Bevel_AnchorSame)
+void
+Bevel_AnchorSame(TBevel AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Bevel_AnchorSame)
+    MySyscall(pBevel_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Bevel_AnchorAsAlign)
 void
 Bevel_AnchorAsAlign(TBevel AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -71400,6 +71705,13 @@ void
 ScrollBox_AnchorVerticalCenterTo(TScrollBox AObj, TControl ASibling) {
     GET_FUNC_ADDR(ScrollBox_AnchorVerticalCenterTo)
     MySyscall(pScrollBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_AnchorSame)
+void
+ScrollBox_AnchorSame(TScrollBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ScrollBox_AnchorSame)
+    MySyscall(pScrollBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_AnchorAsAlign)
@@ -72813,6 +73125,13 @@ CheckListBox_AnchorVerticalCenterTo(TCheckListBox AObj, TControl ASibling) {
     MySyscall(pCheckListBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CheckListBox_AnchorSame)
+void
+CheckListBox_AnchorSame(TCheckListBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(CheckListBox_AnchorSame)
+    MySyscall(pCheckListBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CheckListBox_AnchorAsAlign)
 void
 CheckListBox_AnchorAsAlign(TCheckListBox AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -74187,6 +74506,13 @@ Gauge_AnchorVerticalCenterTo(TGauge AObj, TControl ASibling) {
     MySyscall(pGauge_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Gauge_AnchorSame)
+void
+Gauge_AnchorSame(TGauge AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Gauge_AnchorSame)
+    MySyscall(pGauge_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Gauge_AnchorAsAlign)
 void
 Gauge_AnchorAsAlign(TGauge AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -75104,6 +75430,13 @@ void
 ImageButton_AnchorVerticalCenterTo(TImageButton AObj, TControl ASibling) {
     GET_FUNC_ADDR(ImageButton_AnchorVerticalCenterTo)
     MySyscall(pImageButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_AnchorSame)
+void
+ImageButton_AnchorSame(TImageButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ImageButton_AnchorSame)
+    MySyscall(pImageButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_AnchorAsAlign)
@@ -77902,6 +78235,13 @@ StringGrid_AnchorVerticalCenterTo(TStringGrid AObj, TControl ASibling) {
     MySyscall(pStringGrid_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(StringGrid_AnchorSame)
+void
+StringGrid_AnchorSame(TStringGrid AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(StringGrid_AnchorSame)
+    MySyscall(pStringGrid_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(StringGrid_AnchorAsAlign)
 void
 StringGrid_AnchorAsAlign(TStringGrid AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -80241,6 +80581,13 @@ rawGrid_AnchorVerticalCenterTo(TDrawGrid AObj, TControl ASibling) {
     MySyscall(pDrawGrid_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DrawGrid_AnchorSame)
+void
+rawGrid_AnchorSame(TDrawGrid AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(DrawGrid_AnchorSame)
+    MySyscall(pDrawGrid_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DrawGrid_AnchorAsAlign)
 void
 rawGrid_AnchorAsAlign(TDrawGrid AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -81908,6 +82255,13 @@ ValueListEditor_AnchorVerticalCenterTo(TValueListEditor AObj, TControl ASibling)
     MySyscall(pValueListEditor_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ValueListEditor_AnchorSame)
+void
+ValueListEditor_AnchorSame(TValueListEditor AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ValueListEditor_AnchorSame)
+    MySyscall(pValueListEditor_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ValueListEditor_AnchorAsAlign)
 void
 ValueListEditor_AnchorAsAlign(TValueListEditor AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -83569,6 +83923,13 @@ void
 HeaderControl_AnchorVerticalCenterTo(THeaderControl AObj, TControl ASibling) {
     GET_FUNC_ADDR(HeaderControl_AnchorVerticalCenterTo)
     MySyscall(pHeaderControl_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_AnchorSame)
+void
+HeaderControl_AnchorSame(THeaderControl AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(HeaderControl_AnchorSame)
+    MySyscall(pHeaderControl_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_AnchorAsAlign)
@@ -85264,6 +85625,13 @@ LabeledEdit_AnchorVerticalCenterTo(TLabeledEdit AObj, TControl ASibling) {
     MySyscall(pLabeledEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(LabeledEdit_AnchorSame)
+void
+LabeledEdit_AnchorSame(TLabeledEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(LabeledEdit_AnchorSame)
+    MySyscall(pLabeledEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(LabeledEdit_AnchorAsAlign)
 void
 LabeledEdit_AnchorAsAlign(TLabeledEdit AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -86652,6 +87020,13 @@ BoundLabel_AnchorVerticalCenterTo(TBoundLabel AObj, TControl ASibling) {
     MySyscall(pBoundLabel_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(BoundLabel_AnchorSame)
+void
+BoundLabel_AnchorSame(TBoundLabel AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(BoundLabel_AnchorSame)
+    MySyscall(pBoundLabel_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(BoundLabel_AnchorAsAlign)
 void
 BoundLabel_AnchorAsAlign(TBoundLabel AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -87709,6 +88084,13 @@ void
 FlowPanel_AnchorVerticalCenterTo(TFlowPanel AObj, TControl ASibling) {
     GET_FUNC_ADDR(FlowPanel_AnchorVerticalCenterTo)
     MySyscall(pFlowPanel_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_AnchorSame)
+void
+FlowPanel_AnchorSame(TFlowPanel AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(FlowPanel_AnchorSame)
+    MySyscall(pFlowPanel_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_AnchorAsAlign)
@@ -89097,6 +89479,13 @@ void
 CoolBar_AnchorVerticalCenterTo(TCoolBar AObj, TControl ASibling) {
     GET_FUNC_ADDR(CoolBar_AnchorVerticalCenterTo)
     MySyscall(pCoolBar_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_AnchorSame)
+void
+CoolBar_AnchorSame(TCoolBar AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(CoolBar_AnchorSame)
+    MySyscall(pCoolBar_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_AnchorAsAlign)
@@ -92591,6 +92980,13 @@ ComboBoxEx_AnchorVerticalCenterTo(TComboBoxEx AObj, TControl ASibling) {
     MySyscall(pComboBoxEx_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ComboBoxEx_AnchorSame)
+void
+ComboBoxEx_AnchorSame(TComboBoxEx AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ComboBoxEx_AnchorSame)
+    MySyscall(pComboBoxEx_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ComboBoxEx_AnchorAsAlign)
 void
 ComboBoxEx_AnchorAsAlign(TComboBoxEx AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -94396,6 +94792,13 @@ Frame_AnchorVerticalCenterTo(TFrame AObj, TControl ASibling) {
     MySyscall(pFrame_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Frame_AnchorSame)
+void
+Frame_AnchorSame(TFrame AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(Frame_AnchorSame)
+    MySyscall(pFrame_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Frame_AnchorAsAlign)
 void
 Frame_AnchorAsAlign(TFrame AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -95940,6 +96343,13 @@ void
 XButton_AnchorVerticalCenterTo(TXButton AObj, TControl ASibling) {
     GET_FUNC_ADDR(XButton_AnchorVerticalCenterTo)
     MySyscall(pXButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_AnchorSame)
+void
+XButton_AnchorSame(TXButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(XButton_AnchorSame)
+    MySyscall(pXButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_AnchorAsAlign)
@@ -97665,6 +98075,13 @@ CheckGroup_AnchorVerticalCenterTo(TCheckGroup AObj, TControl ASibling) {
     MySyscall(pCheckGroup_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CheckGroup_AnchorSame)
+void
+CheckGroup_AnchorSame(TCheckGroup AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(CheckGroup_AnchorSame)
+    MySyscall(pCheckGroup_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CheckGroup_AnchorAsAlign)
 void
 CheckGroup_AnchorAsAlign(TCheckGroup AObj, TAlign ATheAlign, int32_t ASpace) {
@@ -99030,6 +99447,13 @@ void
 ToggleBox_AnchorVerticalCenterTo(TToggleBox AObj, TControl ASibling) {
     GET_FUNC_ADDR(ToggleBox_AnchorVerticalCenterTo)
     MySyscall(pToggleBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_AnchorSame)
+void
+ToggleBox_AnchorSame(TToggleBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ToggleBox_AnchorSame)
+    MySyscall(pToggleBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_AnchorAsAlign)
