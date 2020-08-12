@@ -14,6 +14,7 @@
 {$ELSE}
   Types,
 {$ENDIF}
+  LResources,
   LCLType,
   typinfo,
   LCLProc,

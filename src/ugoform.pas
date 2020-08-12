@@ -13,7 +13,7 @@ unit uGoForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, LMessages, LCLType;
+  Classes, SysUtils, Forms, Controls, LMessages, LCLType, fgl;
 
 type
     // 消息过程定义
@@ -29,6 +29,7 @@ type
     procedure ProcessResource; override;
     procedure WndProc(var TheMessage: TLMessage); override;
   public
+    constructor CreateFromClassName(TheOwner: TComponent; const AClassName: string);
     constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
     procedure ScaleForPPI(ANewPPI: Integer);
     procedure ScaleForCurrentDpi;
@@ -39,6 +40,12 @@ type
 
 
 implementation
+
+type
+  TFormResouces = specialize TFPGMap<string, Pointer>;
+
+var
+  uFormRes: TFormResouces;
 
 constructor TGoForm.CreateNew(AOwner: TComponent; Num: Integer);
 begin
@@ -84,7 +91,6 @@ begin
   // 没有使用窗口资源，不处理，处理就会报错的。
 end;
 
-
 procedure TGoForm.WndProc(var TheMessage: TLMessage);
 begin
   if Assigned(FOnWndProc) then
@@ -93,7 +99,16 @@ begin
     inherited WndProc(TheMessage);
 end;
 
+constructor TGoForm.CreateFromClassName(TheOwner: TComponent;
+  const AClassName: string);
+begin
 
+  inherited Create(TheOwner);
+end;
+
+initialization
+
+finalization
 
 end.
 

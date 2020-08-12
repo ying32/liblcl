@@ -27,6 +27,24 @@ begin
   TPicture.RegisterFileFormat(TPngImage.GetFileExtensions, rsPortableNetworkGraphic, TPngImage);
 end;
 
+// 注册Lazarus资源
+procedure AddLazarusResources(AName: PChar; AValueType: PChar; AValue: Pointer; ALength: NativeUInt);
+var
+  LRes: AnsiString;
+begin
+  if (ALength = 0) or (AValue = nil) then
+    Exit;
+  SetLength(LRes, ALength);
+  Move(AValue^, LRes[1], ALength);
+  LazarusResources.Add(AnsiString(AName), AnsiString(AValueType), LRes);
+end;
+
+procedure AddLazarusResources2(AName: PChar; AValueType: PChar; AValue: PChar);
+begin
+  if AValue = nil then
+    Exit;
+  LazarusResources.Add(AnsiString(AName), AnsiString(AValueType), AnsiString(AValue));
+end;
 
 // SysLocale  14byte
 procedure DSysLocale(var AInfo: TSysLocale); extdecl;
@@ -119,6 +137,14 @@ begin
   Result := TGoForm.Create(AOwner);
   handleExceptionEnd
 end;
+
+////CLASSMETHOD:
+//function Form_Create3(AOwner: TComponent; AClassName: PChar; AInitScale: LongBool): TGoForm; extdecl;
+//begin
+//  handleExceptionBegin
+//  Result := TGoForm.CreateFromClassName(AOwner, AClassName);
+//  handleExceptionEnd
+//end;
 
 //CLASSMETHOD:
 procedure Form_EnabledMaximize(AObj: TGoForm; AValue: Boolean); extdecl;
@@ -1255,6 +1281,9 @@ exports
 
   // SysLocaled
   DSysLocale,
+
+  AddLazarusResources,
+  AddLazarusResources2,
 
   // 库的信息
   DLibStringEncoding,
