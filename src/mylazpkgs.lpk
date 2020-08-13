@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="mylazpkgs"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="ying32"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Description Value="govcl components"/>
+    <Version Major="1"/>
+    <Files Count="8">
+      <Item1>
+        <Filename Value="ImageButton.pas"/>
+        <UnitName Value="ImageButton"/>
+      </Item1>
+      <Item2>
+        <Filename Value="ugauge.pas"/>
+        <UnitName Value="uGauge"/>
+      </Item2>
+      <Item3>
+        <Filename Value="ulinklabel.pas"/>
+        <UnitName Value="uLinkLabel"/>
+      </Item3>
+      <Item4>
+        <Filename Value="uMiniWebview.pas"/>
+        <UnitName Value="uMiniWebview"/>
+      </Item4>
+      <Item5>
+        <Filename Value="urichedit.pas"/>
+        <UnitName Value="uRichEdit"/>
+      </Item5>
+      <Item6>
+        <Filename Value="xbutton.pas"/>
+        <UnitName Value="xButton"/>
+      </Item6>
+      <Item7>
+        <Filename Value="mylazpkgs.pas"/>
+        <UnitName Value="mylazpkgs"/>
+      </Item7>
+      <Item8>
+        <Filename Value="uregcomponents.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="uregcomponents"/>
+      </Item8>
+    </Files>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="FCL"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>
