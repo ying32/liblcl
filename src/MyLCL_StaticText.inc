@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StaticText_PaintTo(AObj: TStaticText; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StaticText_RemoveControl(AObj: TStaticText; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure StaticText_AnchorClient(AObj: TStaticText; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleDesignToForm(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleFormToDesign(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_Scale96ToForm(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleFormTo96(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_Scale96ToFont(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleFontTo96(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleScreenToFont(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleFontToScreen(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_Scale96ToScreen(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StaticText_ScaleScreenTo96(AObj: TStaticText; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StaticText_AutoAdjustLayout(AObj: TStaticText; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StaticText_FixDesignFontsPPI(AObj: TStaticText; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure StaticText_ScaleFontsPPI(AObj: TStaticText; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1388,6 +1501,7 @@ exports
   StaticText_HandleAllocated,
   StaticText_InsertControl,
   StaticText_Invalidate,
+  StaticText_PaintTo,
   StaticText_RemoveControl,
   StaticText_Realign,
   StaticText_Repaint,
@@ -1428,6 +1542,19 @@ exports
   StaticText_AnchorSame,
   StaticText_AnchorAsAlign,
   StaticText_AnchorClient,
+  StaticText_ScaleDesignToForm,
+  StaticText_ScaleFormToDesign,
+  StaticText_Scale96ToForm,
+  StaticText_ScaleFormTo96,
+  StaticText_Scale96ToFont,
+  StaticText_ScaleFontTo96,
+  StaticText_ScaleScreenToFont,
+  StaticText_ScaleFontToScreen,
+  StaticText_Scale96ToScreen,
+  StaticText_ScaleScreenTo96,
+  StaticText_AutoAdjustLayout,
+  StaticText_FixDesignFontsPPI,
+  StaticText_ScaleFontsPPI,
   StaticText_GetAlign,
   StaticText_SetAlign,
   StaticText_GetAlignment,

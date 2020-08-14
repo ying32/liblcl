@@ -175,6 +175,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Memo_PaintTo(AObj: TMemo; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Memo_RemoveControl(AObj: TMemo; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -499,6 +507,111 @@ procedure Memo_AnchorClient(AObj: TMemo; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleDesignToForm(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleFormToDesign(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_Scale96ToForm(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleFormTo96(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_Scale96ToFont(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleFontTo96(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleScreenToFont(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleFontToScreen(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_Scale96ToScreen(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Memo_ScaleScreenTo96(AObj: TMemo; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Memo_AutoAdjustLayout(AObj: TMemo; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Memo_FixDesignFontsPPI(AObj: TMemo; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Memo_ScaleFontsPPI(AObj: TMemo; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1670,6 +1783,7 @@ exports
   Memo_HandleAllocated,
   Memo_InsertControl,
   Memo_Invalidate,
+  Memo_PaintTo,
   Memo_RemoveControl,
   Memo_Realign,
   Memo_Repaint,
@@ -1710,6 +1824,19 @@ exports
   Memo_AnchorSame,
   Memo_AnchorAsAlign,
   Memo_AnchorClient,
+  Memo_ScaleDesignToForm,
+  Memo_ScaleFormToDesign,
+  Memo_Scale96ToForm,
+  Memo_ScaleFormTo96,
+  Memo_Scale96ToFont,
+  Memo_ScaleFontTo96,
+  Memo_ScaleScreenToFont,
+  Memo_ScaleFontToScreen,
+  Memo_Scale96ToScreen,
+  Memo_ScaleScreenTo96,
+  Memo_AutoAdjustLayout,
+  Memo_FixDesignFontsPPI,
+  Memo_ScaleFontsPPI,
   Memo_GetAlign,
   Memo_SetAlign,
   Memo_GetAlignment,

@@ -167,6 +167,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Edit_PaintTo(AObj: TEdit; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Edit_RemoveControl(AObj: TEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -491,6 +499,111 @@ procedure Edit_AnchorClient(AObj: TEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleDesignToForm(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleFormToDesign(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_Scale96ToForm(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleFormTo96(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_Scale96ToFont(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleFontTo96(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleScreenToFont(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleFontToScreen(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_Scale96ToScreen(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Edit_ScaleScreenTo96(AObj: TEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Edit_AutoAdjustLayout(AObj: TEdit; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Edit_FixDesignFontsPPI(AObj: TEdit; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Edit_ScaleFontsPPI(AObj: TEdit; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1632,6 +1745,7 @@ exports
   Edit_HandleAllocated,
   Edit_InsertControl,
   Edit_Invalidate,
+  Edit_PaintTo,
   Edit_RemoveControl,
   Edit_Realign,
   Edit_Repaint,
@@ -1672,6 +1786,19 @@ exports
   Edit_AnchorSame,
   Edit_AnchorAsAlign,
   Edit_AnchorClient,
+  Edit_ScaleDesignToForm,
+  Edit_ScaleFormToDesign,
+  Edit_Scale96ToForm,
+  Edit_ScaleFormTo96,
+  Edit_Scale96ToFont,
+  Edit_ScaleFontTo96,
+  Edit_ScaleScreenToFont,
+  Edit_ScaleFontToScreen,
+  Edit_Scale96ToScreen,
+  Edit_ScaleScreenTo96,
+  Edit_AutoAdjustLayout,
+  Edit_FixDesignFontsPPI,
+  Edit_ScaleFontsPPI,
   Edit_GetAlign,
   Edit_SetAlign,
   Edit_GetAlignment,

@@ -199,6 +199,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MiniWebview_PaintTo(AObj: TMiniWebview; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MiniWebview_RemoveControl(AObj: TMiniWebview; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -507,6 +515,111 @@ procedure MiniWebview_AnchorClient(AObj: TMiniWebview; ASpace: Integer); extdecl
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleDesignToForm(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleFormToDesign(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_Scale96ToForm(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleFormTo96(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_Scale96ToFont(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleFontTo96(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleScreenToFont(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleFontToScreen(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_Scale96ToScreen(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MiniWebview_ScaleScreenTo96(AObj: TMiniWebview; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MiniWebview_AutoAdjustLayout(AObj: TMiniWebview; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MiniWebview_FixDesignFontsPPI(AObj: TMiniWebview; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure MiniWebview_ScaleFontsPPI(AObj: TMiniWebview; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1182,6 +1295,7 @@ exports
   MiniWebview_HandleAllocated,
   MiniWebview_InsertControl,
   MiniWebview_Invalidate,
+  MiniWebview_PaintTo,
   MiniWebview_RemoveControl,
   MiniWebview_Realign,
   MiniWebview_Repaint,
@@ -1220,6 +1334,19 @@ exports
   MiniWebview_AnchorSame,
   MiniWebview_AnchorAsAlign,
   MiniWebview_AnchorClient,
+  MiniWebview_ScaleDesignToForm,
+  MiniWebview_ScaleFormToDesign,
+  MiniWebview_Scale96ToForm,
+  MiniWebview_ScaleFormTo96,
+  MiniWebview_Scale96ToFont,
+  MiniWebview_ScaleFontTo96,
+  MiniWebview_ScaleScreenToFont,
+  MiniWebview_ScaleFontToScreen,
+  MiniWebview_Scale96ToScreen,
+  MiniWebview_ScaleScreenTo96,
+  MiniWebview_AutoAdjustLayout,
+  MiniWebview_FixDesignFontsPPI,
+  MiniWebview_ScaleFontsPPI,
   MiniWebview_GetReadyState,
   MiniWebview_GetAlign,
   MiniWebview_SetAlign,

@@ -169,6 +169,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ColorListBox_PaintTo(AObj: TColorListBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ColorListBox_RemoveControl(AObj: TColorListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -493,6 +501,111 @@ procedure ColorListBox_AnchorClient(AObj: TColorListBox; ASpace: Integer); extde
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleDesignToForm(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleFormToDesign(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_Scale96ToForm(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleFormTo96(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_Scale96ToFont(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleFontTo96(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleScreenToFont(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleFontToScreen(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_Scale96ToScreen(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorListBox_ScaleScreenTo96(AObj: TColorListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ColorListBox_AutoAdjustLayout(AObj: TColorListBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ColorListBox_FixDesignFontsPPI(AObj: TColorListBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ColorListBox_ScaleFontsPPI(AObj: TColorListBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1514,6 +1627,7 @@ exports
   ColorListBox_HandleAllocated,
   ColorListBox_InsertControl,
   ColorListBox_Invalidate,
+  ColorListBox_PaintTo,
   ColorListBox_RemoveControl,
   ColorListBox_Realign,
   ColorListBox_Repaint,
@@ -1554,6 +1668,19 @@ exports
   ColorListBox_AnchorSame,
   ColorListBox_AnchorAsAlign,
   ColorListBox_AnchorClient,
+  ColorListBox_ScaleDesignToForm,
+  ColorListBox_ScaleFormToDesign,
+  ColorListBox_Scale96ToForm,
+  ColorListBox_ScaleFormTo96,
+  ColorListBox_Scale96ToFont,
+  ColorListBox_ScaleFontTo96,
+  ColorListBox_ScaleScreenToFont,
+  ColorListBox_ScaleFontToScreen,
+  ColorListBox_Scale96ToScreen,
+  ColorListBox_ScaleScreenTo96,
+  ColorListBox_AutoAdjustLayout,
+  ColorListBox_FixDesignFontsPPI,
+  ColorListBox_ScaleFontsPPI,
   ColorListBox_GetAlign,
   ColorListBox_SetAlign,
   ColorListBox_GetDefaultColorColor,

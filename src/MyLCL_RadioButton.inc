@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RadioButton_PaintTo(AObj: TRadioButton; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RadioButton_RemoveControl(AObj: TRadioButton; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure RadioButton_AnchorClient(AObj: TRadioButton; ASpace: Integer); extdecl
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleDesignToForm(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleFormToDesign(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_Scale96ToForm(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleFormTo96(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_Scale96ToFont(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleFontTo96(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleScreenToFont(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleFontToScreen(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_Scale96ToScreen(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioButton_ScaleScreenTo96(AObj: TRadioButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RadioButton_AutoAdjustLayout(AObj: TRadioButton; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RadioButton_FixDesignFontsPPI(AObj: TRadioButton; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure RadioButton_ScaleFontsPPI(AObj: TRadioButton; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1372,6 +1485,7 @@ exports
   RadioButton_HandleAllocated,
   RadioButton_InsertControl,
   RadioButton_Invalidate,
+  RadioButton_PaintTo,
   RadioButton_RemoveControl,
   RadioButton_Realign,
   RadioButton_Repaint,
@@ -1412,6 +1526,19 @@ exports
   RadioButton_AnchorSame,
   RadioButton_AnchorAsAlign,
   RadioButton_AnchorClient,
+  RadioButton_ScaleDesignToForm,
+  RadioButton_ScaleFormToDesign,
+  RadioButton_Scale96ToForm,
+  RadioButton_ScaleFormTo96,
+  RadioButton_Scale96ToFont,
+  RadioButton_ScaleFontTo96,
+  RadioButton_ScaleScreenToFont,
+  RadioButton_ScaleFontToScreen,
+  RadioButton_Scale96ToScreen,
+  RadioButton_ScaleScreenTo96,
+  RadioButton_AutoAdjustLayout,
+  RadioButton_FixDesignFontsPPI,
+  RadioButton_ScaleFontsPPI,
   RadioButton_SetOnChange,
   RadioButton_GetAction,
   RadioButton_SetAction,

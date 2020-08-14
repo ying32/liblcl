@@ -325,6 +325,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function Gauge_ScaleDesignToForm(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_ScaleFormToDesign(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_Scale96ToForm(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_ScaleFormTo96(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_Scale96ToFont(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_ScaleFontTo96(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_ScaleScreenToFont(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_ScaleFontToScreen(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_Scale96ToScreen(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Gauge_ScaleScreenTo96(AObj: TGauge; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Gauge_AutoAdjustLayout(AObj: TGauge; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Gauge_FixDesignFontsPPI(AObj: TGauge; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Gauge_ScaleFontsPPI(AObj: TGauge; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function Gauge_GetPercentDone(AObj: TGauge): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1003,6 +1108,19 @@ exports
   Gauge_AnchorSame,
   Gauge_AnchorAsAlign,
   Gauge_AnchorClient,
+  Gauge_ScaleDesignToForm,
+  Gauge_ScaleFormToDesign,
+  Gauge_Scale96ToForm,
+  Gauge_ScaleFormTo96,
+  Gauge_Scale96ToFont,
+  Gauge_ScaleFontTo96,
+  Gauge_ScaleScreenToFont,
+  Gauge_ScaleFontToScreen,
+  Gauge_Scale96ToScreen,
+  Gauge_ScaleScreenTo96,
+  Gauge_AutoAdjustLayout,
+  Gauge_FixDesignFontsPPI,
+  Gauge_ScaleFontsPPI,
   Gauge_GetPercentDone,
   Gauge_GetAlign,
   Gauge_SetAlign,

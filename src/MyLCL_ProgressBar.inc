@@ -127,6 +127,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ProgressBar_PaintTo(AObj: TProgressBar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ProgressBar_RemoveControl(AObj: TProgressBar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -451,6 +459,111 @@ procedure ProgressBar_AnchorClient(AObj: TProgressBar; ASpace: Integer); extdecl
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleDesignToForm(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleFormToDesign(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_Scale96ToForm(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleFormTo96(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_Scale96ToFont(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleFontTo96(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleScreenToFont(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleFontToScreen(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_Scale96ToScreen(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ProgressBar_ScaleScreenTo96(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ProgressBar_AutoAdjustLayout(AObj: TProgressBar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ProgressBar_FixDesignFontsPPI(AObj: TProgressBar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ProgressBar_ScaleFontsPPI(AObj: TProgressBar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1364,6 +1477,7 @@ exports
   ProgressBar_HandleAllocated,
   ProgressBar_InsertControl,
   ProgressBar_Invalidate,
+  ProgressBar_PaintTo,
   ProgressBar_RemoveControl,
   ProgressBar_Realign,
   ProgressBar_Repaint,
@@ -1404,6 +1518,19 @@ exports
   ProgressBar_AnchorSame,
   ProgressBar_AnchorAsAlign,
   ProgressBar_AnchorClient,
+  ProgressBar_ScaleDesignToForm,
+  ProgressBar_ScaleFormToDesign,
+  ProgressBar_Scale96ToForm,
+  ProgressBar_ScaleFormTo96,
+  ProgressBar_Scale96ToFont,
+  ProgressBar_ScaleFontTo96,
+  ProgressBar_ScaleScreenToFont,
+  ProgressBar_ScaleFontToScreen,
+  ProgressBar_Scale96ToScreen,
+  ProgressBar_ScaleScreenTo96,
+  ProgressBar_AutoAdjustLayout,
+  ProgressBar_FixDesignFontsPPI,
+  ProgressBar_ScaleFontsPPI,
   ProgressBar_GetAlign,
   ProgressBar_SetAlign,
   ProgressBar_GetAnchors,

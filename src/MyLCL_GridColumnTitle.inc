@@ -24,6 +24,23 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure GridColumnTitle_FixDesignFontsPPI(AObj: TGridColumnTitle; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure GridColumnTitle_ScaleFontsPPI(AObj: TGridColumnTitle; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function GridColumnTitle_IsDefault(AObj: TGridColumnTitle): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -236,6 +253,8 @@ end;
 exports
   GridColumnTitle_Assign,
   GridColumnTitle_FillTitleDefaultFont,
+  GridColumnTitle_FixDesignFontsPPI,
+  GridColumnTitle_ScaleFontsPPI,
   GridColumnTitle_IsDefault,
   GridColumnTitle_GetNamePath,
   GridColumnTitle_ClassType,

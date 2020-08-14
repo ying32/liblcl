@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckBox_PaintTo(AObj: TCheckBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckBox_RemoveControl(AObj: TCheckBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure CheckBox_AnchorClient(AObj: TCheckBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleDesignToForm(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleFormToDesign(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_Scale96ToForm(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleFormTo96(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_Scale96ToFont(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleFontTo96(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleScreenToFont(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleFontToScreen(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_Scale96ToScreen(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckBox_ScaleScreenTo96(AObj: TCheckBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckBox_AutoAdjustLayout(AObj: TCheckBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckBox_FixDesignFontsPPI(AObj: TCheckBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure CheckBox_ScaleFontsPPI(AObj: TCheckBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1400,6 +1513,7 @@ exports
   CheckBox_HandleAllocated,
   CheckBox_InsertControl,
   CheckBox_Invalidate,
+  CheckBox_PaintTo,
   CheckBox_RemoveControl,
   CheckBox_Realign,
   CheckBox_Repaint,
@@ -1440,6 +1554,19 @@ exports
   CheckBox_AnchorSame,
   CheckBox_AnchorAsAlign,
   CheckBox_AnchorClient,
+  CheckBox_ScaleDesignToForm,
+  CheckBox_ScaleFormToDesign,
+  CheckBox_Scale96ToForm,
+  CheckBox_ScaleFormTo96,
+  CheckBox_Scale96ToFont,
+  CheckBox_ScaleFontTo96,
+  CheckBox_ScaleScreenToFont,
+  CheckBox_ScaleFontToScreen,
+  CheckBox_Scale96ToScreen,
+  CheckBox_ScaleScreenTo96,
+  CheckBox_AutoAdjustLayout,
+  CheckBox_FixDesignFontsPPI,
+  CheckBox_ScaleFontsPPI,
   CheckBox_SetOnChange,
   CheckBox_GetAction,
   CheckBox_SetAction,

@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MonthCalendar_PaintTo(AObj: TMonthCalendar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MonthCalendar_RemoveControl(AObj: TMonthCalendar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure MonthCalendar_AnchorClient(AObj: TMonthCalendar; ASpace: Integer); ext
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleDesignToForm(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleFormToDesign(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_Scale96ToForm(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleFormTo96(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_Scale96ToFont(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleFontTo96(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleScreenToFont(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleFontToScreen(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_Scale96ToScreen(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MonthCalendar_ScaleScreenTo96(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MonthCalendar_AutoAdjustLayout(AObj: TMonthCalendar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MonthCalendar_FixDesignFontsPPI(AObj: TMonthCalendar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure MonthCalendar_ScaleFontsPPI(AObj: TMonthCalendar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1322,6 +1435,7 @@ exports
   MonthCalendar_HandleAllocated,
   MonthCalendar_InsertControl,
   MonthCalendar_Invalidate,
+  MonthCalendar_PaintTo,
   MonthCalendar_RemoveControl,
   MonthCalendar_Realign,
   MonthCalendar_Repaint,
@@ -1362,6 +1476,19 @@ exports
   MonthCalendar_AnchorSame,
   MonthCalendar_AnchorAsAlign,
   MonthCalendar_AnchorClient,
+  MonthCalendar_ScaleDesignToForm,
+  MonthCalendar_ScaleFormToDesign,
+  MonthCalendar_Scale96ToForm,
+  MonthCalendar_ScaleFormTo96,
+  MonthCalendar_Scale96ToFont,
+  MonthCalendar_ScaleFontTo96,
+  MonthCalendar_ScaleScreenToFont,
+  MonthCalendar_ScaleFontToScreen,
+  MonthCalendar_Scale96ToScreen,
+  MonthCalendar_ScaleScreenTo96,
+  MonthCalendar_AutoAdjustLayout,
+  MonthCalendar_FixDesignFontsPPI,
+  MonthCalendar_ScaleFontsPPI,
   MonthCalendar_GetDateTime,
   MonthCalendar_SetDateTime,
   MonthCalendar_GetAlign,

@@ -151,6 +151,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ColorBox_PaintTo(AObj: TColorBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ColorBox_RemoveControl(AObj: TColorBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -475,6 +483,111 @@ procedure ColorBox_AnchorClient(AObj: TColorBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleDesignToForm(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleFormToDesign(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_Scale96ToForm(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleFormTo96(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_Scale96ToFont(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleFontTo96(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleScreenToFont(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleFontToScreen(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_Scale96ToScreen(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ColorBox_ScaleScreenTo96(AObj: TColorBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ColorBox_AutoAdjustLayout(AObj: TColorBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ColorBox_FixDesignFontsPPI(AObj: TColorBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ColorBox_ScaleFontsPPI(AObj: TColorBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1556,6 +1669,7 @@ exports
   ColorBox_HandleAllocated,
   ColorBox_InsertControl,
   ColorBox_Invalidate,
+  ColorBox_PaintTo,
   ColorBox_RemoveControl,
   ColorBox_Realign,
   ColorBox_Repaint,
@@ -1596,6 +1710,19 @@ exports
   ColorBox_AnchorSame,
   ColorBox_AnchorAsAlign,
   ColorBox_AnchorClient,
+  ColorBox_ScaleDesignToForm,
+  ColorBox_ScaleFormToDesign,
+  ColorBox_Scale96ToForm,
+  ColorBox_ScaleFormTo96,
+  ColorBox_Scale96ToFont,
+  ColorBox_ScaleFontTo96,
+  ColorBox_ScaleScreenToFont,
+  ColorBox_ScaleFontToScreen,
+  ColorBox_Scale96ToScreen,
+  ColorBox_ScaleScreenTo96,
+  ColorBox_AutoAdjustLayout,
+  ColorBox_FixDesignFontsPPI,
+  ColorBox_ScaleFontsPPI,
   ColorBox_GetAlign,
   ColorBox_SetAlign,
   ColorBox_GetAutoComplete,

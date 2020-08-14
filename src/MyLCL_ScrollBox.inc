@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ScrollBox_PaintTo(AObj: TScrollBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ScrollBox_RemoveControl(AObj: TScrollBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,111 @@ procedure ScrollBox_AnchorClient(AObj: TScrollBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleDesignToForm(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleFormToDesign(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_Scale96ToForm(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleFormTo96(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_Scale96ToFont(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleFontTo96(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleScreenToFont(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleFontToScreen(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_Scale96ToScreen(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBox_ScaleScreenTo96(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ScrollBox_AutoAdjustLayout(AObj: TScrollBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ScrollBox_FixDesignFontsPPI(AObj: TScrollBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ScrollBox_ScaleFontsPPI(AObj: TScrollBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1455,6 +1568,7 @@ exports
   ScrollBox_HandleAllocated,
   ScrollBox_InsertControl,
   ScrollBox_Invalidate,
+  ScrollBox_PaintTo,
   ScrollBox_RemoveControl,
   ScrollBox_Realign,
   ScrollBox_Repaint,
@@ -1495,6 +1609,19 @@ exports
   ScrollBox_AnchorSame,
   ScrollBox_AnchorAsAlign,
   ScrollBox_AnchorClient,
+  ScrollBox_ScaleDesignToForm,
+  ScrollBox_ScaleFormToDesign,
+  ScrollBox_Scale96ToForm,
+  ScrollBox_ScaleFormTo96,
+  ScrollBox_Scale96ToFont,
+  ScrollBox_ScaleFontTo96,
+  ScrollBox_ScaleScreenToFont,
+  ScrollBox_ScaleFontToScreen,
+  ScrollBox_Scale96ToScreen,
+  ScrollBox_ScaleScreenTo96,
+  ScrollBox_AutoAdjustLayout,
+  ScrollBox_FixDesignFontsPPI,
+  ScrollBox_ScaleFontsPPI,
   ScrollBox_GetAlign,
   ScrollBox_SetAlign,
   ScrollBox_GetAnchors,

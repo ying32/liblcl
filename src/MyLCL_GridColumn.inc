@@ -16,6 +16,23 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure GridColumn_FixDesignFontsPPI(AObj: TGridColumn; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure GridColumn_ScaleFontsPPI(AObj: TGridColumn; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function GridColumn_IsDefault(AObj: TGridColumn): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -416,6 +433,8 @@ end;
 
 exports
   GridColumn_Assign,
+  GridColumn_FixDesignFontsPPI,
+  GridColumn_ScaleFontsPPI,
   GridColumn_IsDefault,
   GridColumn_GetNamePath,
   GridColumn_ClassType,

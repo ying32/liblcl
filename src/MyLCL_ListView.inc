@@ -175,6 +175,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ListView_PaintTo(AObj: TListView; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ListView_RemoveControl(AObj: TListView; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -499,6 +507,111 @@ procedure ListView_AnchorClient(AObj: TListView; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleDesignToForm(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleFormToDesign(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_Scale96ToForm(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleFormTo96(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_Scale96ToFont(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleFontTo96(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleScreenToFont(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleFontToScreen(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_Scale96ToScreen(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_ScaleScreenTo96(AObj: TListView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ListView_AutoAdjustLayout(AObj: TListView; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ListView_FixDesignFontsPPI(AObj: TListView; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ListView_ScaleFontsPPI(AObj: TListView; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -2137,6 +2250,7 @@ exports
   ListView_HandleAllocated,
   ListView_InsertControl,
   ListView_Invalidate,
+  ListView_PaintTo,
   ListView_RemoveControl,
   ListView_Realign,
   ListView_Repaint,
@@ -2177,6 +2291,19 @@ exports
   ListView_AnchorSame,
   ListView_AnchorAsAlign,
   ListView_AnchorClient,
+  ListView_ScaleDesignToForm,
+  ListView_ScaleFormToDesign,
+  ListView_Scale96ToForm,
+  ListView_ScaleFormTo96,
+  ListView_Scale96ToFont,
+  ListView_ScaleFontTo96,
+  ListView_ScaleScreenToFont,
+  ListView_ScaleFontToScreen,
+  ListView_Scale96ToScreen,
+  ListView_ScaleScreenTo96,
+  ListView_AutoAdjustLayout,
+  ListView_FixDesignFontsPPI,
+  ListView_ScaleFontsPPI,
   ListView_GetAutoSort,
   ListView_SetAutoSort,
   ListView_GetAutoSortIndicator,

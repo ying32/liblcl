@@ -183,6 +183,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MaskEdit_PaintTo(AObj: TMaskEdit; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MaskEdit_RemoveControl(AObj: TMaskEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -499,6 +507,111 @@ procedure MaskEdit_AnchorClient(AObj: TMaskEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleDesignToForm(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleFormToDesign(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_Scale96ToForm(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleFormTo96(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_Scale96ToFont(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleFontTo96(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleScreenToFont(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleFontToScreen(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_Scale96ToScreen(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function MaskEdit_ScaleScreenTo96(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MaskEdit_AutoAdjustLayout(AObj: TMaskEdit; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MaskEdit_FixDesignFontsPPI(AObj: TMaskEdit; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure MaskEdit_ScaleFontsPPI(AObj: TMaskEdit; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1643,6 +1756,7 @@ exports
   MaskEdit_HandleAllocated,
   MaskEdit_InsertControl,
   MaskEdit_Invalidate,
+  MaskEdit_PaintTo,
   MaskEdit_RemoveControl,
   MaskEdit_Realign,
   MaskEdit_Repaint,
@@ -1682,6 +1796,19 @@ exports
   MaskEdit_AnchorSame,
   MaskEdit_AnchorAsAlign,
   MaskEdit_AnchorClient,
+  MaskEdit_ScaleDesignToForm,
+  MaskEdit_ScaleFormToDesign,
+  MaskEdit_Scale96ToForm,
+  MaskEdit_ScaleFormTo96,
+  MaskEdit_Scale96ToFont,
+  MaskEdit_ScaleFontTo96,
+  MaskEdit_ScaleScreenToFont,
+  MaskEdit_ScaleFontToScreen,
+  MaskEdit_Scale96ToScreen,
+  MaskEdit_ScaleScreenTo96,
+  MaskEdit_AutoAdjustLayout,
+  MaskEdit_FixDesignFontsPPI,
+  MaskEdit_ScaleFontsPPI,
   MaskEdit_GetAlign,
   MaskEdit_SetAlign,
   MaskEdit_GetAlignment,

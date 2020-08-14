@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function Shape_ScaleDesignToForm(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_ScaleFormToDesign(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_Scale96ToForm(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_ScaleFormTo96(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_Scale96ToFont(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_ScaleFontTo96(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_ScaleScreenToFont(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_ScaleFontToScreen(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_Scale96ToScreen(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Shape_ScaleScreenTo96(AObj: TShape; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Shape_AutoAdjustLayout(AObj: TShape; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Shape_FixDesignFontsPPI(AObj: TShape; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Shape_ScaleFontsPPI(AObj: TShape; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function Shape_GetAlign(AObj: TShape): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -967,6 +1072,19 @@ exports
   Shape_AnchorSame,
   Shape_AnchorAsAlign,
   Shape_AnchorClient,
+  Shape_ScaleDesignToForm,
+  Shape_ScaleFormToDesign,
+  Shape_Scale96ToForm,
+  Shape_ScaleFormTo96,
+  Shape_Scale96ToFont,
+  Shape_ScaleFontTo96,
+  Shape_ScaleScreenToFont,
+  Shape_ScaleFontToScreen,
+  Shape_Scale96ToScreen,
+  Shape_ScaleScreenTo96,
+  Shape_AutoAdjustLayout,
+  Shape_FixDesignFontsPPI,
+  Shape_ScaleFontsPPI,
   Shape_GetAlign,
   Shape_SetAlign,
   Shape_GetAnchors,

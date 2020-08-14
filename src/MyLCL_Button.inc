@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Button_PaintTo(AObj: TButton; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Button_RemoveControl(AObj: TButton; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,111 @@ procedure Button_AnchorClient(AObj: TButton; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleDesignToForm(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleFormToDesign(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_Scale96ToForm(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleFormTo96(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_Scale96ToFont(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleFontTo96(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleScreenToFont(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleFontToScreen(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_Scale96ToScreen(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Button_ScaleScreenTo96(AObj: TButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Button_AutoAdjustLayout(AObj: TButton; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Button_FixDesignFontsPPI(AObj: TButton; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Button_ScaleFontsPPI(AObj: TButton; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1359,6 +1472,7 @@ exports
   Button_HandleAllocated,
   Button_InsertControl,
   Button_Invalidate,
+  Button_PaintTo,
   Button_RemoveControl,
   Button_Realign,
   Button_Repaint,
@@ -1399,6 +1513,19 @@ exports
   Button_AnchorSame,
   Button_AnchorAsAlign,
   Button_AnchorClient,
+  Button_ScaleDesignToForm,
+  Button_ScaleFormToDesign,
+  Button_Scale96ToForm,
+  Button_ScaleFormTo96,
+  Button_Scale96ToFont,
+  Button_ScaleFontTo96,
+  Button_ScaleScreenToFont,
+  Button_ScaleFontToScreen,
+  Button_Scale96ToScreen,
+  Button_ScaleScreenTo96,
+  Button_AutoAdjustLayout,
+  Button_FixDesignFontsPPI,
+  Button_ScaleFontsPPI,
   Button_GetAction,
   Button_SetAction,
   Button_GetAlign,

@@ -199,6 +199,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TreeView_PaintTo(AObj: TTreeView; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TreeView_RemoveControl(AObj: TTreeView; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -523,6 +531,111 @@ procedure TreeView_AnchorClient(AObj: TTreeView; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleDesignToForm(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleFormToDesign(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_Scale96ToForm(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleFormTo96(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_Scale96ToFont(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleFontTo96(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleScreenToFont(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleFontToScreen(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_Scale96ToScreen(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeView_ScaleScreenTo96(AObj: TTreeView; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeView_AutoAdjustLayout(AObj: TTreeView; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeView_FixDesignFontsPPI(AObj: TTreeView; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure TreeView_ScaleFontsPPI(AObj: TTreeView; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -2096,6 +2209,7 @@ exports
   TreeView_HandleAllocated,
   TreeView_InsertControl,
   TreeView_Invalidate,
+  TreeView_PaintTo,
   TreeView_RemoveControl,
   TreeView_Realign,
   TreeView_Repaint,
@@ -2136,6 +2250,19 @@ exports
   TreeView_AnchorSame,
   TreeView_AnchorAsAlign,
   TreeView_AnchorClient,
+  TreeView_ScaleDesignToForm,
+  TreeView_ScaleFormToDesign,
+  TreeView_Scale96ToForm,
+  TreeView_ScaleFormTo96,
+  TreeView_Scale96ToFont,
+  TreeView_ScaleFontTo96,
+  TreeView_ScaleScreenToFont,
+  TreeView_ScaleFontToScreen,
+  TreeView_Scale96ToScreen,
+  TreeView_ScaleScreenTo96,
+  TreeView_AutoAdjustLayout,
+  TreeView_FixDesignFontsPPI,
+  TreeView_ScaleFontsPPI,
   TreeView_GetDefaultItemHeight,
   TreeView_SetDefaultItemHeight,
   TreeView_GetExpandSignColor,

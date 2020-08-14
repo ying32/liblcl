@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function Bevel_ScaleDesignToForm(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_ScaleFormToDesign(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_Scale96ToForm(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_ScaleFormTo96(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_Scale96ToFont(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_ScaleFontTo96(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_ScaleScreenToFont(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_ScaleFontToScreen(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_Scale96ToScreen(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Bevel_ScaleScreenTo96(AObj: TBevel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Bevel_AutoAdjustLayout(AObj: TBevel; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Bevel_FixDesignFontsPPI(AObj: TBevel; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Bevel_ScaleFontsPPI(AObj: TBevel; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function Bevel_GetAlign(AObj: TBevel): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -847,6 +952,19 @@ exports
   Bevel_AnchorSame,
   Bevel_AnchorAsAlign,
   Bevel_AnchorClient,
+  Bevel_ScaleDesignToForm,
+  Bevel_ScaleFormToDesign,
+  Bevel_Scale96ToForm,
+  Bevel_ScaleFormTo96,
+  Bevel_Scale96ToFont,
+  Bevel_ScaleFontTo96,
+  Bevel_ScaleScreenToFont,
+  Bevel_ScaleFontToScreen,
+  Bevel_Scale96ToScreen,
+  Bevel_ScaleScreenTo96,
+  Bevel_AutoAdjustLayout,
+  Bevel_FixDesignFontsPPI,
+  Bevel_ScaleFontsPPI,
   Bevel_GetAlign,
   Bevel_SetAlign,
   Bevel_GetAnchors,

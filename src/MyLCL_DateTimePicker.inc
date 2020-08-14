@@ -135,6 +135,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DateTimePicker_PaintTo(AObj: TDateTimePicker; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DateTimePicker_RemoveControl(AObj: TDateTimePicker; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -459,6 +467,111 @@ procedure DateTimePicker_AnchorClient(AObj: TDateTimePicker; ASpace: Integer); e
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleDesignToForm(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleFormToDesign(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_Scale96ToForm(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleFormTo96(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_Scale96ToFont(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleFontTo96(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleScreenToFont(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleFontToScreen(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_Scale96ToScreen(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DateTimePicker_ScaleScreenTo96(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DateTimePicker_AutoAdjustLayout(AObj: TDateTimePicker; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DateTimePicker_FixDesignFontsPPI(AObj: TDateTimePicker; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure DateTimePicker_ScaleFontsPPI(AObj: TDateTimePicker; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1660,6 +1773,7 @@ exports
   DateTimePicker_HandleAllocated,
   DateTimePicker_InsertControl,
   DateTimePicker_Invalidate,
+  DateTimePicker_PaintTo,
   DateTimePicker_RemoveControl,
   DateTimePicker_Realign,
   DateTimePicker_Repaint,
@@ -1700,6 +1814,19 @@ exports
   DateTimePicker_AnchorSame,
   DateTimePicker_AnchorAsAlign,
   DateTimePicker_AnchorClient,
+  DateTimePicker_ScaleDesignToForm,
+  DateTimePicker_ScaleFormToDesign,
+  DateTimePicker_Scale96ToForm,
+  DateTimePicker_ScaleFormTo96,
+  DateTimePicker_Scale96ToFont,
+  DateTimePicker_ScaleFontTo96,
+  DateTimePicker_ScaleScreenToFont,
+  DateTimePicker_ScaleFontToScreen,
+  DateTimePicker_Scale96ToScreen,
+  DateTimePicker_ScaleScreenTo96,
+  DateTimePicker_AutoAdjustLayout,
+  DateTimePicker_FixDesignFontsPPI,
+  DateTimePicker_ScaleFontsPPI,
   DateTimePicker_GetArrowShape,
   DateTimePicker_SetArrowShape,
   DateTimePicker_GetAutoAdvance,

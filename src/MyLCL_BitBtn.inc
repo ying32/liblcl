@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure BitBtn_PaintTo(AObj: TBitBtn; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure BitBtn_RemoveControl(AObj: TBitBtn; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,111 @@ procedure BitBtn_AnchorClient(AObj: TBitBtn; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleDesignToForm(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleFormToDesign(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_Scale96ToForm(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleFormTo96(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_Scale96ToFont(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleFontTo96(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleScreenToFont(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleFontToScreen(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_Scale96ToScreen(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BitBtn_ScaleScreenTo96(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure BitBtn_AutoAdjustLayout(AObj: TBitBtn; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure BitBtn_FixDesignFontsPPI(AObj: TBitBtn; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure BitBtn_ScaleFontsPPI(AObj: TBitBtn; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1415,6 +1528,7 @@ exports
   BitBtn_HandleAllocated,
   BitBtn_InsertControl,
   BitBtn_Invalidate,
+  BitBtn_PaintTo,
   BitBtn_RemoveControl,
   BitBtn_Realign,
   BitBtn_Repaint,
@@ -1455,6 +1569,19 @@ exports
   BitBtn_AnchorSame,
   BitBtn_AnchorAsAlign,
   BitBtn_AnchorClient,
+  BitBtn_ScaleDesignToForm,
+  BitBtn_ScaleFormToDesign,
+  BitBtn_Scale96ToForm,
+  BitBtn_ScaleFormTo96,
+  BitBtn_Scale96ToFont,
+  BitBtn_ScaleFontTo96,
+  BitBtn_ScaleScreenToFont,
+  BitBtn_ScaleFontToScreen,
+  BitBtn_Scale96ToScreen,
+  BitBtn_ScaleScreenTo96,
+  BitBtn_AutoAdjustLayout,
+  BitBtn_FixDesignFontsPPI,
+  BitBtn_ScaleFontsPPI,
   BitBtn_GetDefaultCaption,
   BitBtn_SetDefaultCaption,
   BitBtn_GetGlyphShowMode,

@@ -325,6 +325,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function ImageButton_ScaleDesignToForm(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_ScaleFormToDesign(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_Scale96ToForm(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_ScaleFormTo96(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_Scale96ToFont(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_ScaleFontTo96(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_ScaleScreenToFont(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_ScaleFontToScreen(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_Scale96ToScreen(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageButton_ScaleScreenTo96(AObj: TImageButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageButton_AutoAdjustLayout(AObj: TImageButton; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageButton_FixDesignFontsPPI(AObj: TImageButton; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ImageButton_ScaleFontsPPI(AObj: TImageButton; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function ImageButton_GetAction(AObj: TImageButton): TBasicAction; extdecl;
 begin
   handleExceptionBegin
@@ -1106,6 +1211,19 @@ exports
   ImageButton_AnchorSame,
   ImageButton_AnchorAsAlign,
   ImageButton_AnchorClient,
+  ImageButton_ScaleDesignToForm,
+  ImageButton_ScaleFormToDesign,
+  ImageButton_Scale96ToForm,
+  ImageButton_ScaleFormTo96,
+  ImageButton_Scale96ToFont,
+  ImageButton_ScaleFontTo96,
+  ImageButton_ScaleScreenToFont,
+  ImageButton_ScaleFontToScreen,
+  ImageButton_Scale96ToScreen,
+  ImageButton_ScaleScreenTo96,
+  ImageButton_AutoAdjustLayout,
+  ImageButton_FixDesignFontsPPI,
+  ImageButton_ScaleFontsPPI,
   ImageButton_GetAction,
   ImageButton_SetAction,
   ImageButton_GetAlign,

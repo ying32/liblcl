@@ -128,6 +128,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure PageControl_PaintTo(AObj: TPageControl; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure PageControl_RemoveControl(AObj: TPageControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -452,6 +460,111 @@ procedure PageControl_AnchorClient(AObj: TPageControl; ASpace: Integer); extdecl
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleDesignToForm(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleFormToDesign(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_Scale96ToForm(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleFormTo96(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_Scale96ToFont(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleFontTo96(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleScreenToFont(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleFontToScreen(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_Scale96ToScreen(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_ScaleScreenTo96(AObj: TPageControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PageControl_AutoAdjustLayout(AObj: TPageControl; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PageControl_FixDesignFontsPPI(AObj: TPageControl; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure PageControl_ScaleFontsPPI(AObj: TPageControl; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1471,6 +1584,7 @@ exports
   PageControl_HandleAllocated,
   PageControl_InsertControl,
   PageControl_Invalidate,
+  PageControl_PaintTo,
   PageControl_RemoveControl,
   PageControl_Realign,
   PageControl_Repaint,
@@ -1511,6 +1625,19 @@ exports
   PageControl_AnchorSame,
   PageControl_AnchorAsAlign,
   PageControl_AnchorClient,
+  PageControl_ScaleDesignToForm,
+  PageControl_ScaleFormToDesign,
+  PageControl_Scale96ToForm,
+  PageControl_ScaleFormTo96,
+  PageControl_Scale96ToFont,
+  PageControl_ScaleFontTo96,
+  PageControl_ScaleScreenToFont,
+  PageControl_ScaleFontToScreen,
+  PageControl_Scale96ToScreen,
+  PageControl_ScaleScreenTo96,
+  PageControl_AutoAdjustLayout,
+  PageControl_FixDesignFontsPPI,
+  PageControl_ScaleFontsPPI,
   PageControl_GetOptions,
   PageControl_SetOptions,
   PageControl_GetActivePageIndex,

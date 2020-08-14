@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function BoundLabel_ScaleDesignToForm(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_ScaleFormToDesign(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_Scale96ToForm(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_ScaleFormTo96(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_Scale96ToFont(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_ScaleFontTo96(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_ScaleScreenToFont(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_ScaleFontToScreen(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_Scale96ToScreen(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function BoundLabel_ScaleScreenTo96(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure BoundLabel_AutoAdjustLayout(AObj: TBoundLabel; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure BoundLabel_FixDesignFontsPPI(AObj: TBoundLabel; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure BoundLabel_ScaleFontsPPI(AObj: TBoundLabel; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function BoundLabel_GetBiDiMode(AObj: TBoundLabel): TBiDiMode; extdecl;
 begin
   handleExceptionBegin
@@ -1030,6 +1135,19 @@ exports
   BoundLabel_AnchorSame,
   BoundLabel_AnchorAsAlign,
   BoundLabel_AnchorClient,
+  BoundLabel_ScaleDesignToForm,
+  BoundLabel_ScaleFormToDesign,
+  BoundLabel_Scale96ToForm,
+  BoundLabel_ScaleFormTo96,
+  BoundLabel_Scale96ToFont,
+  BoundLabel_ScaleFontTo96,
+  BoundLabel_ScaleScreenToFont,
+  BoundLabel_ScaleFontToScreen,
+  BoundLabel_Scale96ToScreen,
+  BoundLabel_ScaleScreenTo96,
+  BoundLabel_AutoAdjustLayout,
+  BoundLabel_FixDesignFontsPPI,
+  BoundLabel_ScaleFontsPPI,
   BoundLabel_GetBiDiMode,
   BoundLabel_SetBiDiMode,
   BoundLabel_GetCaption,

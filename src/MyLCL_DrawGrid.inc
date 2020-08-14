@@ -137,6 +137,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DrawGrid_PaintTo(AObj: TDrawGrid; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DrawGrid_RemoveControl(AObj: TDrawGrid; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -461,6 +469,111 @@ procedure DrawGrid_AnchorClient(AObj: TDrawGrid; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleDesignToForm(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleFormToDesign(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_Scale96ToForm(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleFormTo96(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_Scale96ToFont(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleFontTo96(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleScreenToFont(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleFontToScreen(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_Scale96ToScreen(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function DrawGrid_ScaleScreenTo96(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DrawGrid_AutoAdjustLayout(AObj: TDrawGrid; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DrawGrid_FixDesignFontsPPI(AObj: TDrawGrid; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure DrawGrid_ScaleFontsPPI(AObj: TDrawGrid; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1763,6 +1876,7 @@ exports
   DrawGrid_HandleAllocated,
   DrawGrid_InsertControl,
   DrawGrid_Invalidate,
+  DrawGrid_PaintTo,
   DrawGrid_RemoveControl,
   DrawGrid_Realign,
   DrawGrid_Repaint,
@@ -1803,6 +1917,19 @@ exports
   DrawGrid_AnchorSame,
   DrawGrid_AnchorAsAlign,
   DrawGrid_AnchorClient,
+  DrawGrid_ScaleDesignToForm,
+  DrawGrid_ScaleFormToDesign,
+  DrawGrid_Scale96ToForm,
+  DrawGrid_ScaleFormTo96,
+  DrawGrid_Scale96ToFont,
+  DrawGrid_ScaleFontTo96,
+  DrawGrid_ScaleScreenToFont,
+  DrawGrid_ScaleFontToScreen,
+  DrawGrid_Scale96ToScreen,
+  DrawGrid_ScaleScreenTo96,
+  DrawGrid_AutoAdjustLayout,
+  DrawGrid_FixDesignFontsPPI,
+  DrawGrid_ScaleFontsPPI,
   DrawGrid_SetOnColRowMoved,
   DrawGrid_GetAlign,
   DrawGrid_SetAlign,

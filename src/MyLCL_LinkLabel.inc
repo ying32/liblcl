@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function LinkLabel_ScaleDesignToForm(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_ScaleFormToDesign(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_Scale96ToForm(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_ScaleFormTo96(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_Scale96ToFont(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_ScaleFontTo96(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_ScaleScreenToFont(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_ScaleFontToScreen(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_Scale96ToScreen(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LinkLabel_ScaleScreenTo96(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure LinkLabel_AutoAdjustLayout(AObj: TLinkLabel; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure LinkLabel_FixDesignFontsPPI(AObj: TLinkLabel; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure LinkLabel_ScaleFontsPPI(AObj: TLinkLabel; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function LinkLabel_GetAlign(AObj: TLinkLabel): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1062,6 +1167,19 @@ exports
   LinkLabel_AnchorSame,
   LinkLabel_AnchorAsAlign,
   LinkLabel_AnchorClient,
+  LinkLabel_ScaleDesignToForm,
+  LinkLabel_ScaleFormToDesign,
+  LinkLabel_Scale96ToForm,
+  LinkLabel_ScaleFormTo96,
+  LinkLabel_Scale96ToFont,
+  LinkLabel_ScaleFontTo96,
+  LinkLabel_ScaleScreenToFont,
+  LinkLabel_ScaleFontToScreen,
+  LinkLabel_Scale96ToScreen,
+  LinkLabel_ScaleScreenTo96,
+  LinkLabel_AutoAdjustLayout,
+  LinkLabel_FixDesignFontsPPI,
+  LinkLabel_ScaleFontsPPI,
   LinkLabel_GetAlign,
   LinkLabel_SetAlign,
   LinkLabel_GetAlignment,

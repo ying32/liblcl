@@ -153,6 +153,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ValueListEditor_PaintTo(AObj: TValueListEditor; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ValueListEditor_RemoveControl(AObj: TValueListEditor; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -469,6 +477,111 @@ procedure ValueListEditor_AnchorClient(AObj: TValueListEditor; ASpace: Integer);
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleDesignToForm(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleFormToDesign(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_Scale96ToForm(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleFormTo96(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_Scale96ToFont(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleFontTo96(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleScreenToFont(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleFontToScreen(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_Scale96ToScreen(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ValueListEditor_ScaleScreenTo96(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ValueListEditor_AutoAdjustLayout(AObj: TValueListEditor; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ValueListEditor_FixDesignFontsPPI(AObj: TValueListEditor; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ValueListEditor_ScaleFontsPPI(AObj: TValueListEditor; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1800,6 +1913,7 @@ exports
   ValueListEditor_HandleAllocated,
   ValueListEditor_InsertControl,
   ValueListEditor_Invalidate,
+  ValueListEditor_PaintTo,
   ValueListEditor_RemoveControl,
   ValueListEditor_Realign,
   ValueListEditor_Repaint,
@@ -1839,6 +1953,19 @@ exports
   ValueListEditor_AnchorSame,
   ValueListEditor_AnchorAsAlign,
   ValueListEditor_AnchorClient,
+  ValueListEditor_ScaleDesignToForm,
+  ValueListEditor_ScaleFormToDesign,
+  ValueListEditor_Scale96ToForm,
+  ValueListEditor_ScaleFormTo96,
+  ValueListEditor_Scale96ToFont,
+  ValueListEditor_ScaleFontTo96,
+  ValueListEditor_ScaleScreenToFont,
+  ValueListEditor_ScaleFontToScreen,
+  ValueListEditor_Scale96ToScreen,
+  ValueListEditor_ScaleScreenTo96,
+  ValueListEditor_AutoAdjustLayout,
+  ValueListEditor_FixDesignFontsPPI,
+  ValueListEditor_ScaleFontsPPI,
   ValueListEditor_GetColCount,
   ValueListEditor_SetColCount,
   ValueListEditor_GetRowCount,

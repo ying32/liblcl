@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure HeaderControl_PaintTo(AObj: THeaderControl; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure HeaderControl_RemoveControl(AObj: THeaderControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure HeaderControl_AnchorClient(AObj: THeaderControl; ASpace: Integer); ext
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleDesignToForm(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleFormToDesign(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_Scale96ToForm(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleFormTo96(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_Scale96ToFont(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleFontTo96(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleScreenToFont(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleFontToScreen(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_Scale96ToScreen(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function HeaderControl_ScaleScreenTo96(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure HeaderControl_AutoAdjustLayout(AObj: THeaderControl; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure HeaderControl_FixDesignFontsPPI(AObj: THeaderControl; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure HeaderControl_ScaleFontsPPI(AObj: THeaderControl; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1337,6 +1450,7 @@ exports
   HeaderControl_HandleAllocated,
   HeaderControl_InsertControl,
   HeaderControl_Invalidate,
+  HeaderControl_PaintTo,
   HeaderControl_RemoveControl,
   HeaderControl_Realign,
   HeaderControl_Repaint,
@@ -1377,6 +1491,19 @@ exports
   HeaderControl_AnchorSame,
   HeaderControl_AnchorAsAlign,
   HeaderControl_AnchorClient,
+  HeaderControl_ScaleDesignToForm,
+  HeaderControl_ScaleFormToDesign,
+  HeaderControl_Scale96ToForm,
+  HeaderControl_ScaleFormTo96,
+  HeaderControl_Scale96ToFont,
+  HeaderControl_ScaleFontTo96,
+  HeaderControl_ScaleScreenToFont,
+  HeaderControl_ScaleFontToScreen,
+  HeaderControl_Scale96ToScreen,
+  HeaderControl_ScaleScreenTo96,
+  HeaderControl_AutoAdjustLayout,
+  HeaderControl_FixDesignFontsPPI,
+  HeaderControl_ScaleFontsPPI,
   HeaderControl_GetAlign,
   HeaderControl_SetAlign,
   HeaderControl_GetAnchors,

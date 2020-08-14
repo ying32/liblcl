@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StatusBar_PaintTo(AObj: TStatusBar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StatusBar_RemoveControl(AObj: TStatusBar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure StatusBar_AnchorClient(AObj: TStatusBar; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleDesignToForm(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleFormToDesign(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_Scale96ToForm(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleFormTo96(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_Scale96ToFont(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleFontTo96(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleScreenToFont(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleFontToScreen(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_Scale96ToScreen(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StatusBar_ScaleScreenTo96(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StatusBar_AutoAdjustLayout(AObj: TStatusBar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StatusBar_FixDesignFontsPPI(AObj: TStatusBar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure StatusBar_ScaleFontsPPI(AObj: TStatusBar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1428,6 +1541,7 @@ exports
   StatusBar_HandleAllocated,
   StatusBar_InsertControl,
   StatusBar_Invalidate,
+  StatusBar_PaintTo,
   StatusBar_RemoveControl,
   StatusBar_Realign,
   StatusBar_Repaint,
@@ -1467,6 +1581,19 @@ exports
   StatusBar_AnchorSame,
   StatusBar_AnchorAsAlign,
   StatusBar_AnchorClient,
+  StatusBar_ScaleDesignToForm,
+  StatusBar_ScaleFormToDesign,
+  StatusBar_Scale96ToForm,
+  StatusBar_ScaleFormTo96,
+  StatusBar_Scale96ToFont,
+  StatusBar_ScaleFontTo96,
+  StatusBar_ScaleScreenToFont,
+  StatusBar_ScaleFontToScreen,
+  StatusBar_Scale96ToScreen,
+  StatusBar_ScaleScreenTo96,
+  StatusBar_AutoAdjustLayout,
+  StatusBar_FixDesignFontsPPI,
+  StatusBar_ScaleFontsPPI,
   StatusBar_GetAction,
   StatusBar_SetAction,
   StatusBar_GetAutoHint,

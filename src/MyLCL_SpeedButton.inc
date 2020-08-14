@@ -325,6 +325,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function SpeedButton_ScaleDesignToForm(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_ScaleFormToDesign(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_Scale96ToForm(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_ScaleFormTo96(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_Scale96ToFont(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_ScaleFontTo96(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_ScaleScreenToFont(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_ScaleFontToScreen(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_Scale96ToScreen(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpeedButton_ScaleScreenTo96(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure SpeedButton_AutoAdjustLayout(AObj: TSpeedButton; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure SpeedButton_FixDesignFontsPPI(AObj: TSpeedButton; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure SpeedButton_ScaleFontsPPI(AObj: TSpeedButton; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function SpeedButton_GetImageIndex(AObj: TSpeedButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1122,6 +1227,19 @@ exports
   SpeedButton_AnchorSame,
   SpeedButton_AnchorAsAlign,
   SpeedButton_AnchorClient,
+  SpeedButton_ScaleDesignToForm,
+  SpeedButton_ScaleFormToDesign,
+  SpeedButton_Scale96ToForm,
+  SpeedButton_ScaleFormTo96,
+  SpeedButton_Scale96ToFont,
+  SpeedButton_ScaleFontTo96,
+  SpeedButton_ScaleScreenToFont,
+  SpeedButton_ScaleFontToScreen,
+  SpeedButton_Scale96ToScreen,
+  SpeedButton_ScaleScreenTo96,
+  SpeedButton_AutoAdjustLayout,
+  SpeedButton_FixDesignFontsPPI,
+  SpeedButton_ScaleFontsPPI,
   SpeedButton_GetImageIndex,
   SpeedButton_SetImageIndex,
   SpeedButton_GetImages,

@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckGroup_PaintTo(AObj: TCheckGroup; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckGroup_RemoveControl(AObj: TCheckGroup; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,111 @@ procedure CheckGroup_AnchorClient(AObj: TCheckGroup; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleDesignToForm(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleFormToDesign(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_Scale96ToForm(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleFormTo96(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_Scale96ToFont(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleFontTo96(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleScreenToFont(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleFontToScreen(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_Scale96ToScreen(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckGroup_ScaleScreenTo96(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckGroup_AutoAdjustLayout(AObj: TCheckGroup; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckGroup_FixDesignFontsPPI(AObj: TCheckGroup; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure CheckGroup_ScaleFontsPPI(AObj: TCheckGroup; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1469,6 +1582,7 @@ exports
   CheckGroup_HandleAllocated,
   CheckGroup_InsertControl,
   CheckGroup_Invalidate,
+  CheckGroup_PaintTo,
   CheckGroup_RemoveControl,
   CheckGroup_Realign,
   CheckGroup_Repaint,
@@ -1509,6 +1623,19 @@ exports
   CheckGroup_AnchorSame,
   CheckGroup_AnchorAsAlign,
   CheckGroup_AnchorClient,
+  CheckGroup_ScaleDesignToForm,
+  CheckGroup_ScaleFormToDesign,
+  CheckGroup_Scale96ToForm,
+  CheckGroup_ScaleFormTo96,
+  CheckGroup_Scale96ToFont,
+  CheckGroup_ScaleFontTo96,
+  CheckGroup_ScaleScreenToFont,
+  CheckGroup_ScaleFontToScreen,
+  CheckGroup_Scale96ToScreen,
+  CheckGroup_ScaleScreenTo96,
+  CheckGroup_AutoAdjustLayout,
+  CheckGroup_FixDesignFontsPPI,
+  CheckGroup_ScaleFontsPPI,
   CheckGroup_GetAlign,
   CheckGroup_SetAlign,
   CheckGroup_GetAnchors,

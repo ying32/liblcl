@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure GroupBox_PaintTo(AObj: TGroupBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure GroupBox_RemoveControl(AObj: TGroupBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure GroupBox_AnchorClient(AObj: TGroupBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleDesignToForm(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleFormToDesign(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_Scale96ToForm(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleFormTo96(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_Scale96ToFont(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleFontTo96(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleScreenToFont(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleFontToScreen(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_Scale96ToScreen(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function GroupBox_ScaleScreenTo96(AObj: TGroupBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure GroupBox_AutoAdjustLayout(AObj: TGroupBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure GroupBox_FixDesignFontsPPI(AObj: TGroupBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure GroupBox_ScaleFontsPPI(AObj: TGroupBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1368,6 +1481,7 @@ exports
   GroupBox_HandleAllocated,
   GroupBox_InsertControl,
   GroupBox_Invalidate,
+  GroupBox_PaintTo,
   GroupBox_RemoveControl,
   GroupBox_Realign,
   GroupBox_Repaint,
@@ -1408,6 +1522,19 @@ exports
   GroupBox_AnchorSame,
   GroupBox_AnchorAsAlign,
   GroupBox_AnchorClient,
+  GroupBox_ScaleDesignToForm,
+  GroupBox_ScaleFormToDesign,
+  GroupBox_Scale96ToForm,
+  GroupBox_ScaleFormTo96,
+  GroupBox_Scale96ToFont,
+  GroupBox_ScaleFontTo96,
+  GroupBox_ScaleScreenToFont,
+  GroupBox_ScaleFontToScreen,
+  GroupBox_Scale96ToScreen,
+  GroupBox_ScaleScreenTo96,
+  GroupBox_AutoAdjustLayout,
+  GroupBox_FixDesignFontsPPI,
+  GroupBox_ScaleFontsPPI,
   GroupBox_GetAlign,
   GroupBox_SetAlign,
   GroupBox_GetAnchors,

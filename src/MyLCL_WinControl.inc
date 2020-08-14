@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure WinControl_PaintTo(AObj: TWinControl; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure WinControl_RemoveControl(AObj: TWinControl; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure WinControl_AnchorClient(AObj: TWinControl; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleDesignToForm(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleFormToDesign(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_Scale96ToForm(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleFormTo96(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_Scale96ToFont(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleFontTo96(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleScreenToFont(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleFontToScreen(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_Scale96ToScreen(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function WinControl_ScaleScreenTo96(AObj: TWinControl; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure WinControl_AutoAdjustLayout(AObj: TWinControl; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure WinControl_FixDesignFontsPPI(AObj: TWinControl; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure WinControl_ScaleFontsPPI(AObj: TWinControl; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1076,6 +1189,7 @@ exports
   WinControl_HandleAllocated,
   WinControl_InsertControl,
   WinControl_Invalidate,
+  WinControl_PaintTo,
   WinControl_RemoveControl,
   WinControl_Realign,
   WinControl_Repaint,
@@ -1116,6 +1230,19 @@ exports
   WinControl_AnchorSame,
   WinControl_AnchorAsAlign,
   WinControl_AnchorClient,
+  WinControl_ScaleDesignToForm,
+  WinControl_ScaleFormToDesign,
+  WinControl_Scale96ToForm,
+  WinControl_ScaleFormTo96,
+  WinControl_Scale96ToFont,
+  WinControl_ScaleFontTo96,
+  WinControl_ScaleScreenToFont,
+  WinControl_ScaleFontToScreen,
+  WinControl_Scale96ToScreen,
+  WinControl_ScaleScreenTo96,
+  WinControl_AutoAdjustLayout,
+  WinControl_FixDesignFontsPPI,
+  WinControl_ScaleFontsPPI,
   WinControl_GetDockClientCount,
   WinControl_GetDockSite,
   WinControl_SetDockSite,

@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToolBar_PaintTo(AObj: TToolBar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToolBar_RemoveControl(AObj: TToolBar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure ToolBar_AnchorClient(AObj: TToolBar; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleDesignToForm(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleFormToDesign(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_Scale96ToForm(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleFormTo96(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_Scale96ToFont(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleFontTo96(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleScreenToFont(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleFontToScreen(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_Scale96ToScreen(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolBar_ScaleScreenTo96(AObj: TToolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToolBar_AutoAdjustLayout(AObj: TToolBar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToolBar_FixDesignFontsPPI(AObj: TToolBar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ToolBar_ScaleFontsPPI(AObj: TToolBar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1582,6 +1695,7 @@ exports
   ToolBar_HandleAllocated,
   ToolBar_InsertControl,
   ToolBar_Invalidate,
+  ToolBar_PaintTo,
   ToolBar_RemoveControl,
   ToolBar_Realign,
   ToolBar_Repaint,
@@ -1622,6 +1736,19 @@ exports
   ToolBar_AnchorSame,
   ToolBar_AnchorAsAlign,
   ToolBar_AnchorClient,
+  ToolBar_ScaleDesignToForm,
+  ToolBar_ScaleFormToDesign,
+  ToolBar_Scale96ToForm,
+  ToolBar_ScaleFormTo96,
+  ToolBar_Scale96ToFont,
+  ToolBar_ScaleFontTo96,
+  ToolBar_ScaleScreenToFont,
+  ToolBar_ScaleFontToScreen,
+  ToolBar_Scale96ToScreen,
+  ToolBar_ScaleScreenTo96,
+  ToolBar_AutoAdjustLayout,
+  ToolBar_FixDesignFontsPPI,
+  ToolBar_ScaleFontsPPI,
   ToolBar_GetButtonCount,
   ToolBar_GetCanvas,
   ToolBar_GetRowCount,

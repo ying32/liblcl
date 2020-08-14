@@ -151,6 +151,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ComboBoxEx_PaintTo(AObj: TComboBoxEx; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ComboBoxEx_RemoveControl(AObj: TComboBoxEx; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -475,6 +483,111 @@ procedure ComboBoxEx_AnchorClient(AObj: TComboBoxEx; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleDesignToForm(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleFormToDesign(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_Scale96ToForm(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleFormTo96(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_Scale96ToFont(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleFontTo96(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleScreenToFont(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleFontToScreen(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_Scale96ToScreen(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ComboBoxEx_ScaleScreenTo96(AObj: TComboBoxEx; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ComboBoxEx_AutoAdjustLayout(AObj: TComboBoxEx; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ComboBoxEx_FixDesignFontsPPI(AObj: TComboBoxEx; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ComboBoxEx_ScaleFontsPPI(AObj: TComboBoxEx; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1600,6 +1713,7 @@ exports
   ComboBoxEx_HandleAllocated,
   ComboBoxEx_InsertControl,
   ComboBoxEx_Invalidate,
+  ComboBoxEx_PaintTo,
   ComboBoxEx_RemoveControl,
   ComboBoxEx_Realign,
   ComboBoxEx_Repaint,
@@ -1640,6 +1754,19 @@ exports
   ComboBoxEx_AnchorSame,
   ComboBoxEx_AnchorAsAlign,
   ComboBoxEx_AnchorClient,
+  ComboBoxEx_ScaleDesignToForm,
+  ComboBoxEx_ScaleFormToDesign,
+  ComboBoxEx_Scale96ToForm,
+  ComboBoxEx_ScaleFormTo96,
+  ComboBoxEx_Scale96ToFont,
+  ComboBoxEx_ScaleFontTo96,
+  ComboBoxEx_ScaleScreenToFont,
+  ComboBoxEx_ScaleFontToScreen,
+  ComboBoxEx_Scale96ToScreen,
+  ComboBoxEx_ScaleScreenTo96,
+  ComboBoxEx_AutoAdjustLayout,
+  ComboBoxEx_FixDesignFontsPPI,
+  ComboBoxEx_ScaleFontsPPI,
   ComboBoxEx_GetAlign,
   ComboBoxEx_SetAlign,
   ComboBoxEx_GetAutoCompleteOptions,

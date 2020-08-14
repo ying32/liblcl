@@ -374,6 +374,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StringGrid_PaintTo(AObj: TStringGrid; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StringGrid_RemoveControl(AObj: TStringGrid; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -698,6 +706,111 @@ procedure StringGrid_AnchorClient(AObj: TStringGrid; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleDesignToForm(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleFormToDesign(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_Scale96ToForm(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleFormTo96(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_Scale96ToFont(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleFontTo96(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleScreenToFont(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleFontToScreen(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_Scale96ToScreen(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringGrid_ScaleScreenTo96(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_AutoAdjustLayout(AObj: TStringGrid; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_FixDesignFontsPPI(AObj: TStringGrid; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure StringGrid_ScaleFontsPPI(AObj: TStringGrid; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -2728,6 +2841,7 @@ exports
   StringGrid_HandleAllocated,
   StringGrid_InsertControl,
   StringGrid_Invalidate,
+  StringGrid_PaintTo,
   StringGrid_RemoveControl,
   StringGrid_Realign,
   StringGrid_Repaint,
@@ -2768,6 +2882,19 @@ exports
   StringGrid_AnchorSame,
   StringGrid_AnchorAsAlign,
   StringGrid_AnchorClient,
+  StringGrid_ScaleDesignToForm,
+  StringGrid_ScaleFormToDesign,
+  StringGrid_Scale96ToForm,
+  StringGrid_ScaleFormTo96,
+  StringGrid_Scale96ToFont,
+  StringGrid_ScaleFontTo96,
+  StringGrid_ScaleScreenToFont,
+  StringGrid_ScaleFontToScreen,
+  StringGrid_Scale96ToScreen,
+  StringGrid_ScaleScreenTo96,
+  StringGrid_AutoAdjustLayout,
+  StringGrid_FixDesignFontsPPI,
+  StringGrid_ScaleFontsPPI,
   StringGrid_GetSelectedColor,
   StringGrid_SetSelectedColor,
   StringGrid_GetSelectedColumn,

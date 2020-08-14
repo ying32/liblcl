@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function Image_ScaleDesignToForm(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_ScaleFormToDesign(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_Scale96ToForm(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_ScaleFormTo96(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_Scale96ToFont(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_ScaleFontTo96(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_ScaleScreenToFont(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_ScaleFontToScreen(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_Scale96ToScreen(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Image_ScaleScreenTo96(AObj: TImage; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Image_AutoAdjustLayout(AObj: TImage; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Image_FixDesignFontsPPI(AObj: TImage; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Image_ScaleFontsPPI(AObj: TImage; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function Image_GetAntialiasingMode(AObj: TImage): TAntialiasingMode; extdecl;
 begin
   handleExceptionBegin
@@ -1102,6 +1207,19 @@ exports
   Image_AnchorSame,
   Image_AnchorAsAlign,
   Image_AnchorClient,
+  Image_ScaleDesignToForm,
+  Image_ScaleFormToDesign,
+  Image_Scale96ToForm,
+  Image_ScaleFormTo96,
+  Image_Scale96ToFont,
+  Image_ScaleFontTo96,
+  Image_ScaleScreenToFont,
+  Image_ScaleFontToScreen,
+  Image_Scale96ToScreen,
+  Image_ScaleScreenTo96,
+  Image_AutoAdjustLayout,
+  Image_FixDesignFontsPPI,
+  Image_ScaleFontsPPI,
   Image_GetAntialiasingMode,
   Image_SetAntialiasingMode,
   Image_GetKeepOriginXWhenClipped,

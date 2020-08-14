@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function Label_ScaleDesignToForm(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_ScaleFormToDesign(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_Scale96ToForm(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_ScaleFormTo96(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_Scale96ToFont(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_ScaleFontTo96(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_ScaleScreenToFont(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_ScaleFontToScreen(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_Scale96ToScreen(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Label_ScaleScreenTo96(AObj: TLabel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Label_AutoAdjustLayout(AObj: TLabel; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Label_FixDesignFontsPPI(AObj: TLabel; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Label_ScaleFontsPPI(AObj: TLabel; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function Label_GetOptimalFill(AObj: TLabel): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -1152,6 +1257,19 @@ exports
   Label_AnchorSame,
   Label_AnchorAsAlign,
   Label_AnchorClient,
+  Label_ScaleDesignToForm,
+  Label_ScaleFormToDesign,
+  Label_Scale96ToForm,
+  Label_ScaleFormTo96,
+  Label_Scale96ToFont,
+  Label_ScaleFontTo96,
+  Label_ScaleScreenToFont,
+  Label_ScaleFontToScreen,
+  Label_Scale96ToScreen,
+  Label_ScaleScreenTo96,
+  Label_AutoAdjustLayout,
+  Label_FixDesignFontsPPI,
+  Label_ScaleFontsPPI,
   Label_GetOptimalFill,
   Label_SetOptimalFill,
   Label_GetAlign,

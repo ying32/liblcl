@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Frame_PaintTo(AObj: TFrame; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Frame_RemoveControl(AObj: TFrame; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,125 @@ procedure Frame_AnchorClient(AObj: TFrame; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleDesignToForm(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleFormToDesign(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_Scale96ToForm(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleFormTo96(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_Scale96ToFont(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleFontTo96(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleScreenToFont(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleFontToScreen(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_Scale96ToScreen(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Frame_ScaleScreenTo96(AObj: TFrame; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Frame_AutoAdjustLayout(AObj: TFrame; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Frame_FixDesignFontsPPI(AObj: TFrame; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Frame_ScaleFontsPPI(AObj: TFrame; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
+function Frame_GetDesignTimePPI(AObj: TFrame): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DesignTimePPI;
+  handleExceptionEnd
+end;
+
+procedure Frame_SetDesignTimePPI(AObj: TFrame; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DesignTimePPI := AValue;
   handleExceptionEnd
 end;
 
@@ -1451,6 +1578,7 @@ exports
   Frame_HandleAllocated,
   Frame_InsertControl,
   Frame_Invalidate,
+  Frame_PaintTo,
   Frame_RemoveControl,
   Frame_Realign,
   Frame_Repaint,
@@ -1491,6 +1619,21 @@ exports
   Frame_AnchorSame,
   Frame_AnchorAsAlign,
   Frame_AnchorClient,
+  Frame_ScaleDesignToForm,
+  Frame_ScaleFormToDesign,
+  Frame_Scale96ToForm,
+  Frame_ScaleFormTo96,
+  Frame_Scale96ToFont,
+  Frame_ScaleFontTo96,
+  Frame_ScaleScreenToFont,
+  Frame_ScaleFontToScreen,
+  Frame_Scale96ToScreen,
+  Frame_ScaleScreenTo96,
+  Frame_AutoAdjustLayout,
+  Frame_FixDesignFontsPPI,
+  Frame_ScaleFontsPPI,
+  Frame_GetDesignTimePPI,
+  Frame_SetDesignTimePPI,
   Frame_GetAlign,
   Frame_SetAlign,
   Frame_GetAnchors,

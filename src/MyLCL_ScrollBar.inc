@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ScrollBar_PaintTo(AObj: TScrollBar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ScrollBar_RemoveControl(AObj: TScrollBar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,111 @@ procedure ScrollBar_AnchorClient(AObj: TScrollBar; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleDesignToForm(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleFormToDesign(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_Scale96ToForm(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleFormTo96(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_Scale96ToFont(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleFontTo96(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleScreenToFont(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleFontToScreen(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_Scale96ToScreen(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ScrollBar_ScaleScreenTo96(AObj: TScrollBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ScrollBar_AutoAdjustLayout(AObj: TScrollBar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ScrollBar_FixDesignFontsPPI(AObj: TScrollBar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ScrollBar_ScaleFontsPPI(AObj: TScrollBar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1319,6 +1432,7 @@ exports
   ScrollBar_HandleAllocated,
   ScrollBar_InsertControl,
   ScrollBar_Invalidate,
+  ScrollBar_PaintTo,
   ScrollBar_RemoveControl,
   ScrollBar_Realign,
   ScrollBar_Repaint,
@@ -1359,6 +1473,19 @@ exports
   ScrollBar_AnchorSame,
   ScrollBar_AnchorAsAlign,
   ScrollBar_AnchorClient,
+  ScrollBar_ScaleDesignToForm,
+  ScrollBar_ScaleFormToDesign,
+  ScrollBar_Scale96ToForm,
+  ScrollBar_ScaleFormTo96,
+  ScrollBar_Scale96ToFont,
+  ScrollBar_ScaleFontTo96,
+  ScrollBar_ScaleScreenToFont,
+  ScrollBar_ScaleFontToScreen,
+  ScrollBar_Scale96ToScreen,
+  ScrollBar_ScaleScreenTo96,
+  ScrollBar_AutoAdjustLayout,
+  ScrollBar_FixDesignFontsPPI,
+  ScrollBar_ScaleFontsPPI,
   ScrollBar_GetAlign,
   ScrollBar_SetAlign,
   ScrollBar_GetAnchors,

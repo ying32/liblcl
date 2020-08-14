@@ -167,6 +167,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure SpinEdit_PaintTo(AObj: TSpinEdit; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure SpinEdit_RemoveControl(AObj: TSpinEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -491,6 +499,111 @@ procedure SpinEdit_AnchorClient(AObj: TSpinEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleDesignToForm(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleFormToDesign(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_Scale96ToForm(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleFormTo96(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_Scale96ToFont(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleFontTo96(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleScreenToFont(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleFontToScreen(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_Scale96ToScreen(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function SpinEdit_ScaleScreenTo96(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure SpinEdit_AutoAdjustLayout(AObj: TSpinEdit; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure SpinEdit_FixDesignFontsPPI(AObj: TSpinEdit; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure SpinEdit_ScaleFontsPPI(AObj: TSpinEdit; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1520,6 +1633,7 @@ exports
   SpinEdit_HandleAllocated,
   SpinEdit_InsertControl,
   SpinEdit_Invalidate,
+  SpinEdit_PaintTo,
   SpinEdit_RemoveControl,
   SpinEdit_Realign,
   SpinEdit_Repaint,
@@ -1560,6 +1674,19 @@ exports
   SpinEdit_AnchorSame,
   SpinEdit_AnchorAsAlign,
   SpinEdit_AnchorClient,
+  SpinEdit_ScaleDesignToForm,
+  SpinEdit_ScaleFormToDesign,
+  SpinEdit_Scale96ToForm,
+  SpinEdit_ScaleFormTo96,
+  SpinEdit_Scale96ToFont,
+  SpinEdit_ScaleFontTo96,
+  SpinEdit_ScaleScreenToFont,
+  SpinEdit_ScaleFontToScreen,
+  SpinEdit_Scale96ToScreen,
+  SpinEdit_ScaleScreenTo96,
+  SpinEdit_AutoAdjustLayout,
+  SpinEdit_FixDesignFontsPPI,
+  SpinEdit_ScaleFontsPPI,
   SpinEdit_GetAnchors,
   SpinEdit_SetAnchors,
   SpinEdit_GetAutoSelect,

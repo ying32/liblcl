@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure UpDown_PaintTo(AObj: TUpDown; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure UpDown_RemoveControl(AObj: TUpDown; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure UpDown_AnchorClient(AObj: TUpDown; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleDesignToForm(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleFormToDesign(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_Scale96ToForm(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleFormTo96(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_Scale96ToFont(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleFontTo96(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleScreenToFont(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleFontToScreen(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_Scale96ToScreen(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function UpDown_ScaleScreenTo96(AObj: TUpDown; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure UpDown_AutoAdjustLayout(AObj: TUpDown; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure UpDown_FixDesignFontsPPI(AObj: TUpDown; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure UpDown_ScaleFontsPPI(AObj: TUpDown; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1268,6 +1381,7 @@ exports
   UpDown_HandleAllocated,
   UpDown_InsertControl,
   UpDown_Invalidate,
+  UpDown_PaintTo,
   UpDown_RemoveControl,
   UpDown_Realign,
   UpDown_Repaint,
@@ -1308,6 +1422,19 @@ exports
   UpDown_AnchorSame,
   UpDown_AnchorAsAlign,
   UpDown_AnchorClient,
+  UpDown_ScaleDesignToForm,
+  UpDown_ScaleFormToDesign,
+  UpDown_Scale96ToForm,
+  UpDown_ScaleFormTo96,
+  UpDown_Scale96ToFont,
+  UpDown_ScaleFontTo96,
+  UpDown_ScaleScreenToFont,
+  UpDown_ScaleFontToScreen,
+  UpDown_Scale96ToScreen,
+  UpDown_ScaleScreenTo96,
+  UpDown_AutoAdjustLayout,
+  UpDown_FixDesignFontsPPI,
+  UpDown_ScaleFontsPPI,
   UpDown_GetAnchors,
   UpDown_SetAnchors,
   UpDown_GetDoubleBuffered,

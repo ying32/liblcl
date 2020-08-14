@@ -177,6 +177,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckListBox_PaintTo(AObj: TCheckListBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckListBox_RemoveControl(AObj: TCheckListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -501,6 +509,111 @@ procedure CheckListBox_AnchorClient(AObj: TCheckListBox; ASpace: Integer); extde
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleDesignToForm(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleFormToDesign(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_Scale96ToForm(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleFormTo96(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_Scale96ToFont(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleFontTo96(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleScreenToFont(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleFontToScreen(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_Scale96ToScreen(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CheckListBox_ScaleScreenTo96(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckListBox_AutoAdjustLayout(AObj: TCheckListBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckListBox_FixDesignFontsPPI(AObj: TCheckListBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure CheckListBox_ScaleFontsPPI(AObj: TCheckListBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1637,6 +1750,7 @@ exports
   CheckListBox_HandleAllocated,
   CheckListBox_InsertControl,
   CheckListBox_Invalidate,
+  CheckListBox_PaintTo,
   CheckListBox_RemoveControl,
   CheckListBox_Realign,
   CheckListBox_Repaint,
@@ -1677,6 +1791,19 @@ exports
   CheckListBox_AnchorSame,
   CheckListBox_AnchorAsAlign,
   CheckListBox_AnchorClient,
+  CheckListBox_ScaleDesignToForm,
+  CheckListBox_ScaleFormToDesign,
+  CheckListBox_Scale96ToForm,
+  CheckListBox_ScaleFormTo96,
+  CheckListBox_Scale96ToFont,
+  CheckListBox_ScaleFontTo96,
+  CheckListBox_ScaleScreenToFont,
+  CheckListBox_ScaleFontToScreen,
+  CheckListBox_Scale96ToScreen,
+  CheckListBox_ScaleScreenTo96,
+  CheckListBox_AutoAdjustLayout,
+  CheckListBox_FixDesignFontsPPI,
+  CheckListBox_ScaleFontsPPI,
   CheckListBox_SetOnClickCheck,
   CheckListBox_GetAlign,
   CheckListBox_SetAlign,

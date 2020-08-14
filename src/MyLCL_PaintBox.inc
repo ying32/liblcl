@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function PaintBox_ScaleDesignToForm(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_ScaleFormToDesign(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_Scale96ToForm(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_ScaleFormTo96(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_Scale96ToFont(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_ScaleFontTo96(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_ScaleScreenToFont(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_ScaleFontToScreen(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_Scale96ToScreen(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PaintBox_ScaleScreenTo96(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PaintBox_AutoAdjustLayout(AObj: TPaintBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PaintBox_FixDesignFontsPPI(AObj: TPaintBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure PaintBox_ScaleFontsPPI(AObj: TPaintBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function PaintBox_GetCanvas(AObj: TPaintBox): TCanvas; extdecl;
 begin
   handleExceptionBegin
@@ -1012,6 +1117,19 @@ exports
   PaintBox_AnchorSame,
   PaintBox_AnchorAsAlign,
   PaintBox_AnchorClient,
+  PaintBox_ScaleDesignToForm,
+  PaintBox_ScaleFormToDesign,
+  PaintBox_Scale96ToForm,
+  PaintBox_ScaleFormTo96,
+  PaintBox_Scale96ToFont,
+  PaintBox_ScaleFontTo96,
+  PaintBox_ScaleScreenToFont,
+  PaintBox_ScaleFontToScreen,
+  PaintBox_Scale96ToScreen,
+  PaintBox_ScaleScreenTo96,
+  PaintBox_AutoAdjustLayout,
+  PaintBox_FixDesignFontsPPI,
+  PaintBox_ScaleFontsPPI,
   PaintBox_GetCanvas,
   PaintBox_GetAlign,
   PaintBox_SetAlign,

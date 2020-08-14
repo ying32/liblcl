@@ -175,6 +175,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure LabeledEdit_PaintTo(AObj: TLabeledEdit; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure LabeledEdit_RemoveControl(AObj: TLabeledEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -491,6 +499,111 @@ procedure LabeledEdit_AnchorClient(AObj: TLabeledEdit; ASpace: Integer); extdecl
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleDesignToForm(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleFormToDesign(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_Scale96ToForm(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleFormTo96(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_Scale96ToFont(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleFontTo96(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleScreenToFont(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleFontToScreen(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_Scale96ToScreen(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function LabeledEdit_ScaleScreenTo96(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure LabeledEdit_AutoAdjustLayout(AObj: TLabeledEdit; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure LabeledEdit_FixDesignFontsPPI(AObj: TLabeledEdit; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure LabeledEdit_ScaleFontsPPI(AObj: TLabeledEdit; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1646,6 +1759,7 @@ exports
   LabeledEdit_HandleAllocated,
   LabeledEdit_InsertControl,
   LabeledEdit_Invalidate,
+  LabeledEdit_PaintTo,
   LabeledEdit_RemoveControl,
   LabeledEdit_Realign,
   LabeledEdit_Repaint,
@@ -1685,6 +1799,19 @@ exports
   LabeledEdit_AnchorSame,
   LabeledEdit_AnchorAsAlign,
   LabeledEdit_AnchorClient,
+  LabeledEdit_ScaleDesignToForm,
+  LabeledEdit_ScaleFormToDesign,
+  LabeledEdit_Scale96ToForm,
+  LabeledEdit_ScaleFormTo96,
+  LabeledEdit_Scale96ToFont,
+  LabeledEdit_ScaleFontTo96,
+  LabeledEdit_ScaleScreenToFont,
+  LabeledEdit_ScaleFontToScreen,
+  LabeledEdit_Scale96ToScreen,
+  LabeledEdit_ScaleScreenTo96,
+  LabeledEdit_AutoAdjustLayout,
+  LabeledEdit_FixDesignFontsPPI,
+  LabeledEdit_ScaleFontsPPI,
   LabeledEdit_GetAlignment,
   LabeledEdit_SetAlignment,
   LabeledEdit_GetAnchors,

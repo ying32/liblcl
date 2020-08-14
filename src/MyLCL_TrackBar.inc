@@ -119,6 +119,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TrackBar_PaintTo(AObj: TTrackBar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TrackBar_RemoveControl(AObj: TTrackBar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -443,6 +451,111 @@ procedure TrackBar_AnchorClient(AObj: TTrackBar; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleDesignToForm(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleFormToDesign(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_Scale96ToForm(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleFormTo96(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_Scale96ToFont(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleFontTo96(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleScreenToFont(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleFontToScreen(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_Scale96ToScreen(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TrackBar_ScaleScreenTo96(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TrackBar_AutoAdjustLayout(AObj: TTrackBar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TrackBar_FixDesignFontsPPI(AObj: TTrackBar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure TrackBar_ScaleFontsPPI(AObj: TTrackBar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1403,6 +1516,7 @@ exports
   TrackBar_HandleAllocated,
   TrackBar_InsertControl,
   TrackBar_Invalidate,
+  TrackBar_PaintTo,
   TrackBar_RemoveControl,
   TrackBar_Realign,
   TrackBar_Repaint,
@@ -1443,6 +1557,19 @@ exports
   TrackBar_AnchorSame,
   TrackBar_AnchorAsAlign,
   TrackBar_AnchorClient,
+  TrackBar_ScaleDesignToForm,
+  TrackBar_ScaleFormToDesign,
+  TrackBar_Scale96ToForm,
+  TrackBar_ScaleFormTo96,
+  TrackBar_Scale96ToFont,
+  TrackBar_ScaleFontTo96,
+  TrackBar_ScaleScreenToFont,
+  TrackBar_ScaleFontToScreen,
+  TrackBar_Scale96ToScreen,
+  TrackBar_ScaleScreenTo96,
+  TrackBar_AutoAdjustLayout,
+  TrackBar_FixDesignFontsPPI,
+  TrackBar_ScaleFontsPPI,
   TrackBar_GetAlign,
   TrackBar_SetAlign,
   TrackBar_GetAnchors,

@@ -175,6 +175,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Form_PaintTo(AObj: TForm; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Form_RemoveControl(AObj: TForm; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -478,6 +486,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function Form_ScaleDesignToForm(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_ScaleFormToDesign(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_Scale96ToForm(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_ScaleFormTo96(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_Scale96ToFont(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_ScaleFontTo96(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_ScaleScreenToFont(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_ScaleFontToScreen(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_Scale96ToScreen(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Form_ScaleScreenTo96(AObj: TForm; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_AutoAdjustLayout(AObj: TForm; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_FixDesignFontsPPI(AObj: TForm; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Form_ScaleFontsPPI(AObj: TForm; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function Form_GetAllowDropFiles(AObj: TForm): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -511,6 +624,20 @@ procedure Form_SetShowInTaskBar(AObj: TForm; AValue: TShowInTaskbar); extdecl;
 begin
   handleExceptionBegin
   AObj.ShowInTaskBar := AValue;
+  handleExceptionEnd
+end;
+
+function Form_GetDesignTimePPI(AObj: TForm): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DesignTimePPI;
+  handleExceptionEnd
+end;
+
+procedure Form_SetDesignTimePPI(AObj: TForm; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.DesignTimePPI := AValue;
   handleExceptionEnd
 end;
 
@@ -1808,6 +1935,7 @@ exports
   Form_HandleAllocated,
   Form_InsertControl,
   Form_Invalidate,
+  Form_PaintTo,
   Form_RemoveControl,
   Form_Realign,
   Form_Repaint,
@@ -1845,11 +1973,26 @@ exports
   Form_AnchorSame,
   Form_AnchorAsAlign,
   Form_AnchorClient,
+  Form_ScaleDesignToForm,
+  Form_ScaleFormToDesign,
+  Form_Scale96ToForm,
+  Form_ScaleFormTo96,
+  Form_Scale96ToFont,
+  Form_ScaleFontTo96,
+  Form_ScaleScreenToFont,
+  Form_ScaleFontToScreen,
+  Form_Scale96ToScreen,
+  Form_ScaleScreenTo96,
+  Form_AutoAdjustLayout,
+  Form_FixDesignFontsPPI,
+  Form_ScaleFontsPPI,
   Form_GetAllowDropFiles,
   Form_SetAllowDropFiles,
   Form_SetOnDropFiles,
   Form_GetShowInTaskBar,
   Form_SetShowInTaskBar,
+  Form_GetDesignTimePPI,
+  Form_SetDesignTimePPI,
   Form_GetAction,
   Form_SetAction,
   Form_GetActiveControl,

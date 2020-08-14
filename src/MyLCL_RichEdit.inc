@@ -175,6 +175,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RichEdit_PaintTo(AObj: TRichEdit; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RichEdit_RemoveControl(AObj: TRichEdit; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -499,6 +507,111 @@ procedure RichEdit_AnchorClient(AObj: TRichEdit; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleDesignToForm(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleFormToDesign(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_Scale96ToForm(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleFormTo96(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_Scale96ToFont(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleFontTo96(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleScreenToFont(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleFontToScreen(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_Scale96ToScreen(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RichEdit_ScaleScreenTo96(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RichEdit_AutoAdjustLayout(AObj: TRichEdit; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RichEdit_FixDesignFontsPPI(AObj: TRichEdit; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure RichEdit_ScaleFontsPPI(AObj: TRichEdit; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1743,6 +1856,7 @@ exports
   RichEdit_HandleAllocated,
   RichEdit_InsertControl,
   RichEdit_Invalidate,
+  RichEdit_PaintTo,
   RichEdit_RemoveControl,
   RichEdit_Realign,
   RichEdit_Repaint,
@@ -1783,6 +1897,19 @@ exports
   RichEdit_AnchorSame,
   RichEdit_AnchorAsAlign,
   RichEdit_AnchorClient,
+  RichEdit_ScaleDesignToForm,
+  RichEdit_ScaleFormToDesign,
+  RichEdit_Scale96ToForm,
+  RichEdit_ScaleFormTo96,
+  RichEdit_Scale96ToFont,
+  RichEdit_ScaleFontTo96,
+  RichEdit_ScaleScreenToFont,
+  RichEdit_ScaleFontToScreen,
+  RichEdit_Scale96ToScreen,
+  RichEdit_ScaleScreenTo96,
+  RichEdit_AutoAdjustLayout,
+  RichEdit_FixDesignFontsPPI,
+  RichEdit_ScaleFontsPPI,
   RichEdit_GetAlign,
   RichEdit_SetAlign,
   RichEdit_GetAlignment,

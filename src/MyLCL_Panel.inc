@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Panel_PaintTo(AObj: TPanel; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Panel_RemoveControl(AObj: TPanel; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure Panel_AnchorClient(AObj: TPanel; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleDesignToForm(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleFormToDesign(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_Scale96ToForm(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleFormTo96(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_Scale96ToFont(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleFontTo96(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleScreenToFont(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleFontToScreen(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_Scale96ToScreen(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Panel_ScaleScreenTo96(AObj: TPanel; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Panel_AutoAdjustLayout(AObj: TPanel; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Panel_FixDesignFontsPPI(AObj: TPanel; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure Panel_ScaleFontsPPI(AObj: TPanel; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1488,6 +1601,7 @@ exports
   Panel_HandleAllocated,
   Panel_InsertControl,
   Panel_Invalidate,
+  Panel_PaintTo,
   Panel_RemoveControl,
   Panel_Realign,
   Panel_Repaint,
@@ -1528,6 +1642,19 @@ exports
   Panel_AnchorSame,
   Panel_AnchorAsAlign,
   Panel_AnchorClient,
+  Panel_ScaleDesignToForm,
+  Panel_ScaleFormToDesign,
+  Panel_Scale96ToForm,
+  Panel_ScaleFormTo96,
+  Panel_Scale96ToFont,
+  Panel_ScaleFontTo96,
+  Panel_ScaleScreenToFont,
+  Panel_ScaleFontToScreen,
+  Panel_Scale96ToScreen,
+  Panel_ScaleScreenTo96,
+  Panel_AutoAdjustLayout,
+  Panel_FixDesignFontsPPI,
+  Panel_ScaleFontsPPI,
   Panel_GetAlign,
   Panel_SetAlign,
   Panel_GetAlignment,

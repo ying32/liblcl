@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToggleBox_PaintTo(AObj: TToggleBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToggleBox_RemoveControl(AObj: TToggleBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure ToggleBox_AnchorClient(AObj: TToggleBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleDesignToForm(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleFormToDesign(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_Scale96ToForm(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleFormTo96(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_Scale96ToFont(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleFontTo96(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleScreenToFont(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleFontToScreen(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_Scale96ToScreen(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToggleBox_ScaleScreenTo96(AObj: TToggleBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToggleBox_AutoAdjustLayout(AObj: TToggleBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToggleBox_FixDesignFontsPPI(AObj: TToggleBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ToggleBox_ScaleFontsPPI(AObj: TToggleBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1378,6 +1491,7 @@ exports
   ToggleBox_HandleAllocated,
   ToggleBox_InsertControl,
   ToggleBox_Invalidate,
+  ToggleBox_PaintTo,
   ToggleBox_RemoveControl,
   ToggleBox_Realign,
   ToggleBox_Repaint,
@@ -1418,6 +1532,19 @@ exports
   ToggleBox_AnchorSame,
   ToggleBox_AnchorAsAlign,
   ToggleBox_AnchorClient,
+  ToggleBox_ScaleDesignToForm,
+  ToggleBox_ScaleFormToDesign,
+  ToggleBox_Scale96ToForm,
+  ToggleBox_ScaleFormTo96,
+  ToggleBox_Scale96ToFont,
+  ToggleBox_ScaleFontTo96,
+  ToggleBox_ScaleScreenToFont,
+  ToggleBox_ScaleFontToScreen,
+  ToggleBox_Scale96ToScreen,
+  ToggleBox_ScaleScreenTo96,
+  ToggleBox_AutoAdjustLayout,
+  ToggleBox_FixDesignFontsPPI,
+  ToggleBox_ScaleFontsPPI,
   ToggleBox_GetAllowGrayed,
   ToggleBox_SetAllowGrayed,
   ToggleBox_GetAlign,

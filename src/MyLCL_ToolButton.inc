@@ -333,6 +333,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function ToolButton_ScaleDesignToForm(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_ScaleFormToDesign(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_Scale96ToForm(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_ScaleFormTo96(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_Scale96ToFont(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_ScaleFontTo96(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_ScaleScreenToFont(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_ScaleFontToScreen(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_Scale96ToScreen(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ToolButton_ScaleScreenTo96(AObj: TToolButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToolButton_AutoAdjustLayout(AObj: TToolButton; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToolButton_FixDesignFontsPPI(AObj: TToolButton; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ToolButton_ScaleFontsPPI(AObj: TToolButton; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function ToolButton_GetIndex(AObj: TToolButton): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1150,6 +1255,19 @@ exports
   ToolButton_AnchorSame,
   ToolButton_AnchorAsAlign,
   ToolButton_AnchorClient,
+  ToolButton_ScaleDesignToForm,
+  ToolButton_ScaleFormToDesign,
+  ToolButton_Scale96ToForm,
+  ToolButton_ScaleFormTo96,
+  ToolButton_Scale96ToFont,
+  ToolButton_ScaleFontTo96,
+  ToolButton_ScaleScreenToFont,
+  ToolButton_ScaleFontToScreen,
+  ToolButton_Scale96ToScreen,
+  ToolButton_ScaleScreenTo96,
+  ToolButton_AutoAdjustLayout,
+  ToolButton_FixDesignFontsPPI,
+  ToolButton_ScaleFontsPPI,
   ToolButton_GetIndex,
   ToolButton_GetAction,
   ToolButton_SetAction,

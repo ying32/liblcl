@@ -169,6 +169,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ListBox_PaintTo(AObj: TListBox; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ListBox_RemoveControl(AObj: TListBox; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -493,6 +501,111 @@ procedure ListBox_AnchorClient(AObj: TListBox; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleDesignToForm(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleFormToDesign(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_Scale96ToForm(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleFormTo96(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_Scale96ToFont(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleFontTo96(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleScreenToFont(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleFontToScreen(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_Scale96ToScreen(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListBox_ScaleScreenTo96(AObj: TListBox; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ListBox_AutoAdjustLayout(AObj: TListBox; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ListBox_FixDesignFontsPPI(AObj: TListBox; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure ListBox_ScaleFontsPPI(AObj: TListBox; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1614,6 +1727,7 @@ exports
   ListBox_HandleAllocated,
   ListBox_InsertControl,
   ListBox_Invalidate,
+  ListBox_PaintTo,
   ListBox_RemoveControl,
   ListBox_Realign,
   ListBox_Repaint,
@@ -1654,6 +1768,19 @@ exports
   ListBox_AnchorSame,
   ListBox_AnchorAsAlign,
   ListBox_AnchorClient,
+  ListBox_ScaleDesignToForm,
+  ListBox_ScaleFormToDesign,
+  ListBox_Scale96ToForm,
+  ListBox_ScaleFormTo96,
+  ListBox_Scale96ToFont,
+  ListBox_ScaleFontTo96,
+  ListBox_ScaleScreenToFont,
+  ListBox_ScaleFontToScreen,
+  ListBox_Scale96ToScreen,
+  ListBox_ScaleScreenTo96,
+  ListBox_AutoAdjustLayout,
+  ListBox_FixDesignFontsPPI,
+  ListBox_ScaleFontsPPI,
   ListBox_GetClickOnSelChange,
   ListBox_SetClickOnSelChange,
   ListBox_GetOptions,

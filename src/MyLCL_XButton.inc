@@ -317,6 +317,111 @@ begin
   handleExceptionEnd
 end;
 
+//CLASSMETHOD:
+function XButton_ScaleDesignToForm(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_ScaleFormToDesign(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_Scale96ToForm(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_ScaleFormTo96(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_Scale96ToFont(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_ScaleFontTo96(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_ScaleScreenToFont(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_ScaleFontToScreen(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_Scale96ToScreen(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function XButton_ScaleScreenTo96(AObj: TXButton; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure XButton_AutoAdjustLayout(AObj: TXButton; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure XButton_FixDesignFontsPPI(AObj: TXButton; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure XButton_ScaleFontsPPI(AObj: TXButton; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
+  handleExceptionEnd
+end;
+
 function XButton_GetCaption(AObj: TXButton): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -1085,6 +1190,19 @@ exports
   XButton_AnchorSame,
   XButton_AnchorAsAlign,
   XButton_AnchorClient,
+  XButton_ScaleDesignToForm,
+  XButton_ScaleFormToDesign,
+  XButton_Scale96ToForm,
+  XButton_ScaleFormTo96,
+  XButton_Scale96ToFont,
+  XButton_ScaleFontTo96,
+  XButton_ScaleScreenToFont,
+  XButton_ScaleFontToScreen,
+  XButton_Scale96ToScreen,
+  XButton_ScaleScreenTo96,
+  XButton_AutoAdjustLayout,
+  XButton_FixDesignFontsPPI,
+  XButton_ScaleFontsPPI,
   XButton_GetCaption,
   XButton_SetCaption,
   XButton_GetShowCaption,

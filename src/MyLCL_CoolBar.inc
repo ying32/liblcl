@@ -103,6 +103,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CoolBar_PaintTo(AObj: TCoolBar; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CoolBar_RemoveControl(AObj: TCoolBar; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -427,6 +435,111 @@ procedure CoolBar_AnchorClient(AObj: TCoolBar; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleDesignToForm(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleFormToDesign(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_Scale96ToForm(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleFormTo96(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_Scale96ToFont(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleFontTo96(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleScreenToFont(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleFontToScreen(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_Scale96ToScreen(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function CoolBar_ScaleScreenTo96(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CoolBar_AutoAdjustLayout(AObj: TCoolBar; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CoolBar_FixDesignFontsPPI(AObj: TCoolBar; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure CoolBar_ScaleFontsPPI(AObj: TCoolBar; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1533,6 +1646,7 @@ exports
   CoolBar_Focused,
   CoolBar_HandleAllocated,
   CoolBar_Invalidate,
+  CoolBar_PaintTo,
   CoolBar_RemoveControl,
   CoolBar_Realign,
   CoolBar_Repaint,
@@ -1573,6 +1687,19 @@ exports
   CoolBar_AnchorSame,
   CoolBar_AnchorAsAlign,
   CoolBar_AnchorClient,
+  CoolBar_ScaleDesignToForm,
+  CoolBar_ScaleFormToDesign,
+  CoolBar_Scale96ToForm,
+  CoolBar_ScaleFormTo96,
+  CoolBar_Scale96ToFont,
+  CoolBar_ScaleFontTo96,
+  CoolBar_ScaleScreenToFont,
+  CoolBar_ScaleFontToScreen,
+  CoolBar_Scale96ToScreen,
+  CoolBar_ScaleScreenTo96,
+  CoolBar_AutoAdjustLayout,
+  CoolBar_FixDesignFontsPPI,
+  CoolBar_ScaleFontsPPI,
   CoolBar_GetAlign,
   CoolBar_SetAlign,
   CoolBar_GetAnchors,

@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RadioGroup_PaintTo(AObj: TRadioGroup; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RadioGroup_RemoveControl(AObj: TRadioGroup; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure RadioGroup_AnchorClient(AObj: TRadioGroup; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleDesignToForm(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleFormToDesign(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_Scale96ToForm(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleFormTo96(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_Scale96ToFont(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleFontTo96(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleScreenToFont(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleFontToScreen(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_Scale96ToScreen(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function RadioGroup_ScaleScreenTo96(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RadioGroup_AutoAdjustLayout(AObj: TRadioGroup; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RadioGroup_FixDesignFontsPPI(AObj: TRadioGroup; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure RadioGroup_ScaleFontsPPI(AObj: TRadioGroup; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1292,6 +1405,7 @@ exports
   RadioGroup_HandleAllocated,
   RadioGroup_InsertControl,
   RadioGroup_Invalidate,
+  RadioGroup_PaintTo,
   RadioGroup_RemoveControl,
   RadioGroup_Realign,
   RadioGroup_Repaint,
@@ -1332,6 +1446,19 @@ exports
   RadioGroup_AnchorSame,
   RadioGroup_AnchorAsAlign,
   RadioGroup_AnchorClient,
+  RadioGroup_ScaleDesignToForm,
+  RadioGroup_ScaleFormToDesign,
+  RadioGroup_Scale96ToForm,
+  RadioGroup_ScaleFormTo96,
+  RadioGroup_Scale96ToFont,
+  RadioGroup_ScaleFontTo96,
+  RadioGroup_ScaleScreenToFont,
+  RadioGroup_ScaleFontToScreen,
+  RadioGroup_Scale96ToScreen,
+  RadioGroup_ScaleScreenTo96,
+  RadioGroup_AutoAdjustLayout,
+  RadioGroup_FixDesignFontsPPI,
+  RadioGroup_ScaleFontsPPI,
   RadioGroup_GetAlign,
   RadioGroup_SetAlign,
   RadioGroup_GetAnchors,

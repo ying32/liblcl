@@ -111,6 +111,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TabSheet_PaintTo(AObj: TTabSheet; DC: HDC; X: Integer; Y: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PaintTo(DC, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TabSheet_RemoveControl(AObj: TTabSheet; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -435,6 +443,111 @@ procedure TabSheet_AnchorClient(AObj: TTabSheet; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleDesignToForm(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleDesignToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleFormToDesign(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormToDesign(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_Scale96ToForm(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToForm(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleFormTo96(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFormTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_Scale96ToFont(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleFontTo96(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleScreenToFont(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenToFont(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleFontToScreen(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleFontToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_Scale96ToScreen(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scale96ToScreen(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TabSheet_ScaleScreenTo96(AObj: TTabSheet; ASize: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScaleScreenTo96(ASize);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TabSheet_AutoAdjustLayout(AObj: TTabSheet; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TabSheet_FixDesignFontsPPI(AObj: TTabSheet; ADesignTimePPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FixDesignFontsPPI(ADesignTimePPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:3=nonPtr
+procedure TabSheet_ScaleFontsPPI(AObj: TTabSheet; AToPPI: Integer; var AProportion: Double); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
@@ -1335,6 +1448,7 @@ exports
   TabSheet_HandleAllocated,
   TabSheet_InsertControl,
   TabSheet_Invalidate,
+  TabSheet_PaintTo,
   TabSheet_RemoveControl,
   TabSheet_Realign,
   TabSheet_Repaint,
@@ -1375,6 +1489,19 @@ exports
   TabSheet_AnchorSame,
   TabSheet_AnchorAsAlign,
   TabSheet_AnchorClient,
+  TabSheet_ScaleDesignToForm,
+  TabSheet_ScaleFormToDesign,
+  TabSheet_Scale96ToForm,
+  TabSheet_ScaleFormTo96,
+  TabSheet_Scale96ToFont,
+  TabSheet_ScaleFontTo96,
+  TabSheet_ScaleScreenToFont,
+  TabSheet_ScaleFontToScreen,
+  TabSheet_Scale96ToScreen,
+  TabSheet_ScaleScreenTo96,
+  TabSheet_AutoAdjustLayout,
+  TabSheet_FixDesignFontsPPI,
+  TabSheet_ScaleFontsPPI,
   TabSheet_GetPageControl,
   TabSheet_SetPageControl,
   TabSheet_GetTabIndex,
