@@ -2126,6 +2126,13 @@ typedef enum {
     ioVertical,
 } TImageOrientation;
 
+typedef enum {
+    lapDefault, // widgetset dependent
+    lapFixedLayout, // A fixed absolute layout in all platforms
+    lapAutoAdjustWithoutHorizontalScrolling, // Smartphone platforms use this one,
+    lapAutoAdjustForDPI, // For desktops using High DPI, scale x and y to fit the DPI
+} TLayoutAdjustmentPolicy;
+
 /*--------------------类型定义--------------------*/
 
 typedef struct TPoint {
@@ -4014,6 +4021,97 @@ Control_AnchorClient(TControl AObj, int32_t ASpace) {
     MySyscall(pControl_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Control_ScaleDesignToForm)
+int32_t
+Control_ScaleDesignToForm(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleDesignToForm)
+    return (int32_t)MySyscall(pControl_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleFormToDesign)
+int32_t
+Control_ScaleFormToDesign(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleFormToDesign)
+    return (int32_t)MySyscall(pControl_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_Scale96ToForm)
+int32_t
+Control_Scale96ToForm(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_Scale96ToForm)
+    return (int32_t)MySyscall(pControl_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleFormTo96)
+int32_t
+Control_ScaleFormTo96(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleFormTo96)
+    return (int32_t)MySyscall(pControl_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_Scale96ToFont)
+int32_t
+Control_Scale96ToFont(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_Scale96ToFont)
+    return (int32_t)MySyscall(pControl_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleFontTo96)
+int32_t
+Control_ScaleFontTo96(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleFontTo96)
+    return (int32_t)MySyscall(pControl_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleScreenToFont)
+int32_t
+Control_ScaleScreenToFont(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleScreenToFont)
+    return (int32_t)MySyscall(pControl_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleFontToScreen)
+int32_t
+Control_ScaleFontToScreen(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleFontToScreen)
+    return (int32_t)MySyscall(pControl_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_Scale96ToScreen)
+int32_t
+Control_Scale96ToScreen(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_Scale96ToScreen)
+    return (int32_t)MySyscall(pControl_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleScreenTo96)
+int32_t
+Control_ScaleScreenTo96(TControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Control_ScaleScreenTo96)
+    return (int32_t)MySyscall(pControl_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_AutoAdjustLayout)
+void
+Control_AutoAdjustLayout(TControl AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Control_AutoAdjustLayout)
+    MySyscall(pControl_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_FixDesignFontsPPI)
+void
+Control_FixDesignFontsPPI(TControl AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Control_FixDesignFontsPPI)
+    MySyscall(pControl_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Control_ScaleFontsPPI)
+void
+Control_ScaleFontsPPI(TControl AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Control_ScaleFontsPPI)
+    MySyscall(pControl_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Control_GetEnabled)
 BOOL
 Control_GetEnabled(TControl AObj) {
@@ -4561,6 +4659,13 @@ WinControl_Invalidate(TWinControl AObj) {
     MySyscall(pWinControl_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(WinControl_PaintTo)
+void
+WinControl_PaintTo(TWinControl AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(WinControl_PaintTo)
+    MySyscall(pWinControl_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(WinControl_RemoveControl)
 void
 WinControl_RemoveControl(TWinControl AObj, TControl AControl) {
@@ -4847,6 +4952,97 @@ void
 WinControl_AnchorClient(TWinControl AObj, int32_t ASpace) {
     GET_FUNC_ADDR(WinControl_AnchorClient)
     MySyscall(pWinControl_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleDesignToForm)
+int32_t
+WinControl_ScaleDesignToForm(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleDesignToForm)
+    return (int32_t)MySyscall(pWinControl_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleFormToDesign)
+int32_t
+WinControl_ScaleFormToDesign(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleFormToDesign)
+    return (int32_t)MySyscall(pWinControl_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_Scale96ToForm)
+int32_t
+WinControl_Scale96ToForm(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_Scale96ToForm)
+    return (int32_t)MySyscall(pWinControl_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleFormTo96)
+int32_t
+WinControl_ScaleFormTo96(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleFormTo96)
+    return (int32_t)MySyscall(pWinControl_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_Scale96ToFont)
+int32_t
+WinControl_Scale96ToFont(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_Scale96ToFont)
+    return (int32_t)MySyscall(pWinControl_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleFontTo96)
+int32_t
+WinControl_ScaleFontTo96(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleFontTo96)
+    return (int32_t)MySyscall(pWinControl_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleScreenToFont)
+int32_t
+WinControl_ScaleScreenToFont(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleScreenToFont)
+    return (int32_t)MySyscall(pWinControl_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleFontToScreen)
+int32_t
+WinControl_ScaleFontToScreen(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleFontToScreen)
+    return (int32_t)MySyscall(pWinControl_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_Scale96ToScreen)
+int32_t
+WinControl_Scale96ToScreen(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_Scale96ToScreen)
+    return (int32_t)MySyscall(pWinControl_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleScreenTo96)
+int32_t
+WinControl_ScaleScreenTo96(TWinControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(WinControl_ScaleScreenTo96)
+    return (int32_t)MySyscall(pWinControl_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_AutoAdjustLayout)
+void
+WinControl_AutoAdjustLayout(TWinControl AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(WinControl_AutoAdjustLayout)
+    MySyscall(pWinControl_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_FixDesignFontsPPI)
+void
+WinControl_FixDesignFontsPPI(TWinControl AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(WinControl_FixDesignFontsPPI)
+    MySyscall(pWinControl_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(WinControl_ScaleFontsPPI)
+void
+WinControl_ScaleFontsPPI(TWinControl AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(WinControl_ScaleFontsPPI)
+    MySyscall(pWinControl_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(WinControl_GetDockClientCount)
@@ -6123,6 +6319,13 @@ CheckBox_Invalidate(TCheckBox AObj) {
     MySyscall(pCheckBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CheckBox_PaintTo)
+void
+CheckBox_PaintTo(TCheckBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(CheckBox_PaintTo)
+    MySyscall(pCheckBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CheckBox_RemoveControl)
 void
 CheckBox_RemoveControl(TCheckBox AObj, TControl AControl) {
@@ -6409,6 +6612,97 @@ void
 CheckBox_AnchorClient(TCheckBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(CheckBox_AnchorClient)
     MySyscall(pCheckBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleDesignToForm)
+int32_t
+CheckBox_ScaleDesignToForm(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pCheckBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleFormToDesign)
+int32_t
+CheckBox_ScaleFormToDesign(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pCheckBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_Scale96ToForm)
+int32_t
+CheckBox_Scale96ToForm(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_Scale96ToForm)
+    return (int32_t)MySyscall(pCheckBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleFormTo96)
+int32_t
+CheckBox_ScaleFormTo96(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pCheckBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_Scale96ToFont)
+int32_t
+CheckBox_Scale96ToFont(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_Scale96ToFont)
+    return (int32_t)MySyscall(pCheckBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleFontTo96)
+int32_t
+CheckBox_ScaleFontTo96(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pCheckBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleScreenToFont)
+int32_t
+CheckBox_ScaleScreenToFont(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pCheckBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleFontToScreen)
+int32_t
+CheckBox_ScaleFontToScreen(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pCheckBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_Scale96ToScreen)
+int32_t
+CheckBox_Scale96ToScreen(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pCheckBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleScreenTo96)
+int32_t
+CheckBox_ScaleScreenTo96(TCheckBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pCheckBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_AutoAdjustLayout)
+void
+CheckBox_AutoAdjustLayout(TCheckBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(CheckBox_AutoAdjustLayout)
+    MySyscall(pCheckBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_FixDesignFontsPPI)
+void
+CheckBox_FixDesignFontsPPI(TCheckBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(CheckBox_FixDesignFontsPPI)
+    MySyscall(pCheckBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckBox_ScaleFontsPPI)
+void
+CheckBox_ScaleFontsPPI(TCheckBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(CheckBox_ScaleFontsPPI)
+    MySyscall(pCheckBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnChange)
@@ -7441,6 +7735,13 @@ RadioButton_Invalidate(TRadioButton AObj) {
     MySyscall(pRadioButton_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RadioButton_PaintTo)
+void
+RadioButton_PaintTo(TRadioButton AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(RadioButton_PaintTo)
+    MySyscall(pRadioButton_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RadioButton_RemoveControl)
 void
 RadioButton_RemoveControl(TRadioButton AObj, TControl AControl) {
@@ -7727,6 +8028,97 @@ void
 RadioButton_AnchorClient(TRadioButton AObj, int32_t ASpace) {
     GET_FUNC_ADDR(RadioButton_AnchorClient)
     MySyscall(pRadioButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleDesignToForm)
+int32_t
+RadioButton_ScaleDesignToForm(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleDesignToForm)
+    return (int32_t)MySyscall(pRadioButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleFormToDesign)
+int32_t
+RadioButton_ScaleFormToDesign(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleFormToDesign)
+    return (int32_t)MySyscall(pRadioButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_Scale96ToForm)
+int32_t
+RadioButton_Scale96ToForm(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_Scale96ToForm)
+    return (int32_t)MySyscall(pRadioButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleFormTo96)
+int32_t
+RadioButton_ScaleFormTo96(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleFormTo96)
+    return (int32_t)MySyscall(pRadioButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_Scale96ToFont)
+int32_t
+RadioButton_Scale96ToFont(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_Scale96ToFont)
+    return (int32_t)MySyscall(pRadioButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleFontTo96)
+int32_t
+RadioButton_ScaleFontTo96(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleFontTo96)
+    return (int32_t)MySyscall(pRadioButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleScreenToFont)
+int32_t
+RadioButton_ScaleScreenToFont(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleScreenToFont)
+    return (int32_t)MySyscall(pRadioButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleFontToScreen)
+int32_t
+RadioButton_ScaleFontToScreen(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleFontToScreen)
+    return (int32_t)MySyscall(pRadioButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_Scale96ToScreen)
+int32_t
+RadioButton_Scale96ToScreen(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_Scale96ToScreen)
+    return (int32_t)MySyscall(pRadioButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleScreenTo96)
+int32_t
+RadioButton_ScaleScreenTo96(TRadioButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioButton_ScaleScreenTo96)
+    return (int32_t)MySyscall(pRadioButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_AutoAdjustLayout)
+void
+RadioButton_AutoAdjustLayout(TRadioButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(RadioButton_AutoAdjustLayout)
+    MySyscall(pRadioButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_FixDesignFontsPPI)
+void
+RadioButton_FixDesignFontsPPI(TRadioButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(RadioButton_FixDesignFontsPPI)
+    MySyscall(pRadioButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioButton_ScaleFontsPPI)
+void
+RadioButton_ScaleFontsPPI(TRadioButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(RadioButton_ScaleFontsPPI)
+    MySyscall(pRadioButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnChange)
@@ -8731,6 +9123,13 @@ GroupBox_Invalidate(TGroupBox AObj) {
     MySyscall(pGroupBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(GroupBox_PaintTo)
+void
+GroupBox_PaintTo(TGroupBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(GroupBox_PaintTo)
+    MySyscall(pGroupBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(GroupBox_RemoveControl)
 void
 GroupBox_RemoveControl(TGroupBox AObj, TControl AControl) {
@@ -9017,6 +9416,97 @@ void
 GroupBox_AnchorClient(TGroupBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(GroupBox_AnchorClient)
     MySyscall(pGroupBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleDesignToForm)
+int32_t
+GroupBox_ScaleDesignToForm(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pGroupBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleFormToDesign)
+int32_t
+GroupBox_ScaleFormToDesign(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pGroupBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_Scale96ToForm)
+int32_t
+GroupBox_Scale96ToForm(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_Scale96ToForm)
+    return (int32_t)MySyscall(pGroupBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleFormTo96)
+int32_t
+GroupBox_ScaleFormTo96(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pGroupBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_Scale96ToFont)
+int32_t
+GroupBox_Scale96ToFont(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_Scale96ToFont)
+    return (int32_t)MySyscall(pGroupBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleFontTo96)
+int32_t
+GroupBox_ScaleFontTo96(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pGroupBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleScreenToFont)
+int32_t
+GroupBox_ScaleScreenToFont(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pGroupBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleFontToScreen)
+int32_t
+GroupBox_ScaleFontToScreen(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pGroupBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_Scale96ToScreen)
+int32_t
+GroupBox_Scale96ToScreen(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pGroupBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleScreenTo96)
+int32_t
+GroupBox_ScaleScreenTo96(TGroupBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(GroupBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pGroupBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_AutoAdjustLayout)
+void
+GroupBox_AutoAdjustLayout(TGroupBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(GroupBox_AutoAdjustLayout)
+    MySyscall(pGroupBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_FixDesignFontsPPI)
+void
+GroupBox_FixDesignFontsPPI(TGroupBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(GroupBox_FixDesignFontsPPI)
+    MySyscall(pGroupBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_ScaleFontsPPI)
+void
+GroupBox_ScaleFontsPPI(TGroupBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(GroupBox_ScaleFontsPPI)
+    MySyscall(pGroupBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_GetAlign)
@@ -10197,6 +10687,97 @@ Label_AnchorClient(TLabel AObj, int32_t ASpace) {
     MySyscall(pLabel_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Label_ScaleDesignToForm)
+int32_t
+Label_ScaleDesignToForm(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleDesignToForm)
+    return (int32_t)MySyscall(pLabel_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleFormToDesign)
+int32_t
+Label_ScaleFormToDesign(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleFormToDesign)
+    return (int32_t)MySyscall(pLabel_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_Scale96ToForm)
+int32_t
+Label_Scale96ToForm(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_Scale96ToForm)
+    return (int32_t)MySyscall(pLabel_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleFormTo96)
+int32_t
+Label_ScaleFormTo96(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleFormTo96)
+    return (int32_t)MySyscall(pLabel_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_Scale96ToFont)
+int32_t
+Label_Scale96ToFont(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_Scale96ToFont)
+    return (int32_t)MySyscall(pLabel_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleFontTo96)
+int32_t
+Label_ScaleFontTo96(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleFontTo96)
+    return (int32_t)MySyscall(pLabel_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleScreenToFont)
+int32_t
+Label_ScaleScreenToFont(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleScreenToFont)
+    return (int32_t)MySyscall(pLabel_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleFontToScreen)
+int32_t
+Label_ScaleFontToScreen(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleFontToScreen)
+    return (int32_t)MySyscall(pLabel_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_Scale96ToScreen)
+int32_t
+Label_Scale96ToScreen(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_Scale96ToScreen)
+    return (int32_t)MySyscall(pLabel_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleScreenTo96)
+int32_t
+Label_ScaleScreenTo96(TLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Label_ScaleScreenTo96)
+    return (int32_t)MySyscall(pLabel_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_AutoAdjustLayout)
+void
+Label_AutoAdjustLayout(TLabel AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Label_AutoAdjustLayout)
+    MySyscall(pLabel_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_FixDesignFontsPPI)
+void
+Label_FixDesignFontsPPI(TLabel AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Label_FixDesignFontsPPI)
+    MySyscall(pLabel_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Label_ScaleFontsPPI)
+void
+Label_ScaleFontsPPI(TLabel AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Label_ScaleFontsPPI)
+    MySyscall(pLabel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Label_GetOptimalFill)
 BOOL
 Label_GetOptimalFill(TLabel AObj) {
@@ -11131,6 +11712,13 @@ ListBox_Invalidate(TListBox AObj) {
     MySyscall(pListBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ListBox_PaintTo)
+void
+ListBox_PaintTo(TListBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ListBox_PaintTo)
+    MySyscall(pListBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ListBox_RemoveControl)
 void
 ListBox_RemoveControl(TListBox AObj, TControl AControl) {
@@ -11417,6 +12005,97 @@ void
 ListBox_AnchorClient(TListBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ListBox_AnchorClient)
     MySyscall(pListBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleDesignToForm)
+int32_t
+ListBox_ScaleDesignToForm(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pListBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleFormToDesign)
+int32_t
+ListBox_ScaleFormToDesign(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pListBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_Scale96ToForm)
+int32_t
+ListBox_Scale96ToForm(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_Scale96ToForm)
+    return (int32_t)MySyscall(pListBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleFormTo96)
+int32_t
+ListBox_ScaleFormTo96(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pListBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_Scale96ToFont)
+int32_t
+ListBox_Scale96ToFont(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_Scale96ToFont)
+    return (int32_t)MySyscall(pListBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleFontTo96)
+int32_t
+ListBox_ScaleFontTo96(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pListBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleScreenToFont)
+int32_t
+ListBox_ScaleScreenToFont(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pListBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleFontToScreen)
+int32_t
+ListBox_ScaleFontToScreen(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pListBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_Scale96ToScreen)
+int32_t
+ListBox_Scale96ToScreen(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pListBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleScreenTo96)
+int32_t
+ListBox_ScaleScreenTo96(TListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pListBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_AutoAdjustLayout)
+void
+ListBox_AutoAdjustLayout(TListBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ListBox_AutoAdjustLayout)
+    MySyscall(pListBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_FixDesignFontsPPI)
+void
+ListBox_FixDesignFontsPPI(TListBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ListBox_FixDesignFontsPPI)
+    MySyscall(pListBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListBox_ScaleFontsPPI)
+void
+ListBox_ScaleFontsPPI(TListBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ListBox_ScaleFontsPPI)
+    MySyscall(pListBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_GetClickOnSelChange)
@@ -12631,6 +13310,13 @@ ComboBox_Invalidate(TComboBox AObj) {
     MySyscall(pComboBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ComboBox_PaintTo)
+void
+ComboBox_PaintTo(TComboBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ComboBox_PaintTo)
+    MySyscall(pComboBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ComboBox_RemoveControl)
 void
 ComboBox_RemoveControl(TComboBox AObj, TControl AControl) {
@@ -12917,6 +13603,97 @@ void
 ComboBox_AnchorClient(TComboBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ComboBox_AnchorClient)
     MySyscall(pComboBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleDesignToForm)
+int32_t
+ComboBox_ScaleDesignToForm(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pComboBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleFormToDesign)
+int32_t
+ComboBox_ScaleFormToDesign(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pComboBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_Scale96ToForm)
+int32_t
+ComboBox_Scale96ToForm(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_Scale96ToForm)
+    return (int32_t)MySyscall(pComboBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleFormTo96)
+int32_t
+ComboBox_ScaleFormTo96(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pComboBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_Scale96ToFont)
+int32_t
+ComboBox_Scale96ToFont(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_Scale96ToFont)
+    return (int32_t)MySyscall(pComboBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleFontTo96)
+int32_t
+ComboBox_ScaleFontTo96(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pComboBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleScreenToFont)
+int32_t
+ComboBox_ScaleScreenToFont(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pComboBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleFontToScreen)
+int32_t
+ComboBox_ScaleFontToScreen(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pComboBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_Scale96ToScreen)
+int32_t
+ComboBox_Scale96ToScreen(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pComboBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleScreenTo96)
+int32_t
+ComboBox_ScaleScreenTo96(TComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pComboBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_AutoAdjustLayout)
+void
+ComboBox_AutoAdjustLayout(TComboBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ComboBox_AutoAdjustLayout)
+    MySyscall(pComboBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_FixDesignFontsPPI)
+void
+ComboBox_FixDesignFontsPPI(TComboBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ComboBox_FixDesignFontsPPI)
+    MySyscall(pComboBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_ScaleFontsPPI)
+void
+ComboBox_ScaleFontsPPI(TComboBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ComboBox_ScaleFontsPPI)
+    MySyscall(pComboBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_GetAlign)
@@ -14110,6 +14887,13 @@ Panel_Invalidate(TPanel AObj) {
     MySyscall(pPanel_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Panel_PaintTo)
+void
+Panel_PaintTo(TPanel AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Panel_PaintTo)
+    MySyscall(pPanel_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Panel_RemoveControl)
 void
 Panel_RemoveControl(TPanel AObj, TControl AControl) {
@@ -14396,6 +15180,97 @@ void
 Panel_AnchorClient(TPanel AObj, int32_t ASpace) {
     GET_FUNC_ADDR(Panel_AnchorClient)
     MySyscall(pPanel_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleDesignToForm)
+int32_t
+Panel_ScaleDesignToForm(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleDesignToForm)
+    return (int32_t)MySyscall(pPanel_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleFormToDesign)
+int32_t
+Panel_ScaleFormToDesign(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleFormToDesign)
+    return (int32_t)MySyscall(pPanel_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_Scale96ToForm)
+int32_t
+Panel_Scale96ToForm(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_Scale96ToForm)
+    return (int32_t)MySyscall(pPanel_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleFormTo96)
+int32_t
+Panel_ScaleFormTo96(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleFormTo96)
+    return (int32_t)MySyscall(pPanel_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_Scale96ToFont)
+int32_t
+Panel_Scale96ToFont(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_Scale96ToFont)
+    return (int32_t)MySyscall(pPanel_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleFontTo96)
+int32_t
+Panel_ScaleFontTo96(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleFontTo96)
+    return (int32_t)MySyscall(pPanel_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleScreenToFont)
+int32_t
+Panel_ScaleScreenToFont(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleScreenToFont)
+    return (int32_t)MySyscall(pPanel_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleFontToScreen)
+int32_t
+Panel_ScaleFontToScreen(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleFontToScreen)
+    return (int32_t)MySyscall(pPanel_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_Scale96ToScreen)
+int32_t
+Panel_Scale96ToScreen(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_Scale96ToScreen)
+    return (int32_t)MySyscall(pPanel_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleScreenTo96)
+int32_t
+Panel_ScaleScreenTo96(TPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Panel_ScaleScreenTo96)
+    return (int32_t)MySyscall(pPanel_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_AutoAdjustLayout)
+void
+Panel_AutoAdjustLayout(TPanel AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Panel_AutoAdjustLayout)
+    MySyscall(pPanel_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_FixDesignFontsPPI)
+void
+Panel_FixDesignFontsPPI(TPanel AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Panel_FixDesignFontsPPI)
+    MySyscall(pPanel_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_ScaleFontsPPI)
+void
+Panel_ScaleFontsPPI(TPanel AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Panel_ScaleFontsPPI)
+    MySyscall(pPanel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_GetAlign)
@@ -15695,6 +16570,97 @@ Image_AnchorClient(TImage AObj, int32_t ASpace) {
     MySyscall(pImage_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Image_ScaleDesignToForm)
+int32_t
+Image_ScaleDesignToForm(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleDesignToForm)
+    return (int32_t)MySyscall(pImage_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleFormToDesign)
+int32_t
+Image_ScaleFormToDesign(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleFormToDesign)
+    return (int32_t)MySyscall(pImage_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_Scale96ToForm)
+int32_t
+Image_Scale96ToForm(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_Scale96ToForm)
+    return (int32_t)MySyscall(pImage_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleFormTo96)
+int32_t
+Image_ScaleFormTo96(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleFormTo96)
+    return (int32_t)MySyscall(pImage_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_Scale96ToFont)
+int32_t
+Image_Scale96ToFont(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_Scale96ToFont)
+    return (int32_t)MySyscall(pImage_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleFontTo96)
+int32_t
+Image_ScaleFontTo96(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleFontTo96)
+    return (int32_t)MySyscall(pImage_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleScreenToFont)
+int32_t
+Image_ScaleScreenToFont(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleScreenToFont)
+    return (int32_t)MySyscall(pImage_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleFontToScreen)
+int32_t
+Image_ScaleFontToScreen(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleFontToScreen)
+    return (int32_t)MySyscall(pImage_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_Scale96ToScreen)
+int32_t
+Image_Scale96ToScreen(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_Scale96ToScreen)
+    return (int32_t)MySyscall(pImage_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleScreenTo96)
+int32_t
+Image_ScaleScreenTo96(TImage AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Image_ScaleScreenTo96)
+    return (int32_t)MySyscall(pImage_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_AutoAdjustLayout)
+void
+Image_AutoAdjustLayout(TImage AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Image_AutoAdjustLayout)
+    MySyscall(pImage_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_FixDesignFontsPPI)
+void
+Image_FixDesignFontsPPI(TImage AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Image_FixDesignFontsPPI)
+    MySyscall(pImage_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Image_ScaleFontsPPI)
+void
+Image_ScaleFontsPPI(TImage AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Image_ScaleFontsPPI)
+    MySyscall(pImage_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Image_GetAntialiasingMode)
 TAntialiasingMode
 Image_GetAntialiasingMode(TImage AObj) {
@@ -16712,6 +17678,97 @@ LinkLabel_AnchorClient(TLinkLabel AObj, int32_t ASpace) {
     MySyscall(pLinkLabel_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(LinkLabel_ScaleDesignToForm)
+int32_t
+LinkLabel_ScaleDesignToForm(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleDesignToForm)
+    return (int32_t)MySyscall(pLinkLabel_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleFormToDesign)
+int32_t
+LinkLabel_ScaleFormToDesign(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleFormToDesign)
+    return (int32_t)MySyscall(pLinkLabel_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_Scale96ToForm)
+int32_t
+LinkLabel_Scale96ToForm(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_Scale96ToForm)
+    return (int32_t)MySyscall(pLinkLabel_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleFormTo96)
+int32_t
+LinkLabel_ScaleFormTo96(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleFormTo96)
+    return (int32_t)MySyscall(pLinkLabel_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_Scale96ToFont)
+int32_t
+LinkLabel_Scale96ToFont(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_Scale96ToFont)
+    return (int32_t)MySyscall(pLinkLabel_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleFontTo96)
+int32_t
+LinkLabel_ScaleFontTo96(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleFontTo96)
+    return (int32_t)MySyscall(pLinkLabel_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleScreenToFont)
+int32_t
+LinkLabel_ScaleScreenToFont(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleScreenToFont)
+    return (int32_t)MySyscall(pLinkLabel_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleFontToScreen)
+int32_t
+LinkLabel_ScaleFontToScreen(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleFontToScreen)
+    return (int32_t)MySyscall(pLinkLabel_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_Scale96ToScreen)
+int32_t
+LinkLabel_Scale96ToScreen(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_Scale96ToScreen)
+    return (int32_t)MySyscall(pLinkLabel_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleScreenTo96)
+int32_t
+LinkLabel_ScaleScreenTo96(TLinkLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LinkLabel_ScaleScreenTo96)
+    return (int32_t)MySyscall(pLinkLabel_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_AutoAdjustLayout)
+void
+LinkLabel_AutoAdjustLayout(TLinkLabel AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(LinkLabel_AutoAdjustLayout)
+    MySyscall(pLinkLabel_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_FixDesignFontsPPI)
+void
+LinkLabel_FixDesignFontsPPI(TLinkLabel AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(LinkLabel_FixDesignFontsPPI)
+    MySyscall(pLinkLabel_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LinkLabel_ScaleFontsPPI)
+void
+LinkLabel_ScaleFontsPPI(TLinkLabel AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(LinkLabel_ScaleFontsPPI)
+    MySyscall(pLinkLabel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(LinkLabel_GetAlign)
 TAlign
 LinkLabel_GetAlign(TLinkLabel AObj) {
@@ -17692,6 +18749,97 @@ void
 SpeedButton_AnchorClient(TSpeedButton AObj, int32_t ASpace) {
     GET_FUNC_ADDR(SpeedButton_AnchorClient)
     MySyscall(pSpeedButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleDesignToForm)
+int32_t
+SpeedButton_ScaleDesignToForm(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleDesignToForm)
+    return (int32_t)MySyscall(pSpeedButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleFormToDesign)
+int32_t
+SpeedButton_ScaleFormToDesign(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleFormToDesign)
+    return (int32_t)MySyscall(pSpeedButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_Scale96ToForm)
+int32_t
+SpeedButton_Scale96ToForm(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_Scale96ToForm)
+    return (int32_t)MySyscall(pSpeedButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleFormTo96)
+int32_t
+SpeedButton_ScaleFormTo96(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleFormTo96)
+    return (int32_t)MySyscall(pSpeedButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_Scale96ToFont)
+int32_t
+SpeedButton_Scale96ToFont(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_Scale96ToFont)
+    return (int32_t)MySyscall(pSpeedButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleFontTo96)
+int32_t
+SpeedButton_ScaleFontTo96(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleFontTo96)
+    return (int32_t)MySyscall(pSpeedButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleScreenToFont)
+int32_t
+SpeedButton_ScaleScreenToFont(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleScreenToFont)
+    return (int32_t)MySyscall(pSpeedButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleFontToScreen)
+int32_t
+SpeedButton_ScaleFontToScreen(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleFontToScreen)
+    return (int32_t)MySyscall(pSpeedButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_Scale96ToScreen)
+int32_t
+SpeedButton_Scale96ToScreen(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_Scale96ToScreen)
+    return (int32_t)MySyscall(pSpeedButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleScreenTo96)
+int32_t
+SpeedButton_ScaleScreenTo96(TSpeedButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpeedButton_ScaleScreenTo96)
+    return (int32_t)MySyscall(pSpeedButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_AutoAdjustLayout)
+void
+SpeedButton_AutoAdjustLayout(TSpeedButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(SpeedButton_AutoAdjustLayout)
+    MySyscall(pSpeedButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_FixDesignFontsPPI)
+void
+SpeedButton_FixDesignFontsPPI(TSpeedButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(SpeedButton_FixDesignFontsPPI)
+    MySyscall(pSpeedButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpeedButton_ScaleFontsPPI)
+void
+SpeedButton_ScaleFontsPPI(TSpeedButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(SpeedButton_ScaleFontsPPI)
+    MySyscall(pSpeedButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_GetImageIndex)
@@ -18725,6 +19873,97 @@ Splitter_AnchorClient(TSplitter AObj, int32_t ASpace) {
     MySyscall(pSplitter_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Splitter_ScaleDesignToForm)
+int32_t
+Splitter_ScaleDesignToForm(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleDesignToForm)
+    return (int32_t)MySyscall(pSplitter_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleFormToDesign)
+int32_t
+Splitter_ScaleFormToDesign(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleFormToDesign)
+    return (int32_t)MySyscall(pSplitter_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_Scale96ToForm)
+int32_t
+Splitter_Scale96ToForm(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_Scale96ToForm)
+    return (int32_t)MySyscall(pSplitter_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleFormTo96)
+int32_t
+Splitter_ScaleFormTo96(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleFormTo96)
+    return (int32_t)MySyscall(pSplitter_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_Scale96ToFont)
+int32_t
+Splitter_Scale96ToFont(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_Scale96ToFont)
+    return (int32_t)MySyscall(pSplitter_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleFontTo96)
+int32_t
+Splitter_ScaleFontTo96(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleFontTo96)
+    return (int32_t)MySyscall(pSplitter_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleScreenToFont)
+int32_t
+Splitter_ScaleScreenToFont(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleScreenToFont)
+    return (int32_t)MySyscall(pSplitter_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleFontToScreen)
+int32_t
+Splitter_ScaleFontToScreen(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleFontToScreen)
+    return (int32_t)MySyscall(pSplitter_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_Scale96ToScreen)
+int32_t
+Splitter_Scale96ToScreen(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_Scale96ToScreen)
+    return (int32_t)MySyscall(pSplitter_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleScreenTo96)
+int32_t
+Splitter_ScaleScreenTo96(TSplitter AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Splitter_ScaleScreenTo96)
+    return (int32_t)MySyscall(pSplitter_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_AutoAdjustLayout)
+void
+Splitter_AutoAdjustLayout(TSplitter AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Splitter_AutoAdjustLayout)
+    MySyscall(pSplitter_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_FixDesignFontsPPI)
+void
+Splitter_FixDesignFontsPPI(TSplitter AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Splitter_FixDesignFontsPPI)
+    MySyscall(pSplitter_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Splitter_ScaleFontsPPI)
+void
+Splitter_ScaleFontsPPI(TSplitter AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Splitter_ScaleFontsPPI)
+    MySyscall(pSplitter_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Splitter_GetResizeAnchor)
 TAnchorKind
 Splitter_GetResizeAnchor(TSplitter AObj) {
@@ -19342,6 +20581,13 @@ RadioGroup_Invalidate(TRadioGroup AObj) {
     MySyscall(pRadioGroup_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RadioGroup_PaintTo)
+void
+RadioGroup_PaintTo(TRadioGroup AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(RadioGroup_PaintTo)
+    MySyscall(pRadioGroup_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RadioGroup_RemoveControl)
 void
 RadioGroup_RemoveControl(TRadioGroup AObj, TControl AControl) {
@@ -19628,6 +20874,97 @@ void
 RadioGroup_AnchorClient(TRadioGroup AObj, int32_t ASpace) {
     GET_FUNC_ADDR(RadioGroup_AnchorClient)
     MySyscall(pRadioGroup_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleDesignToForm)
+int32_t
+RadioGroup_ScaleDesignToForm(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleDesignToForm)
+    return (int32_t)MySyscall(pRadioGroup_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleFormToDesign)
+int32_t
+RadioGroup_ScaleFormToDesign(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleFormToDesign)
+    return (int32_t)MySyscall(pRadioGroup_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_Scale96ToForm)
+int32_t
+RadioGroup_Scale96ToForm(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_Scale96ToForm)
+    return (int32_t)MySyscall(pRadioGroup_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleFormTo96)
+int32_t
+RadioGroup_ScaleFormTo96(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleFormTo96)
+    return (int32_t)MySyscall(pRadioGroup_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_Scale96ToFont)
+int32_t
+RadioGroup_Scale96ToFont(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_Scale96ToFont)
+    return (int32_t)MySyscall(pRadioGroup_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleFontTo96)
+int32_t
+RadioGroup_ScaleFontTo96(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleFontTo96)
+    return (int32_t)MySyscall(pRadioGroup_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleScreenToFont)
+int32_t
+RadioGroup_ScaleScreenToFont(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleScreenToFont)
+    return (int32_t)MySyscall(pRadioGroup_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleFontToScreen)
+int32_t
+RadioGroup_ScaleFontToScreen(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleFontToScreen)
+    return (int32_t)MySyscall(pRadioGroup_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_Scale96ToScreen)
+int32_t
+RadioGroup_Scale96ToScreen(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_Scale96ToScreen)
+    return (int32_t)MySyscall(pRadioGroup_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleScreenTo96)
+int32_t
+RadioGroup_ScaleScreenTo96(TRadioGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RadioGroup_ScaleScreenTo96)
+    return (int32_t)MySyscall(pRadioGroup_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_AutoAdjustLayout)
+void
+RadioGroup_AutoAdjustLayout(TRadioGroup AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(RadioGroup_AutoAdjustLayout)
+    MySyscall(pRadioGroup_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_FixDesignFontsPPI)
+void
+RadioGroup_FixDesignFontsPPI(TRadioGroup AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(RadioGroup_FixDesignFontsPPI)
+    MySyscall(pRadioGroup_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_ScaleFontsPPI)
+void
+RadioGroup_ScaleFontsPPI(TRadioGroup AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(RadioGroup_ScaleFontsPPI)
+    MySyscall(pRadioGroup_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_GetAlign)
@@ -20562,6 +21899,13 @@ StaticText_Invalidate(TStaticText AObj) {
     MySyscall(pStaticText_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(StaticText_PaintTo)
+void
+StaticText_PaintTo(TStaticText AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(StaticText_PaintTo)
+    MySyscall(pStaticText_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(StaticText_RemoveControl)
 void
 StaticText_RemoveControl(TStaticText AObj, TControl AControl) {
@@ -20848,6 +22192,97 @@ void
 StaticText_AnchorClient(TStaticText AObj, int32_t ASpace) {
     GET_FUNC_ADDR(StaticText_AnchorClient)
     MySyscall(pStaticText_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleDesignToForm)
+int32_t
+StaticText_ScaleDesignToForm(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleDesignToForm)
+    return (int32_t)MySyscall(pStaticText_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleFormToDesign)
+int32_t
+StaticText_ScaleFormToDesign(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleFormToDesign)
+    return (int32_t)MySyscall(pStaticText_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_Scale96ToForm)
+int32_t
+StaticText_Scale96ToForm(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_Scale96ToForm)
+    return (int32_t)MySyscall(pStaticText_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleFormTo96)
+int32_t
+StaticText_ScaleFormTo96(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleFormTo96)
+    return (int32_t)MySyscall(pStaticText_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_Scale96ToFont)
+int32_t
+StaticText_Scale96ToFont(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_Scale96ToFont)
+    return (int32_t)MySyscall(pStaticText_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleFontTo96)
+int32_t
+StaticText_ScaleFontTo96(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleFontTo96)
+    return (int32_t)MySyscall(pStaticText_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleScreenToFont)
+int32_t
+StaticText_ScaleScreenToFont(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleScreenToFont)
+    return (int32_t)MySyscall(pStaticText_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleFontToScreen)
+int32_t
+StaticText_ScaleFontToScreen(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleFontToScreen)
+    return (int32_t)MySyscall(pStaticText_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_Scale96ToScreen)
+int32_t
+StaticText_Scale96ToScreen(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_Scale96ToScreen)
+    return (int32_t)MySyscall(pStaticText_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleScreenTo96)
+int32_t
+StaticText_ScaleScreenTo96(TStaticText AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StaticText_ScaleScreenTo96)
+    return (int32_t)MySyscall(pStaticText_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_AutoAdjustLayout)
+void
+StaticText_AutoAdjustLayout(TStaticText AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(StaticText_AutoAdjustLayout)
+    MySyscall(pStaticText_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_FixDesignFontsPPI)
+void
+StaticText_FixDesignFontsPPI(TStaticText AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(StaticText_FixDesignFontsPPI)
+    MySyscall(pStaticText_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StaticText_ScaleFontsPPI)
+void
+StaticText_ScaleFontsPPI(TStaticText AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(StaticText_ScaleFontsPPI)
+    MySyscall(pStaticText_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_GetAlign)
@@ -21908,6 +23343,13 @@ ColorBox_Invalidate(TColorBox AObj) {
     MySyscall(pColorBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ColorBox_PaintTo)
+void
+ColorBox_PaintTo(TColorBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ColorBox_PaintTo)
+    MySyscall(pColorBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ColorBox_RemoveControl)
 void
 ColorBox_RemoveControl(TColorBox AObj, TControl AControl) {
@@ -22194,6 +23636,97 @@ void
 ColorBox_AnchorClient(TColorBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ColorBox_AnchorClient)
     MySyscall(pColorBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleDesignToForm)
+int32_t
+ColorBox_ScaleDesignToForm(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pColorBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleFormToDesign)
+int32_t
+ColorBox_ScaleFormToDesign(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pColorBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_Scale96ToForm)
+int32_t
+ColorBox_Scale96ToForm(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_Scale96ToForm)
+    return (int32_t)MySyscall(pColorBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleFormTo96)
+int32_t
+ColorBox_ScaleFormTo96(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pColorBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_Scale96ToFont)
+int32_t
+ColorBox_Scale96ToFont(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_Scale96ToFont)
+    return (int32_t)MySyscall(pColorBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleFontTo96)
+int32_t
+ColorBox_ScaleFontTo96(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pColorBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleScreenToFont)
+int32_t
+ColorBox_ScaleScreenToFont(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pColorBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleFontToScreen)
+int32_t
+ColorBox_ScaleFontToScreen(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pColorBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_Scale96ToScreen)
+int32_t
+ColorBox_Scale96ToScreen(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pColorBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleScreenTo96)
+int32_t
+ColorBox_ScaleScreenTo96(TColorBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pColorBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_AutoAdjustLayout)
+void
+ColorBox_AutoAdjustLayout(TColorBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ColorBox_AutoAdjustLayout)
+    MySyscall(pColorBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_FixDesignFontsPPI)
+void
+ColorBox_FixDesignFontsPPI(TColorBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ColorBox_FixDesignFontsPPI)
+    MySyscall(pColorBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_ScaleFontsPPI)
+void
+ColorBox_ScaleFontsPPI(TColorBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ColorBox_ScaleFontsPPI)
+    MySyscall(pColorBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_GetAlign)
@@ -23389,6 +24922,13 @@ ColorListBox_Invalidate(TColorListBox AObj) {
     MySyscall(pColorListBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ColorListBox_PaintTo)
+void
+ColorListBox_PaintTo(TColorListBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ColorListBox_PaintTo)
+    MySyscall(pColorListBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ColorListBox_RemoveControl)
 void
 ColorListBox_RemoveControl(TColorListBox AObj, TControl AControl) {
@@ -23675,6 +25215,97 @@ void
 ColorListBox_AnchorClient(TColorListBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ColorListBox_AnchorClient)
     MySyscall(pColorListBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleDesignToForm)
+int32_t
+ColorListBox_ScaleDesignToForm(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pColorListBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleFormToDesign)
+int32_t
+ColorListBox_ScaleFormToDesign(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pColorListBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_Scale96ToForm)
+int32_t
+ColorListBox_Scale96ToForm(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_Scale96ToForm)
+    return (int32_t)MySyscall(pColorListBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleFormTo96)
+int32_t
+ColorListBox_ScaleFormTo96(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pColorListBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_Scale96ToFont)
+int32_t
+ColorListBox_Scale96ToFont(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_Scale96ToFont)
+    return (int32_t)MySyscall(pColorListBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleFontTo96)
+int32_t
+ColorListBox_ScaleFontTo96(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pColorListBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleScreenToFont)
+int32_t
+ColorListBox_ScaleScreenToFont(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pColorListBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleFontToScreen)
+int32_t
+ColorListBox_ScaleFontToScreen(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pColorListBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_Scale96ToScreen)
+int32_t
+ColorListBox_Scale96ToScreen(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pColorListBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleScreenTo96)
+int32_t
+ColorListBox_ScaleScreenTo96(TColorListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorListBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pColorListBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_AutoAdjustLayout)
+void
+ColorListBox_AutoAdjustLayout(TColorListBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ColorListBox_AutoAdjustLayout)
+    MySyscall(pColorListBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_FixDesignFontsPPI)
+void
+ColorListBox_FixDesignFontsPPI(TColorListBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ColorListBox_FixDesignFontsPPI)
+    MySyscall(pColorListBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorListBox_ScaleFontsPPI)
+void
+ColorListBox_ScaleFontsPPI(TColorListBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ColorListBox_ScaleFontsPPI)
+    MySyscall(pColorListBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_GetAlign)
@@ -27378,6 +29009,13 @@ RichEdit_Invalidate(TRichEdit AObj) {
     MySyscall(pRichEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RichEdit_PaintTo)
+void
+RichEdit_PaintTo(TRichEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(RichEdit_PaintTo)
+    MySyscall(pRichEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RichEdit_RemoveControl)
 void
 RichEdit_RemoveControl(TRichEdit AObj, TControl AControl) {
@@ -27664,6 +29302,97 @@ void
 RichEdit_AnchorClient(TRichEdit AObj, int32_t ASpace) {
     GET_FUNC_ADDR(RichEdit_AnchorClient)
     MySyscall(pRichEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleDesignToForm)
+int32_t
+RichEdit_ScaleDesignToForm(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pRichEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleFormToDesign)
+int32_t
+RichEdit_ScaleFormToDesign(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pRichEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_Scale96ToForm)
+int32_t
+RichEdit_Scale96ToForm(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_Scale96ToForm)
+    return (int32_t)MySyscall(pRichEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleFormTo96)
+int32_t
+RichEdit_ScaleFormTo96(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleFormTo96)
+    return (int32_t)MySyscall(pRichEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_Scale96ToFont)
+int32_t
+RichEdit_Scale96ToFont(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_Scale96ToFont)
+    return (int32_t)MySyscall(pRichEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleFontTo96)
+int32_t
+RichEdit_ScaleFontTo96(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleFontTo96)
+    return (int32_t)MySyscall(pRichEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleScreenToFont)
+int32_t
+RichEdit_ScaleScreenToFont(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pRichEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleFontToScreen)
+int32_t
+RichEdit_ScaleFontToScreen(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pRichEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_Scale96ToScreen)
+int32_t
+RichEdit_Scale96ToScreen(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_Scale96ToScreen)
+    return (int32_t)MySyscall(pRichEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleScreenTo96)
+int32_t
+RichEdit_ScaleScreenTo96(TRichEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(RichEdit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pRichEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_AutoAdjustLayout)
+void
+RichEdit_AutoAdjustLayout(TRichEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(RichEdit_AutoAdjustLayout)
+    MySyscall(pRichEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_FixDesignFontsPPI)
+void
+RichEdit_FixDesignFontsPPI(TRichEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(RichEdit_FixDesignFontsPPI)
+    MySyscall(pRichEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RichEdit_ScaleFontsPPI)
+void
+RichEdit_ScaleFontsPPI(TRichEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(RichEdit_ScaleFontsPPI)
+    MySyscall(pRichEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_GetAlign)
@@ -28971,6 +30700,13 @@ TrackBar_Invalidate(TTrackBar AObj) {
     MySyscall(pTrackBar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TrackBar_PaintTo)
+void
+TrackBar_PaintTo(TTrackBar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(TrackBar_PaintTo)
+    MySyscall(pTrackBar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TrackBar_RemoveControl)
 void
 TrackBar_RemoveControl(TTrackBar AObj, TControl AControl) {
@@ -29257,6 +30993,97 @@ void
 TrackBar_AnchorClient(TTrackBar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(TrackBar_AnchorClient)
     MySyscall(pTrackBar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleDesignToForm)
+int32_t
+TrackBar_ScaleDesignToForm(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pTrackBar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleFormToDesign)
+int32_t
+TrackBar_ScaleFormToDesign(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pTrackBar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_Scale96ToForm)
+int32_t
+TrackBar_Scale96ToForm(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_Scale96ToForm)
+    return (int32_t)MySyscall(pTrackBar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleFormTo96)
+int32_t
+TrackBar_ScaleFormTo96(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleFormTo96)
+    return (int32_t)MySyscall(pTrackBar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_Scale96ToFont)
+int32_t
+TrackBar_Scale96ToFont(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_Scale96ToFont)
+    return (int32_t)MySyscall(pTrackBar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleFontTo96)
+int32_t
+TrackBar_ScaleFontTo96(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleFontTo96)
+    return (int32_t)MySyscall(pTrackBar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleScreenToFont)
+int32_t
+TrackBar_ScaleScreenToFont(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pTrackBar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleFontToScreen)
+int32_t
+TrackBar_ScaleFontToScreen(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pTrackBar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_Scale96ToScreen)
+int32_t
+TrackBar_Scale96ToScreen(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_Scale96ToScreen)
+    return (int32_t)MySyscall(pTrackBar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleScreenTo96)
+int32_t
+TrackBar_ScaleScreenTo96(TTrackBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TrackBar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pTrackBar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_AutoAdjustLayout)
+void
+TrackBar_AutoAdjustLayout(TTrackBar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(TrackBar_AutoAdjustLayout)
+    MySyscall(pTrackBar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_FixDesignFontsPPI)
+void
+TrackBar_FixDesignFontsPPI(TTrackBar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(TrackBar_FixDesignFontsPPI)
+    MySyscall(pTrackBar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TrackBar_ScaleFontsPPI)
+void
+TrackBar_ScaleFontsPPI(TTrackBar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(TrackBar_ScaleFontsPPI)
+    MySyscall(pTrackBar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_GetAlign)
@@ -30769,6 +32596,13 @@ UpDown_Invalidate(TUpDown AObj) {
     MySyscall(pUpDown_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(UpDown_PaintTo)
+void
+UpDown_PaintTo(TUpDown AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(UpDown_PaintTo)
+    MySyscall(pUpDown_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(UpDown_RemoveControl)
 void
 UpDown_RemoveControl(TUpDown AObj, TControl AControl) {
@@ -31055,6 +32889,97 @@ void
 UpDown_AnchorClient(TUpDown AObj, int32_t ASpace) {
     GET_FUNC_ADDR(UpDown_AnchorClient)
     MySyscall(pUpDown_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleDesignToForm)
+int32_t
+UpDown_ScaleDesignToForm(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleDesignToForm)
+    return (int32_t)MySyscall(pUpDown_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleFormToDesign)
+int32_t
+UpDown_ScaleFormToDesign(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleFormToDesign)
+    return (int32_t)MySyscall(pUpDown_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_Scale96ToForm)
+int32_t
+UpDown_Scale96ToForm(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_Scale96ToForm)
+    return (int32_t)MySyscall(pUpDown_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleFormTo96)
+int32_t
+UpDown_ScaleFormTo96(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleFormTo96)
+    return (int32_t)MySyscall(pUpDown_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_Scale96ToFont)
+int32_t
+UpDown_Scale96ToFont(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_Scale96ToFont)
+    return (int32_t)MySyscall(pUpDown_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleFontTo96)
+int32_t
+UpDown_ScaleFontTo96(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleFontTo96)
+    return (int32_t)MySyscall(pUpDown_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleScreenToFont)
+int32_t
+UpDown_ScaleScreenToFont(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleScreenToFont)
+    return (int32_t)MySyscall(pUpDown_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleFontToScreen)
+int32_t
+UpDown_ScaleFontToScreen(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleFontToScreen)
+    return (int32_t)MySyscall(pUpDown_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_Scale96ToScreen)
+int32_t
+UpDown_Scale96ToScreen(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_Scale96ToScreen)
+    return (int32_t)MySyscall(pUpDown_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleScreenTo96)
+int32_t
+UpDown_ScaleScreenTo96(TUpDown AObj, int32_t ASize) {
+    GET_FUNC_ADDR(UpDown_ScaleScreenTo96)
+    return (int32_t)MySyscall(pUpDown_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_AutoAdjustLayout)
+void
+UpDown_AutoAdjustLayout(TUpDown AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(UpDown_AutoAdjustLayout)
+    MySyscall(pUpDown_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_FixDesignFontsPPI)
+void
+UpDown_FixDesignFontsPPI(TUpDown AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(UpDown_FixDesignFontsPPI)
+    MySyscall(pUpDown_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(UpDown_ScaleFontsPPI)
+void
+UpDown_ScaleFontsPPI(TUpDown AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(UpDown_ScaleFontsPPI)
+    MySyscall(pUpDown_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_GetAnchors)
@@ -31975,6 +33900,13 @@ ProgressBar_Invalidate(TProgressBar AObj) {
     MySyscall(pProgressBar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ProgressBar_PaintTo)
+void
+ProgressBar_PaintTo(TProgressBar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ProgressBar_PaintTo)
+    MySyscall(pProgressBar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ProgressBar_RemoveControl)
 void
 ProgressBar_RemoveControl(TProgressBar AObj, TControl AControl) {
@@ -32261,6 +34193,97 @@ void
 ProgressBar_AnchorClient(TProgressBar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ProgressBar_AnchorClient)
     MySyscall(pProgressBar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleDesignToForm)
+int32_t
+ProgressBar_ScaleDesignToForm(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pProgressBar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleFormToDesign)
+int32_t
+ProgressBar_ScaleFormToDesign(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pProgressBar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_Scale96ToForm)
+int32_t
+ProgressBar_Scale96ToForm(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_Scale96ToForm)
+    return (int32_t)MySyscall(pProgressBar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleFormTo96)
+int32_t
+ProgressBar_ScaleFormTo96(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleFormTo96)
+    return (int32_t)MySyscall(pProgressBar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_Scale96ToFont)
+int32_t
+ProgressBar_Scale96ToFont(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_Scale96ToFont)
+    return (int32_t)MySyscall(pProgressBar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleFontTo96)
+int32_t
+ProgressBar_ScaleFontTo96(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleFontTo96)
+    return (int32_t)MySyscall(pProgressBar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleScreenToFont)
+int32_t
+ProgressBar_ScaleScreenToFont(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pProgressBar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleFontToScreen)
+int32_t
+ProgressBar_ScaleFontToScreen(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pProgressBar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_Scale96ToScreen)
+int32_t
+ProgressBar_Scale96ToScreen(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_Scale96ToScreen)
+    return (int32_t)MySyscall(pProgressBar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleScreenTo96)
+int32_t
+ProgressBar_ScaleScreenTo96(TProgressBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ProgressBar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pProgressBar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_AutoAdjustLayout)
+void
+ProgressBar_AutoAdjustLayout(TProgressBar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ProgressBar_AutoAdjustLayout)
+    MySyscall(pProgressBar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_FixDesignFontsPPI)
+void
+ProgressBar_FixDesignFontsPPI(TProgressBar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ProgressBar_FixDesignFontsPPI)
+    MySyscall(pProgressBar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ProgressBar_ScaleFontsPPI)
+void
+ProgressBar_ScaleFontsPPI(TProgressBar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ProgressBar_ScaleFontsPPI)
+    MySyscall(pProgressBar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_GetAlign)
@@ -33265,6 +35288,13 @@ ateTimePicker_Invalidate(TDateTimePicker AObj) {
     MySyscall(pDateTimePicker_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DateTimePicker_PaintTo)
+void
+ateTimePicker_PaintTo(TDateTimePicker AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(DateTimePicker_PaintTo)
+    MySyscall(pDateTimePicker_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DateTimePicker_RemoveControl)
 void
 ateTimePicker_RemoveControl(TDateTimePicker AObj, TControl AControl) {
@@ -33551,6 +35581,97 @@ void
 ateTimePicker_AnchorClient(TDateTimePicker AObj, int32_t ASpace) {
     GET_FUNC_ADDR(DateTimePicker_AnchorClient)
     MySyscall(pDateTimePicker_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleDesignToForm)
+int32_t
+ateTimePicker_ScaleDesignToForm(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleDesignToForm)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleFormToDesign)
+int32_t
+ateTimePicker_ScaleFormToDesign(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleFormToDesign)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_Scale96ToForm)
+int32_t
+ateTimePicker_Scale96ToForm(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_Scale96ToForm)
+    return (int32_t)MySyscall(pDateTimePicker_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleFormTo96)
+int32_t
+ateTimePicker_ScaleFormTo96(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleFormTo96)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_Scale96ToFont)
+int32_t
+ateTimePicker_Scale96ToFont(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_Scale96ToFont)
+    return (int32_t)MySyscall(pDateTimePicker_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleFontTo96)
+int32_t
+ateTimePicker_ScaleFontTo96(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleFontTo96)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleScreenToFont)
+int32_t
+ateTimePicker_ScaleScreenToFont(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleScreenToFont)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleFontToScreen)
+int32_t
+ateTimePicker_ScaleFontToScreen(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleFontToScreen)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_Scale96ToScreen)
+int32_t
+ateTimePicker_Scale96ToScreen(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_Scale96ToScreen)
+    return (int32_t)MySyscall(pDateTimePicker_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleScreenTo96)
+int32_t
+ateTimePicker_ScaleScreenTo96(TDateTimePicker AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleScreenTo96)
+    return (int32_t)MySyscall(pDateTimePicker_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_AutoAdjustLayout)
+void
+ateTimePicker_AutoAdjustLayout(TDateTimePicker AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(DateTimePicker_AutoAdjustLayout)
+    MySyscall(pDateTimePicker_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_FixDesignFontsPPI)
+void
+ateTimePicker_FixDesignFontsPPI(TDateTimePicker AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(DateTimePicker_FixDesignFontsPPI)
+    MySyscall(pDateTimePicker_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_ScaleFontsPPI)
+void
+ateTimePicker_ScaleFontsPPI(TDateTimePicker AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(DateTimePicker_ScaleFontsPPI)
+    MySyscall(pDateTimePicker_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetArrowShape)
@@ -34821,6 +36942,13 @@ MonthCalendar_Invalidate(TMonthCalendar AObj) {
     MySyscall(pMonthCalendar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(MonthCalendar_PaintTo)
+void
+MonthCalendar_PaintTo(TMonthCalendar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(MonthCalendar_PaintTo)
+    MySyscall(pMonthCalendar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(MonthCalendar_RemoveControl)
 void
 MonthCalendar_RemoveControl(TMonthCalendar AObj, TControl AControl) {
@@ -35107,6 +37235,97 @@ void
 MonthCalendar_AnchorClient(TMonthCalendar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(MonthCalendar_AnchorClient)
     MySyscall(pMonthCalendar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleDesignToForm)
+int32_t
+MonthCalendar_ScaleDesignToForm(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleFormToDesign)
+int32_t
+MonthCalendar_ScaleFormToDesign(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_Scale96ToForm)
+int32_t
+MonthCalendar_Scale96ToForm(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_Scale96ToForm)
+    return (int32_t)MySyscall(pMonthCalendar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleFormTo96)
+int32_t
+MonthCalendar_ScaleFormTo96(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleFormTo96)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_Scale96ToFont)
+int32_t
+MonthCalendar_Scale96ToFont(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_Scale96ToFont)
+    return (int32_t)MySyscall(pMonthCalendar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleFontTo96)
+int32_t
+MonthCalendar_ScaleFontTo96(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleFontTo96)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleScreenToFont)
+int32_t
+MonthCalendar_ScaleScreenToFont(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleFontToScreen)
+int32_t
+MonthCalendar_ScaleFontToScreen(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_Scale96ToScreen)
+int32_t
+MonthCalendar_Scale96ToScreen(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_Scale96ToScreen)
+    return (int32_t)MySyscall(pMonthCalendar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleScreenTo96)
+int32_t
+MonthCalendar_ScaleScreenTo96(TMonthCalendar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pMonthCalendar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_AutoAdjustLayout)
+void
+MonthCalendar_AutoAdjustLayout(TMonthCalendar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(MonthCalendar_AutoAdjustLayout)
+    MySyscall(pMonthCalendar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_FixDesignFontsPPI)
+void
+MonthCalendar_FixDesignFontsPPI(TMonthCalendar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(MonthCalendar_FixDesignFontsPPI)
+    MySyscall(pMonthCalendar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MonthCalendar_ScaleFontsPPI)
+void
+MonthCalendar_ScaleFontsPPI(TMonthCalendar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(MonthCalendar_ScaleFontsPPI)
+    MySyscall(pMonthCalendar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_GetDateTime)
@@ -36118,6 +38337,13 @@ ListView_Invalidate(TListView AObj) {
     MySyscall(pListView_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ListView_PaintTo)
+void
+ListView_PaintTo(TListView AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ListView_PaintTo)
+    MySyscall(pListView_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ListView_RemoveControl)
 void
 ListView_RemoveControl(TListView AObj, TControl AControl) {
@@ -36404,6 +38630,97 @@ void
 ListView_AnchorClient(TListView AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ListView_AnchorClient)
     MySyscall(pListView_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleDesignToForm)
+int32_t
+ListView_ScaleDesignToForm(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleDesignToForm)
+    return (int32_t)MySyscall(pListView_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleFormToDesign)
+int32_t
+ListView_ScaleFormToDesign(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleFormToDesign)
+    return (int32_t)MySyscall(pListView_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_Scale96ToForm)
+int32_t
+ListView_Scale96ToForm(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_Scale96ToForm)
+    return (int32_t)MySyscall(pListView_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleFormTo96)
+int32_t
+ListView_ScaleFormTo96(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleFormTo96)
+    return (int32_t)MySyscall(pListView_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_Scale96ToFont)
+int32_t
+ListView_Scale96ToFont(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_Scale96ToFont)
+    return (int32_t)MySyscall(pListView_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleFontTo96)
+int32_t
+ListView_ScaleFontTo96(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleFontTo96)
+    return (int32_t)MySyscall(pListView_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleScreenToFont)
+int32_t
+ListView_ScaleScreenToFont(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleScreenToFont)
+    return (int32_t)MySyscall(pListView_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleFontToScreen)
+int32_t
+ListView_ScaleFontToScreen(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleFontToScreen)
+    return (int32_t)MySyscall(pListView_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_Scale96ToScreen)
+int32_t
+ListView_Scale96ToScreen(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_Scale96ToScreen)
+    return (int32_t)MySyscall(pListView_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleScreenTo96)
+int32_t
+ListView_ScaleScreenTo96(TListView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ListView_ScaleScreenTo96)
+    return (int32_t)MySyscall(pListView_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_AutoAdjustLayout)
+void
+ListView_AutoAdjustLayout(TListView AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ListView_AutoAdjustLayout)
+    MySyscall(pListView_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_FixDesignFontsPPI)
+void
+ListView_FixDesignFontsPPI(TListView AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ListView_FixDesignFontsPPI)
+    MySyscall(pListView_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_ScaleFontsPPI)
+void
+ListView_ScaleFontsPPI(TListView AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ListView_ScaleFontsPPI)
+    MySyscall(pListView_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_GetAutoSort)
@@ -38157,6 +40474,13 @@ TreeView_Invalidate(TTreeView AObj) {
     MySyscall(pTreeView_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeView_PaintTo)
+void
+TreeView_PaintTo(TTreeView AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(TreeView_PaintTo)
+    MySyscall(pTreeView_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeView_RemoveControl)
 void
 TreeView_RemoveControl(TTreeView AObj, TControl AControl) {
@@ -38443,6 +40767,97 @@ void
 TreeView_AnchorClient(TTreeView AObj, int32_t ASpace) {
     GET_FUNC_ADDR(TreeView_AnchorClient)
     MySyscall(pTreeView_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleDesignToForm)
+int32_t
+TreeView_ScaleDesignToForm(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleDesignToForm)
+    return (int32_t)MySyscall(pTreeView_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleFormToDesign)
+int32_t
+TreeView_ScaleFormToDesign(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleFormToDesign)
+    return (int32_t)MySyscall(pTreeView_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_Scale96ToForm)
+int32_t
+TreeView_Scale96ToForm(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_Scale96ToForm)
+    return (int32_t)MySyscall(pTreeView_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleFormTo96)
+int32_t
+TreeView_ScaleFormTo96(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleFormTo96)
+    return (int32_t)MySyscall(pTreeView_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_Scale96ToFont)
+int32_t
+TreeView_Scale96ToFont(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_Scale96ToFont)
+    return (int32_t)MySyscall(pTreeView_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleFontTo96)
+int32_t
+TreeView_ScaleFontTo96(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleFontTo96)
+    return (int32_t)MySyscall(pTreeView_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleScreenToFont)
+int32_t
+TreeView_ScaleScreenToFont(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleScreenToFont)
+    return (int32_t)MySyscall(pTreeView_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleFontToScreen)
+int32_t
+TreeView_ScaleFontToScreen(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleFontToScreen)
+    return (int32_t)MySyscall(pTreeView_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_Scale96ToScreen)
+int32_t
+TreeView_Scale96ToScreen(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_Scale96ToScreen)
+    return (int32_t)MySyscall(pTreeView_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleScreenTo96)
+int32_t
+TreeView_ScaleScreenTo96(TTreeView AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TreeView_ScaleScreenTo96)
+    return (int32_t)MySyscall(pTreeView_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_AutoAdjustLayout)
+void
+TreeView_AutoAdjustLayout(TTreeView AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(TreeView_AutoAdjustLayout)
+    MySyscall(pTreeView_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_FixDesignFontsPPI)
+void
+TreeView_FixDesignFontsPPI(TTreeView AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(TreeView_FixDesignFontsPPI)
+    MySyscall(pTreeView_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_ScaleFontsPPI)
+void
+TreeView_ScaleFontsPPI(TTreeView AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(TreeView_ScaleFontsPPI)
+    MySyscall(pTreeView_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_GetDefaultItemHeight)
@@ -40063,6 +42478,13 @@ StatusBar_Invalidate(TStatusBar AObj) {
     MySyscall(pStatusBar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(StatusBar_PaintTo)
+void
+StatusBar_PaintTo(TStatusBar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(StatusBar_PaintTo)
+    MySyscall(pStatusBar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(StatusBar_RemoveControl)
 void
 StatusBar_RemoveControl(TStatusBar AObj, TControl AControl) {
@@ -40342,6 +42764,97 @@ void
 StatusBar_AnchorClient(TStatusBar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(StatusBar_AnchorClient)
     MySyscall(pStatusBar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleDesignToForm)
+int32_t
+StatusBar_ScaleDesignToForm(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pStatusBar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleFormToDesign)
+int32_t
+StatusBar_ScaleFormToDesign(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pStatusBar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_Scale96ToForm)
+int32_t
+StatusBar_Scale96ToForm(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_Scale96ToForm)
+    return (int32_t)MySyscall(pStatusBar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleFormTo96)
+int32_t
+StatusBar_ScaleFormTo96(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleFormTo96)
+    return (int32_t)MySyscall(pStatusBar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_Scale96ToFont)
+int32_t
+StatusBar_Scale96ToFont(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_Scale96ToFont)
+    return (int32_t)MySyscall(pStatusBar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleFontTo96)
+int32_t
+StatusBar_ScaleFontTo96(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleFontTo96)
+    return (int32_t)MySyscall(pStatusBar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleScreenToFont)
+int32_t
+StatusBar_ScaleScreenToFont(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pStatusBar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleFontToScreen)
+int32_t
+StatusBar_ScaleFontToScreen(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pStatusBar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_Scale96ToScreen)
+int32_t
+StatusBar_Scale96ToScreen(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_Scale96ToScreen)
+    return (int32_t)MySyscall(pStatusBar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleScreenTo96)
+int32_t
+StatusBar_ScaleScreenTo96(TStatusBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StatusBar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pStatusBar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_AutoAdjustLayout)
+void
+StatusBar_AutoAdjustLayout(TStatusBar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(StatusBar_AutoAdjustLayout)
+    MySyscall(pStatusBar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_FixDesignFontsPPI)
+void
+StatusBar_FixDesignFontsPPI(TStatusBar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(StatusBar_FixDesignFontsPPI)
+    MySyscall(pStatusBar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StatusBar_ScaleFontsPPI)
+void
+StatusBar_ScaleFontsPPI(TStatusBar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(StatusBar_ScaleFontsPPI)
+    MySyscall(pStatusBar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_GetAction)
@@ -41402,6 +43915,13 @@ ToolBar_Invalidate(TToolBar AObj) {
     MySyscall(pToolBar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ToolBar_PaintTo)
+void
+ToolBar_PaintTo(TToolBar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ToolBar_PaintTo)
+    MySyscall(pToolBar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ToolBar_RemoveControl)
 void
 ToolBar_RemoveControl(TToolBar AObj, TControl AControl) {
@@ -41688,6 +44208,97 @@ void
 ToolBar_AnchorClient(TToolBar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ToolBar_AnchorClient)
     MySyscall(pToolBar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleDesignToForm)
+int32_t
+ToolBar_ScaleDesignToForm(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pToolBar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleFormToDesign)
+int32_t
+ToolBar_ScaleFormToDesign(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pToolBar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_Scale96ToForm)
+int32_t
+ToolBar_Scale96ToForm(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_Scale96ToForm)
+    return (int32_t)MySyscall(pToolBar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleFormTo96)
+int32_t
+ToolBar_ScaleFormTo96(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleFormTo96)
+    return (int32_t)MySyscall(pToolBar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_Scale96ToFont)
+int32_t
+ToolBar_Scale96ToFont(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_Scale96ToFont)
+    return (int32_t)MySyscall(pToolBar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleFontTo96)
+int32_t
+ToolBar_ScaleFontTo96(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleFontTo96)
+    return (int32_t)MySyscall(pToolBar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleScreenToFont)
+int32_t
+ToolBar_ScaleScreenToFont(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pToolBar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleFontToScreen)
+int32_t
+ToolBar_ScaleFontToScreen(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pToolBar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_Scale96ToScreen)
+int32_t
+ToolBar_Scale96ToScreen(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_Scale96ToScreen)
+    return (int32_t)MySyscall(pToolBar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleScreenTo96)
+int32_t
+ToolBar_ScaleScreenTo96(TToolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolBar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pToolBar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_AutoAdjustLayout)
+void
+ToolBar_AutoAdjustLayout(TToolBar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ToolBar_AutoAdjustLayout)
+    MySyscall(pToolBar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_FixDesignFontsPPI)
+void
+ToolBar_FixDesignFontsPPI(TToolBar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ToolBar_FixDesignFontsPPI)
+    MySyscall(pToolBar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolBar_ScaleFontsPPI)
+void
+ToolBar_ScaleFontsPPI(TToolBar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ToolBar_ScaleFontsPPI)
+    MySyscall(pToolBar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_GetButtonCount)
@@ -42909,6 +45520,13 @@ BitBtn_Invalidate(TBitBtn AObj) {
     MySyscall(pBitBtn_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(BitBtn_PaintTo)
+void
+BitBtn_PaintTo(TBitBtn AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(BitBtn_PaintTo)
+    MySyscall(pBitBtn_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(BitBtn_RemoveControl)
 void
 BitBtn_RemoveControl(TBitBtn AObj, TControl AControl) {
@@ -43195,6 +45813,97 @@ void
 BitBtn_AnchorClient(TBitBtn AObj, int32_t ASpace) {
     GET_FUNC_ADDR(BitBtn_AnchorClient)
     MySyscall(pBitBtn_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleDesignToForm)
+int32_t
+BitBtn_ScaleDesignToForm(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleDesignToForm)
+    return (int32_t)MySyscall(pBitBtn_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleFormToDesign)
+int32_t
+BitBtn_ScaleFormToDesign(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleFormToDesign)
+    return (int32_t)MySyscall(pBitBtn_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_Scale96ToForm)
+int32_t
+BitBtn_Scale96ToForm(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_Scale96ToForm)
+    return (int32_t)MySyscall(pBitBtn_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleFormTo96)
+int32_t
+BitBtn_ScaleFormTo96(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleFormTo96)
+    return (int32_t)MySyscall(pBitBtn_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_Scale96ToFont)
+int32_t
+BitBtn_Scale96ToFont(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_Scale96ToFont)
+    return (int32_t)MySyscall(pBitBtn_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleFontTo96)
+int32_t
+BitBtn_ScaleFontTo96(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleFontTo96)
+    return (int32_t)MySyscall(pBitBtn_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleScreenToFont)
+int32_t
+BitBtn_ScaleScreenToFont(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleScreenToFont)
+    return (int32_t)MySyscall(pBitBtn_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleFontToScreen)
+int32_t
+BitBtn_ScaleFontToScreen(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleFontToScreen)
+    return (int32_t)MySyscall(pBitBtn_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_Scale96ToScreen)
+int32_t
+BitBtn_Scale96ToScreen(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_Scale96ToScreen)
+    return (int32_t)MySyscall(pBitBtn_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleScreenTo96)
+int32_t
+BitBtn_ScaleScreenTo96(TBitBtn AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BitBtn_ScaleScreenTo96)
+    return (int32_t)MySyscall(pBitBtn_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_AutoAdjustLayout)
+void
+BitBtn_AutoAdjustLayout(TBitBtn AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(BitBtn_AutoAdjustLayout)
+    MySyscall(pBitBtn_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_FixDesignFontsPPI)
+void
+BitBtn_FixDesignFontsPPI(TBitBtn AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(BitBtn_FixDesignFontsPPI)
+    MySyscall(pBitBtn_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_ScaleFontsPPI)
+void
+BitBtn_ScaleFontsPPI(TBitBtn AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(BitBtn_ScaleFontsPPI)
+    MySyscall(pBitBtn_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_GetDefaultCaption)
@@ -44903,6 +47612,13 @@ Memo_Invalidate(TMemo AObj) {
     MySyscall(pMemo_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Memo_PaintTo)
+void
+Memo_PaintTo(TMemo AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Memo_PaintTo)
+    MySyscall(pMemo_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Memo_RemoveControl)
 void
 Memo_RemoveControl(TMemo AObj, TControl AControl) {
@@ -45189,6 +47905,97 @@ void
 Memo_AnchorClient(TMemo AObj, int32_t ASpace) {
     GET_FUNC_ADDR(Memo_AnchorClient)
     MySyscall(pMemo_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleDesignToForm)
+int32_t
+Memo_ScaleDesignToForm(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleDesignToForm)
+    return (int32_t)MySyscall(pMemo_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleFormToDesign)
+int32_t
+Memo_ScaleFormToDesign(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleFormToDesign)
+    return (int32_t)MySyscall(pMemo_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Scale96ToForm)
+int32_t
+Memo_Scale96ToForm(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_Scale96ToForm)
+    return (int32_t)MySyscall(pMemo_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleFormTo96)
+int32_t
+Memo_ScaleFormTo96(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleFormTo96)
+    return (int32_t)MySyscall(pMemo_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Scale96ToFont)
+int32_t
+Memo_Scale96ToFont(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_Scale96ToFont)
+    return (int32_t)MySyscall(pMemo_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleFontTo96)
+int32_t
+Memo_ScaleFontTo96(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleFontTo96)
+    return (int32_t)MySyscall(pMemo_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleScreenToFont)
+int32_t
+Memo_ScaleScreenToFont(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleScreenToFont)
+    return (int32_t)MySyscall(pMemo_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleFontToScreen)
+int32_t
+Memo_ScaleFontToScreen(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleFontToScreen)
+    return (int32_t)MySyscall(pMemo_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_Scale96ToScreen)
+int32_t
+Memo_Scale96ToScreen(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_Scale96ToScreen)
+    return (int32_t)MySyscall(pMemo_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleScreenTo96)
+int32_t
+Memo_ScaleScreenTo96(TMemo AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Memo_ScaleScreenTo96)
+    return (int32_t)MySyscall(pMemo_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_AutoAdjustLayout)
+void
+Memo_AutoAdjustLayout(TMemo AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Memo_AutoAdjustLayout)
+    MySyscall(pMemo_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_FixDesignFontsPPI)
+void
+Memo_FixDesignFontsPPI(TMemo AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Memo_FixDesignFontsPPI)
+    MySyscall(pMemo_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Memo_ScaleFontsPPI)
+void
+Memo_ScaleFontsPPI(TMemo AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Memo_ScaleFontsPPI)
+    MySyscall(pMemo_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_GetAlign)
@@ -49748,6 +52555,13 @@ PageControl_Invalidate(TPageControl AObj) {
     MySyscall(pPageControl_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(PageControl_PaintTo)
+void
+PageControl_PaintTo(TPageControl AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(PageControl_PaintTo)
+    MySyscall(pPageControl_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(PageControl_RemoveControl)
 void
 PageControl_RemoveControl(TPageControl AObj, TControl AControl) {
@@ -50034,6 +52848,97 @@ void
 PageControl_AnchorClient(TPageControl AObj, int32_t ASpace) {
     GET_FUNC_ADDR(PageControl_AnchorClient)
     MySyscall(pPageControl_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleDesignToForm)
+int32_t
+PageControl_ScaleDesignToForm(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleDesignToForm)
+    return (int32_t)MySyscall(pPageControl_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleFormToDesign)
+int32_t
+PageControl_ScaleFormToDesign(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleFormToDesign)
+    return (int32_t)MySyscall(pPageControl_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_Scale96ToForm)
+int32_t
+PageControl_Scale96ToForm(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_Scale96ToForm)
+    return (int32_t)MySyscall(pPageControl_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleFormTo96)
+int32_t
+PageControl_ScaleFormTo96(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleFormTo96)
+    return (int32_t)MySyscall(pPageControl_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_Scale96ToFont)
+int32_t
+PageControl_Scale96ToFont(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_Scale96ToFont)
+    return (int32_t)MySyscall(pPageControl_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleFontTo96)
+int32_t
+PageControl_ScaleFontTo96(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleFontTo96)
+    return (int32_t)MySyscall(pPageControl_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleScreenToFont)
+int32_t
+PageControl_ScaleScreenToFont(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleScreenToFont)
+    return (int32_t)MySyscall(pPageControl_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleFontToScreen)
+int32_t
+PageControl_ScaleFontToScreen(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleFontToScreen)
+    return (int32_t)MySyscall(pPageControl_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_Scale96ToScreen)
+int32_t
+PageControl_Scale96ToScreen(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_Scale96ToScreen)
+    return (int32_t)MySyscall(pPageControl_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleScreenTo96)
+int32_t
+PageControl_ScaleScreenTo96(TPageControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PageControl_ScaleScreenTo96)
+    return (int32_t)MySyscall(pPageControl_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_AutoAdjustLayout)
+void
+PageControl_AutoAdjustLayout(TPageControl AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(PageControl_AutoAdjustLayout)
+    MySyscall(pPageControl_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_FixDesignFontsPPI)
+void
+PageControl_FixDesignFontsPPI(TPageControl AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(PageControl_FixDesignFontsPPI)
+    MySyscall(pPageControl_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_ScaleFontsPPI)
+void
+PageControl_ScaleFontsPPI(TPageControl AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(PageControl_ScaleFontsPPI)
+    MySyscall(pPageControl_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_GetOptions)
@@ -51115,6 +54020,13 @@ TabSheet_Invalidate(TTabSheet AObj) {
     MySyscall(pTabSheet_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TabSheet_PaintTo)
+void
+TabSheet_PaintTo(TTabSheet AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(TabSheet_PaintTo)
+    MySyscall(pTabSheet_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TabSheet_RemoveControl)
 void
 TabSheet_RemoveControl(TTabSheet AObj, TControl AControl) {
@@ -51401,6 +54313,97 @@ void
 TabSheet_AnchorClient(TTabSheet AObj, int32_t ASpace) {
     GET_FUNC_ADDR(TabSheet_AnchorClient)
     MySyscall(pTabSheet_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleDesignToForm)
+int32_t
+TabSheet_ScaleDesignToForm(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleDesignToForm)
+    return (int32_t)MySyscall(pTabSheet_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleFormToDesign)
+int32_t
+TabSheet_ScaleFormToDesign(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleFormToDesign)
+    return (int32_t)MySyscall(pTabSheet_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_Scale96ToForm)
+int32_t
+TabSheet_Scale96ToForm(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_Scale96ToForm)
+    return (int32_t)MySyscall(pTabSheet_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleFormTo96)
+int32_t
+TabSheet_ScaleFormTo96(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleFormTo96)
+    return (int32_t)MySyscall(pTabSheet_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_Scale96ToFont)
+int32_t
+TabSheet_Scale96ToFont(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_Scale96ToFont)
+    return (int32_t)MySyscall(pTabSheet_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleFontTo96)
+int32_t
+TabSheet_ScaleFontTo96(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleFontTo96)
+    return (int32_t)MySyscall(pTabSheet_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleScreenToFont)
+int32_t
+TabSheet_ScaleScreenToFont(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleScreenToFont)
+    return (int32_t)MySyscall(pTabSheet_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleFontToScreen)
+int32_t
+TabSheet_ScaleFontToScreen(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleFontToScreen)
+    return (int32_t)MySyscall(pTabSheet_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_Scale96ToScreen)
+int32_t
+TabSheet_Scale96ToScreen(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_Scale96ToScreen)
+    return (int32_t)MySyscall(pTabSheet_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleScreenTo96)
+int32_t
+TabSheet_ScaleScreenTo96(TTabSheet AObj, int32_t ASize) {
+    GET_FUNC_ADDR(TabSheet_ScaleScreenTo96)
+    return (int32_t)MySyscall(pTabSheet_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_AutoAdjustLayout)
+void
+TabSheet_AutoAdjustLayout(TTabSheet AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(TabSheet_AutoAdjustLayout)
+    MySyscall(pTabSheet_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_FixDesignFontsPPI)
+void
+TabSheet_FixDesignFontsPPI(TTabSheet AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(TabSheet_FixDesignFontsPPI)
+    MySyscall(pTabSheet_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TabSheet_ScaleFontsPPI)
+void
+TabSheet_ScaleFontsPPI(TTabSheet AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(TabSheet_ScaleFontsPPI)
+    MySyscall(pTabSheet_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_GetPageControl)
@@ -52377,6 +55380,13 @@ Button_Invalidate(TButton AObj) {
     MySyscall(pButton_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Button_PaintTo)
+void
+Button_PaintTo(TButton AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Button_PaintTo)
+    MySyscall(pButton_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Button_RemoveControl)
 void
 Button_RemoveControl(TButton AObj, TControl AControl) {
@@ -52663,6 +55673,97 @@ void
 Button_AnchorClient(TButton AObj, int32_t ASpace) {
     GET_FUNC_ADDR(Button_AnchorClient)
     MySyscall(pButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleDesignToForm)
+int32_t
+Button_ScaleDesignToForm(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleDesignToForm)
+    return (int32_t)MySyscall(pButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleFormToDesign)
+int32_t
+Button_ScaleFormToDesign(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleFormToDesign)
+    return (int32_t)MySyscall(pButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_Scale96ToForm)
+int32_t
+Button_Scale96ToForm(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_Scale96ToForm)
+    return (int32_t)MySyscall(pButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleFormTo96)
+int32_t
+Button_ScaleFormTo96(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleFormTo96)
+    return (int32_t)MySyscall(pButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_Scale96ToFont)
+int32_t
+Button_Scale96ToFont(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_Scale96ToFont)
+    return (int32_t)MySyscall(pButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleFontTo96)
+int32_t
+Button_ScaleFontTo96(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleFontTo96)
+    return (int32_t)MySyscall(pButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleScreenToFont)
+int32_t
+Button_ScaleScreenToFont(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleScreenToFont)
+    return (int32_t)MySyscall(pButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleFontToScreen)
+int32_t
+Button_ScaleFontToScreen(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleFontToScreen)
+    return (int32_t)MySyscall(pButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_Scale96ToScreen)
+int32_t
+Button_Scale96ToScreen(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_Scale96ToScreen)
+    return (int32_t)MySyscall(pButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleScreenTo96)
+int32_t
+Button_ScaleScreenTo96(TButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Button_ScaleScreenTo96)
+    return (int32_t)MySyscall(pButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_AutoAdjustLayout)
+void
+Button_AutoAdjustLayout(TButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Button_AutoAdjustLayout)
+    MySyscall(pButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_FixDesignFontsPPI)
+void
+Button_FixDesignFontsPPI(TButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Button_FixDesignFontsPPI)
+    MySyscall(pButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Button_ScaleFontsPPI)
+void
+Button_ScaleFontsPPI(TButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Button_ScaleFontsPPI)
+    MySyscall(pButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_GetAction)
@@ -53695,6 +56796,13 @@ Edit_Invalidate(TEdit AObj) {
     MySyscall(pEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Edit_PaintTo)
+void
+Edit_PaintTo(TEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Edit_PaintTo)
+    MySyscall(pEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Edit_RemoveControl)
 void
 Edit_RemoveControl(TEdit AObj, TControl AControl) {
@@ -53981,6 +57089,97 @@ void
 Edit_AnchorClient(TEdit AObj, int32_t ASpace) {
     GET_FUNC_ADDR(Edit_AnchorClient)
     MySyscall(pEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleDesignToForm)
+int32_t
+Edit_ScaleDesignToForm(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleFormToDesign)
+int32_t
+Edit_ScaleFormToDesign(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_Scale96ToForm)
+int32_t
+Edit_Scale96ToForm(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_Scale96ToForm)
+    return (int32_t)MySyscall(pEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleFormTo96)
+int32_t
+Edit_ScaleFormTo96(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleFormTo96)
+    return (int32_t)MySyscall(pEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_Scale96ToFont)
+int32_t
+Edit_Scale96ToFont(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_Scale96ToFont)
+    return (int32_t)MySyscall(pEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleFontTo96)
+int32_t
+Edit_ScaleFontTo96(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleFontTo96)
+    return (int32_t)MySyscall(pEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleScreenToFont)
+int32_t
+Edit_ScaleScreenToFont(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleFontToScreen)
+int32_t
+Edit_ScaleFontToScreen(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_Scale96ToScreen)
+int32_t
+Edit_Scale96ToScreen(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_Scale96ToScreen)
+    return (int32_t)MySyscall(pEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleScreenTo96)
+int32_t
+Edit_ScaleScreenTo96(TEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Edit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_AutoAdjustLayout)
+void
+Edit_AutoAdjustLayout(TEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Edit_AutoAdjustLayout)
+    MySyscall(pEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_FixDesignFontsPPI)
+void
+Edit_FixDesignFontsPPI(TEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Edit_FixDesignFontsPPI)
+    MySyscall(pEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Edit_ScaleFontsPPI)
+void
+Edit_ScaleFontsPPI(TEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Edit_ScaleFontsPPI)
+    MySyscall(pEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_GetAlign)
@@ -56459,6 +59658,13 @@ SpinEdit_Invalidate(TSpinEdit AObj) {
     MySyscall(pSpinEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(SpinEdit_PaintTo)
+void
+SpinEdit_PaintTo(TSpinEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(SpinEdit_PaintTo)
+    MySyscall(pSpinEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(SpinEdit_RemoveControl)
 void
 SpinEdit_RemoveControl(TSpinEdit AObj, TControl AControl) {
@@ -56745,6 +59951,97 @@ void
 SpinEdit_AnchorClient(TSpinEdit AObj, int32_t ASpace) {
     GET_FUNC_ADDR(SpinEdit_AnchorClient)
     MySyscall(pSpinEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleDesignToForm)
+int32_t
+SpinEdit_ScaleDesignToForm(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pSpinEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleFormToDesign)
+int32_t
+SpinEdit_ScaleFormToDesign(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pSpinEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_Scale96ToForm)
+int32_t
+SpinEdit_Scale96ToForm(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_Scale96ToForm)
+    return (int32_t)MySyscall(pSpinEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleFormTo96)
+int32_t
+SpinEdit_ScaleFormTo96(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleFormTo96)
+    return (int32_t)MySyscall(pSpinEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_Scale96ToFont)
+int32_t
+SpinEdit_Scale96ToFont(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_Scale96ToFont)
+    return (int32_t)MySyscall(pSpinEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleFontTo96)
+int32_t
+SpinEdit_ScaleFontTo96(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleFontTo96)
+    return (int32_t)MySyscall(pSpinEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleScreenToFont)
+int32_t
+SpinEdit_ScaleScreenToFont(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pSpinEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleFontToScreen)
+int32_t
+SpinEdit_ScaleFontToScreen(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pSpinEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_Scale96ToScreen)
+int32_t
+SpinEdit_Scale96ToScreen(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_Scale96ToScreen)
+    return (int32_t)MySyscall(pSpinEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleScreenTo96)
+int32_t
+SpinEdit_ScaleScreenTo96(TSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(SpinEdit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pSpinEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_AutoAdjustLayout)
+void
+SpinEdit_AutoAdjustLayout(TSpinEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(SpinEdit_AutoAdjustLayout)
+    MySyscall(pSpinEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_FixDesignFontsPPI)
+void
+SpinEdit_FixDesignFontsPPI(TSpinEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(SpinEdit_FixDesignFontsPPI)
+    MySyscall(pSpinEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SpinEdit_ScaleFontsPPI)
+void
+SpinEdit_ScaleFontsPPI(TSpinEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(SpinEdit_ScaleFontsPPI)
+    MySyscall(pSpinEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_GetAnchors)
@@ -57917,6 +61214,13 @@ MiniWebview_Invalidate(TMiniWebview AObj) {
     MySyscall(pMiniWebview_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(MiniWebview_PaintTo)
+void
+MiniWebview_PaintTo(TMiniWebview AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(MiniWebview_PaintTo)
+    MySyscall(pMiniWebview_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(MiniWebview_RemoveControl)
 void
 MiniWebview_RemoveControl(TMiniWebview AObj, TControl AControl) {
@@ -58189,6 +61493,97 @@ void
 MiniWebview_AnchorClient(TMiniWebview AObj, int32_t ASpace) {
     GET_FUNC_ADDR(MiniWebview_AnchorClient)
     MySyscall(pMiniWebview_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleDesignToForm)
+int32_t
+MiniWebview_ScaleDesignToForm(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleDesignToForm)
+    return (int32_t)MySyscall(pMiniWebview_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleFormToDesign)
+int32_t
+MiniWebview_ScaleFormToDesign(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleFormToDesign)
+    return (int32_t)MySyscall(pMiniWebview_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_Scale96ToForm)
+int32_t
+MiniWebview_Scale96ToForm(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_Scale96ToForm)
+    return (int32_t)MySyscall(pMiniWebview_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleFormTo96)
+int32_t
+MiniWebview_ScaleFormTo96(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleFormTo96)
+    return (int32_t)MySyscall(pMiniWebview_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_Scale96ToFont)
+int32_t
+MiniWebview_Scale96ToFont(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_Scale96ToFont)
+    return (int32_t)MySyscall(pMiniWebview_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleFontTo96)
+int32_t
+MiniWebview_ScaleFontTo96(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleFontTo96)
+    return (int32_t)MySyscall(pMiniWebview_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleScreenToFont)
+int32_t
+MiniWebview_ScaleScreenToFont(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleScreenToFont)
+    return (int32_t)MySyscall(pMiniWebview_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleFontToScreen)
+int32_t
+MiniWebview_ScaleFontToScreen(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleFontToScreen)
+    return (int32_t)MySyscall(pMiniWebview_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_Scale96ToScreen)
+int32_t
+MiniWebview_Scale96ToScreen(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_Scale96ToScreen)
+    return (int32_t)MySyscall(pMiniWebview_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleScreenTo96)
+int32_t
+MiniWebview_ScaleScreenTo96(TMiniWebview AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MiniWebview_ScaleScreenTo96)
+    return (int32_t)MySyscall(pMiniWebview_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_AutoAdjustLayout)
+void
+MiniWebview_AutoAdjustLayout(TMiniWebview AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(MiniWebview_AutoAdjustLayout)
+    MySyscall(pMiniWebview_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_FixDesignFontsPPI)
+void
+MiniWebview_FixDesignFontsPPI(TMiniWebview AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(MiniWebview_FixDesignFontsPPI)
+    MySyscall(pMiniWebview_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MiniWebview_ScaleFontsPPI)
+void
+MiniWebview_ScaleFontsPPI(TMiniWebview AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(MiniWebview_ScaleFontsPPI)
+    MySyscall(pMiniWebview_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MiniWebview_GetReadyState)
@@ -61606,6 +65001,97 @@ ToolButton_AnchorClient(TToolButton AObj, int32_t ASpace) {
     MySyscall(pToolButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ToolButton_ScaleDesignToForm)
+int32_t
+ToolButton_ScaleDesignToForm(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleDesignToForm)
+    return (int32_t)MySyscall(pToolButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleFormToDesign)
+int32_t
+ToolButton_ScaleFormToDesign(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleFormToDesign)
+    return (int32_t)MySyscall(pToolButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_Scale96ToForm)
+int32_t
+ToolButton_Scale96ToForm(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_Scale96ToForm)
+    return (int32_t)MySyscall(pToolButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleFormTo96)
+int32_t
+ToolButton_ScaleFormTo96(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleFormTo96)
+    return (int32_t)MySyscall(pToolButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_Scale96ToFont)
+int32_t
+ToolButton_Scale96ToFont(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_Scale96ToFont)
+    return (int32_t)MySyscall(pToolButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleFontTo96)
+int32_t
+ToolButton_ScaleFontTo96(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleFontTo96)
+    return (int32_t)MySyscall(pToolButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleScreenToFont)
+int32_t
+ToolButton_ScaleScreenToFont(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleScreenToFont)
+    return (int32_t)MySyscall(pToolButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleFontToScreen)
+int32_t
+ToolButton_ScaleFontToScreen(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleFontToScreen)
+    return (int32_t)MySyscall(pToolButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_Scale96ToScreen)
+int32_t
+ToolButton_Scale96ToScreen(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_Scale96ToScreen)
+    return (int32_t)MySyscall(pToolButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleScreenTo96)
+int32_t
+ToolButton_ScaleScreenTo96(TToolButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToolButton_ScaleScreenTo96)
+    return (int32_t)MySyscall(pToolButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_AutoAdjustLayout)
+void
+ToolButton_AutoAdjustLayout(TToolButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ToolButton_AutoAdjustLayout)
+    MySyscall(pToolButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_FixDesignFontsPPI)
+void
+ToolButton_FixDesignFontsPPI(TToolButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ToolButton_FixDesignFontsPPI)
+    MySyscall(pToolButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToolButton_ScaleFontsPPI)
+void
+ToolButton_ScaleFontsPPI(TToolButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ToolButton_ScaleFontsPPI)
+    MySyscall(pToolButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ToolButton_GetIndex)
 int32_t
 ToolButton_GetIndex(TToolButton AObj) {
@@ -63598,6 +67084,97 @@ PaintBox_AnchorClient(TPaintBox AObj, int32_t ASpace) {
     MySyscall(pPaintBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(PaintBox_ScaleDesignToForm)
+int32_t
+PaintBox_ScaleDesignToForm(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pPaintBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleFormToDesign)
+int32_t
+PaintBox_ScaleFormToDesign(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pPaintBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_Scale96ToForm)
+int32_t
+PaintBox_Scale96ToForm(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_Scale96ToForm)
+    return (int32_t)MySyscall(pPaintBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleFormTo96)
+int32_t
+PaintBox_ScaleFormTo96(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pPaintBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_Scale96ToFont)
+int32_t
+PaintBox_Scale96ToFont(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_Scale96ToFont)
+    return (int32_t)MySyscall(pPaintBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleFontTo96)
+int32_t
+PaintBox_ScaleFontTo96(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pPaintBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleScreenToFont)
+int32_t
+PaintBox_ScaleScreenToFont(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pPaintBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleFontToScreen)
+int32_t
+PaintBox_ScaleFontToScreen(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pPaintBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_Scale96ToScreen)
+int32_t
+PaintBox_Scale96ToScreen(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pPaintBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleScreenTo96)
+int32_t
+PaintBox_ScaleScreenTo96(TPaintBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(PaintBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pPaintBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_AutoAdjustLayout)
+void
+PaintBox_AutoAdjustLayout(TPaintBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(PaintBox_AutoAdjustLayout)
+    MySyscall(pPaintBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_FixDesignFontsPPI)
+void
+PaintBox_FixDesignFontsPPI(TPaintBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(PaintBox_FixDesignFontsPPI)
+    MySyscall(pPaintBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PaintBox_ScaleFontsPPI)
+void
+PaintBox_ScaleFontsPPI(TPaintBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(PaintBox_ScaleFontsPPI)
+    MySyscall(pPaintBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(PaintBox_GetCanvas)
 TCanvas
 PaintBox_GetCanvas(TPaintBox AObj) {
@@ -64765,6 +68342,13 @@ Form_Invalidate(TForm AObj) {
     MySyscall(pForm_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Form_PaintTo)
+void
+Form_PaintTo(TForm AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Form_PaintTo)
+    MySyscall(pForm_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Form_RemoveControl)
 void
 Form_RemoveControl(TForm AObj, TControl AControl) {
@@ -65032,6 +68616,97 @@ Form_AnchorClient(TForm AObj, int32_t ASpace) {
     MySyscall(pForm_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Form_ScaleDesignToForm)
+int32_t
+Form_ScaleDesignToForm(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleDesignToForm)
+    return (int32_t)MySyscall(pForm_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleFormToDesign)
+int32_t
+Form_ScaleFormToDesign(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleFormToDesign)
+    return (int32_t)MySyscall(pForm_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_Scale96ToForm)
+int32_t
+Form_Scale96ToForm(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_Scale96ToForm)
+    return (int32_t)MySyscall(pForm_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleFormTo96)
+int32_t
+Form_ScaleFormTo96(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleFormTo96)
+    return (int32_t)MySyscall(pForm_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_Scale96ToFont)
+int32_t
+Form_Scale96ToFont(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_Scale96ToFont)
+    return (int32_t)MySyscall(pForm_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleFontTo96)
+int32_t
+Form_ScaleFontTo96(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleFontTo96)
+    return (int32_t)MySyscall(pForm_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleScreenToFont)
+int32_t
+Form_ScaleScreenToFont(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleScreenToFont)
+    return (int32_t)MySyscall(pForm_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleFontToScreen)
+int32_t
+Form_ScaleFontToScreen(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleFontToScreen)
+    return (int32_t)MySyscall(pForm_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_Scale96ToScreen)
+int32_t
+Form_Scale96ToScreen(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_Scale96ToScreen)
+    return (int32_t)MySyscall(pForm_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleScreenTo96)
+int32_t
+Form_ScaleScreenTo96(TForm AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Form_ScaleScreenTo96)
+    return (int32_t)MySyscall(pForm_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_AutoAdjustLayout)
+void
+Form_AutoAdjustLayout(TForm AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Form_AutoAdjustLayout)
+    MySyscall(pForm_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_FixDesignFontsPPI)
+void
+Form_FixDesignFontsPPI(TForm AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Form_FixDesignFontsPPI)
+    MySyscall(pForm_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleFontsPPI)
+void
+Form_ScaleFontsPPI(TForm AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Form_ScaleFontsPPI)
+    MySyscall(pForm_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Form_GetAllowDropFiles)
 BOOL
 Form_GetAllowDropFiles(TForm AObj) {
@@ -65065,6 +68740,20 @@ void
 Form_SetShowInTaskBar(TForm AObj, TShowInTaskbar AValue) {
     GET_FUNC_ADDR(Form_SetShowInTaskBar)
     MySyscall(pForm_SetShowInTaskBar, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_GetDesignTimePPI)
+int32_t
+Form_GetDesignTimePPI(TForm AObj) {
+    GET_FUNC_ADDR(Form_GetDesignTimePPI)
+    return (int32_t)MySyscall(pForm_GetDesignTimePPI, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetDesignTimePPI)
+void
+Form_SetDesignTimePPI(TForm AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Form_SetDesignTimePPI)
+    MySyscall(pForm_SetDesignTimePPI, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_GetAction)
@@ -67001,6 +70690,13 @@ ScrollBar_Invalidate(TScrollBar AObj) {
     MySyscall(pScrollBar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ScrollBar_PaintTo)
+void
+ScrollBar_PaintTo(TScrollBar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ScrollBar_PaintTo)
+    MySyscall(pScrollBar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ScrollBar_RemoveControl)
 void
 ScrollBar_RemoveControl(TScrollBar AObj, TControl AControl) {
@@ -67287,6 +70983,97 @@ void
 ScrollBar_AnchorClient(TScrollBar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ScrollBar_AnchorClient)
     MySyscall(pScrollBar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleDesignToForm)
+int32_t
+ScrollBar_ScaleDesignToForm(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pScrollBar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleFormToDesign)
+int32_t
+ScrollBar_ScaleFormToDesign(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pScrollBar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_Scale96ToForm)
+int32_t
+ScrollBar_Scale96ToForm(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_Scale96ToForm)
+    return (int32_t)MySyscall(pScrollBar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleFormTo96)
+int32_t
+ScrollBar_ScaleFormTo96(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleFormTo96)
+    return (int32_t)MySyscall(pScrollBar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_Scale96ToFont)
+int32_t
+ScrollBar_Scale96ToFont(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_Scale96ToFont)
+    return (int32_t)MySyscall(pScrollBar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleFontTo96)
+int32_t
+ScrollBar_ScaleFontTo96(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleFontTo96)
+    return (int32_t)MySyscall(pScrollBar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleScreenToFont)
+int32_t
+ScrollBar_ScaleScreenToFont(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pScrollBar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleFontToScreen)
+int32_t
+ScrollBar_ScaleFontToScreen(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pScrollBar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_Scale96ToScreen)
+int32_t
+ScrollBar_Scale96ToScreen(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_Scale96ToScreen)
+    return (int32_t)MySyscall(pScrollBar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleScreenTo96)
+int32_t
+ScrollBar_ScaleScreenTo96(TScrollBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pScrollBar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_AutoAdjustLayout)
+void
+ScrollBar_AutoAdjustLayout(TScrollBar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ScrollBar_AutoAdjustLayout)
+    MySyscall(pScrollBar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_FixDesignFontsPPI)
+void
+ScrollBar_FixDesignFontsPPI(TScrollBar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ScrollBar_FixDesignFontsPPI)
+    MySyscall(pScrollBar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_ScaleFontsPPI)
+void
+ScrollBar_ScaleFontsPPI(TScrollBar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ScrollBar_ScaleFontsPPI)
+    MySyscall(pScrollBar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_GetAlign)
@@ -68298,6 +72085,13 @@ MaskEdit_Invalidate(TMaskEdit AObj) {
     MySyscall(pMaskEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(MaskEdit_PaintTo)
+void
+MaskEdit_PaintTo(TMaskEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(MaskEdit_PaintTo)
+    MySyscall(pMaskEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(MaskEdit_RemoveControl)
 void
 MaskEdit_RemoveControl(TMaskEdit AObj, TControl AControl) {
@@ -68577,6 +72371,97 @@ void
 MaskEdit_AnchorClient(TMaskEdit AObj, int32_t ASpace) {
     GET_FUNC_ADDR(MaskEdit_AnchorClient)
     MySyscall(pMaskEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleDesignToForm)
+int32_t
+MaskEdit_ScaleDesignToForm(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pMaskEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleFormToDesign)
+int32_t
+MaskEdit_ScaleFormToDesign(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pMaskEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_Scale96ToForm)
+int32_t
+MaskEdit_Scale96ToForm(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_Scale96ToForm)
+    return (int32_t)MySyscall(pMaskEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleFormTo96)
+int32_t
+MaskEdit_ScaleFormTo96(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleFormTo96)
+    return (int32_t)MySyscall(pMaskEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_Scale96ToFont)
+int32_t
+MaskEdit_Scale96ToFont(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_Scale96ToFont)
+    return (int32_t)MySyscall(pMaskEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleFontTo96)
+int32_t
+MaskEdit_ScaleFontTo96(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleFontTo96)
+    return (int32_t)MySyscall(pMaskEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleScreenToFont)
+int32_t
+MaskEdit_ScaleScreenToFont(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pMaskEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleFontToScreen)
+int32_t
+MaskEdit_ScaleFontToScreen(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pMaskEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_Scale96ToScreen)
+int32_t
+MaskEdit_Scale96ToScreen(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_Scale96ToScreen)
+    return (int32_t)MySyscall(pMaskEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleScreenTo96)
+int32_t
+MaskEdit_ScaleScreenTo96(TMaskEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(MaskEdit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pMaskEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_AutoAdjustLayout)
+void
+MaskEdit_AutoAdjustLayout(TMaskEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(MaskEdit_AutoAdjustLayout)
+    MySyscall(pMaskEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_FixDesignFontsPPI)
+void
+MaskEdit_FixDesignFontsPPI(TMaskEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(MaskEdit_FixDesignFontsPPI)
+    MySyscall(pMaskEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MaskEdit_ScaleFontsPPI)
+void
+MaskEdit_ScaleFontsPPI(TMaskEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(MaskEdit_ScaleFontsPPI)
+    MySyscall(pMaskEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_GetAlign)
@@ -69960,6 +73845,97 @@ Shape_AnchorClient(TShape AObj, int32_t ASpace) {
     MySyscall(pShape_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Shape_ScaleDesignToForm)
+int32_t
+Shape_ScaleDesignToForm(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleDesignToForm)
+    return (int32_t)MySyscall(pShape_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleFormToDesign)
+int32_t
+Shape_ScaleFormToDesign(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleFormToDesign)
+    return (int32_t)MySyscall(pShape_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_Scale96ToForm)
+int32_t
+Shape_Scale96ToForm(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_Scale96ToForm)
+    return (int32_t)MySyscall(pShape_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleFormTo96)
+int32_t
+Shape_ScaleFormTo96(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleFormTo96)
+    return (int32_t)MySyscall(pShape_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_Scale96ToFont)
+int32_t
+Shape_Scale96ToFont(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_Scale96ToFont)
+    return (int32_t)MySyscall(pShape_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleFontTo96)
+int32_t
+Shape_ScaleFontTo96(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleFontTo96)
+    return (int32_t)MySyscall(pShape_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleScreenToFont)
+int32_t
+Shape_ScaleScreenToFont(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleScreenToFont)
+    return (int32_t)MySyscall(pShape_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleFontToScreen)
+int32_t
+Shape_ScaleFontToScreen(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleFontToScreen)
+    return (int32_t)MySyscall(pShape_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_Scale96ToScreen)
+int32_t
+Shape_Scale96ToScreen(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_Scale96ToScreen)
+    return (int32_t)MySyscall(pShape_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleScreenTo96)
+int32_t
+Shape_ScaleScreenTo96(TShape AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Shape_ScaleScreenTo96)
+    return (int32_t)MySyscall(pShape_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_AutoAdjustLayout)
+void
+Shape_AutoAdjustLayout(TShape AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Shape_AutoAdjustLayout)
+    MySyscall(pShape_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_FixDesignFontsPPI)
+void
+Shape_FixDesignFontsPPI(TShape AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Shape_FixDesignFontsPPI)
+    MySyscall(pShape_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Shape_ScaleFontsPPI)
+void
+Shape_ScaleFontsPPI(TShape AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Shape_ScaleFontsPPI)
+    MySyscall(pShape_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Shape_GetAlign)
 TAlign
 Shape_GetAlign(TShape AObj) {
@@ -70844,6 +74820,97 @@ Bevel_AnchorClient(TBevel AObj, int32_t ASpace) {
     MySyscall(pBevel_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Bevel_ScaleDesignToForm)
+int32_t
+Bevel_ScaleDesignToForm(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleDesignToForm)
+    return (int32_t)MySyscall(pBevel_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleFormToDesign)
+int32_t
+Bevel_ScaleFormToDesign(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleFormToDesign)
+    return (int32_t)MySyscall(pBevel_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_Scale96ToForm)
+int32_t
+Bevel_Scale96ToForm(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_Scale96ToForm)
+    return (int32_t)MySyscall(pBevel_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleFormTo96)
+int32_t
+Bevel_ScaleFormTo96(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleFormTo96)
+    return (int32_t)MySyscall(pBevel_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_Scale96ToFont)
+int32_t
+Bevel_Scale96ToFont(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_Scale96ToFont)
+    return (int32_t)MySyscall(pBevel_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleFontTo96)
+int32_t
+Bevel_ScaleFontTo96(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleFontTo96)
+    return (int32_t)MySyscall(pBevel_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleScreenToFont)
+int32_t
+Bevel_ScaleScreenToFont(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleScreenToFont)
+    return (int32_t)MySyscall(pBevel_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleFontToScreen)
+int32_t
+Bevel_ScaleFontToScreen(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleFontToScreen)
+    return (int32_t)MySyscall(pBevel_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_Scale96ToScreen)
+int32_t
+Bevel_Scale96ToScreen(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_Scale96ToScreen)
+    return (int32_t)MySyscall(pBevel_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleScreenTo96)
+int32_t
+Bevel_ScaleScreenTo96(TBevel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Bevel_ScaleScreenTo96)
+    return (int32_t)MySyscall(pBevel_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_AutoAdjustLayout)
+void
+Bevel_AutoAdjustLayout(TBevel AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Bevel_AutoAdjustLayout)
+    MySyscall(pBevel_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_FixDesignFontsPPI)
+void
+Bevel_FixDesignFontsPPI(TBevel AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Bevel_FixDesignFontsPPI)
+    MySyscall(pBevel_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bevel_ScaleFontsPPI)
+void
+Bevel_ScaleFontsPPI(TBevel AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Bevel_ScaleFontsPPI)
+    MySyscall(pBevel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Bevel_GetAlign)
 TAlign
 Bevel_GetAlign(TBevel AObj) {
@@ -71440,6 +75507,13 @@ ScrollBox_Invalidate(TScrollBox AObj) {
     MySyscall(pScrollBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ScrollBox_PaintTo)
+void
+ScrollBox_PaintTo(TScrollBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ScrollBox_PaintTo)
+    MySyscall(pScrollBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ScrollBox_RemoveControl)
 void
 ScrollBox_RemoveControl(TScrollBox AObj, TControl AControl) {
@@ -71726,6 +75800,97 @@ void
 ScrollBox_AnchorClient(TScrollBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ScrollBox_AnchorClient)
     MySyscall(pScrollBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleDesignToForm)
+int32_t
+ScrollBox_ScaleDesignToForm(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pScrollBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleFormToDesign)
+int32_t
+ScrollBox_ScaleFormToDesign(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pScrollBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_Scale96ToForm)
+int32_t
+ScrollBox_Scale96ToForm(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_Scale96ToForm)
+    return (int32_t)MySyscall(pScrollBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleFormTo96)
+int32_t
+ScrollBox_ScaleFormTo96(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pScrollBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_Scale96ToFont)
+int32_t
+ScrollBox_Scale96ToFont(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_Scale96ToFont)
+    return (int32_t)MySyscall(pScrollBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleFontTo96)
+int32_t
+ScrollBox_ScaleFontTo96(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pScrollBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleScreenToFont)
+int32_t
+ScrollBox_ScaleScreenToFont(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pScrollBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleFontToScreen)
+int32_t
+ScrollBox_ScaleFontToScreen(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pScrollBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_Scale96ToScreen)
+int32_t
+ScrollBox_Scale96ToScreen(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pScrollBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleScreenTo96)
+int32_t
+ScrollBox_ScaleScreenTo96(TScrollBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ScrollBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pScrollBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_AutoAdjustLayout)
+void
+ScrollBox_AutoAdjustLayout(TScrollBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ScrollBox_AutoAdjustLayout)
+    MySyscall(pScrollBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_FixDesignFontsPPI)
+void
+ScrollBox_FixDesignFontsPPI(TScrollBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ScrollBox_FixDesignFontsPPI)
+    MySyscall(pScrollBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_ScaleFontsPPI)
+void
+ScrollBox_ScaleFontsPPI(TScrollBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ScrollBox_ScaleFontsPPI)
+    MySyscall(pScrollBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_GetAlign)
@@ -72858,6 +77023,13 @@ CheckListBox_Invalidate(TCheckListBox AObj) {
     MySyscall(pCheckListBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CheckListBox_PaintTo)
+void
+CheckListBox_PaintTo(TCheckListBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(CheckListBox_PaintTo)
+    MySyscall(pCheckListBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CheckListBox_RemoveControl)
 void
 CheckListBox_RemoveControl(TCheckListBox AObj, TControl AControl) {
@@ -73144,6 +77316,97 @@ void
 CheckListBox_AnchorClient(TCheckListBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(CheckListBox_AnchorClient)
     MySyscall(pCheckListBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleDesignToForm)
+int32_t
+CheckListBox_ScaleDesignToForm(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pCheckListBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleFormToDesign)
+int32_t
+CheckListBox_ScaleFormToDesign(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pCheckListBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_Scale96ToForm)
+int32_t
+CheckListBox_Scale96ToForm(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_Scale96ToForm)
+    return (int32_t)MySyscall(pCheckListBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleFormTo96)
+int32_t
+CheckListBox_ScaleFormTo96(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pCheckListBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_Scale96ToFont)
+int32_t
+CheckListBox_Scale96ToFont(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_Scale96ToFont)
+    return (int32_t)MySyscall(pCheckListBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleFontTo96)
+int32_t
+CheckListBox_ScaleFontTo96(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pCheckListBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleScreenToFont)
+int32_t
+CheckListBox_ScaleScreenToFont(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pCheckListBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleFontToScreen)
+int32_t
+CheckListBox_ScaleFontToScreen(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pCheckListBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_Scale96ToScreen)
+int32_t
+CheckListBox_Scale96ToScreen(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pCheckListBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleScreenTo96)
+int32_t
+CheckListBox_ScaleScreenTo96(TCheckListBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckListBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pCheckListBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_AutoAdjustLayout)
+void
+CheckListBox_AutoAdjustLayout(TCheckListBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(CheckListBox_AutoAdjustLayout)
+    MySyscall(pCheckListBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_FixDesignFontsPPI)
+void
+CheckListBox_FixDesignFontsPPI(TCheckListBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(CheckListBox_FixDesignFontsPPI)
+    MySyscall(pCheckListBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckListBox_ScaleFontsPPI)
+void
+CheckListBox_ScaleFontsPPI(TCheckListBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(CheckListBox_ScaleFontsPPI)
+    MySyscall(pCheckListBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnClickCheck)
@@ -74527,6 +78790,97 @@ Gauge_AnchorClient(TGauge AObj, int32_t ASpace) {
     MySyscall(pGauge_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Gauge_ScaleDesignToForm)
+int32_t
+Gauge_ScaleDesignToForm(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleDesignToForm)
+    return (int32_t)MySyscall(pGauge_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleFormToDesign)
+int32_t
+Gauge_ScaleFormToDesign(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleFormToDesign)
+    return (int32_t)MySyscall(pGauge_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_Scale96ToForm)
+int32_t
+Gauge_Scale96ToForm(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_Scale96ToForm)
+    return (int32_t)MySyscall(pGauge_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleFormTo96)
+int32_t
+Gauge_ScaleFormTo96(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleFormTo96)
+    return (int32_t)MySyscall(pGauge_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_Scale96ToFont)
+int32_t
+Gauge_Scale96ToFont(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_Scale96ToFont)
+    return (int32_t)MySyscall(pGauge_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleFontTo96)
+int32_t
+Gauge_ScaleFontTo96(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleFontTo96)
+    return (int32_t)MySyscall(pGauge_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleScreenToFont)
+int32_t
+Gauge_ScaleScreenToFont(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleScreenToFont)
+    return (int32_t)MySyscall(pGauge_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleFontToScreen)
+int32_t
+Gauge_ScaleFontToScreen(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleFontToScreen)
+    return (int32_t)MySyscall(pGauge_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_Scale96ToScreen)
+int32_t
+Gauge_Scale96ToScreen(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_Scale96ToScreen)
+    return (int32_t)MySyscall(pGauge_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleScreenTo96)
+int32_t
+Gauge_ScaleScreenTo96(TGauge AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Gauge_ScaleScreenTo96)
+    return (int32_t)MySyscall(pGauge_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_AutoAdjustLayout)
+void
+Gauge_AutoAdjustLayout(TGauge AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Gauge_AutoAdjustLayout)
+    MySyscall(pGauge_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_FixDesignFontsPPI)
+void
+Gauge_FixDesignFontsPPI(TGauge AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Gauge_FixDesignFontsPPI)
+    MySyscall(pGauge_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_ScaleFontsPPI)
+void
+Gauge_ScaleFontsPPI(TGauge AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Gauge_ScaleFontsPPI)
+    MySyscall(pGauge_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Gauge_GetPercentDone)
 int32_t
 Gauge_GetPercentDone(TGauge AObj) {
@@ -75451,6 +79805,97 @@ void
 ImageButton_AnchorClient(TImageButton AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ImageButton_AnchorClient)
     MySyscall(pImageButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleDesignToForm)
+int32_t
+ImageButton_ScaleDesignToForm(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleDesignToForm)
+    return (int32_t)MySyscall(pImageButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleFormToDesign)
+int32_t
+ImageButton_ScaleFormToDesign(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleFormToDesign)
+    return (int32_t)MySyscall(pImageButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_Scale96ToForm)
+int32_t
+ImageButton_Scale96ToForm(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_Scale96ToForm)
+    return (int32_t)MySyscall(pImageButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleFormTo96)
+int32_t
+ImageButton_ScaleFormTo96(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleFormTo96)
+    return (int32_t)MySyscall(pImageButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_Scale96ToFont)
+int32_t
+ImageButton_Scale96ToFont(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_Scale96ToFont)
+    return (int32_t)MySyscall(pImageButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleFontTo96)
+int32_t
+ImageButton_ScaleFontTo96(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleFontTo96)
+    return (int32_t)MySyscall(pImageButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleScreenToFont)
+int32_t
+ImageButton_ScaleScreenToFont(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleScreenToFont)
+    return (int32_t)MySyscall(pImageButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleFontToScreen)
+int32_t
+ImageButton_ScaleFontToScreen(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleFontToScreen)
+    return (int32_t)MySyscall(pImageButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_Scale96ToScreen)
+int32_t
+ImageButton_Scale96ToScreen(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_Scale96ToScreen)
+    return (int32_t)MySyscall(pImageButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleScreenTo96)
+int32_t
+ImageButton_ScaleScreenTo96(TImageButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ImageButton_ScaleScreenTo96)
+    return (int32_t)MySyscall(pImageButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_AutoAdjustLayout)
+void
+ImageButton_AutoAdjustLayout(TImageButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ImageButton_AutoAdjustLayout)
+    MySyscall(pImageButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_FixDesignFontsPPI)
+void
+ImageButton_FixDesignFontsPPI(TImageButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ImageButton_FixDesignFontsPPI)
+    MySyscall(pImageButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageButton_ScaleFontsPPI)
+void
+ImageButton_ScaleFontsPPI(TImageButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ImageButton_ScaleFontsPPI)
+    MySyscall(pImageButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_GetAction)
@@ -77968,6 +82413,13 @@ StringGrid_Invalidate(TStringGrid AObj) {
     MySyscall(pStringGrid_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(StringGrid_PaintTo)
+void
+StringGrid_PaintTo(TStringGrid AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(StringGrid_PaintTo)
+    MySyscall(pStringGrid_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(StringGrid_RemoveControl)
 void
 StringGrid_RemoveControl(TStringGrid AObj, TControl AControl) {
@@ -78254,6 +82706,97 @@ void
 StringGrid_AnchorClient(TStringGrid AObj, int32_t ASpace) {
     GET_FUNC_ADDR(StringGrid_AnchorClient)
     MySyscall(pStringGrid_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleDesignToForm)
+int32_t
+StringGrid_ScaleDesignToForm(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleDesignToForm)
+    return (int32_t)MySyscall(pStringGrid_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleFormToDesign)
+int32_t
+StringGrid_ScaleFormToDesign(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleFormToDesign)
+    return (int32_t)MySyscall(pStringGrid_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_Scale96ToForm)
+int32_t
+StringGrid_Scale96ToForm(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_Scale96ToForm)
+    return (int32_t)MySyscall(pStringGrid_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleFormTo96)
+int32_t
+StringGrid_ScaleFormTo96(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleFormTo96)
+    return (int32_t)MySyscall(pStringGrid_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_Scale96ToFont)
+int32_t
+StringGrid_Scale96ToFont(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_Scale96ToFont)
+    return (int32_t)MySyscall(pStringGrid_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleFontTo96)
+int32_t
+StringGrid_ScaleFontTo96(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleFontTo96)
+    return (int32_t)MySyscall(pStringGrid_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleScreenToFont)
+int32_t
+StringGrid_ScaleScreenToFont(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleScreenToFont)
+    return (int32_t)MySyscall(pStringGrid_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleFontToScreen)
+int32_t
+StringGrid_ScaleFontToScreen(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleFontToScreen)
+    return (int32_t)MySyscall(pStringGrid_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_Scale96ToScreen)
+int32_t
+StringGrid_Scale96ToScreen(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_Scale96ToScreen)
+    return (int32_t)MySyscall(pStringGrid_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleScreenTo96)
+int32_t
+StringGrid_ScaleScreenTo96(TStringGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(StringGrid_ScaleScreenTo96)
+    return (int32_t)MySyscall(pStringGrid_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_AutoAdjustLayout)
+void
+StringGrid_AutoAdjustLayout(TStringGrid AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(StringGrid_AutoAdjustLayout)
+    MySyscall(pStringGrid_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_FixDesignFontsPPI)
+void
+StringGrid_FixDesignFontsPPI(TStringGrid AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(StringGrid_FixDesignFontsPPI)
+    MySyscall(pStringGrid_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_ScaleFontsPPI)
+void
+StringGrid_ScaleFontsPPI(TStringGrid AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(StringGrid_ScaleFontsPPI)
+    MySyscall(pStringGrid_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_GetSelectedColor)
@@ -80314,6 +84857,13 @@ rawGrid_Invalidate(TDrawGrid AObj) {
     MySyscall(pDrawGrid_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DrawGrid_PaintTo)
+void
+rawGrid_PaintTo(TDrawGrid AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(DrawGrid_PaintTo)
+    MySyscall(pDrawGrid_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DrawGrid_RemoveControl)
 void
 rawGrid_RemoveControl(TDrawGrid AObj, TControl AControl) {
@@ -80600,6 +85150,97 @@ void
 rawGrid_AnchorClient(TDrawGrid AObj, int32_t ASpace) {
     GET_FUNC_ADDR(DrawGrid_AnchorClient)
     MySyscall(pDrawGrid_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleDesignToForm)
+int32_t
+rawGrid_ScaleDesignToForm(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleDesignToForm)
+    return (int32_t)MySyscall(pDrawGrid_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleFormToDesign)
+int32_t
+rawGrid_ScaleFormToDesign(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleFormToDesign)
+    return (int32_t)MySyscall(pDrawGrid_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_Scale96ToForm)
+int32_t
+rawGrid_Scale96ToForm(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_Scale96ToForm)
+    return (int32_t)MySyscall(pDrawGrid_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleFormTo96)
+int32_t
+rawGrid_ScaleFormTo96(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleFormTo96)
+    return (int32_t)MySyscall(pDrawGrid_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_Scale96ToFont)
+int32_t
+rawGrid_Scale96ToFont(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_Scale96ToFont)
+    return (int32_t)MySyscall(pDrawGrid_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleFontTo96)
+int32_t
+rawGrid_ScaleFontTo96(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleFontTo96)
+    return (int32_t)MySyscall(pDrawGrid_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleScreenToFont)
+int32_t
+rawGrid_ScaleScreenToFont(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleScreenToFont)
+    return (int32_t)MySyscall(pDrawGrid_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleFontToScreen)
+int32_t
+rawGrid_ScaleFontToScreen(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleFontToScreen)
+    return (int32_t)MySyscall(pDrawGrid_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_Scale96ToScreen)
+int32_t
+rawGrid_Scale96ToScreen(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_Scale96ToScreen)
+    return (int32_t)MySyscall(pDrawGrid_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleScreenTo96)
+int32_t
+rawGrid_ScaleScreenTo96(TDrawGrid AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DrawGrid_ScaleScreenTo96)
+    return (int32_t)MySyscall(pDrawGrid_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_AutoAdjustLayout)
+void
+rawGrid_AutoAdjustLayout(TDrawGrid AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(DrawGrid_AutoAdjustLayout)
+    MySyscall(pDrawGrid_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_FixDesignFontsPPI)
+void
+rawGrid_FixDesignFontsPPI(TDrawGrid AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(DrawGrid_FixDesignFontsPPI)
+    MySyscall(pDrawGrid_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_ScaleFontsPPI)
+void
+rawGrid_ScaleFontsPPI(TDrawGrid AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(DrawGrid_ScaleFontsPPI)
+    MySyscall(pDrawGrid_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnColRowMoved)
@@ -81995,6 +86636,13 @@ ValueListEditor_Invalidate(TValueListEditor AObj) {
     MySyscall(pValueListEditor_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ValueListEditor_PaintTo)
+void
+ValueListEditor_PaintTo(TValueListEditor AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ValueListEditor_PaintTo)
+    MySyscall(pValueListEditor_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ValueListEditor_RemoveControl)
 void
 ValueListEditor_RemoveControl(TValueListEditor AObj, TControl AControl) {
@@ -82274,6 +86922,97 @@ void
 ValueListEditor_AnchorClient(TValueListEditor AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ValueListEditor_AnchorClient)
     MySyscall(pValueListEditor_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleDesignToForm)
+int32_t
+ValueListEditor_ScaleDesignToForm(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleDesignToForm)
+    return (int32_t)MySyscall(pValueListEditor_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleFormToDesign)
+int32_t
+ValueListEditor_ScaleFormToDesign(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleFormToDesign)
+    return (int32_t)MySyscall(pValueListEditor_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_Scale96ToForm)
+int32_t
+ValueListEditor_Scale96ToForm(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_Scale96ToForm)
+    return (int32_t)MySyscall(pValueListEditor_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleFormTo96)
+int32_t
+ValueListEditor_ScaleFormTo96(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleFormTo96)
+    return (int32_t)MySyscall(pValueListEditor_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_Scale96ToFont)
+int32_t
+ValueListEditor_Scale96ToFont(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_Scale96ToFont)
+    return (int32_t)MySyscall(pValueListEditor_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleFontTo96)
+int32_t
+ValueListEditor_ScaleFontTo96(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleFontTo96)
+    return (int32_t)MySyscall(pValueListEditor_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleScreenToFont)
+int32_t
+ValueListEditor_ScaleScreenToFont(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleScreenToFont)
+    return (int32_t)MySyscall(pValueListEditor_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleFontToScreen)
+int32_t
+ValueListEditor_ScaleFontToScreen(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleFontToScreen)
+    return (int32_t)MySyscall(pValueListEditor_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_Scale96ToScreen)
+int32_t
+ValueListEditor_Scale96ToScreen(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_Scale96ToScreen)
+    return (int32_t)MySyscall(pValueListEditor_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleScreenTo96)
+int32_t
+ValueListEditor_ScaleScreenTo96(TValueListEditor AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleScreenTo96)
+    return (int32_t)MySyscall(pValueListEditor_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_AutoAdjustLayout)
+void
+ValueListEditor_AutoAdjustLayout(TValueListEditor AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ValueListEditor_AutoAdjustLayout)
+    MySyscall(pValueListEditor_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_FixDesignFontsPPI)
+void
+ValueListEditor_FixDesignFontsPPI(TValueListEditor AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ValueListEditor_FixDesignFontsPPI)
+    MySyscall(pValueListEditor_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ValueListEditor_ScaleFontsPPI)
+void
+ValueListEditor_ScaleFontsPPI(TValueListEditor AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ValueListEditor_ScaleFontsPPI)
+    MySyscall(pValueListEditor_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_GetColCount)
@@ -83658,6 +88397,13 @@ HeaderControl_Invalidate(THeaderControl AObj) {
     MySyscall(pHeaderControl_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(HeaderControl_PaintTo)
+void
+HeaderControl_PaintTo(THeaderControl AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(HeaderControl_PaintTo)
+    MySyscall(pHeaderControl_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(HeaderControl_RemoveControl)
 void
 HeaderControl_RemoveControl(THeaderControl AObj, TControl AControl) {
@@ -83944,6 +88690,97 @@ void
 HeaderControl_AnchorClient(THeaderControl AObj, int32_t ASpace) {
     GET_FUNC_ADDR(HeaderControl_AnchorClient)
     MySyscall(pHeaderControl_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleDesignToForm)
+int32_t
+HeaderControl_ScaleDesignToForm(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleDesignToForm)
+    return (int32_t)MySyscall(pHeaderControl_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleFormToDesign)
+int32_t
+HeaderControl_ScaleFormToDesign(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleFormToDesign)
+    return (int32_t)MySyscall(pHeaderControl_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_Scale96ToForm)
+int32_t
+HeaderControl_Scale96ToForm(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_Scale96ToForm)
+    return (int32_t)MySyscall(pHeaderControl_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleFormTo96)
+int32_t
+HeaderControl_ScaleFormTo96(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleFormTo96)
+    return (int32_t)MySyscall(pHeaderControl_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_Scale96ToFont)
+int32_t
+HeaderControl_Scale96ToFont(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_Scale96ToFont)
+    return (int32_t)MySyscall(pHeaderControl_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleFontTo96)
+int32_t
+HeaderControl_ScaleFontTo96(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleFontTo96)
+    return (int32_t)MySyscall(pHeaderControl_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleScreenToFont)
+int32_t
+HeaderControl_ScaleScreenToFont(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleScreenToFont)
+    return (int32_t)MySyscall(pHeaderControl_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleFontToScreen)
+int32_t
+HeaderControl_ScaleFontToScreen(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleFontToScreen)
+    return (int32_t)MySyscall(pHeaderControl_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_Scale96ToScreen)
+int32_t
+HeaderControl_Scale96ToScreen(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_Scale96ToScreen)
+    return (int32_t)MySyscall(pHeaderControl_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleScreenTo96)
+int32_t
+HeaderControl_ScaleScreenTo96(THeaderControl AObj, int32_t ASize) {
+    GET_FUNC_ADDR(HeaderControl_ScaleScreenTo96)
+    return (int32_t)MySyscall(pHeaderControl_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_AutoAdjustLayout)
+void
+HeaderControl_AutoAdjustLayout(THeaderControl AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(HeaderControl_AutoAdjustLayout)
+    MySyscall(pHeaderControl_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_FixDesignFontsPPI)
+void
+HeaderControl_FixDesignFontsPPI(THeaderControl AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(HeaderControl_FixDesignFontsPPI)
+    MySyscall(pHeaderControl_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(HeaderControl_ScaleFontsPPI)
+void
+HeaderControl_ScaleFontsPPI(THeaderControl AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(HeaderControl_ScaleFontsPPI)
+    MySyscall(pHeaderControl_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_GetAlign)
@@ -85365,6 +90202,13 @@ LabeledEdit_Invalidate(TLabeledEdit AObj) {
     MySyscall(pLabeledEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(LabeledEdit_PaintTo)
+void
+LabeledEdit_PaintTo(TLabeledEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(LabeledEdit_PaintTo)
+    MySyscall(pLabeledEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(LabeledEdit_RemoveControl)
 void
 LabeledEdit_RemoveControl(TLabeledEdit AObj, TControl AControl) {
@@ -85644,6 +90488,97 @@ void
 LabeledEdit_AnchorClient(TLabeledEdit AObj, int32_t ASpace) {
     GET_FUNC_ADDR(LabeledEdit_AnchorClient)
     MySyscall(pLabeledEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleDesignToForm)
+int32_t
+LabeledEdit_ScaleDesignToForm(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleFormToDesign)
+int32_t
+LabeledEdit_ScaleFormToDesign(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_Scale96ToForm)
+int32_t
+LabeledEdit_Scale96ToForm(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_Scale96ToForm)
+    return (int32_t)MySyscall(pLabeledEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleFormTo96)
+int32_t
+LabeledEdit_ScaleFormTo96(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleFormTo96)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_Scale96ToFont)
+int32_t
+LabeledEdit_Scale96ToFont(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_Scale96ToFont)
+    return (int32_t)MySyscall(pLabeledEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleFontTo96)
+int32_t
+LabeledEdit_ScaleFontTo96(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleFontTo96)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleScreenToFont)
+int32_t
+LabeledEdit_ScaleScreenToFont(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleFontToScreen)
+int32_t
+LabeledEdit_ScaleFontToScreen(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_Scale96ToScreen)
+int32_t
+LabeledEdit_Scale96ToScreen(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_Scale96ToScreen)
+    return (int32_t)MySyscall(pLabeledEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleScreenTo96)
+int32_t
+LabeledEdit_ScaleScreenTo96(TLabeledEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pLabeledEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_AutoAdjustLayout)
+void
+LabeledEdit_AutoAdjustLayout(TLabeledEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(LabeledEdit_AutoAdjustLayout)
+    MySyscall(pLabeledEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_FixDesignFontsPPI)
+void
+LabeledEdit_FixDesignFontsPPI(TLabeledEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(LabeledEdit_FixDesignFontsPPI)
+    MySyscall(pLabeledEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(LabeledEdit_ScaleFontsPPI)
+void
+LabeledEdit_ScaleFontsPPI(TLabeledEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(LabeledEdit_ScaleFontsPPI)
+    MySyscall(pLabeledEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_GetAlignment)
@@ -87041,6 +91976,97 @@ BoundLabel_AnchorClient(TBoundLabel AObj, int32_t ASpace) {
     MySyscall(pBoundLabel_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(BoundLabel_ScaleDesignToForm)
+int32_t
+BoundLabel_ScaleDesignToForm(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleDesignToForm)
+    return (int32_t)MySyscall(pBoundLabel_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleFormToDesign)
+int32_t
+BoundLabel_ScaleFormToDesign(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleFormToDesign)
+    return (int32_t)MySyscall(pBoundLabel_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_Scale96ToForm)
+int32_t
+BoundLabel_Scale96ToForm(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_Scale96ToForm)
+    return (int32_t)MySyscall(pBoundLabel_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleFormTo96)
+int32_t
+BoundLabel_ScaleFormTo96(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleFormTo96)
+    return (int32_t)MySyscall(pBoundLabel_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_Scale96ToFont)
+int32_t
+BoundLabel_Scale96ToFont(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_Scale96ToFont)
+    return (int32_t)MySyscall(pBoundLabel_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleFontTo96)
+int32_t
+BoundLabel_ScaleFontTo96(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleFontTo96)
+    return (int32_t)MySyscall(pBoundLabel_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleScreenToFont)
+int32_t
+BoundLabel_ScaleScreenToFont(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleScreenToFont)
+    return (int32_t)MySyscall(pBoundLabel_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleFontToScreen)
+int32_t
+BoundLabel_ScaleFontToScreen(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleFontToScreen)
+    return (int32_t)MySyscall(pBoundLabel_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_Scale96ToScreen)
+int32_t
+BoundLabel_Scale96ToScreen(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_Scale96ToScreen)
+    return (int32_t)MySyscall(pBoundLabel_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleScreenTo96)
+int32_t
+BoundLabel_ScaleScreenTo96(TBoundLabel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(BoundLabel_ScaleScreenTo96)
+    return (int32_t)MySyscall(pBoundLabel_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_AutoAdjustLayout)
+void
+BoundLabel_AutoAdjustLayout(TBoundLabel AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(BoundLabel_AutoAdjustLayout)
+    MySyscall(pBoundLabel_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_FixDesignFontsPPI)
+void
+BoundLabel_FixDesignFontsPPI(TBoundLabel AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(BoundLabel_FixDesignFontsPPI)
+    MySyscall(pBoundLabel_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BoundLabel_ScaleFontsPPI)
+void
+BoundLabel_ScaleFontsPPI(TBoundLabel AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(BoundLabel_ScaleFontsPPI)
+    MySyscall(pBoundLabel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(BoundLabel_GetBiDiMode)
 TBiDiMode
 BoundLabel_GetBiDiMode(TBoundLabel AObj) {
@@ -87819,6 +92845,13 @@ FlowPanel_Invalidate(TFlowPanel AObj) {
     MySyscall(pFlowPanel_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(FlowPanel_PaintTo)
+void
+FlowPanel_PaintTo(TFlowPanel AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(FlowPanel_PaintTo)
+    MySyscall(pFlowPanel_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(FlowPanel_RemoveControl)
 void
 FlowPanel_RemoveControl(TFlowPanel AObj, TControl AControl) {
@@ -88105,6 +93138,97 @@ void
 FlowPanel_AnchorClient(TFlowPanel AObj, int32_t ASpace) {
     GET_FUNC_ADDR(FlowPanel_AnchorClient)
     MySyscall(pFlowPanel_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleDesignToForm)
+int32_t
+FlowPanel_ScaleDesignToForm(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleDesignToForm)
+    return (int32_t)MySyscall(pFlowPanel_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleFormToDesign)
+int32_t
+FlowPanel_ScaleFormToDesign(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleFormToDesign)
+    return (int32_t)MySyscall(pFlowPanel_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_Scale96ToForm)
+int32_t
+FlowPanel_Scale96ToForm(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_Scale96ToForm)
+    return (int32_t)MySyscall(pFlowPanel_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleFormTo96)
+int32_t
+FlowPanel_ScaleFormTo96(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleFormTo96)
+    return (int32_t)MySyscall(pFlowPanel_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_Scale96ToFont)
+int32_t
+FlowPanel_Scale96ToFont(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_Scale96ToFont)
+    return (int32_t)MySyscall(pFlowPanel_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleFontTo96)
+int32_t
+FlowPanel_ScaleFontTo96(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleFontTo96)
+    return (int32_t)MySyscall(pFlowPanel_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleScreenToFont)
+int32_t
+FlowPanel_ScaleScreenToFont(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleScreenToFont)
+    return (int32_t)MySyscall(pFlowPanel_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleFontToScreen)
+int32_t
+FlowPanel_ScaleFontToScreen(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleFontToScreen)
+    return (int32_t)MySyscall(pFlowPanel_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_Scale96ToScreen)
+int32_t
+FlowPanel_Scale96ToScreen(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_Scale96ToScreen)
+    return (int32_t)MySyscall(pFlowPanel_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleScreenTo96)
+int32_t
+FlowPanel_ScaleScreenTo96(TFlowPanel AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FlowPanel_ScaleScreenTo96)
+    return (int32_t)MySyscall(pFlowPanel_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_AutoAdjustLayout)
+void
+FlowPanel_AutoAdjustLayout(TFlowPanel AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(FlowPanel_AutoAdjustLayout)
+    MySyscall(pFlowPanel_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_FixDesignFontsPPI)
+void
+FlowPanel_FixDesignFontsPPI(TFlowPanel AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(FlowPanel_FixDesignFontsPPI)
+    MySyscall(pFlowPanel_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_ScaleFontsPPI)
+void
+FlowPanel_ScaleFontsPPI(TFlowPanel AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(FlowPanel_ScaleFontsPPI)
+    MySyscall(pFlowPanel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_GetAlign)
@@ -89214,6 +94338,13 @@ CoolBar_Invalidate(TCoolBar AObj) {
     MySyscall(pCoolBar_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CoolBar_PaintTo)
+void
+CoolBar_PaintTo(TCoolBar AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(CoolBar_PaintTo)
+    MySyscall(pCoolBar_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CoolBar_RemoveControl)
 void
 CoolBar_RemoveControl(TCoolBar AObj, TControl AControl) {
@@ -89500,6 +94631,97 @@ void
 CoolBar_AnchorClient(TCoolBar AObj, int32_t ASpace) {
     GET_FUNC_ADDR(CoolBar_AnchorClient)
     MySyscall(pCoolBar_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleDesignToForm)
+int32_t
+CoolBar_ScaleDesignToForm(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleDesignToForm)
+    return (int32_t)MySyscall(pCoolBar_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleFormToDesign)
+int32_t
+CoolBar_ScaleFormToDesign(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleFormToDesign)
+    return (int32_t)MySyscall(pCoolBar_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_Scale96ToForm)
+int32_t
+CoolBar_Scale96ToForm(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_Scale96ToForm)
+    return (int32_t)MySyscall(pCoolBar_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleFormTo96)
+int32_t
+CoolBar_ScaleFormTo96(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleFormTo96)
+    return (int32_t)MySyscall(pCoolBar_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_Scale96ToFont)
+int32_t
+CoolBar_Scale96ToFont(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_Scale96ToFont)
+    return (int32_t)MySyscall(pCoolBar_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleFontTo96)
+int32_t
+CoolBar_ScaleFontTo96(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleFontTo96)
+    return (int32_t)MySyscall(pCoolBar_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleScreenToFont)
+int32_t
+CoolBar_ScaleScreenToFont(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleScreenToFont)
+    return (int32_t)MySyscall(pCoolBar_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleFontToScreen)
+int32_t
+CoolBar_ScaleFontToScreen(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleFontToScreen)
+    return (int32_t)MySyscall(pCoolBar_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_Scale96ToScreen)
+int32_t
+CoolBar_Scale96ToScreen(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_Scale96ToScreen)
+    return (int32_t)MySyscall(pCoolBar_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleScreenTo96)
+int32_t
+CoolBar_ScaleScreenTo96(TCoolBar AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CoolBar_ScaleScreenTo96)
+    return (int32_t)MySyscall(pCoolBar_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_AutoAdjustLayout)
+void
+CoolBar_AutoAdjustLayout(TCoolBar AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(CoolBar_AutoAdjustLayout)
+    MySyscall(pCoolBar_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_FixDesignFontsPPI)
+void
+CoolBar_FixDesignFontsPPI(TCoolBar AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(CoolBar_FixDesignFontsPPI)
+    MySyscall(pCoolBar_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CoolBar_ScaleFontsPPI)
+void
+CoolBar_ScaleFontsPPI(TCoolBar AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(CoolBar_ScaleFontsPPI)
+    MySyscall(pCoolBar_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_GetAlign)
@@ -92713,6 +97935,13 @@ ComboBoxEx_Invalidate(TComboBoxEx AObj) {
     MySyscall(pComboBoxEx_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ComboBoxEx_PaintTo)
+void
+ComboBoxEx_PaintTo(TComboBoxEx AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ComboBoxEx_PaintTo)
+    MySyscall(pComboBoxEx_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ComboBoxEx_RemoveControl)
 void
 ComboBoxEx_RemoveControl(TComboBoxEx AObj, TControl AControl) {
@@ -92999,6 +98228,97 @@ void
 ComboBoxEx_AnchorClient(TComboBoxEx AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ComboBoxEx_AnchorClient)
     MySyscall(pComboBoxEx_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleDesignToForm)
+int32_t
+ComboBoxEx_ScaleDesignToForm(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleDesignToForm)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleFormToDesign)
+int32_t
+ComboBoxEx_ScaleFormToDesign(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleFormToDesign)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_Scale96ToForm)
+int32_t
+ComboBoxEx_Scale96ToForm(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_Scale96ToForm)
+    return (int32_t)MySyscall(pComboBoxEx_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleFormTo96)
+int32_t
+ComboBoxEx_ScaleFormTo96(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleFormTo96)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_Scale96ToFont)
+int32_t
+ComboBoxEx_Scale96ToFont(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_Scale96ToFont)
+    return (int32_t)MySyscall(pComboBoxEx_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleFontTo96)
+int32_t
+ComboBoxEx_ScaleFontTo96(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleFontTo96)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleScreenToFont)
+int32_t
+ComboBoxEx_ScaleScreenToFont(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleScreenToFont)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleFontToScreen)
+int32_t
+ComboBoxEx_ScaleFontToScreen(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleFontToScreen)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_Scale96ToScreen)
+int32_t
+ComboBoxEx_Scale96ToScreen(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_Scale96ToScreen)
+    return (int32_t)MySyscall(pComboBoxEx_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleScreenTo96)
+int32_t
+ComboBoxEx_ScaleScreenTo96(TComboBoxEx AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleScreenTo96)
+    return (int32_t)MySyscall(pComboBoxEx_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_AutoAdjustLayout)
+void
+ComboBoxEx_AutoAdjustLayout(TComboBoxEx AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ComboBoxEx_AutoAdjustLayout)
+    MySyscall(pComboBoxEx_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_FixDesignFontsPPI)
+void
+ComboBoxEx_FixDesignFontsPPI(TComboBoxEx AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ComboBoxEx_FixDesignFontsPPI)
+    MySyscall(pComboBoxEx_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBoxEx_ScaleFontsPPI)
+void
+ComboBoxEx_ScaleFontsPPI(TComboBoxEx AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ComboBoxEx_ScaleFontsPPI)
+    MySyscall(pComboBoxEx_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_GetAlign)
@@ -94525,6 +99845,13 @@ Frame_Invalidate(TFrame AObj) {
     MySyscall(pFrame_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Frame_PaintTo)
+void
+Frame_PaintTo(TFrame AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(Frame_PaintTo)
+    MySyscall(pFrame_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Frame_RemoveControl)
 void
 Frame_RemoveControl(TFrame AObj, TControl AControl) {
@@ -94811,6 +100138,111 @@ void
 Frame_AnchorClient(TFrame AObj, int32_t ASpace) {
     GET_FUNC_ADDR(Frame_AnchorClient)
     MySyscall(pFrame_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleDesignToForm)
+int32_t
+Frame_ScaleDesignToForm(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleDesignToForm)
+    return (int32_t)MySyscall(pFrame_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleFormToDesign)
+int32_t
+Frame_ScaleFormToDesign(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleFormToDesign)
+    return (int32_t)MySyscall(pFrame_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_Scale96ToForm)
+int32_t
+Frame_Scale96ToForm(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_Scale96ToForm)
+    return (int32_t)MySyscall(pFrame_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleFormTo96)
+int32_t
+Frame_ScaleFormTo96(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleFormTo96)
+    return (int32_t)MySyscall(pFrame_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_Scale96ToFont)
+int32_t
+Frame_Scale96ToFont(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_Scale96ToFont)
+    return (int32_t)MySyscall(pFrame_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleFontTo96)
+int32_t
+Frame_ScaleFontTo96(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleFontTo96)
+    return (int32_t)MySyscall(pFrame_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleScreenToFont)
+int32_t
+Frame_ScaleScreenToFont(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleScreenToFont)
+    return (int32_t)MySyscall(pFrame_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleFontToScreen)
+int32_t
+Frame_ScaleFontToScreen(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleFontToScreen)
+    return (int32_t)MySyscall(pFrame_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_Scale96ToScreen)
+int32_t
+Frame_Scale96ToScreen(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_Scale96ToScreen)
+    return (int32_t)MySyscall(pFrame_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleScreenTo96)
+int32_t
+Frame_ScaleScreenTo96(TFrame AObj, int32_t ASize) {
+    GET_FUNC_ADDR(Frame_ScaleScreenTo96)
+    return (int32_t)MySyscall(pFrame_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_AutoAdjustLayout)
+void
+Frame_AutoAdjustLayout(TFrame AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(Frame_AutoAdjustLayout)
+    MySyscall(pFrame_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_FixDesignFontsPPI)
+void
+Frame_FixDesignFontsPPI(TFrame AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(Frame_FixDesignFontsPPI)
+    MySyscall(pFrame_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_ScaleFontsPPI)
+void
+Frame_ScaleFontsPPI(TFrame AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(Frame_ScaleFontsPPI)
+    MySyscall(pFrame_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_GetDesignTimePPI)
+int32_t
+Frame_GetDesignTimePPI(TFrame AObj) {
+    GET_FUNC_ADDR(Frame_GetDesignTimePPI)
+    return (int32_t)MySyscall(pFrame_GetDesignTimePPI, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_SetDesignTimePPI)
+void
+Frame_SetDesignTimePPI(TFrame AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Frame_SetDesignTimePPI)
+    MySyscall(pFrame_SetDesignTimePPI, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_GetAlign)
@@ -96366,6 +101798,97 @@ XButton_AnchorClient(TXButton AObj, int32_t ASpace) {
     MySyscall(pXButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(XButton_ScaleDesignToForm)
+int32_t
+XButton_ScaleDesignToForm(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleDesignToForm)
+    return (int32_t)MySyscall(pXButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleFormToDesign)
+int32_t
+XButton_ScaleFormToDesign(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleFormToDesign)
+    return (int32_t)MySyscall(pXButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_Scale96ToForm)
+int32_t
+XButton_Scale96ToForm(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_Scale96ToForm)
+    return (int32_t)MySyscall(pXButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleFormTo96)
+int32_t
+XButton_ScaleFormTo96(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleFormTo96)
+    return (int32_t)MySyscall(pXButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_Scale96ToFont)
+int32_t
+XButton_Scale96ToFont(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_Scale96ToFont)
+    return (int32_t)MySyscall(pXButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleFontTo96)
+int32_t
+XButton_ScaleFontTo96(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleFontTo96)
+    return (int32_t)MySyscall(pXButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleScreenToFont)
+int32_t
+XButton_ScaleScreenToFont(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleScreenToFont)
+    return (int32_t)MySyscall(pXButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleFontToScreen)
+int32_t
+XButton_ScaleFontToScreen(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleFontToScreen)
+    return (int32_t)MySyscall(pXButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_Scale96ToScreen)
+int32_t
+XButton_Scale96ToScreen(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_Scale96ToScreen)
+    return (int32_t)MySyscall(pXButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleScreenTo96)
+int32_t
+XButton_ScaleScreenTo96(TXButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(XButton_ScaleScreenTo96)
+    return (int32_t)MySyscall(pXButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_AutoAdjustLayout)
+void
+XButton_AutoAdjustLayout(TXButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(XButton_AutoAdjustLayout)
+    MySyscall(pXButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_FixDesignFontsPPI)
+void
+XButton_FixDesignFontsPPI(TXButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(XButton_FixDesignFontsPPI)
+    MySyscall(pXButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(XButton_ScaleFontsPPI)
+void
+XButton_ScaleFontsPPI(TXButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(XButton_ScaleFontsPPI)
+    MySyscall(pXButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(XButton_GetCaption)
 char*
 XButton_GetCaption(TXButton AObj) {
@@ -97808,6 +103331,13 @@ CheckGroup_Invalidate(TCheckGroup AObj) {
     MySyscall(pCheckGroup_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(CheckGroup_PaintTo)
+void
+CheckGroup_PaintTo(TCheckGroup AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(CheckGroup_PaintTo)
+    MySyscall(pCheckGroup_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(CheckGroup_RemoveControl)
 void
 CheckGroup_RemoveControl(TCheckGroup AObj, TControl AControl) {
@@ -98094,6 +103624,97 @@ void
 CheckGroup_AnchorClient(TCheckGroup AObj, int32_t ASpace) {
     GET_FUNC_ADDR(CheckGroup_AnchorClient)
     MySyscall(pCheckGroup_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleDesignToForm)
+int32_t
+CheckGroup_ScaleDesignToForm(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleDesignToForm)
+    return (int32_t)MySyscall(pCheckGroup_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleFormToDesign)
+int32_t
+CheckGroup_ScaleFormToDesign(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleFormToDesign)
+    return (int32_t)MySyscall(pCheckGroup_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_Scale96ToForm)
+int32_t
+CheckGroup_Scale96ToForm(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_Scale96ToForm)
+    return (int32_t)MySyscall(pCheckGroup_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleFormTo96)
+int32_t
+CheckGroup_ScaleFormTo96(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleFormTo96)
+    return (int32_t)MySyscall(pCheckGroup_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_Scale96ToFont)
+int32_t
+CheckGroup_Scale96ToFont(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_Scale96ToFont)
+    return (int32_t)MySyscall(pCheckGroup_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleFontTo96)
+int32_t
+CheckGroup_ScaleFontTo96(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleFontTo96)
+    return (int32_t)MySyscall(pCheckGroup_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleScreenToFont)
+int32_t
+CheckGroup_ScaleScreenToFont(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleScreenToFont)
+    return (int32_t)MySyscall(pCheckGroup_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleFontToScreen)
+int32_t
+CheckGroup_ScaleFontToScreen(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleFontToScreen)
+    return (int32_t)MySyscall(pCheckGroup_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_Scale96ToScreen)
+int32_t
+CheckGroup_Scale96ToScreen(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_Scale96ToScreen)
+    return (int32_t)MySyscall(pCheckGroup_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleScreenTo96)
+int32_t
+CheckGroup_ScaleScreenTo96(TCheckGroup AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckGroup_ScaleScreenTo96)
+    return (int32_t)MySyscall(pCheckGroup_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_AutoAdjustLayout)
+void
+CheckGroup_AutoAdjustLayout(TCheckGroup AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(CheckGroup_AutoAdjustLayout)
+    MySyscall(pCheckGroup_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_FixDesignFontsPPI)
+void
+CheckGroup_FixDesignFontsPPI(TCheckGroup AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(CheckGroup_FixDesignFontsPPI)
+    MySyscall(pCheckGroup_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_ScaleFontsPPI)
+void
+CheckGroup_ScaleFontsPPI(TCheckGroup AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(CheckGroup_ScaleFontsPPI)
+    MySyscall(pCheckGroup_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_GetAlign)
@@ -99182,6 +104803,13 @@ ToggleBox_Invalidate(TToggleBox AObj) {
     MySyscall(pToggleBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ToggleBox_PaintTo)
+void
+ToggleBox_PaintTo(TToggleBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ToggleBox_PaintTo)
+    MySyscall(pToggleBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ToggleBox_RemoveControl)
 void
 ToggleBox_RemoveControl(TToggleBox AObj, TControl AControl) {
@@ -99468,6 +105096,97 @@ void
 ToggleBox_AnchorClient(TToggleBox AObj, int32_t ASpace) {
     GET_FUNC_ADDR(ToggleBox_AnchorClient)
     MySyscall(pToggleBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleDesignToForm)
+int32_t
+ToggleBox_ScaleDesignToForm(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pToggleBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleFormToDesign)
+int32_t
+ToggleBox_ScaleFormToDesign(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pToggleBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_Scale96ToForm)
+int32_t
+ToggleBox_Scale96ToForm(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_Scale96ToForm)
+    return (int32_t)MySyscall(pToggleBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleFormTo96)
+int32_t
+ToggleBox_ScaleFormTo96(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pToggleBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_Scale96ToFont)
+int32_t
+ToggleBox_Scale96ToFont(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_Scale96ToFont)
+    return (int32_t)MySyscall(pToggleBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleFontTo96)
+int32_t
+ToggleBox_ScaleFontTo96(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pToggleBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleScreenToFont)
+int32_t
+ToggleBox_ScaleScreenToFont(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pToggleBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleFontToScreen)
+int32_t
+ToggleBox_ScaleFontToScreen(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pToggleBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_Scale96ToScreen)
+int32_t
+ToggleBox_Scale96ToScreen(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pToggleBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleScreenTo96)
+int32_t
+ToggleBox_ScaleScreenTo96(TToggleBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ToggleBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pToggleBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_AutoAdjustLayout)
+void
+ToggleBox_AutoAdjustLayout(TToggleBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ToggleBox_AutoAdjustLayout)
+    MySyscall(pToggleBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_FixDesignFontsPPI)
+void
+ToggleBox_FixDesignFontsPPI(TToggleBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ToggleBox_FixDesignFontsPPI)
+    MySyscall(pToggleBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ToggleBox_ScaleFontsPPI)
+void
+ToggleBox_ScaleFontsPPI(TToggleBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ToggleBox_ScaleFontsPPI)
+    MySyscall(pToggleBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_GetAllowGrayed)
@@ -100402,6 +106121,20 @@ GridColumnTitle_FillTitleDefaultFont(TGridColumnTitle AObj) {
     MySyscall(pGridColumnTitle_FillTitleDefaultFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(GridColumnTitle_FixDesignFontsPPI)
+void
+GridColumnTitle_FixDesignFontsPPI(TGridColumnTitle AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(GridColumnTitle_FixDesignFontsPPI)
+    MySyscall(pGridColumnTitle_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GridColumnTitle_ScaleFontsPPI)
+void
+GridColumnTitle_ScaleFontsPPI(TGridColumnTitle AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(GridColumnTitle_ScaleFontsPPI)
+    MySyscall(pGridColumnTitle_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(GridColumnTitle_IsDefault)
 BOOL
 GridColumnTitle_IsDefault(TGridColumnTitle AObj) {
@@ -100612,6 +106345,20 @@ void
 GridColumn_Assign(TGridColumn AObj, TObject Source) {
     GET_FUNC_ADDR(GridColumn_Assign)
     MySyscall(pGridColumn_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GridColumn_FixDesignFontsPPI)
+void
+GridColumn_FixDesignFontsPPI(TGridColumn AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(GridColumn_FixDesignFontsPPI)
+    MySyscall(pGridColumn_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GridColumn_ScaleFontsPPI)
+void
+GridColumn_ScaleFontsPPI(TGridColumn AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(GridColumn_ScaleFontsPPI)
+    MySyscall(pGridColumn_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GridColumn_IsDefault)
