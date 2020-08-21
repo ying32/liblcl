@@ -25,6 +25,7 @@ uses
 {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
 {$ENDIF}{$ENDIF}
+  //LCLTranslator,
 {$I UseAll.inc}
   ,Classes,
   SysUtils,

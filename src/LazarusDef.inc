@@ -1168,6 +1168,15 @@ begin
 end;
 
 
+//procedure DSetDefaultLang(ALang: PChar; ADir: PChar; AForceUpdate: LongBool);
+//begin
+//  SetDefaultLang(ALang, ADir, AForceUpdate);
+//end;
+//
+//function DGetDefaultLang: PChar;
+//begin
+//  Result := ToPChar(GetDefaultLang);
+//end;
 
 {$ifndef UsehandleException}
 // dylib
@@ -1351,6 +1360,9 @@ exports
   SetMessageCallback,
   SetThreadSyncCallback,
   SetExceptionHandlerCallback,
+
+  //DSetDefaultLang,
+  //DGetDefaultLang,
 
   DGetStringArrOf,
   DStrLen,
