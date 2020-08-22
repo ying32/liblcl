@@ -14,7 +14,7 @@ begin
   handleExceptionEnd
 end;
 
-procedure Form_Free(AObj: TForm); extdecl;
+procedure Form_Free(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Free;
@@ -22,7 +22,71 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Cascade(AObj: TForm); extdecl;
+procedure Form_InheritedWndProc(AObj: TGoForm; var TheMessage: TLMessage); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InheritedWndProc(TheMessage);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_EnabledMaximize(AObj: TGoForm; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EnabledMaximize(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_EnabledMinimize(AObj: TGoForm; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EnabledMinimize(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_EnabledSystemMenu(AObj: TGoForm; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EnabledSystemMenu(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_ScaleForCurrentDpi(AObj: TGoForm); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleForCurrentDpi;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_ScaleForPPI(AObj: TGoForm; ANewPPI: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScaleForPPI(ANewPPI);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_ScreenCenter(AObj: TGoForm); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScreenCenter;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_WorkAreaCenter(AObj: TGoForm); extdecl;
+begin
+  handleExceptionBegin
+  AObj.WorkAreaCenter;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_Cascade(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Cascade;
@@ -30,7 +94,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Close(AObj: TForm); extdecl;
+procedure Form_Close(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Close;
@@ -38,7 +102,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_FocusControl(AObj: TForm; Control: TWinControl); extdecl;
+procedure Form_FocusControl(AObj: TGoForm; Control: TWinControl); extdecl;
 begin
   handleExceptionBegin
   AObj.FocusControl(Control);
@@ -46,7 +110,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Hide(AObj: TForm); extdecl;
+procedure Form_Hide(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Hide;
@@ -54,7 +118,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_SetFocus(AObj: TForm); extdecl;
+procedure Form_SetFocus(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.SetFocus;
@@ -62,7 +126,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Show(AObj: TForm); extdecl;
+procedure Form_Show(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Show;
@@ -70,7 +134,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ShowModal(AObj: TForm): Integer; extdecl;
+function Form_ShowModal(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ShowModal;
@@ -78,7 +142,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_ScrollInView(AObj: TForm; AControl: TControl); extdecl;
+procedure Form_ScrollInView(AObj: TGoForm; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.ScrollInView(AControl);
@@ -86,7 +150,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_CanFocus(AObj: TForm): LongBool; extdecl;
+function Form_CanFocus(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.CanFocus;
@@ -94,7 +158,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ContainsControl(AObj: TForm; Control: TControl): LongBool; extdecl;
+function Form_ContainsControl(AObj: TGoForm; Control: TControl): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
@@ -103,7 +167,7 @@ end;
 
 //CLASSMETHOD:
 //PARAMS:2=nonPtr
-function Form_ControlAtPos(AObj: TForm; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
+function Form_ControlAtPos(AObj: TGoForm; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
@@ -111,7 +175,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_DisableAlign(AObj: TForm); extdecl;
+procedure Form_DisableAlign(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.DisableAlign;
@@ -119,7 +183,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_EnableAlign(AObj: TForm); extdecl;
+procedure Form_EnableAlign(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.EnableAlign;
@@ -127,7 +191,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_FindChildControl(AObj: TForm; ControlName: PChar): TControl; extdecl;
+function Form_FindChildControl(AObj: TGoForm; ControlName: PChar): TControl; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
@@ -135,7 +199,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_FlipChildren(AObj: TForm; AllLevels: LongBool); extdecl;
+procedure Form_FlipChildren(AObj: TGoForm; AllLevels: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.FlipChildren(AllLevels);
@@ -143,7 +207,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Focused(AObj: TForm): LongBool; extdecl;
+function Form_Focused(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Focused;
@@ -151,7 +215,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_HandleAllocated(AObj: TForm): LongBool; extdecl;
+function Form_HandleAllocated(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
@@ -159,7 +223,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_InsertControl(AObj: TForm; AControl: TControl); extdecl;
+procedure Form_InsertControl(AObj: TGoForm; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.InsertControl(AControl);
@@ -167,7 +231,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Invalidate(AObj: TForm); extdecl;
+procedure Form_Invalidate(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Invalidate;
@@ -175,7 +239,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_PaintTo(AObj: TForm; DC: HDC; X: Integer; Y: Integer); extdecl;
+procedure Form_PaintTo(AObj: TGoForm; DC: HDC; X: Integer; Y: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.PaintTo(DC, X, Y);
@@ -183,7 +247,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_RemoveControl(AObj: TForm; AControl: TControl); extdecl;
+procedure Form_RemoveControl(AObj: TGoForm; AControl: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.RemoveControl(AControl);
@@ -191,7 +255,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Realign(AObj: TForm); extdecl;
+procedure Form_Realign(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Realign;
@@ -199,7 +263,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Repaint(AObj: TForm); extdecl;
+procedure Form_Repaint(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Repaint;
@@ -207,7 +271,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_ScaleBy(AObj: TForm; M: Integer; D: Integer); extdecl;
+procedure Form_ScaleBy(AObj: TGoForm; M: Integer; D: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.ScaleBy(M, D);
@@ -215,7 +279,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_ScrollBy(AObj: TForm; DeltaX: Integer; DeltaY: Integer); extdecl;
+procedure Form_ScrollBy(AObj: TGoForm; DeltaX: Integer; DeltaY: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.ScrollBy(DeltaX, DeltaY);
@@ -223,7 +287,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_SetBounds(AObj: TForm; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
+procedure Form_SetBounds(AObj: TGoForm; ALeft: Integer; ATop: Integer; AWidth: Integer; AHeight: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.SetBounds(ALeft, ATop, AWidth, AHeight);
@@ -231,7 +295,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Update(AObj: TForm); extdecl;
+procedure Form_Update(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Update;
@@ -239,7 +303,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_BringToFront(AObj: TForm); extdecl;
+procedure Form_BringToFront(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.BringToFront;
@@ -249,7 +313,7 @@ end;
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
 //PARAMS:2=nonPtr
-procedure Form_ClientToScreen(AObj: TForm; var Point: TPoint; var Result: TPoint); extdecl;
+procedure Form_ClientToScreen(AObj: TGoForm; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClientToScreen(Point);
@@ -259,7 +323,7 @@ end;
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
 //PARAMS:2=nonPtr
-procedure Form_ClientToParent(AObj: TForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
+procedure Form_ClientToParent(AObj: TGoForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClientToParent(Point, AParent);
@@ -267,7 +331,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Dragging(AObj: TForm): LongBool; extdecl;
+function Form_Dragging(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Dragging;
@@ -275,7 +339,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_HasParent(AObj: TForm): LongBool; extdecl;
+function Form_HasParent(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.HasParent;
@@ -283,7 +347,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Perform(AObj: TForm; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
+function Form_Perform(AObj: TGoForm; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
@@ -291,7 +355,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Refresh(AObj: TForm); extdecl;
+procedure Form_Refresh(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.Refresh;
@@ -301,7 +365,7 @@ end;
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
 //PARAMS:2=nonPtr
-procedure Form_ScreenToClient(AObj: TForm; var Point: TPoint; var Result: TPoint); extdecl;
+procedure Form_ScreenToClient(AObj: TGoForm; var Point: TPoint; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScreenToClient(Point);
@@ -311,7 +375,7 @@ end;
 //CLASSMETHOD:
 //RETURNISLASTPARAM:
 //PARAMS:2=nonPtr
-procedure Form_ParentToClient(AObj: TForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
+procedure Form_ParentToClient(AObj: TGoForm; var Point: TPoint; AParent: TWinControl; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ParentToClient(Point, AParent);
@@ -319,7 +383,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_SendToBack(AObj: TForm); extdecl;
+procedure Form_SendToBack(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
   AObj.SendToBack;
@@ -327,7 +391,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_GetTextBuf(AObj: TForm; Buffer: PChar; BufSize: Integer): Integer; extdecl;
+function Form_GetTextBuf(AObj: TGoForm; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
@@ -335,7 +399,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_GetTextLen(AObj: TForm): Integer; extdecl;
+function Form_GetTextLen(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
@@ -343,7 +407,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_SetTextBuf(AObj: TForm; Buffer: PChar); extdecl;
+procedure Form_SetTextBuf(AObj: TGoForm; Buffer: PChar); extdecl;
 begin
   handleExceptionBegin
   AObj.SetTextBuf(Buffer);
@@ -351,7 +415,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_FindComponent(AObj: TForm; AName: PChar): TComponent; extdecl;
+function Form_FindComponent(AObj: TGoForm; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
@@ -359,7 +423,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_GetNamePath(AObj: TForm): PChar; extdecl;
+function Form_GetNamePath(AObj: TGoForm): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
@@ -367,7 +431,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_Assign(AObj: TForm; Source: TPersistent); extdecl;
+procedure Form_Assign(AObj: TGoForm; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
   AObj.Assign(Source);
@@ -375,7 +439,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ClassType(AObj: TForm): TClass; extdecl;
+function Form_ClassType(AObj: TGoForm): TClass; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClassType;
@@ -383,7 +447,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ClassName(AObj: TForm): PChar; extdecl;
+function Form_ClassName(AObj: TGoForm): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
@@ -391,7 +455,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_InstanceSize(AObj: TForm): Integer; extdecl;
+function Form_InstanceSize(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
@@ -399,7 +463,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_InheritsFrom(AObj: TForm; AClass: TClass): LongBool; extdecl;
+function Form_InheritsFrom(AObj: TGoForm; AClass: TClass): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
@@ -407,7 +471,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Equals(AObj: TForm; Obj: TObject): LongBool; extdecl;
+function Form_Equals(AObj: TGoForm; Obj: TObject): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
@@ -415,7 +479,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_GetHashCode(AObj: TForm): Integer; extdecl;
+function Form_GetHashCode(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
@@ -423,7 +487,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ToString(AObj: TForm): PChar; extdecl;
+function Form_ToString(AObj: TGoForm): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
@@ -431,7 +495,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorToNeighbour(AObj: TForm; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
+procedure Form_AnchorToNeighbour(AObj: TGoForm; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorToNeighbour(ASide, ASpace, ASibling);
@@ -439,7 +503,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorParallel(AObj: TForm; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
+procedure Form_AnchorParallel(AObj: TGoForm; ASide: TAnchorKind; ASpace: Integer; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorParallel(ASide, ASpace, ASibling);
@@ -447,7 +511,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorHorizontalCenterTo(AObj: TForm; ASibling: TControl); extdecl;
+procedure Form_AnchorHorizontalCenterTo(AObj: TGoForm; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorHorizontalCenterTo(ASibling);
@@ -455,7 +519,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorVerticalCenterTo(AObj: TForm; ASibling: TControl); extdecl;
+procedure Form_AnchorVerticalCenterTo(AObj: TGoForm; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorVerticalCenterTo(ASibling);
@@ -463,7 +527,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorSame(AObj: TForm; ASide: TAnchorKind; ASibling: TControl); extdecl;
+procedure Form_AnchorSame(AObj: TGoForm; ASide: TAnchorKind; ASibling: TControl); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorSame(ASide, ASibling);
@@ -471,7 +535,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorAsAlign(AObj: TForm; ATheAlign: TAlign; ASpace: Integer); extdecl;
+procedure Form_AnchorAsAlign(AObj: TGoForm; ATheAlign: TAlign; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorAsAlign(ATheAlign, ASpace);
@@ -479,7 +543,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AnchorClient(AObj: TForm; ASpace: Integer); extdecl;
+procedure Form_AnchorClient(AObj: TGoForm; ASpace: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorClient(ASpace);
@@ -487,7 +551,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleDesignToForm(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleDesignToForm(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
@@ -495,7 +559,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleFormToDesign(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleFormToDesign(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
@@ -503,7 +567,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Scale96ToForm(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_Scale96ToForm(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
@@ -511,7 +575,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleFormTo96(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleFormTo96(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
@@ -519,7 +583,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Scale96ToFont(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_Scale96ToFont(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
@@ -527,7 +591,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleFontTo96(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleFontTo96(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
@@ -535,7 +599,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleScreenToFont(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleScreenToFont(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
@@ -543,7 +607,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleFontToScreen(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleFontToScreen(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
@@ -551,7 +615,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_Scale96ToScreen(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_Scale96ToScreen(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
@@ -559,7 +623,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Form_ScaleScreenTo96(AObj: TForm; ASize: Integer): Integer; extdecl;
+function Form_ScaleScreenTo96(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
@@ -567,7 +631,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_AutoAdjustLayout(AObj: TForm; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
+procedure Form_AutoAdjustLayout(AObj: TGoForm; AMode: TLayoutAdjustmentPolicy; AFromPPI: Integer; AToPPI: Integer; AOldFormWidth: Integer; ANewFormWidth: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.AutoAdjustLayout(AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth);
@@ -575,7 +639,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Form_FixDesignFontsPPI(AObj: TForm; ADesignTimePPI: Integer); extdecl;
+procedure Form_FixDesignFontsPPI(AObj: TGoForm; ADesignTimePPI: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.FixDesignFontsPPI(ADesignTimePPI);
@@ -584,21 +648,21 @@ end;
 
 //CLASSMETHOD:
 //PARAMS:3=nonPtr
-procedure Form_ScaleFontsPPI(AObj: TForm; AToPPI: Integer; var AProportion: Double); extdecl;
+procedure Form_ScaleFontsPPI(AObj: TGoForm; AToPPI: Integer; var AProportion: Double); extdecl;
 begin
   handleExceptionBegin
   AObj.ScaleFontsPPI(AToPPI, AProportion);
   handleExceptionEnd
 end;
 
-function Form_GetAllowDropFiles(AObj: TForm): LongBool; extdecl;
+function Form_GetAllowDropFiles(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AllowDropFiles;
   handleExceptionEnd
 end;
 
-procedure Form_SetAllowDropFiles(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetAllowDropFiles(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.AllowDropFiles := AValue;
@@ -613,602 +677,602 @@ begin
   EventMethodCode
 end;
 
-function Form_GetShowInTaskBar(AObj: TForm): TShowInTaskbar; extdecl;
+function Form_GetShowInTaskBar(AObj: TGoForm): TShowInTaskbar; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ShowInTaskBar;
   handleExceptionEnd
 end;
 
-procedure Form_SetShowInTaskBar(AObj: TForm; AValue: TShowInTaskbar); extdecl;
+procedure Form_SetShowInTaskBar(AObj: TGoForm; AValue: TShowInTaskbar); extdecl;
 begin
   handleExceptionBegin
   AObj.ShowInTaskBar := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDesignTimePPI(AObj: TForm): Integer; extdecl;
+function Form_GetDesignTimePPI(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DesignTimePPI;
   handleExceptionEnd
 end;
 
-procedure Form_SetDesignTimePPI(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetDesignTimePPI(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.DesignTimePPI := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAction(AObj: TForm): TBasicAction; extdecl;
+function Form_GetAction(AObj: TGoForm): TBasicAction; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
 end;
 
-procedure Form_SetAction(AObj: TForm; AValue: TBasicAction); extdecl;
+procedure Form_SetAction(AObj: TGoForm; AValue: TBasicAction); extdecl;
 begin
   handleExceptionBegin
   AObj.Action := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetActiveControl(AObj: TForm): TWinControl; extdecl;
+function Form_GetActiveControl(AObj: TGoForm): TWinControl; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ActiveControl;
   handleExceptionEnd
 end;
 
-procedure Form_SetActiveControl(AObj: TForm; AValue: TWinControl); extdecl;
+procedure Form_SetActiveControl(AObj: TGoForm; AValue: TWinControl); extdecl;
 begin
   handleExceptionBegin
   AObj.ActiveControl := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAlign(AObj: TForm): TAlign; extdecl;
+function Form_GetAlign(AObj: TGoForm): TAlign; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
 end;
 
-procedure Form_SetAlign(AObj: TForm; AValue: TAlign); extdecl;
+procedure Form_SetAlign(AObj: TGoForm; AValue: TAlign); extdecl;
 begin
   handleExceptionBegin
   AObj.Align := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAlphaBlend(AObj: TForm): LongBool; extdecl;
+function Form_GetAlphaBlend(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AlphaBlend;
   handleExceptionEnd
 end;
 
-procedure Form_SetAlphaBlend(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetAlphaBlend(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.AlphaBlend := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAlphaBlendValue(AObj: TForm): Byte; extdecl;
+function Form_GetAlphaBlendValue(AObj: TGoForm): Byte; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AlphaBlendValue;
   handleExceptionEnd
 end;
 
-procedure Form_SetAlphaBlendValue(AObj: TForm; AValue: Byte); extdecl;
+procedure Form_SetAlphaBlendValue(AObj: TGoForm; AValue: Byte); extdecl;
 begin
   handleExceptionBegin
   AObj.AlphaBlendValue := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAnchors(AObj: TForm): TAnchors; extdecl;
+function Form_GetAnchors(AObj: TGoForm): TAnchors; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
 end;
 
-procedure Form_SetAnchors(AObj: TForm; AValue: TAnchors); extdecl;
+procedure Form_SetAnchors(AObj: TGoForm; AValue: TAnchors); extdecl;
 begin
   handleExceptionBegin
   AObj.Anchors := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAutoScroll(AObj: TForm): LongBool; extdecl;
+function Form_GetAutoScroll(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AutoScroll;
   handleExceptionEnd
 end;
 
-procedure Form_SetAutoScroll(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetAutoScroll(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.AutoScroll := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAutoSize(AObj: TForm): LongBool; extdecl;
+function Form_GetAutoSize(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
 end;
 
-procedure Form_SetAutoSize(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetAutoSize(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.AutoSize := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetBiDiMode(AObj: TForm): TBiDiMode; extdecl;
+function Form_GetBiDiMode(AObj: TGoForm): TBiDiMode; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
 end;
 
-procedure Form_SetBiDiMode(AObj: TForm; AValue: TBiDiMode); extdecl;
+procedure Form_SetBiDiMode(AObj: TGoForm; AValue: TBiDiMode); extdecl;
 begin
   handleExceptionBegin
   AObj.BiDiMode := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetBorderIcons(AObj: TForm): TBorderIcons; extdecl;
+function Form_GetBorderIcons(AObj: TGoForm): TBorderIcons; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.BorderIcons;
   handleExceptionEnd
 end;
 
-procedure Form_SetBorderIcons(AObj: TForm; AValue: TBorderIcons); extdecl;
+procedure Form_SetBorderIcons(AObj: TGoForm; AValue: TBorderIcons); extdecl;
 begin
   handleExceptionBegin
   AObj.BorderIcons := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetBorderStyle(AObj: TForm): TFormBorderStyle; extdecl;
+function Form_GetBorderStyle(AObj: TGoForm): TFormBorderStyle; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
 end;
 
-procedure Form_SetBorderStyle(AObj: TForm; AValue: TFormBorderStyle); extdecl;
+procedure Form_SetBorderStyle(AObj: TGoForm; AValue: TFormBorderStyle); extdecl;
 begin
   handleExceptionBegin
   AObj.BorderStyle := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetBorderWidth(AObj: TForm): TBorderWidth; extdecl;
+function Form_GetBorderWidth(AObj: TGoForm): TBorderWidth; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
 end;
 
-procedure Form_SetBorderWidth(AObj: TForm; AValue: TBorderWidth); extdecl;
+procedure Form_SetBorderWidth(AObj: TGoForm; AValue: TBorderWidth); extdecl;
 begin
   handleExceptionBegin
   AObj.BorderWidth := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetCaption(AObj: TForm): PChar; extdecl;
+function Form_GetCaption(AObj: TGoForm): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
 end;
 
-procedure Form_SetCaption(AObj: TForm; AValue: PChar); extdecl;
+procedure Form_SetCaption(AObj: TGoForm; AValue: PChar); extdecl;
 begin
   handleExceptionBegin
   AObj.Caption := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetClientHeight(AObj: TForm): Integer; extdecl;
+function Form_GetClientHeight(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
 end;
 
-procedure Form_SetClientHeight(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetClientHeight(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.ClientHeight := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetClientWidth(AObj: TForm): Integer; extdecl;
+function Form_GetClientWidth(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
 end;
 
-procedure Form_SetClientWidth(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetClientWidth(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.ClientWidth := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetColor(AObj: TForm): TColor; extdecl;
+function Form_GetColor(AObj: TGoForm): TColor; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
 end;
 
-procedure Form_SetColor(AObj: TForm; AValue: TColor); extdecl;
+procedure Form_SetColor(AObj: TGoForm; AValue: TColor); extdecl;
 begin
   handleExceptionBegin
   AObj.Color := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetConstraints(AObj: TForm): TSizeConstraints; extdecl;
+function Form_GetConstraints(AObj: TGoForm): TSizeConstraints; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
 end;
 
-procedure Form_SetConstraints(AObj: TForm; AValue: TSizeConstraints); extdecl;
+procedure Form_SetConstraints(AObj: TGoForm; AValue: TSizeConstraints); extdecl;
 begin
   handleExceptionBegin
   AObj.Constraints := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetUseDockManager(AObj: TForm): LongBool; extdecl;
+function Form_GetUseDockManager(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
 end;
 
-procedure Form_SetUseDockManager(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetUseDockManager(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.UseDockManager := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDefaultMonitor(AObj: TForm): TDefaultMonitor; extdecl;
+function Form_GetDefaultMonitor(AObj: TGoForm): TDefaultMonitor; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DefaultMonitor;
   handleExceptionEnd
 end;
 
-procedure Form_SetDefaultMonitor(AObj: TForm; AValue: TDefaultMonitor); extdecl;
+procedure Form_SetDefaultMonitor(AObj: TGoForm; AValue: TDefaultMonitor); extdecl;
 begin
   handleExceptionBegin
   AObj.DefaultMonitor := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDockSite(AObj: TForm): LongBool; extdecl;
+function Form_GetDockSite(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
 end;
 
-procedure Form_SetDockSite(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetDockSite(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.DockSite := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDoubleBuffered(AObj: TForm): LongBool; extdecl;
+function Form_GetDoubleBuffered(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
 end;
 
-procedure Form_SetDoubleBuffered(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetDoubleBuffered(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.DoubleBuffered := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDragKind(AObj: TForm): TDragKind; extdecl;
+function Form_GetDragKind(AObj: TGoForm): TDragKind; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
 end;
 
-procedure Form_SetDragKind(AObj: TForm; AValue: TDragKind); extdecl;
+procedure Form_SetDragKind(AObj: TGoForm; AValue: TDragKind); extdecl;
 begin
   handleExceptionBegin
   AObj.DragKind := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDragMode(AObj: TForm): TDragMode; extdecl;
+function Form_GetDragMode(AObj: TGoForm): TDragMode; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
 end;
 
-procedure Form_SetDragMode(AObj: TForm; AValue: TDragMode); extdecl;
+procedure Form_SetDragMode(AObj: TGoForm; AValue: TDragMode); extdecl;
 begin
   handleExceptionBegin
   AObj.DragMode := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetEnabled(AObj: TForm): LongBool; extdecl;
+function Form_GetEnabled(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
 end;
 
-procedure Form_SetEnabled(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetEnabled(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.Enabled := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetParentFont(AObj: TForm): LongBool; extdecl;
+function Form_GetParentFont(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
 end;
 
-procedure Form_SetParentFont(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetParentFont(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.ParentFont := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetFont(AObj: TForm): TFont; extdecl;
+function Form_GetFont(AObj: TGoForm): TFont; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
 end;
 
-procedure Form_SetFont(AObj: TForm; AValue: TFont); extdecl;
+procedure Form_SetFont(AObj: TGoForm; AValue: TFont); extdecl;
 begin
   handleExceptionBegin
   AObj.Font := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetFormStyle(AObj: TForm): TFormStyle; extdecl;
+function Form_GetFormStyle(AObj: TGoForm): TFormStyle; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.FormStyle;
   handleExceptionEnd
 end;
 
-procedure Form_SetFormStyle(AObj: TForm; AValue: TFormStyle); extdecl;
+procedure Form_SetFormStyle(AObj: TGoForm; AValue: TFormStyle); extdecl;
 begin
   handleExceptionBegin
   AObj.FormStyle := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetHeight(AObj: TForm): Integer; extdecl;
+function Form_GetHeight(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
 end;
 
-procedure Form_SetHeight(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetHeight(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.Height := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetHorzScrollBar(AObj: TForm): TControlScrollBar; extdecl;
+function Form_GetHorzScrollBar(AObj: TGoForm): TControlScrollBar; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.HorzScrollBar;
   handleExceptionEnd
 end;
 
-procedure Form_SetHorzScrollBar(AObj: TForm; AValue: TControlScrollBar); extdecl;
+procedure Form_SetHorzScrollBar(AObj: TGoForm; AValue: TControlScrollBar); extdecl;
 begin
   handleExceptionBegin
   AObj.HorzScrollBar := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetIcon(AObj: TForm): TIcon; extdecl;
+function Form_GetIcon(AObj: TGoForm): TIcon; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Icon;
   handleExceptionEnd
 end;
 
-procedure Form_SetIcon(AObj: TForm; AValue: TIcon); extdecl;
+procedure Form_SetIcon(AObj: TGoForm; AValue: TIcon); extdecl;
 begin
   handleExceptionBegin
   AObj.Icon := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetKeyPreview(AObj: TForm): LongBool; extdecl;
+function Form_GetKeyPreview(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.KeyPreview;
   handleExceptionEnd
 end;
 
-procedure Form_SetKeyPreview(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetKeyPreview(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.KeyPreview := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetMenu(AObj: TForm): TMainMenu; extdecl;
+function Form_GetMenu(AObj: TGoForm): TMainMenu; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Menu;
   handleExceptionEnd
 end;
 
-procedure Form_SetMenu(AObj: TForm; AValue: TMainMenu); extdecl;
+procedure Form_SetMenu(AObj: TGoForm; AValue: TMainMenu); extdecl;
 begin
   handleExceptionBegin
   AObj.Menu := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetPixelsPerInch(AObj: TForm): Integer; extdecl;
+function Form_GetPixelsPerInch(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.PixelsPerInch;
   handleExceptionEnd
 end;
 
-procedure Form_SetPixelsPerInch(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetPixelsPerInch(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.PixelsPerInch := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetPopupMenu(AObj: TForm): TPopupMenu; extdecl;
+function Form_GetPopupMenu(AObj: TGoForm): TPopupMenu; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
 end;
 
-procedure Form_SetPopupMenu(AObj: TForm; AValue: TPopupMenu); extdecl;
+procedure Form_SetPopupMenu(AObj: TGoForm; AValue: TPopupMenu); extdecl;
 begin
   handleExceptionBegin
   AObj.PopupMenu := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetPosition(AObj: TForm): TPosition; extdecl;
+function Form_GetPosition(AObj: TGoForm): TPosition; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
 end;
 
-procedure Form_SetPosition(AObj: TForm; AValue: TPosition); extdecl;
+procedure Form_SetPosition(AObj: TGoForm; AValue: TPosition); extdecl;
 begin
   handleExceptionBegin
   AObj.Position := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetScaled(AObj: TForm): LongBool; extdecl;
+function Form_GetScaled(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Scaled;
   handleExceptionEnd
 end;
 
-procedure Form_SetScaled(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetScaled(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.Scaled := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetShowHint(AObj: TForm): LongBool; extdecl;
+function Form_GetShowHint(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
 end;
 
-procedure Form_SetShowHint(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetShowHint(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.ShowHint := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetVertScrollBar(AObj: TForm): TControlScrollBar; extdecl;
+function Form_GetVertScrollBar(AObj: TGoForm): TControlScrollBar; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.VertScrollBar;
   handleExceptionEnd
 end;
 
-procedure Form_SetVertScrollBar(AObj: TForm; AValue: TControlScrollBar); extdecl;
+procedure Form_SetVertScrollBar(AObj: TGoForm; AValue: TControlScrollBar); extdecl;
 begin
   handleExceptionBegin
   AObj.VertScrollBar := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetVisible(AObj: TForm): LongBool; extdecl;
+function Form_GetVisible(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
 end;
 
-procedure Form_SetVisible(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetVisible(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.Visible := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetWidth(AObj: TForm): Integer; extdecl;
+function Form_GetWidth(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
 end;
 
-procedure Form_SetWidth(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetWidth(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.Width := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetWindowState(AObj: TForm): TWindowState; extdecl;
+function Form_GetWindowState(AObj: TGoForm): TWindowState; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.WindowState;
   handleExceptionEnd
 end;
 
-procedure Form_SetWindowState(AObj: TForm; AValue: TWindowState); extdecl;
+procedure Form_SetWindowState(AObj: TGoForm; AValue: TWindowState); extdecl;
 begin
   handleExceptionBegin
   AObj.WindowState := AValue;
@@ -1255,6 +1319,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TConstrainedResizeEvent
+procedure Form_SetOnConstrainedResize(AObj: TForm; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTConstrainedResizeEvent_OnConstrainedResize}
+  {$DEFINE EventName := OnConstrainedResize}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TContextPopupEvent
 procedure Form_SetOnContextPopup(AObj: TForm; AEventId: NativeUInt); extdecl;
 begin
@@ -1268,6 +1340,14 @@ procedure Form_SetOnDblClick(AObj: TForm; AEventId: NativeUInt); extdecl;
 begin
   {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
   {$DEFINE EventName := OnDblClick}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure Form_SetOnDestroy(AObj: TForm; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnDestroy}
+  {$DEFINE EventName := OnDestroy}
   EventMethodCode
 end;
 
@@ -1471,161 +1551,161 @@ begin
   EventMethodCode
 end;
 
-function Form_GetCanvas(AObj: TForm): TCanvas; extdecl;
+function Form_GetCanvas(AObj: TGoForm): TCanvas; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
 end;
 
-function Form_GetModalResult(AObj: TForm): TModalResult; extdecl;
+function Form_GetModalResult(AObj: TGoForm): TModalResult; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ModalResult;
   handleExceptionEnd
 end;
 
-procedure Form_SetModalResult(AObj: TForm; AValue: TModalResult); extdecl;
+procedure Form_SetModalResult(AObj: TGoForm; AValue: TModalResult); extdecl;
 begin
   handleExceptionBegin
   AObj.ModalResult := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetMonitor(AObj: TForm): TMonitor; extdecl;
+function Form_GetMonitor(AObj: TGoForm): TMonitor; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Monitor;
   handleExceptionEnd
 end;
 
-function Form_GetLeft(AObj: TForm): Integer; extdecl;
+function Form_GetLeft(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
 end;
 
-procedure Form_SetLeft(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetLeft(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.Left := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetTop(AObj: TForm): Integer; extdecl;
+function Form_GetTop(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
 end;
 
-procedure Form_SetTop(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetTop(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.Top := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDockClientCount(AObj: TForm): Integer; extdecl;
+function Form_GetDockClientCount(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
 end;
 
-function Form_GetMouseInClient(AObj: TForm): LongBool; extdecl;
+function Form_GetMouseInClient(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
 end;
 
-function Form_GetVisibleDockClientCount(AObj: TForm): Integer; extdecl;
+function Form_GetVisibleDockClientCount(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
 end;
 
-function Form_GetBrush(AObj: TForm): TBrush; extdecl;
+function Form_GetBrush(AObj: TGoForm): TBrush; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
 end;
 
-function Form_GetControlCount(AObj: TForm): Integer; extdecl;
+function Form_GetControlCount(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
 end;
 
-function Form_GetHandle(AObj: TForm): HWND; extdecl;
+function Form_GetHandle(AObj: TGoForm): HWND; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
 end;
 
-function Form_GetParentDoubleBuffered(AObj: TForm): LongBool; extdecl;
+function Form_GetParentDoubleBuffered(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
 end;
 
-procedure Form_SetParentDoubleBuffered(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetParentDoubleBuffered(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.ParentDoubleBuffered := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetParentWindow(AObj: TForm): HWND; extdecl;
+function Form_GetParentWindow(AObj: TGoForm): HWND; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
 end;
 
-procedure Form_SetParentWindow(AObj: TForm; AValue: HWND); extdecl;
+procedure Form_SetParentWindow(AObj: TGoForm; AValue: HWND); extdecl;
 begin
   handleExceptionBegin
   AObj.ParentWindow := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetShowing(AObj: TForm): LongBool; extdecl;
+function Form_GetShowing(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
 end;
 
-function Form_GetTabOrder(AObj: TForm): TTabOrder; extdecl;
+function Form_GetTabOrder(AObj: TGoForm): TTabOrder; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
 end;
 
-procedure Form_SetTabOrder(AObj: TForm; AValue: TTabOrder); extdecl;
+procedure Form_SetTabOrder(AObj: TGoForm; AValue: TTabOrder); extdecl;
 begin
   handleExceptionBegin
   AObj.TabOrder := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetTabStop(AObj: TForm): LongBool; extdecl;
+function Form_GetTabStop(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
 end;
 
-procedure Form_SetTabStop(AObj: TForm; AValue: LongBool); extdecl;
+procedure Form_SetTabStop(AObj: TGoForm; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.TabStop := AValue;
@@ -1633,14 +1713,14 @@ begin
 end;
 
 //RETURNISLASTPARAM:
-procedure Form_GetBoundsRect(AObj: TForm; var Result: TRect); extdecl;
+procedure Form_GetBoundsRect(AObj: TGoForm; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.BoundsRect;
   handleExceptionEnd
 end;
 
-procedure Form_SetBoundsRect(AObj: TForm; var AValue: TRect); extdecl;
+procedure Form_SetBoundsRect(AObj: TGoForm; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin
   AObj.BoundsRect := AValue;
@@ -1648,7 +1728,7 @@ begin
 end;
 
 //RETURNISLASTPARAM:
-procedure Form_GetClientOrigin(AObj: TForm; var Result: TPoint); extdecl;
+procedure Form_GetClientOrigin(AObj: TGoForm; var Result: TPoint); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClientOrigin;
@@ -1656,252 +1736,252 @@ begin
 end;
 
 //RETURNISLASTPARAM:
-procedure Form_GetClientRect(AObj: TForm; var Result: TRect); extdecl;
+procedure Form_GetClientRect(AObj: TGoForm; var Result: TRect); extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ClientRect;
   handleExceptionEnd
 end;
 
-function Form_GetControlState(AObj: TForm): TControlState; extdecl;
+function Form_GetControlState(AObj: TGoForm): TControlState; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
 end;
 
-procedure Form_SetControlState(AObj: TForm; AValue: TControlState); extdecl;
+procedure Form_SetControlState(AObj: TGoForm; AValue: TControlState); extdecl;
 begin
   handleExceptionBegin
   AObj.ControlState := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetControlStyle(AObj: TForm): TControlStyle; extdecl;
+function Form_GetControlStyle(AObj: TGoForm): TControlStyle; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
 end;
 
-procedure Form_SetControlStyle(AObj: TForm; AValue: TControlStyle); extdecl;
+procedure Form_SetControlStyle(AObj: TGoForm; AValue: TControlStyle); extdecl;
 begin
   handleExceptionBegin
   AObj.ControlStyle := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetFloating(AObj: TForm): LongBool; extdecl;
+function Form_GetFloating(AObj: TGoForm): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
 end;
 
-function Form_GetParent(AObj: TForm): TWinControl; extdecl;
+function Form_GetParent(AObj: TGoForm): TWinControl; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
 end;
 
-procedure Form_SetParent(AObj: TForm; AValue: TWinControl); extdecl;
+procedure Form_SetParent(AObj: TGoForm; AValue: TWinControl); extdecl;
 begin
   handleExceptionBegin
   AObj.Parent := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetCursor(AObj: TForm): TCursor; extdecl;
+function Form_GetCursor(AObj: TGoForm): TCursor; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
 end;
 
-procedure Form_SetCursor(AObj: TForm; AValue: TCursor); extdecl;
+procedure Form_SetCursor(AObj: TGoForm; AValue: TCursor); extdecl;
 begin
   handleExceptionBegin
   AObj.Cursor := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetHint(AObj: TForm): PChar; extdecl;
+function Form_GetHint(AObj: TGoForm): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
 end;
 
-procedure Form_SetHint(AObj: TForm; AValue: PChar); extdecl;
+procedure Form_SetHint(AObj: TGoForm; AValue: PChar); extdecl;
 begin
   handleExceptionBegin
   AObj.Hint := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetComponentCount(AObj: TForm): Integer; extdecl;
+function Form_GetComponentCount(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
 end;
 
-function Form_GetComponentIndex(AObj: TForm): Integer; extdecl;
+function Form_GetComponentIndex(AObj: TGoForm): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
 end;
 
-procedure Form_SetComponentIndex(AObj: TForm; AValue: Integer); extdecl;
+procedure Form_SetComponentIndex(AObj: TGoForm; AValue: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.ComponentIndex := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetOwner(AObj: TForm): TComponent; extdecl;
+function Form_GetOwner(AObj: TGoForm): TComponent; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
 end;
 
-function Form_GetName(AObj: TForm): PChar; extdecl;
+function Form_GetName(AObj: TGoForm): PChar; extdecl;
 begin
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
 end;
 
-procedure Form_SetName(AObj: TForm; AValue: PChar); extdecl;
+procedure Form_SetName(AObj: TGoForm; AValue: PChar); extdecl;
 begin
   handleExceptionBegin
   AObj.Name := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetTag(AObj: TForm): NativeInt; extdecl;
+function Form_GetTag(AObj: TGoForm): NativeInt; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
 end;
 
-procedure Form_SetTag(AObj: TForm; AValue: NativeInt); extdecl;
+procedure Form_SetTag(AObj: TGoForm; AValue: NativeInt); extdecl;
 begin
   handleExceptionBegin
   AObj.Tag := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAnchorSideLeft(AObj: TForm): TAnchorSide; extdecl;
+function Form_GetAnchorSideLeft(AObj: TGoForm): TAnchorSide; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
 end;
 
-procedure Form_SetAnchorSideLeft(AObj: TForm; AValue: TAnchorSide); extdecl;
+procedure Form_SetAnchorSideLeft(AObj: TGoForm; AValue: TAnchorSide); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorSideLeft := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAnchorSideTop(AObj: TForm): TAnchorSide; extdecl;
+function Form_GetAnchorSideTop(AObj: TGoForm): TAnchorSide; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
 end;
 
-procedure Form_SetAnchorSideTop(AObj: TForm; AValue: TAnchorSide); extdecl;
+procedure Form_SetAnchorSideTop(AObj: TGoForm; AValue: TAnchorSide); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorSideTop := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAnchorSideRight(AObj: TForm): TAnchorSide; extdecl;
+function Form_GetAnchorSideRight(AObj: TGoForm): TAnchorSide; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
 end;
 
-procedure Form_SetAnchorSideRight(AObj: TForm; AValue: TAnchorSide); extdecl;
+procedure Form_SetAnchorSideRight(AObj: TGoForm; AValue: TAnchorSide); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorSideRight := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetAnchorSideBottom(AObj: TForm): TAnchorSide; extdecl;
+function Form_GetAnchorSideBottom(AObj: TGoForm): TAnchorSide; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
 end;
 
-procedure Form_SetAnchorSideBottom(AObj: TForm; AValue: TAnchorSide); extdecl;
+procedure Form_SetAnchorSideBottom(AObj: TGoForm; AValue: TAnchorSide); extdecl;
 begin
   handleExceptionBegin
   AObj.AnchorSideBottom := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetChildSizing(AObj: TForm): TControlChildSizing; extdecl;
+function Form_GetChildSizing(AObj: TGoForm): TControlChildSizing; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
 end;
 
-procedure Form_SetChildSizing(AObj: TForm; AValue: TControlChildSizing); extdecl;
+procedure Form_SetChildSizing(AObj: TGoForm; AValue: TControlChildSizing); extdecl;
 begin
   handleExceptionBegin
   AObj.ChildSizing := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetBorderSpacing(AObj: TForm): TControlBorderSpacing; extdecl;
+function Form_GetBorderSpacing(AObj: TGoForm): TControlBorderSpacing; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
 end;
 
-procedure Form_SetBorderSpacing(AObj: TForm; AValue: TControlBorderSpacing); extdecl;
+procedure Form_SetBorderSpacing(AObj: TGoForm; AValue: TControlBorderSpacing); extdecl;
 begin
   handleExceptionBegin
   AObj.BorderSpacing := AValue;
   handleExceptionEnd
 end;
 
-function Form_GetDockClients(AObj: TForm; Index: Integer): TControl; extdecl;
+function Form_GetDockClients(AObj: TGoForm; Index: Integer): TControl; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
 end;
 
-function Form_GetControls(AObj: TForm; Index: Integer): TControl; extdecl;
+function Form_GetControls(AObj: TGoForm; Index: Integer): TControl; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
 end;
 
-function Form_GetComponents(AObj: TForm; AIndex: Integer): TComponent; extdecl;
+function Form_GetComponents(AObj: TGoForm; AIndex: Integer): TComponent; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
 end;
 
-function Form_GetAnchorSide(AObj: TForm; AKind: TAnchorKind): TAnchorSide; extdecl;
+function Form_GetAnchorSide(AObj: TGoForm; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
@@ -1916,6 +1996,14 @@ end;
 exports
   Form_Create,
   Form_Free,
+  Form_InheritedWndProc,
+  Form_EnabledMaximize,
+  Form_EnabledMinimize,
+  Form_EnabledSystemMenu,
+  Form_ScaleForCurrentDpi,
+  Form_ScaleForPPI,
+  Form_ScreenCenter,
+  Form_WorkAreaCenter,
   Form_Cascade,
   Form_Close,
   Form_FocusControl,
@@ -2080,8 +2168,10 @@ exports
   Form_SetOnClick,
   Form_SetOnClose,
   Form_SetOnCloseQuery,
+  Form_SetOnConstrainedResize,
   Form_SetOnContextPopup,
   Form_SetOnDblClick,
+  Form_SetOnDestroy,
   Form_SetOnDeactivate,
   Form_SetOnDockDrop,
   Form_SetOnDragDrop,

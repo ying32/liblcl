@@ -164,6 +164,17 @@ type
   end;
 
 
+  { TFrame }
+
+  TFrame = class(Forms.TFrame)
+  private
+    FOnDestroy: TNotifyEvent;
+  public
+    procedure BeforeDestruction; override;
+  public
+    property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
+  end;
+
 
 
   function ToUnixTime(ADateTime: TDateTime): TUnixDateTime; inline;
@@ -185,6 +196,15 @@ end;
 function ToPChar(AStr: string): PChar; inline;
 begin
   Result := PChar(AStr);
+end;
+
+{ TFrame }
+
+procedure TFrame.BeforeDestruction;
+begin
+  if Assigned(FOnDestroy) then
+    FOnDestroy(Self);
+  inherited BeforeDestruction;
 end;
 
 { TMonthCalendar }

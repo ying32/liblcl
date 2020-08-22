@@ -130,84 +130,13 @@ end;
 
 // TForm
 
+
 //CLASSMETHOD:
 function Form_Create2(AOwner: TComponent; AInitScale: LongBool): TGoForm; extdecl;
 begin
   handleExceptionBegin
-  Result := TGoForm.Create(AOwner);
+  Result :=  TGoForm.Create2(AOwner, AInitScale);
   handleExceptionEnd
-end;
-
-////CLASSMETHOD:
-//function Form_Create3(AOwner: TComponent; AClassName: PChar; AInitScale: LongBool): TGoForm; extdecl;
-//begin
-//  handleExceptionBegin
-//  Result := TGoForm.CreateFromClassName(AOwner, AClassName);
-//  handleExceptionEnd
-//end;
-
-//CLASSMETHOD:
-procedure Form_EnabledMaximize(AObj: TGoForm; AValue: Boolean); extdecl;
-begin
-  handleExceptionBegin
-  if AValue then
-  begin
-    if not(biMaximize in AObj.BorderIcons) then
-      AObj.BorderIcons := AObj.BorderIcons + [biMaximize]
-  end else
-  begin
-    if biMaximize in AObj.BorderIcons then
-      AObj.BorderIcons := AObj.BorderIcons - [biMaximize]
-  end;
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Form_EnabledMinimize(AObj: TGoForm; AValue: Boolean); extdecl;
-begin
-  handleExceptionBegin
-  if AValue then
-  begin
-    if not(biMinimize in AObj.BorderIcons) then
-      AObj.BorderIcons := AObj.BorderIcons + [biMinimize]
-  end else
-  begin
-    if biMinimize in AObj.BorderIcons then
-      AObj.BorderIcons := AObj.BorderIcons - [biMinimize]
-  end;
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Form_EnabledSystemMenu(AObj: TGoForm; AValue: Boolean); extdecl;
-begin
-  handleExceptionBegin
-  if AValue then
-  begin
-    if not(biSystemMenu in AObj.BorderIcons) then
-      AObj.BorderIcons := AObj.BorderIcons + [biSystemMenu]
-  end else
-  begin
-    if biSystemMenu in AObj.BorderIcons then
-      AObj.BorderIcons := AObj.BorderIcons - [biSystemMenu]
-  end;
-  handleExceptionEnd
-end;
-
-//EVENT_TYPE:TNotifyEvent
-procedure Form_SetOnDestroy(AObj: TGoForm; AEventId: NativeUInt); extdecl;
-begin
-  {$DEFINE EventName := OnDestroy}
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDestroy}
-  EventMethodCode
-end;
-
-//EVENT_TYPE:TConstrainedResizeEvent
-procedure Form_SetOnConstrainedResize(AObj: TGoForm; AEventId: NativeUInt); extdecl;
-begin
-  {$DEFINE EventName := OnConstrainedResize}
-  {$DEFINE EventMethodName := OnTConstrainedResizeEvent_OnConstrainedResize}
-  EventMethodCode
 end;
 
 //EVENT_TYPE:TWndProcEvent
@@ -222,36 +151,6 @@ begin
   end;
   AObj.OnWndProc := TMessageEventClass.OnWndProc;
   TMessageEventClass.Add(AObj, AEventId);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Form_ScaleForPPI(AObj: TGoForm; ANewPPI: Integer); extdecl;
-begin
-  handleExceptionBegin
-  AObj.ScaleForPPI(ANewPPI);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Form_ScaleControlsForDpi(AObj: TGoForm; ANewPPI: Integer); extdecl;
-begin
-  // no support
-end;
-
-//CLASSMETHOD:
-procedure Form_ScaleForCurrentDpi(AObj: TGoForm); extdecl;
-begin
-  handleExceptionBegin
-  AObj.ScaleForCurrentDpi;
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Form_InheritedWndProc(AObj: TGoForm; var AMsg: TLMessage); extdecl;
-begin
-  handleExceptionBegin
-  AObj.InheritedWndProc(AMsg);
   handleExceptionEnd
 end;
 
@@ -1306,17 +1205,7 @@ exports
 
   // TForm
   Form_Create2,
-  Form_EnabledMaximize,
-  Form_EnabledMinimize,
-  Form_EnabledSystemMenu,
-  Form_SetOnDestroy,
-  Form_SetOnConstrainedResize,
   Form_SetOnWndProc,
-  Form_ScaleForPPI,
-  Form_ScaleControlsForDpi,
-  Form_ScaleForCurrentDpi,
-  Form_InheritedWndProc,
-
 
   // TMouse
   Mouse_Instance,

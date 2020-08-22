@@ -1017,6 +1017,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TConstrainedResizeEvent
+procedure FlowPanel_SetOnConstrainedResize(AObj: TFlowPanel; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTConstrainedResizeEvent_OnConstrainedResize}
+  {$DEFINE EventName := OnConstrainedResize}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TContextPopupEvent
 procedure FlowPanel_SetOnContextPopup(AObj: TFlowPanel; AEventId: NativeUInt); extdecl;
 begin
@@ -1737,6 +1745,7 @@ exports
   FlowPanel_SetVisible,
   FlowPanel_SetOnAlignPosition,
   FlowPanel_SetOnClick,
+  FlowPanel_SetOnConstrainedResize,
   FlowPanel_SetOnContextPopup,
   FlowPanel_SetOnDockDrop,
   FlowPanel_SetOnDblClick,

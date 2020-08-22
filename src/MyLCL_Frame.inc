@@ -573,6 +573,14 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TNotifyEvent
+procedure Frame_SetOnDestroy(AObj: TFrame; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnDestroy}
+  {$DEFINE EventName := OnDestroy}
+  EventMethodCode
+end;
+
 function Frame_GetAlign(AObj: TFrame): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -908,6 +916,14 @@ procedure Frame_SetOnClick(AObj: TFrame; AEventId: NativeUInt); extdecl;
 begin
   {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
   {$DEFINE EventName := OnClick}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TConstrainedResizeEvent
+procedure Frame_SetOnConstrainedResize(AObj: TFrame; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTConstrainedResizeEvent_OnConstrainedResize}
+  {$DEFINE EventName := OnConstrainedResize}
   EventMethodCode
 end;
 
@@ -1634,6 +1650,7 @@ exports
   Frame_ScaleFontsPPI,
   Frame_GetDesignTimePPI,
   Frame_SetDesignTimePPI,
+  Frame_SetOnDestroy,
   Frame_GetAlign,
   Frame_SetAlign,
   Frame_GetAnchors,
@@ -1682,6 +1699,7 @@ exports
   Frame_SetVisible,
   Frame_SetOnAlignPosition,
   Frame_SetOnClick,
+  Frame_SetOnConstrainedResize,
   Frame_SetOnContextPopup,
   Frame_SetOnDblClick,
   Frame_SetOnDockDrop,

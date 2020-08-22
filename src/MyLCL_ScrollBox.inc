@@ -917,6 +917,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TConstrainedResizeEvent
+procedure ScrollBox_SetOnConstrainedResize(AObj: TScrollBox; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTConstrainedResizeEvent_OnConstrainedResize}
+  {$DEFINE EventName := OnConstrainedResize}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TNotifyEvent
 procedure ScrollBox_SetOnDblClick(AObj: TScrollBox; AEventId: NativeUInt); extdecl;
 begin
@@ -1673,6 +1681,7 @@ exports
   ScrollBox_GetVisible,
   ScrollBox_SetVisible,
   ScrollBox_SetOnClick,
+  ScrollBox_SetOnConstrainedResize,
   ScrollBox_SetOnDblClick,
   ScrollBox_SetOnDockDrop,
   ScrollBox_SetOnDragDrop,

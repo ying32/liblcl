@@ -33,7 +33,18 @@ type
     constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
     procedure ScaleForPPI(ANewPPI: Integer);
     procedure ScaleForCurrentDpi;
+
     procedure InheritedWndProc(var TheMessage: TLMessage);
+
+    // 自定义一些
+    procedure EnabledMaximize(AValue: Boolean);
+    procedure EnabledMinimize(AValue: Boolean);
+    procedure EnabledSystemMenu(AValue: Boolean);
+
+    procedure ScreenCenter;
+    procedure WorkAreaCenter;
+
+    class function Create2(AOwner: TComponent; AInitScale: Boolean): TGoForm;
   published
     property OnWndProc: TWndProcEvent read FOnWndProc write FOnWndProc;
   end;
@@ -82,6 +93,62 @@ end;
 procedure TGoForm.InheritedWndProc(var TheMessage: TLMessage);
 begin
   inherited WndProc(TheMessage);
+end;
+
+procedure TGoForm.EnabledMaximize(AValue: Boolean);
+begin
+  if AValue then
+  begin
+    if not(biMaximize in BorderIcons) then
+      BorderIcons := BorderIcons + [biMaximize]
+  end else
+  begin
+    if biMaximize in BorderIcons then
+      BorderIcons := BorderIcons - [biMaximize]
+  end;
+end;
+
+procedure TGoForm.EnabledMinimize(AValue: Boolean);
+begin
+  if AValue then
+  begin
+    if not(biMinimize in BorderIcons) then
+      BorderIcons := BorderIcons + [biMinimize]
+  end else
+  begin
+    if biMinimize in BorderIcons then
+      BorderIcons := BorderIcons - [biMinimize]
+  end;
+end;
+
+procedure TGoForm.EnabledSystemMenu(AValue: Boolean);
+begin
+  if AValue then
+  begin
+    if not(biSystemMenu in BorderIcons) then
+      BorderIcons := BorderIcons + [biSystemMenu]
+  end else
+  begin
+    if biSystemMenu in BorderIcons then
+      BorderIcons := BorderIcons - [biSystemMenu]
+  end;
+end;
+
+procedure TGoForm.ScreenCenter;
+begin
+  Left := (Screen.Width - Width) div 2;
+  Top := (Screen.Height - Height) div 2;
+end;
+
+procedure TGoForm.WorkAreaCenter;
+begin
+  Left := (Screen.WorkAreaWidth - Width) div 2;
+  Top := (Screen.WorkAreaHeight - Height) div 2;
+end;
+
+class function TGoForm.Create2(AOwner: TComponent; AInitScale: Boolean): TGoForm;
+begin
+  Result := TGoForm.Create(AOwner);
 end;
 
 procedure TGoForm.ProcessResource;
