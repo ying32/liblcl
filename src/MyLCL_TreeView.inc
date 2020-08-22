@@ -46,6 +46,14 @@ begin
 end;
 
 //CLASSMETHOD:
+function TreeView_GetHitTestInfoAt(AObj: TTreeView; X: Integer; Y: Integer): THitTests; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetHitTestInfoAt(X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function TreeView_GetNodeAt(AObj: TTreeView; X: Integer; Y: Integer): TTreeNode; extdecl;
 begin
   handleExceptionBegin
@@ -2190,6 +2198,7 @@ exports
   TreeView_AlphaSort,
   TreeView_FullCollapse,
   TreeView_FullExpand,
+  TreeView_GetHitTestInfoAt,
   TreeView_GetNodeAt,
   TreeView_IsEditing,
   TreeView_LoadFromFile,

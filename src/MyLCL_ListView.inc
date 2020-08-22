@@ -62,6 +62,39 @@ begin
 end;
 
 //CLASSMETHOD:
+function ListView_GetHitTestInfoAt(AObj: TListView; X: Integer; Y: Integer): THitTests; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetHitTestInfoAt(X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_GetItemAt(AObj: TListView; X: Integer; Y: Integer): TListItem; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetItemAt(X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//PARAMS:2=nonPtr
+function ListView_GetNearestItem(AObj: TListView; var Point: TPoint; Direction: TSearchDirection): TListItem; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNearestItem(Point, Direction);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ListView_GetNextItem(AObj: TListView; StartItem: TListItem; Direction: TSearchDirection; States: TListItemStates): TListItem; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextItem(StartItem, Direction, States);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function ListView_IsEditing(AObj: TListView): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -752,6 +785,13 @@ procedure ListView_SetScrollBars(AObj: TListView; AValue: TScrollStyle); extdecl
 begin
   handleExceptionBegin
   AObj.ScrollBars := AValue;
+  handleExceptionEnd
+end;
+
+function ListView_GetColumnCount(AObj: TListView): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ColumnCount;
   handleExceptionEnd
 end;
 
@@ -2236,6 +2276,10 @@ exports
   ListView_Clear,
   ListView_ClearSelection,
   ListView_DeleteSelected,
+  ListView_GetHitTestInfoAt,
+  ListView_GetItemAt,
+  ListView_GetNearestItem,
+  ListView_GetNextItem,
   ListView_IsEditing,
   ListView_SelectAll,
   ListView_CustomSort,
@@ -2324,6 +2368,7 @@ exports
   ListView_SetToolTips,
   ListView_GetScrollBars,
   ListView_SetScrollBars,
+  ListView_GetColumnCount,
   ListView_GetAction,
   ListView_SetAction,
   ListView_GetAlign,
