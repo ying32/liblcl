@@ -25,8 +25,8 @@
 {$I MyLCL_StatusBar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_ToolBar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_BitBtn.inc}  //BASECLASS:TWinControl
-{$I MyLCL_Icon.inc}  //BASECLASS:TObject
-{$I MyLCL_Bitmap.inc}  //BASECLASS:TObject
+{$I MyLCL_Icon.inc}  //BASECLASS:TGraphic
+{$I MyLCL_Bitmap.inc}  //BASECLASS:TGraphic
 {$I MyLCL_MemoryStream.inc}  //BASECLASS:TStream
 {$I MyLCL_Font.inc}  //BASECLASS:TObject
 {$I MyLCL_Strings.inc}  //BASECLASS:TStrings

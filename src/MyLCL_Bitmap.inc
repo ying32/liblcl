@@ -22,6 +22,38 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Bitmap_LoadFromDevice(AObj: TBitmap; ADc: HDC); extdecl;
+begin
+  handleExceptionBegin
+  AObj.LoadFromDevice(ADc);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Bitmap_EndUpdate(AObj: TBitmap; AStreamIsValid: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndUpdate(AStreamIsValid);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Bitmap_BeginUpdate(AObj: TBitmap; ACanvasOnly: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginUpdate(ACanvasOnly);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Bitmap_Clear(AObj: TBitmap); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Clear;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Bitmap_Assign(AObj: TBitmap; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -356,6 +388,10 @@ end;
 exports
   Bitmap_Create,
   Bitmap_Free,
+  Bitmap_LoadFromDevice,
+  Bitmap_EndUpdate,
+  Bitmap_BeginUpdate,
+  Bitmap_Clear,
   Bitmap_Assign,
   Bitmap_FreeImage,
   Bitmap_HandleAllocated,

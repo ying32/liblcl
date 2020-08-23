@@ -50,6 +50,9 @@ type
   procedure ResFormLoadFromFile(AFileName: PChar; ARoot: TComponent); extdecl;
   procedure ResFormLoadFromStream(AStream: TStream; ARoot: TComponent); extdecl;
 
+  function ResFormRegisterFormResource(AClassName: PChar; AData: Pointer; ALen: Integer): LongBool; extdecl;
+  function ResFormLoadFromClassName(AClassName: PChar; ARoot: TComponent): LongBool; extdecl;
+
 implementation
 
 uses
@@ -469,10 +472,64 @@ begin
   end;
 end;
 
+type
+  TResItem = record
+    ClassName: string;
+    Data: Pointer;
+    DataLen: Integer;
+  end;
 
-//exports
-//  ResFormLoadFromStream,
-//  ResFormLoadFromFile,
-//  ResFormLoadFromResourceName;
-//
+var
+  ResItems: array of TResItem;
+
+function ResFormIndexOf(AClassName: string): Integer;
+var
+  I: Integer;
+begin
+  Result := -1;
+  for I := 0 to High(ResItems) do
+    if SameText(ResItems[I].ClassName, AClassName) then
+      Exit(I);
+end;
+
+function ResFormRegisterFormResource(AClassName: PChar; AData: Pointer;
+  ALen: Integer): LongBool; extdecl;
+begin
+  Result := False;
+  if ResFormIndexOf(AClassName) = -1 then
+  begin
+    SetLength(ResItems, Length(ResItems) + 1);
+    with ResItems[High(ResItems)] do
+    begin
+      ClassName := UpperCase(string(AClassName));
+      Data := AData;
+      DataLen := ALen;
+    end;
+    Result := True;
+  end;
+end;
+
+function ResFormLoadFromClassName(AClassName: PChar; ARoot: TComponent): LongBool; extdecl;
+var
+  LIdx: Integer;
+  LItem: TResItem;
+  LMem: TMemoryStream;
+begin
+  Result := False;
+  LIdx := ResFormIndexOf(AClassName);
+  if LIdx <> -1 then
+  begin
+    LItem := ResItems[LIdx];
+    LMem := TMemoryStream.Create;
+    try
+      LMem.Write(LItem.Data^, LItem.DataLen);
+      LMem.Position := 0;
+      ResFormLoadFromStream(LMem, ARoot);
+    finally
+      LMem.Free;
+    end;
+    Result := True;
+  end;
+end;
+
 end.

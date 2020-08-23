@@ -426,20 +426,6 @@ begin
   handleExceptionEnd
 end;
 
-//function Canvas_GetPixels(AObj: TCanvas; X, Y: Integer): TColor; extdecl;
-//begin
-//  handleExceptionBegin
-//  Result := AObj.Pixels[X, Y];
-//  handleExceptionEnd
-//end;
-//
-//procedure Canvas_SetPixels(AObj: TCanvas; X, Y: Integer; AColor: TColor); extdecl;
-//begin
-//  handleExceptionBegin
-//  AObj.Pixels[X, Y] := AColor;
-//  handleExceptionEnd
-//end;
-
 
 // TImageList
 // ImageList_Draw1
@@ -493,40 +479,6 @@ end;
 //end;
 
 
-
-//CLASSMETHOD:
-procedure Bitmap_Clear(AObj: TBitmap); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Clear;
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Bitmap_BeginUpdate(AObj: TBitmap; ACanvasOnly: LongBool); extdecl;
-begin
-  handleExceptionBegin
-  AObj.BeginUpdate(ACanvasOnly);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Bitmap_EndUpdate(AObj: TBitmap; AStreamIsValid: LongBool); extdecl;
-begin
-  handleExceptionBegin
-  AObj.EndUpdate(AStreamIsValid);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure Bitmap_LoadFromDevice(AObj: TBitmap; ADc: HDC); extdecl;
-begin
-  handleExceptionBegin
-  AObj.LoadFromDevice(ADc);
-  handleExceptionEnd
-end;
-
-
 // TMeuItem
 
 function MenuItem_GetShortCutText(AObj: TMenuItem): PChar; extdecl;
@@ -544,7 +496,7 @@ begin
 end;
 
 // win api
-{$IFNDEF WINDOWS}
+//{$IFNDEF WINDOWS}
 function DSendMessage(hWd: HWND; msg: Cardinal; wParam: WParam; lParam: LParam): LResult; extdecl;
 begin
   handleExceptionBegin
@@ -611,7 +563,7 @@ end;
 function DRegisterClipboardFormat(const AFormat: string): TClipboardFormat; extdecl;
 begin
   handleExceptionBegin
-  Result := RegisterClipboardFormat(PChar(AFormat));
+  Result := Clipbrd.RegisterClipboardFormat(PChar(AFormat));
   handleExceptionEnd
 end;
 
@@ -623,7 +575,7 @@ begin
   Result := LCLIntf.WindowFromPoint(PPoint(point)^);
   handleExceptionEnd
 end;
-{$ENDIF}
+//{$ENDIF}
 
 
 // Other
@@ -954,6 +906,7 @@ begin
   Result := Printer;
 end;
 
+//CLASSMETHOD:
 procedure Printer_SetPrinter(Obj: TPrinter; aName: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -1211,7 +1164,7 @@ exports
   Mouse_Instance,
   Screen_Instance,
 
-{$IFNDEF WINDOWS}
+//{$IFNDEF WINDOWS}
   DSendMessage,
   DPostMessage,
   DIsIconic,
@@ -1223,7 +1176,7 @@ exports
   DSetForegroundWindow,
   DRegisterClipboardFormat,
   DWindowFromPoint,
-{$ENDIF}
+//{$ENDIF}
 
 {$IFDEF LINUX}
   GdkWindow_GetXId,
@@ -1319,12 +1272,6 @@ exports
   ImageList_GetIcon1,
   //ImageList_GetIcon2,
 
-  // TBitmap
-  Bitmap_Clear,
-  Bitmap_BeginUpdate,
-  Bitmap_EndUpdate,
-  Bitmap_LoadFromDevice,
-
   // TMenuItem
   MenuItem_GetShortCutText,
   MenuItem_SetShortCutText,
@@ -1332,6 +1279,9 @@ exports
   ResFormLoadFromStream,
   ResFormLoadFromFile,
   ResFormLoadFromResourceName,
+  ResFormRegisterFormResource,
+  ResFormLoadFromClassName,
+
 
   // TGUID
   DGUIDToString,

@@ -20,10 +20,10 @@
 {$I MyLCL_MiniWebview.inc}  //BASECLASS:TWinControl
 {$I MyLCL_Canvas.inc}  //BASECLASS:TObject
 {$I MyLCL_Object.inc}  //BASECLASS:TObject
-{$I MyLCL_Graphic.inc}  //BASECLASS:TObject
-{$I MyLCL_PngImage.inc}  //BASECLASS:TObject
-{$I MyLCL_JPEGImage.inc}  //BASECLASS:TObject
-{$I MyLCL_GIFImage.inc}  //BASECLASS:TObject
+{$I MyLCL_Graphic.inc}  //BASECLASS:TGraphic
+{$I MyLCL_PngImage.inc}  //BASECLASS:TGraphic
+{$I MyLCL_JPEGImage.inc}  //BASECLASS:TGraphic
+{$I MyLCL_GIFImage.inc}  //BASECLASS:TGraphic
 {$I MyLCL_ActionList.inc}  //BASECLASS:TComponent
 {$I MyLCL_Action.inc}  //BASECLASS:TComponent
 {$I MyLCL_ToolButton.inc}  //BASECLASS:TControl
