@@ -47,6 +47,10 @@ when defined(linux):
   proc GdkWindow_GetXId*(AW: PGdkWindow): TXId =
     lclapi.GdkWindow_GetXId(AW, result)
 ##
+proc WindowFromPoint*(point: TPoint): HWND =
+  var ps0 = point
+  return lclapi.DWindowFromPoint(ps0)
+##
 ##
 
 
@@ -139,7 +143,7 @@ when defined(linux):
 
 {{/*执行模板*/}}
 {{range $el := .Functions}}
-    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "SetExceptionHandlerCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem")}}
+    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "SetExceptionHandlerCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem" "DWindowFromPoint")}}
         {{if not (contains $el.Name "_Instance")}}
       ##
             {{template "getFunc" $el}}

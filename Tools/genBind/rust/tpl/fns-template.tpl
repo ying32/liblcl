@@ -75,6 +75,13 @@ pub fn {{$toRustStr}}{{html "<'a>"}}(s: *const i8) -> {{html "Cow<'a, str>"}} {
     return unsafe { CStr::from_ptr(s).to_string_lossy() };
 }
 ##
+pub fn WindowFromPoint(point: &TPoint) -> HWND {
+    unsafe {
+         let mut ps0 = point.clone();
+         return lclapi::DWindowFromPoint(&mut ps0);
+    }
+}
+##
 {{define "getFunc"}}
     {{$el := .}}
     {{$buff := newBuffer}}
@@ -193,7 +200,7 @@ pub fn {{$toRustStr}}{{html "<'a>"}}(s: *const i8) -> {{html "Cow<'a, str>"}} {
 
 {{/*执行模板*/}}
 {{range $el := .Functions}}
-    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem" "SetExceptionHandlerCallback")}}
+    {{if not (inStrArray $el.Name "DGetStringArrOf" "DSynchronize" "DMove" "DStrLen" "SetEventCallback" "SetThreadSyncCallback" "SetMessageCallback" "DSelectDirectory2" "DSelectDirectory1" "DInputQuery" "GdkWindow_GetXId" "DCreateGUID" "DStringToGUID" "DStringToGUID" "DGetLibResourceItem" "SetExceptionHandlerCallback" "DWindowFromPoint")}}
         {{if not (contains $el.Name "_Instance")}}
       ##
             {{template "getFunc" $el}}

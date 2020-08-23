@@ -484,11 +484,11 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 	} else if nameEq("DCreateURLShortCut") || nameEq("DCreateShortCut") {
 		item.Platform = "windows"
 	} else {
-		if nameEq("DSendMessage") {
-			nonWinFunc = true
-		} else if nameEq("SetEventCallback") { //"DWindowFromPoint") {
-			nonWinFunc = false
-		}
+		//if nameEq("DSendMessage") {
+		//	nonWinFunc = true
+		//} else if nameEq("SetEventCallback") { //"DWindowFromPoint") {
+		//	nonWinFunc = false
+		//}
 
 		if !nonWinFunc {
 			item.Platform = "all"

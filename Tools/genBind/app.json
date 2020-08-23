@@ -2,7 +2,7 @@
   "ast_file_name": "./liblcl.json",
   "languages": [
     {
-      "enabled": true,
+      "enabled": false,
       "name": "Nim",
       "type_dict": {
         "i32": "int32",
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "MASM",
       "line_break": "\r\n",
       "type_dict": {},

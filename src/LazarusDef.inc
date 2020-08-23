@@ -560,13 +560,14 @@ begin
   handleExceptionEnd
 end;
 
-function DRegisterClipboardFormat(const AFormat: string): TClipboardFormat; extdecl;
+function DRegisterClipboardFormat(AFormat: PChar): TClipboardFormat; extdecl;
 begin
   handleExceptionBegin
-  Result := Clipbrd.RegisterClipboardFormat(PChar(AFormat));
+  Result := Clipbrd.RegisterClipboardFormat(AFormat);
   handleExceptionEnd
 end;
 
+//PARAMS:1=nonPtr
 function DWindowFromPoint(point: PPoint): HWND; extdecl;
 begin
   if point = nil then

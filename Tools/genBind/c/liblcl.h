@@ -2133,6 +2133,32 @@ typedef enum {
     lapAutoAdjustForDPI, // For desktops using High DPI, scale x and y to fit the DPI
 } TLayoutAdjustmentPolicy;
 
+typedef enum {
+    htAbove,
+    htBelow,
+    htNowhere,
+    htOnItem,
+    htOnButton,
+    htOnIcon,
+    htOnIndent,
+    htOnLabel,
+    htOnRight,
+    htOnStateIcon,
+    htToLeft,
+    htToRight,
+} THitTest;
+
+typedef TSet THitTests;
+
+typedef enum {
+    lisCut,
+    lisDropTarget,
+    lisFocused,
+    lisSelected,
+} TListItemState;
+
+typedef TSet TListItemStates;
+
 /*--------------------类型定义--------------------*/
 
 typedef struct TPoint {
@@ -3507,6 +3533,20 @@ void
 ResFormLoadFromStream(TStream AStream, TComponent ARoot) {
     GET_FUNC_ADDR(ResFormLoadFromStream)
     MySyscall(pResFormLoadFromStream, 2, AStream, ARoot ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ResFormRegisterFormResource)
+BOOL
+ResFormRegisterFormResource(CChar char* AClassName, void* AData, int32_t ALen) {
+    GET_FUNC_ADDR(ResFormRegisterFormResource)
+    return (BOOL)MySyscall(pResFormRegisterFormResource, 3, AClassName, AData, ALen ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ResFormLoadFromClassName)
+BOOL
+ResFormLoadFromClassName(CChar char* AClassName, TComponent ARoot) {
+    GET_FUNC_ADDR(ResFormLoadFromClassName)
+    return (BOOL)MySyscall(pResFormLoadFromClassName, 2, AClassName, ARoot ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 /*--------------------类成员函数--------------------*/
 
@@ -38239,6 +38279,34 @@ ListView_DeleteSelected(TListView AObj) {
     MySyscall(pListView_DeleteSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ListView_GetHitTestInfoAt)
+THitTests
+ListView_GetHitTestInfoAt(TListView AObj, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ListView_GetHitTestInfoAt)
+    return (THitTests)MySyscall(pListView_GetHitTestInfoAt, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_GetItemAt)
+TListItem
+ListView_GetItemAt(TListView AObj, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(ListView_GetItemAt)
+    return (TListItem)MySyscall(pListView_GetItemAt, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_GetNearestItem)
+TListItem
+ListView_GetNearestItem(TListView AObj, TPoint Point, TSearchDirection Direction) {
+    GET_FUNC_ADDR(ListView_GetNearestItem)
+    return (TListItem)MySyscall(pListView_GetNearestItem, 3, AObj, &Point, Direction ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_GetNextItem)
+TListItem
+ListView_GetNextItem(TListView AObj, TListItem StartItem, TSearchDirection Direction, TListItemStates States) {
+    GET_FUNC_ADDR(ListView_GetNextItem)
+    return (TListItem)MySyscall(pListView_GetNextItem, 4, AObj, StartItem, Direction, States ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ListView_IsEditing)
 BOOL
 ListView_IsEditing(TListView AObj) {
@@ -38861,6 +38929,13 @@ void
 ListView_SetScrollBars(TListView AObj, TScrollStyle AValue) {
     GET_FUNC_ADDR(ListView_SetScrollBars)
     MySyscall(pListView_SetScrollBars, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_GetColumnCount)
+int32_t
+ListView_GetColumnCount(TListView AObj) {
+    GET_FUNC_ADDR(ListView_GetColumnCount)
+    return (int32_t)MySyscall(pListView_GetColumnCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_GetAction)
@@ -40339,6 +40414,13 @@ void
 TreeView_FullExpand(TTreeView AObj) {
     GET_FUNC_ADDR(TreeView_FullExpand)
     MySyscall(pTreeView_FullExpand, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeView_GetHitTestInfoAt)
+THitTests
+TreeView_GetHitTestInfoAt(TTreeView AObj, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(TreeView_GetHitTestInfoAt)
+    return (THitTests)MySyscall(pTreeView_GetHitTestInfoAt, 3, AObj, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_GetNodeAt)
@@ -47120,6 +47202,34 @@ Bitmap_Free(TBitmap AObj) {
     MySyscall(pBitmap_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Bitmap_LoadFromDevice)
+void
+Bitmap_LoadFromDevice(TBitmap AObj, HDC ADc) {
+    GET_FUNC_ADDR(Bitmap_LoadFromDevice)
+    MySyscall(pBitmap_LoadFromDevice, 2, AObj, ADc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bitmap_EndUpdate)
+void
+Bitmap_EndUpdate(TBitmap AObj, BOOL AStreamIsValid) {
+    GET_FUNC_ADDR(Bitmap_EndUpdate)
+    MySyscall(pBitmap_EndUpdate, 2, AObj, AStreamIsValid ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bitmap_BeginUpdate)
+void
+Bitmap_BeginUpdate(TBitmap AObj, BOOL ACanvasOnly) {
+    GET_FUNC_ADDR(Bitmap_BeginUpdate)
+    MySyscall(pBitmap_BeginUpdate, 2, AObj, ACanvasOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Bitmap_Clear)
+void
+Bitmap_Clear(TBitmap AObj) {
+    GET_FUNC_ADDR(Bitmap_Clear)
+    MySyscall(pBitmap_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Bitmap_Assign)
 void
 Bitmap_Assign(TBitmap AObj, TObject Source) {
@@ -47433,34 +47543,6 @@ TClass
 Bitmap_StaticClassType() {
     GET_FUNC_ADDR(Bitmap_StaticClassType)
     return (TClass)MySyscall(pBitmap_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_Clear)
-void
-Bitmap_Clear(TBitmap AObj) {
-    GET_FUNC_ADDR(Bitmap_Clear)
-    MySyscall(pBitmap_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_BeginUpdate)
-void
-Bitmap_BeginUpdate(TBitmap AObj, BOOL ACanvasOnly) {
-    GET_FUNC_ADDR(Bitmap_BeginUpdate)
-    MySyscall(pBitmap_BeginUpdate, 2, AObj, ACanvasOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_EndUpdate)
-void
-Bitmap_EndUpdate(TBitmap AObj, BOOL AStreamIsValid) {
-    GET_FUNC_ADDR(Bitmap_EndUpdate)
-    MySyscall(pBitmap_EndUpdate, 2, AObj, AStreamIsValid ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Bitmap_LoadFromDevice)
-void
-Bitmap_LoadFromDevice(TBitmap AObj, HDC ADc) {
-    GET_FUNC_ADDR(Bitmap_LoadFromDevice)
-    MySyscall(pBitmap_LoadFromDevice, 2, AObj, ADc ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TMemo-------------------
@@ -68209,6 +68291,62 @@ Form_Free(TForm AObj) {
     MySyscall(pForm_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Form_InheritedWndProc)
+void
+Form_InheritedWndProc(TForm AObj, TMessage* TheMessage) {
+    GET_FUNC_ADDR(Form_InheritedWndProc)
+    MySyscall(pForm_InheritedWndProc, 2, AObj, TheMessage ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_EnabledMaximize)
+void
+Form_EnabledMaximize(TForm AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Form_EnabledMaximize)
+    MySyscall(pForm_EnabledMaximize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_EnabledMinimize)
+void
+Form_EnabledMinimize(TForm AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Form_EnabledMinimize)
+    MySyscall(pForm_EnabledMinimize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_EnabledSystemMenu)
+void
+Form_EnabledSystemMenu(TForm AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Form_EnabledSystemMenu)
+    MySyscall(pForm_EnabledSystemMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleForCurrentDpi)
+void
+Form_ScaleForCurrentDpi(TForm AObj) {
+    GET_FUNC_ADDR(Form_ScaleForCurrentDpi)
+    MySyscall(pForm_ScaleForCurrentDpi, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScaleForPPI)
+void
+Form_ScaleForPPI(TForm AObj, int32_t ANewPPI) {
+    GET_FUNC_ADDR(Form_ScaleForPPI)
+    MySyscall(pForm_ScaleForPPI, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_ScreenCenter)
+void
+Form_ScreenCenter(TForm AObj) {
+    GET_FUNC_ADDR(Form_ScreenCenter)
+    MySyscall(pForm_ScreenCenter, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_WorkAreaCenter)
+void
+Form_WorkAreaCenter(TForm AObj) {
+    GET_FUNC_ADDR(Form_WorkAreaCenter)
+    MySyscall(pForm_WorkAreaCenter, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Form_Cascade)
 void
 Form_Cascade(TForm AObj) {
@@ -69365,6 +69503,13 @@ Form_SetOnCloseQuery(TForm AObj, TCloseQueryEvent AEventId) {
     MySyscall(pForm_SetOnCloseQuery, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Form_SetOnConstrainedResize)
+void
+Form_SetOnConstrainedResize(TForm AObj, TConstrainedResizeEvent AEventId) {
+    GET_FUNC_ADDR(Form_SetOnConstrainedResize)
+    MySyscall(pForm_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Form_SetOnContextPopup)
 void
 Form_SetOnContextPopup(TForm AObj, TContextPopupEvent AEventId) {
@@ -69377,6 +69522,13 @@ void
 Form_SetOnDblClick(TForm AObj, TNotifyEvent AEventId) {
     GET_FUNC_ADDR(Form_SetOnDblClick)
     MySyscall(pForm_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetOnDestroy)
+void
+Form_SetOnDestroy(TForm AObj, TNotifyEvent AEventId) {
+    GET_FUNC_ADDR(Form_SetOnDestroy)
+    MySyscall(pForm_SetOnDestroy, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDeactivate)
@@ -70008,74 +70160,11 @@ Form_Create2(TComponent AOwner, BOOL AInitScale) {
     return (TForm)MySyscall(pForm_Create2, 2, AOwner, AInitScale ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Form_EnabledMaximize)
-void
-Form_EnabledMaximize(TForm AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Form_EnabledMaximize)
-    MySyscall(pForm_EnabledMaximize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_EnabledMinimize)
-void
-Form_EnabledMinimize(TForm AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Form_EnabledMinimize)
-    MySyscall(pForm_EnabledMinimize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_EnabledSystemMenu)
-void
-Form_EnabledSystemMenu(TForm AObj, BOOL AValue) {
-    GET_FUNC_ADDR(Form_EnabledSystemMenu)
-    MySyscall(pForm_EnabledSystemMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_SetOnDestroy)
-void
-Form_SetOnDestroy(TForm AObj, TNotifyEvent AEventId) {
-    GET_FUNC_ADDR(Form_SetOnDestroy)
-    MySyscall(pForm_SetOnDestroy, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_SetOnConstrainedResize)
-void
-Form_SetOnConstrainedResize(TForm AObj, TConstrainedResizeEvent AEventId) {
-    GET_FUNC_ADDR(Form_SetOnConstrainedResize)
-    MySyscall(pForm_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
 DEFINE_FUNC_PTR(Form_SetOnWndProc)
 void
 Form_SetOnWndProc(TForm AObj, TWndProcEvent AEventId) {
     GET_FUNC_ADDR(Form_SetOnWndProc)
     MySyscall(pForm_SetOnWndProc, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_ScaleForPPI)
-void
-Form_ScaleForPPI(TForm AObj, int32_t ANewPPI) {
-    GET_FUNC_ADDR(Form_ScaleForPPI)
-    MySyscall(pForm_ScaleForPPI, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_ScaleControlsForDpi)
-void
-Form_ScaleControlsForDpi(TForm AObj, int32_t ANewPPI) {
-    GET_FUNC_ADDR(Form_ScaleControlsForDpi)
-    MySyscall(pForm_ScaleControlsForDpi, 2, AObj, ANewPPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_ScaleForCurrentDpi)
-void
-Form_ScaleForCurrentDpi(TForm AObj) {
-    GET_FUNC_ADDR(Form_ScaleForCurrentDpi)
-    MySyscall(pForm_ScaleForCurrentDpi, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Form_InheritedWndProc)
-void
-Form_InheritedWndProc(TForm AObj, TMessage* AMsg) {
-    GET_FUNC_ADDR(Form_InheritedWndProc)
-    MySyscall(pForm_InheritedWndProc, 2, AObj, AMsg ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TParaAttributes-------------------
@@ -76248,6 +76337,13 @@ void
 ScrollBox_SetOnClick(TScrollBox AObj, TNotifyEvent AEventId) {
     GET_FUNC_ADDR(ScrollBox_SetOnClick)
     MySyscall(pScrollBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBox_SetOnConstrainedResize)
+void
+ScrollBox_SetOnConstrainedResize(TScrollBox AObj, TConstrainedResizeEvent AEventId) {
+    GET_FUNC_ADDR(ScrollBox_SetOnConstrainedResize)
+    MySyscall(pScrollBox_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnDblClick)
@@ -93679,6 +93775,13 @@ FlowPanel_SetOnClick(TFlowPanel AObj, TNotifyEvent AEventId) {
     MySyscall(pFlowPanel_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(FlowPanel_SetOnConstrainedResize)
+void
+FlowPanel_SetOnConstrainedResize(TFlowPanel AObj, TConstrainedResizeEvent AEventId) {
+    GET_FUNC_ADDR(FlowPanel_SetOnConstrainedResize)
+    MySyscall(pFlowPanel_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(FlowPanel_SetOnContextPopup)
 void
 FlowPanel_SetOnContextPopup(TFlowPanel AObj, TContextPopupEvent AEventId) {
@@ -100579,6 +100682,13 @@ void
 Frame_SetOnClick(TFrame AObj, TNotifyEvent AEventId) {
     GET_FUNC_ADDR(Frame_SetOnClick)
     MySyscall(pFrame_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_SetOnConstrainedResize)
+void
+Frame_SetOnConstrainedResize(TFrame AObj, TConstrainedResizeEvent AEventId) {
+    GET_FUNC_ADDR(Frame_SetOnConstrainedResize)
+    MySyscall(pFrame_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnContextPopup)
