@@ -573,14 +573,6 @@ begin
   handleExceptionEnd
 end;
 
-//EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnDestroy(AObj: TFrame; AEventId: NativeUInt); extdecl;
-begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDestroy}
-  {$DEFINE EventName := OnDestroy}
-  EventMethodCode
-end;
-
 function Frame_GetAlign(AObj: TFrame): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1650,7 +1642,6 @@ exports
   Frame_ScaleFontsPPI,
   Frame_GetDesignTimePPI,
   Frame_SetDesignTimePPI,
-  Frame_SetOnDestroy,
   Frame_GetAlign,
   Frame_SetAlign,
   Frame_GetAnchors,

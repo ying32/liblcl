@@ -166,14 +166,15 @@ type
 
   { TFrame }
 
-  TFrame = class(Forms.TFrame)
-  private
-    FOnDestroy: TNotifyEvent;
-  public
-    procedure BeforeDestruction; override;
-  public
-    property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
-  end;
+  //TFrame = class(Forms.TFrame)
+  //private
+  //  FOnDestroy: TNotifyEvent;
+  //public
+  //  constructor Create(TheOwner: TComponent); override;
+  //  procedure BeforeDestruction; override;
+  //public
+  //  property OnDestroy: TNotifyEvent read FOnDestroy write FOnDestroy;
+  //end;
 
 
 
@@ -182,6 +183,8 @@ type
   function ToPChar(AStr: string): PChar; inline;
 
 implementation
+
+
 
 function ToUnixTime(ADateTime: TDateTime): TUnixDateTime; inline;
 begin
@@ -200,12 +203,20 @@ end;
 
 { TFrame }
 
-procedure TFrame.BeforeDestruction;
-begin
-  if Assigned(FOnDestroy) then
-    FOnDestroy(Self);
-  inherited BeforeDestruction;
-end;
+//constructor TFrame.Create(TheOwner: TComponent);
+//begin
+//  try
+//    inherited Create(TheOwner);
+//  except
+//  end;
+//end;
+//
+//procedure TFrame.BeforeDestruction;
+//begin
+//  if Assigned(FOnDestroy) then
+//    FOnDestroy(Self);
+//  inherited BeforeDestruction;
+//end;
 
 { TMonthCalendar }
 

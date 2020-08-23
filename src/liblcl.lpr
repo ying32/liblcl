@@ -59,6 +59,7 @@ uses
 {$I UserDefineComponents.inc}
 
 begin
+  RequireDerivedFormResource := False;
   // 3.2还是多少这个得设置下了，不然收不到消息了
   // 3.0.4不需要设置
 {$if FPC_FULLVERSION >= 30200}
