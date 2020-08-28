@@ -1109,7 +1109,10 @@ begin
       Sleep(1);
     end;
     if Assigned(FWebBrowser.Document) then
+    begin
+      (FWebBrowser.Document as IPersistStreamInit).InitNew;
       (FWebBrowser.Document as IPersistStreamInit).Load(TStreamAdapter.Create(LMem));
+    end;
   finally
     LMem.Free;;
   end;

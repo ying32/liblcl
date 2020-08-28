@@ -54,14 +54,16 @@ type
 
   { TEventList }
 
-  TEventList = specialize  TFPGMap<NativeUInt, NativeUInt>;
+  TEventList = specialize TFPGMap<NativeUInt, NativeUInt>;
 
+
+  TMainEventList = specialize TFPGMapObject<Pointer, TEventList>;
 
   { TEventClass }
 
   TEventClass = class
   private class var
-    FEvents: TEventList;
+    FMainEvents: TMainEventList;
     FThreadEvtId: NativeUInt;
     class procedure SendEvent(Sender: TObject; AEvent: Pointer; AArgs: array of const);
   public
@@ -242,54 +244,46 @@ type
 
 implementation
 
-function HashOf(const Key: TEventKey): NativeUInt; inline;
-var
-  I: Integer;
-  P: PByte;
-begin
-  Result := 0;
-  P := @Key;
-  for I := 1 to SizeOf(Key) do
-  begin
-    Result := ((Result shl 2) or (Result shr (SizeOf(Result) * 8 - 2))) xor P^;
-    Inc(P);
-  end;
-end;
 
-
-function CreateEventKey(ASender: TObject; AEvent: Pointer): NativeUInt; inline;
-var
-  LEvent: TEventKey;
-begin
-  LEvent.Sender := ASender;
-  LEvent.Event := AEvent;
-  Result := HashOf(LEvent);
-end;
-
-
-{ TEvent}
-
+{ TEventClass}
 
 class constructor TEventClass.Create;
 begin
-  FEvents := TEventList.Create;
+  FMainEvents := TMainEventList.Create;
 end;
 
 class destructor TEventClass.Destroy;
 begin
-  FEvents.Free;
+  FMainEvents.Clear;
+  FMainEvents.Free;
 end;
 
 class procedure TEventClass.Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt);
+var
+  LSub: TEventList = nil;
 begin
   if AObj is TTrayIcon then
      AObj := Application;
-  FEvents.AddOrSetData(CreateEventKey(AObj, AEvent), AId);
+  if not FMainEvents.TryGetData(AEvent, LSub) then
+  begin
+    LSub := TEventList.Create;
+    FMainEvents.AddOrSetData(AEvent, LSub);
+  end;
+  if Assigned(LSub) then
+    LSub.Add(NativeUInt(AObj), AId);
 end;
 
 class procedure TEventClass.Remove(AObj: TObject; AEvent: Pointer);
+var
+  LSub: TEventList = nil;
 begin
-  FEvents.delete(CreateEventKey(AObj, AEvent));
+  if FMainEvents.TryGetData(AEvent, LSub) then
+  begin
+    if LSub.IndexOf(NativeUInt(AObj)) <> -1 then
+      LSub.Remove(NativeUInt(AObj));
+    if LSub.Count = 0  then
+      FMainEvents.Remove(AEvent);
+  end;
 end;
 
 class procedure TEventClass.ThreadProc;
@@ -344,11 +338,18 @@ class procedure TEventClass.SendEvent(Sender: TObject; AEvent: Pointer; AArgs: a
   end;
 
 var
-  LEventId: NativeUInt;
+  LEventId: NativeUInt = 0;
+  LSub: TEventList = nil;
 begin
-  if FEvents.TryGetData(CreateEventKey(Sender, AEvent), LEventId) then
-    SendEventSrc(LEventId, AArgs)
-  else writeln('can''t found id, sender:', sender.ToString, ', event:', NativeUInt(AEvent));
+  if FMainEvents.TryGetData(AEvent, LSub) then
+  begin
+    if LSub.TryGetData(NativeUInt(Sender), LEventId) then
+    begin
+      SendEventSrc(LEventId, AArgs);
+      Exit;
+    end;
+  end;
+  Writeln('can''t found id, sender:', sender.ToString, ', event:', NativeUInt(AEvent));
 end;
 
 //------------------新方式-------------------------------
