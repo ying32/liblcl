@@ -1238,6 +1238,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure RichEdit_SetCaretPos(AObj: TRichEdit; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1477,6 +1478,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure RichEdit_SetBoundsRect(AObj: TRichEdit; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -704,6 +704,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Shape_SetBoundsRect(AObj: TShape; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

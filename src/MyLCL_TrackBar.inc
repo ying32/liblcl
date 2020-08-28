@@ -1144,6 +1144,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure TrackBar_SetBoundsRect(AObj: TTrackBar; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

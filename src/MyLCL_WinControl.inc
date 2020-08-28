@@ -776,6 +776,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure WinControl_SetBoundsRect(AObj: TWinControl; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -123,6 +123,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DragObject_SetDragPos(AObj: TDragObject; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -152,6 +153,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DragObject_SetDragTargetPos(AObj: TDragObject; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin

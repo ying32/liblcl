@@ -1204,6 +1204,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure PageControl_SetBoundsRect(AObj: TPageControl; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

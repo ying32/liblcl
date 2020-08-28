@@ -1110,6 +1110,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure GroupBox_SetBoundsRect(AObj: TGroupBox; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

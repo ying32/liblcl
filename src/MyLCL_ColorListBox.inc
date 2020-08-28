@@ -1235,6 +1235,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ColorListBox_SetBoundsRect(AObj: TColorListBox; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

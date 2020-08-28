@@ -1024,6 +1024,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure UpDown_SetBoundsRect(AObj: TUpDown; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

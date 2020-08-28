@@ -1134,6 +1134,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ToggleBox_SetBoundsRect(AObj: TToggleBox; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

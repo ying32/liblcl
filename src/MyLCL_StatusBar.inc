@@ -1169,6 +1169,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure StatusBar_SetBoundsRect(AObj: TStatusBar; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

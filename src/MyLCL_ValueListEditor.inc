@@ -1319,6 +1319,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ValueListEditor_SetSelection(AObj: TValueListEditor; var AValue: TGridRect); extdecl;
 begin
   handleExceptionBegin
@@ -1481,6 +1482,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ValueListEditor_SetBoundsRect(AObj: TValueListEditor; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

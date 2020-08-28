@@ -1130,6 +1130,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure StaticText_SetBoundsRect(AObj: TStaticText; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

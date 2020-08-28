@@ -1142,6 +1142,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure CheckBox_SetBoundsRect(AObj: TCheckBox; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

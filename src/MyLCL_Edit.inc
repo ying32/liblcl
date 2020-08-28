@@ -1367,6 +1367,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Edit_SetBoundsRect(AObj: TEdit; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

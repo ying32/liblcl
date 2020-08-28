@@ -1335,6 +1335,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ListBox_SetBoundsRect(AObj: TListBox; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

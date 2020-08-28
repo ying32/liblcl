@@ -1376,6 +1376,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure MaskEdit_SetBoundsRect(AObj: TMaskEdit; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -1276,6 +1276,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure CoolBar_SetBoundsRect(AObj: TCoolBar; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

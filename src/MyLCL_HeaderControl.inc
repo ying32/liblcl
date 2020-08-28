@@ -1079,6 +1079,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure HeaderControl_SetBoundsRect(AObj: THeaderControl; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

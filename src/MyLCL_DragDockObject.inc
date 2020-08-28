@@ -109,6 +109,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DragDockObject_SetDockRect(AObj: TDragDockObject; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -138,6 +139,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DragDockObject_SetEraseDockRect(AObj: TDragDockObject; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin
@@ -195,6 +197,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DragDockObject_SetDragPos(AObj: TDragDockObject; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -224,6 +227,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DragDockObject_SetDragTargetPos(AObj: TDragDockObject; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin

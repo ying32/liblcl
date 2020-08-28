@@ -1720,6 +1720,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Form_SetBoundsRect(AObj: TGoForm; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

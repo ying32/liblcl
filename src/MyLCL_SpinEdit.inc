@@ -1255,6 +1255,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure SpinEdit_SetBoundsRect(AObj: TSpinEdit; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

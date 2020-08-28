@@ -1034,6 +1034,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure RadioGroup_SetBoundsRect(AObj: TRadioGroup; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

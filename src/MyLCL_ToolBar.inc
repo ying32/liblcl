@@ -1331,6 +1331,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ToolBar_SetBoundsRect(AObj: TToolBar; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

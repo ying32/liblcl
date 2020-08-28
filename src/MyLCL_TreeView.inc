@@ -1828,6 +1828,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure TreeView_SetBoundsRect(AObj: TTreeView; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -99,6 +99,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Mouse_SetCursorPos(AObj: TMouse; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin

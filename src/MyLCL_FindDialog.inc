@@ -147,6 +147,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure FindDialog_SetPosition(AObj: TFindDialog; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin

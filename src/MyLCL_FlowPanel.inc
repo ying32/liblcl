@@ -1254,6 +1254,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure FlowPanel_SetBoundsRect(AObj: TFlowPanel; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

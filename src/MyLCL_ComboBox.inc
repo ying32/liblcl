@@ -1345,6 +1345,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ComboBox_SetBoundsRect(AObj: TComboBox; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

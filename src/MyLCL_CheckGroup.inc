@@ -1210,6 +1210,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure CheckGroup_SetBoundsRect(AObj: TCheckGroup; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

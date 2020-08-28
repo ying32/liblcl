@@ -1133,6 +1133,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure TabSheet_SetBoundsRect(AObj: TTabSheet; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

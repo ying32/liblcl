@@ -500,6 +500,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Control_SetBoundsRect(AObj: TControl; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

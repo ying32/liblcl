@@ -842,6 +842,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ImageButton_SetBoundsRect(AObj: TImageButton; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

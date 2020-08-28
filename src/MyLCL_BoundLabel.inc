@@ -795,6 +795,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure BoundLabel_SetBoundsRect(AObj: TBoundLabel; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

@@ -276,6 +276,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ListItem_SetPosition(AObj: TListItem; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin

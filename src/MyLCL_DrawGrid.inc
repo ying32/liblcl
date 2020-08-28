@@ -1312,6 +1312,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DrawGrid_SetSelection(AObj: TDrawGrid; var AValue: TGridRect); extdecl;
 begin
   handleExceptionBegin
@@ -1474,6 +1475,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DrawGrid_SetBoundsRect(AObj: TDrawGrid; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

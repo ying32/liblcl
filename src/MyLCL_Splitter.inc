@@ -627,6 +627,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Splitter_SetBoundsRect(AObj: TSplitter; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

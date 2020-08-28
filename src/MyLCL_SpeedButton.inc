@@ -858,6 +858,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure SpeedButton_SetBoundsRect(AObj: TSpeedButton; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

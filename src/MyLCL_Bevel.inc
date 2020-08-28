@@ -584,6 +584,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Bevel_SetBoundsRect(AObj: TBevel; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

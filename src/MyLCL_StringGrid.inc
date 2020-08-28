@@ -2185,6 +2185,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure StringGrid_SetSelection(AObj: TStringGrid; var AValue: TGridRect); extdecl;
 begin
   handleExceptionBegin
@@ -2347,6 +2348,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure StringGrid_SetBoundsRect(AObj: TStringGrid; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

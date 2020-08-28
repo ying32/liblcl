@@ -899,6 +899,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure MiniWebview_SetBoundsRect(AObj: TMiniWebview; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

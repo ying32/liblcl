@@ -1214,6 +1214,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Frame_SetBoundsRect(AObj: TFrame; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

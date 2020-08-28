@@ -169,6 +169,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ReplaceDialog_SetPosition(AObj: TReplaceDialog; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin

@@ -1399,6 +1399,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure DateTimePicker_SetBoundsRect(AObj: TDateTimePicker; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

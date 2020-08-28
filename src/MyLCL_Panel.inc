@@ -1230,6 +1230,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Panel_SetBoundsRect(AObj: TPanel; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

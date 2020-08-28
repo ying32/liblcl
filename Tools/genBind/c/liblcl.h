@@ -4233,9 +4233,9 @@ Control_GetBoundsRect(TControl AObj) {
 
 DEFINE_FUNC_PTR(Control_SetBoundsRect)
 void
-Control_SetBoundsRect(TControl AObj, TRect* AValue) {
+Control_SetBoundsRect(TControl AObj, TRect AValue) {
     GET_FUNC_ADDR(Control_SetBoundsRect)
-    MySyscall(pControl_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControl_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Control_GetClientHeight)
@@ -5313,9 +5313,9 @@ WinControl_GetBoundsRect(TWinControl AObj) {
 
 DEFINE_FUNC_PTR(WinControl_SetBoundsRect)
 void
-WinControl_SetBoundsRect(TWinControl AObj, TRect* AValue) {
+WinControl_SetBoundsRect(TWinControl AObj, TRect AValue) {
     GET_FUNC_ADDR(WinControl_SetBoundsRect)
-    MySyscall(pWinControl_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pWinControl_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(WinControl_GetClientHeight)
@@ -7323,9 +7323,9 @@ CheckBox_GetBoundsRect(TCheckBox AObj) {
 
 DEFINE_FUNC_PTR(CheckBox_SetBoundsRect)
 void
-CheckBox_SetBoundsRect(TCheckBox AObj, TRect* AValue) {
+CheckBox_SetBoundsRect(TCheckBox AObj, TRect AValue) {
     GET_FUNC_ADDR(CheckBox_SetBoundsRect)
-    MySyscall(pCheckBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_GetClientHeight)
@@ -8711,9 +8711,9 @@ RadioButton_GetBoundsRect(TRadioButton AObj) {
 
 DEFINE_FUNC_PTR(RadioButton_SetBoundsRect)
 void
-RadioButton_SetBoundsRect(TRadioButton AObj, TRect* AValue) {
+RadioButton_SetBoundsRect(TRadioButton AObj, TRect AValue) {
     GET_FUNC_ADDR(RadioButton_SetBoundsRect)
-    MySyscall(pRadioButton_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_GetClientHeight)
@@ -10092,9 +10092,9 @@ GroupBox_GetBoundsRect(TGroupBox AObj) {
 
 DEFINE_FUNC_PTR(GroupBox_SetBoundsRect)
 void
-GroupBox_SetBoundsRect(TGroupBox AObj, TRect* AValue) {
+GroupBox_SetBoundsRect(TGroupBox AObj, TRect AValue) {
     GET_FUNC_ADDR(GroupBox_SetBoundsRect)
-    MySyscall(pGroupBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_GetClientHeight)
@@ -11277,9 +11277,9 @@ Label_GetBoundsRect(TLabel AObj) {
 
 DEFINE_FUNC_PTR(Label_SetBoundsRect)
 void
-Label_SetBoundsRect(TLabel AObj, TRect* AValue) {
+Label_SetBoundsRect(TLabel AObj, TRect AValue) {
     GET_FUNC_ADDR(Label_SetBoundsRect)
-    MySyscall(pLabel_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_GetClientHeight)
@@ -12849,9 +12849,9 @@ ListBox_GetBoundsRect(TListBox AObj) {
 
 DEFINE_FUNC_PTR(ListBox_SetBoundsRect)
 void
-ListBox_SetBoundsRect(TListBox AObj, TRect* AValue) {
+ListBox_SetBoundsRect(TListBox AObj, TRect AValue) {
     GET_FUNC_ADDR(ListBox_SetBoundsRect)
-    MySyscall(pListBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_GetClientHeight)
@@ -14475,9 +14475,9 @@ ComboBox_GetBoundsRect(TComboBox AObj) {
 
 DEFINE_FUNC_PTR(ComboBox_SetBoundsRect)
 void
-ComboBox_SetBoundsRect(TComboBox AObj, TRect* AValue) {
+ComboBox_SetBoundsRect(TComboBox AObj, TRect AValue) {
     GET_FUNC_ADDR(ComboBox_SetBoundsRect)
-    MySyscall(pComboBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_GetClientHeight)
@@ -15975,9 +15975,9 @@ Panel_GetBoundsRect(TPanel AObj) {
 
 DEFINE_FUNC_PTR(Panel_SetBoundsRect)
 void
-Panel_SetBoundsRect(TPanel AObj, TRect* AValue) {
+Panel_SetBoundsRect(TPanel AObj, TRect AValue) {
     GET_FUNC_ADDR(Panel_SetBoundsRect)
-    MySyscall(pPanel_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_GetClientHeight)
@@ -17111,9 +17111,9 @@ Image_GetBoundsRect(TImage AObj) {
 
 DEFINE_FUNC_PTR(Image_SetBoundsRect)
 void
-Image_SetBoundsRect(TImage AObj, TRect* AValue) {
+Image_SetBoundsRect(TImage AObj, TRect AValue) {
     GET_FUNC_ADDR(Image_SetBoundsRect)
-    MySyscall(pImage_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_GetClientHeight)
@@ -18191,9 +18191,9 @@ LinkLabel_GetBoundsRect(TLinkLabel AObj) {
 
 DEFINE_FUNC_PTR(LinkLabel_SetBoundsRect)
 void
-LinkLabel_SetBoundsRect(TLinkLabel AObj, TRect* AValue) {
+LinkLabel_SetBoundsRect(TLinkLabel AObj, TRect AValue) {
     GET_FUNC_ADDR(LinkLabel_SetBoundsRect)
-    MySyscall(pLinkLabel_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_GetClientHeight)
@@ -19306,9 +19306,9 @@ SpeedButton_GetBoundsRect(TSpeedButton AObj) {
 
 DEFINE_FUNC_PTR(SpeedButton_SetBoundsRect)
 void
-SpeedButton_SetBoundsRect(TSpeedButton AObj, TRect* AValue) {
+SpeedButton_SetBoundsRect(TSpeedButton AObj, TRect AValue) {
     GET_FUNC_ADDR(SpeedButton_SetBoundsRect)
-    MySyscall(pSpeedButton_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_GetClientHeight)
@@ -20211,9 +20211,9 @@ Splitter_GetBoundsRect(TSplitter AObj) {
 
 DEFINE_FUNC_PTR(Splitter_SetBoundsRect)
 void
-Splitter_SetBoundsRect(TSplitter AObj, TRect* AValue) {
+Splitter_SetBoundsRect(TSplitter AObj, TRect AValue) {
     GET_FUNC_ADDR(Splitter_SetBoundsRect)
-    MySyscall(pSplitter_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSplitter_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Splitter_GetClientHeight)
@@ -21487,9 +21487,9 @@ RadioGroup_GetBoundsRect(TRadioGroup AObj) {
 
 DEFINE_FUNC_PTR(RadioGroup_SetBoundsRect)
 void
-RadioGroup_SetBoundsRect(TRadioGroup AObj, TRect* AValue) {
+RadioGroup_SetBoundsRect(TRadioGroup AObj, TRect AValue) {
     GET_FUNC_ADDR(RadioGroup_SetBoundsRect)
-    MySyscall(pRadioGroup_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_GetClientHeight)
@@ -22896,9 +22896,9 @@ StaticText_GetBoundsRect(TStaticText AObj) {
 
 DEFINE_FUNC_PTR(StaticText_SetBoundsRect)
 void
-StaticText_SetBoundsRect(TStaticText AObj, TRect* AValue) {
+StaticText_SetBoundsRect(TStaticText AObj, TRect AValue) {
     GET_FUNC_ADDR(StaticText_SetBoundsRect)
-    MySyscall(pStaticText_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_GetClientHeight)
@@ -24445,9 +24445,9 @@ ColorBox_GetBoundsRect(TColorBox AObj) {
 
 DEFINE_FUNC_PTR(ColorBox_SetBoundsRect)
 void
-ColorBox_SetBoundsRect(TColorBox AObj, TRect* AValue) {
+ColorBox_SetBoundsRect(TColorBox AObj, TRect AValue) {
     GET_FUNC_ADDR(ColorBox_SetBoundsRect)
-    MySyscall(pColorBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_GetClientHeight)
@@ -25961,9 +25961,9 @@ ColorListBox_GetBoundsRect(TColorListBox AObj) {
 
 DEFINE_FUNC_PTR(ColorListBox_SetBoundsRect)
 void
-ColorListBox_SetBoundsRect(TColorListBox AObj, TRect* AValue) {
+ColorListBox_SetBoundsRect(TColorListBox AObj, TRect AValue) {
     GET_FUNC_ADDR(ColorListBox_SetBoundsRect)
-    MySyscall(pColorListBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_GetClientHeight)
@@ -30041,9 +30041,9 @@ RichEdit_GetCaretPos(TRichEdit AObj) {
 
 DEFINE_FUNC_PTR(RichEdit_SetCaretPos)
 void
-RichEdit_SetCaretPos(TRichEdit AObj, TPoint* AValue) {
+RichEdit_SetCaretPos(TRichEdit AObj, TPoint AValue) {
     GET_FUNC_ADDR(RichEdit_SetCaretPos)
-    MySyscall(pRichEdit_SetCaretPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetCaretPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_GetCanUndo)
@@ -30281,9 +30281,9 @@ RichEdit_GetBoundsRect(TRichEdit AObj) {
 
 DEFINE_FUNC_PTR(RichEdit_SetBoundsRect)
 void
-RichEdit_SetBoundsRect(TRichEdit AObj, TRect* AValue) {
+RichEdit_SetBoundsRect(TRichEdit AObj, TRect AValue) {
     GET_FUNC_ADDR(RichEdit_SetBoundsRect)
-    MySyscall(pRichEdit_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_GetClientHeight)
@@ -31704,9 +31704,9 @@ TrackBar_GetBoundsRect(TTrackBar AObj) {
 
 DEFINE_FUNC_PTR(TrackBar_SetBoundsRect)
 void
-TrackBar_SetBoundsRect(TTrackBar AObj, TRect* AValue) {
+TrackBar_SetBoundsRect(TTrackBar AObj, TRect AValue) {
     GET_FUNC_ADDR(TrackBar_SetBoundsRect)
-    MySyscall(pTrackBar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_GetClientHeight)
@@ -33488,9 +33488,9 @@ UpDown_GetBoundsRect(TUpDown AObj) {
 
 DEFINE_FUNC_PTR(UpDown_SetBoundsRect)
 void
-UpDown_SetBoundsRect(TUpDown AObj, TRect* AValue) {
+UpDown_SetBoundsRect(TUpDown AObj, TRect AValue) {
     GET_FUNC_ADDR(UpDown_SetBoundsRect)
-    MySyscall(pUpDown_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_GetClientHeight)
@@ -34869,9 +34869,9 @@ ProgressBar_GetBoundsRect(TProgressBar AObj) {
 
 DEFINE_FUNC_PTR(ProgressBar_SetBoundsRect)
 void
-ProgressBar_SetBoundsRect(TProgressBar AObj, TRect* AValue) {
+ProgressBar_SetBoundsRect(TProgressBar AObj, TRect AValue) {
     GET_FUNC_ADDR(ProgressBar_SetBoundsRect)
-    MySyscall(pProgressBar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_GetClientHeight)
@@ -36530,9 +36530,9 @@ ateTimePicker_GetBoundsRect(TDateTimePicker AObj) {
 
 DEFINE_FUNC_PTR(DateTimePicker_SetBoundsRect)
 void
-ateTimePicker_SetBoundsRect(TDateTimePicker AObj, TRect* AValue) {
+ateTimePicker_SetBoundsRect(TDateTimePicker AObj, TRect AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetBoundsRect)
-    MySyscall(pDateTimePicker_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetClientHeight)
@@ -37869,9 +37869,9 @@ MonthCalendar_GetBoundsRect(TMonthCalendar AObj) {
 
 DEFINE_FUNC_PTR(MonthCalendar_SetBoundsRect)
 void
-MonthCalendar_SetBoundsRect(TMonthCalendar AObj, TRect* AValue) {
+MonthCalendar_SetBoundsRect(TMonthCalendar AObj, TRect AValue) {
     GET_FUNC_ADDR(MonthCalendar_SetBoundsRect)
-    MySyscall(pMonthCalendar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_GetClientHeight)
@@ -40013,9 +40013,9 @@ ListView_GetBoundsRect(TListView AObj) {
 
 DEFINE_FUNC_PTR(ListView_SetBoundsRect)
 void
-ListView_SetBoundsRect(TListView AObj, TRect* AValue) {
+ListView_SetBoundsRect(TListView AObj, TRect AValue) {
     GET_FUNC_ADDR(ListView_SetBoundsRect)
-    MySyscall(pListView_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_GetClientHeight)
@@ -42094,9 +42094,9 @@ TreeView_GetBoundsRect(TTreeView AObj) {
 
 DEFINE_FUNC_PTR(TreeView_SetBoundsRect)
 void
-TreeView_SetBoundsRect(TTreeView AObj, TRect* AValue) {
+TreeView_SetBoundsRect(TTreeView AObj, TRect AValue) {
     GET_FUNC_ADDR(TreeView_SetBoundsRect)
-    MySyscall(pTreeView_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_GetClientHeight)
@@ -43545,9 +43545,9 @@ StatusBar_GetBoundsRect(TStatusBar AObj) {
 
 DEFINE_FUNC_PTR(StatusBar_SetBoundsRect)
 void
-StatusBar_SetBoundsRect(TStatusBar AObj, TRect* AValue) {
+StatusBar_SetBoundsRect(TStatusBar AObj, TRect AValue) {
     GET_FUNC_ADDR(StatusBar_SetBoundsRect)
-    MySyscall(pStatusBar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_GetClientHeight)
@@ -45150,9 +45150,9 @@ ToolBar_GetBoundsRect(TToolBar AObj) {
 
 DEFINE_FUNC_PTR(ToolBar_SetBoundsRect)
 void
-ToolBar_SetBoundsRect(TToolBar AObj, TRect* AValue) {
+ToolBar_SetBoundsRect(TToolBar AObj, TRect AValue) {
     GET_FUNC_ADDR(ToolBar_SetBoundsRect)
-    MySyscall(pToolBar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_GetClientHeight)
@@ -46573,9 +46573,9 @@ BitBtn_GetBoundsRect(TBitBtn AObj) {
 
 DEFINE_FUNC_PTR(BitBtn_SetBoundsRect)
 void
-BitBtn_SetBoundsRect(TBitBtn AObj, TRect* AValue) {
+BitBtn_SetBoundsRect(TBitBtn AObj, TRect AValue) {
     GET_FUNC_ADDR(BitBtn_SetBoundsRect)
-    MySyscall(pBitBtn_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_GetClientHeight)
@@ -48644,9 +48644,9 @@ Memo_GetCaretPos(TMemo AObj) {
 
 DEFINE_FUNC_PTR(Memo_SetCaretPos)
 void
-Memo_SetCaretPos(TMemo AObj, TPoint* AValue) {
+Memo_SetCaretPos(TMemo AObj, TPoint AValue) {
     GET_FUNC_ADDR(Memo_SetCaretPos)
-    MySyscall(pMemo_SetCaretPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetCaretPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_GetCanUndo)
@@ -48856,9 +48856,9 @@ Memo_GetBoundsRect(TMemo AObj) {
 
 DEFINE_FUNC_PTR(Memo_SetBoundsRect)
 void
-Memo_SetBoundsRect(TMemo AObj, TRect* AValue) {
+Memo_SetBoundsRect(TMemo AObj, TRect AValue) {
     GET_FUNC_ADDR(Memo_SetBoundsRect)
-    MySyscall(pMemo_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_GetClientHeight)
@@ -49351,9 +49351,9 @@ MemoryStream_GetPosition(TMemoryStream AObj) {
 
 DEFINE_FUNC_PTR(MemoryStream_SetPosition)
 void
-MemoryStream_SetPosition(TMemoryStream AObj, int64_t* AValue) {
+MemoryStream_SetPosition(TMemoryStream AObj, int64_t AValue) {
     GET_FUNC_ADDR(MemoryStream_SetPosition)
-    MySyscall(pMemoryStream_SetPosition, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemoryStream_SetPosition, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MemoryStream_GetSize)
@@ -49367,9 +49367,9 @@ MemoryStream_GetSize(TMemoryStream AObj) {
 
 DEFINE_FUNC_PTR(MemoryStream_SetSize)
 void
-MemoryStream_SetSize(TMemoryStream AObj, int64_t* AValue) {
+MemoryStream_SetSize(TMemoryStream AObj, int64_t AValue) {
     GET_FUNC_ADDR(MemoryStream_SetSize)
-    MySyscall(pMemoryStream_SetSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemoryStream_SetSize, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MemoryStream_StaticClassType)
@@ -52057,9 +52057,9 @@ ListItem_GetPosition(TListItem AObj) {
 
 DEFINE_FUNC_PTR(ListItem_SetPosition)
 void
-ListItem_SetPosition(TListItem AObj, TPoint* AValue) {
+ListItem_SetPosition(TListItem AObj, TPoint AValue) {
     GET_FUNC_ADDR(ListItem_SetPosition)
-    MySyscall(pListItem_SetPosition, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListItem_SetPosition, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListItem_GetSelected)
@@ -53643,9 +53643,9 @@ PageControl_GetBoundsRect(TPageControl AObj) {
 
 DEFINE_FUNC_PTR(PageControl_SetBoundsRect)
 void
-PageControl_SetBoundsRect(TPageControl AObj, TRect* AValue) {
+PageControl_SetBoundsRect(TPageControl AObj, TRect AValue) {
     GET_FUNC_ADDR(PageControl_SetBoundsRect)
-    MySyscall(pPageControl_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_GetClientHeight)
@@ -55059,9 +55059,9 @@ TabSheet_GetBoundsRect(TTabSheet AObj) {
 
 DEFINE_FUNC_PTR(TabSheet_SetBoundsRect)
 void
-TabSheet_SetBoundsRect(TTabSheet AObj, TRect* AValue) {
+TabSheet_SetBoundsRect(TTabSheet AObj, TRect AValue) {
     GET_FUNC_ADDR(TabSheet_SetBoundsRect)
-    MySyscall(pTabSheet_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_GetClientHeight)
@@ -56377,9 +56377,9 @@ Button_GetBoundsRect(TButton AObj) {
 
 DEFINE_FUNC_PTR(Button_SetBoundsRect)
 void
-Button_SetBoundsRect(TButton AObj, TRect* AValue) {
+Button_SetBoundsRect(TButton AObj, TRect AValue) {
     GET_FUNC_ADDR(Button_SetBoundsRect)
-    MySyscall(pButton_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_GetClientHeight)
@@ -58010,9 +58010,9 @@ Edit_GetBoundsRect(TEdit AObj) {
 
 DEFINE_FUNC_PTR(Edit_SetBoundsRect)
 void
-Edit_SetBoundsRect(TEdit AObj, TRect* AValue) {
+Edit_SetBoundsRect(TEdit AObj, TRect AValue) {
     GET_FUNC_ADDR(Edit_SetBoundsRect)
-    MySyscall(pEdit_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_GetClientHeight)
@@ -58815,9 +58815,9 @@ Mouse_GetCursorPos(TMouse AObj) {
 
 DEFINE_FUNC_PTR(Mouse_SetCursorPos)
 void
-Mouse_SetCursorPos(TMouse AObj, TPoint* AValue) {
+Mouse_SetCursorPos(TMouse AObj, TPoint AValue) {
     GET_FUNC_ADDR(Mouse_SetCursorPos)
-    MySyscall(pMouse_SetCursorPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMouse_SetCursorPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Mouse_GetIsDragging)
@@ -60767,9 +60767,9 @@ SpinEdit_GetBoundsRect(TSpinEdit AObj) {
 
 DEFINE_FUNC_PTR(SpinEdit_SetBoundsRect)
 void
-SpinEdit_SetBoundsRect(TSpinEdit AObj, TRect* AValue) {
+SpinEdit_SetBoundsRect(TSpinEdit AObj, TRect AValue) {
     GET_FUNC_ADDR(SpinEdit_SetBoundsRect)
-    MySyscall(pSpinEdit_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_GetClientHeight)
@@ -61945,9 +61945,9 @@ MiniWebview_GetBoundsRect(TMiniWebview AObj) {
 
 DEFINE_FUNC_PTR(MiniWebview_SetBoundsRect)
 void
-MiniWebview_SetBoundsRect(TMiniWebview AObj, TRect* AValue) {
+MiniWebview_SetBoundsRect(TMiniWebview AObj, TRect AValue) {
     GET_FUNC_ADDR(MiniWebview_SetBoundsRect)
-    MySyscall(pMiniWebview_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MiniWebview_GetClientHeight)
@@ -65626,9 +65626,9 @@ ToolButton_GetBoundsRect(TToolButton AObj) {
 
 DEFINE_FUNC_PTR(ToolButton_SetBoundsRect)
 void
-ToolButton_SetBoundsRect(TToolButton AObj, TRect* AValue) {
+ToolButton_SetBoundsRect(TToolButton AObj, TRect AValue) {
     GET_FUNC_ADDR(ToolButton_SetBoundsRect)
-    MySyscall(pToolButton_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_GetClientHeight)
@@ -67576,9 +67576,9 @@ PaintBox_GetBoundsRect(TPaintBox AObj) {
 
 DEFINE_FUNC_PTR(PaintBox_SetBoundsRect)
 void
-PaintBox_SetBoundsRect(TPaintBox AObj, TRect* AValue) {
+PaintBox_SetBoundsRect(TPaintBox AObj, TRect AValue) {
     GET_FUNC_ADDR(PaintBox_SetBoundsRect)
-    MySyscall(pPaintBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_GetClientHeight)
@@ -69878,9 +69878,9 @@ Form_GetBoundsRect(TForm AObj) {
 
 DEFINE_FUNC_PTR(Form_SetBoundsRect)
 void
-Form_SetBoundsRect(TForm AObj, TRect* AValue) {
+Form_SetBoundsRect(TForm AObj, TRect AValue) {
     GET_FUNC_ADDR(Form_SetBoundsRect)
-    MySyscall(pForm_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_GetClientOrigin)
@@ -71659,9 +71659,9 @@ ScrollBar_GetBoundsRect(TScrollBar AObj) {
 
 DEFINE_FUNC_PTR(ScrollBar_SetBoundsRect)
 void
-ScrollBar_SetBoundsRect(TScrollBar AObj, TRect* AValue) {
+ScrollBar_SetBoundsRect(TScrollBar AObj, TRect AValue) {
     GET_FUNC_ADDR(ScrollBar_SetBoundsRect)
-    MySyscall(pScrollBar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_GetClientHeight)
@@ -73299,9 +73299,9 @@ MaskEdit_GetBoundsRect(TMaskEdit AObj) {
 
 DEFINE_FUNC_PTR(MaskEdit_SetBoundsRect)
 void
-MaskEdit_SetBoundsRect(TMaskEdit AObj, TRect* AValue) {
+MaskEdit_SetBoundsRect(TMaskEdit AObj, TRect AValue) {
     GET_FUNC_ADDR(MaskEdit_SetBoundsRect)
-    MySyscall(pMaskEdit_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_GetClientHeight)
@@ -74302,9 +74302,9 @@ Shape_GetBoundsRect(TShape AObj) {
 
 DEFINE_FUNC_PTR(Shape_SetBoundsRect)
 void
-Shape_SetBoundsRect(TShape AObj, TRect* AValue) {
+Shape_SetBoundsRect(TShape AObj, TRect AValue) {
     GET_FUNC_ADDR(Shape_SetBoundsRect)
-    MySyscall(pShape_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_GetClientHeight)
@@ -75165,9 +75165,9 @@ Bevel_GetBoundsRect(TBevel AObj) {
 
 DEFINE_FUNC_PTR(Bevel_SetBoundsRect)
 void
-Bevel_SetBoundsRect(TBevel AObj, TRect* AValue) {
+Bevel_SetBoundsRect(TBevel AObj, TRect AValue) {
     GET_FUNC_ADDR(Bevel_SetBoundsRect)
-    MySyscall(pBevel_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBevel_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Bevel_GetClientHeight)
@@ -76609,9 +76609,9 @@ ScrollBox_GetBoundsRect(TScrollBox AObj) {
 
 DEFINE_FUNC_PTR(ScrollBox_SetBoundsRect)
 void
-ScrollBox_SetBoundsRect(TScrollBox AObj, TRect* AValue) {
+ScrollBox_SetBoundsRect(TScrollBox AObj, TRect AValue) {
     GET_FUNC_ADDR(ScrollBox_SetBoundsRect)
-    MySyscall(pScrollBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_GetClientHeight)
@@ -78174,9 +78174,9 @@ CheckListBox_GetBoundsRect(TCheckListBox AObj) {
 
 DEFINE_FUNC_PTR(CheckListBox_SetBoundsRect)
 void
-CheckListBox_SetBoundsRect(TCheckListBox AObj, TRect* AValue) {
+CheckListBox_SetBoundsRect(TCheckListBox AObj, TRect AValue) {
     GET_FUNC_ADDR(CheckListBox_SetBoundsRect)
-    MySyscall(pCheckListBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_GetClientHeight)
@@ -79289,9 +79289,9 @@ Gauge_GetBoundsRect(TGauge AObj) {
 
 DEFINE_FUNC_PTR(Gauge_SetBoundsRect)
 void
-Gauge_SetBoundsRect(TGauge AObj, TRect* AValue) {
+Gauge_SetBoundsRect(TGauge AObj, TRect AValue) {
     GET_FUNC_ADDR(Gauge_SetBoundsRect)
-    MySyscall(pGauge_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGauge_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Gauge_GetClientHeight)
@@ -80397,9 +80397,9 @@ ImageButton_GetBoundsRect(TImageButton AObj) {
 
 DEFINE_FUNC_PTR(ImageButton_SetBoundsRect)
 void
-ImageButton_SetBoundsRect(TImageButton AObj, TRect* AValue) {
+ImageButton_SetBoundsRect(TImageButton AObj, TRect AValue) {
     GET_FUNC_ADDR(ImageButton_SetBoundsRect)
-    MySyscall(pImageButton_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_GetClientHeight)
@@ -80860,9 +80860,9 @@ FindDialog_GetPosition(TFindDialog AObj) {
 
 DEFINE_FUNC_PTR(FindDialog_SetPosition)
 void
-FindDialog_SetPosition(TFindDialog AObj, TPoint* AValue) {
+FindDialog_SetPosition(TFindDialog AObj, TPoint AValue) {
     GET_FUNC_ADDR(FindDialog_SetPosition)
-    MySyscall(pFindDialog_SetPosition, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFindDialog_SetPosition, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FindDialog_GetTop)
@@ -81158,9 +81158,9 @@ ReplaceDialog_GetPosition(TReplaceDialog AObj) {
 
 DEFINE_FUNC_PTR(ReplaceDialog_SetPosition)
 void
-ReplaceDialog_SetPosition(TReplaceDialog AObj, TPoint* AValue) {
+ReplaceDialog_SetPosition(TReplaceDialog AObj, TPoint AValue) {
     GET_FUNC_ADDR(ReplaceDialog_SetPosition)
-    MySyscall(pReplaceDialog_SetPosition, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pReplaceDialog_SetPosition, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ReplaceDialog_GetTop)
@@ -81901,9 +81901,9 @@ ragObject_GetDragPos(TDragObject AObj) {
 
 DEFINE_FUNC_PTR(DragObject_SetDragPos)
 void
-ragObject_SetDragPos(TDragObject AObj, TPoint* AValue) {
+ragObject_SetDragPos(TDragObject AObj, TPoint AValue) {
     GET_FUNC_ADDR(DragObject_SetDragPos)
-    MySyscall(pDragObject_SetDragPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDragObject_SetDragPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DragObject_GetDragTarget)
@@ -81931,9 +81931,9 @@ ragObject_GetDragTargetPos(TDragObject AObj) {
 
 DEFINE_FUNC_PTR(DragObject_SetDragTargetPos)
 void
-ragObject_SetDragTargetPos(TDragObject AObj, TPoint* AValue) {
+ragObject_SetDragTargetPos(TDragObject AObj, TPoint AValue) {
     GET_FUNC_ADDR(DragObject_SetDragTargetPos)
-    MySyscall(pDragObject_SetDragTargetPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDragObject_SetDragTargetPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DragObject_GetDropped)
@@ -82047,9 +82047,9 @@ ragDockObject_GetDockRect(TDragDockObject AObj) {
 
 DEFINE_FUNC_PTR(DragDockObject_SetDockRect)
 void
-ragDockObject_SetDockRect(TDragDockObject AObj, TRect* AValue) {
+ragDockObject_SetDockRect(TDragDockObject AObj, TRect AValue) {
     GET_FUNC_ADDR(DragDockObject_SetDockRect)
-    MySyscall(pDragDockObject_SetDockRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDragDockObject_SetDockRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DragDockObject_GetDropAlign)
@@ -82077,9 +82077,9 @@ ragDockObject_GetEraseDockRect(TDragDockObject AObj) {
 
 DEFINE_FUNC_PTR(DragDockObject_SetEraseDockRect)
 void
-ragDockObject_SetEraseDockRect(TDragDockObject AObj, TRect* AValue) {
+ragDockObject_SetEraseDockRect(TDragDockObject AObj, TRect AValue) {
     GET_FUNC_ADDR(DragDockObject_SetEraseDockRect)
-    MySyscall(pDragDockObject_SetEraseDockRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDragDockObject_SetEraseDockRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DragDockObject_GetFloating)
@@ -82135,9 +82135,9 @@ ragDockObject_GetDragPos(TDragDockObject AObj) {
 
 DEFINE_FUNC_PTR(DragDockObject_SetDragPos)
 void
-ragDockObject_SetDragPos(TDragDockObject AObj, TPoint* AValue) {
+ragDockObject_SetDragPos(TDragDockObject AObj, TPoint AValue) {
     GET_FUNC_ADDR(DragDockObject_SetDragPos)
-    MySyscall(pDragDockObject_SetDragPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDragDockObject_SetDragPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DragDockObject_GetDragTarget)
@@ -82165,9 +82165,9 @@ ragDockObject_GetDragTargetPos(TDragDockObject AObj) {
 
 DEFINE_FUNC_PTR(DragDockObject_SetDragTargetPos)
 void
-ragDockObject_SetDragTargetPos(TDragDockObject AObj, TPoint* AValue) {
+ragDockObject_SetDragTargetPos(TDragDockObject AObj, TPoint AValue) {
     GET_FUNC_ADDR(DragDockObject_SetDragTargetPos)
-    MySyscall(pDragDockObject_SetDragTargetPos, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDragDockObject_SetDragTargetPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DragDockObject_GetDropped)
@@ -84222,9 +84222,9 @@ StringGrid_GetSelection(TStringGrid AObj) {
 
 DEFINE_FUNC_PTR(StringGrid_SetSelection)
 void
-StringGrid_SetSelection(TStringGrid AObj, TGridRect* AValue) {
+StringGrid_SetSelection(TStringGrid AObj, TGridRect AValue) {
     GET_FUNC_ADDR(StringGrid_SetSelection)
-    MySyscall(pStringGrid_SetSelection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetSelection, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_GetRow)
@@ -84385,9 +84385,9 @@ StringGrid_GetBoundsRect(TStringGrid AObj) {
 
 DEFINE_FUNC_PTR(StringGrid_SetBoundsRect)
 void
-StringGrid_SetBoundsRect(TStringGrid AObj, TRect* AValue) {
+StringGrid_SetBoundsRect(TStringGrid AObj, TRect AValue) {
     GET_FUNC_ADDR(StringGrid_SetBoundsRect)
-    MySyscall(pStringGrid_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_GetClientHeight)
@@ -86050,9 +86050,9 @@ rawGrid_GetSelection(TDrawGrid AObj) {
 
 DEFINE_FUNC_PTR(DrawGrid_SetSelection)
 void
-rawGrid_SetSelection(TDrawGrid AObj, TGridRect* AValue) {
+rawGrid_SetSelection(TDrawGrid AObj, TGridRect AValue) {
     GET_FUNC_ADDR(DrawGrid_SetSelection)
-    MySyscall(pDrawGrid_SetSelection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetSelection, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_GetRow)
@@ -86213,9 +86213,9 @@ rawGrid_GetBoundsRect(TDrawGrid AObj) {
 
 DEFINE_FUNC_PTR(DrawGrid_SetBoundsRect)
 void
-rawGrid_SetBoundsRect(TDrawGrid AObj, TRect* AValue) {
+rawGrid_SetBoundsRect(TDrawGrid AObj, TRect AValue) {
     GET_FUNC_ADDR(DrawGrid_SetBoundsRect)
-    MySyscall(pDrawGrid_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_GetClientHeight)
@@ -87822,9 +87822,9 @@ ValueListEditor_GetSelection(TValueListEditor AObj) {
 
 DEFINE_FUNC_PTR(ValueListEditor_SetSelection)
 void
-ValueListEditor_SetSelection(TValueListEditor AObj, TGridRect* AValue) {
+ValueListEditor_SetSelection(TValueListEditor AObj, TGridRect AValue) {
     GET_FUNC_ADDR(ValueListEditor_SetSelection)
-    MySyscall(pValueListEditor_SetSelection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetSelection, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_GetRow)
@@ -87985,9 +87985,9 @@ ValueListEditor_GetBoundsRect(TValueListEditor AObj) {
 
 DEFINE_FUNC_PTR(ValueListEditor_SetBoundsRect)
 void
-ValueListEditor_SetBoundsRect(TValueListEditor AObj, TRect* AValue) {
+ValueListEditor_SetBoundsRect(TValueListEditor AObj, TRect AValue) {
     GET_FUNC_ADDR(ValueListEditor_SetBoundsRect)
-    MySyscall(pValueListEditor_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_GetClientHeight)
@@ -89394,9 +89394,9 @@ HeaderControl_GetBoundsRect(THeaderControl AObj) {
 
 DEFINE_FUNC_PTR(HeaderControl_SetBoundsRect)
 void
-HeaderControl_SetBoundsRect(THeaderControl AObj, TRect* AValue) {
+HeaderControl_SetBoundsRect(THeaderControl AObj, TRect AValue) {
     GET_FUNC_ADDR(HeaderControl_SetBoundsRect)
-    MySyscall(pHeaderControl_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_GetClientHeight)
@@ -91437,9 +91437,9 @@ LabeledEdit_GetBoundsRect(TLabeledEdit AObj) {
 
 DEFINE_FUNC_PTR(LabeledEdit_SetBoundsRect)
 void
-LabeledEdit_SetBoundsRect(TLabeledEdit AObj, TRect* AValue) {
+LabeledEdit_SetBoundsRect(TLabeledEdit AObj, TRect AValue) {
     GET_FUNC_ADDR(LabeledEdit_SetBoundsRect)
-    MySyscall(pLabeledEdit_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_GetClientHeight)
@@ -92531,9 +92531,9 @@ BoundLabel_GetBoundsRect(TBoundLabel AObj) {
 
 DEFINE_FUNC_PTR(BoundLabel_SetBoundsRect)
 void
-BoundLabel_SetBoundsRect(TBoundLabel AObj, TRect* AValue) {
+BoundLabel_SetBoundsRect(TBoundLabel AObj, TRect AValue) {
     GET_FUNC_ADDR(BoundLabel_SetBoundsRect)
-    MySyscall(pBoundLabel_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_GetClientHeight)
@@ -93996,9 +93996,9 @@ FlowPanel_GetBoundsRect(TFlowPanel AObj) {
 
 DEFINE_FUNC_PTR(FlowPanel_SetBoundsRect)
 void
-FlowPanel_SetBoundsRect(TFlowPanel AObj, TRect* AValue) {
+FlowPanel_SetBoundsRect(TFlowPanel AObj, TRect AValue) {
     GET_FUNC_ADDR(FlowPanel_SetBoundsRect)
-    MySyscall(pFlowPanel_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_GetClientHeight)
@@ -95545,9 +95545,9 @@ CoolBar_GetBoundsRect(TCoolBar AObj) {
 
 DEFINE_FUNC_PTR(CoolBar_SetBoundsRect)
 void
-CoolBar_SetBoundsRect(TCoolBar AObj, TRect* AValue) {
+CoolBar_SetBoundsRect(TCoolBar AObj, TRect AValue) {
     GET_FUNC_ADDR(CoolBar_SetBoundsRect)
-    MySyscall(pCoolBar_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_GetClientHeight)
@@ -99156,9 +99156,9 @@ ComboBoxEx_GetBoundsRect(TComboBoxEx AObj) {
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetBoundsRect)
 void
-ComboBoxEx_SetBoundsRect(TComboBoxEx AObj, TRect* AValue) {
+ComboBoxEx_SetBoundsRect(TComboBoxEx AObj, TRect AValue) {
     GET_FUNC_ADDR(ComboBoxEx_SetBoundsRect)
-    MySyscall(pComboBoxEx_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_GetClientHeight)
@@ -100968,9 +100968,9 @@ Frame_GetBoundsRect(TFrame AObj) {
 
 DEFINE_FUNC_PTR(Frame_SetBoundsRect)
 void
-Frame_SetBoundsRect(TFrame AObj, TRect* AValue) {
+Frame_SetBoundsRect(TFrame AObj, TRect AValue) {
     GET_FUNC_ADDR(Frame_SetBoundsRect)
-    MySyscall(pFrame_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_GetClientHeight)
@@ -102395,9 +102395,9 @@ XButton_GetBoundsRect(TXButton AObj) {
 
 DEFINE_FUNC_PTR(XButton_SetBoundsRect)
 void
-XButton_SetBoundsRect(TXButton AObj, TRect* AValue) {
+XButton_SetBoundsRect(TXButton AObj, TRect AValue) {
     GET_FUNC_ADDR(XButton_SetBoundsRect)
-    MySyscall(pXButton_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_GetClientHeight)
@@ -104461,9 +104461,9 @@ CheckGroup_GetBoundsRect(TCheckGroup AObj) {
 
 DEFINE_FUNC_PTR(CheckGroup_SetBoundsRect)
 void
-CheckGroup_SetBoundsRect(TCheckGroup AObj, TRect* AValue) {
+CheckGroup_SetBoundsRect(TCheckGroup AObj, TRect AValue) {
     GET_FUNC_ADDR(CheckGroup_SetBoundsRect)
-    MySyscall(pCheckGroup_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_GetClientOrigin)
@@ -105870,9 +105870,9 @@ ToggleBox_GetBoundsRect(TToggleBox AObj) {
 
 DEFINE_FUNC_PTR(ToggleBox_SetBoundsRect)
 void
-ToggleBox_SetBoundsRect(TToggleBox AObj, TRect* AValue) {
+ToggleBox_SetBoundsRect(TToggleBox AObj, TRect AValue) {
     GET_FUNC_ADDR(ToggleBox_SetBoundsRect)
-    MySyscall(pToggleBox_SetBoundsRect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_GetClientHeight)

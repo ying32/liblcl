@@ -1064,6 +1064,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure MonthCalendar_SetBoundsRect(AObj: TMonthCalendar; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

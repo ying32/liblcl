@@ -1156,6 +1156,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure BitBtn_SetBoundsRect(AObj: TBitBtn; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

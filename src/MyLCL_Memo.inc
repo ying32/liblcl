@@ -1193,6 +1193,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Memo_SetCaretPos(AObj: TMemo; var AValue: TPoint); extdecl;
 begin
   handleExceptionBegin
@@ -1404,6 +1405,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Memo_SetBoundsRect(AObj: TMemo; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

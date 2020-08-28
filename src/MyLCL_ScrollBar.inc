@@ -1060,6 +1060,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure ScrollBar_SetBoundsRect(AObj: TScrollBar; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

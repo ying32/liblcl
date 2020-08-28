@@ -152,6 +152,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure MemoryStream_SetPosition(AObj: TMemoryStream; var AValue: Int64); extdecl;
 begin
   handleExceptionBegin
@@ -167,6 +168,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure MemoryStream_SetSize(AObj: TMemoryStream; var AValue: Int64); extdecl;
 begin
   handleExceptionBegin

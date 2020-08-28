@@ -1100,6 +1100,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Button_SetBoundsRect(AObj: TButton; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

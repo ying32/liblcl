@@ -839,6 +839,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Image_SetBoundsRect(AObj: TImage; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin

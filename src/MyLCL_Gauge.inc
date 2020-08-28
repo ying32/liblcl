@@ -739,6 +739,7 @@ begin
   handleExceptionEnd
 end;
 
+//PARAMS:2=nonPtr
 procedure Gauge_SetBoundsRect(AObj: TGauge; var AValue: TRect); extdecl;
 begin
   handleExceptionBegin
