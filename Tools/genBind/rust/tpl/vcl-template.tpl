@@ -49,13 +49,21 @@ pub struct {{$el.ClassName}}(usize, bool);
 
 {{define "memoryStreamMethods"}}
 ##
+	  pub fn Write<T>(&self, buffer: *const T, count: i32) -> i32  {
+        return method_Call_1!(MemoryStream_Write, self.0, buffer as usize, count);
+      }
+##
+      pub fn Read<T>(&self, buffer: *const T, count: i32) -> i32  {
+        return method_Call_1!(MemoryStream_Read, self.0, buffer as usize, count);
+      }
+##
       pub fn WriteByte(&self, value: i8) -> i32 {
-          return self.Write(&value as *const i8 as usize, 1);
+          return self.Write(&value as *const i8, 1);
       }
 ##
       pub fn ReadByte(&self) -> i8 {
           let value: i8 = 0;
-          self.Read(&value as *const i8 as usize, 1);
+          self.Read(&value as *const i8, 1);
           return value;
       }
 ##
@@ -63,16 +71,15 @@ pub struct {{$el.ClassName}}(usize, bool);
           if data.len() == 0 {
               return 0
           }
-          return self.Write(&data[0] as *const T as usize, (std::mem::size_of::<T>() * data.len()) as i32);
+          return self.Write(data.as_ptr(), (std::mem::size_of::<T>() * data.len()) as i32);
       }
 ##
       pub fn ReadArray<T>(&self, data: &[T]) -> i32 {
         if data.len() == 0 {
             return 0
         }
-        return self.Read(&data[0] as *const T as usize, (std::mem::size_of::<T>() * data.len()) as i32);
+        return self.Read(data.as_ptr(), (std::mem::size_of::<T>() * data.len()) as i32);
       }
-##
 {{end}}
 
 /* 开始实现接口 */
@@ -139,7 +146,7 @@ impl {{$className}} {
 ##
       {{else}}
           {{if not $mm.IsStatic}}
-              {{if inStrArray $mm.RealName "------------"}}
+              {{if inStrArray $mm.Name "MemoryStream_Read" "MemoryStream_Write"}}
 
 			  {{else}}
 
