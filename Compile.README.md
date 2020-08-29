@@ -13,7 +13,7 @@ liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、M
 编译步骤：  
 
 * 1、下载并安装对应平台的[Lazarus](https://www.lazarus-ide.org/index.php?page=downloads)。
-* 2、安装所需要的[第三方控件](src/3rd-party/README.md)。
+* 2、（已经预安装）安装所需要的[第三方控件](src/3rd-party/README.md)。
 * 3、双击liblcl.lpi  
 * 4、菜单->Project->Project Options -> Compiler Options -> Build modes 切换相关编环模式，当前有效模式为以下几种种：   
    * Win32  

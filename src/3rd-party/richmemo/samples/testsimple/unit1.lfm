@@ -1,0 +1,197 @@
+object Form1: TForm1
+  Left = 281
+  Height = 483
+  Top = 198
+  Width = 634
+  ActiveControl = RichMemo1
+  Caption = 'Form1'
+  ClientHeight = 483
+  ClientWidth = 634
+  OnCreate = FormCreate
+  LCLVersion = '2.0.8.0'
+  object RichMemo1: TRichMemo
+    Left = 15
+    Height = 288
+    Top = 72
+    Width = 609
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    HideSelection = False
+    Lines.Strings = (
+      'RichMemo1'
+    )
+    OnChange = RichMemo1Change
+    OnKeyUp = RichMemo1KeyUp
+    OnMouseUp = RichMemo1MouseUp
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 0
+    ZoomFactor = 1
+  end
+  object Button1: TButton
+    Left = 15
+    Height = 25
+    Top = 368
+    Width = 160
+    Anchors = [akLeft, akBottom]
+    Caption = 'Make Bold and Red'
+    OnClick = Button1Click
+    TabOrder = 1
+    TabStop = False
+  end
+  object Button2: TButton
+    Left = 192
+    Height = 25
+    Top = 368
+    Width = 97
+    Anchors = [akLeft, akBottom]
+    Caption = 'Get Attribs'
+    OnClick = Button2Click
+    TabOrder = 2
+    TabStop = False
+  end
+  object Button3: TButton
+    Left = 304
+    Height = 25
+    Top = 368
+    Width = 96
+    Anchors = [akLeft, akBottom]
+    Caption = 'Select Font'
+    OnClick = Button3Click
+    TabOrder = 3
+    TabStop = False
+  end
+  object Button4: TButton
+    Left = 528
+    Height = 25
+    Top = 368
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = 'Save RTF'
+    OnClick = Button4Click
+    TabOrder = 4
+    TabStop = False
+  end
+  object Button5: TButton
+    Left = 440
+    Height = 25
+    Top = 368
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = 'Load RTF'
+    OnClick = Button5Click
+    TabOrder = 5
+    TabStop = False
+  end
+  object Button6: TButton
+    Left = 16
+    Height = 25
+    Top = 400
+    Width = 160
+    Anchors = [akLeft, akBottom]
+    Caption = 'Next Style Range'
+    OnClick = Button6Click
+    TabOrder = 6
+    TabStop = False
+  end
+  object Button7: TButton
+    Left = 15
+    Height = 25
+    Top = 16
+    Width = 51
+    Caption = 'Left'
+    OnClick = Button7Click
+    TabOrder = 7
+  end
+  object Button8: TButton
+    Left = 72
+    Height = 25
+    Top = 16
+    Width = 53
+    Caption = 'Center'
+    OnClick = Button8Click
+    TabOrder = 8
+  end
+  object Button9: TButton
+    Left = 131
+    Height = 25
+    Top = 16
+    Width = 53
+    Caption = 'Right'
+    OnClick = Button9Click
+    TabOrder = 9
+  end
+  object Button10: TButton
+    Left = 192
+    Height = 25
+    Top = 16
+    Width = 53
+    Caption = 'Justify'
+    OnClick = Button10Click
+    TabOrder = 10
+  end
+  object StartIdent: TFloatSpinEdit
+    Left = 344
+    Height = 25
+    Top = 18
+    Width = 78
+    MinValue = -100
+    OnChange = StartIdentChange
+    TabOrder = 11
+    Value = 0
+  end
+  object Label1: TLabel
+    Left = 304
+    Height = 17
+    Top = 18
+    Width = 31
+    Caption = 'Start '
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 304
+    Height = 17
+    Top = 48
+    Width = 35
+    Caption = 'Offset'
+    ParentColor = False
+  end
+  object OffsetIdent: TFloatSpinEdit
+    Left = 344
+    Height = 25
+    Top = 46
+    Width = 78
+    MinValue = -100
+    OnChange = StartIdentChange
+    TabOrder = 12
+    Value = 0
+  end
+  object Label3: TLabel
+    Left = 16
+    Height = 17
+    Top = 434
+    Width = 38
+    Caption = 'Label3'
+    ParentColor = False
+  end
+  object FontDialog1: TFontDialog
+    MinFontSize = 0
+    MaxFontSize = 0
+    left = 352
+    top = 389
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.rtf'
+    Filter = 'RichText file (*.rtf)|*.rtf'
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
+    left = 280
+    top = 389
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '.rtf'
+    Filter = 'RichText file (*.rtf)|*.rtf'
+    left = 208
+    top = 389
+  end
+end

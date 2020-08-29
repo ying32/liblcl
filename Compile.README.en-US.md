@@ -12,7 +12,7 @@ The liblcl project source code is located in the "liblcl/src" directory. `liblcl
 Compile steps:    
 
 * 1. Download and install [Lazarus](https://www.lazarus-ide.org/index.php?page=downloads) of the corresponding platform.
-* 2. [Third Party Control](src/3rd-party/README.en-US.md) required for installation.
+* 2. (Pre-installed) [Third Party Control](src/3rd-party/README.en-US.md) required for installation.
 * 3. double-click liblcl.lpi.  
 * 4. Menu -> Project -> Project Options -> Compiler Options -> Build modes Switch the relevant ring mode. The current valid mode is as follows:  
    * Win32  
