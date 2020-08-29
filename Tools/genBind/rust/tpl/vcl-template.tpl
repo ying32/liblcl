@@ -47,6 +47,34 @@ pub struct {{$el.ClassName}}(usize, bool);
 {{/*模板定义*/}}
 {{define "getlastPs"}}{{if .LastIsReturn}} -> {{$ps := lastParam .Params}}{{covType $ps.Type}}{{end}}{{end}}
 
+{{define "memoryStreamMethods"}}
+##
+      pub fn WriteByte(&self, value: i8) -> i32 {
+          return self.Write(&value as *const i8 as usize, 1);
+      }
+##
+      pub fn ReadByte(&self) -> i8 {
+          let value: i8 = 0;
+          self.Read(&value as *const i8 as usize, 1);
+          return value;
+      }
+##
+      pub fn WriteArray<T>(&self, data: &[T]) -> i32 {
+          if data.len() == 0 {
+              return 0
+          }
+          return self.Write(&data[0] as *const T as usize, (std::mem::size_of::<T>() * data.len()) as i32);
+      }
+##
+      pub fn ReadArray<T>(&self, data: &[T]) -> i32 {
+        if data.len() == 0 {
+            return 0
+        }
+        return self.Read(&data[0] as *const T as usize, (std::mem::size_of::<T>() * data.len()) as i32);
+      }
+##
+{{end}}
+
 /* 开始实现接口 */
 {{range $el := .Objects}}
 {{$className := $el.ClassName}}
@@ -295,6 +323,10 @@ impl {{$className}} {
 ##
       // static class
 	  impl_Class_method!({{$mm.Name}});
+##
+      {{if eq $className "TMemoryStream"}}
+      {{template "memoryStreamMethods" .}}
+      {{end}}
 
            {{end}}
       {{end}}
