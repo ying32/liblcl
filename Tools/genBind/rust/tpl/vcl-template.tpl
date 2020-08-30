@@ -165,11 +165,11 @@ impl {{$className}} {
                   {{end}}
 				  
 				  {{if $mm.IsSetEvent}}
-				      {{$buff.Write "<T>"}}
+				      {{$buff.Write "<T,T2>"}}
 				  {{end}}
                   {{$buff.Write "(&self"}}
 				  {{if $mm.IsSetEvent}}
-				      {{$buff.Write ", aSelfId: usize"}}
+				      {{$buff.Write ", aSelfId: &T"}}
 				  {{end}}
 
                   {{range $idx, $ps := $mm.Params}}
@@ -193,7 +193,7 @@ impl {{$className}} {
                               {{end}}
                               {{covType2 (getIntfName $ps.Type)|$buff.Write}}
 							  {{if $mm.IsSetEvent}}
-				                   {{$buff.Write "<T>"}}
+				                   {{$buff.Write "<T2>"}}
 				              {{end}}
                           {{end}}
                       {{end}}
