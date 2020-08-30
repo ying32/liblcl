@@ -319,9 +319,9 @@ void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
     for (i = 0; i < len; i++) {
         
 #ifdef _WIN32
-        char *filename = UTF8Decode(GetStringArrOf(aFileNames, i));
+        char *filename = UTF8Decode(GetFPStringArrayMember(aFileNames, i));
 #else
-        char *filename = GetStringArrOf(aFileNames, i);
+        char *filename = GetFPStringArrayMember(aFileNames, i);
 #endif
         printf("file[%d]=%s\n", i+1, filename);
 #ifdef _WIN32

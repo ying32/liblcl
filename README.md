@@ -321,15 +321,15 @@ void onButton1Click(TObject sender) {
 void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
     printf("aFileNames: %p, len=%d\n", aFileNames, len);
     intptr_t i;
-    // GetStringArrOf 为一个从Lazarus的string数组中获取成员的函数。
+    // GetFPStringArrayMember 为一个从Lazarus的string数组中获取成员的函数。
     for (i = 0; i < len; i++) {
         
 #ifdef _WIN32
         // 由于liblcl使用的是UTF-8编码，所以获取或者传入的在Windows下都要经过UTF-8编/解码 
-        char *filename = UTF8Decode(GetStringArrOf(aFileNames, i));
+        char *filename = UTF8Decode(GetFPStringArrayMember(aFileNames, i));
 #else
         // Linux与macOS默认都是UTF-8，则无需编/解码
-        char *filename = GetStringArrOf(aFileNames, i);
+        char *filename = GetFPStringArrayMember(aFileNames, i);
 #endif
         printf("file[%d]=%s\n", i+1, filename);
 #ifdef _WIN32
