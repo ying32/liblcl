@@ -24,8 +24,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
-      <RevisionNr Value="3"/>
-      <StringTable Comments="Golang Binding LCL for Windows" CompanyName="ying32" FileDescription="Golang Binding LCL for Windows" InternalName="golcl" LegalCopyright="Copyright ying32 All...." OriginalFilename="liblcl.dll" ProductName="golcl" ProductVersion="2.0.0.0"/>
+      <RevisionNr Value="7"/>
+      <StringTable Comments="LCL for Windows" CompanyName="ying32" FileDescription="LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright ying32" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="2.0.7.0"/>
     </VersionInfo>
     <MacroValues Count="1">
       <Macro3 Name="LCLWidgetType" Value="win32"/>
@@ -66,7 +66,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="18">
+    <Units Count="20">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -151,6 +151,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uGauge"/>
       </Unit17>
+      <Unit18>
+        <Filename Value="uexport3.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uExport3"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="uexport4.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uExport4"/>
+      </Unit19>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -172,6 +182,7 @@
       <Optimizations>
         <OptimizationLevel Value="4"/>
       </Optimizations>
+      <SmallerCode Value="True"/>
     </CodeGeneration>
     <Linking>
       <Debugging>

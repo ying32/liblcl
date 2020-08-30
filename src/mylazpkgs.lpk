@@ -46,7 +46,7 @@
       <Item8>
         <Filename Value="uregcomponents.pas"/>
         <HasRegisterProc Value="True"/>
-        <UnitName Value="uregcomponents"/>
+        <UnitName Value="uRegComponents"/>
       </Item8>
     </Files>
     <RequiredPkgs Count="2">
@@ -64,5 +64,8 @@
       <Version Value="2"/>
       <UseFileFilters Value="True"/>
     </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
   </Package>
 </CONFIG>
