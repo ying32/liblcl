@@ -208,16 +208,16 @@
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
         <TopLine Value="34"/>
-        <CursorPos X="20" Y="51"/>
+        <CursorPos X="18" Y="10"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="uEventCallback.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="236"/>
-        <CursorPos X="57" Y="246"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="942"/>
+        <CursorPos X="20" Y="951"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -258,9 +258,10 @@
       <Unit6>
         <Filename Value="uMiniWebview.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="26" Y="17"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="25" Y="12"/>
         <UsageCount Value="184"/>
+        <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="ucontrolpatchs.pas"/>
@@ -309,7 +310,7 @@
       <Unit12>
         <Filename Value="uFormDesignerFile.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="22"/>
         <CursorPos X="12" Y="22"/>
         <UsageCount Value="117"/>
@@ -333,10 +334,10 @@
       <Unit15>
         <Filename Value="UseAll.inc"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <CursorPos X="10" Y="44"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="10" Y="12"/>
         <UsageCount Value="109"/>
+        <Loaded Value="True"/>
       </Unit15>
       <Unit16>
         <Filename Value="uexceptionhandle.pas"/>
@@ -961,11 +962,9 @@
       </Unit102>
       <Unit103>
         <Filename Value="LazarusDef.inc"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="22" Y="20"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="56"/>
         <UsageCount Value="101"/>
-        <Loaded Value="True"/>
       </Unit103>
       <Unit104>
         <Filename Value="MyLCL_ColorDialog.inc"/>
@@ -1032,7 +1031,7 @@
       </Unit112>
       <Unit113>
         <Filename Value="ExtDecl.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="6"/>
         <CursorPos X="28" Y="16"/>
         <UsageCount Value="30"/>
@@ -1669,8 +1668,8 @@
         <Filename Value="F:\lazarus\components\lazutils\lazutf8.pas"/>
         <UnitName Value="LazUTF8"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="180"/>
-        <CursorPos X="44" Y="199"/>
+        <TopLine Value="179"/>
+        <CursorPos X="21" Y="197"/>
         <UsageCount Value="10"/>
       </Unit205>
       <Unit206>
@@ -2049,10 +2048,12 @@
       </Unit259>
       <Unit260>
         <Filename Value="MiniWebviewWin.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1089"/>
-        <CursorPos X="41" Y="1102"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="498"/>
+        <CursorPos X="23" Y="517"/>
         <UsageCount Value="18"/>
+        <Loaded Value="True"/>
       </Unit260>
       <Unit261>
         <Filename Value="F:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysstrh.inc"/>
@@ -2082,9 +2083,9 @@
       <Unit265>
         <Filename Value="WebJSExternal_TLB.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="49"/>
-        <CursorPos X="24" Y="67"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="56"/>
+        <CursorPos X="3" Y="73"/>
+        <UsageCount Value="10"/>
       </Unit265>
       <Unit266>
         <Filename Value="MyLCL_TaskDialog.inc"/>
@@ -2994,11 +2995,10 @@
       </Unit393>
       <Unit394>
         <Filename Value="F:\lazarus\fpc\3.2.0\source\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1053"/>
         <CursorPos X="44" Y="1071"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit394>
       <Unit395>
         <Filename Value="F:\lazarus\fpc\3.2.0\source\rtl\objpas\classes\classes.inc"/>
@@ -3332,31 +3332,63 @@
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="41" Column="14" TopLine="21"/>
+        <Filename Value="uFormDesignerFile.pas"/>
+        <Caret Line="23" Column="12"/>
       </Position1>
       <Position2>
         <Filename Value="liblcl.lpr"/>
-        <Caret Line="33" Column="2" TopLine="21"/>
+        <Caret Line="51" Column="20" TopLine="34"/>
       </Position2>
       <Position3>
-        <Filename Value="uFormDesignerFile.pas"/>
-        <Caret Line="23" Column="12"/>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="12" Column="2"/>
       </Position3>
       <Position4>
-        <Filename Value="LazarusDef.inc"/>
-        <Caret Line="1245" Column="24" TopLine="1217"/>
+        <Filename Value="uMiniWebview.pas"/>
+        <Caret Line="12" Column="14"/>
       </Position4>
       <Position5>
-        <Filename Value="LazarusDef.inc"/>
-        <Caret Line="233" Column="10" TopLine="215"/>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="10" Column="18" TopLine="11"/>
       </Position5>
       <Position6>
         <Filename Value="liblcl.lpr"/>
-        <Caret Line="51" Column="20" TopLine="34"/>
+        <Caret Line="10" Column="18" TopLine="34"/>
       </Position6>
+      <Position7>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="246" Column="57" TopLine="236"/>
+      </Position7>
+      <Position8>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="176" Column="36" TopLine="160"/>
+      </Position8>
+      <Position9>
+        <Filename Value="uMiniWebview.pas"/>
+        <Caret Line="12" Column="25"/>
+      </Position9>
+      <Position10>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="955" Column="71" TopLine="942"/>
+      </Position10>
+      <Position11>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="176" Column="36" TopLine="160"/>
+      </Position11>
+      <Position12>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="951" Column="20" TopLine="942"/>
+      </Position12>
+      <Position13>
+        <Filename Value="MiniWebviewWin.inc"/>
+        <Caret Line="514" Column="73" TopLine="495"/>
+      </Position13>
+      <Position14>
+        <Filename Value="MiniWebviewWin.inc"/>
+        <Caret Line="289" Column="14" TopLine="271"/>
+      </Position14>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

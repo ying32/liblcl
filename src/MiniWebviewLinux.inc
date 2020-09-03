@@ -30,7 +30,7 @@ type
    TWebTitleChangeEvent = procedure(Sender: TObject; const AText: string) of object;
    TWebDocumentCompleteEvent = procedure(Sender: TObject; const pDisp: Pointer; const AURL: string) of object;
    TWebWindowClosingEvent = procedure(Sender: TObject; AIsChildWindow: Boolean; var ACancel: Boolean) of object;
-   TWebJSExternalEvent = procedure(Sender: TObject; const AFunc: string; const AArgs: WideString; var ARetval: WideString) of object;
+   TWebJSExternalEvent = procedure(Sender: TObject; const AFunc: string; const AArgs: string; var ARetval: string) of object;
 
    { TMiniWebview }
 

@@ -65,7 +65,7 @@ type
   TWebTitleChangeEvent = procedure(Sender: TObject; const AText: string) of object;
   TWebDocumentCompleteEvent = procedure(Sender: TObject; const pDisp: Pointer; const AURL: string) of object;
   TWebWindowClosingEvent = procedure(Sender: TObject; AIsChildWindow: Boolean; var ACancel: Boolean) of object;
-  TWebJSExternalEvent = procedure(Sender: TObject; const AFunc: string; const AArgs: WideString; var ARetval: WideString) of object;
+  TWebJSExternalEvent = procedure(Sender: TObject; const AFunc: string; const AArgs: string; var ARetval: string) of object;
 
   
 // *********************************************************************//
@@ -506,11 +506,16 @@ begin
 end;
 
 function TJsExternal.JSExternal(const func: WideString; const args: WideString): WideString; safecall;
+var
+  LResult: string;
 begin
   Result := EmptyWideStr;
-
   if Assigned(FWebForm) and Assigned(TMiniWebview(FWebForm).OnJSExternal) then
-    TMiniWebview(FWebForm).OnJSExternal(FWebForm, func, args, Result);
+  begin
+    LResult := '';
+    TMiniWebview(FWebForm).OnJSExternal(FWebForm, AnsiString(func), AnsiString(args), LResult);
+    Result := widestring(LResult);
+  end;
 end;
 
 { TMiniWebview }

@@ -173,7 +173,7 @@ type
     class procedure OnTMenuMeasureItemEvent_OnMeasureItem(Sender: TObject; ACanvas: TCanvas; var Width, Height: Integer);
     class procedure OnTTabChangingEvent_OnChanging(Sender: TObject; var AllowChange: Boolean);
     class procedure OnTWebTitleChangeEvent_OnTitleChange(Sender: TObject; const Text: string);
-    class procedure OnTWebJSExternalEvent_OnJSExternal(Sender: TObject; const Afunc: string; const AArgs: WideString; var ARetval: WideString);
+    class procedure OnTWebJSExternalEvent_OnJSExternal(Sender: TObject; const Afunc: string; const AArgs: string; var ARetval: string);
 
     class procedure OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol, ARow: Longint; ARect: TRect; State: TGridDrawState);
     class procedure OnTGetEditEvent_OnGetEditMask(Sender: TObject; ACol, ARow: Integer; var Value: string);
@@ -942,13 +942,13 @@ begin
 end;
 
 class procedure TEventClass.OnTWebJSExternalEvent_OnJSExternal(Sender: TObject;
-  const Afunc: string; const AArgs: WideString; var ARetval: WideString);
+  const Afunc: string; const AArgs: string; var ARetval: string);
 var
   LRet: PChar;
 begin
   LRet := PChar(ARetval);
   SendEvent(Sender, @TEventClass.OnTWebJSExternalEvent_OnJSExternal, [Sender, PChar(Afunc), PChar(AArgs), @LRet]);
-  ARetval := WideString(LRet);
+  ARetval := string(LRet);
 end;
 
 class procedure TEventClass.OnTGridOperationEvent_OnColRowMoved(Sender: TObject; IsColumn: Boolean;
