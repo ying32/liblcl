@@ -27,10 +27,8 @@ pub trait IStrings: IObject {}
 pub trait IStream: IObject {}
 pub trait IForm: IWinControl {}
 pub trait IGraphic: IObject {}
-
-pub trait ISId{
-    fn getSId(&self) -> usize;
-}
+ 
+##
 pub trait IApplication {
     fn run(&self);
 }
@@ -341,7 +339,7 @@ impl {{$className}} {
 }
 ##
 impl_IObject!({{$className}});
-
+//impl_Object_Convert!({{$className}});
 
 
 {{if $el.IsComponent}}
@@ -408,6 +406,6 @@ fn getApplication() -> TApplication {
 ##
 lazy_static! {
 {{range $el := .InstanceObjects}}
-    pub static ref {{$el.Name}}: {{$el.Type}} = {{if eq $el.Name "Application"}}getApplication(){{else}}{{$el.Type}}::As(unsafe { {{$el.InstanceFunc}}() }){{end}};
+    pub static ref {{$el.Name}}: {{$el.Type}} = {{if eq $el.Name "Application"}}getApplication(){{else}}{{$el.Type}}::from(unsafe { {{$el.InstanceFunc}}() }){{end}};
 {{end}}
 }
