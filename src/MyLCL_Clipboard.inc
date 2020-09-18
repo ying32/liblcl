@@ -38,14 +38,6 @@ begin
 end;
 
 //CLASSMETHOD:
-function Clipboard_GetAsHtml(AObj: TClipboard; ExtractFragmentOnly: LongBool): PChar; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  PChar(AObj.GetAsHtml(ExtractFragmentOnly));
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
 procedure Clipboard_SupportedFormats(AObj: TClipboard; List: TStrings); extdecl;
 begin
   handleExceptionBegin
@@ -78,6 +70,14 @@ begin
 end;
 
 //CLASSMETHOD:
+function Clipboard_GetFormat(AObj: TClipboard; FormatID: TClipboardFormat; Stream: TStream): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetFormat(FormatID, Stream);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Clipboard_Assign(AObj: TClipboard; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -106,14 +106,6 @@ procedure Clipboard_Open(AObj: TClipboard); extdecl;
 begin
   handleExceptionBegin
   AObj.Open;
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-function Clipboard_GetTextBuf(AObj: TClipboard; Buffer: PChar; BufSize: Integer): Integer; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
 end;
 
@@ -189,20 +181,6 @@ begin
   handleExceptionEnd
 end;
 
-function Clipboard_GetAsText(AObj: TClipboard): PChar; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  PChar(AObj.AsText);
-  handleExceptionEnd
-end;
-
-procedure Clipboard_SetAsText(AObj: TClipboard; AValue: PChar); extdecl;
-begin
-  handleExceptionBegin
-  AObj.AsText := AValue;
-  handleExceptionEnd
-end;
-
 function Clipboard_GetFormatCount(AObj: TClipboard): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -227,16 +205,15 @@ exports
   Clipboard_Free,
   Clipboard_FindPictureFormatID,
   Clipboard_FindFormatID,
-  Clipboard_GetAsHtml,
   Clipboard_SupportedFormats,
   Clipboard_HasFormatName,
   Clipboard_HasPictureFormat,
   Clipboard_SetAsHtml,
+  Clipboard_GetFormat,
   Clipboard_Assign,
   Clipboard_Clear,
   Clipboard_Close,
   Clipboard_Open,
-  Clipboard_GetTextBuf,
   Clipboard_SetTextBuf,
   Clipboard_GetNamePath,
   Clipboard_ClassType,
@@ -246,8 +223,6 @@ exports
   Clipboard_Equals,
   Clipboard_GetHashCode,
   Clipboard_ToString,
-  Clipboard_GetAsText,
-  Clipboard_SetAsText,
   Clipboard_GetFormatCount,
   Clipboard_GetFormats,
   Clipboard_StaticClassType;

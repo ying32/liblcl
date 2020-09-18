@@ -263,6 +263,41 @@ begin
   handleExceptionEnd
 end;
 
+function ImageList_GetScaled(AObj: TImageList): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Scaled;
+  handleExceptionEnd
+end;
+
+procedure ImageList_SetScaled(AObj: TImageList; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Scaled := AValue;
+  handleExceptionEnd
+end;
+
+function ImageList_GetShareImages(AObj: TImageList): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ShareImages;
+  handleExceptionEnd
+end;
+
+procedure ImageList_SetShareImages(AObj: TImageList; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ShareImages := AValue;
+  handleExceptionEnd
+end;
+
+function ImageList_GetCount(AObj: TImageList): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Count;
+  handleExceptionEnd
+end;
+
 function ImageList_GetBlendColor(AObj: TImageList): TColor; extdecl;
 begin
   handleExceptionBegin
@@ -369,20 +404,6 @@ begin
   EventMethodCode
 end;
 
-function ImageList_GetShareImages(AObj: TImageList): LongBool; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.ShareImages;
-  handleExceptionEnd
-end;
-
-procedure ImageList_SetShareImages(AObj: TImageList; AValue: LongBool); extdecl;
-begin
-  handleExceptionBegin
-  AObj.ShareImages := AValue;
-  handleExceptionEnd
-end;
-
 function ImageList_GetWidth(AObj: TImageList): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -415,13 +436,6 @@ function ImageList_GetDragging(AObj: TImageList): LongBool; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Dragging;
-  handleExceptionEnd
-end;
-
-function ImageList_GetCount(AObj: TImageList): Integer; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.Count;
   handleExceptionEnd
 end;
 
@@ -526,6 +540,11 @@ exports
   ImageList_Equals,
   ImageList_GetHashCode,
   ImageList_ToString,
+  ImageList_GetScaled,
+  ImageList_SetScaled,
+  ImageList_GetShareImages,
+  ImageList_SetShareImages,
+  ImageList_GetCount,
   ImageList_GetBlendColor,
   ImageList_SetBlendColor,
   ImageList_GetBkColor,
@@ -541,14 +560,11 @@ exports
   ImageList_GetMasked,
   ImageList_SetMasked,
   ImageList_SetOnChange,
-  ImageList_GetShareImages,
-  ImageList_SetShareImages,
   ImageList_GetWidth,
   ImageList_SetWidth,
   ImageList_GetDragCursor,
   ImageList_SetDragCursor,
   ImageList_GetDragging,
-  ImageList_GetCount,
   ImageList_GetComponentCount,
   ImageList_GetComponentIndex,
   ImageList_SetComponentIndex,
