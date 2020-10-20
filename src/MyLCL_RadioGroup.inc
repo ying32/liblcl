@@ -551,6 +551,14 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TNotifyEvent
+procedure RadioGroup_SetOnSelectionChanged(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnSelectionChanged}
+  {$DEFINE EventName := OnSelectionChanged}
+  EventMethodCode
+end;
+
 function RadioGroup_GetAlign(AObj: TRadioGroup): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1460,6 +1468,7 @@ exports
   RadioGroup_AutoAdjustLayout,
   RadioGroup_FixDesignFontsPPI,
   RadioGroup_ScaleFontsPPI,
+  RadioGroup_SetOnSelectionChanged,
   RadioGroup_GetAlign,
   RadioGroup_SetAlign,
   RadioGroup_GetAnchors,

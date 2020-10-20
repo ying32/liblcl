@@ -950,6 +950,14 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
+procedure ColorBox_SetOnCloseUp(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnCloseUp}
+  {$DEFINE EventName := OnCloseUp}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
 procedure ColorBox_SetOnClick(AObj: TColorBox; AEventId: NativeUInt); extdecl;
 begin
   {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
@@ -1775,6 +1783,7 @@ exports
   ColorBox_GetVisible,
   ColorBox_SetVisible,
   ColorBox_SetOnChange,
+  ColorBox_SetOnCloseUp,
   ColorBox_SetOnClick,
   ColorBox_SetOnContextPopup,
   ColorBox_SetOnDragDrop,

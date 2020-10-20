@@ -1207,6 +1207,14 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
+procedure DateTimePicker_SetOnCloseUp(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnCloseUp}
+  {$DEFINE EventName := OnCloseUp}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
 procedure DateTimePicker_SetOnChange(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
 begin
   {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
@@ -1918,6 +1926,7 @@ exports
   DateTimePicker_GetVisible,
   DateTimePicker_SetVisible,
   DateTimePicker_SetOnClick,
+  DateTimePicker_SetOnCloseUp,
   DateTimePicker_SetOnChange,
   DateTimePicker_SetOnContextPopup,
   DateTimePicker_SetOnDropDown,

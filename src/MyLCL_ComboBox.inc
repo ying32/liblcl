@@ -1027,6 +1027,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TNotifyEvent
+procedure ComboBox_SetOnCloseUp(AObj: TComboBox; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnCloseUp}
+  {$DEFINE EventName := OnCloseUp}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TContextPopupEvent
 procedure ComboBox_SetOnContextPopup(AObj: TComboBox; AEventId: NativeUInt); extdecl;
 begin
@@ -1838,6 +1846,7 @@ exports
   ComboBox_SetVisible,
   ComboBox_SetOnChange,
   ComboBox_SetOnClick,
+  ComboBox_SetOnCloseUp,
   ComboBox_SetOnContextPopup,
   ComboBox_SetOnDblClick,
   ComboBox_SetOnDragDrop,
