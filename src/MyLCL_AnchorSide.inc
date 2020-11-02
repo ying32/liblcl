@@ -86,6 +86,13 @@ begin
   handleExceptionEnd
 end;
 
+function AnchorSide_GetKind(AObj: TAnchorSide): TAnchorKind; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Kind;
+  handleExceptionEnd
+end;
+
 function AnchorSide_GetControl(AObj: TAnchorSide): TControl; extdecl;
 begin
   handleExceptionBegin
@@ -130,6 +137,7 @@ exports
   AnchorSide_GetHashCode,
   AnchorSide_ToString,
   AnchorSide_GetOwner,
+  AnchorSide_GetKind,
   AnchorSide_GetControl,
   AnchorSide_SetControl,
   AnchorSide_GetSide,

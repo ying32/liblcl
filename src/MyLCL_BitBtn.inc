@@ -769,6 +769,20 @@ begin
   handleExceptionEnd
 end;
 
+function BitBtn_GetKind(AObj: TBitBtn): TBitBtnKind; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Kind;
+  handleExceptionEnd
+end;
+
+procedure BitBtn_SetKind(AObj: TBitBtn; AValue: TBitBtnKind); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Kind := AValue;
+  handleExceptionEnd
+end;
+
 function BitBtn_GetLayout(AObj: TBitBtn): TButtonLayout; extdecl;
 begin
   handleExceptionBegin
@@ -1613,6 +1627,8 @@ exports
   BitBtn_SetFont,
   BitBtn_GetGlyph,
   BitBtn_SetGlyph,
+  BitBtn_GetKind,
+  BitBtn_SetKind,
   BitBtn_GetLayout,
   BitBtn_SetLayout,
   BitBtn_GetModalResult,

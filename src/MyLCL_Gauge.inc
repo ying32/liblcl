@@ -563,6 +563,20 @@ begin
   handleExceptionEnd
 end;
 
+function Gauge_GetKind(AObj: TGauge): TGaugeKind; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Kind;
+  handleExceptionEnd
+end;
+
+procedure Gauge_SetKind(AObj: TGauge; AValue: TGaugeKind); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Kind := AValue;
+  handleExceptionEnd
+end;
+
 function Gauge_GetMinValue(AObj: TGauge): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1141,6 +1155,8 @@ exports
   Gauge_SetForeColor,
   Gauge_GetFont,
   Gauge_SetFont,
+  Gauge_GetKind,
+  Gauge_SetKind,
   Gauge_GetMinValue,
   Gauge_SetMinValue,
   Gauge_GetMaxValue,

@@ -1044,6 +1044,20 @@ begin
   handleExceptionEnd
 end;
 
+function DateTimePicker_GetKind(AObj: TDateTimePicker): TDateTimeKind; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Kind;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetKind(AObj: TDateTimePicker; AValue: TDateTimeKind); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Kind := AValue;
+  handleExceptionEnd
+end;
+
 function DateTimePicker_GetMaxDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
 begin
   handleExceptionBegin
@@ -1903,6 +1917,8 @@ exports
   DateTimePicker_SetEnabled,
   DateTimePicker_GetFont,
   DateTimePicker_SetFont,
+  DateTimePicker_GetKind,
+  DateTimePicker_SetKind,
   DateTimePicker_GetMaxDate,
   DateTimePicker_SetMaxDate,
   DateTimePicker_GetMinDate,

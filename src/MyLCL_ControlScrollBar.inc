@@ -87,6 +87,13 @@ begin
   handleExceptionEnd
 end;
 
+function ControlScrollBar_GetKind(AObj: TControlScrollBar): TScrollBarKind; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Kind;
+  handleExceptionEnd
+end;
+
 function ControlScrollBar_GetScrollPos(AObj: TControlScrollBar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -194,6 +201,7 @@ exports
   ControlScrollBar_Equals,
   ControlScrollBar_GetHashCode,
   ControlScrollBar_ToString,
+  ControlScrollBar_GetKind,
   ControlScrollBar_GetScrollPos,
   ControlScrollBar_GetIncrement,
   ControlScrollBar_SetIncrement,

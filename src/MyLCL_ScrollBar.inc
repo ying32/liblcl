@@ -685,6 +685,20 @@ begin
   handleExceptionEnd
 end;
 
+function ScrollBar_GetKind(AObj: TScrollBar): TScrollBarKind; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Kind;
+  handleExceptionEnd
+end;
+
+procedure ScrollBar_SetKind(AObj: TScrollBar; AValue: TScrollBarKind); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Kind := AValue;
+  handleExceptionEnd
+end;
+
 function ScrollBar_GetLargeChange(AObj: TScrollBar): TScrollBarInc; extdecl;
 begin
   handleExceptionBegin
@@ -1505,6 +1519,8 @@ exports
   ScrollBar_SetDragMode,
   ScrollBar_GetEnabled,
   ScrollBar_SetEnabled,
+  ScrollBar_GetKind,
+  ScrollBar_SetKind,
   ScrollBar_GetLargeChange,
   ScrollBar_SetLargeChange,
   ScrollBar_GetMax,
