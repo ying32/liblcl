@@ -450,9 +450,3 @@ int main()
 ### 授权
 
 **保持跟Lazarus LCL组件采用相同的授权协议: [COPYING.modifiedLGPL](COPYING.modifiedLGPL.txt)**  
-
-* 问：是否使用了liblcl就必须要开源？
-* 答：并不是的，liblcl使用的是Lazarus的modifiedLGPL授权协议，LGPL不同于GPL，允许静态链接而不需要发布源码。当然，如果你修改了liblcl的源码则需要遵循LGPL的协议，发布修改后的liblcl源代码。这就是LGPL与GPL的不同之处。
-
-* 问：为什么要采用modifiedLGPL协议？
-* 答：希望志同道合的朋友一起参与，而不是克隆后采用“闭门造车”的模式。
