@@ -17,7 +17,7 @@ end;
 function DLibVersion: Cardinal; extdecl;
 begin
   // 共8位，2位2位的
-  Result := $02000800;
+  Result := $02000900;
 end;
 
 // 一些初始
@@ -151,6 +151,14 @@ begin
   end;
   AObj.OnWndProc := TMessageEventClass.OnWndProc;
   TMessageEventClass.Add(AObj, AEventId);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_SetGoPtr(AObj: TGoForm; APtr: Pointer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.GoPtr := APtr;
   handleExceptionEnd
 end;
 
@@ -634,6 +642,11 @@ end;
 procedure SetExceptionHandlerCallback(APtr: Pointer); extdecl;
 begin
   GExceptionHandlerCallbackPtr := APtr;
+end;
+
+procedure SetRequestCallCreateParamsCallback(APtr: Pointer); extdecl;
+begin
+  GRequestCallCreateParamsPtr := APtr;
 end;
 
 // 从string数组中获取成员
@@ -1195,6 +1208,7 @@ exports
   // TForm
   Form_Create2,
   Form_SetOnWndProc,
+  Form_SetGoPtr,
 
   // TMouse
   Mouse_Instance,
@@ -1238,6 +1252,7 @@ exports
   SetMessageCallback,
   SetThreadSyncCallback,
   SetExceptionHandlerCallback,
+  SetRequestCallCreateParamsCallback,
 
   //DSetDefaultLang,
   //DGetDefaultLang,

@@ -9,6 +9,7 @@
 unit uGoForm;
 
 {$mode objfpc}{$H+}
+{$I ExtDecl.inc}
 
 interface
 
@@ -16,18 +17,20 @@ uses
   Classes, SysUtils, Forms, Controls, LMessages, LCLType, fgl;
 
 type
-    // 消息过程定义
-  TWndProcEvent = procedure(Sender: TObject; var TheMessage: TLMessage) of object;
+  // 消息过程定义
   // 重定一个，主要是为了修改相关默认
+  TWndProcEvent = procedure(Sender: TObject; var TheMessage: TLMessage) of object;
 
   { TGoForm }
 
   TGoForm = class(TForm)
   private
     FOnWndProc: TWndProcEvent;
+    FGoPtr: Pointer;
   protected
     procedure ProcessResource; override;
     procedure WndProc(var TheMessage: TLMessage); override;
+    procedure CreateParams(var Params: TCreateParams); override;
   public
     constructor CreateFromClassName(TheOwner: TComponent; const AClassName: string);
     constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
@@ -45,10 +48,16 @@ type
     procedure WorkAreaCenter;
 
     class function Create2(AOwner: TComponent; AInitScale: Boolean): TGoForm;
+
+    property GoPtr: Pointer read FGoPtr write FGoPtr;
   published
     property OnWndProc: TWndProcEvent read FOnWndProc write FOnWndProc;
   end;
 
+  TRequestCallCreateParams = function(goPtr: Pointer; var Params: TCreateParams): Pointer; extdecl;
+
+var
+  GRequestCallCreateParamsPtr: TRequestCallCreateParams = nil;
 
 implementation
 
@@ -57,6 +66,7 @@ type
 
 var
   uFormRes: TFormResouces;
+
 
 constructor TGoForm.CreateNew(AOwner: TComponent; Num: Integer);
 begin
@@ -164,6 +174,13 @@ begin
     FOnWndProc(Self, TheMessage)
   else
     inherited WndProc(TheMessage);
+end;
+
+procedure TGoForm.CreateParams(var Params: TCreateParams);
+begin
+  inherited CreateParams(Params);
+  if Assigned(GRequestCallCreateParamsPtr) then
+    GRequestCallCreateParamsPtr(FGoPtr, Params);
 end;
 
 constructor TGoForm.CreateFromClassName(TheOwner: TComponent;

@@ -24,9 +24,12 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
-      <RevisionNr Value="8"/>
-      <StringTable Comments="LCL for Windows" CompanyName="ying32" FileDescription="LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright ying32" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="2.0.8.0"/>
+      <RevisionNr Value="9"/>
+      <StringTable Comments="LCL for Windows" CompanyName="ying32" FileDescription="LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright ying32" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="2.0.9.0"/>
     </VersionInfo>
+    <Res2go>
+      <GoRoot Value="F:\Program Files (x86)\Golang\go"/>
+    </Res2go>
     <MacroValues Count="1">
       <Macro3 Name="LCLWidgetType" Value="win32"/>
     </MacroValues>
