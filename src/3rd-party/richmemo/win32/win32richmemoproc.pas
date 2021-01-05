@@ -424,7 +424,7 @@ begin
   fmt.cbSize := sizeof(fmt);
 
   fmt.dwMask := fmt.dwMask or CFM_COLOR;
-  fmt.crTextColor := Params.Color;
+  fmt.crTextColor := ColorToRGB(Params.Color);
 
   fmt.dwMask := fmt.dwMask or CFM_FACE;
   // keep last char for Null-termination?
@@ -459,7 +459,7 @@ begin
 
   if not useMask or (tmm_Color in AModifyMask) then begin
     fmt.dwMask := fmt.dwMask or CFM_COLOR;
-    fmt.crTextColor := Params.Color;
+    fmt.crTextColor := ColorToRGB(Params.Color);
   end;
 
   if not useMask or (tmm_Name in AModifyMask) then begin
@@ -481,7 +481,7 @@ begin
   if not useMask or (tmm_BackColor in AModifyMask) then begin
     if Params.HasBkClr then begin
       fmt.dwMask := fmt.dwMask or CFM_BACKCOLOR;
-      fmt.crBackColor := Params.BkColor;
+      fmt.crBackColor := ColorToRGB(Params.BkColor);
     end else begin
       fmt.dwMask := fmt.dwMask or CFM_BACKCOLOR;
       fmt.dwEffects := fmt.dwEffects or CFE_AUTOBACKCOLOR;
