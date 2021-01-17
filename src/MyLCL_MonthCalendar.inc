@@ -551,14 +551,16 @@ begin
   handleExceptionEnd
 end;
 
-function MonthCalendar_GetDateTime(AObj: TMonthCalendar): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure MonthCalendar_GetDateTime(AObj: TMonthCalendar; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.DateTime);
   handleExceptionEnd
 end;
 
-procedure MonthCalendar_SetDateTime(AObj: TMonthCalendar; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure MonthCalendar_SetDateTime(AObj: TMonthCalendar; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.DateTime := UnixToTime(AValue);
@@ -649,14 +651,16 @@ begin
   handleExceptionEnd
 end;
 
-function MonthCalendar_GetDate(AObj: TMonthCalendar): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure MonthCalendar_GetDate(AObj: TMonthCalendar; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.Date);
   handleExceptionEnd
 end;
 
-procedure MonthCalendar_SetDate(AObj: TMonthCalendar; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure MonthCalendar_SetDate(AObj: TMonthCalendar; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.Date := UnixToTime(AValue);

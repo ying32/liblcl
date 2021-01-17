@@ -20,7 +20,7 @@ uses
 
 type
   // 重定定义
-  TUnixDateTime = type LongInt; // int64改为LongInt。只精确到秒
+  TUnixDateTime = type Int64; // LongInt Int64 改为LongInt。只精确到秒
   TPngImage = type TPortableNetworkGraphic;
 
   TJPEGPixelFormat = TPixelFormat;

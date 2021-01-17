@@ -848,14 +848,16 @@ begin
   handleExceptionEnd
 end;
 
-function DateTimePicker_GetDateTime(AObj: TDateTimePicker): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure DateTimePicker_GetDateTime(AObj: TDateTimePicker; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.DateTime);
   handleExceptionEnd
 end;
 
-procedure DateTimePicker_SetDateTime(AObj: TDateTimePicker; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure DateTimePicker_SetDateTime(AObj: TDateTimePicker; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.DateTime := UnixToTime(AValue);
@@ -932,28 +934,32 @@ begin
   handleExceptionEnd
 end;
 
-function DateTimePicker_GetDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure DateTimePicker_GetDate(AObj: TDateTimePicker; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.Date);
   handleExceptionEnd
 end;
 
-procedure DateTimePicker_SetDate(AObj: TDateTimePicker; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure DateTimePicker_SetDate(AObj: TDateTimePicker; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.Date := UnixToTime(AValue);
   handleExceptionEnd
 end;
 
-function DateTimePicker_GetTime(AObj: TDateTimePicker): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure DateTimePicker_GetTime(AObj: TDateTimePicker; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.Time);
   handleExceptionEnd
 end;
 
-procedure DateTimePicker_SetTime(AObj: TDateTimePicker; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure DateTimePicker_SetTime(AObj: TDateTimePicker; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.Time := UnixToTime(AValue);
@@ -1058,28 +1064,32 @@ begin
   handleExceptionEnd
 end;
 
-function DateTimePicker_GetMaxDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure DateTimePicker_GetMaxDate(AObj: TDateTimePicker; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.MaxDate);
   handleExceptionEnd
 end;
 
-procedure DateTimePicker_SetMaxDate(AObj: TDateTimePicker; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure DateTimePicker_SetMaxDate(AObj: TDateTimePicker; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.MaxDate := UnixToTime(AValue);
   handleExceptionEnd
 end;
 
-function DateTimePicker_GetMinDate(AObj: TDateTimePicker): TUnixDateTime; extdecl;
+//RETURNISLASTPARAM:
+procedure DateTimePicker_GetMinDate(AObj: TDateTimePicker; var Result: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.MinDate);
   handleExceptionEnd
 end;
 
-procedure DateTimePicker_SetMinDate(AObj: TDateTimePicker; AValue: TUnixDateTime); extdecl;
+//PARAMS:2=nonPtr
+procedure DateTimePicker_SetMinDate(AObj: TDateTimePicker; var AValue: TUnixDateTime); extdecl;
 begin
   handleExceptionBegin
   AObj.MinDate := UnixToTime(AValue);
