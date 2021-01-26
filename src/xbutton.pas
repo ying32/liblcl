@@ -73,8 +73,6 @@ type
     procedure CMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
     procedure CMEnabledChanged(var Message: TMessage); message CM_ENABLEDCHANGED;
     procedure CMFontChanged(var Message: TMessage); message CM_FONTCHANGED;
-
-
     procedure MouseDown(Button: TMouseButton; Shift:TShiftState; X,Y:Integer); override;
     procedure MouseUp(Button: TMouseButton; Shift:TShiftState; X,Y:Integer); override;
 
@@ -237,6 +235,7 @@ begin
     FreeImage;
     if (FBufferBmp.Width <> LR.Width) or (FBufferBmp.Height <> LR.Height) then
       FBufferBmp.SetSize(LR.Width, LR.Height);
+    Canvas.Font := Self.Font;
     // pen清除
     Canvas.Pen.Style := psClear;
 
