@@ -587,6 +587,34 @@ begin
   handleExceptionEnd
 end;
 
+function BitBtn_GetImageIndex(AObj: TBitBtn): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ImageIndex;
+  handleExceptionEnd
+end;
+
+procedure BitBtn_SetImageIndex(AObj: TBitBtn; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ImageIndex := AValue;
+  handleExceptionEnd
+end;
+
+function BitBtn_GetImages(AObj: TBitBtn): TCustomImageList; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Images;
+  handleExceptionEnd
+end;
+
+procedure BitBtn_SetImages(AObj: TBitBtn; AValue: TCustomImageList); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Images := AValue;
+  handleExceptionEnd
+end;
+
 function BitBtn_GetImageWidth(AObj: TBitBtn): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1601,6 +1629,10 @@ exports
   BitBtn_SetDefaultCaption,
   BitBtn_GetGlyphShowMode,
   BitBtn_SetGlyphShowMode,
+  BitBtn_GetImageIndex,
+  BitBtn_SetImageIndex,
+  BitBtn_GetImages,
+  BitBtn_SetImages,
   BitBtn_GetImageWidth,
   BitBtn_SetImageWidth,
   BitBtn_GetAction,
