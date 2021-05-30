@@ -285,10 +285,7 @@ begin
     if LSub.IndexOf(NativeUInt(AObj)) <> -1 then
       LSub.Remove(NativeUInt(AObj));
     if LSub.Count = 0  then
-    begin
       FMainEvents.Remove(AEvent);
-      LSub.Free;
-    end;
   end;
 end;
 
