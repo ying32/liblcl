@@ -271,8 +271,9 @@ begin
     LSub := TEventList.Create;
     FMainEvents.AddOrSetData(AEvent, LSub);
   end;
+  // 更新数据，对象指针他可能释放了下次还是那块区域，如果不更新则出问题
   if Assigned(LSub) then
-    LSub.Add(NativeUInt(AObj), AId);
+    LSub.AddOrSetData(NativeUInt(AObj), AId);
 end;
 
 class procedure TEventClass.Remove(AObj: TObject; AEvent: Pointer);
@@ -284,7 +285,10 @@ begin
     if LSub.IndexOf(NativeUInt(AObj)) <> -1 then
       LSub.Remove(NativeUInt(AObj));
     if LSub.Count = 0  then
+    begin
       FMainEvents.Remove(AEvent);
+      LSub.Free;
+    end;
   end;
 end;
 
