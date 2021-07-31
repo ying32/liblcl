@@ -215,6 +215,7 @@ type
     class procedure OnTSelectEditorEvent_OnSelectEditor(Sender: TObject; aCol, aRow: Integer; var Editor: TWinControl);
     class procedure OnTUserCheckboxBitmapEvent_OnUserCheckboxBitmap(Sender: TObject; const aCol, aRow: Integer; const CheckedState: TCheckboxState; var ABitmap: TBitmap);
     class procedure OnTValidateEntryEvent_OnValidateEntry(sender: TObject; aCol, aRow: Integer; const OldValue: string; var NewValue: String);
+    class procedure OnTOnPrepareCanvasEvent_OnPrepareCanvas(sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
     //--------------------------------------------------------------------------
 
     class procedure Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt);
@@ -1056,6 +1057,12 @@ begin
   SendEvent(Sender, @TEventClass.OnTValidateEntryEvent_OnValidateEntry, [Sender, aCol, aRow, PChar(OldValue), @LVal]);
   if LVal <> nil then
     NewValue := LVal;
+end;
+
+class procedure TEventClass.OnTOnPrepareCanvasEvent_OnPrepareCanvas(
+  sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
+begin
+  SendEvent(Sender, @TEventClass.OnTOnPrepareCanvasEvent_OnPrepareCanvas, [Sender, aCol, aRow, PWord(@aState)^]);
 end;
 
 class procedure TEventClass.OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol,

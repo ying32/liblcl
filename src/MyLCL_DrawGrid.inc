@@ -585,6 +585,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TOnPrepareCanvasEvent
+procedure DrawGrid_SetOnPrepareCanvas(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnPrepareCanvasEvent_OnPrepareCanvas}
+  {$DEFINE EventName := OnPrepareCanvas}
+  EventMethodCode
+end;
+
 function DrawGrid_GetAlign(AObj: TDrawGrid): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1933,6 +1941,7 @@ exports
   DrawGrid_FixDesignFontsPPI,
   DrawGrid_ScaleFontsPPI,
   DrawGrid_SetOnColRowMoved,
+  DrawGrid_SetOnPrepareCanvas,
   DrawGrid_GetAlign,
   DrawGrid_SetAlign,
   DrawGrid_GetAnchors,

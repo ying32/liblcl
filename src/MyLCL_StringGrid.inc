@@ -1178,6 +1178,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TOnPrepareCanvasEvent
+procedure StringGrid_SetOnPrepareCanvas(AObj: TStringGrid; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTOnPrepareCanvasEvent_OnPrepareCanvas}
+  {$DEFINE EventName := OnPrepareCanvas}
+  EventMethodCode
+end;
+
 function StringGrid_GetAlternateColor(AObj: TStringGrid): TColor; extdecl;
 begin
   handleExceptionBegin
@@ -2946,6 +2954,7 @@ exports
   StringGrid_SetOnSelectEditor,
   StringGrid_SetOnUserCheckboxBitmap,
   StringGrid_SetOnValidateEntry,
+  StringGrid_SetOnPrepareCanvas,
   StringGrid_GetAlternateColor,
   StringGrid_SetAlternateColor,
   StringGrid_GetAutoAdvance,
