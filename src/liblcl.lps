@@ -215,7 +215,6 @@
       <Unit1>
         <Filename Value="uEventCallback.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="1050"/>
         <CursorPos X="45" Y="1063"/>
@@ -370,7 +369,7 @@
         <Filename Value="uexport4.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uExport4"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit19>
@@ -788,9 +787,12 @@
       </Unit77>
       <Unit78>
         <Filename Value="MyLCL_ListItem.inc"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="44" Y="10"/>
-        <UsageCount Value="7"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="260"/>
+        <CursorPos X="102" Y="285"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit78>
       <Unit79>
         <Filename Value="MyLCL_TreeNode.inc"/>
@@ -1903,7 +1905,7 @@
       <Unit239>
         <Filename Value="F:\lazarus\lcl\grids.pas"/>
         <UnitName Value="Grids"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="117"/>
         <CursorPos X="3" Y="135"/>
         <UsageCount Value="10"/>
@@ -3348,7 +3350,7 @@
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="18" HistoryIndex="17">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="55" Column="8" TopLine="35"/>
@@ -3417,6 +3419,10 @@
         <Filename Value="uEventCallback.pas"/>
         <Caret Line="218" Column="54" TopLine="205"/>
       </Position17>
+      <Position18>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="1063" Column="45" TopLine="1050"/>
+      </Position18>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

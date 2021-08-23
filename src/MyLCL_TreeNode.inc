@@ -22,6 +22,320 @@ begin
 end;
 
 //CLASSMETHOD:
+function TreeNode_Bottom(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Bottom;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_BottomExpanded(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.BottomExpanded;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DefaultTreeViewSort(AObj: TTreeNode; Node1: TTreeNode; Node2: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DefaultTreeViewSort(Node1, Node2);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DisplayExpandSignLeft(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayExpandSignLeft;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//RETURNISLASTPARAM:
+procedure TreeNode_DisplayExpandSignRect(AObj: TTreeNode; var Result: TRect); extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayExpandSignRect;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DisplayExpandSignRight(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayExpandSignRight;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DisplayIconLeft(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayIconLeft;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+//RETURNISLASTPARAM:
+procedure TreeNode_DisplayRect(AObj: TTreeNode; TextOnly: LongBool; var Result: TRect); extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayRect(TextOnly);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DisplayStateIconLeft(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayStateIconLeft;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DisplayTextLeft(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayTextLeft;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_DisplayTextRight(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.DisplayTextRight;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_EditText(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.EditText;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_FindNode(AObj: TTreeNode; NodeText: PChar): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FindNode(NodeText);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetFirstChild(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetFirstChild;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetFirstVisibleChild(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetFirstVisibleChild;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetLastChild(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetLastChild;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetLastSibling(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetLastSibling;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetLastSubChild(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetLastSubChild;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetLastVisibleChild(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetLastVisibleChild;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNext(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNext;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextChild(AObj: TTreeNode; AValue: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextChild(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextExpanded(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextExpanded;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextMultiSelected(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextMultiSelected;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextSibling(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextSibling;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextSkipChildren(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextSkipChildren;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextVisible(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextVisible;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetNextVisibleSibling(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetNextVisibleSibling;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetParentNodeOfAbsoluteLevel(AObj: TTreeNode; TheAbsoluteLevel: Integer): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetParentNodeOfAbsoluteLevel(TheAbsoluteLevel);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrev(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrev;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrevChild(AObj: TTreeNode; AValue: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrevChild(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrevExpanded(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrevExpanded;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrevMultiSelected(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrevMultiSelected;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrevSibling(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrevSibling;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrevVisible(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrevVisible;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetPrevVisibleSibling(AObj: TTreeNode): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.GetPrevVisibleSibling;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_GetTextPath(AObj: TTreeNode): PChar; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  PChar(AObj.GetTextPath);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_HasAsParent(AObj: TTreeNode; AValue: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HasAsParent(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_IndexOf(AObj: TTreeNode; AValue: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IndexOf(AValue);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function TreeNode_IndexOfText(AObj: TTreeNode; NodeText: PChar): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IndexOfText(NodeText);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TreeNode_Assign(AObj: TTreeNode; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -38,6 +352,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TreeNode_ConsistencyCheck(AObj: TTreeNode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ConsistencyCheck;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TreeNode_Delete(AObj: TTreeNode); extdecl;
 begin
   handleExceptionBegin
@@ -46,19 +368,18 @@ begin
 end;
 
 //CLASSMETHOD:
-//RETURNISLASTPARAM:
-procedure TreeNode_DisplayRect(AObj: TTreeNode; TextOnly: LongBool; var Result: TRect); extdecl;
+procedure TreeNode_DeleteChildren(AObj: TTreeNode); extdecl;
 begin
   handleExceptionBegin
-  Result :=  AObj.DisplayRect(TextOnly);
+  AObj.DeleteChildren;
   handleExceptionEnd
 end;
 
 //CLASSMETHOD:
-function TreeNode_EditText(AObj: TTreeNode): LongBool; extdecl;
+procedure TreeNode_EndEdit(AObj: TTreeNode; Cancel: LongBool); extdecl;
 begin
   handleExceptionBegin
-  Result :=  AObj.EditText;
+  AObj.EndEdit(Cancel);
   handleExceptionEnd
 end;
 
@@ -71,10 +392,18 @@ begin
 end;
 
 //CLASSMETHOD:
-function TreeNode_IndexOf(AObj: TTreeNode; Value: TTreeNode): Integer; extdecl;
+procedure TreeNode_ExpandParents(AObj: TTreeNode); extdecl;
 begin
   handleExceptionBegin
-  Result :=  AObj.IndexOf(Value);
+  AObj.ExpandParents;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeNode_FreeAllNodeData(AObj: TTreeNode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FreeAllNodeData;
   handleExceptionEnd
 end;
 
@@ -91,6 +420,30 @@ procedure TreeNode_MoveTo(AObj: TTreeNode; Destination: TTreeNode; Mode: TNodeAt
 begin
   handleExceptionBegin
   AObj.MoveTo(Destination, Mode);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeNode_MultiSelectGroup(AObj: TTreeNode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MultiSelectGroup;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeNode_Update(AObj: TTreeNode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Update;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeNode_WriteDebugReport(AObj: TTreeNode; Prefix: PChar; Recurse: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.WriteDebugReport(Prefix, Recurse);
   handleExceptionEnd
 end;
 
@@ -215,20 +568,6 @@ begin
   handleExceptionEnd
 end;
 
-function TreeNode_GetFocused(AObj: TTreeNode): LongBool; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.Focused;
-  handleExceptionEnd
-end;
-
-procedure TreeNode_SetFocused(AObj: TTreeNode; AValue: LongBool); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Focused := AValue;
-  handleExceptionEnd
-end;
-
 function TreeNode_GetDropTarget(AObj: TTreeNode): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -240,20 +579,6 @@ procedure TreeNode_SetDropTarget(AObj: TTreeNode; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.DropTarget := AValue;
-  handleExceptionEnd
-end;
-
-function TreeNode_GetSelected(AObj: TTreeNode): LongBool; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.Selected;
-  handleExceptionEnd
-end;
-
-procedure TreeNode_SetSelected(AObj: TTreeNode; AValue: LongBool); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Selected := AValue;
   handleExceptionEnd
 end;
 
@@ -271,7 +596,21 @@ begin
   handleExceptionEnd
 end;
 
-function TreeNode_GetHandle(AObj: TTreeNode): HWND; extdecl;
+function TreeNode_GetFocused(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Focused;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetFocused(AObj: TTreeNode; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Focused := AValue;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetHandle(AObj: TTreeNode): NativeUInt; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Handle;
@@ -289,6 +628,20 @@ procedure TreeNode_SetHasChildren(AObj: TTreeNode; AValue: LongBool); extdecl;
 begin
   handleExceptionBegin
   AObj.HasChildren := AValue;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetHeight(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Height;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetHeight(AObj: TTreeNode; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Height := AValue;
   handleExceptionEnd
 end;
 
@@ -313,6 +666,20 @@ begin
   handleExceptionEnd
 end;
 
+procedure TreeNode_SetIndex(AObj: TTreeNode; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Index := AValue;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetIsFullHeightVisible(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IsFullHeightVisible;
+  handleExceptionEnd
+end;
+
 function TreeNode_GetIsVisible(AObj: TTreeNode): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -327,6 +694,34 @@ begin
   handleExceptionEnd
 end;
 
+function TreeNode_GetMultiSelected(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MultiSelected;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetMultiSelected(AObj: TTreeNode; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MultiSelected := AValue;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetOverlayIndex(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.OverlayIndex;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetOverlayIndex(AObj: TTreeNode; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.OverlayIndex := AValue;
+  handleExceptionEnd
+end;
+
 function TreeNode_GetOwner(AObj: TTreeNode): TTreeNodes; extdecl;
 begin
   handleExceptionBegin
@@ -338,6 +733,20 @@ function TreeNode_GetParent(AObj: TTreeNode): TTreeNode; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.Parent;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetSelected(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Selected;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetSelected(AObj: TTreeNode; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Selected := AValue;
   handleExceptionEnd
 end;
 
@@ -369,6 +778,13 @@ begin
   handleExceptionEnd
 end;
 
+function TreeNode_GetSubTreeCount(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.SubTreeCount;
+  handleExceptionEnd
+end;
+
 function TreeNode_GetText(AObj: TTreeNode): PChar; extdecl;
 begin
   handleExceptionBegin
@@ -383,10 +799,52 @@ begin
   handleExceptionEnd
 end;
 
+function TreeNode_GetTop(AObj: TTreeNode): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Top;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetTreeNodes(AObj: TTreeNode): TTreeNodes; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TreeNodes;
+  handleExceptionEnd
+end;
+
 function TreeNode_GetTreeView(AObj: TTreeNode): TCustomTreeView; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.TreeView;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetVisible(AObj: TTreeNode): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Visible;
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetVisible(AObj: TTreeNode; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Visible := AValue;
+  handleExceptionEnd
+end;
+
+function TreeNode_GetItems(AObj: TTreeNode; ItemIndex: Integer): TTreeNode; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Items[ItemIndex];
+  handleExceptionEnd
+end;
+
+procedure TreeNode_SetItems(AObj: TTreeNode; ItemIndex: Integer; AValue: TTreeNode); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Items[ItemIndex] := AValue;
   handleExceptionEnd
 end;
 
@@ -412,15 +870,59 @@ end;
 exports
   TreeNode_Create,
   TreeNode_Free,
+  TreeNode_Bottom,
+  TreeNode_BottomExpanded,
+  TreeNode_DefaultTreeViewSort,
+  TreeNode_DisplayExpandSignLeft,
+  TreeNode_DisplayExpandSignRect,
+  TreeNode_DisplayExpandSignRight,
+  TreeNode_DisplayIconLeft,
+  TreeNode_DisplayRect,
+  TreeNode_DisplayStateIconLeft,
+  TreeNode_DisplayTextLeft,
+  TreeNode_DisplayTextRight,
+  TreeNode_EditText,
+  TreeNode_FindNode,
+  TreeNode_GetFirstChild,
+  TreeNode_GetFirstVisibleChild,
+  TreeNode_GetLastChild,
+  TreeNode_GetLastSibling,
+  TreeNode_GetLastSubChild,
+  TreeNode_GetLastVisibleChild,
+  TreeNode_GetNext,
+  TreeNode_GetNextChild,
+  TreeNode_GetNextExpanded,
+  TreeNode_GetNextMultiSelected,
+  TreeNode_GetNextSibling,
+  TreeNode_GetNextSkipChildren,
+  TreeNode_GetNextVisible,
+  TreeNode_GetNextVisibleSibling,
+  TreeNode_GetParentNodeOfAbsoluteLevel,
+  TreeNode_GetPrev,
+  TreeNode_GetPrevChild,
+  TreeNode_GetPrevExpanded,
+  TreeNode_GetPrevMultiSelected,
+  TreeNode_GetPrevSibling,
+  TreeNode_GetPrevVisible,
+  TreeNode_GetPrevVisibleSibling,
+  TreeNode_GetTextPath,
+  TreeNode_HasAsParent,
+  TreeNode_IndexOf,
+  TreeNode_IndexOfText,
   TreeNode_Assign,
   TreeNode_Collapse,
+  TreeNode_ConsistencyCheck,
   TreeNode_Delete,
-  TreeNode_DisplayRect,
-  TreeNode_EditText,
+  TreeNode_DeleteChildren,
+  TreeNode_EndEdit,
   TreeNode_Expand,
-  TreeNode_IndexOf,
+  TreeNode_ExpandParents,
+  TreeNode_FreeAllNodeData,
   TreeNode_MakeVisible,
   TreeNode_MoveTo,
+  TreeNode_MultiSelectGroup,
+  TreeNode_Update,
+  TreeNode_WriteDebugReport,
   TreeNode_CustomSort,
   TreeNode_GetNamePath,
   TreeNode_ClassType,
@@ -437,31 +939,46 @@ exports
   TreeNode_GetData,
   TreeNode_SetData,
   TreeNode_GetDeleting,
-  TreeNode_GetFocused,
-  TreeNode_SetFocused,
   TreeNode_GetDropTarget,
   TreeNode_SetDropTarget,
-  TreeNode_GetSelected,
-  TreeNode_SetSelected,
   TreeNode_GetExpanded,
   TreeNode_SetExpanded,
+  TreeNode_GetFocused,
+  TreeNode_SetFocused,
   TreeNode_GetHandle,
   TreeNode_GetHasChildren,
   TreeNode_SetHasChildren,
+  TreeNode_GetHeight,
+  TreeNode_SetHeight,
   TreeNode_GetImageIndex,
   TreeNode_SetImageIndex,
   TreeNode_GetIndex,
+  TreeNode_SetIndex,
+  TreeNode_GetIsFullHeightVisible,
   TreeNode_GetIsVisible,
   TreeNode_GetLevel,
+  TreeNode_GetMultiSelected,
+  TreeNode_SetMultiSelected,
+  TreeNode_GetOverlayIndex,
+  TreeNode_SetOverlayIndex,
   TreeNode_GetOwner,
   TreeNode_GetParent,
+  TreeNode_GetSelected,
+  TreeNode_SetSelected,
   TreeNode_GetSelectedIndex,
   TreeNode_SetSelectedIndex,
   TreeNode_GetStateIndex,
   TreeNode_SetStateIndex,
+  TreeNode_GetSubTreeCount,
   TreeNode_GetText,
   TreeNode_SetText,
+  TreeNode_GetTop,
+  TreeNode_GetTreeNodes,
   TreeNode_GetTreeView,
+  TreeNode_GetVisible,
+  TreeNode_SetVisible,
+  TreeNode_GetItems,
+  TreeNode_SetItems,
   TreeNode_GetItem,
   TreeNode_SetItem,
   TreeNode_StaticClassType;
