@@ -1553,6 +1553,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TLVDrawItemEvent
+procedure ListView_SetOnDrawItem(AObj: TListView; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTLVDrawItemEvent_OnDrawItem}
+  {$DEFINE EventName := OnDrawItem}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TLVEditedEvent
 procedure ListView_SetOnEdited(AObj: TListView; AEventId: NativeUInt); extdecl;
 begin
@@ -2476,6 +2484,7 @@ exports
   ListView_SetOnDataHint,
   ListView_SetOnDblClick,
   ListView_SetOnDeletion,
+  ListView_SetOnDrawItem,
   ListView_SetOnEdited,
   ListView_SetOnEditing,
   ListView_SetOnEndDock,
