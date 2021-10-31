@@ -156,6 +156,8 @@ type
     class procedure OnTLVDeletedEvent_OnInsert(Sender: TObject; Item: TListItem);
     class procedure OnTLVSelectItemEvent_OnSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     class procedure OnTLVCheckedItemEvent_OnItemChecked(Sender: TObject; Item: TListItem);
+    class procedure OnTLVDrawItemEvent_OnDrawItem(Sender: TCustomListView; AItem: TListItem; ARect: TRect; AState: TOwnerDrawState);
+
     class procedure OnTTVExpandedEvent_OnAddition(Sender: TObject; Node: TTreeNode);
     class procedure OnTTVExpandedEvent_OnCollapsed(Sender: TObject; Node: TTreeNode);
     class procedure OnTTVExpandedEvent_OnDeletion(Sender: TObject; Node: TTreeNode);
@@ -831,6 +833,13 @@ class procedure TEventClass.OnTLVCheckedItemEvent_OnItemChecked(Sender: TObject;
   Item: TListItem);
 begin
   SendEvent(Sender, @TEventClass.OnTLVCheckedItemEvent_OnItemChecked, [Sender, Item]);
+end;
+
+class procedure TEventClass.OnTLVDrawItemEvent_OnDrawItem(
+  Sender: TCustomListView; AItem: TListItem; ARect: TRect;
+  AState: TOwnerDrawState);
+begin
+  SendEvent(Sender, @TEventClass.OnTLVDrawItemEvent_OnDrawItem, [Sender, AItem, @ARect, PWord(@AState)^]);
 end;
 
 class procedure TEventClass.OnTTVExpandedEvent_OnAddition(Sender: TObject; Node: TTreeNode
