@@ -22,6 +22,38 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Screen_BeginTempCursor(AObj: TScreen; aCursor: TCursor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginTempCursor(aCursor);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Screen_EndTempCursor(AObj: TScreen; aCursor: TCursor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndTempCursor(aCursor);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Screen_BeginWaitCursor(AObj: TScreen); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginWaitCursor;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Screen_EndWaitCursor(AObj: TScreen); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndWaitCursor;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function Screen_FindComponent(AObj: TScreen; AName: PChar): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -109,6 +141,20 @@ begin
   handleExceptionEnd
 end;
 
+function Screen_GetRealCursor(AObj: TScreen): TCursor; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.RealCursor;
+  handleExceptionEnd
+end;
+
+function Screen_GetFocusedForm(AObj: TScreen): TCustomForm; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FocusedForm;
+  handleExceptionEnd
+end;
+
 function Screen_GetActiveControl(AObj: TScreen): TWinControl; extdecl;
 begin
   handleExceptionBegin
@@ -141,13 +187,6 @@ procedure Screen_SetCursor(AObj: TScreen; AValue: TCursor); extdecl;
 begin
   handleExceptionBegin
   AObj.Cursor := AValue;
-  handleExceptionEnd
-end;
-
-function Screen_GetFocusedForm(AObj: TScreen): TCustomForm; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.FocusedForm;
   handleExceptionEnd
 end;
 
@@ -371,6 +410,10 @@ end;
 exports
   Screen_Create,
   Screen_Free,
+  Screen_BeginTempCursor,
+  Screen_EndTempCursor,
+  Screen_BeginWaitCursor,
+  Screen_EndWaitCursor,
   Screen_FindComponent,
   Screen_GetNamePath,
   Screen_HasParent,
@@ -382,12 +425,13 @@ exports
   Screen_Equals,
   Screen_GetHashCode,
   Screen_ToString,
+  Screen_GetRealCursor,
+  Screen_GetFocusedForm,
   Screen_GetActiveControl,
   Screen_GetActiveForm,
   Screen_GetCustomFormCount,
   Screen_GetCursor,
   Screen_SetCursor,
-  Screen_GetFocusedForm,
   Screen_GetMonitorCount,
   Screen_GetDesktopRect,
   Screen_GetDesktopHeight,

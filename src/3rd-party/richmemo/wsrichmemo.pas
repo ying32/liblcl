@@ -118,6 +118,8 @@ type
 
     class procedure Redo(const AWinControl: TWinControl); virtual;
     class function GetCanRedo(const AWinControl: TWinControl): Boolean; virtual;
+
+    class procedure SetTransparentBackground(const AWinControl: TWinControl; ATransparent: Boolean); virtual;
   end;
   TWSCustomRichMemoClass = class of TWSCustomRichMemo;
 
@@ -418,6 +420,12 @@ class function TWSCustomRichMemo.GetCanRedo(const AWinControl: TWinControl
   ): Boolean;
 begin
   Result:=false;
+end;
+
+class procedure TWSCustomRichMemo.SetTransparentBackground(
+  const AWinControl: TWinControl; ATransparent: Boolean);
+begin
+
 end;
 
 end.

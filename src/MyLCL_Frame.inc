@@ -769,6 +769,20 @@ begin
   handleExceptionEnd
 end;
 
+function Frame_GetParentBackground(AObj: TFrame): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ParentBackground;
+  handleExceptionEnd
+end;
+
+procedure Frame_SetParentBackground(AObj: TFrame; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ParentBackground := AValue;
+  handleExceptionEnd
+end;
+
 function Frame_GetParentColor(AObj: TFrame): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -1671,6 +1685,8 @@ exports
   Frame_SetColor,
   Frame_GetFont,
   Frame_SetFont,
+  Frame_GetParentBackground,
+  Frame_SetParentBackground,
   Frame_GetParentColor,
   Frame_SetParentColor,
   Frame_GetParentDoubleBuffered,

@@ -267,6 +267,7 @@ class procedure TEventClass.Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt)
 var
   LSub: TEventList = nil;
 begin
+  // ?????
   if AObj is TTrayIcon then
      AObj := Application;
   if not FMainEvents.TryGetData(AEvent, LSub) then

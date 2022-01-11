@@ -69,8 +69,10 @@ type
     fnum : Integer; // font index in the font table
 
     prev : TRTFParams;
+    tabs : TTabStopList;
     constructor Create(aprev: TRTFParams);
     procedure ResetDefault;
+    procedure AddTab(AOffset: double; ta: TTabAlignment);
   end;
 
   TRTFMemoParser = class(TRTFParser)
@@ -283,6 +285,18 @@ begin
   pm.SpaceBefore:=0;
   pm.SpaceAfter:=0;
   pm.LineSpacing:=0;
+  tabs.Count:=0;
+end;
+
+procedure TRTFParams.AddTab(AOffset: double; ta: TTabAlignment);
+begin
+  if tabs.Count=length(tabs.Tabs) then begin
+    if tabs.Count=0 then SetLength(tabs.Tabs, 4)
+    else SetLength(tabs.Tabs, tabs.Count*2);
+  end;
+  tabs.Tabs[tabs.Count].Offset:=AOffset;
+  tabs.Tabs[tabs.Count].Align:=ta;
+  inc(tabs.Count);
 end;
 
 { TRTFMemoParserr }
@@ -357,6 +371,8 @@ begin
 
       AddText( langproc(bt) );
     end;
+  end else if (length(txt)=2) and (txt[1]='\') and (txt[2] in ['\','{','}']) then begin
+    AddText(txt[2]);
   end else begin
     AddText(txt);
   end;
@@ -413,6 +429,9 @@ begin
 end;
 
 procedure TRTFMemoParser.doChangePara(aminor, aparam: Integer);
+const
+  TabAl : array [rtfTabPos..rtfTabDecimal] of TTabAlignment = (
+    tabLeft, tabRight, tabCenter, tabDecimal);
 begin
   case aminor of
     rtfParDef:      prm.ResetDefault; // reset clear formatting
@@ -435,6 +454,11 @@ begin
     rtfLanguage: begin
       SetLanguage(rtfParam);
     end;
+    rtfTabPos,//; rtfKstr : 'tx'; rtfkHash : 0),
+    rtfTabRight, // rtfKstr : 'tqr'; rtfkHash : 0),
+    rtfTabCenter, //; rtfKstr : 'tqc'; rtfkHash : 0),
+    rtfTabDecimal: //; rtfKstr : 'tqdec'; rtfkHash : 0),
+      prm.AddTab(aparam / 20, TabAl[aminor]);
   end;
 end;
 
@@ -567,6 +591,9 @@ begin
     prm.pm.FirstLine:=prm.pm.FirstLine-prm.pm.HeadIndent;
 
     Memo.SetParaAlignment(selst, 1, prm.pa );
+
+    if prm.tabs.Count>0 then
+      Memo.SetParaTabs(selst, 1, prm.tabs);
   end;
 
 //  Memo.GetTextAttributes(selst, font);
@@ -750,6 +777,8 @@ begin
   isNewPara:=false;
   while i<=length(u) do begin
     if u[i]='\' then Result:=Result+'\\'
+    else if u[i]='{' then Result:=Result+'\{'
+    else if u[i]='}' then Result:=Result+'\}'
     else if u[i]=#10 then begin
       Result:=Result+'\par ';
       isNewPara:=true;
@@ -761,7 +790,7 @@ begin
       inc(i);
       Break;
     end else if u[i]<#127 then Result:=Result+char(byte(u[i]))
-    else Result:=Result+'\u'+IntToStr(word(u[i]))+' '; // adding a blank "space" character replacement
+    else Result:=Result+'\u'+IntToStr(word(u[i]))+'  '; // adding a blank "space" character replacement
     inc(i);
   end;
   idx:=i;

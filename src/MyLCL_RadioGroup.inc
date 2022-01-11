@@ -755,6 +755,20 @@ begin
   handleExceptionEnd
 end;
 
+function RadioGroup_GetParentBackground(AObj: TRadioGroup): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ParentBackground;
+  handleExceptionEnd
+end;
+
+procedure RadioGroup_SetParentBackground(AObj: TRadioGroup; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ParentBackground := AValue;
+  handleExceptionEnd
+end;
+
 function RadioGroup_GetParentColor(AObj: TRadioGroup): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -1497,6 +1511,8 @@ exports
   RadioGroup_SetItems,
   RadioGroup_GetConstraints,
   RadioGroup_SetConstraints,
+  RadioGroup_GetParentBackground,
+  RadioGroup_SetParentBackground,
   RadioGroup_GetParentColor,
   RadioGroup_SetParentColor,
   RadioGroup_GetParentDoubleBuffered,

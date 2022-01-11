@@ -43,6 +43,8 @@ type
 
     class function GetStyleRange(const AWinControl: TWinControl; TextStart: Integer; var RangeStart, RangeLen: Integer): Boolean; override;
 
+    class procedure SetTransparentBackground(const AWinControl: TWinControl;
+      ATransparent: Boolean); override;
   end;
 
 type
@@ -313,6 +315,17 @@ begin
     ApplyBackup(te, bck);
   end;
   {$endif}
+end;
+
+class procedure TQtWSCustomRichMemo.SetTransparentBackground(
+  const AWinControl: TWinControl; ATransparent: Boolean);
+var
+  te : TQtTextEdit;
+begin
+  if not WSCheckHandleAllocated(AWinControl, 'GetStyleRange') then
+    Exit;
+  te:=TQtTextEdit(AWinControl.Handle);
+  QWidget_setAutoFillBackground(te.viewportWidget, not ATransparent);
 end;
 
 class function TQtWSCustomRichMemo.GetParaAlignment(

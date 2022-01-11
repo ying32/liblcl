@@ -9,7 +9,7 @@ interface
 uses
   CocoaAll, Classes, SysUtils,
   LCLType, Graphics, Controls, StdCtrls,
-  CocoaPrivate, CocoaTextEdits, CocoaUtils, CocoaWSCommon,
+  CocoaPrivate, CocoaTextEdits, CocoaUtils, CocoaWSCommon, CocoaWSStdCtrls,
   {$ifndef RMLCL18} // it can be defined in the package's CustomOptions -dRMLCL18
   CocoaScrollers, // this unit was introduced in summer-fall 2018 with Lazarus 2.0 release
   {$endif}
@@ -58,6 +58,8 @@ type
       const TextUTF8: String; DstStart, DstLen: Integer); override;
     class function LoadRichText(const AWinControl: TWinControl; Source: TStream): Boolean; override;
     class function SaveRichText(const AWinControl: TWinControl; Dest: TStream): Boolean; override;
+
+    class procedure SetTransparentBackground(const AWinControl: TWinControl; ATransparent: Boolean); override;
   end;
 
 implementation
@@ -228,6 +230,11 @@ begin
 
   scr.callback := txt.callback;
   Result := TLCLIntfHandle(scr);
+
+  TextViewSetWordWrap(txt, scr, TCustomMemo(AWinControl).WordWrap);
+  TextViewSetAllignment(txt, TCustomMemo(AWinControl).Alignment);
+  txt.wantReturns := TCustomMemo(AWinControl).WantReturns;
+  txt.callback.SetTabSuppress(not TCustomMemo(AWinControl).WantTabs);
 end;
 
 class function TCocoaWSCustomRichMemo.GetTextAttributes(
@@ -247,6 +254,16 @@ begin
   if not Assigned(view) then Exit;
 
   txt:=view.textStorage;
+  if (txt.length = 0) then begin
+    // there's no text! using the control information
+    Params.Name := txt.font.displayName.UTF8String;
+    Params.Size := Round(txt.font.pointSize);
+    Params.HasBkClr := false;
+    exit;
+  end;
+
+  if (TextStart >= txt.length) then
+    TextStart := txt.length;
   dict:=GetDict(txt, textStart);
   ReadNSFontParams(dict, prm);
   if Assigned(prm.font) then begin
@@ -335,6 +352,7 @@ begin
       trt:=trt and (not fallback[i]);
       fd:=fd.fontDescriptorWithSymbolicTraits(trt);
       fdd:=fd.matchingFontDescriptorWithMandatoryKeys(nil);
+      inc(i);
     end;
     Result:=fdd;
   finally
@@ -680,6 +698,18 @@ begin
   end;
 
   Result:=true;
+end;
+
+class procedure TCocoaWSCustomRichMemo.SetTransparentBackground(
+  const AWinControl: TWinControl; ATransparent: Boolean);
+var
+  txt : TCocoaTextView;
+begin
+  txt:=MemoTextView(AWinControl);
+  if not Assigned(txt) then Exit;
+
+  txt.setDrawsBackground(not ATransparent);
+  txt.enclosingScrollView.setDrawsBackground(not ATransparent);
 end;
 
 end.

@@ -180,7 +180,7 @@ type
 
     class procedure SetHideSelection(RichEditWnd: Handle; AValue: Boolean); virtual;
     class function LoadRichText(RichEditWnd: Handle; ASrc: TStream): Boolean; virtual;
-    class function SaveRichText(RichEditWnd: Handle; ADst: TStream): Boolean; virtual;
+    class function SaveRichText(RichEditWnd: Handle; ADst: TStream; extraflags: Integer = 0): Boolean; virtual;
 
     class procedure SetText(RichEditWnd: Handle; const Text: WideString; TextStart, ReplaceLength: Integer); virtual;
     class function GetTextW(RichEditWnd: Handle; inSelection: Boolean): WideString; virtual;
@@ -424,7 +424,7 @@ begin
   fmt.cbSize := sizeof(fmt);
 
   fmt.dwMask := fmt.dwMask or CFM_COLOR;
-  fmt.crTextColor := ColorToRGB(Params.Color);
+  fmt.crTextColor := Params.Color;
 
   fmt.dwMask := fmt.dwMask or CFM_FACE;
   // keep last char for Null-termination?
@@ -459,7 +459,7 @@ begin
 
   if not useMask or (tmm_Color in AModifyMask) then begin
     fmt.dwMask := fmt.dwMask or CFM_COLOR;
-    fmt.crTextColor := ColorToRGB(Params.Color);
+    fmt.crTextColor := Params.Color;
   end;
 
   if not useMask or (tmm_Name in AModifyMask) then begin
@@ -481,7 +481,7 @@ begin
   if not useMask or (tmm_BackColor in AModifyMask) then begin
     if Params.HasBkClr then begin
       fmt.dwMask := fmt.dwMask or CFM_BACKCOLOR;
-      fmt.crBackColor := ColorToRGB(Params.BkColor);
+      fmt.crBackColor := Params.BkColor;
     end else begin
       fmt.dwMask := fmt.dwMask or CFM_BACKCOLOR;
       fmt.dwEffects := fmt.dwEffects or CFE_AUTOBACKCOLOR;
@@ -758,7 +758,11 @@ type
     pfnCallback : EDITSTREAMCALLBACK;
   end;
   
+{$IF FPC_FULLVERSION>=30202}
+function RTFLoadCallback(dwCookie:DWORD_PTR; pbBuff:LPBYTE; cb:LONG; var pcb:LONG):DWORD; stdcall;
+{$ELSE}
 function RTFLoadCallback(dwCookie:PDWORD; pbBuff:LPBYTE; cb:LONG; var pcb:LONG):DWORD; stdcall;
+{$ENDIF}
 var
   s : TStream;  
 begin
@@ -782,7 +786,11 @@ begin
   Result := cbs.dwError = 0;
 end;
 
+{$IF FPC_FULLVERSION>=30202}
+function RTFSaveCallback(dwCookie:DWORD_PTR; pbBuff:LPBYTE; cb:LONG; var pcb:LONG):DWORD; stdcall;
+{$ELSE}
 function RTFSaveCallback(dwCookie:PDWORD; pbBuff:LPBYTE; cb:LONG; var pcb:LONG):DWORD; stdcall;
+{$ENDIF}
 var
   s : TStream;  
 begin
@@ -795,14 +803,14 @@ begin
   end;
 end;
 
-class function TRichEditManager.SaveRichText(RichEditWnd: Handle; ADst: TStream): Boolean; 
+class function TRichEditManager.SaveRichText(RichEditWnd: Handle; ADst: TStream; extraflags: Integer): Boolean; 
 var
   cbs : TEditStream_;
 begin
   cbs.dwCookie := PDWORD(ADst);
   cbs.dwError := 0;
   cbs.pfnCallback := @RTFSaveCallback;
-  SendMessage(RichEditWnd, EM_STREAMOUT, SF_RTF, LPARAM(@cbs) );
+  SendMessage(RichEditWnd, EM_STREAMOUT, SF_RTF or extraFlags, LPARAM(@cbs) );
   Result := cbs.dwError = 0;
 end;
 
@@ -812,6 +820,8 @@ var
   AnsiText : AnsiString;
   txt      : PChar;
   sr       : TCHARRANGE;
+const
+  UNDO_FLAG=1; // can be undone
 begin
   GetSelRange(RichEditWnd, sr);
   SetSelection(RichEditWnd, TextStart, ReplaceLength);
@@ -819,11 +829,11 @@ begin
   txt:=nil;
   if UnicodeEnabledOS then begin
     if Text<>'' then txt:=@Text[1];
-    SendMessageW(RichEditWnd, EM_REPLACESEL, 0, LPARAM(txt));
+    SendMessageW(RichEditWnd, EM_REPLACESEL, UNDO_FLAG, LPARAM(txt));
   end else begin
     AnsiText:=Text;
     if AnsiText<>'' then txt:=@AnsiText[1];
-    SendMessageA(RichEditWnd, EM_REPLACESEL, 0, LPARAM(txt));
+    SendMessageA(RichEditWnd, EM_REPLACESEL, UNDO_FLAG, LPARAM(txt));
   end;
 
   SetSelRange(RichEditWnd, sr);
@@ -1038,8 +1048,51 @@ end;
 
 class function TRichEditManager.LinkNotifyToInfo(RichEditWnd: Handle;
   const LinkNotify: TENLINK; var LinkInfo: TLinkMouseInfo): Boolean;
+var
+  gt : GETTEXTEX;
+  l  : integer;
+  olds, oldl : integer;
+  st : TStringStream;
+  evmsk : Integer;
+  hp : string;
+  hpi : integer;
+  hps : integer;
 begin
-  Result := false;
+  evmsk := SetEventMask(RichEditWnd, 0);
+  try
+    GetSelection(RichEditWnd, olds, oldl);
+    try
+      l := LinkNotify.chrg.cpMax - LinkNotify.chrg.cpMin;
+      SetSelection(RichEditWnd, LinkNotify.chrg.cpMin, l);
+      st := TStringStream.Create('');
+      hp := '';
+      try
+        SaveRichText(RichEditWnd, st, SFF_SELECTION);
+        hp := st.DataString;
+      finally
+        st.Free;
+      end;
+      hpi := Pos('HYPERLINK', hp);
+      if (hpi>0) then begin
+        inc(hpi, length('HYPERLINK'));
+        while (hpi <= length(hp)) and not (hp[hpi] in ['"','}']) do inc(hpi);
+        if (hpi <= length(hp)) and (hp[hpi]='"') then begin
+          inc(hpi);
+          hps:=hpi;
+          while (hpi <= length(hp)) and (hp[hpi] <> '"') do
+            inc(hpi);
+          //todo: convert RTF chars into UTF8
+          LinkInfo.LinkRef := Copy(hp, hps, hpi-hps);
+        end;
+        Result := true;
+      end else
+        Result :=TRichEditManagerWinXP.LinkNotifyToInfo(RichEditWnd, LinkNotify, LinkInfo);
+    finally
+      SetSelection(RichEditWnd, olds, oldl);
+    end;
+  finally
+    SetEventMask(RichEditWnd, evmsk);
+  end;
 end;
 
 function WinInsertImageFromFile (const ARichMemo: TCustomRichMemo; APos: Integer;

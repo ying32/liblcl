@@ -14,7 +14,6 @@
 {$ELSE}
   Types,
 {$ENDIF}
-  LResources,
   LCLType,
   typinfo,
   LCLProc,
@@ -49,6 +48,7 @@
   Spin,
   Printers,
   ComboEx,
+  LResources,
 {$I UserDefineComponentUses.inc}
   uLinkLabel,
   uEventCallback,

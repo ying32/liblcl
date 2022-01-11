@@ -1097,6 +1097,20 @@ begin
   handleExceptionEnd
 end;
 
+function CheckGroup_GetParentBackground(AObj: TCheckGroup): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ParentBackground;
+  handleExceptionEnd
+end;
+
+procedure CheckGroup_SetParentBackground(AObj: TCheckGroup; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ParentBackground := AValue;
+  handleExceptionEnd
+end;
+
 function CheckGroup_GetDockClientCount(AObj: TCheckGroup): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -1711,6 +1725,8 @@ exports
   CheckGroup_SetTabStop,
   CheckGroup_GetVisible,
   CheckGroup_SetVisible,
+  CheckGroup_GetParentBackground,
+  CheckGroup_SetParentBackground,
   CheckGroup_GetDockClientCount,
   CheckGroup_GetDockSite,
   CheckGroup_SetDockSite,

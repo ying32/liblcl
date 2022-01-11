@@ -141,6 +141,8 @@ type
     class function GetCanRedo(const AWinControl: TWinControl): Boolean; override;
 
     class procedure ScrollBy(const AWinControl: TWinControl;  DeltaX, DeltaY: integer); override;
+
+    class procedure SetTransparentBackground(const AWinControl: TWinControl; ATransparent: Boolean); override;
   end;
 
   { TWin32Inline }
@@ -200,6 +202,9 @@ function GetLangOptions(rm: TCustomRichMemo):  TWinLangOptions; overload;
 procedure SetLangOptions(hnd: THandle; const opts: TWinLangOptions); overload;
 procedure SetLangOptions(rm: TCustomRichMemo; const opts: TWinLangOptions); overload;
 *)
+
+procedure WMPrintRichMemo(const AWinControl: TWinControl; ADC: HDC);
+
 implementation
 
 const
@@ -347,6 +352,86 @@ begin
   end;
 end;
 
+function KeysToShiftState(Keys: PtrUInt): TShiftState;
+begin
+  Result := [];
+  if Keys and MK_Shift <> 0 then Include(Result, ssShift);
+  if Keys and MK_Control <> 0 then Include(Result, ssCtrl);
+  if Keys and MK_LButton <> 0 then Include(Result, ssLeft);
+  if Keys and MK_RButton <> 0 then Include(Result, ssRight);
+  if Keys and MK_MButton <> 0 then Include(Result, ssMiddle);
+  if Keys and MK_XBUTTON1 <> 0 then Include(Result, ssExtra1);
+  if Keys and MK_XBUTTON2 <> 0 then Include(Result, ssExtra2);
+  if Keys and MK_DOUBLECLICK <> 0 then Include(Result, ssDouble);
+  if Keys and MK_TRIPLECLICK <> 0 then Include(Result, ssTriple);
+  if Keys and MK_QUADCLICK <> 0 then Include(Result, ssQuad);
+
+  if GetKeyState(VK_MENU) < 0 then Include(Result, ssAlt);
+  if (GetKeyState(VK_LWIN) < 0) or (GetKeyState(VK_RWIN) < 0) then Include(Result, ssMeta);
+end;
+
+
+procedure WMPrintRichMemo(const AWinControl: TWinControl; ADC: HDC);
+var
+  fmt          : TFormatRange;
+  cxPhysOffset : Integer;
+  cyPhysOffset : Integer;
+  cxPhys       : Integer;
+  cyPhys       : Integer;
+  r : TRect;
+  p : POINTL;
+begin
+  // why would WinAPI make things easier if it can make them harder?!
+  // WM_PRINT doesn't seem to be fully functinoal for RICHEDIT
+  // EM_FORMATRANGE needs to be used
+  fmt.hdc:=ADC;
+  fmt.hdcTarget:=ADC;
+
+  p.x:=1;
+  p.y:=1;
+  fmt.chrg.cpMin:=SendMessage(AWinControl.Handle, EM_CHARFROMPOS, 0, LPARAM(@p));
+  fmt.chrg.cpMax:=TCustomRichMemo(AWinControl).GetTextLen;
+
+  case GetDeviceCaps(adc, TECHNOLOGY) of
+    DT_RASDISPLAY, DT_DISPFILE: begin
+      Windows.GetClientRect(AWinControl.Handle, r);
+      r:=Bounds(0,0,AWinControl.Width,AWinControl.Height);
+      //todo: to be properly read from the border settings
+      InflateRect(r, -4, -4);
+      fmt.rcPage.left   := MulDiv(r.Left,  1440, GetDeviceCaps(adc, LOGPIXELSX));
+      fmt.rcPage.top    := MulDiv(r.Top,   1440, GetDeviceCaps(adc, LOGPIXELSY));
+      fmt.rcPage.right  := MulDiv(r.Right, 1440, GetDeviceCaps(adc, LOGPIXELSX));
+      fmt.rcPage.bottom := MulDiv(r.Bottom,1440, GetDeviceCaps(adc, LOGPIXELSY));
+      fmt.rc:=Bounds(
+        MulDiv(2,1440, GetDeviceCaps(adc, LOGPIXELSY)),
+        MulDiv(2,1440, GetDeviceCaps(adc, LOGPIXELSY)),
+        fmt.rcPage.Right-fmt.rcPage.Left, fmt.rcPage.Bottom-fmt.rcPage.top);;
+    end;
+    DT_RASPRINTER,DT_PLOTTER,DT_METAFILE: begin
+      cxPhysOffset := GetDeviceCaps(adc, PHYSICALOFFSETX);
+      cyPhysOffset := GetDeviceCaps(adc, PHYSICALOFFSETY);
+      cxPhys := GetDeviceCaps(adc, PHYSICALWIDTH);
+      cyPhys := GetDeviceCaps(adc, PHYSICALHEIGHT);
+
+      // Set page rect to physical page size in twips.
+      fmt.rcPage.top    := 0;
+      fmt.rcPage.left   := 0;
+      fmt.rcPage.right  := MulDiv(cxPhys, 1440, GetDeviceCaps(adc, LOGPIXELSX));
+      fmt.rcPage.bottom := MulDiv(cyPhys, 1440, GetDeviceCaps(adc, LOGPIXELSY));
+
+      // Set the rendering rectangle to the pintable area of the page.
+      fmt.rc.left   := cxPhysOffset;
+      fmt.rc.right  := cxPhysOffset + cxPhys;
+      fmt.rc.top    := cyPhysOffset;
+      fmt.rc.bottom := cyPhysOffset + cyPhys;
+    end;
+  end;
+  SendMessage(AWinControl.Handle, EM_FORMATRANGE, 1, LPARAM(@fmt));
+
+  // free mem. See MSDN
+  SendMessage(AWinControl.Handle, EM_FORMATRANGE, 0, 0);
+end;
+
 function RichEditProc(Window: HWnd; Msg: UInt; WParam: Windows.WParam;
    LParam: Windows.LParam): LResult; stdcall;
 var
@@ -354,6 +439,7 @@ var
   NcHandled  : Boolean; // NCPaint has painted by itself
   r: TRect;
   PrevWndProc: Windows.WNDPROC;
+  P: TPoint;
 begin
   case Msg of
     WM_PAINT : begin
@@ -390,8 +476,36 @@ begin
       end else
         Result:=WindowProc(Window, Msg, WParam, LParam);
       end;
+
+    // The handling is needed, due to LCL scrolling is making everything slow
+    // for whatever reason. (because it doesn't pass the message to WinAPI?)
+    WM_MOUSEWHEEL, WM_MOUSEHWHEEL:
+    begin
+      WindowInfo := GetWin32WindowInfo(Window);
+
+      // WinAPI sends Screen Coordinates, LCL expects client coordinates
+      p := Point(GET_X_LPARAM(LParam), GET_Y_LPARAM(LParam));
+      if Assigned(WindowInfo^.WinControl) then
+        p := WindowInfo^.WinControl.ScreenToClient(p);
+
+      Result := LCLSendMouseWheelMsg(WindowInfo^.WinControl,
+        p.x, p.y,
+        SmallInt(HIWORD(Integer(WParam))),
+        KeysToShiftState(LOWORD(Integer(WParam))));
+
+      // Non zero value is returned, if LCL marked the message as Handeld
+      if Result = 0 then
+        Result := CallDefaultWindowProc(Window, Msg, WParam, LParam);
+    end;
   else
     Result := WindowProc(Window, Msg, WParam, LParam);
+  end;
+
+  case msg of
+    WM_PRINT: begin
+      WindowInfo := GetWin32WindowInfo(Window);
+      WMPrintRichMemo(WindowInfo^.WinControl, HDC(WParam));
+    end;
   end;
 end;
 
@@ -1507,6 +1621,24 @@ begin
   RichEditManager.SetScroll(AWinControl.Handle, pt);
 end;
 
+class procedure TWin32WSCustomRichMemo.SetTransparentBackground(
+  const AWinControl: TWinControl; ATransparent: Boolean);
+var
+  l  : Windows.Long;
+  nl : Windows.Long;
+begin
+  if not Assigned(AWinControl) or not (AWinControl.HandleAllocated) then Exit;
+
+  // Make sure there's TImage resides on the same form as RichMemo
+  l := GetWindowLong(AWinControl.Handle, GWL_EXSTYLE);
+  if ATransparent then
+    nl := l or WS_EX_TRANSPARENT
+  else
+    nl := l and not WS_EX_TRANSPARENT;
+  if nl <> l then
+    SetWindowLong(AWinControl.Handle, GWL_EXSTYLE, nl);
+end;
+
 // The function doesn't use Windows 7 (Vista?) animations. And should.
 function ThemedNCPaint(AWindow: Windows.HANDLE; RichMemo: TCustomRichMemo; WParam: WParam; LParam: LParam; var Handled: Boolean): LResult;
 begin
@@ -1527,7 +1659,11 @@ type
   end;
   PStreamText = ^TStreamText;
 
+{$IF FPC_FULLVERSION>=30202}
+function Read(dwCookie:DWORD_PTR; pbBuff:LPBYTE; cb:LONG; var pcb:LONG):DWORD; stdcall;
+{$ELSE}
 function Read(dwCookie:PDWORD; pbBuff:LPBYTE; cb:LONG; var pcb:LONG):DWORD; stdcall;
+{$ENDIF}
 var
   //p : PStreamText;
   b : string;

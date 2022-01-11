@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="4">
+  <Package Version="5">
     <PathDelim Value="\"/>
     <Name Value="richmemo_design"/>
     <Type Value="RunAndDesignTime"/>
@@ -8,18 +8,16 @@
       <Version Value="11"/>
       <PathDelim Value="\"/>
       <SearchPaths>
-        <IncludeFiles Value="ide"/>
-        <OtherUnitFiles Value="ide"/>
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Files Count="3">
       <Item1>
-        <Filename Value="ide\rtfeditpropdialog.lfm"/>
+        <Filename Value="rtfeditpropdialog.lfm"/>
         <Type Value="LFM"/>
       </Item1>
       <Item2>
-        <Filename Value="ide\rtfeditpropdialog.pas"/>
+        <Filename Value="rtfeditpropdialog.pas"/>
         <UnitName Value="RtfEditPropDialog"/>
       </Item2>
       <Item3>
@@ -28,6 +26,7 @@
         <UnitName Value="richmemoregister"/>
       </Item3>
     </Files>
+    <CompatibilityMode Value="True"/>
     <RequiredPkgs Count="3">
       <Item1>
         <PackageName Value="richmemopackage"/>

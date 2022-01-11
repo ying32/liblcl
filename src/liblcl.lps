@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <BuildModes Count="5" Active="Win64">
       <Item1 Name="Win64">
         <MacroValues Count="1">
@@ -81,6 +81,12 @@
               <ExecutableType Value="Library"/>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
+            <OtherDefines Count="1">
+              <Define0 Value="RMLCLTRUNK"/>
+            </OtherDefines>
+          </Other>
         </CompilerOptions>
       </Item2>
       <Item3 Name="Linux32">
@@ -116,6 +122,12 @@
               <ExecutableType Value="Library"/>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dRMLCLTRUNK"/>
+            <OtherDefines Count="1">
+              <Define0 Value="RMLCLTRUNK"/>
+            </OtherDefines>
+          </Other>
         </CompilerOptions>
       </Item3>
       <Item4 Name="LinuxARM">
@@ -203,22 +215,21 @@
         <Item5 Mode="MacOS64(cocoa)" Option="558457850193"/>
       </SessionEnabledMatrixOptions>
     </BuildModes>
-    <Units Count="443">
+    <Units Count="445">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="19"/>
-        <CursorPos X="89" Y="45"/>
+        <TopLine Value="20"/>
+        <CursorPos X="10" Y="32"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="uEventCallback.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="1050"/>
-        <CursorPos X="45" Y="1063"/>
-        <FoldState Value=" T3nd6x1k"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="242"/>
+        <CursorPos X="11" Y="270"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -262,16 +273,17 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="200"/>
       </Unit6>
       <Unit7>
         <Filename Value="ucontrolpatchs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uControlPatchs"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="6"/>
-        <CursorPos X="16" Y="23"/>
-        <UsageCount Value="159"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="55"/>
+        <CursorPos X="44" Y="55"/>
+        <UsageCount Value="161"/>
+        <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="umacospatchs.pas"/>
@@ -280,7 +292,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos X="29" Y="32"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
       </Unit8>
       <Unit9>
         <Filename Value="ulinuxpatchs.pas"/>
@@ -288,7 +300,7 @@
         <UnitName Value="uLinuxPatchs"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="27"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="153"/>
       </Unit9>
       <Unit10>
         <Filename Value="xbutton.pas"/>
@@ -297,7 +309,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="3" Y="27"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="152"/>
       </Unit10>
       <Unit11>
         <Filename Value="urichedit.pas"/>
@@ -306,15 +318,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="311"/>
         <CursorPos X="19" Y="270"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="139"/>
       </Unit11>
       <Unit12>
         <Filename Value="uFormDesignerFile.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="12" Y="22"/>
-        <UsageCount Value="132"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="141"/>
+        <UsageCount Value="134"/>
+        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="uexport1.pas"/>
@@ -322,31 +334,31 @@
         <UnitName Value="uExport1"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="129"/>
       </Unit13>
       <Unit14>
         <Filename Value="uexport2.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uExport2"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="129"/>
       </Unit14>
       <Unit15>
         <Filename Value="UseAll.inc"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="25"/>
-        <UsageCount Value="124"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="26"/>
+        <UsageCount Value="126"/>
         <Loaded Value="True"/>
       </Unit15>
       <Unit16>
         <Filename Value="uexceptionhandle.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uExceptionHandle"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="12"/>
-        <CursorPos X="29" Y="30"/>
-        <UsageCount Value="76"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="16"/>
+        <UsageCount Value="78"/>
+        <Loaded Value="True"/>
       </Unit16>
       <Unit17>
         <Filename Value="ugauge.pas"/>
@@ -354,7 +366,7 @@
         <UnitName Value="uGauge"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26" Y="26"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="75"/>
       </Unit17>
       <Unit18>
         <Filename Value="uexport3.pas"/>
@@ -363,14 +375,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="21" Y="30"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="66"/>
       </Unit18>
       <Unit19>
         <Filename Value="uexport4.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uExport4"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="64"/>
+        <EditorIndex Value="13"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit19>
       <Unit20>
@@ -721,10 +732,11 @@
       <Unit68>
         <Filename Value="F:\lazarus\lcl\lcltype.pp"/>
         <UnitName Value="LCLType"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2566"/>
-        <CursorPos X="3" Y="2583"/>
-        <UsageCount Value="12"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="1135"/>
+        <CursorPos X="3" Y="1152"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
       </Unit68>
       <Unit69>
         <Filename Value="MyLCL_DateTimePicker.inc"/>
@@ -787,11 +799,10 @@
       </Unit77>
       <Unit78>
         <Filename Value="MyLCL_ListItem.inc"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="260"/>
         <CursorPos X="102" Y="285"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit78>
       <Unit79>
@@ -962,10 +973,10 @@
       </Unit102>
       <Unit103>
         <Filename Value="LazarusDef.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="357"/>
-        <CursorPos Y="374"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="31"/>
         <UsageCount Value="101"/>
+        <Loaded Value="True"/>
       </Unit103>
       <Unit104>
         <Filename Value="MyLCL_ColorDialog.inc"/>
@@ -1061,10 +1072,11 @@
       <Unit117>
         <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
         <UnitName Value="ExtCtrls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1600"/>
-        <CursorPos X="28" Y="1627"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="703"/>
+        <CursorPos X="49" Y="731"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit117>
       <Unit118>
         <Filename Value="MyLCL_StatusBar.inc"/>
@@ -1074,10 +1086,11 @@
       </Unit118>
       <Unit119>
         <Filename Value="MyLCL_Application.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="256"/>
-        <CursorPos X="68" Y="481"/>
-        <UsageCount Value="17"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="455"/>
+        <CursorPos X="30" Y="472"/>
+        <UsageCount Value="18"/>
+        <Loaded Value="True"/>
       </Unit119>
       <Unit120>
         <Filename Value="MyLCL_StatusPanel.inc"/>
@@ -1162,10 +1175,11 @@
       <Unit132>
         <Filename Value="F:\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="3" Y="38"/>
-        <UsageCount Value="7"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="263"/>
+        <CursorPos X="3" Y="280"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit132>
       <Unit133>
         <Filename Value="F:\lazarus\lcl\lmessages.pp"/>
@@ -1905,11 +1919,10 @@
       <Unit239>
         <Filename Value="F:\lazarus\lcl\grids.pas"/>
         <UnitName Value="Grids"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="117"/>
         <CursorPos X="3" Y="135"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit239>
       <Unit240>
         <Filename Value="F:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysinth.inc"/>
@@ -2254,7 +2267,7 @@
         <UsageCount Value="10"/>
       </Unit291>
       <Unit292>
-        <Filename Value="..\..\..\..\usr\share\fpcsrc\3.0.4\rtl\objpas\classes\classesh.inc"/>
+        <Filename Value="F:\usr\share\fpcsrc\3.0.4\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1707"/>
         <CursorPos X="16" Y="1726"/>
@@ -2333,10 +2346,12 @@
       </Unit302>
       <Unit303>
         <Filename Value="F:\lazarus\lcl\include\customtrayicon.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="17" Y="42"/>
-        <UsageCount Value="5"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="338"/>
+        <CursorPos X="72" Y="276"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit303>
       <Unit304>
         <Filename Value="F:\lazarus\lcl\include\customdesigncontrol.inc"/>
@@ -3346,98 +3361,150 @@
         <CursorPos X="10" Y="413"/>
         <UsageCount Value="10"/>
       </Unit442>
+      <Unit443>
+        <Filename Value="3rd-party\richmemo\win32\win32richmemoproc.pas"/>
+        <UnitName Value="Win32RichMemoProc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="764"/>
+        <CursorPos X="22" Y="780"/>
+        <UsageCount Value="10"/>
+      </Unit443>
+      <Unit444>
+        <Filename Value="3rd-party\richmemo\win32\win32richmemo.pas"/>
+        <UnitName Value="Win32RichMemo"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1547"/>
+        <CursorPos X="22" Y="1564"/>
+        <UsageCount Value="10"/>
+      </Unit444>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="55" Column="8" TopLine="35"/>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="1044" Column="131" TopLine="1038"/>
       </Position1>
       <Position2>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="54" Column="10" TopLine="35"/>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="218" Column="54" TopLine="205"/>
       </Position2>
       <Position3>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="54" Column="10" TopLine="35"/>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="1063" Column="45" TopLine="1050"/>
       </Position3>
       <Position4>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="102" Column="27" TopLine="93"/>
+        <Filename Value="MyLCL_ListItem.inc"/>
+        <Caret Line="285" Column="102" TopLine="260"/>
       </Position4>
       <Position5>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="491" Column="3" TopLine="487"/>
+        <Filename Value="MyLCL_Application.inc"/>
+        <Caret Line="472" Column="27" TopLine="455"/>
       </Position5>
       <Position6>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="220" Column="23" TopLine="218"/>
+        <Caret Line="159" Column="39" TopLine="143"/>
       </Position6>
       <Position7>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="264" Column="11" TopLine="261"/>
+        <Caret Line="842" Column="104" TopLine="825"/>
       </Position7>
       <Position8>
         <Filename Value="liblcl.lpr"/>
-        <Caret Line="48" Column="9" TopLine="25"/>
+        <Caret Line="48" Column="31" TopLine="35"/>
       </Position8>
       <Position9>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="283" Column="28" TopLine="269"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="20" Column="28" TopLine="11"/>
       </Position9>
       <Position10>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="288" Column="21" TopLine="269"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="40" Column="31" TopLine="22"/>
       </Position10>
       <Position11>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="66" Column="5" TopLine="49"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="39" Column="19" TopLine="22"/>
       </Position11>
       <Position12>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="24" Column="45" TopLine="6"/>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="42" Column="40" TopLine="22"/>
       </Position12>
       <Position13>
         <Filename Value="liblcl.lpr"/>
-        <Caret Line="20" Column="3" TopLine="6"/>
+        <Caret Line="48" Column="31" TopLine="35"/>
       </Position13>
       <Position14>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="47" Column="78" TopLine="24"/>
+        <Filename Value="ucontrolpatchs.pas"/>
+        <Caret Line="57" Column="57" TopLine="36"/>
       </Position14>
       <Position15>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="45" Column="89" TopLine="19"/>
+        <Filename Value="ucontrolpatchs.pas"/>
+        <Caret Line="364" Column="10" TopLine="356"/>
       </Position15>
       <Position16>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="1044" Column="131" TopLine="1038"/>
+        <Filename Value="ucontrolpatchs.pas"/>
+        <Caret Line="55" Column="44" TopLine="55"/>
       </Position16>
       <Position17>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="218" Column="54" TopLine="205"/>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="69" TopLine="30"/>
       </Position17>
       <Position18>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="1063" Column="45" TopLine="1050"/>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="32" Column="10" TopLine="20"/>
       </Position18>
+      <Position19>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="270" Column="11" TopLine="242"/>
+      </Position19>
+      <Position20>
+        <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="1412" Column="3" TopLine="1395"/>
+      </Position20>
+      <Position21>
+        <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="1380" Column="19" TopLine="1354"/>
+      </Position21>
+      <Position22>
+        <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="1385" Column="19" TopLine="1369"/>
+      </Position22>
+      <Position23>
+        <Filename Value="F:\lazarus\lcl\include\customtrayicon.inc"/>
+        <Caret Line="273" Column="3" TopLine="258"/>
+      </Position23>
+      <Position24>
+        <Filename Value="F:\lazarus\lcl\include\customtrayicon.inc"/>
+        <Caret Line="270" Column="3" TopLine="253"/>
+      </Position24>
+      <Position25>
+        <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="1357" Column="23" TopLine="1350"/>
+      </Position25>
+      <Position26>
+        <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="1402" Column="64" TopLine="1374"/>
+      </Position26>
+      <Position27>
+        <Filename Value="F:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="687" Column="13" TopLine="669"/>
+      </Position27>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode="default"/>
+      <Modes ActiveMode="default"/>
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
+    <BreakPoints>
+      <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="MyLCL_CustomHint.inc"/>
         <Line Value="39"/>
-      </Item1>
+      </Item>
     </BreakPoints>
   </Debugging>
 </CONFIG>

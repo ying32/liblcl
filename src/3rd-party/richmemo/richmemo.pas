@@ -182,6 +182,7 @@ type
     fOnPrintAction      : TPrintActionEvent;
     fOnLinkAction       : TLinkActionEvent;
     fZoomFactor         : Double;
+    fTransparent        : Boolean;
   private
     procedure InlineInvalidate(handler: TRichMemoInline);
 
@@ -198,6 +199,7 @@ type
     procedure SetSelText(const SelTextUTF8: string); override;
     function GetZoomFactor: Double; virtual;
     procedure SetZoomFactor(AValue: Double); virtual;
+    procedure SetTransparent(AValue: Boolean); virtual;
 
     procedure DoPrintAction(PrintJobEvent: TPrintAction;
       PrintCanvas: TCanvas;
@@ -268,6 +270,7 @@ type
     property OnPrintAction: TPrintActionEvent read fOnPrintAction write fOnPrintAction;
     property OnLinkAction: TLinkActionEvent read fOnLinkAction write fOnLinkAction;
     property CanRedo: Boolean read GetCanRedo;
+    property Transparent: Boolean read fTransparent write SetTransparent default false;
   end;
   
   { TRichMemo }
@@ -613,6 +616,14 @@ begin
     TWSCustomRichMemoClass(WidgetSetClass).SetZoomFactor(Self, AValue);
 end;
 
+procedure TCustomRichMemo.SetTransparent(AValue: Boolean);
+begin
+  if AValue = fTransparent then Exit;
+  fTransparent := AValue;
+  if HandleAllocated then
+    TWSCustomRichMemoClass(WidgetSetClass).SetTransparentBackground(Self, fTransparent);
+end;
+
 procedure TCustomRichMemo.DoPrintAction(PrintJobEvent: TPrintAction;
   PrintCanvas: TCanvas; CurrentPage: Integer; var AbortPrint: Boolean);
 begin
@@ -657,6 +668,7 @@ begin
   if not HandleAllocated then Exit;
   TWSCustomRichMemoClass(WidgetSetClass).SetHideSelection(Self, fHideSelection);
   TWSCustomRichMemoClass(WidgetSetClass).SetZoomFactor(Self, fZoomFactor);
+  TWSCustomRichMemoClass(WidgetSetClass).SetTransparentBackground(Self, fTransparent);
 end;
 
 procedure TCustomRichMemo.SetTextAttributes(TextStart, TextLen: Integer;  

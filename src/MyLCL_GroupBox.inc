@@ -733,6 +733,20 @@ begin
   handleExceptionEnd
 end;
 
+function GroupBox_GetParentBackground(AObj: TGroupBox): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ParentBackground;
+  handleExceptionEnd
+end;
+
+procedure GroupBox_SetParentBackground(AObj: TGroupBox; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ParentBackground := AValue;
+  handleExceptionEnd
+end;
+
 function GroupBox_GetParentColor(AObj: TGroupBox): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -1562,6 +1576,8 @@ exports
   GroupBox_SetEnabled,
   GroupBox_GetFont,
   GroupBox_SetFont,
+  GroupBox_GetParentBackground,
+  GroupBox_SetParentBackground,
   GroupBox_GetParentColor,
   GroupBox_SetParentColor,
   GroupBox_GetParentDoubleBuffered,
