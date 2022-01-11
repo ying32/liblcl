@@ -5,7 +5,7 @@
 ----
 # liblcl
 
-A common cross-platform GUI library, the core uses Lazarus LCL.
+A common cross-platform GUI library, the core uses Lazarus LCL, [Genliblcl tool source code](https://gitee.com/ying32/genliblcl2).
 
 ----
 
