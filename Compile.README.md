@@ -6,7 +6,7 @@
 
 ### liblcl 
 
-liblcl 基于Lazarus 2.2 版本 FPC 3.2.0，具体各个平台的安装方式自行参考官网安装说明, 其它版本编译出现的问题请自行解决相关。。
+liblcl 基于Lazarus 2.2 版本 FPC 3.2.2，具体各个平台的安装方式自行参考官网安装说明, 其它版本编译出现的问题请自行解决相关。。
 
 liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、MacOS`。       
 

@@ -5,7 +5,7 @@
 
 ### liblcl 
 
-liblcl Based on Lazarus 2.2 version FPC 3.2.0, the specific installation method of each platform refers to the official website installation instructions.   
+liblcl Based on Lazarus 2.2 version FPC 3.2.2, the specific installation method of each platform refers to the official website installation instructions.   
 
 The liblcl project source code is located in the "liblcl/src" directory. `liblcl for Windows, Linux, MacOS`.   
 
