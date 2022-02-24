@@ -162,6 +162,7 @@
       <Unit19>
         <Filename Value="uexport4.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="uExport4"/>
       </Unit19>
     </Units>
   </ProjectOptions>

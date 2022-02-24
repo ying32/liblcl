@@ -48,6 +48,7 @@
   Spin,
   Printers,
   ComboEx,
+  EditBtn,
   LResources,
 {$I UserDefineComponentUses.inc}
   uLinkLabel,

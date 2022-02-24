@@ -16,7 +16,6 @@
   
 //{$endif windows}
 
-{$I MyLCL_PageSetupDialog.inc}  //BASECLASS:TComponent
 {$I MyLCL_DragObject.inc}  //BASECLASS:TObject
 {$I MyLCL_DragDockObject.inc}  //BASECLASS:TObject
 {$I MyLCL_StringGrid.inc}  //BASECLASS:TWinControl

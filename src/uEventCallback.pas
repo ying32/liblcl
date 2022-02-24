@@ -220,6 +220,11 @@ type
     class procedure OnTOnPrepareCanvasEvent_OnPrepareCanvas(sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
     //--------------------------------------------------------------------------
 
+    class procedure OnTAcceptFileNameEvent_OnAcceptDirectory(Sender: TObject; var Value: String);
+    class procedure OnTNotifyEvent_OnButtonClick(Sender: TObject);
+
+
+
     class procedure Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt);
     class procedure Remove(AObj: TObject; AEvent: Pointer);
     class procedure ThreadProc;
@@ -1073,6 +1078,21 @@ class procedure TEventClass.OnTOnPrepareCanvasEvent_OnPrepareCanvas(
   sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
 begin
   SendEvent(Sender, @TEventClass.OnTOnPrepareCanvasEvent_OnPrepareCanvas, [Sender, aCol, aRow, PWord(@aState)^]);
+end;
+
+class procedure TEventClass.OnTAcceptFileNameEvent_OnAcceptDirectory(Sender: TObject;
+  var Value: String);
+var
+  LS: PChar;
+begin
+  LS := PChar(Value);
+  SendEvent(Sender, @TEventClass.OnTAcceptFileNameEvent_OnAcceptDirectory, [Sender, Pointer(@LS)]);
+  Value := LS;
+end;
+
+class procedure TEventClass.OnTNotifyEvent_OnButtonClick(Sender: TObject);
+begin
+  SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnButtonClick, [Sender]);
 end;
 
 class procedure TEventClass.OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol,
