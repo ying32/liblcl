@@ -54,7 +54,8 @@ begin
       TPageSetupDialog,TPrinterSetupDialog, TSelectDirectoryDialog,TStringGrid,
       TDrawGrid, TValueListEditor, THeaderControl,TLabeledEdit,TBoundLabel,
       TFlowPanel,TCoolBar, TSpinEdit,TMiniWebview,TTaskDialog, TCalendar,
-      TComboBoxEx,TXButton, TCheckGroup, TToggleBox, TFloatSpinEdit,TDirectoryEdit
+      TComboBoxEx,TXButton, TCheckGroup, TToggleBox, TFloatSpinEdit,TDirectoryEdit,
+      TColorButton
   ]);
   {$I UserDefineComponentsClass.inc}
 end;

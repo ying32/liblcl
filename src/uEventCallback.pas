@@ -223,6 +223,8 @@ type
     class procedure OnTAcceptFileNameEvent_OnAcceptDirectory(Sender: TObject; var Value: String);
     class procedure OnTNotifyEvent_OnButtonClick(Sender: TObject);
 
+    class procedure OnTNotifyEvent_OnColorChanged(Sender: TObject);
+
 
 
     class procedure Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt);
@@ -1093,6 +1095,11 @@ end;
 class procedure TEventClass.OnTNotifyEvent_OnButtonClick(Sender: TObject);
 begin
   SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnButtonClick, [Sender]);
+end;
+
+class procedure TEventClass.OnTNotifyEvent_OnColorChanged(Sender: TObject);
+begin
+  SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnColorChanged, [Sender]);
 end;
 
 class procedure TEventClass.OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol,
