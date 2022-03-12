@@ -24,7 +24,10 @@ Compile steps:
   
 * 5. menu -> Run-> Build or Shift + F9 (Must use Build)   
 
-The compiled binary can be viewed in the following directory:      
+The compiled binary can be viewed in the following directory:        
+
+**Note: This directory is my local compilation directory, please modify the corresponding output location if you compile it yourself.**
+Output liblcl location modification: `Menu -> Project -> Project Options -> Compiler Options -> Build modes Switch the relevant ring mode -> Target file name`  
 
 > Windows: `"..\..\..\..\..\bin\liblcl"`     
 > Linux: `"../bin/liblcl"`  
