@@ -55,7 +55,7 @@ begin
       TDrawGrid, TValueListEditor, THeaderControl,TLabeledEdit,TBoundLabel,
       TFlowPanel,TCoolBar, TSpinEdit,TMiniWebview,TTaskDialog, TCalendar,
       TComboBoxEx,TXButton, TCheckGroup, TToggleBox, TFloatSpinEdit,TDirectoryEdit,
-      TColorButton
+      TColorButton,TCheckComboBox
   ]);
   {$I UserDefineComponentsClass.inc}
 end;

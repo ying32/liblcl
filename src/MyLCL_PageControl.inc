@@ -603,6 +603,20 @@ begin
   handleExceptionEnd
 end;
 
+function PageControl_GetActivePage(AObj: TPageControl): TTabSheet; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ActivePage;
+  handleExceptionEnd
+end;
+
+procedure PageControl_SetActivePage(AObj: TPageControl; AValue: TTabSheet); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ActivePage := AValue;
+  handleExceptionEnd
+end;
+
 function PageControl_GetAlign(AObj: TPageControl): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1644,6 +1658,8 @@ exports
   PageControl_GetActivePageIndex,
   PageControl_SetActivePageIndex,
   PageControl_GetPageCount,
+  PageControl_GetActivePage,
+  PageControl_SetActivePage,
   PageControl_GetAlign,
   PageControl_SetAlign,
   PageControl_GetAnchors,

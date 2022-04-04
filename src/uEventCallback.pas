@@ -225,6 +225,8 @@ type
 
     class procedure OnTNotifyEvent_OnColorChanged(Sender: TObject);
 
+    class procedure OnTCheckItemChange_OnItemChange(Sender: TObject; AIndex: Integer);
+
 
 
     class procedure Add(AObj: TObject; AEvent: Pointer; AId: NativeUInt);
@@ -1100,6 +1102,12 @@ end;
 class procedure TEventClass.OnTNotifyEvent_OnColorChanged(Sender: TObject);
 begin
   SendEvent(Sender, @TEventClass.OnTNotifyEvent_OnColorChanged, [Sender]);
+end;
+
+class procedure TEventClass.OnTCheckItemChange_OnItemChange(Sender: TObject;
+  AIndex: Integer);
+begin
+  SendEvent(Sender, @TEventClass.OnTCheckItemChange_OnItemChange, [Sender, AIndex]);
 end;
 
 class procedure TEventClass.OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol,
