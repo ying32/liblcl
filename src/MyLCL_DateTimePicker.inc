@@ -673,6 +673,20 @@ begin
   handleExceptionEnd
 end;
 
+function DateTimePicker_GetHideDateTimeParts(AObj: TDateTimePicker): TDateTimeParts; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.HideDateTimeParts;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetHideDateTimeParts(AObj: TDateTimePicker; AValue: TDateTimeParts); extdecl;
+begin
+  handleExceptionBegin
+  AObj.HideDateTimeParts := AValue;
+  handleExceptionEnd
+end;
+
 function DateTimePicker_GetLeadingZeros(AObj: TDateTimePicker): LongBool; extdecl;
 begin
   handleExceptionBegin
@@ -796,6 +810,20 @@ procedure DateTimePicker_SetTimeDisplay(AObj: TDateTimePicker; AValue: TTimeDisp
 begin
   handleExceptionBegin
   AObj.TimeDisplay := AValue;
+  handleExceptionEnd
+end;
+
+function DateTimePicker_GetTimeFormat(AObj: TDateTimePicker): TTimeFormat; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.TimeFormat;
+  handleExceptionEnd
+end;
+
+procedure DateTimePicker_SetTimeFormat(AObj: TDateTimePicker; AValue: TTimeFormat); extdecl;
+begin
+  handleExceptionBegin
+  AObj.TimeFormat := AValue;
   handleExceptionEnd
 end;
 
@@ -1874,6 +1902,8 @@ exports
   DateTimePicker_SetDateDisplayOrder,
   DateTimePicker_GetDateSeparator,
   DateTimePicker_SetDateSeparator,
+  DateTimePicker_GetHideDateTimeParts,
+  DateTimePicker_SetHideDateTimeParts,
   DateTimePicker_GetLeadingZeros,
   DateTimePicker_SetLeadingZeros,
   DateTimePicker_GetMonthNames,
@@ -1892,6 +1922,8 @@ exports
   DateTimePicker_SetTextForNullDate,
   DateTimePicker_GetTimeDisplay,
   DateTimePicker_SetTimeDisplay,
+  DateTimePicker_GetTimeFormat,
+  DateTimePicker_SetTimeFormat,
   DateTimePicker_GetTimeSeparator,
   DateTimePicker_SetTimeSeparator,
   DateTimePicker_GetTrailingSeparator,
