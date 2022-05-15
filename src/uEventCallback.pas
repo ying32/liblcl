@@ -24,6 +24,7 @@ uses
   SysUtils,
   Graphics,
   StdCtrls,
+  LCLType,
   LMessages,
   Grids,
   uLinkLabel,
@@ -226,6 +227,9 @@ type
     class procedure OnTNotifyEvent_OnColorChanged(Sender: TObject);
 
     class procedure OnTCheckItemChange_OnItemChange(Sender: TObject; AIndex: Integer);
+
+
+    class procedure OnTUTF8KeyPressEvent_OnUTF8KeyPress(Sender: TObject; var UTF8Key: TUTF8Char);
 
 
 
@@ -1108,6 +1112,12 @@ class procedure TEventClass.OnTCheckItemChange_OnItemChange(Sender: TObject;
   AIndex: Integer);
 begin
   SendEvent(Sender, @TEventClass.OnTCheckItemChange_OnItemChange, [Sender, AIndex]);
+end;
+
+class procedure TEventClass.OnTUTF8KeyPressEvent_OnUTF8KeyPress(
+  Sender: TObject; var UTF8Key: TUTF8Char);
+begin
+  SendEvent(Sender, @TEventClass.OnTUTF8KeyPressEvent_OnUTF8KeyPress, [Sender, @UTF8Key]);
 end;
 
 class procedure TEventClass.OnTDrawCellEvent_OnDrawCell(Sender: TObject; ACol,

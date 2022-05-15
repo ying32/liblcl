@@ -705,6 +705,14 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TUTF8KeyPressEvent
+procedure Form_SetOnUTF8KeyPress(AObj: TForm; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTUTF8KeyPressEvent_OnUTF8KeyPress}
+  {$DEFINE EventName := OnUTF8KeyPress}
+  EventMethodCode
+end;
+
 function Form_GetAction(AObj: TGoForm): TBasicAction; extdecl;
 begin
   handleExceptionBegin
@@ -2082,6 +2090,7 @@ exports
   Form_SetShowInTaskBar,
   Form_GetDesignTimePPI,
   Form_SetDesignTimePPI,
+  Form_SetOnUTF8KeyPress,
   Form_GetAction,
   Form_SetAction,
   Form_GetActiveControl,
