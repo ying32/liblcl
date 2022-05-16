@@ -551,6 +551,28 @@ begin
   handleExceptionEnd
 end;
 
+function Panel_GetCanvas(AObj: TPanel): TCanvas; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Canvas;
+  handleExceptionEnd
+end;
+
+procedure Panel_SetCanvas(AObj: TPanel; AValue: TCanvas); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Canvas := AValue;
+  handleExceptionEnd
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure Panel_SetOnPaint(AObj: TPanel; AEventId: NativeUInt); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent_OnPaint}
+  {$DEFINE EventName := OnPaint}
+  EventMethodCode
+end;
+
 function Panel_GetAlign(AObj: TPanel): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1656,6 +1678,9 @@ exports
   Panel_AutoAdjustLayout,
   Panel_FixDesignFontsPPI,
   Panel_ScaleFontsPPI,
+  Panel_GetCanvas,
+  Panel_SetCanvas,
+  Panel_SetOnPaint,
   Panel_GetAlign,
   Panel_SetAlign,
   Panel_GetAlignment,
