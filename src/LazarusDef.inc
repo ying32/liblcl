@@ -660,7 +660,7 @@ end;
 function DStrLen(p: PChar): NativeInt; extdecl;
 begin
   handleExceptionBegin
-  Result := Length(p);
+  Result := Length(p); //UTF8Length(); UTF8LengthFast
   handleExceptionEnd
 end;
 

@@ -591,6 +591,20 @@ begin
   handleExceptionEnd
 end;
 
+function ComboBox_GetReadOnly(AObj: TComboBox): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ReadOnly;
+  handleExceptionEnd
+end;
+
+procedure ComboBox_SetReadOnly(AObj: TComboBox; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ReadOnly := AValue;
+  handleExceptionEnd
+end;
+
 function ComboBox_GetAlign(AObj: TComboBox): TAlign; extdecl;
 begin
   handleExceptionBegin
@@ -1784,6 +1798,8 @@ exports
   ComboBox_AutoAdjustLayout,
   ComboBox_FixDesignFontsPPI,
   ComboBox_ScaleFontsPPI,
+  ComboBox_GetReadOnly,
+  ComboBox_SetReadOnly,
   ComboBox_GetAlign,
   ComboBox_SetAlign,
   ComboBox_GetAutoComplete,
