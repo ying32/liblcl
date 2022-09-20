@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Count="5" Active="Win64">
+    <BuildModes Count="5" Active="Linux64">
       <Item1 Name="Win64">
         <MacroValues Count="1">
           <Macro4 Name="LCLWidgetType" Value="win32"/>
@@ -58,7 +58,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\bin\liblcl"/>
+            <Filename Value="..\liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -100,7 +100,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\bin\liblcl"/>
+            <Filename Value="..\liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -141,7 +141,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\bin\liblcl"/>
+            <Filename Value="..\liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -3432,7 +3432,7 @@
       </Unit454>
     </Units>
     <OtherDefines Count="1">
-      <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
+      <Define0 Value="RMLCLTRUNK"/>
     </OtherDefines>
     <JumpHistory HistoryIndex="-1"/>
     <RunParams>
