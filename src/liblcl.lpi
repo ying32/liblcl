@@ -171,7 +171,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\..\..\..\..\bin\liblcl"/>
+      <Filename Value="..\liblcl"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -201,6 +201,9 @@
       <OtherDefines Count="1">
         <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
       </OtherDefines>
+      <ExecuteAfter>
+        <Command Value="cmd /c move /Y &quot;..\liblcl.dll&quot; &quot;F:\Golang\bin\liblcl.dll&quot;"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
   <Debugging>
