@@ -149,6 +149,8 @@ begin
     AObj.OnWndProc := nil;
     Exit;
   end;
+  if TLCLMessageEvent.CheckAndUpdate(TMethod(AObj.OnWndProc), AEventData) then
+    Exit;
   AObj.OnWndProc := TLCLMessageEvent.Create(AEventData).OnTWndProcEvent;
   handleExceptionEnd
 end;

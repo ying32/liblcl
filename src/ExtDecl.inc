@@ -52,6 +52,8 @@
       AObj.EventName := nil;
       Exit;
     end;
+    if TLCLEvent.CheckAndUpdate(TMethod(AObj.EventName), AEventData) then
+      Exit;
     // 创建一个事件对象
     AObj.EventName := TLCLEvent.Create(AEventData).EventMethodName;
     handleExceptionEnd

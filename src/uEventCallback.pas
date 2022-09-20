@@ -72,6 +72,8 @@ type
     // 保存传入的，一个标识吧
     FHostDataPtr: Pointer;
     function GetDataPtr: Pointer;
+    // 不单独使用的，配置其他使用
+    class procedure CallRemoveEvent(AMethod: TMethod);
   protected
     procedure SendEvent(AArgs: array of const);
     function CheckDataPtr: Boolean;
@@ -82,6 +84,7 @@ type
 
     // 移除事件中的对象
     class procedure Remove(AMethod: TMethod);
+    class function CheckAndUpdate(AMethod: TMethod; AHostDataPtr: Pointer): Boolean;
   end;
 
   { TLCLEvent }
@@ -248,6 +251,13 @@ begin
   Result := FHostDataPtr;
 end;
 
+class procedure TLCLEventBase.CallRemoveEvent(AMethod: TMethod);
+begin
+  // 通知宿主程序，某个事件要清除了，解除引用。
+  if Assigned(GRemoveEventCallbackPtr) then
+    GRemoveEventCallbackPtr(TLCLEventBase(AMethod.Data).FHostDataPtr);
+end;
+
 procedure TLCLEventBase.SendEvent(AArgs: array of const);
 var
   LParams: array[0..CALL_MAX_PARAM-1] of Pointer;
@@ -318,14 +328,32 @@ begin
     // 这是一个class，找到后会删除并Free掉这个对象
     if AMethod.Data <> nil then
     begin
-      // 通知宿主程序，某个事件要清除了，解除引用。
-      if Assigned(GRemoveEventCallbackPtr) then
-        GRemoveEventCallbackPtr(TLCLEventBase(AMethod.Data).FHostDataPtr);
+      CallRemoveEvent(AMethod);
       FEventObjects.Remove(AMethod.Data);
     end;
   finally
     System.LeaveCriticalSection(FEventObjectsLock);
   end;
+end;
+
+class function TLCLEventBase.CheckAndUpdate(AMethod: TMethod; AHostDataPtr: Pointer): Boolean;
+begin
+  Result := False;
+  System.EnterCriticalSection(FEventObjectsLock);
+   try
+     if AMethod.Data <> nil then
+     begin
+       // 只有当要替换的数据不同时，则更新
+       if TLCLEventBase(AMethod.Data).FHostDataPtr <> AHostDataPtr then
+       begin
+         CallRemoveEvent(AMethod);
+         TLCLEventBase(AMethod.Data).FHostDataPtr := AHostDataPtr;
+         Result := True;
+       end;
+     end;
+   finally
+     System.LeaveCriticalSection(FEventObjectsLock);
+   end;
 end;
 
 { TLCLEvent }
