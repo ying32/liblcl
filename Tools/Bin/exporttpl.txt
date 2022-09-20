@@ -1,0 +1,23 @@
+//{$ifdef windows}
+//unit uExport{%number%};
+
+//{$mode delphi}
+
+//{$I ExtDecl.inc}
+
+//interface
+
+//implementation
+
+//uses
+//  Classes, SysUtils,
+//  {$I UseAll.inc},
+//  uControlPatchs, uExceptionHandle;
+  
+//{$endif windows}
+
+{%incfiles%}
+
+//{$ifdef windows}
+//end.
+//{$endif windows}

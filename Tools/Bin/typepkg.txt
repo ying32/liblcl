@@ -1,0 +1,14 @@
+TClipboard
+TCollectionItem
+TComponent
+TGraphic
+TList
+TListColumns
+TListGroups
+TMargins
+TObject
+TPicture
+TStatusPanels
+TTimer
+TMonthCalColors
+TIniFile

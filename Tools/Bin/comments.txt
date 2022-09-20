@@ -1,0 +1,321 @@
+﻿对象(Object Name)|名称(Method or Property Name and property name without 'Set')|中文注释(Chinese Comment)|英文注释(English Comment)
+
+#|DisposeOf|丢弃当前对象| Discard the current object
+#|ClassType|获取类的类型信息|Get class type information
+#|ClassName|获取当前对象类名称|Get the current object class name
+#|InstanceSize| 获取当前对象实例大小|Get the current object instance size
+#|InheritsFrom|判断当前类是否继承自指定类|Determine whether the current class inherits from the specified class
+#|Equals|与一个对象进行比较|Compare with an object
+#|GetHashCode|获取类的哈希值|Get the hash value of the class
+#|ToString|文本类信息|Text information
+
+#|Caption|控件标题 | the control title
+#|Visible| 控件可视| the control visible
+#|Tag|对象标记| the control tag
+#|Enabled|控件启用| the control enabled
+
+#|ComponentCount|组件总数| the total number of components 
+#|ComponentIndex|组件索引| component index
+#|Owner|组件所有者|  component owner
+#|Name| 组件名称| the component name
+#|Components|指定索引组件| the specified index component
+#|Hint|组件鼠标悬停提示| component mouse hints
+#|Cursor|控件光标| control cursor
+#|Parent|控件父容器| control parent container
+
+#|OnClick|控件单击事件| control click event
+
+#|AlignWithMargins| 边距| The margin.
+
+#|Left| 左边位置| Left position
+#|Top| 顶边位置| Top position
+#|Width| 宽度| width
+#|Height| 高度| height
+#|ContainsControl| 返回是否包含指定控件|  it's contain a specified control
+#|ControlAtPos| 返回指定坐标及相关属性位置控件| Returns the specified coordinate and the relevant attribute position control.
+#|DisableAlign| 禁用控件的对齐|Disable control alignment
+#|EnableAlign| 启用控件对齐|Enabled control alignment
+#|FindChildControl|查找子控件|Find sub controls
+#|Focused| 返回是否获取焦点 | Return to get focus
+#|HandleAllocated| 句柄是否已经分配| Is the handle already allocated
+#|InsertControl|插入一个控件| Insert a control
+#|Invalidate| 要求重绘 | Redraw
+#|Realign| 重新对齐 | Realign
+#|Repaint| 重绘 | Repaint
+#|ScaleBy|按比例缩放| Scale by
+#|PaintTo|绘画至指定DC|Painting to the specified DC
+#|RemoveControl|移除一个控件| Remove a control
+#|ScrollBy|滚动至指定位置| Scroll by
+#|SetBounds| 设置组件边界|Set component boundaries
+#|SetFocus| 设置控件焦点| Set control focus
+#|Update| 控件更新|Update
+#|UpdateControlState| 更新控件状态 | Update control status
+#|BringToFront| 将控件置于最前 |Bring the control to the front
+#|ClientToScreen| 将客户端坐标转为绝对的屏幕坐标|Convert client coordinates to absolute screen coordinates
+#|ClientToParent| 将客户端坐标转为父容器坐标|Convert client coordinates to parent container coordinates
+#|Dragging| 是否在拖拽中|Is it in the middle of dragging
+#|HasParent|是否有父容器| Is there a parent container
+#|Hide| 隐藏控件| Hidden control
+#|Perform| 发送一个消息 |Send a message
+#|Refresh| 刷新控件 | Refresh control
+#|ScreenToClient|将屏幕坐标转为客户端坐标|Convert screen coordinates to client coordinates
+#|ParentToClient|将父容器坐标转为客户端坐标|Convert parent container coordinates to client coordinates
+#|SendToBack|控件至于最后面|The control is placed at the end
+#|Show|显示控件| Show control
+#|GetTextBuf|获取控件的字符，如果有|Get the characters of the control, if any
+#|GetTextLen|获取控件的字符长，如果有|Get the character length of the control, if any
+#|SetTextBuf|设置控件字符，如果有|Set control characters, if any
+#|FindComponent|查找指定名称的组件|Find the component with the specified name
+#|GetNamePath|获取类名路径|Get the class name path
+#|Assign|复制一个对象，如果对象实现了此方法的话|Copy an object, if the object implements this method
+#|Align|控件自动调整|Control automatically adjusts
+#|Alignment|文字对齐|Text alignment
+#|Color|颜色| color
+#|DoubleBuffered|设置控件双缓冲|Set control double buffering
+#|DragCursor|设置控件拖拽时的光标|Set the cursor when the control is dragged
+#|DragKind|拖拽方式|Drag and drop
+#|DragMode|拖拽模式|Drag mode
+#|Font|字体 |Font  
+#|ParentColor|使用父容器颜色| parent color
+#|ParentDoubleBuffered|使用父容器双缓冲| Parent container double buffering
+#|ParentFont|使用父容器字体|Parent container font
+#|PopupMenu|右键菜单|Right click menu
+#|ShowHint|显示鼠标悬停提示|Show mouseover tips
+#|TabOrder|Tab切换顺序序号|Tab switching sequence number
+#|TabStop|Tab可停留|Tab can stay
+#|WordWrap|自动换行|Automatic line break
+#|StyleElements|样式元素|Style element
+
+
+#|OnContextPopup|上下文弹出事件，一般是右键时弹出|Context popup event, usually pop up when right click
+#|OnDragDrop|拖拽下落事件|Drag and drop event
+#|OnDragOver|拖拽完成事件|Drag and drop completion event
+#|OnEndDock|停靠结束事件|Dock end event
+#|OnEndDrag|拖拽结束|End of drag
+#|OnEnter|焦点进入|Focus entry
+#|OnExit|焦点退出|Focus exit
+#|OnKeyDown|键盘按键按下事件|Keyboard button press event
+#|OnKeyUp|键盘按键抬起事件|Keyboard button lift event
+#|OnMouseDown|鼠标按下事件|Mouse down event
+#|OnMouseEnter|鼠标进入事件|Mouse entry event
+#|OnMouseLeave|鼠标离开事件|Mouse leave event
+#|OnMouseUp|鼠标抬起事件|Mouse lift event
+#|OnChange|改变事件|changed event
+
+#|DockSite|停靠站点|Docking site
+#|MouseInClient|鼠标是否在客户端，仅VCL有效|Whether the mouse is on the client, only VCL is valid
+#|VisibleDockClientCount|当前停靠的可视总数|The total number of visible calls currently docked
+
+#|Brush|画刷对象|Brush
+
+#|ControlCount|子控件数|Number of child controls
+
+#|Handle|控件句柄|Control handle
+
+#|ParentWindow|父容器句柄|Parent container handle
+
+#|ClientHeight|客户区高度|client height
+#|ClientWidth|客户区宽度| client width
+#|ClientRect|客户区矩形| client rectangle
+#|ControlState|控件状态| control state
+#|ControlStyle|控件样式| control style
+
+#|Margins|边矩，仅VCL有效|Edge moment, only VCL is valid
+#|CustomHint|自定义提示|custom hint
+
+#|Transparent|透明| transparent
+#|Modified|修改|modified
+
+TGraphic|Empty|对象是否为空| object is empty
+
+TException|Message|异常消息文本| exception message
+
+#|LoadFromFile|从文件加载|  
+#|SaveToFile|保存至文件|  
+#|LoadFromStream|文件流加载|   
+#|SaveToStream|保存至流| 
+#|Icon|图标|icon
+ 
+
+TList|Items|获取指定索引项目|Get the specified index item
+TList|List|获取列表指针|Get list pointer
+TList|Count|项目总数|Total number of projects
+
+
+#|AlphaBlend|半透明| 
+#|AlphaBlendValue|半透明值-0-255| 
+#|Anchors|四个角位置的锚点| 
+#|AutoSize|自动调整大小| 
+
+#|BorderIcons|窗口标题栏图标设置。比如：关闭，最大化，最小化等|  
+#|BorderStyle|窗口边框样式。比如：无边框，单一边框等| 
+#|BorderWidth|边框的宽度|  
+#|TransparentColor|使用颜色透明| 
+#|TransparentColorValue|透明的颜色值| 
+#|UseDockManager|使用停靠管理| 
+#|FormStyle|窗口样式。比如：置顶，MID窗口| 
+#|KeyPreview|窗口优先接收键盘按盘消息| 
+#|DefaultMonitor| 默认监视器 |
+
+TForm|Menu|窗口主菜单| 
+TForm|Position|窗口的位置。比如：居中等。| 
+TForm|Scaled|自动缩放| 
+TForm|PixelsPerInch|每英寸像素数| 
+TForm|WindowState|窗口样式。比如：最大化，最小化等| 
+TForm|OnClose|窗口关闭事件| 
+TForm|OnCloseQuery|窗口关闭询问事件| 
+TForm|OnActivate| 窗口激活事件 |
+TForm|OnDeactivate| 窗口失去激状态|
+TForm|Monitor|监视器|
+TForm|AllowDropFiles| 允许拖放文件|
+TForm|ShowInTaskBar|显示在任务栏上|
+TForm|OnDropFiles|拖放文件事件|
+#|ActiveControl|当前动控件|
+#|OnAlignPosition|对齐位置事件，当Align为alCustom时Parent会收到这个消息|
+
+#|OnKeyPress| 键键下事件
+#|OnDblClick|双击事件| 
+#|OnHide|隐藏事件| 
+#|OnMouseMove|鼠标移动事件| 
+#|OnMouseWheel|鼠标滚轮事件| 
+#|OnMouseWheelDown|鼠标滚轮按下事件|  
+#|OnMouseWheelUp|鼠标滚轮抬起事件| 
+#|OnPaint|绘画事件| 
+#|OnResize|大小被改变事件| 
+#|OnShow|显示事件| 
+#|OnStartDock|启动停靠| 
+#|Canvas|画布| 
+#|ModalResult|模态对话框显示结果| 
+#|ShowModal|以模态模式显示对话框| 
+#|CanFocus|是否可以获得焦点| 
+TForm|Print|将当前界面输出到打印机| 
+#|Close|关闭| 
+#|Clear|清除| 
+#|ClearSelection|清除选择| 
+#|CopyToClipboard|复制到粘贴板| 
+#|CutToClipboard|剪切到粘贴板| 
+#|PasteFromClipboard|从剪切板粘贴| 
+#|Undo|撤销上一次操作| 
+#|ClearUndo|清除撤销| 
+#|SelectAll|全选| 
+#|AutoSelect|自动选择| 
+#|HideSelection|隐藏选择| 
+#|MaxLength|最大长度| 
+#|NumbersOnly|只能输入数字| 
+#|PasswordChar|密码掩码字符| 
+#|ReadOnly|只读|  
+#|Text|文本|  
+#|TextHint|提示文本|  
+#|CanUndo|能否撤销|  
+#|SelLength|选择的长度| 
+#|SelStart|选择的启始位置| 
+#|SelText|选择的文本| 
+#|DockClientCount|依靠客户端总数| 
+#|AlignDisabled|禁用对齐| 
+#|DockClients|指定索引停靠客户端| 
+#|Controls|指定索引子控件| 
+
+#|Flat|平面样式|
+#|GradientEndColor|渐变结束颜色, 仅VCL|
+#|GradientStartColor|渐变起始颜色，仅VCL|
+#|GradientDirection|渐变颜色方向|
+#|GradientDrawingOptions|渐变绘制选项|
+#|ShowCaptions|显示标题|
+#|Execute|执行|
+#|Checked|是否选中|
+#|GroupIndex|团组索引|
+#|ImageIndex|图像在images中的索引|
+#|ShortCut|快捷键|
+
+TAction|OnExecute|动作执行事件|
+TAction|OnUpdate|动作更新事件|
+#|Images|图标索引列表对象|
+
+#|ActivateHint|激活鼠标悬停提示|
+#|CancelHint|取消鼠标悬停提示|
+#|HandleMessage|消息循环，不要使用|
+#|HideHint|隐藏鼠标悬停提示|
+#|Minimize|最小化应用程序|
+#|ProcessMessages|处理消息循环|
+#|Restore|恢复小最小的应用|
+#|RestoreTopMosts|恢复最小化的应用并置顶|
+#|Terminate|结束应用程序|
+#|MessageBox|显示消息框|
+#|DialogHandle|对话框句柄|
+#|ExeName|当前exe文件名，包含全路径|
+#|HintColor|鼠标悬停提示颜色|
+#|HintHidePause|鼠标悬停提示暂停时间，ms|
+#|HintPause|鼠标悬停暂时时间|
+Application|MainForm|应用程序主窗口|
+#|MainFormOnTaskBar|主窗口显示在任务栏上|
+#|ShowMainForm|初始显示主窗口
+Application|Title|应用程序标题|
+#|OnException|应用程序异常事件|
+#|OnHint|鼠标悬停提示事件|
+#|OnMessage|消息循环事件，VCL|
+#|OnMinimize|App或者窗口最小化事件|
+#|OnRestore|App或者窗口恢复事件|
+#|Click|单击
+
+TTimer|Interval|时钟每次跳动间隔时间，ms|
+TTimer|OnTimer|时钟事件|
+
+TImage|Proportional|等比缩放|
+TImage|Stretch|拉伸缩放|
+
+
+#|AnchorSideLeft|左边锚点
+#|AnchorSideTop|顶边锚点
+#|AnchorSideBottom|底边锚点
+#|AnchorSideRight|右边锚点
+#|BorderSpacing|边框间距
+#|AnchorSide|锚侧面
+#|AnchorHorizontalCenterTo|置于指定控件的横向中心
+#|AnchorVerticalCenterTo|置于指定控件的纵向中心
+
+#|ParentShowHint|以父容器的ShowHint属性为准
+
+
+#|Constraints|约束控件大小
+#|Action| 
+
+#|Picture|图片
+
+TMemoryStream|Seek|移动流指针位置
+TStream|Seek|移动流指针位置
+
+TMemoryStream|CopyFrom|从指定流中复制
+TStream|CopyFrom|从指定流中复制
+
+TMemoryStream|Memory|内存指针
+
+TMemoryStream|Position|流指针位置
+TStream|Position|流指针位置
+
+
+TMemoryStream|Size|流的大小
+TStream|Size|流的大小
+
+
+TListView|CustomSort|自定义排序，ASortProc参数无效，仅仅用来兼容Delphi的|Custom sorting, ASortProc parameter is invalid, Only used to be compatible with Delphi
+TTreeView|CustomSort|自定义排序，所有都参数无效，仅仅用来兼容Delphi的|Custom sorting, All parameters are invalid, Only used to be compatible with Delphi
+TTreeView|AlphaSort|按字母排序，所有都参数无效，仅仅用来兼容Delphi的|Sorted alphabetically, all parameters are invalid, Only used to be compatible with Delphi
+
+Exception|Message|异常消息|
+
+TLabel|FocusControl|当按下Alt+Key时跳转到指定的控件|
+
+#|DeleteSelected|删除选择的|
+
+TForm|EnabledMaximize|启用/禁用 标题栏最大化按钮|
+TForm|EnabledMinimize|启用/禁用 标题栏最小化按钮|
+TForm|EnabledSystemMenu|启用/禁用 标题栏系统菜单|
+
+TForm|InheritedWndProc|OnWndProc必须要调用的， 内部为  inherited WndProc(msg)|
+TForm|ScreenCenter|居于当前屏幕中心|
+TForm|WorkAreaCenter|窗口居于工作区中心，工作区为当前屏幕 - 任务栏空间|
+
+TBitmap|Clear|清除bitmap数据|Clear bitmap data
+TBitmap|BeginUpdate|用于ScanLine属性，aCanvasOnly 默认为 false|Used for ScanLine properties, aCanvasOnly defaults to false
+TBitmap|EndUpdate|用于ScanLine属性，aStreamIsValid 默认为 false|Used for ScanLine property, aStreamIsValid defaults to false
+TBitmap|LoadFromDevice|从设备驱动中加载Bitmap|Load the Bitmap from the device driver

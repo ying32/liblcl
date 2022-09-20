@@ -4,7 +4,7 @@
 
 ----
 # liblcl
-一个通用的跨平台GUI库，核心使用Lazarus LCL，[Genliblcl工具源码](https://gitee.com/ying32/genliblcl2)。
+一个通用的跨平台GUI库，核心使用Lazarus LCL，[Genliblcl工具源码](Tools/genliblcl)。
 
 ----
 

@@ -70,4 +70,5 @@ modules
 backup
 lib
 .idea
-genliblcl
+*.res
+*.skincfg
