@@ -85,7 +85,7 @@ static void* p##name;
 
 /*--------------------常量定义--------------------*/
 
-// Delphi中的颜色表，Delphi中的TColor与一般HTML的RGB有点不一样，反过来的以BGR表示.
+// Lazarus中的颜色表，Lazarus中的TColor与一般HTML的RGB有点不一样，反过来的以BGR表示.
 #define clClSysNone  0x1FFFFFFF
 #define clSysDefault  0x20000000
 
@@ -2159,6 +2159,25 @@ typedef enum {
 
 typedef TSet TListItemStates;
 
+typedef enum {
+    pcfText,
+    pcfBitmap,
+    pcfPixmap,
+    pcfIcon,
+    pcfPicture,
+    pcfMetaFilePict,
+    pcfObject,
+    pcfComponent,
+    pcfCustomData,
+} TPredefinedClipboardFormat;
+
+typedef enum {
+    waAuto, // auto
+    waForce, // always wrap after this control
+    waAvoid, // try not to wrap after this control, if the control is already at the beginning of the row, wrap though
+    waForbid, // never wrap after this control
+} TWrapAfter;
+
 /*--------------------类型定义--------------------*/
 
 typedef struct TPoint {
@@ -2257,6 +2276,13 @@ typedef uint16_t ATOM;
 typedef uint16_t TAtom;
 
 typedef uintptr_t SIZE_T;
+
+typedef uintptr_t DWORD_PTR;
+
+typedef struct TUTF8Char {
+    byte len;
+    byte content[7];
+} TUTF8Char;
 
 typedef struct TMsg {
     HWND hwnd;
@@ -2370,6 +2396,20 @@ typedef struct TAlignInfo {
     TAlign align;
     int32_t scratch;
 } TAlignInfo;
+
+typedef struct TCreateParams {
+    LPCWSTR caption;
+    uint32_t style;
+    uint32_t exStyle;
+    int32_t x;
+    int32_t y;
+    int32_t width;
+    int32_t height;
+    HWND wndParent;
+    uintptr_t param;
+    TWndClass windowClass;
+    int8_t winClassName[64];
+} TCreateParams;
 
 typedef TBorderStyle TFormBorderStyle;
 
@@ -2511,6 +2551,9 @@ typedef void* TCollectionItem;
 typedef void* TStatusPanels;
 typedef void* TStatusPanel;
 typedef void* TSpinEdit;
+typedef void* TFloatSpinEdit;
+typedef void* TDirectoryEdit;
+typedef void* TColorButton;
 typedef void* TMiniWebview;
 typedef void* TCanvas;
 typedef void* TApplication;
@@ -2556,6 +2599,8 @@ typedef void* THeaderSections;
 typedef void* TLabeledEdit;
 typedef void* TBoundLabel;
 typedef void* TFlowPanel;
+typedef void* TFlowPanelControlList;
+typedef void* TFlowPanelControl;
 typedef void* TCoolBar;
 typedef void* TCoolBands;
 typedef void* TCoolBand;
@@ -2578,6 +2623,7 @@ typedef void* TControlBorderSpacing;
 typedef void* TControlChildSizing;
 typedef void* TCheckGroup;
 typedef void* TToggleBox;
+typedef void* TCheckComboBox;
 typedef void* TGridColumnTitle;
 typedef void* TGridColumn;
 typedef void* TGridColumns;
@@ -2621,9 +2667,6 @@ typedef void(*TMouseWheelEvent)(TObject, TShiftState, int32_t, int32_t, int32_t,
 
 // void (TWinControl control, int32_t index, TRect* aRect, TOwnerDrawState state)
 typedef void(*TDrawItemEvent)(TWinControl, int32_t, TRect*, TOwnerDrawState);
-
-// void (TObject sender, TCanvas aCanvas, TRect* aRect, BOOL selected)
-typedef void(*TMenuDrawItemEvent)(TObject, TCanvas, TRect*, BOOL);
 
 // void (TObject sender, TListColumn column)
 typedef void(*TLVColumnClickEvent)(TObject, TListColumn);
@@ -2820,11 +2863,11 @@ typedef void(*TCreatingListErrorEvent)(TObject, uint32_t, char*, BOOL*);
 // void (TListView sender, TRect* aRect, BOOL* defaultDraw)
 typedef void(*TLVCustomDrawEvent)(TListView, TRect*, BOOL*);
 
-// void (TListView sender, TListItem item, TCustomDrawStage state, BOOL* defaultDraw)
-typedef void(*TLVCustomDrawItemEvent)(TListView, TListItem, TCustomDrawStage, BOOL*);
+// void (TListView sender, TListItem item, TCustomDrawState state, BOOL* defaultDraw)
+typedef void(*TLVCustomDrawItemEvent)(TListView, TListItem, TCustomDrawState, BOOL*);
 
-// void (TListView sender, TListItem item, int32_t subItem, TCustomDrawStage state, BOOL* defaultDraw)
-typedef void(*TLVCustomDrawSubItemEvent)(TListView, TListItem, int32_t, TCustomDrawStage, BOOL*);
+// void (TListView sender, TListItem item, int32_t subItem, TCustomDrawState state, BOOL* defaultDraw)
+typedef void(*TLVCustomDrawSubItemEvent)(TListView, TListItem, int32_t, TCustomDrawState, BOOL*);
 
 // void (TListView sender, TListItem item, TRect* rect, TOwnerDrawState state)
 typedef void(*TLVDrawItemEvent)(TListView, TListItem, TRect*, TOwnerDrawState);
@@ -2835,8 +2878,8 @@ typedef void(*TLVDataHintEvent)(TObject, int32_t, int32_t);
 // void (TTreeView sender, TRect* aRect, BOOL* defaultDraw)
 typedef void(*TTVCustomDrawEvent)(TTreeView, TRect*, BOOL*);
 
-// void (TTreeView sender, TTreeNode node, TCustomDrawStage state, BOOL* defaultDraw)
-typedef void(*TTVCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawStage, BOOL*);
+// void (TTreeView sender, TTreeNode node, TCustomDrawState state, BOOL* defaultDraw)
+typedef void(*TTVCustomDrawItemEvent)(TTreeView, TTreeNode, TCustomDrawState, BOOL*);
 
 // void (TMessage* msg)
 typedef void(*TWndProcEvent)(TMessage*);
@@ -2891,6 +2934,21 @@ typedef void(*TUserCheckBoxBitmapEvent)(TObject, int32_t, int32_t, TCheckBoxStat
 
 // void (TObject sender, int32_t aCol, int32_t aRow, char* oldValue, char** newValue)
 typedef void(*TValidateEntryEvent)(TObject, int32_t, int32_t, char*, char**);
+
+// void ()
+typedef void(*TOnPrepareCanvasEvent)();
+
+// void ()
+typedef void(*TAcceptFileNameEvent)();
+
+// void ()
+typedef void(*TCheckItemChange)();
+
+// void ()
+typedef void(*TUTF8KeyPressEvent)();
+
+// void ()
+typedef void(*TMenuDrawItemEvent)();
 
 
 
@@ -3073,6 +3131,13 @@ Clipboard_Instance() {
     return (TClipboard)MySyscall(pClipboard_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DPredefinedClipboardFormat)
+TClipboardFormat
+PredefinedClipboardFormat(TPredefinedClipboardFormat AFormat) {
+    GET_FUNC_ADDR(DPredefinedClipboardFormat)
+    return (TClipboardFormat)MySyscall(pDPredefinedClipboardFormat, 1, AFormat ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DSetClipboard)
 TClipboard
 SetClipboard(TClipboard ANewClipboard) {
@@ -3188,6 +3253,20 @@ void
 SetExceptionHandlerCallback(void* APtr) {
     GET_FUNC_ADDR(SetExceptionHandlerCallback)
     MySyscall(pSetExceptionHandlerCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SetRequestCallCreateParamsCallback)
+void
+SetRequestCallCreateParamsCallback(void* APtr) {
+    GET_FUNC_ADDR(SetRequestCallCreateParamsCallback)
+    MySyscall(pSetRequestCallCreateParamsCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(SetRemoveEventCallback)
+void
+SetRemoveEventCallback(void* APtr) {
+    GET_FUNC_ADDR(SetRemoveEventCallback)
+    MySyscall(pSetRemoveEventCallback, 1, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DGetStringArrOf)
@@ -5914,9 +5993,9 @@ Graphic_SetWidth(TGraphic AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(Graphic_SetOnChange)
 void
-Graphic_SetOnChange(TGraphic AObj, TNotifyEvent AEventId) {
+Graphic_SetOnChange(TGraphic AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Graphic_SetOnChange)
-    MySyscall(pGraphic_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGraphic_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Graphic_StaticClassType)
@@ -6003,6 +6082,13 @@ BOOL
 Strings_Equals(TStrings AObj, TStrings Strings) {
     GET_FUNC_ADDR(Strings_Equals)
     return (BOOL)MySyscall(pStrings_Equals, 2, AObj, Strings ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Strings_Exchange)
+void
+Strings_Exchange(TStrings AObj, int32_t Index1, int32_t Index2) {
+    GET_FUNC_ADDR(Strings_Exchange)
+    MySyscall(pStrings_Exchange, 3, AObj, Index1, Index2 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Strings_IndexOf)
@@ -6747,9 +6833,9 @@ CheckBox_ScaleFontsPPI(TCheckBox AObj, int32_t AToPPI, double AProportion) {
 
 DEFINE_FUNC_PTR(CheckBox_SetOnChange)
 void
-CheckBox_SetOnChange(TCheckBox AObj, TNotifyEvent AEventId) {
+CheckBox_SetOnChange(TCheckBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnChange)
-    MySyscall(pCheckBox_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_GetAction)
@@ -7118,107 +7204,107 @@ CheckBox_SetVisible(TCheckBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(CheckBox_SetOnClick)
 void
-CheckBox_SetOnClick(TCheckBox AObj, TNotifyEvent AEventId) {
+CheckBox_SetOnClick(TCheckBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnClick)
-    MySyscall(pCheckBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnContextPopup)
 void
-CheckBox_SetOnContextPopup(TCheckBox AObj, TContextPopupEvent AEventId) {
+CheckBox_SetOnContextPopup(TCheckBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnContextPopup)
-    MySyscall(pCheckBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnDragDrop)
 void
-CheckBox_SetOnDragDrop(TCheckBox AObj, TDragDropEvent AEventId) {
+CheckBox_SetOnDragDrop(TCheckBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnDragDrop)
-    MySyscall(pCheckBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnDragOver)
 void
-CheckBox_SetOnDragOver(TCheckBox AObj, TDragOverEvent AEventId) {
+CheckBox_SetOnDragOver(TCheckBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnDragOver)
-    MySyscall(pCheckBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnEndDrag)
 void
-CheckBox_SetOnEndDrag(TCheckBox AObj, TEndDragEvent AEventId) {
+CheckBox_SetOnEndDrag(TCheckBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnEndDrag)
-    MySyscall(pCheckBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnEnter)
 void
-CheckBox_SetOnEnter(TCheckBox AObj, TNotifyEvent AEventId) {
+CheckBox_SetOnEnter(TCheckBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnEnter)
-    MySyscall(pCheckBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnExit)
 void
-CheckBox_SetOnExit(TCheckBox AObj, TNotifyEvent AEventId) {
+CheckBox_SetOnExit(TCheckBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnExit)
-    MySyscall(pCheckBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnKeyDown)
 void
-CheckBox_SetOnKeyDown(TCheckBox AObj, TKeyEvent AEventId) {
+CheckBox_SetOnKeyDown(TCheckBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnKeyDown)
-    MySyscall(pCheckBox_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnKeyPress)
 void
-CheckBox_SetOnKeyPress(TCheckBox AObj, TKeyPressEvent AEventId) {
+CheckBox_SetOnKeyPress(TCheckBox AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnKeyPress)
-    MySyscall(pCheckBox_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnKeyUp)
 void
-CheckBox_SetOnKeyUp(TCheckBox AObj, TKeyEvent AEventId) {
+CheckBox_SetOnKeyUp(TCheckBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnKeyUp)
-    MySyscall(pCheckBox_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnMouseDown)
 void
-CheckBox_SetOnMouseDown(TCheckBox AObj, TMouseEvent AEventId) {
+CheckBox_SetOnMouseDown(TCheckBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnMouseDown)
-    MySyscall(pCheckBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnMouseEnter)
 void
-CheckBox_SetOnMouseEnter(TCheckBox AObj, TNotifyEvent AEventId) {
+CheckBox_SetOnMouseEnter(TCheckBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnMouseEnter)
-    MySyscall(pCheckBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnMouseLeave)
 void
-CheckBox_SetOnMouseLeave(TCheckBox AObj, TNotifyEvent AEventId) {
+CheckBox_SetOnMouseLeave(TCheckBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnMouseLeave)
-    MySyscall(pCheckBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnMouseMove)
 void
-CheckBox_SetOnMouseMove(TCheckBox AObj, TMouseMoveEvent AEventId) {
+CheckBox_SetOnMouseMove(TCheckBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnMouseMove)
-    MySyscall(pCheckBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_SetOnMouseUp)
 void
-CheckBox_SetOnMouseUp(TCheckBox AObj, TMouseEvent AEventId) {
+CheckBox_SetOnMouseUp(TCheckBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CheckBox_SetOnMouseUp)
-    MySyscall(pCheckBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckBox_GetDockClientCount)
@@ -8163,9 +8249,9 @@ RadioButton_ScaleFontsPPI(TRadioButton AObj, int32_t AToPPI, double AProportion)
 
 DEFINE_FUNC_PTR(RadioButton_SetOnChange)
 void
-RadioButton_SetOnChange(TRadioButton AObj, TNotifyEvent AEventId) {
+RadioButton_SetOnChange(TRadioButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnChange)
-    MySyscall(pRadioButton_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_GetAction)
@@ -8506,107 +8592,107 @@ RadioButton_SetVisible(TRadioButton AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(RadioButton_SetOnClick)
 void
-RadioButton_SetOnClick(TRadioButton AObj, TNotifyEvent AEventId) {
+RadioButton_SetOnClick(TRadioButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnClick)
-    MySyscall(pRadioButton_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnContextPopup)
 void
-RadioButton_SetOnContextPopup(TRadioButton AObj, TContextPopupEvent AEventId) {
+RadioButton_SetOnContextPopup(TRadioButton AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnContextPopup)
-    MySyscall(pRadioButton_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnDragDrop)
 void
-RadioButton_SetOnDragDrop(TRadioButton AObj, TDragDropEvent AEventId) {
+RadioButton_SetOnDragDrop(TRadioButton AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnDragDrop)
-    MySyscall(pRadioButton_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnDragOver)
 void
-RadioButton_SetOnDragOver(TRadioButton AObj, TDragOverEvent AEventId) {
+RadioButton_SetOnDragOver(TRadioButton AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnDragOver)
-    MySyscall(pRadioButton_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnEndDrag)
 void
-RadioButton_SetOnEndDrag(TRadioButton AObj, TEndDragEvent AEventId) {
+RadioButton_SetOnEndDrag(TRadioButton AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnEndDrag)
-    MySyscall(pRadioButton_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnEnter)
 void
-RadioButton_SetOnEnter(TRadioButton AObj, TNotifyEvent AEventId) {
+RadioButton_SetOnEnter(TRadioButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnEnter)
-    MySyscall(pRadioButton_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnExit)
 void
-RadioButton_SetOnExit(TRadioButton AObj, TNotifyEvent AEventId) {
+RadioButton_SetOnExit(TRadioButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnExit)
-    MySyscall(pRadioButton_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnKeyDown)
 void
-RadioButton_SetOnKeyDown(TRadioButton AObj, TKeyEvent AEventId) {
+RadioButton_SetOnKeyDown(TRadioButton AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnKeyDown)
-    MySyscall(pRadioButton_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnKeyPress)
 void
-RadioButton_SetOnKeyPress(TRadioButton AObj, TKeyPressEvent AEventId) {
+RadioButton_SetOnKeyPress(TRadioButton AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnKeyPress)
-    MySyscall(pRadioButton_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnKeyUp)
 void
-RadioButton_SetOnKeyUp(TRadioButton AObj, TKeyEvent AEventId) {
+RadioButton_SetOnKeyUp(TRadioButton AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnKeyUp)
-    MySyscall(pRadioButton_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnMouseDown)
 void
-RadioButton_SetOnMouseDown(TRadioButton AObj, TMouseEvent AEventId) {
+RadioButton_SetOnMouseDown(TRadioButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnMouseDown)
-    MySyscall(pRadioButton_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnMouseEnter)
 void
-RadioButton_SetOnMouseEnter(TRadioButton AObj, TNotifyEvent AEventId) {
+RadioButton_SetOnMouseEnter(TRadioButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnMouseEnter)
-    MySyscall(pRadioButton_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnMouseLeave)
 void
-RadioButton_SetOnMouseLeave(TRadioButton AObj, TNotifyEvent AEventId) {
+RadioButton_SetOnMouseLeave(TRadioButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnMouseLeave)
-    MySyscall(pRadioButton_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnMouseMove)
 void
-RadioButton_SetOnMouseMove(TRadioButton AObj, TMouseMoveEvent AEventId) {
+RadioButton_SetOnMouseMove(TRadioButton AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnMouseMove)
-    MySyscall(pRadioButton_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_SetOnMouseUp)
 void
-RadioButton_SetOnMouseUp(TRadioButton AObj, TMouseEvent AEventId) {
+RadioButton_SetOnMouseUp(TRadioButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(RadioButton_SetOnMouseUp)
-    MySyscall(pRadioButton_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioButton_GetDockClientCount)
@@ -9731,6 +9817,20 @@ GroupBox_SetFont(TGroupBox AObj, TFont AValue) {
     MySyscall(pGroupBox_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(GroupBox_GetParentBackground)
+BOOL
+GroupBox_GetParentBackground(TGroupBox AObj) {
+    GET_FUNC_ADDR(GroupBox_GetParentBackground)
+    return (BOOL)MySyscall(pGroupBox_GetParentBackground, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(GroupBox_SetParentBackground)
+void
+GroupBox_SetParentBackground(TGroupBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(GroupBox_SetParentBackground)
+    MySyscall(pGroupBox_SetParentBackground, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(GroupBox_GetParentColor)
 BOOL
 GroupBox_GetParentColor(TGroupBox AObj) {
@@ -9859,135 +9959,135 @@ GroupBox_SetVisible(TGroupBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(GroupBox_SetOnAlignPosition)
 void
-GroupBox_SetOnAlignPosition(TGroupBox AObj, TAlignPositionEvent AEventId) {
+GroupBox_SetOnAlignPosition(TGroupBox AObj, TAlignPositionEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnAlignPosition)
-    MySyscall(pGroupBox_SetOnAlignPosition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnAlignPosition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnClick)
 void
-GroupBox_SetOnClick(TGroupBox AObj, TNotifyEvent AEventId) {
+GroupBox_SetOnClick(TGroupBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnClick)
-    MySyscall(pGroupBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnContextPopup)
 void
-GroupBox_SetOnContextPopup(TGroupBox AObj, TContextPopupEvent AEventId) {
+GroupBox_SetOnContextPopup(TGroupBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnContextPopup)
-    MySyscall(pGroupBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnDblClick)
 void
-GroupBox_SetOnDblClick(TGroupBox AObj, TNotifyEvent AEventId) {
+GroupBox_SetOnDblClick(TGroupBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnDblClick)
-    MySyscall(pGroupBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnDragDrop)
 void
-GroupBox_SetOnDragDrop(TGroupBox AObj, TDragDropEvent AEventId) {
+GroupBox_SetOnDragDrop(TGroupBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnDragDrop)
-    MySyscall(pGroupBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnDockDrop)
 void
-GroupBox_SetOnDockDrop(TGroupBox AObj, TDockDropEvent AEventId) {
+GroupBox_SetOnDockDrop(TGroupBox AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnDockDrop)
-    MySyscall(pGroupBox_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnDragOver)
 void
-GroupBox_SetOnDragOver(TGroupBox AObj, TDragOverEvent AEventId) {
+GroupBox_SetOnDragOver(TGroupBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnDragOver)
-    MySyscall(pGroupBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnEndDock)
 void
-GroupBox_SetOnEndDock(TGroupBox AObj, TEndDragEvent AEventId) {
+GroupBox_SetOnEndDock(TGroupBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnEndDock)
-    MySyscall(pGroupBox_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnEndDrag)
 void
-GroupBox_SetOnEndDrag(TGroupBox AObj, TEndDragEvent AEventId) {
+GroupBox_SetOnEndDrag(TGroupBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnEndDrag)
-    MySyscall(pGroupBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnEnter)
 void
-GroupBox_SetOnEnter(TGroupBox AObj, TNotifyEvent AEventId) {
+GroupBox_SetOnEnter(TGroupBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnEnter)
-    MySyscall(pGroupBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnExit)
 void
-GroupBox_SetOnExit(TGroupBox AObj, TNotifyEvent AEventId) {
+GroupBox_SetOnExit(TGroupBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnExit)
-    MySyscall(pGroupBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnGetSiteInfo)
 void
-GroupBox_SetOnGetSiteInfo(TGroupBox AObj, TGetSiteInfoEvent AEventId) {
+GroupBox_SetOnGetSiteInfo(TGroupBox AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnGetSiteInfo)
-    MySyscall(pGroupBox_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnMouseDown)
 void
-GroupBox_SetOnMouseDown(TGroupBox AObj, TMouseEvent AEventId) {
+GroupBox_SetOnMouseDown(TGroupBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnMouseDown)
-    MySyscall(pGroupBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnMouseEnter)
 void
-GroupBox_SetOnMouseEnter(TGroupBox AObj, TNotifyEvent AEventId) {
+GroupBox_SetOnMouseEnter(TGroupBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnMouseEnter)
-    MySyscall(pGroupBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnMouseLeave)
 void
-GroupBox_SetOnMouseLeave(TGroupBox AObj, TNotifyEvent AEventId) {
+GroupBox_SetOnMouseLeave(TGroupBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnMouseLeave)
-    MySyscall(pGroupBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnMouseMove)
 void
-GroupBox_SetOnMouseMove(TGroupBox AObj, TMouseMoveEvent AEventId) {
+GroupBox_SetOnMouseMove(TGroupBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnMouseMove)
-    MySyscall(pGroupBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnMouseUp)
 void
-GroupBox_SetOnMouseUp(TGroupBox AObj, TMouseEvent AEventId) {
+GroupBox_SetOnMouseUp(TGroupBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnMouseUp)
-    MySyscall(pGroupBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnStartDock)
 void
-GroupBox_SetOnStartDock(TGroupBox AObj, TStartDockEvent AEventId) {
+GroupBox_SetOnStartDock(TGroupBox AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnStartDock)
-    MySyscall(pGroupBox_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_SetOnUnDock)
 void
-GroupBox_SetOnUnDock(TGroupBox AObj, TUnDockEvent AEventId) {
+GroupBox_SetOnUnDock(TGroupBox AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(GroupBox_SetOnUnDock)
-    MySyscall(pGroupBox_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGroupBox_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GroupBox_GetDockClientCount)
@@ -11170,79 +11270,79 @@ Label_SetWordWrap(TLabel AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Label_SetOnClick)
 void
-Label_SetOnClick(TLabel AObj, TNotifyEvent AEventId) {
+Label_SetOnClick(TLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnClick)
-    MySyscall(pLabel_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnContextPopup)
 void
-Label_SetOnContextPopup(TLabel AObj, TContextPopupEvent AEventId) {
+Label_SetOnContextPopup(TLabel AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnContextPopup)
-    MySyscall(pLabel_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnDblClick)
 void
-Label_SetOnDblClick(TLabel AObj, TNotifyEvent AEventId) {
+Label_SetOnDblClick(TLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnDblClick)
-    MySyscall(pLabel_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnDragDrop)
 void
-Label_SetOnDragDrop(TLabel AObj, TDragDropEvent AEventId) {
+Label_SetOnDragDrop(TLabel AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnDragDrop)
-    MySyscall(pLabel_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnDragOver)
 void
-Label_SetOnDragOver(TLabel AObj, TDragOverEvent AEventId) {
+Label_SetOnDragOver(TLabel AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnDragOver)
-    MySyscall(pLabel_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnEndDrag)
 void
-Label_SetOnEndDrag(TLabel AObj, TEndDragEvent AEventId) {
+Label_SetOnEndDrag(TLabel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnEndDrag)
-    MySyscall(pLabel_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnMouseDown)
 void
-Label_SetOnMouseDown(TLabel AObj, TMouseEvent AEventId) {
+Label_SetOnMouseDown(TLabel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnMouseDown)
-    MySyscall(pLabel_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnMouseMove)
 void
-Label_SetOnMouseMove(TLabel AObj, TMouseMoveEvent AEventId) {
+Label_SetOnMouseMove(TLabel AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnMouseMove)
-    MySyscall(pLabel_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnMouseUp)
 void
-Label_SetOnMouseUp(TLabel AObj, TMouseEvent AEventId) {
+Label_SetOnMouseUp(TLabel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnMouseUp)
-    MySyscall(pLabel_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnMouseEnter)
 void
-Label_SetOnMouseEnter(TLabel AObj, TNotifyEvent AEventId) {
+Label_SetOnMouseEnter(TLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnMouseEnter)
-    MySyscall(pLabel_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_SetOnMouseLeave)
 void
-Label_SetOnMouseLeave(TLabel AObj, TNotifyEvent AEventId) {
+Label_SetOnMouseLeave(TLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Label_SetOnMouseLeave)
-    MySyscall(pLabel_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabel_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Label_GetCanvas)
@@ -12574,128 +12674,128 @@ ListBox_SetVisible(TListBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ListBox_SetOnClick)
 void
-ListBox_SetOnClick(TListBox AObj, TNotifyEvent AEventId) {
+ListBox_SetOnClick(TListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnClick)
-    MySyscall(pListBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnContextPopup)
 void
-ListBox_SetOnContextPopup(TListBox AObj, TContextPopupEvent AEventId) {
+ListBox_SetOnContextPopup(TListBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnContextPopup)
-    MySyscall(pListBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnDblClick)
 void
-ListBox_SetOnDblClick(TListBox AObj, TNotifyEvent AEventId) {
+ListBox_SetOnDblClick(TListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnDblClick)
-    MySyscall(pListBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnDragDrop)
 void
-ListBox_SetOnDragDrop(TListBox AObj, TDragDropEvent AEventId) {
+ListBox_SetOnDragDrop(TListBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnDragDrop)
-    MySyscall(pListBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnDragOver)
 void
-ListBox_SetOnDragOver(TListBox AObj, TDragOverEvent AEventId) {
+ListBox_SetOnDragOver(TListBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnDragOver)
-    MySyscall(pListBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnDrawItem)
 void
-ListBox_SetOnDrawItem(TListBox AObj, TDrawItemEvent AEventId) {
+ListBox_SetOnDrawItem(TListBox AObj, TDrawItemEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnDrawItem)
-    MySyscall(pListBox_SetOnDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnEndDrag)
 void
-ListBox_SetOnEndDrag(TListBox AObj, TEndDragEvent AEventId) {
+ListBox_SetOnEndDrag(TListBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnEndDrag)
-    MySyscall(pListBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnEnter)
 void
-ListBox_SetOnEnter(TListBox AObj, TNotifyEvent AEventId) {
+ListBox_SetOnEnter(TListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnEnter)
-    MySyscall(pListBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnExit)
 void
-ListBox_SetOnExit(TListBox AObj, TNotifyEvent AEventId) {
+ListBox_SetOnExit(TListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnExit)
-    MySyscall(pListBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnKeyDown)
 void
-ListBox_SetOnKeyDown(TListBox AObj, TKeyEvent AEventId) {
+ListBox_SetOnKeyDown(TListBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnKeyDown)
-    MySyscall(pListBox_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnKeyPress)
 void
-ListBox_SetOnKeyPress(TListBox AObj, TKeyPressEvent AEventId) {
+ListBox_SetOnKeyPress(TListBox AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnKeyPress)
-    MySyscall(pListBox_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnKeyUp)
 void
-ListBox_SetOnKeyUp(TListBox AObj, TKeyEvent AEventId) {
+ListBox_SetOnKeyUp(TListBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnKeyUp)
-    MySyscall(pListBox_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnMeasureItem)
 void
-ListBox_SetOnMeasureItem(TListBox AObj, TMeasureItemEvent AEventId) {
+ListBox_SetOnMeasureItem(TListBox AObj, TMeasureItemEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnMeasureItem)
-    MySyscall(pListBox_SetOnMeasureItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnMeasureItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnMouseDown)
 void
-ListBox_SetOnMouseDown(TListBox AObj, TMouseEvent AEventId) {
+ListBox_SetOnMouseDown(TListBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnMouseDown)
-    MySyscall(pListBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnMouseEnter)
 void
-ListBox_SetOnMouseEnter(TListBox AObj, TNotifyEvent AEventId) {
+ListBox_SetOnMouseEnter(TListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnMouseEnter)
-    MySyscall(pListBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnMouseLeave)
 void
-ListBox_SetOnMouseLeave(TListBox AObj, TNotifyEvent AEventId) {
+ListBox_SetOnMouseLeave(TListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnMouseLeave)
-    MySyscall(pListBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnMouseMove)
 void
-ListBox_SetOnMouseMove(TListBox AObj, TMouseMoveEvent AEventId) {
+ListBox_SetOnMouseMove(TListBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnMouseMove)
-    MySyscall(pListBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_SetOnMouseUp)
 void
-ListBox_SetOnMouseUp(TListBox AObj, TMouseEvent AEventId) {
+ListBox_SetOnMouseUp(TListBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ListBox_SetOnMouseUp)
-    MySyscall(pListBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListBox_GetCanvas)
@@ -13736,6 +13836,20 @@ ComboBox_ScaleFontsPPI(TComboBox AObj, int32_t AToPPI, double AProportion) {
     MySyscall(pComboBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ComboBox_GetReadOnly)
+BOOL
+ComboBox_GetReadOnly(TComboBox AObj) {
+    GET_FUNC_ADDR(ComboBox_GetReadOnly)
+    return (BOOL)MySyscall(pComboBox_GetReadOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_SetReadOnly)
+void
+ComboBox_SetReadOnly(TComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ComboBox_SetReadOnly)
+    MySyscall(pComboBox_SetReadOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ComboBox_GetAlign)
 TAlign
 ComboBox_GetAlign(TComboBox AObj) {
@@ -14158,128 +14272,135 @@ ComboBox_SetVisible(TComboBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ComboBox_SetOnChange)
 void
-ComboBox_SetOnChange(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnChange(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnChange)
-    MySyscall(pComboBox_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnClick)
 void
-ComboBox_SetOnClick(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnClick(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnClick)
-    MySyscall(pComboBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ComboBox_SetOnCloseUp)
+void
+ComboBox_SetOnCloseUp(TComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ComboBox_SetOnCloseUp)
+    MySyscall(pComboBox_SetOnCloseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnContextPopup)
 void
-ComboBox_SetOnContextPopup(TComboBox AObj, TContextPopupEvent AEventId) {
+ComboBox_SetOnContextPopup(TComboBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnContextPopup)
-    MySyscall(pComboBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnDblClick)
 void
-ComboBox_SetOnDblClick(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnDblClick(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnDblClick)
-    MySyscall(pComboBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnDragDrop)
 void
-ComboBox_SetOnDragDrop(TComboBox AObj, TDragDropEvent AEventId) {
+ComboBox_SetOnDragDrop(TComboBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnDragDrop)
-    MySyscall(pComboBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnDragOver)
 void
-ComboBox_SetOnDragOver(TComboBox AObj, TDragOverEvent AEventId) {
+ComboBox_SetOnDragOver(TComboBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnDragOver)
-    MySyscall(pComboBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnDrawItem)
 void
-ComboBox_SetOnDrawItem(TComboBox AObj, TDrawItemEvent AEventId) {
+ComboBox_SetOnDrawItem(TComboBox AObj, TDrawItemEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnDrawItem)
-    MySyscall(pComboBox_SetOnDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnDropDown)
 void
-ComboBox_SetOnDropDown(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnDropDown(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnDropDown)
-    MySyscall(pComboBox_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnDropDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnEndDrag)
 void
-ComboBox_SetOnEndDrag(TComboBox AObj, TEndDragEvent AEventId) {
+ComboBox_SetOnEndDrag(TComboBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnEndDrag)
-    MySyscall(pComboBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnEnter)
 void
-ComboBox_SetOnEnter(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnEnter(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnEnter)
-    MySyscall(pComboBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnExit)
 void
-ComboBox_SetOnExit(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnExit(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnExit)
-    MySyscall(pComboBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnKeyDown)
 void
-ComboBox_SetOnKeyDown(TComboBox AObj, TKeyEvent AEventId) {
+ComboBox_SetOnKeyDown(TComboBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnKeyDown)
-    MySyscall(pComboBox_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnKeyPress)
 void
-ComboBox_SetOnKeyPress(TComboBox AObj, TKeyPressEvent AEventId) {
+ComboBox_SetOnKeyPress(TComboBox AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnKeyPress)
-    MySyscall(pComboBox_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnKeyUp)
 void
-ComboBox_SetOnKeyUp(TComboBox AObj, TKeyEvent AEventId) {
+ComboBox_SetOnKeyUp(TComboBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnKeyUp)
-    MySyscall(pComboBox_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnMeasureItem)
 void
-ComboBox_SetOnMeasureItem(TComboBox AObj, TMeasureItemEvent AEventId) {
+ComboBox_SetOnMeasureItem(TComboBox AObj, TMeasureItemEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnMeasureItem)
-    MySyscall(pComboBox_SetOnMeasureItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnMeasureItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnMouseEnter)
 void
-ComboBox_SetOnMouseEnter(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnMouseEnter(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnMouseEnter)
-    MySyscall(pComboBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnMouseLeave)
 void
-ComboBox_SetOnMouseLeave(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnMouseLeave(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnMouseLeave)
-    MySyscall(pComboBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_SetOnSelect)
 void
-ComboBox_SetOnSelect(TComboBox AObj, TNotifyEvent AEventId) {
+ComboBox_SetOnSelect(TComboBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBox_SetOnSelect)
-    MySyscall(pComboBox_SetOnSelect, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBox_SetOnSelect, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBox_GetItems)
@@ -15313,6 +15434,27 @@ Panel_ScaleFontsPPI(TPanel AObj, int32_t AToPPI, double AProportion) {
     MySyscall(pPanel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Panel_GetCanvas)
+TCanvas
+Panel_GetCanvas(TPanel AObj) {
+    GET_FUNC_ADDR(Panel_GetCanvas)
+    return (TCanvas)MySyscall(pPanel_GetCanvas, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_SetCanvas)
+void
+Panel_SetCanvas(TPanel AObj, TCanvas AValue) {
+    GET_FUNC_ADDR(Panel_SetCanvas)
+    MySyscall(pPanel_SetCanvas, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Panel_SetOnPaint)
+void
+Panel_SetOnPaint(TPanel AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(Panel_SetOnPaint)
+    MySyscall(pPanel_SetOnPaint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Panel_GetAlign)
 TAlign
 Panel_GetAlign(TPanel AObj) {
@@ -15749,142 +15891,142 @@ Panel_SetVisible(TPanel AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Panel_SetOnAlignPosition)
 void
-Panel_SetOnAlignPosition(TPanel AObj, TAlignPositionEvent AEventId) {
+Panel_SetOnAlignPosition(TPanel AObj, TAlignPositionEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnAlignPosition)
-    MySyscall(pPanel_SetOnAlignPosition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnAlignPosition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnClick)
 void
-Panel_SetOnClick(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnClick(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnClick)
-    MySyscall(pPanel_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnContextPopup)
 void
-Panel_SetOnContextPopup(TPanel AObj, TContextPopupEvent AEventId) {
+Panel_SetOnContextPopup(TPanel AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnContextPopup)
-    MySyscall(pPanel_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnDockDrop)
 void
-Panel_SetOnDockDrop(TPanel AObj, TDockDropEvent AEventId) {
+Panel_SetOnDockDrop(TPanel AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnDockDrop)
-    MySyscall(pPanel_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnDblClick)
 void
-Panel_SetOnDblClick(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnDblClick(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnDblClick)
-    MySyscall(pPanel_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnDragDrop)
 void
-Panel_SetOnDragDrop(TPanel AObj, TDragDropEvent AEventId) {
+Panel_SetOnDragDrop(TPanel AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnDragDrop)
-    MySyscall(pPanel_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnDragOver)
 void
-Panel_SetOnDragOver(TPanel AObj, TDragOverEvent AEventId) {
+Panel_SetOnDragOver(TPanel AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnDragOver)
-    MySyscall(pPanel_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnEndDock)
 void
-Panel_SetOnEndDock(TPanel AObj, TEndDragEvent AEventId) {
+Panel_SetOnEndDock(TPanel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnEndDock)
-    MySyscall(pPanel_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnEndDrag)
 void
-Panel_SetOnEndDrag(TPanel AObj, TEndDragEvent AEventId) {
+Panel_SetOnEndDrag(TPanel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnEndDrag)
-    MySyscall(pPanel_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnEnter)
 void
-Panel_SetOnEnter(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnEnter(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnEnter)
-    MySyscall(pPanel_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnExit)
 void
-Panel_SetOnExit(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnExit(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnExit)
-    MySyscall(pPanel_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnGetSiteInfo)
 void
-Panel_SetOnGetSiteInfo(TPanel AObj, TGetSiteInfoEvent AEventId) {
+Panel_SetOnGetSiteInfo(TPanel AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnGetSiteInfo)
-    MySyscall(pPanel_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnMouseDown)
 void
-Panel_SetOnMouseDown(TPanel AObj, TMouseEvent AEventId) {
+Panel_SetOnMouseDown(TPanel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnMouseDown)
-    MySyscall(pPanel_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnMouseEnter)
 void
-Panel_SetOnMouseEnter(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnMouseEnter(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnMouseEnter)
-    MySyscall(pPanel_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnMouseLeave)
 void
-Panel_SetOnMouseLeave(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnMouseLeave(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnMouseLeave)
-    MySyscall(pPanel_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnMouseMove)
 void
-Panel_SetOnMouseMove(TPanel AObj, TMouseMoveEvent AEventId) {
+Panel_SetOnMouseMove(TPanel AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnMouseMove)
-    MySyscall(pPanel_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnMouseUp)
 void
-Panel_SetOnMouseUp(TPanel AObj, TMouseEvent AEventId) {
+Panel_SetOnMouseUp(TPanel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnMouseUp)
-    MySyscall(pPanel_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnResize)
 void
-Panel_SetOnResize(TPanel AObj, TNotifyEvent AEventId) {
+Panel_SetOnResize(TPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnResize)
-    MySyscall(pPanel_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnStartDock)
 void
-Panel_SetOnStartDock(TPanel AObj, TStartDockEvent AEventId) {
+Panel_SetOnStartDock(TPanel AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnStartDock)
-    MySyscall(pPanel_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_SetOnUnDock)
 void
-Panel_SetOnUnDock(TPanel AObj, TUnDockEvent AEventId) {
+Panel_SetOnUnDock(TPanel AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(Panel_SetOnUnDock)
-    MySyscall(pPanel_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPanel_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Panel_GetDockClientCount)
@@ -17004,72 +17146,72 @@ Image_SetVisible(TImage AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Image_SetOnClick)
 void
-Image_SetOnClick(TImage AObj, TNotifyEvent AEventId) {
+Image_SetOnClick(TImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnClick)
-    MySyscall(pImage_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnDblClick)
 void
-Image_SetOnDblClick(TImage AObj, TNotifyEvent AEventId) {
+Image_SetOnDblClick(TImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnDblClick)
-    MySyscall(pImage_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnDragDrop)
 void
-Image_SetOnDragDrop(TImage AObj, TDragDropEvent AEventId) {
+Image_SetOnDragDrop(TImage AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnDragDrop)
-    MySyscall(pImage_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnDragOver)
 void
-Image_SetOnDragOver(TImage AObj, TDragOverEvent AEventId) {
+Image_SetOnDragOver(TImage AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnDragOver)
-    MySyscall(pImage_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnEndDrag)
 void
-Image_SetOnEndDrag(TImage AObj, TEndDragEvent AEventId) {
+Image_SetOnEndDrag(TImage AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnEndDrag)
-    MySyscall(pImage_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnMouseDown)
 void
-Image_SetOnMouseDown(TImage AObj, TMouseEvent AEventId) {
+Image_SetOnMouseDown(TImage AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnMouseDown)
-    MySyscall(pImage_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnMouseEnter)
 void
-Image_SetOnMouseEnter(TImage AObj, TNotifyEvent AEventId) {
+Image_SetOnMouseEnter(TImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnMouseEnter)
-    MySyscall(pImage_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnMouseLeave)
 void
-Image_SetOnMouseLeave(TImage AObj, TNotifyEvent AEventId) {
+Image_SetOnMouseLeave(TImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnMouseLeave)
-    MySyscall(pImage_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnMouseMove)
 void
-Image_SetOnMouseMove(TImage AObj, TMouseMoveEvent AEventId) {
+Image_SetOnMouseMove(TImage AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnMouseMove)
-    MySyscall(pImage_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_SetOnMouseUp)
 void
-Image_SetOnMouseUp(TImage AObj, TMouseEvent AEventId) {
+Image_SetOnMouseUp(TImage AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Image_SetOnMouseUp)
-    MySyscall(pImage_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImage_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Image_GetAction)
@@ -18063,86 +18205,86 @@ LinkLabel_SetVisible(TLinkLabel AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnClick)
 void
-LinkLabel_SetOnClick(TLinkLabel AObj, TNotifyEvent AEventId) {
+LinkLabel_SetOnClick(TLinkLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnClick)
-    MySyscall(pLinkLabel_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnContextPopup)
 void
-LinkLabel_SetOnContextPopup(TLinkLabel AObj, TContextPopupEvent AEventId) {
+LinkLabel_SetOnContextPopup(TLinkLabel AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnContextPopup)
-    MySyscall(pLinkLabel_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnDblClick)
 void
-LinkLabel_SetOnDblClick(TLinkLabel AObj, TNotifyEvent AEventId) {
+LinkLabel_SetOnDblClick(TLinkLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnDblClick)
-    MySyscall(pLinkLabel_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnDragDrop)
 void
-LinkLabel_SetOnDragDrop(TLinkLabel AObj, TDragDropEvent AEventId) {
+LinkLabel_SetOnDragDrop(TLinkLabel AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnDragDrop)
-    MySyscall(pLinkLabel_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnDragOver)
 void
-LinkLabel_SetOnDragOver(TLinkLabel AObj, TDragOverEvent AEventId) {
+LinkLabel_SetOnDragOver(TLinkLabel AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnDragOver)
-    MySyscall(pLinkLabel_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnEndDrag)
 void
-LinkLabel_SetOnEndDrag(TLinkLabel AObj, TEndDragEvent AEventId) {
+LinkLabel_SetOnEndDrag(TLinkLabel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnEndDrag)
-    MySyscall(pLinkLabel_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnMouseDown)
 void
-LinkLabel_SetOnMouseDown(TLinkLabel AObj, TMouseEvent AEventId) {
+LinkLabel_SetOnMouseDown(TLinkLabel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnMouseDown)
-    MySyscall(pLinkLabel_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnMouseEnter)
 void
-LinkLabel_SetOnMouseEnter(TLinkLabel AObj, TNotifyEvent AEventId) {
+LinkLabel_SetOnMouseEnter(TLinkLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnMouseEnter)
-    MySyscall(pLinkLabel_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnMouseLeave)
 void
-LinkLabel_SetOnMouseLeave(TLinkLabel AObj, TNotifyEvent AEventId) {
+LinkLabel_SetOnMouseLeave(TLinkLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnMouseLeave)
-    MySyscall(pLinkLabel_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnMouseMove)
 void
-LinkLabel_SetOnMouseMove(TLinkLabel AObj, TMouseMoveEvent AEventId) {
+LinkLabel_SetOnMouseMove(TLinkLabel AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnMouseMove)
-    MySyscall(pLinkLabel_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnMouseUp)
 void
-LinkLabel_SetOnMouseUp(TLinkLabel AObj, TMouseEvent AEventId) {
+LinkLabel_SetOnMouseUp(TLinkLabel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnMouseUp)
-    MySyscall(pLinkLabel_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_SetOnLinkClick)
 void
-LinkLabel_SetOnLinkClick(TLinkLabel AObj, TSysLinkEvent AEventId) {
+LinkLabel_SetOnLinkClick(TLinkLabel AObj, TSysLinkEvent AEventData) {
     GET_FUNC_ADDR(LinkLabel_SetOnLinkClick)
-    MySyscall(pLinkLabel_SetOnLinkClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLinkLabel_SetOnLinkClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LinkLabel_GetMouseInClient)
@@ -19248,51 +19390,51 @@ SpeedButton_SetVisible(TSpeedButton AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnClick)
 void
-SpeedButton_SetOnClick(TSpeedButton AObj, TNotifyEvent AEventId) {
+SpeedButton_SetOnClick(TSpeedButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnClick)
-    MySyscall(pSpeedButton_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnDblClick)
 void
-SpeedButton_SetOnDblClick(TSpeedButton AObj, TNotifyEvent AEventId) {
+SpeedButton_SetOnDblClick(TSpeedButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnDblClick)
-    MySyscall(pSpeedButton_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnMouseDown)
 void
-SpeedButton_SetOnMouseDown(TSpeedButton AObj, TMouseEvent AEventId) {
+SpeedButton_SetOnMouseDown(TSpeedButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnMouseDown)
-    MySyscall(pSpeedButton_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnMouseEnter)
 void
-SpeedButton_SetOnMouseEnter(TSpeedButton AObj, TNotifyEvent AEventId) {
+SpeedButton_SetOnMouseEnter(TSpeedButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnMouseEnter)
-    MySyscall(pSpeedButton_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnMouseLeave)
 void
-SpeedButton_SetOnMouseLeave(TSpeedButton AObj, TNotifyEvent AEventId) {
+SpeedButton_SetOnMouseLeave(TSpeedButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnMouseLeave)
-    MySyscall(pSpeedButton_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnMouseMove)
 void
-SpeedButton_SetOnMouseMove(TSpeedButton AObj, TMouseMoveEvent AEventId) {
+SpeedButton_SetOnMouseMove(TSpeedButton AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnMouseMove)
-    MySyscall(pSpeedButton_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_SetOnMouseUp)
 void
-SpeedButton_SetOnMouseUp(TSpeedButton AObj, TMouseEvent AEventId) {
+SpeedButton_SetOnMouseUp(TSpeedButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(SpeedButton_SetOnMouseUp)
-    MySyscall(pSpeedButton_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpeedButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpeedButton_GetBoundsRect)
@@ -20139,9 +20281,9 @@ Splitter_SetWidth(TSplitter AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(Splitter_SetOnPaint)
 void
-Splitter_SetOnPaint(TSplitter AObj, TNotifyEvent AEventId) {
+Splitter_SetOnPaint(TSplitter AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Splitter_SetOnPaint)
-    MySyscall(pSplitter_SetOnPaint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSplitter_SetOnPaint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Splitter_GetEnabled)
@@ -21007,6 +21149,13 @@ RadioGroup_ScaleFontsPPI(TRadioGroup AObj, int32_t AToPPI, double AProportion) {
     MySyscall(pRadioGroup_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RadioGroup_SetOnSelectionChanged)
+void
+RadioGroup_SetOnSelectionChanged(TRadioGroup AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(RadioGroup_SetOnSelectionChanged)
+    MySyscall(pRadioGroup_SetOnSelectionChanged, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RadioGroup_GetAlign)
 TAlign
 RadioGroup_GetAlign(TRadioGroup AObj) {
@@ -21203,6 +21352,20 @@ RadioGroup_SetConstraints(TRadioGroup AObj, TSizeConstraints AValue) {
     MySyscall(pRadioGroup_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(RadioGroup_GetParentBackground)
+BOOL
+RadioGroup_GetParentBackground(TRadioGroup AObj) {
+    GET_FUNC_ADDR(RadioGroup_GetParentBackground)
+    return (BOOL)MySyscall(pRadioGroup_GetParentBackground, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(RadioGroup_SetParentBackground)
+void
+RadioGroup_SetParentBackground(TRadioGroup AObj, BOOL AValue) {
+    GET_FUNC_ADDR(RadioGroup_SetParentBackground)
+    MySyscall(pRadioGroup_SetParentBackground, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(RadioGroup_GetParentColor)
 BOOL
 RadioGroup_GetParentColor(TRadioGroup AObj) {
@@ -21331,44 +21494,44 @@ RadioGroup_SetVisible(TRadioGroup AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(RadioGroup_SetOnClick)
 void
-RadioGroup_SetOnClick(TRadioGroup AObj, TNotifyEvent AEventId) {
+RadioGroup_SetOnClick(TRadioGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioGroup_SetOnClick)
-    MySyscall(pRadioGroup_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_SetOnDragDrop)
 void
-RadioGroup_SetOnDragDrop(TRadioGroup AObj, TDragDropEvent AEventId) {
+RadioGroup_SetOnDragDrop(TRadioGroup AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(RadioGroup_SetOnDragDrop)
-    MySyscall(pRadioGroup_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_SetOnDragOver)
 void
-RadioGroup_SetOnDragOver(TRadioGroup AObj, TDragOverEvent AEventId) {
+RadioGroup_SetOnDragOver(TRadioGroup AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(RadioGroup_SetOnDragOver)
-    MySyscall(pRadioGroup_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_SetOnEndDrag)
 void
-RadioGroup_SetOnEndDrag(TRadioGroup AObj, TEndDragEvent AEventId) {
+RadioGroup_SetOnEndDrag(TRadioGroup AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(RadioGroup_SetOnEndDrag)
-    MySyscall(pRadioGroup_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_SetOnEnter)
 void
-RadioGroup_SetOnEnter(TRadioGroup AObj, TNotifyEvent AEventId) {
+RadioGroup_SetOnEnter(TRadioGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioGroup_SetOnEnter)
-    MySyscall(pRadioGroup_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_SetOnExit)
 void
-RadioGroup_SetOnExit(TRadioGroup AObj, TNotifyEvent AEventId) {
+RadioGroup_SetOnExit(TRadioGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RadioGroup_SetOnExit)
-    MySyscall(pRadioGroup_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRadioGroup_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RadioGroup_GetDockClientCount)
@@ -22705,79 +22868,79 @@ StaticText_SetVisible(TStaticText AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(StaticText_SetOnClick)
 void
-StaticText_SetOnClick(TStaticText AObj, TNotifyEvent AEventId) {
+StaticText_SetOnClick(TStaticText AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnClick)
-    MySyscall(pStaticText_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnContextPopup)
 void
-StaticText_SetOnContextPopup(TStaticText AObj, TContextPopupEvent AEventId) {
+StaticText_SetOnContextPopup(TStaticText AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnContextPopup)
-    MySyscall(pStaticText_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnDblClick)
 void
-StaticText_SetOnDblClick(TStaticText AObj, TNotifyEvent AEventId) {
+StaticText_SetOnDblClick(TStaticText AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnDblClick)
-    MySyscall(pStaticText_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnDragDrop)
 void
-StaticText_SetOnDragDrop(TStaticText AObj, TDragDropEvent AEventId) {
+StaticText_SetOnDragDrop(TStaticText AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnDragDrop)
-    MySyscall(pStaticText_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnDragOver)
 void
-StaticText_SetOnDragOver(TStaticText AObj, TDragOverEvent AEventId) {
+StaticText_SetOnDragOver(TStaticText AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnDragOver)
-    MySyscall(pStaticText_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnEndDrag)
 void
-StaticText_SetOnEndDrag(TStaticText AObj, TEndDragEvent AEventId) {
+StaticText_SetOnEndDrag(TStaticText AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnEndDrag)
-    MySyscall(pStaticText_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnMouseDown)
 void
-StaticText_SetOnMouseDown(TStaticText AObj, TMouseEvent AEventId) {
+StaticText_SetOnMouseDown(TStaticText AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnMouseDown)
-    MySyscall(pStaticText_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnMouseEnter)
 void
-StaticText_SetOnMouseEnter(TStaticText AObj, TNotifyEvent AEventId) {
+StaticText_SetOnMouseEnter(TStaticText AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnMouseEnter)
-    MySyscall(pStaticText_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnMouseLeave)
 void
-StaticText_SetOnMouseLeave(TStaticText AObj, TNotifyEvent AEventId) {
+StaticText_SetOnMouseLeave(TStaticText AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnMouseLeave)
-    MySyscall(pStaticText_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnMouseMove)
 void
-StaticText_SetOnMouseMove(TStaticText AObj, TMouseMoveEvent AEventId) {
+StaticText_SetOnMouseMove(TStaticText AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnMouseMove)
-    MySyscall(pStaticText_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_SetOnMouseUp)
 void
-StaticText_SetOnMouseUp(TStaticText AObj, TMouseEvent AEventId) {
+StaticText_SetOnMouseUp(TStaticText AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(StaticText_SetOnMouseUp)
-    MySyscall(pStaticText_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStaticText_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StaticText_GetDockClientCount)
@@ -24121,107 +24284,114 @@ ColorBox_SetVisible(TColorBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ColorBox_SetOnChange)
 void
-ColorBox_SetOnChange(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnChange(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnChange)
-    MySyscall(pColorBox_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorBox_SetOnCloseUp)
+void
+ColorBox_SetOnCloseUp(TColorBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorBox_SetOnCloseUp)
+    MySyscall(pColorBox_SetOnCloseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnClick)
 void
-ColorBox_SetOnClick(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnClick(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnClick)
-    MySyscall(pColorBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnContextPopup)
 void
-ColorBox_SetOnContextPopup(TColorBox AObj, TContextPopupEvent AEventId) {
+ColorBox_SetOnContextPopup(TColorBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnContextPopup)
-    MySyscall(pColorBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnDragDrop)
 void
-ColorBox_SetOnDragDrop(TColorBox AObj, TDragDropEvent AEventId) {
+ColorBox_SetOnDragDrop(TColorBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnDragDrop)
-    MySyscall(pColorBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnDragOver)
 void
-ColorBox_SetOnDragOver(TColorBox AObj, TDragOverEvent AEventId) {
+ColorBox_SetOnDragOver(TColorBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnDragOver)
-    MySyscall(pColorBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnDropDown)
 void
-ColorBox_SetOnDropDown(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnDropDown(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnDropDown)
-    MySyscall(pColorBox_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnDropDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnEndDrag)
 void
-ColorBox_SetOnEndDrag(TColorBox AObj, TEndDragEvent AEventId) {
+ColorBox_SetOnEndDrag(TColorBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnEndDrag)
-    MySyscall(pColorBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnEnter)
 void
-ColorBox_SetOnEnter(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnEnter(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnEnter)
-    MySyscall(pColorBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnExit)
 void
-ColorBox_SetOnExit(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnExit(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnExit)
-    MySyscall(pColorBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnKeyDown)
 void
-ColorBox_SetOnKeyDown(TColorBox AObj, TKeyEvent AEventId) {
+ColorBox_SetOnKeyDown(TColorBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnKeyDown)
-    MySyscall(pColorBox_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnKeyPress)
 void
-ColorBox_SetOnKeyPress(TColorBox AObj, TKeyPressEvent AEventId) {
+ColorBox_SetOnKeyPress(TColorBox AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnKeyPress)
-    MySyscall(pColorBox_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnKeyUp)
 void
-ColorBox_SetOnKeyUp(TColorBox AObj, TKeyEvent AEventId) {
+ColorBox_SetOnKeyUp(TColorBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnKeyUp)
-    MySyscall(pColorBox_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnMouseEnter)
 void
-ColorBox_SetOnMouseEnter(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnMouseEnter(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnMouseEnter)
-    MySyscall(pColorBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnMouseLeave)
 void
-ColorBox_SetOnMouseLeave(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnMouseLeave(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnMouseLeave)
-    MySyscall(pColorBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_SetOnSelect)
 void
-ColorBox_SetOnSelect(TColorBox AObj, TNotifyEvent AEventId) {
+ColorBox_SetOnSelect(TColorBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorBox_SetOnSelect)
-    MySyscall(pColorBox_SetOnSelect, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorBox_SetOnSelect, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorBox_GetCharCase)
@@ -25658,114 +25828,114 @@ ColorListBox_SetVisible(TColorListBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnClick)
 void
-ColorListBox_SetOnClick(TColorListBox AObj, TNotifyEvent AEventId) {
+ColorListBox_SetOnClick(TColorListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnClick)
-    MySyscall(pColorListBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnContextPopup)
 void
-ColorListBox_SetOnContextPopup(TColorListBox AObj, TContextPopupEvent AEventId) {
+ColorListBox_SetOnContextPopup(TColorListBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnContextPopup)
-    MySyscall(pColorListBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnDblClick)
 void
-ColorListBox_SetOnDblClick(TColorListBox AObj, TNotifyEvent AEventId) {
+ColorListBox_SetOnDblClick(TColorListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnDblClick)
-    MySyscall(pColorListBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnDragDrop)
 void
-ColorListBox_SetOnDragDrop(TColorListBox AObj, TDragDropEvent AEventId) {
+ColorListBox_SetOnDragDrop(TColorListBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnDragDrop)
-    MySyscall(pColorListBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnDragOver)
 void
-ColorListBox_SetOnDragOver(TColorListBox AObj, TDragOverEvent AEventId) {
+ColorListBox_SetOnDragOver(TColorListBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnDragOver)
-    MySyscall(pColorListBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnEndDrag)
 void
-ColorListBox_SetOnEndDrag(TColorListBox AObj, TEndDragEvent AEventId) {
+ColorListBox_SetOnEndDrag(TColorListBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnEndDrag)
-    MySyscall(pColorListBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnEnter)
 void
-ColorListBox_SetOnEnter(TColorListBox AObj, TNotifyEvent AEventId) {
+ColorListBox_SetOnEnter(TColorListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnEnter)
-    MySyscall(pColorListBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnExit)
 void
-ColorListBox_SetOnExit(TColorListBox AObj, TNotifyEvent AEventId) {
+ColorListBox_SetOnExit(TColorListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnExit)
-    MySyscall(pColorListBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnKeyDown)
 void
-ColorListBox_SetOnKeyDown(TColorListBox AObj, TKeyEvent AEventId) {
+ColorListBox_SetOnKeyDown(TColorListBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnKeyDown)
-    MySyscall(pColorListBox_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnKeyPress)
 void
-ColorListBox_SetOnKeyPress(TColorListBox AObj, TKeyPressEvent AEventId) {
+ColorListBox_SetOnKeyPress(TColorListBox AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnKeyPress)
-    MySyscall(pColorListBox_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnKeyUp)
 void
-ColorListBox_SetOnKeyUp(TColorListBox AObj, TKeyEvent AEventId) {
+ColorListBox_SetOnKeyUp(TColorListBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnKeyUp)
-    MySyscall(pColorListBox_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnMouseDown)
 void
-ColorListBox_SetOnMouseDown(TColorListBox AObj, TMouseEvent AEventId) {
+ColorListBox_SetOnMouseDown(TColorListBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnMouseDown)
-    MySyscall(pColorListBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnMouseEnter)
 void
-ColorListBox_SetOnMouseEnter(TColorListBox AObj, TNotifyEvent AEventId) {
+ColorListBox_SetOnMouseEnter(TColorListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnMouseEnter)
-    MySyscall(pColorListBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnMouseLeave)
 void
-ColorListBox_SetOnMouseLeave(TColorListBox AObj, TNotifyEvent AEventId) {
+ColorListBox_SetOnMouseLeave(TColorListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnMouseLeave)
-    MySyscall(pColorListBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnMouseMove)
 void
-ColorListBox_SetOnMouseMove(TColorListBox AObj, TMouseMoveEvent AEventId) {
+ColorListBox_SetOnMouseMove(TColorListBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnMouseMove)
-    MySyscall(pColorListBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_SetOnMouseUp)
 void
-ColorListBox_SetOnMouseUp(TColorListBox AObj, TMouseEvent AEventId) {
+ColorListBox_SetOnMouseUp(TColorListBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ColorListBox_SetOnMouseUp)
-    MySyscall(pColorListBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorListBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorListBox_GetCanvas)
@@ -26562,37 +26732,37 @@ TrayIcon_SetVisible(TTrayIcon AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(TrayIcon_SetOnClick)
 void
-TrayIcon_SetOnClick(TTrayIcon AObj, TNotifyEvent AEventId) {
+TrayIcon_SetOnClick(TTrayIcon AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TrayIcon_SetOnClick)
-    MySyscall(pTrayIcon_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrayIcon_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrayIcon_SetOnDblClick)
 void
-TrayIcon_SetOnDblClick(TTrayIcon AObj, TNotifyEvent AEventId) {
+TrayIcon_SetOnDblClick(TTrayIcon AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TrayIcon_SetOnDblClick)
-    MySyscall(pTrayIcon_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrayIcon_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrayIcon_SetOnMouseMove)
 void
-TrayIcon_SetOnMouseMove(TTrayIcon AObj, TMouseMoveEvent AEventId) {
+TrayIcon_SetOnMouseMove(TTrayIcon AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(TrayIcon_SetOnMouseMove)
-    MySyscall(pTrayIcon_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrayIcon_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrayIcon_SetOnMouseUp)
 void
-TrayIcon_SetOnMouseUp(TTrayIcon AObj, TMouseEvent AEventId) {
+TrayIcon_SetOnMouseUp(TTrayIcon AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(TrayIcon_SetOnMouseUp)
-    MySyscall(pTrayIcon_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrayIcon_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrayIcon_SetOnMouseDown)
 void
-TrayIcon_SetOnMouseDown(TTrayIcon AObj, TMouseEvent AEventId) {
+TrayIcon_SetOnMouseDown(TTrayIcon AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(TrayIcon_SetOnMouseDown)
-    MySyscall(pTrayIcon_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrayIcon_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrayIcon_GetComponentCount)
@@ -26879,16 +27049,16 @@ OpenDialog_GetHandle(TOpenDialog AObj) {
 
 DEFINE_FUNC_PTR(OpenDialog_SetOnClose)
 void
-OpenDialog_SetOnClose(TOpenDialog AObj, TNotifyEvent AEventId) {
+OpenDialog_SetOnClose(TOpenDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(OpenDialog_SetOnClose)
-    MySyscall(pOpenDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pOpenDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(OpenDialog_SetOnShow)
 void
-OpenDialog_SetOnShow(TOpenDialog AObj, TNotifyEvent AEventId) {
+OpenDialog_SetOnShow(TOpenDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(OpenDialog_SetOnShow)
-    MySyscall(pOpenDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pOpenDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(OpenDialog_GetComponentCount)
@@ -27175,16 +27345,16 @@ SaveDialog_GetHandle(TSaveDialog AObj) {
 
 DEFINE_FUNC_PTR(SaveDialog_SetOnClose)
 void
-SaveDialog_SetOnClose(TSaveDialog AObj, TNotifyEvent AEventId) {
+SaveDialog_SetOnClose(TSaveDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SaveDialog_SetOnClose)
-    MySyscall(pSaveDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSaveDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SaveDialog_SetOnShow)
 void
-SaveDialog_SetOnShow(TSaveDialog AObj, TNotifyEvent AEventId) {
+SaveDialog_SetOnShow(TSaveDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SaveDialog_SetOnShow)
-    MySyscall(pSaveDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSaveDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SaveDialog_GetComponentCount)
@@ -27394,16 +27564,16 @@ ColorDialog_GetHandle(TColorDialog AObj) {
 
 DEFINE_FUNC_PTR(ColorDialog_SetOnClose)
 void
-ColorDialog_SetOnClose(TColorDialog AObj, TNotifyEvent AEventId) {
+ColorDialog_SetOnClose(TColorDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorDialog_SetOnClose)
-    MySyscall(pColorDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorDialog_SetOnShow)
 void
-ColorDialog_SetOnShow(TColorDialog AObj, TNotifyEvent AEventId) {
+ColorDialog_SetOnShow(TColorDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ColorDialog_SetOnShow)
-    MySyscall(pColorDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pColorDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ColorDialog_GetComponentCount)
@@ -27613,16 +27783,16 @@ FontDialog_GetHandle(TFontDialog AObj) {
 
 DEFINE_FUNC_PTR(FontDialog_SetOnClose)
 void
-FontDialog_SetOnClose(TFontDialog AObj, TNotifyEvent AEventId) {
+FontDialog_SetOnClose(TFontDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FontDialog_SetOnClose)
-    MySyscall(pFontDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFontDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FontDialog_SetOnShow)
 void
-FontDialog_SetOnShow(TFontDialog AObj, TNotifyEvent AEventId) {
+FontDialog_SetOnShow(TFontDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FontDialog_SetOnShow)
-    MySyscall(pFontDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFontDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FontDialog_GetComponentCount)
@@ -27930,16 +28100,16 @@ PrintDialog_GetHandle(TPrintDialog AObj) {
 
 DEFINE_FUNC_PTR(PrintDialog_SetOnClose)
 void
-PrintDialog_SetOnClose(TPrintDialog AObj, TNotifyEvent AEventId) {
+PrintDialog_SetOnClose(TPrintDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PrintDialog_SetOnClose)
-    MySyscall(pPrintDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPrintDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PrintDialog_SetOnShow)
 void
-PrintDialog_SetOnShow(TPrintDialog AObj, TNotifyEvent AEventId) {
+PrintDialog_SetOnShow(TPrintDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PrintDialog_SetOnShow)
-    MySyscall(pPrintDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPrintDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PrintDialog_GetComponentCount)
@@ -28226,16 +28396,16 @@ OpenPictureDialog_GetHandle(TOpenPictureDialog AObj) {
 
 DEFINE_FUNC_PTR(OpenPictureDialog_SetOnClose)
 void
-OpenPictureDialog_SetOnClose(TOpenPictureDialog AObj, TNotifyEvent AEventId) {
+OpenPictureDialog_SetOnClose(TOpenPictureDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(OpenPictureDialog_SetOnClose)
-    MySyscall(pOpenPictureDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pOpenPictureDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(OpenPictureDialog_SetOnShow)
 void
-OpenPictureDialog_SetOnShow(TOpenPictureDialog AObj, TNotifyEvent AEventId) {
+OpenPictureDialog_SetOnShow(TOpenPictureDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(OpenPictureDialog_SetOnShow)
-    MySyscall(pOpenPictureDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pOpenPictureDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(OpenPictureDialog_GetComponentCount)
@@ -28522,16 +28692,16 @@ SavePictureDialog_GetHandle(TSavePictureDialog AObj) {
 
 DEFINE_FUNC_PTR(SavePictureDialog_SetOnClose)
 void
-SavePictureDialog_SetOnClose(TSavePictureDialog AObj, TNotifyEvent AEventId) {
+SavePictureDialog_SetOnClose(TSavePictureDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SavePictureDialog_SetOnClose)
-    MySyscall(pSavePictureDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSavePictureDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SavePictureDialog_SetOnShow)
 void
-SavePictureDialog_SetOnShow(TSavePictureDialog AObj, TNotifyEvent AEventId) {
+SavePictureDialog_SetOnShow(TSavePictureDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SavePictureDialog_SetOnShow)
-    MySyscall(pSavePictureDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSavePictureDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SavePictureDialog_GetComponentCount)
@@ -28818,16 +28988,16 @@ SelectDirectoryDialog_GetHandle(TSelectDirectoryDialog AObj) {
 
 DEFINE_FUNC_PTR(SelectDirectoryDialog_SetOnClose)
 void
-SelectDirectoryDialog_SetOnClose(TSelectDirectoryDialog AObj, TNotifyEvent AEventId) {
+SelectDirectoryDialog_SetOnClose(TSelectDirectoryDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SelectDirectoryDialog_SetOnClose)
-    MySyscall(pSelectDirectoryDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSelectDirectoryDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SelectDirectoryDialog_SetOnShow)
 void
-SelectDirectoryDialog_SetOnShow(TSelectDirectoryDialog AObj, TNotifyEvent AEventId) {
+SelectDirectoryDialog_SetOnShow(TSelectDirectoryDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SelectDirectoryDialog_SetOnShow)
-    MySyscall(pSelectDirectoryDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSelectDirectoryDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SelectDirectoryDialog_GetComponentCount)
@@ -29857,142 +30027,142 @@ RichEdit_SetZoom(TRichEdit AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(RichEdit_SetOnChange)
 void
-RichEdit_SetOnChange(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnChange(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnChange)
-    MySyscall(pRichEdit_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnClick)
 void
-RichEdit_SetOnClick(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnClick(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnClick)
-    MySyscall(pRichEdit_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnContextPopup)
 void
-RichEdit_SetOnContextPopup(TRichEdit AObj, TContextPopupEvent AEventId) {
+RichEdit_SetOnContextPopup(TRichEdit AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnContextPopup)
-    MySyscall(pRichEdit_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnDblClick)
 void
-RichEdit_SetOnDblClick(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnDblClick(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnDblClick)
-    MySyscall(pRichEdit_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnDragDrop)
 void
-RichEdit_SetOnDragDrop(TRichEdit AObj, TDragDropEvent AEventId) {
+RichEdit_SetOnDragDrop(TRichEdit AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnDragDrop)
-    MySyscall(pRichEdit_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnDragOver)
 void
-RichEdit_SetOnDragOver(TRichEdit AObj, TDragOverEvent AEventId) {
+RichEdit_SetOnDragOver(TRichEdit AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnDragOver)
-    MySyscall(pRichEdit_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnEndDrag)
 void
-RichEdit_SetOnEndDrag(TRichEdit AObj, TEndDragEvent AEventId) {
+RichEdit_SetOnEndDrag(TRichEdit AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnEndDrag)
-    MySyscall(pRichEdit_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnEnter)
 void
-RichEdit_SetOnEnter(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnEnter(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnEnter)
-    MySyscall(pRichEdit_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnExit)
 void
-RichEdit_SetOnExit(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnExit(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnExit)
-    MySyscall(pRichEdit_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnKeyDown)
 void
-RichEdit_SetOnKeyDown(TRichEdit AObj, TKeyEvent AEventId) {
+RichEdit_SetOnKeyDown(TRichEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnKeyDown)
-    MySyscall(pRichEdit_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnKeyPress)
 void
-RichEdit_SetOnKeyPress(TRichEdit AObj, TKeyPressEvent AEventId) {
+RichEdit_SetOnKeyPress(TRichEdit AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnKeyPress)
-    MySyscall(pRichEdit_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnKeyUp)
 void
-RichEdit_SetOnKeyUp(TRichEdit AObj, TKeyEvent AEventId) {
+RichEdit_SetOnKeyUp(TRichEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnKeyUp)
-    MySyscall(pRichEdit_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseDown)
 void
-RichEdit_SetOnMouseDown(TRichEdit AObj, TMouseEvent AEventId) {
+RichEdit_SetOnMouseDown(TRichEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseDown)
-    MySyscall(pRichEdit_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseEnter)
 void
-RichEdit_SetOnMouseEnter(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnMouseEnter(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseEnter)
-    MySyscall(pRichEdit_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseLeave)
 void
-RichEdit_SetOnMouseLeave(TRichEdit AObj, TNotifyEvent AEventId) {
+RichEdit_SetOnMouseLeave(TRichEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseLeave)
-    MySyscall(pRichEdit_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseMove)
 void
-RichEdit_SetOnMouseMove(TRichEdit AObj, TMouseMoveEvent AEventId) {
+RichEdit_SetOnMouseMove(TRichEdit AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseMove)
-    MySyscall(pRichEdit_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseUp)
 void
-RichEdit_SetOnMouseUp(TRichEdit AObj, TMouseEvent AEventId) {
+RichEdit_SetOnMouseUp(TRichEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseUp)
-    MySyscall(pRichEdit_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseWheel)
 void
-RichEdit_SetOnMouseWheel(TRichEdit AObj, TMouseWheelEvent AEventId) {
+RichEdit_SetOnMouseWheel(TRichEdit AObj, TMouseWheelEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseWheel)
-    MySyscall(pRichEdit_SetOnMouseWheel, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseWheelDown)
 void
-RichEdit_SetOnMouseWheelDown(TRichEdit AObj, TMouseWheelUpDownEvent AEventId) {
+RichEdit_SetOnMouseWheelDown(TRichEdit AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseWheelDown)
-    MySyscall(pRichEdit_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_SetOnMouseWheelUp)
 void
-RichEdit_SetOnMouseWheelUp(TRichEdit AObj, TMouseWheelUpDownEvent AEventId) {
+RichEdit_SetOnMouseWheelUp(TRichEdit AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(RichEdit_SetOnMouseWheelUp)
-    MySyscall(pRichEdit_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pRichEdit_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(RichEdit_GetDefAttributes)
@@ -31506,72 +31676,72 @@ TrackBar_SetVisible(TTrackBar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(TrackBar_SetOnContextPopup)
 void
-TrackBar_SetOnContextPopup(TTrackBar AObj, TContextPopupEvent AEventId) {
+TrackBar_SetOnContextPopup(TTrackBar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnContextPopup)
-    MySyscall(pTrackBar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnChange)
 void
-TrackBar_SetOnChange(TTrackBar AObj, TNotifyEvent AEventId) {
+TrackBar_SetOnChange(TTrackBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnChange)
-    MySyscall(pTrackBar_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnDragDrop)
 void
-TrackBar_SetOnDragDrop(TTrackBar AObj, TDragDropEvent AEventId) {
+TrackBar_SetOnDragDrop(TTrackBar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnDragDrop)
-    MySyscall(pTrackBar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnDragOver)
 void
-TrackBar_SetOnDragOver(TTrackBar AObj, TDragOverEvent AEventId) {
+TrackBar_SetOnDragOver(TTrackBar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnDragOver)
-    MySyscall(pTrackBar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnEndDrag)
 void
-TrackBar_SetOnEndDrag(TTrackBar AObj, TEndDragEvent AEventId) {
+TrackBar_SetOnEndDrag(TTrackBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnEndDrag)
-    MySyscall(pTrackBar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnEnter)
 void
-TrackBar_SetOnEnter(TTrackBar AObj, TNotifyEvent AEventId) {
+TrackBar_SetOnEnter(TTrackBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnEnter)
-    MySyscall(pTrackBar_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnExit)
 void
-TrackBar_SetOnExit(TTrackBar AObj, TNotifyEvent AEventId) {
+TrackBar_SetOnExit(TTrackBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnExit)
-    MySyscall(pTrackBar_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnKeyDown)
 void
-TrackBar_SetOnKeyDown(TTrackBar AObj, TKeyEvent AEventId) {
+TrackBar_SetOnKeyDown(TTrackBar AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnKeyDown)
-    MySyscall(pTrackBar_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnKeyPress)
 void
-TrackBar_SetOnKeyPress(TTrackBar AObj, TKeyPressEvent AEventId) {
+TrackBar_SetOnKeyPress(TTrackBar AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnKeyPress)
-    MySyscall(pTrackBar_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_SetOnKeyUp)
 void
-TrackBar_SetOnKeyUp(TTrackBar AObj, TKeyEvent AEventId) {
+TrackBar_SetOnKeyUp(TTrackBar AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(TrackBar_SetOnKeyUp)
-    MySyscall(pTrackBar_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTrackBar_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TrackBar_GetDockClientCount)
@@ -32291,6 +32461,41 @@ ImageList_ToString(TImageList AObj) {
     return (char*)MySyscall(pImageList_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ImageList_GetScaled)
+BOOL
+ImageList_GetScaled(TImageList AObj) {
+    GET_FUNC_ADDR(ImageList_GetScaled)
+    return (BOOL)MySyscall(pImageList_GetScaled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_SetScaled)
+void
+ImageList_SetScaled(TImageList AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ImageList_SetScaled)
+    MySyscall(pImageList_SetScaled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_GetShareImages)
+BOOL
+ImageList_GetShareImages(TImageList AObj) {
+    GET_FUNC_ADDR(ImageList_GetShareImages)
+    return (BOOL)MySyscall(pImageList_GetShareImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_SetShareImages)
+void
+ImageList_SetShareImages(TImageList AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ImageList_SetShareImages)
+    MySyscall(pImageList_SetShareImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ImageList_GetCount)
+int32_t
+ImageList_GetCount(TImageList AObj) {
+    GET_FUNC_ADDR(ImageList_GetCount)
+    return (int32_t)MySyscall(pImageList_GetCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ImageList_GetBlendColor)
 TColor
 ImageList_GetBlendColor(TImageList AObj) {
@@ -32391,23 +32596,9 @@ ImageList_SetMasked(TImageList AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ImageList_SetOnChange)
 void
-ImageList_SetOnChange(TImageList AObj, TNotifyEvent AEventId) {
+ImageList_SetOnChange(TImageList AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ImageList_SetOnChange)
-    MySyscall(pImageList_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(ImageList_GetShareImages)
-BOOL
-ImageList_GetShareImages(TImageList AObj) {
-    GET_FUNC_ADDR(ImageList_GetShareImages)
-    return (BOOL)MySyscall(pImageList_GetShareImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(ImageList_SetShareImages)
-void
-ImageList_SetShareImages(TImageList AObj, BOOL AValue) {
-    GET_FUNC_ADDR(ImageList_SetShareImages)
-    MySyscall(pImageList_SetShareImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageList_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageList_GetWidth)
@@ -32443,13 +32634,6 @@ BOOL
 ImageList_GetDragging(TImageList AObj) {
     GET_FUNC_ADDR(ImageList_GetDragging)
     return (BOOL)MySyscall(pImageList_GetDragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(ImageList_GetCount)
-int32_t
-ImageList_GetCount(TImageList AObj) {
-    GET_FUNC_ADDR(ImageList_GetCount)
-    return (int32_t)MySyscall(pImageList_GetCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageList_GetComponentCount)
@@ -33276,72 +33460,72 @@ UpDown_SetWrap(TUpDown AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(UpDown_SetOnChanging)
 void
-UpDown_SetOnChanging(TUpDown AObj, TUDChangingEvent AEventId) {
+UpDown_SetOnChanging(TUpDown AObj, TUDChangingEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnChanging)
-    MySyscall(pUpDown_SetOnChanging, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnChanging, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnContextPopup)
 void
-UpDown_SetOnContextPopup(TUpDown AObj, TContextPopupEvent AEventId) {
+UpDown_SetOnContextPopup(TUpDown AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnContextPopup)
-    MySyscall(pUpDown_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnClick)
 void
-UpDown_SetOnClick(TUpDown AObj, TUDClickEvent AEventId) {
+UpDown_SetOnClick(TUpDown AObj, TUDClickEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnClick)
-    MySyscall(pUpDown_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnEnter)
 void
-UpDown_SetOnEnter(TUpDown AObj, TNotifyEvent AEventId) {
+UpDown_SetOnEnter(TUpDown AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnEnter)
-    MySyscall(pUpDown_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnExit)
 void
-UpDown_SetOnExit(TUpDown AObj, TNotifyEvent AEventId) {
+UpDown_SetOnExit(TUpDown AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnExit)
-    MySyscall(pUpDown_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnMouseDown)
 void
-UpDown_SetOnMouseDown(TUpDown AObj, TMouseEvent AEventId) {
+UpDown_SetOnMouseDown(TUpDown AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnMouseDown)
-    MySyscall(pUpDown_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnMouseEnter)
 void
-UpDown_SetOnMouseEnter(TUpDown AObj, TNotifyEvent AEventId) {
+UpDown_SetOnMouseEnter(TUpDown AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnMouseEnter)
-    MySyscall(pUpDown_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnMouseLeave)
 void
-UpDown_SetOnMouseLeave(TUpDown AObj, TNotifyEvent AEventId) {
+UpDown_SetOnMouseLeave(TUpDown AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnMouseLeave)
-    MySyscall(pUpDown_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnMouseMove)
 void
-UpDown_SetOnMouseMove(TUpDown AObj, TMouseMoveEvent AEventId) {
+UpDown_SetOnMouseMove(TUpDown AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnMouseMove)
-    MySyscall(pUpDown_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_SetOnMouseUp)
 void
-UpDown_SetOnMouseUp(TUpDown AObj, TMouseEvent AEventId) {
+UpDown_SetOnMouseUp(TUpDown AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(UpDown_SetOnMouseUp)
-    MySyscall(pUpDown_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pUpDown_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(UpDown_GetDockClientCount)
@@ -34664,79 +34848,79 @@ ProgressBar_SetVisible(TProgressBar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnContextPopup)
 void
-ProgressBar_SetOnContextPopup(TProgressBar AObj, TContextPopupEvent AEventId) {
+ProgressBar_SetOnContextPopup(TProgressBar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnContextPopup)
-    MySyscall(pProgressBar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnDragDrop)
 void
-ProgressBar_SetOnDragDrop(TProgressBar AObj, TDragDropEvent AEventId) {
+ProgressBar_SetOnDragDrop(TProgressBar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnDragDrop)
-    MySyscall(pProgressBar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnDragOver)
 void
-ProgressBar_SetOnDragOver(TProgressBar AObj, TDragOverEvent AEventId) {
+ProgressBar_SetOnDragOver(TProgressBar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnDragOver)
-    MySyscall(pProgressBar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnEndDrag)
 void
-ProgressBar_SetOnEndDrag(TProgressBar AObj, TEndDragEvent AEventId) {
+ProgressBar_SetOnEndDrag(TProgressBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnEndDrag)
-    MySyscall(pProgressBar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnEnter)
 void
-ProgressBar_SetOnEnter(TProgressBar AObj, TNotifyEvent AEventId) {
+ProgressBar_SetOnEnter(TProgressBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnEnter)
-    MySyscall(pProgressBar_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnExit)
 void
-ProgressBar_SetOnExit(TProgressBar AObj, TNotifyEvent AEventId) {
+ProgressBar_SetOnExit(TProgressBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnExit)
-    MySyscall(pProgressBar_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnMouseDown)
 void
-ProgressBar_SetOnMouseDown(TProgressBar AObj, TMouseEvent AEventId) {
+ProgressBar_SetOnMouseDown(TProgressBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnMouseDown)
-    MySyscall(pProgressBar_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnMouseEnter)
 void
-ProgressBar_SetOnMouseEnter(TProgressBar AObj, TNotifyEvent AEventId) {
+ProgressBar_SetOnMouseEnter(TProgressBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnMouseEnter)
-    MySyscall(pProgressBar_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnMouseLeave)
 void
-ProgressBar_SetOnMouseLeave(TProgressBar AObj, TNotifyEvent AEventId) {
+ProgressBar_SetOnMouseLeave(TProgressBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnMouseLeave)
-    MySyscall(pProgressBar_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnMouseMove)
 void
-ProgressBar_SetOnMouseMove(TProgressBar AObj, TMouseMoveEvent AEventId) {
+ProgressBar_SetOnMouseMove(TProgressBar AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnMouseMove)
-    MySyscall(pProgressBar_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_SetOnMouseUp)
 void
-ProgressBar_SetOnMouseUp(TProgressBar AObj, TMouseEvent AEventId) {
+ProgressBar_SetOnMouseUp(TProgressBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ProgressBar_SetOnMouseUp)
-    MySyscall(pProgressBar_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pProgressBar_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ProgressBar_GetDockClientCount)
@@ -35812,6 +35996,20 @@ ateTimePicker_SetDateSeparator(TDateTimePicker AObj, CChar char* AValue) {
     MySyscall(pDateTimePicker_SetDateSeparator, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DateTimePicker_GetHideDateTimeParts)
+TDateTimeParts
+ateTimePicker_GetHideDateTimeParts(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetHideDateTimeParts)
+    return (TDateTimeParts)MySyscall(pDateTimePicker_GetHideDateTimeParts, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetHideDateTimeParts)
+void
+ateTimePicker_SetHideDateTimeParts(TDateTimePicker AObj, TDateTimeParts AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetHideDateTimeParts)
+    MySyscall(pDateTimePicker_SetHideDateTimeParts, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DateTimePicker_GetLeadingZeros)
 BOOL
 ateTimePicker_GetLeadingZeros(TDateTimePicker AObj) {
@@ -35938,6 +36136,20 @@ ateTimePicker_SetTimeDisplay(TDateTimePicker AObj, TTimeDisplay AValue) {
     MySyscall(pDateTimePicker_SetTimeDisplay, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DateTimePicker_GetTimeFormat)
+TTimeFormat
+ateTimePicker_GetTimeFormat(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetTimeFormat)
+    return (TTimeFormat)MySyscall(pDateTimePicker_GetTimeFormat, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetTimeFormat)
+void
+ateTimePicker_SetTimeFormat(TDateTimePicker AObj, TTimeFormat AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetTimeFormat)
+    MySyscall(pDateTimePicker_SetTimeFormat, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DateTimePicker_GetTimeSeparator)
 char*
 ateTimePicker_GetTimeSeparator(TDateTimePicker AObj) {
@@ -35991,14 +36203,16 @@ DEFINE_FUNC_PTR(DateTimePicker_GetDateTime)
 uint32_t
 ateTimePicker_GetDateTime(TDateTimePicker AObj) {
     GET_FUNC_ADDR(DateTimePicker_GetDateTime)
-    return (uint32_t)MySyscall(pDateTimePicker_GetDateTime, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pDateTimePicker_GetDateTime, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetDateTime)
 void
 ateTimePicker_SetDateTime(TDateTimePicker AObj, uint32_t AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetDateTime)
-    MySyscall(pDateTimePicker_SetDateTime, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetDateTime, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetAlign)
@@ -36075,28 +36289,32 @@ DEFINE_FUNC_PTR(DateTimePicker_GetDate)
 uint32_t
 ateTimePicker_GetDate(TDateTimePicker AObj) {
     GET_FUNC_ADDR(DateTimePicker_GetDate)
-    return (uint32_t)MySyscall(pDateTimePicker_GetDate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pDateTimePicker_GetDate, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetDate)
 void
 ateTimePicker_SetDate(TDateTimePicker AObj, uint32_t AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetDate)
-    MySyscall(pDateTimePicker_SetDate, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetDate, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetTime)
 uint32_t
 ateTimePicker_GetTime(TDateTimePicker AObj) {
     GET_FUNC_ADDR(DateTimePicker_GetTime)
-    return (uint32_t)MySyscall(pDateTimePicker_GetTime, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pDateTimePicker_GetTime, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetTime)
 void
 ateTimePicker_SetTime(TDateTimePicker AObj, uint32_t AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetTime)
-    MySyscall(pDateTimePicker_SetTime, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetTime, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetChecked)
@@ -36183,32 +36401,50 @@ ateTimePicker_SetFont(TDateTimePicker AObj, TFont AValue) {
     MySyscall(pDateTimePicker_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(DateTimePicker_GetKind)
+TDateTimeKind
+ateTimePicker_GetKind(TDateTimePicker AObj) {
+    GET_FUNC_ADDR(DateTimePicker_GetKind)
+    return (TDateTimeKind)MySyscall(pDateTimePicker_GetKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetKind)
+void
+ateTimePicker_SetKind(TDateTimePicker AObj, TDateTimeKind AValue) {
+    GET_FUNC_ADDR(DateTimePicker_SetKind)
+    MySyscall(pDateTimePicker_SetKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(DateTimePicker_GetMaxDate)
 uint32_t
 ateTimePicker_GetMaxDate(TDateTimePicker AObj) {
     GET_FUNC_ADDR(DateTimePicker_GetMaxDate)
-    return (uint32_t)MySyscall(pDateTimePicker_GetMaxDate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pDateTimePicker_GetMaxDate, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetMaxDate)
 void
 ateTimePicker_SetMaxDate(TDateTimePicker AObj, uint32_t AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetMaxDate)
-    MySyscall(pDateTimePicker_SetMaxDate, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetMaxDate, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetMinDate)
 uint32_t
 ateTimePicker_GetMinDate(TDateTimePicker AObj) {
     GET_FUNC_ADDR(DateTimePicker_GetMinDate)
-    return (uint32_t)MySyscall(pDateTimePicker_GetMinDate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pDateTimePicker_GetMinDate, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetMinDate)
 void
 ateTimePicker_SetMinDate(TDateTimePicker AObj, uint32_t AValue) {
     GET_FUNC_ADDR(DateTimePicker_SetMinDate)
-    MySyscall(pDateTimePicker_SetMinDate, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetMinDate, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetParentColor)
@@ -36339,79 +36575,86 @@ ateTimePicker_SetVisible(TDateTimePicker AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnClick)
 void
-ateTimePicker_SetOnClick(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnClick(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnClick)
-    MySyscall(pDateTimePicker_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DateTimePicker_SetOnCloseUp)
+void
+ateTimePicker_SetOnCloseUp(TDateTimePicker AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DateTimePicker_SetOnCloseUp)
+    MySyscall(pDateTimePicker_SetOnCloseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnChange)
 void
-ateTimePicker_SetOnChange(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnChange(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnChange)
-    MySyscall(pDateTimePicker_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnContextPopup)
 void
-ateTimePicker_SetOnContextPopup(TDateTimePicker AObj, TContextPopupEvent AEventId) {
+ateTimePicker_SetOnContextPopup(TDateTimePicker AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnContextPopup)
-    MySyscall(pDateTimePicker_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnDropDown)
 void
-ateTimePicker_SetOnDropDown(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnDropDown(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnDropDown)
-    MySyscall(pDateTimePicker_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnDropDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnEnter)
 void
-ateTimePicker_SetOnEnter(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnEnter(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnEnter)
-    MySyscall(pDateTimePicker_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnExit)
 void
-ateTimePicker_SetOnExit(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnExit(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnExit)
-    MySyscall(pDateTimePicker_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnKeyDown)
 void
-ateTimePicker_SetOnKeyDown(TDateTimePicker AObj, TKeyEvent AEventId) {
+ateTimePicker_SetOnKeyDown(TDateTimePicker AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnKeyDown)
-    MySyscall(pDateTimePicker_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnKeyPress)
 void
-ateTimePicker_SetOnKeyPress(TDateTimePicker AObj, TKeyPressEvent AEventId) {
+ateTimePicker_SetOnKeyPress(TDateTimePicker AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnKeyPress)
-    MySyscall(pDateTimePicker_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnKeyUp)
 void
-ateTimePicker_SetOnKeyUp(TDateTimePicker AObj, TKeyEvent AEventId) {
+ateTimePicker_SetOnKeyUp(TDateTimePicker AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnKeyUp)
-    MySyscall(pDateTimePicker_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnMouseEnter)
 void
-ateTimePicker_SetOnMouseEnter(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnMouseEnter(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnMouseEnter)
-    MySyscall(pDateTimePicker_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_SetOnMouseLeave)
 void
-ateTimePicker_SetOnMouseLeave(TDateTimePicker AObj, TNotifyEvent AEventId) {
+ateTimePicker_SetOnMouseLeave(TDateTimePicker AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DateTimePicker_SetOnMouseLeave)
-    MySyscall(pDateTimePicker_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDateTimePicker_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DateTimePicker_GetDockClientCount)
@@ -37372,14 +37615,16 @@ DEFINE_FUNC_PTR(MonthCalendar_GetDateTime)
 uint32_t
 MonthCalendar_GetDateTime(TMonthCalendar AObj) {
     GET_FUNC_ADDR(MonthCalendar_GetDateTime)
-    return (uint32_t)MySyscall(pMonthCalendar_GetDateTime, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pMonthCalendar_GetDateTime, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetDateTime)
 void
 MonthCalendar_SetDateTime(TMonthCalendar AObj, uint32_t AValue) {
     GET_FUNC_ADDR(MonthCalendar_SetDateTime)
-    MySyscall(pMonthCalendar_SetDateTime, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetDateTime, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_GetAlign)
@@ -37470,14 +37715,16 @@ DEFINE_FUNC_PTR(MonthCalendar_GetDate)
 uint32_t
 MonthCalendar_GetDate(TMonthCalendar AObj) {
     GET_FUNC_ADDR(MonthCalendar_GetDate)
-    return (uint32_t)MySyscall(pMonthCalendar_GetDate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    uint32_t result;
+    MySyscall(pMonthCalendar_GetDate, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetDate)
 void
 MonthCalendar_SetDate(TMonthCalendar AObj, uint32_t AValue) {
     GET_FUNC_ADDR(MonthCalendar_SetDate)
-    MySyscall(pMonthCalendar_SetDate, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetDate, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_GetDoubleBuffered)
@@ -37650,107 +37897,107 @@ MonthCalendar_SetVisible(TMonthCalendar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnClick)
 void
-MonthCalendar_SetOnClick(TMonthCalendar AObj, TNotifyEvent AEventId) {
+MonthCalendar_SetOnClick(TMonthCalendar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnClick)
-    MySyscall(pMonthCalendar_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnContextPopup)
 void
-MonthCalendar_SetOnContextPopup(TMonthCalendar AObj, TContextPopupEvent AEventId) {
+MonthCalendar_SetOnContextPopup(TMonthCalendar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnContextPopup)
-    MySyscall(pMonthCalendar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnDblClick)
 void
-MonthCalendar_SetOnDblClick(TMonthCalendar AObj, TNotifyEvent AEventId) {
+MonthCalendar_SetOnDblClick(TMonthCalendar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnDblClick)
-    MySyscall(pMonthCalendar_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnDragDrop)
 void
-MonthCalendar_SetOnDragDrop(TMonthCalendar AObj, TDragDropEvent AEventId) {
+MonthCalendar_SetOnDragDrop(TMonthCalendar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnDragDrop)
-    MySyscall(pMonthCalendar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnDragOver)
 void
-MonthCalendar_SetOnDragOver(TMonthCalendar AObj, TDragOverEvent AEventId) {
+MonthCalendar_SetOnDragOver(TMonthCalendar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnDragOver)
-    MySyscall(pMonthCalendar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnEndDock)
 void
-MonthCalendar_SetOnEndDock(TMonthCalendar AObj, TEndDragEvent AEventId) {
+MonthCalendar_SetOnEndDock(TMonthCalendar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnEndDock)
-    MySyscall(pMonthCalendar_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnEndDrag)
 void
-MonthCalendar_SetOnEndDrag(TMonthCalendar AObj, TEndDragEvent AEventId) {
+MonthCalendar_SetOnEndDrag(TMonthCalendar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnEndDrag)
-    MySyscall(pMonthCalendar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnEnter)
 void
-MonthCalendar_SetOnEnter(TMonthCalendar AObj, TNotifyEvent AEventId) {
+MonthCalendar_SetOnEnter(TMonthCalendar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnEnter)
-    MySyscall(pMonthCalendar_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnExit)
 void
-MonthCalendar_SetOnExit(TMonthCalendar AObj, TNotifyEvent AEventId) {
+MonthCalendar_SetOnExit(TMonthCalendar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnExit)
-    MySyscall(pMonthCalendar_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnKeyDown)
 void
-MonthCalendar_SetOnKeyDown(TMonthCalendar AObj, TKeyEvent AEventId) {
+MonthCalendar_SetOnKeyDown(TMonthCalendar AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnKeyDown)
-    MySyscall(pMonthCalendar_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnKeyPress)
 void
-MonthCalendar_SetOnKeyPress(TMonthCalendar AObj, TKeyPressEvent AEventId) {
+MonthCalendar_SetOnKeyPress(TMonthCalendar AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnKeyPress)
-    MySyscall(pMonthCalendar_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnKeyUp)
 void
-MonthCalendar_SetOnKeyUp(TMonthCalendar AObj, TKeyEvent AEventId) {
+MonthCalendar_SetOnKeyUp(TMonthCalendar AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnKeyUp)
-    MySyscall(pMonthCalendar_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnMouseEnter)
 void
-MonthCalendar_SetOnMouseEnter(TMonthCalendar AObj, TNotifyEvent AEventId) {
+MonthCalendar_SetOnMouseEnter(TMonthCalendar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnMouseEnter)
-    MySyscall(pMonthCalendar_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnMouseLeave)
 void
-MonthCalendar_SetOnMouseLeave(TMonthCalendar AObj, TNotifyEvent AEventId) {
+MonthCalendar_SetOnMouseLeave(TMonthCalendar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnMouseLeave)
-    MySyscall(pMonthCalendar_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_SetOnStartDock)
 void
-MonthCalendar_SetOnStartDock(TMonthCalendar AObj, TStartDockEvent AEventId) {
+MonthCalendar_SetOnStartDock(TMonthCalendar AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(MonthCalendar_SetOnStartDock)
-    MySyscall(pMonthCalendar_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMonthCalendar_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MonthCalendar_GetDockClientCount)
@@ -39570,261 +39817,268 @@ ListView_SetVisible(TListView AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ListView_SetOnAdvancedCustomDraw)
 void
-ListView_SetOnAdvancedCustomDraw(TListView AObj, TLVAdvancedCustomDrawEvent AEventId) {
+ListView_SetOnAdvancedCustomDraw(TListView AObj, TLVAdvancedCustomDrawEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnAdvancedCustomDraw)
-    MySyscall(pListView_SetOnAdvancedCustomDraw, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnAdvancedCustomDraw, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnAdvancedCustomDrawItem)
 void
-ListView_SetOnAdvancedCustomDrawItem(TListView AObj, TLVAdvancedCustomDrawItemEvent AEventId) {
+ListView_SetOnAdvancedCustomDrawItem(TListView AObj, TLVAdvancedCustomDrawItemEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnAdvancedCustomDrawItem)
-    MySyscall(pListView_SetOnAdvancedCustomDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnAdvancedCustomDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnAdvancedCustomDrawSubItem)
 void
-ListView_SetOnAdvancedCustomDrawSubItem(TListView AObj, TLVAdvancedCustomDrawSubItemEvent AEventId) {
+ListView_SetOnAdvancedCustomDrawSubItem(TListView AObj, TLVAdvancedCustomDrawSubItemEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnAdvancedCustomDrawSubItem)
-    MySyscall(pListView_SetOnAdvancedCustomDrawSubItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnAdvancedCustomDrawSubItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnChange)
 void
-ListView_SetOnChange(TListView AObj, TLVChangeEvent AEventId) {
+ListView_SetOnChange(TListView AObj, TLVChangeEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnChange)
-    MySyscall(pListView_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnClick)
 void
-ListView_SetOnClick(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnClick(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnClick)
-    MySyscall(pListView_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnColumnClick)
 void
-ListView_SetOnColumnClick(TListView AObj, TLVColumnClickEvent AEventId) {
+ListView_SetOnColumnClick(TListView AObj, TLVColumnClickEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnColumnClick)
-    MySyscall(pListView_SetOnColumnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnColumnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnCompare)
 void
-ListView_SetOnCompare(TListView AObj, TLVCompareEvent AEventId) {
+ListView_SetOnCompare(TListView AObj, TLVCompareEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnCompare)
-    MySyscall(pListView_SetOnCompare, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnCompare, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnContextPopup)
 void
-ListView_SetOnContextPopup(TListView AObj, TContextPopupEvent AEventId) {
+ListView_SetOnContextPopup(TListView AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnContextPopup)
-    MySyscall(pListView_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnCustomDraw)
 void
-ListView_SetOnCustomDraw(TListView AObj, TLVCustomDrawEvent AEventId) {
+ListView_SetOnCustomDraw(TListView AObj, TLVCustomDrawEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnCustomDraw)
-    MySyscall(pListView_SetOnCustomDraw, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnCustomDraw, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnCustomDrawItem)
 void
-ListView_SetOnCustomDrawItem(TListView AObj, TLVCustomDrawItemEvent AEventId) {
+ListView_SetOnCustomDrawItem(TListView AObj, TLVCustomDrawItemEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnCustomDrawItem)
-    MySyscall(pListView_SetOnCustomDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnCustomDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnCustomDrawSubItem)
 void
-ListView_SetOnCustomDrawSubItem(TListView AObj, TLVCustomDrawSubItemEvent AEventId) {
+ListView_SetOnCustomDrawSubItem(TListView AObj, TLVCustomDrawSubItemEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnCustomDrawSubItem)
-    MySyscall(pListView_SetOnCustomDrawSubItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnCustomDrawSubItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnData)
 void
-ListView_SetOnData(TListView AObj, TLVDataEvent AEventId) {
+ListView_SetOnData(TListView AObj, TLVDataEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnData)
-    MySyscall(pListView_SetOnData, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnData, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDataFind)
 void
-ListView_SetOnDataFind(TListView AObj, TLVDataFindEvent AEventId) {
+ListView_SetOnDataFind(TListView AObj, TLVDataFindEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnDataFind)
-    MySyscall(pListView_SetOnDataFind, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnDataFind, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDataHint)
 void
-ListView_SetOnDataHint(TListView AObj, TLVDataHintEvent AEventId) {
+ListView_SetOnDataHint(TListView AObj, TLVDataHintEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnDataHint)
-    MySyscall(pListView_SetOnDataHint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnDataHint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDblClick)
 void
-ListView_SetOnDblClick(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnDblClick(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnDblClick)
-    MySyscall(pListView_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDeletion)
 void
-ListView_SetOnDeletion(TListView AObj, TLVDeletedEvent AEventId) {
+ListView_SetOnDeletion(TListView AObj, TLVDeletedEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnDeletion)
-    MySyscall(pListView_SetOnDeletion, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnDeletion, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ListView_SetOnDrawItem)
+void
+ListView_SetOnDrawItem(TListView AObj, TLVDrawItemEvent AEventData) {
+    GET_FUNC_ADDR(ListView_SetOnDrawItem)
+    MySyscall(pListView_SetOnDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnEdited)
 void
-ListView_SetOnEdited(TListView AObj, TLVEditedEvent AEventId) {
+ListView_SetOnEdited(TListView AObj, TLVEditedEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnEdited)
-    MySyscall(pListView_SetOnEdited, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnEdited, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnEditing)
 void
-ListView_SetOnEditing(TListView AObj, TLVEditingEvent AEventId) {
+ListView_SetOnEditing(TListView AObj, TLVEditingEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnEditing)
-    MySyscall(pListView_SetOnEditing, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnEditing, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnEndDock)
 void
-ListView_SetOnEndDock(TListView AObj, TEndDragEvent AEventId) {
+ListView_SetOnEndDock(TListView AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnEndDock)
-    MySyscall(pListView_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnEndDrag)
 void
-ListView_SetOnEndDrag(TListView AObj, TEndDragEvent AEventId) {
+ListView_SetOnEndDrag(TListView AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnEndDrag)
-    MySyscall(pListView_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnEnter)
 void
-ListView_SetOnEnter(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnEnter(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnEnter)
-    MySyscall(pListView_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnExit)
 void
-ListView_SetOnExit(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnExit(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnExit)
-    MySyscall(pListView_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDragDrop)
 void
-ListView_SetOnDragDrop(TListView AObj, TDragDropEvent AEventId) {
+ListView_SetOnDragDrop(TListView AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnDragDrop)
-    MySyscall(pListView_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnDragOver)
 void
-ListView_SetOnDragOver(TListView AObj, TDragOverEvent AEventId) {
+ListView_SetOnDragOver(TListView AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnDragOver)
-    MySyscall(pListView_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnInsert)
 void
-ListView_SetOnInsert(TListView AObj, TLVDeletedEvent AEventId) {
+ListView_SetOnInsert(TListView AObj, TLVDeletedEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnInsert)
-    MySyscall(pListView_SetOnInsert, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnInsert, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnKeyDown)
 void
-ListView_SetOnKeyDown(TListView AObj, TKeyEvent AEventId) {
+ListView_SetOnKeyDown(TListView AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnKeyDown)
-    MySyscall(pListView_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnKeyPress)
 void
-ListView_SetOnKeyPress(TListView AObj, TKeyPressEvent AEventId) {
+ListView_SetOnKeyPress(TListView AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnKeyPress)
-    MySyscall(pListView_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnKeyUp)
 void
-ListView_SetOnKeyUp(TListView AObj, TKeyEvent AEventId) {
+ListView_SetOnKeyUp(TListView AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnKeyUp)
-    MySyscall(pListView_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnMouseDown)
 void
-ListView_SetOnMouseDown(TListView AObj, TMouseEvent AEventId) {
+ListView_SetOnMouseDown(TListView AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnMouseDown)
-    MySyscall(pListView_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnMouseEnter)
 void
-ListView_SetOnMouseEnter(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnMouseEnter(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnMouseEnter)
-    MySyscall(pListView_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnMouseLeave)
 void
-ListView_SetOnMouseLeave(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnMouseLeave(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnMouseLeave)
-    MySyscall(pListView_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnMouseMove)
 void
-ListView_SetOnMouseMove(TListView AObj, TMouseMoveEvent AEventId) {
+ListView_SetOnMouseMove(TListView AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnMouseMove)
-    MySyscall(pListView_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnMouseUp)
 void
-ListView_SetOnMouseUp(TListView AObj, TMouseEvent AEventId) {
+ListView_SetOnMouseUp(TListView AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnMouseUp)
-    MySyscall(pListView_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnResize)
 void
-ListView_SetOnResize(TListView AObj, TNotifyEvent AEventId) {
+ListView_SetOnResize(TListView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnResize)
-    MySyscall(pListView_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnSelectItem)
 void
-ListView_SetOnSelectItem(TListView AObj, TLVSelectItemEvent AEventId) {
+ListView_SetOnSelectItem(TListView AObj, TLVSelectItemEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnSelectItem)
-    MySyscall(pListView_SetOnSelectItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnSelectItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnItemChecked)
 void
-ListView_SetOnItemChecked(TListView AObj, TLVCheckedItemEvent AEventId) {
+ListView_SetOnItemChecked(TListView AObj, TLVCheckedItemEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnItemChecked)
-    MySyscall(pListView_SetOnItemChecked, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnItemChecked, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_SetOnStartDock)
 void
-ListView_SetOnStartDock(TListView AObj, TStartDockEvent AEventId) {
+ListView_SetOnStartDock(TListView AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(ListView_SetOnStartDock)
-    MySyscall(pListView_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pListView_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ListView_GetCanvas)
@@ -41686,226 +41940,226 @@ TreeView_SetVisible(TTreeView AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(TreeView_SetOnAddition)
 void
-TreeView_SetOnAddition(TTreeView AObj, TTVExpandedEvent AEventId) {
+TreeView_SetOnAddition(TTreeView AObj, TTVExpandedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnAddition)
-    MySyscall(pTreeView_SetOnAddition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnAddition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnAdvancedCustomDraw)
 void
-TreeView_SetOnAdvancedCustomDraw(TTreeView AObj, TTVAdvancedCustomDrawEvent AEventId) {
+TreeView_SetOnAdvancedCustomDraw(TTreeView AObj, TTVAdvancedCustomDrawEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnAdvancedCustomDraw)
-    MySyscall(pTreeView_SetOnAdvancedCustomDraw, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnAdvancedCustomDraw, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnAdvancedCustomDrawItem)
 void
-TreeView_SetOnAdvancedCustomDrawItem(TTreeView AObj, TTVAdvancedCustomDrawItemEvent AEventId) {
+TreeView_SetOnAdvancedCustomDrawItem(TTreeView AObj, TTVAdvancedCustomDrawItemEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnAdvancedCustomDrawItem)
-    MySyscall(pTreeView_SetOnAdvancedCustomDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnAdvancedCustomDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnChange)
 void
-TreeView_SetOnChange(TTreeView AObj, TTVChangedEvent AEventId) {
+TreeView_SetOnChange(TTreeView AObj, TTVChangedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnChange)
-    MySyscall(pTreeView_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnChanging)
 void
-TreeView_SetOnChanging(TTreeView AObj, TTVChangingEvent AEventId) {
+TreeView_SetOnChanging(TTreeView AObj, TTVChangingEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnChanging)
-    MySyscall(pTreeView_SetOnChanging, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnChanging, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnClick)
 void
-TreeView_SetOnClick(TTreeView AObj, TNotifyEvent AEventId) {
+TreeView_SetOnClick(TTreeView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnClick)
-    MySyscall(pTreeView_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnCollapsed)
 void
-TreeView_SetOnCollapsed(TTreeView AObj, TTVExpandedEvent AEventId) {
+TreeView_SetOnCollapsed(TTreeView AObj, TTVExpandedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnCollapsed)
-    MySyscall(pTreeView_SetOnCollapsed, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnCollapsed, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnCollapsing)
 void
-TreeView_SetOnCollapsing(TTreeView AObj, TTVCollapsingEvent AEventId) {
+TreeView_SetOnCollapsing(TTreeView AObj, TTVCollapsingEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnCollapsing)
-    MySyscall(pTreeView_SetOnCollapsing, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnCollapsing, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnCompare)
 void
-TreeView_SetOnCompare(TTreeView AObj, TTVCompareEvent AEventId) {
+TreeView_SetOnCompare(TTreeView AObj, TTVCompareEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnCompare)
-    MySyscall(pTreeView_SetOnCompare, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnCompare, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnContextPopup)
 void
-TreeView_SetOnContextPopup(TTreeView AObj, TContextPopupEvent AEventId) {
+TreeView_SetOnContextPopup(TTreeView AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnContextPopup)
-    MySyscall(pTreeView_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnCustomDraw)
 void
-TreeView_SetOnCustomDraw(TTreeView AObj, TTVCustomDrawEvent AEventId) {
+TreeView_SetOnCustomDraw(TTreeView AObj, TTVCustomDrawEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnCustomDraw)
-    MySyscall(pTreeView_SetOnCustomDraw, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnCustomDraw, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnCustomDrawItem)
 void
-TreeView_SetOnCustomDrawItem(TTreeView AObj, TTVCustomDrawItemEvent AEventId) {
+TreeView_SetOnCustomDrawItem(TTreeView AObj, TTVCustomDrawItemEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnCustomDrawItem)
-    MySyscall(pTreeView_SetOnCustomDrawItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnCustomDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnDblClick)
 void
-TreeView_SetOnDblClick(TTreeView AObj, TNotifyEvent AEventId) {
+TreeView_SetOnDblClick(TTreeView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnDblClick)
-    MySyscall(pTreeView_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnDeletion)
 void
-TreeView_SetOnDeletion(TTreeView AObj, TTVExpandedEvent AEventId) {
+TreeView_SetOnDeletion(TTreeView AObj, TTVExpandedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnDeletion)
-    MySyscall(pTreeView_SetOnDeletion, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnDeletion, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnDragDrop)
 void
-TreeView_SetOnDragDrop(TTreeView AObj, TDragDropEvent AEventId) {
+TreeView_SetOnDragDrop(TTreeView AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnDragDrop)
-    MySyscall(pTreeView_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnDragOver)
 void
-TreeView_SetOnDragOver(TTreeView AObj, TDragOverEvent AEventId) {
+TreeView_SetOnDragOver(TTreeView AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnDragOver)
-    MySyscall(pTreeView_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnEdited)
 void
-TreeView_SetOnEdited(TTreeView AObj, TTVEditedEvent AEventId) {
+TreeView_SetOnEdited(TTreeView AObj, TTVEditedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnEdited)
-    MySyscall(pTreeView_SetOnEdited, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnEdited, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnEditing)
 void
-TreeView_SetOnEditing(TTreeView AObj, TTVEditingEvent AEventId) {
+TreeView_SetOnEditing(TTreeView AObj, TTVEditingEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnEditing)
-    MySyscall(pTreeView_SetOnEditing, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnEditing, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnEndDrag)
 void
-TreeView_SetOnEndDrag(TTreeView AObj, TEndDragEvent AEventId) {
+TreeView_SetOnEndDrag(TTreeView AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnEndDrag)
-    MySyscall(pTreeView_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnEnter)
 void
-TreeView_SetOnEnter(TTreeView AObj, TNotifyEvent AEventId) {
+TreeView_SetOnEnter(TTreeView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnEnter)
-    MySyscall(pTreeView_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnExit)
 void
-TreeView_SetOnExit(TTreeView AObj, TNotifyEvent AEventId) {
+TreeView_SetOnExit(TTreeView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnExit)
-    MySyscall(pTreeView_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnExpanding)
 void
-TreeView_SetOnExpanding(TTreeView AObj, TTVExpandingEvent AEventId) {
+TreeView_SetOnExpanding(TTreeView AObj, TTVExpandingEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnExpanding)
-    MySyscall(pTreeView_SetOnExpanding, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnExpanding, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnExpanded)
 void
-TreeView_SetOnExpanded(TTreeView AObj, TTVExpandedEvent AEventId) {
+TreeView_SetOnExpanded(TTreeView AObj, TTVExpandedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnExpanded)
-    MySyscall(pTreeView_SetOnExpanded, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnExpanded, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnGetSelectedIndex)
 void
-TreeView_SetOnGetSelectedIndex(TTreeView AObj, TTVExpandedEvent AEventId) {
+TreeView_SetOnGetSelectedIndex(TTreeView AObj, TTVExpandedEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnGetSelectedIndex)
-    MySyscall(pTreeView_SetOnGetSelectedIndex, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnGetSelectedIndex, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnKeyDown)
 void
-TreeView_SetOnKeyDown(TTreeView AObj, TKeyEvent AEventId) {
+TreeView_SetOnKeyDown(TTreeView AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnKeyDown)
-    MySyscall(pTreeView_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnKeyPress)
 void
-TreeView_SetOnKeyPress(TTreeView AObj, TKeyPressEvent AEventId) {
+TreeView_SetOnKeyPress(TTreeView AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnKeyPress)
-    MySyscall(pTreeView_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnKeyUp)
 void
-TreeView_SetOnKeyUp(TTreeView AObj, TKeyEvent AEventId) {
+TreeView_SetOnKeyUp(TTreeView AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnKeyUp)
-    MySyscall(pTreeView_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnMouseDown)
 void
-TreeView_SetOnMouseDown(TTreeView AObj, TMouseEvent AEventId) {
+TreeView_SetOnMouseDown(TTreeView AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnMouseDown)
-    MySyscall(pTreeView_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnMouseEnter)
 void
-TreeView_SetOnMouseEnter(TTreeView AObj, TNotifyEvent AEventId) {
+TreeView_SetOnMouseEnter(TTreeView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnMouseEnter)
-    MySyscall(pTreeView_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnMouseLeave)
 void
-TreeView_SetOnMouseLeave(TTreeView AObj, TNotifyEvent AEventId) {
+TreeView_SetOnMouseLeave(TTreeView AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnMouseLeave)
-    MySyscall(pTreeView_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnMouseMove)
 void
-TreeView_SetOnMouseMove(TTreeView AObj, TMouseMoveEvent AEventId) {
+TreeView_SetOnMouseMove(TTreeView AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnMouseMove)
-    MySyscall(pTreeView_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_SetOnMouseUp)
 void
-TreeView_SetOnMouseUp(TTreeView AObj, TMouseEvent AEventId) {
+TreeView_SetOnMouseUp(TTreeView AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(TreeView_SetOnMouseUp)
-    MySyscall(pTreeView_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTreeView_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeView_GetItems)
@@ -43305,107 +43559,107 @@ StatusBar_SetVisible(TStatusBar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(StatusBar_SetOnClick)
 void
-StatusBar_SetOnClick(TStatusBar AObj, TNotifyEvent AEventId) {
+StatusBar_SetOnClick(TStatusBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnClick)
-    MySyscall(pStatusBar_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnContextPopup)
 void
-StatusBar_SetOnContextPopup(TStatusBar AObj, TContextPopupEvent AEventId) {
+StatusBar_SetOnContextPopup(TStatusBar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnContextPopup)
-    MySyscall(pStatusBar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnDblClick)
 void
-StatusBar_SetOnDblClick(TStatusBar AObj, TNotifyEvent AEventId) {
+StatusBar_SetOnDblClick(TStatusBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnDblClick)
-    MySyscall(pStatusBar_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnDragDrop)
 void
-StatusBar_SetOnDragDrop(TStatusBar AObj, TDragDropEvent AEventId) {
+StatusBar_SetOnDragDrop(TStatusBar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnDragDrop)
-    MySyscall(pStatusBar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnDragOver)
 void
-StatusBar_SetOnDragOver(TStatusBar AObj, TDragOverEvent AEventId) {
+StatusBar_SetOnDragOver(TStatusBar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnDragOver)
-    MySyscall(pStatusBar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnEndDock)
 void
-StatusBar_SetOnEndDock(TStatusBar AObj, TEndDragEvent AEventId) {
+StatusBar_SetOnEndDock(TStatusBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnEndDock)
-    MySyscall(pStatusBar_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnEndDrag)
 void
-StatusBar_SetOnEndDrag(TStatusBar AObj, TEndDragEvent AEventId) {
+StatusBar_SetOnEndDrag(TStatusBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnEndDrag)
-    MySyscall(pStatusBar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnHint)
 void
-StatusBar_SetOnHint(TStatusBar AObj, TNotifyEvent AEventId) {
+StatusBar_SetOnHint(TStatusBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnHint)
-    MySyscall(pStatusBar_SetOnHint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnHint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnMouseDown)
 void
-StatusBar_SetOnMouseDown(TStatusBar AObj, TMouseEvent AEventId) {
+StatusBar_SetOnMouseDown(TStatusBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnMouseDown)
-    MySyscall(pStatusBar_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnMouseEnter)
 void
-StatusBar_SetOnMouseEnter(TStatusBar AObj, TNotifyEvent AEventId) {
+StatusBar_SetOnMouseEnter(TStatusBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnMouseEnter)
-    MySyscall(pStatusBar_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnMouseLeave)
 void
-StatusBar_SetOnMouseLeave(TStatusBar AObj, TNotifyEvent AEventId) {
+StatusBar_SetOnMouseLeave(TStatusBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnMouseLeave)
-    MySyscall(pStatusBar_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnMouseMove)
 void
-StatusBar_SetOnMouseMove(TStatusBar AObj, TMouseMoveEvent AEventId) {
+StatusBar_SetOnMouseMove(TStatusBar AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnMouseMove)
-    MySyscall(pStatusBar_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnMouseUp)
 void
-StatusBar_SetOnMouseUp(TStatusBar AObj, TMouseEvent AEventId) {
+StatusBar_SetOnMouseUp(TStatusBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnMouseUp)
-    MySyscall(pStatusBar_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnResize)
 void
-StatusBar_SetOnResize(TStatusBar AObj, TNotifyEvent AEventId) {
+StatusBar_SetOnResize(TStatusBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnResize)
-    MySyscall(pStatusBar_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_SetOnStartDock)
 void
-StatusBar_SetOnStartDock(TStatusBar AObj, TStartDockEvent AEventId) {
+StatusBar_SetOnStartDock(TStatusBar AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(StatusBar_SetOnStartDock)
-    MySyscall(pStatusBar_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStatusBar_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StatusBar_GetCanvas)
@@ -44924,114 +45178,114 @@ ToolBar_SetWrapable(TToolBar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ToolBar_SetOnClick)
 void
-ToolBar_SetOnClick(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnClick(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnClick)
-    MySyscall(pToolBar_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnContextPopup)
 void
-ToolBar_SetOnContextPopup(TToolBar AObj, TContextPopupEvent AEventId) {
+ToolBar_SetOnContextPopup(TToolBar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnContextPopup)
-    MySyscall(pToolBar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnDblClick)
 void
-ToolBar_SetOnDblClick(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnDblClick(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnDblClick)
-    MySyscall(pToolBar_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnDockDrop)
 void
-ToolBar_SetOnDockDrop(TToolBar AObj, TDockDropEvent AEventId) {
+ToolBar_SetOnDockDrop(TToolBar AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnDockDrop)
-    MySyscall(pToolBar_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnDragDrop)
 void
-ToolBar_SetOnDragDrop(TToolBar AObj, TDragDropEvent AEventId) {
+ToolBar_SetOnDragDrop(TToolBar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnDragDrop)
-    MySyscall(pToolBar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnDragOver)
 void
-ToolBar_SetOnDragOver(TToolBar AObj, TDragOverEvent AEventId) {
+ToolBar_SetOnDragOver(TToolBar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnDragOver)
-    MySyscall(pToolBar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnEndDrag)
 void
-ToolBar_SetOnEndDrag(TToolBar AObj, TEndDragEvent AEventId) {
+ToolBar_SetOnEndDrag(TToolBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnEndDrag)
-    MySyscall(pToolBar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnEnter)
 void
-ToolBar_SetOnEnter(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnEnter(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnEnter)
-    MySyscall(pToolBar_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnExit)
 void
-ToolBar_SetOnExit(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnExit(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnExit)
-    MySyscall(pToolBar_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnMouseDown)
 void
-ToolBar_SetOnMouseDown(TToolBar AObj, TMouseEvent AEventId) {
+ToolBar_SetOnMouseDown(TToolBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnMouseDown)
-    MySyscall(pToolBar_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnMouseEnter)
 void
-ToolBar_SetOnMouseEnter(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnMouseEnter(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnMouseEnter)
-    MySyscall(pToolBar_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnMouseLeave)
 void
-ToolBar_SetOnMouseLeave(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnMouseLeave(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnMouseLeave)
-    MySyscall(pToolBar_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnMouseMove)
 void
-ToolBar_SetOnMouseMove(TToolBar AObj, TMouseMoveEvent AEventId) {
+ToolBar_SetOnMouseMove(TToolBar AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnMouseMove)
-    MySyscall(pToolBar_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnMouseUp)
 void
-ToolBar_SetOnMouseUp(TToolBar AObj, TMouseEvent AEventId) {
+ToolBar_SetOnMouseUp(TToolBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnMouseUp)
-    MySyscall(pToolBar_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnResize)
 void
-ToolBar_SetOnResize(TToolBar AObj, TNotifyEvent AEventId) {
+ToolBar_SetOnResize(TToolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnResize)
-    MySyscall(pToolBar_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_SetOnUnDock)
 void
-ToolBar_SetOnUnDock(TToolBar AObj, TUnDockEvent AEventId) {
+ToolBar_SetOnUnDock(TToolBar AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(ToolBar_SetOnUnDock)
-    MySyscall(pToolBar_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolBar_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolBar_GetDockClientCount)
@@ -46016,6 +46270,34 @@ BitBtn_SetGlyphShowMode(TBitBtn AObj, TGlyphShowMode AValue) {
     MySyscall(pBitBtn_SetGlyphShowMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(BitBtn_GetImageIndex)
+int32_t
+BitBtn_GetImageIndex(TBitBtn AObj) {
+    GET_FUNC_ADDR(BitBtn_GetImageIndex)
+    return (int32_t)MySyscall(pBitBtn_GetImageIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_SetImageIndex)
+void
+BitBtn_SetImageIndex(TBitBtn AObj, int32_t AValue) {
+    GET_FUNC_ADDR(BitBtn_SetImageIndex)
+    MySyscall(pBitBtn_SetImageIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_GetImages)
+TImageList
+BitBtn_GetImages(TBitBtn AObj) {
+    GET_FUNC_ADDR(BitBtn_GetImages)
+    return (TImageList)MySyscall(pBitBtn_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_SetImages)
+void
+BitBtn_SetImages(TBitBtn AObj, TImageList AValue) {
+    GET_FUNC_ADDR(BitBtn_SetImages)
+    MySyscall(pBitBtn_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(BitBtn_GetImageWidth)
 int32_t
 BitBtn_GetImageWidth(TBitBtn AObj) {
@@ -46198,6 +46480,20 @@ BitBtn_SetGlyph(TBitBtn AObj, TBitmap AValue) {
     MySyscall(pBitBtn_SetGlyph, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(BitBtn_GetKind)
+TBitBtnKind
+BitBtn_GetKind(TBitBtn AObj) {
+    GET_FUNC_ADDR(BitBtn_GetKind)
+    return (TBitBtnKind)MySyscall(pBitBtn_GetKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(BitBtn_SetKind)
+void
+BitBtn_SetKind(TBitBtn AObj, TBitBtnKind AValue) {
+    GET_FUNC_ADDR(BitBtn_SetKind)
+    MySyscall(pBitBtn_SetKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(BitBtn_GetLayout)
 TButtonLayout
 BitBtn_GetLayout(TBitBtn AObj) {
@@ -46368,107 +46664,107 @@ BitBtn_SetVisible(TBitBtn AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(BitBtn_SetOnClick)
 void
-BitBtn_SetOnClick(TBitBtn AObj, TNotifyEvent AEventId) {
+BitBtn_SetOnClick(TBitBtn AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnClick)
-    MySyscall(pBitBtn_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnContextPopup)
 void
-BitBtn_SetOnContextPopup(TBitBtn AObj, TContextPopupEvent AEventId) {
+BitBtn_SetOnContextPopup(TBitBtn AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnContextPopup)
-    MySyscall(pBitBtn_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnDragDrop)
 void
-BitBtn_SetOnDragDrop(TBitBtn AObj, TDragDropEvent AEventId) {
+BitBtn_SetOnDragDrop(TBitBtn AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnDragDrop)
-    MySyscall(pBitBtn_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnDragOver)
 void
-BitBtn_SetOnDragOver(TBitBtn AObj, TDragOverEvent AEventId) {
+BitBtn_SetOnDragOver(TBitBtn AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnDragOver)
-    MySyscall(pBitBtn_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnEndDrag)
 void
-BitBtn_SetOnEndDrag(TBitBtn AObj, TEndDragEvent AEventId) {
+BitBtn_SetOnEndDrag(TBitBtn AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnEndDrag)
-    MySyscall(pBitBtn_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnEnter)
 void
-BitBtn_SetOnEnter(TBitBtn AObj, TNotifyEvent AEventId) {
+BitBtn_SetOnEnter(TBitBtn AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnEnter)
-    MySyscall(pBitBtn_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnExit)
 void
-BitBtn_SetOnExit(TBitBtn AObj, TNotifyEvent AEventId) {
+BitBtn_SetOnExit(TBitBtn AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnExit)
-    MySyscall(pBitBtn_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnKeyDown)
 void
-BitBtn_SetOnKeyDown(TBitBtn AObj, TKeyEvent AEventId) {
+BitBtn_SetOnKeyDown(TBitBtn AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnKeyDown)
-    MySyscall(pBitBtn_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnKeyPress)
 void
-BitBtn_SetOnKeyPress(TBitBtn AObj, TKeyPressEvent AEventId) {
+BitBtn_SetOnKeyPress(TBitBtn AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnKeyPress)
-    MySyscall(pBitBtn_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnKeyUp)
 void
-BitBtn_SetOnKeyUp(TBitBtn AObj, TKeyEvent AEventId) {
+BitBtn_SetOnKeyUp(TBitBtn AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnKeyUp)
-    MySyscall(pBitBtn_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnMouseDown)
 void
-BitBtn_SetOnMouseDown(TBitBtn AObj, TMouseEvent AEventId) {
+BitBtn_SetOnMouseDown(TBitBtn AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnMouseDown)
-    MySyscall(pBitBtn_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnMouseEnter)
 void
-BitBtn_SetOnMouseEnter(TBitBtn AObj, TNotifyEvent AEventId) {
+BitBtn_SetOnMouseEnter(TBitBtn AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnMouseEnter)
-    MySyscall(pBitBtn_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnMouseLeave)
 void
-BitBtn_SetOnMouseLeave(TBitBtn AObj, TNotifyEvent AEventId) {
+BitBtn_SetOnMouseLeave(TBitBtn AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnMouseLeave)
-    MySyscall(pBitBtn_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnMouseMove)
 void
-BitBtn_SetOnMouseMove(TBitBtn AObj, TMouseMoveEvent AEventId) {
+BitBtn_SetOnMouseMove(TBitBtn AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnMouseMove)
-    MySyscall(pBitBtn_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_SetOnMouseUp)
 void
-BitBtn_SetOnMouseUp(TBitBtn AObj, TMouseEvent AEventId) {
+BitBtn_SetOnMouseUp(TBitBtn AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(BitBtn_SetOnMouseUp)
-    MySyscall(pBitBtn_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitBtn_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BitBtn_GetDockClientCount)
@@ -47174,9 +47470,9 @@ Icon_SetWidth(TIcon AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(Icon_SetOnChange)
 void
-Icon_SetOnChange(TIcon AObj, TNotifyEvent AEventId) {
+Icon_SetOnChange(TIcon AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Icon_SetOnChange)
-    MySyscall(pIcon_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pIcon_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Icon_StaticClassType)
@@ -47526,9 +47822,9 @@ Bitmap_SetWidth(TBitmap AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(Bitmap_SetOnChange)
 void
-Bitmap_SetOnChange(TBitmap AObj, TNotifyEvent AEventId) {
+Bitmap_SetOnChange(TBitmap AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Bitmap_SetOnChange)
-    MySyscall(pBitmap_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBitmap_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Bitmap_GetScanLine)
@@ -48516,121 +48812,121 @@ Memo_SetWordWrap(TMemo AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Memo_SetOnChange)
 void
-Memo_SetOnChange(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnChange(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnChange)
-    MySyscall(pMemo_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnClick)
 void
-Memo_SetOnClick(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnClick(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnClick)
-    MySyscall(pMemo_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnContextPopup)
 void
-Memo_SetOnContextPopup(TMemo AObj, TContextPopupEvent AEventId) {
+Memo_SetOnContextPopup(TMemo AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnContextPopup)
-    MySyscall(pMemo_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnDblClick)
 void
-Memo_SetOnDblClick(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnDblClick(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnDblClick)
-    MySyscall(pMemo_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnDragDrop)
 void
-Memo_SetOnDragDrop(TMemo AObj, TDragDropEvent AEventId) {
+Memo_SetOnDragDrop(TMemo AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnDragDrop)
-    MySyscall(pMemo_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnDragOver)
 void
-Memo_SetOnDragOver(TMemo AObj, TDragOverEvent AEventId) {
+Memo_SetOnDragOver(TMemo AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnDragOver)
-    MySyscall(pMemo_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnEndDrag)
 void
-Memo_SetOnEndDrag(TMemo AObj, TEndDragEvent AEventId) {
+Memo_SetOnEndDrag(TMemo AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnEndDrag)
-    MySyscall(pMemo_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnEnter)
 void
-Memo_SetOnEnter(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnEnter(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnEnter)
-    MySyscall(pMemo_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnExit)
 void
-Memo_SetOnExit(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnExit(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnExit)
-    MySyscall(pMemo_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnKeyDown)
 void
-Memo_SetOnKeyDown(TMemo AObj, TKeyEvent AEventId) {
+Memo_SetOnKeyDown(TMemo AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnKeyDown)
-    MySyscall(pMemo_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnKeyPress)
 void
-Memo_SetOnKeyPress(TMemo AObj, TKeyPressEvent AEventId) {
+Memo_SetOnKeyPress(TMemo AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnKeyPress)
-    MySyscall(pMemo_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnKeyUp)
 void
-Memo_SetOnKeyUp(TMemo AObj, TKeyEvent AEventId) {
+Memo_SetOnKeyUp(TMemo AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnKeyUp)
-    MySyscall(pMemo_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnMouseDown)
 void
-Memo_SetOnMouseDown(TMemo AObj, TMouseEvent AEventId) {
+Memo_SetOnMouseDown(TMemo AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnMouseDown)
-    MySyscall(pMemo_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnMouseEnter)
 void
-Memo_SetOnMouseEnter(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnMouseEnter(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnMouseEnter)
-    MySyscall(pMemo_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnMouseLeave)
 void
-Memo_SetOnMouseLeave(TMemo AObj, TNotifyEvent AEventId) {
+Memo_SetOnMouseLeave(TMemo AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnMouseLeave)
-    MySyscall(pMemo_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnMouseMove)
 void
-Memo_SetOnMouseMove(TMemo AObj, TMouseMoveEvent AEventId) {
+Memo_SetOnMouseMove(TMemo AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnMouseMove)
-    MySyscall(pMemo_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_SetOnMouseUp)
 void
-Memo_SetOnMouseUp(TMemo AObj, TMouseEvent AEventId) {
+Memo_SetOnMouseUp(TMemo AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Memo_SetOnMouseUp)
-    MySyscall(pMemo_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMemo_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Memo_GetCaretPos)
@@ -49635,9 +49931,9 @@ Font_SetQuality(TFont AObj, TFontQuality AValue) {
 
 DEFINE_FUNC_PTR(Font_SetOnChange)
 void
-Font_SetOnChange(TFont AObj, TNotifyEvent AEventId) {
+Font_SetOnChange(TFont AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Font_SetOnChange)
-    MySyscall(pFont_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFont_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Font_StaticClassType)
@@ -49768,6 +50064,20 @@ PopupMenu_SetImagesWidth(TPopupMenu AObj, int32_t AValue) {
     MySyscall(pPopupMenu_SetImagesWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(PopupMenu_SetOnDrawItem)
+void
+PopupMenu_SetOnDrawItem(TPopupMenu AObj, TMenuDrawItemEvent AEventData) {
+    GET_FUNC_ADDR(PopupMenu_SetOnDrawItem)
+    MySyscall(pPopupMenu_SetOnDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PopupMenu_SetOnMeasureItem)
+void
+PopupMenu_SetOnMeasureItem(TPopupMenu AObj, TMenuMeasureItemEvent AEventData) {
+    GET_FUNC_ADDR(PopupMenu_SetOnMeasureItem)
+    MySyscall(pPopupMenu_SetOnMeasureItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(PopupMenu_GetPopupComponent)
 TComponent
 PopupMenu_GetPopupComponent(TPopupMenu AObj) {
@@ -49849,9 +50159,9 @@ PopupMenu_SetOwnerDraw(TPopupMenu AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(PopupMenu_SetOnPopup)
 void
-PopupMenu_SetOnPopup(TPopupMenu AObj, TNotifyEvent AEventId) {
+PopupMenu_SetOnPopup(TPopupMenu AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PopupMenu_SetOnPopup)
-    MySyscall(pPopupMenu_SetOnPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPopupMenu_SetOnPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PopupMenu_GetHandle)
@@ -49987,6 +50297,13 @@ void
 StringList_Delete(TStringList AObj, int32_t Index) {
     GET_FUNC_ADDR(StringList_Delete)
     MySyscall(pStringList_Delete, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringList_Exchange)
+void
+StringList_Exchange(TStringList AObj, int32_t Index1, int32_t Index2) {
+    GET_FUNC_ADDR(StringList_Exchange)
+    MySyscall(pStringList_Exchange, 3, AObj, Index1, Index2 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringList_IndexOf)
@@ -50152,16 +50469,16 @@ StringList_SetSorted(TStringList AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(StringList_SetOnChange)
 void
-StringList_SetOnChange(TStringList AObj, TNotifyEvent AEventId) {
+StringList_SetOnChange(TStringList AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringList_SetOnChange)
-    MySyscall(pStringList_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringList_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringList_SetOnChanging)
 void
-StringList_SetOnChanging(TStringList AObj, TNotifyEvent AEventId) {
+StringList_SetOnChanging(TStringList AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringList_SetOnChanging)
-    MySyscall(pStringList_SetOnChanging, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringList_SetOnChanging, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringList_GetCapacity)
@@ -50441,9 +50758,9 @@ Brush_SetStyle(TBrush AObj, TBrushStyle AValue) {
 
 DEFINE_FUNC_PTR(Brush_SetOnChange)
 void
-Brush_SetOnChange(TBrush AObj, TNotifyEvent AEventId) {
+Brush_SetOnChange(TBrush AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Brush_SetOnChange)
-    MySyscall(pBrush_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBrush_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Brush_StaticClassType)
@@ -50604,9 +50921,9 @@ Pen_SetWidth(TPen AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(Pen_SetOnChange)
 void
-Pen_SetOnChange(TPen AObj, TNotifyEvent AEventId) {
+Pen_SetOnChange(TPen AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Pen_SetOnChange)
-    MySyscall(pPen_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPen_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Pen_StaticClassType)
@@ -50956,16 +51273,16 @@ MenuItem_SetVisible(TMenuItem AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(MenuItem_SetOnClick)
 void
-MenuItem_SetOnClick(TMenuItem AObj, TNotifyEvent AEventId) {
+MenuItem_SetOnClick(TMenuItem AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MenuItem_SetOnClick)
-    MySyscall(pMenuItem_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMenuItem_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MenuItem_SetOnMeasureItem)
 void
-MenuItem_SetOnMeasureItem(TMenuItem AObj, TMenuMeasureItemEvent AEventId) {
+MenuItem_SetOnMeasureItem(TMenuItem AObj, TMenuMeasureItemEvent AEventData) {
     GET_FUNC_ADDR(MenuItem_SetOnMeasureItem)
-    MySyscall(pMenuItem_SetOnMeasureItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMenuItem_SetOnMeasureItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MenuItem_GetComponentCount)
@@ -51224,9 +51541,9 @@ Picture_GetWidth(TPicture AObj) {
 
 DEFINE_FUNC_PTR(Picture_SetOnChange)
 void
-Picture_SetOnChange(TPicture AObj, TNotifyEvent AEventId) {
+Picture_SetOnChange(TPicture AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Picture_SetOnChange)
-    MySyscall(pPicture_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPicture_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Picture_StaticClassType)
@@ -52155,6 +52472,283 @@ TreeNode_Free(TTreeNode AObj) {
     MySyscall(pTreeNode_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_Bottom)
+int32_t
+TreeNode_Bottom(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_Bottom)
+    return (int32_t)MySyscall(pTreeNode_Bottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_BottomExpanded)
+int32_t
+TreeNode_BottomExpanded(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_BottomExpanded)
+    return (int32_t)MySyscall(pTreeNode_BottomExpanded, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DefaultTreeViewSort)
+int32_t
+TreeNode_DefaultTreeViewSort(TTreeNode AObj, TTreeNode Node1, TTreeNode Node2) {
+    GET_FUNC_ADDR(TreeNode_DefaultTreeViewSort)
+    return (int32_t)MySyscall(pTreeNode_DefaultTreeViewSort, 3, AObj, Node1, Node2 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayExpandSignLeft)
+int32_t
+TreeNode_DisplayExpandSignLeft(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayExpandSignLeft)
+    return (int32_t)MySyscall(pTreeNode_DisplayExpandSignLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayExpandSignRect)
+TRect
+TreeNode_DisplayExpandSignRect(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayExpandSignRect)
+    TRect result;
+    MySyscall(pTreeNode_DisplayExpandSignRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayExpandSignRight)
+int32_t
+TreeNode_DisplayExpandSignRight(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayExpandSignRight)
+    return (int32_t)MySyscall(pTreeNode_DisplayExpandSignRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayIconLeft)
+int32_t
+TreeNode_DisplayIconLeft(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayIconLeft)
+    return (int32_t)MySyscall(pTreeNode_DisplayIconLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayRect)
+TRect
+TreeNode_DisplayRect(TTreeNode AObj, BOOL TextOnly) {
+    GET_FUNC_ADDR(TreeNode_DisplayRect)
+    TRect result;
+    MySyscall(pTreeNode_DisplayRect, 3, AObj, TextOnly, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayStateIconLeft)
+int32_t
+TreeNode_DisplayStateIconLeft(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayStateIconLeft)
+    return (int32_t)MySyscall(pTreeNode_DisplayStateIconLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayTextLeft)
+int32_t
+TreeNode_DisplayTextLeft(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayTextLeft)
+    return (int32_t)MySyscall(pTreeNode_DisplayTextLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_DisplayTextRight)
+int32_t
+TreeNode_DisplayTextRight(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DisplayTextRight)
+    return (int32_t)MySyscall(pTreeNode_DisplayTextRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_EditText)
+BOOL
+TreeNode_EditText(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_EditText)
+    return (BOOL)MySyscall(pTreeNode_EditText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_FindNode)
+TTreeNode
+TreeNode_FindNode(TTreeNode AObj, CChar char* NodeText) {
+    GET_FUNC_ADDR(TreeNode_FindNode)
+    return (TTreeNode)MySyscall(pTreeNode_FindNode, 2, AObj, NodeText ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetFirstChild)
+TTreeNode
+TreeNode_GetFirstChild(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetFirstChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetFirstChild, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetFirstVisibleChild)
+TTreeNode
+TreeNode_GetFirstVisibleChild(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetFirstVisibleChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetFirstVisibleChild, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetLastChild)
+TTreeNode
+TreeNode_GetLastChild(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetLastChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetLastChild, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetLastSibling)
+TTreeNode
+TreeNode_GetLastSibling(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetLastSibling)
+    return (TTreeNode)MySyscall(pTreeNode_GetLastSibling, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetLastSubChild)
+TTreeNode
+TreeNode_GetLastSubChild(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetLastSubChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetLastSubChild, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetLastVisibleChild)
+TTreeNode
+TreeNode_GetLastVisibleChild(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetLastVisibleChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetLastVisibleChild, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNext)
+TTreeNode
+TreeNode_GetNext(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNext)
+    return (TTreeNode)MySyscall(pTreeNode_GetNext, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextChild)
+TTreeNode
+TreeNode_GetNextChild(TTreeNode AObj, TTreeNode AValue) {
+    GET_FUNC_ADDR(TreeNode_GetNextChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextChild, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextExpanded)
+TTreeNode
+TreeNode_GetNextExpanded(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNextExpanded)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextExpanded, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextMultiSelected)
+TTreeNode
+TreeNode_GetNextMultiSelected(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNextMultiSelected)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextMultiSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextSibling)
+TTreeNode
+TreeNode_GetNextSibling(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNextSibling)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextSibling, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextSkipChildren)
+TTreeNode
+TreeNode_GetNextSkipChildren(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNextSkipChildren)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextSkipChildren, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextVisible)
+TTreeNode
+TreeNode_GetNextVisible(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNextVisible)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetNextVisibleSibling)
+TTreeNode
+TreeNode_GetNextVisibleSibling(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetNextVisibleSibling)
+    return (TTreeNode)MySyscall(pTreeNode_GetNextVisibleSibling, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetParentNodeOfAbsoluteLevel)
+TTreeNode
+TreeNode_GetParentNodeOfAbsoluteLevel(TTreeNode AObj, int32_t TheAbsoluteLevel) {
+    GET_FUNC_ADDR(TreeNode_GetParentNodeOfAbsoluteLevel)
+    return (TTreeNode)MySyscall(pTreeNode_GetParentNodeOfAbsoluteLevel, 2, AObj, TheAbsoluteLevel ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrev)
+TTreeNode
+TreeNode_GetPrev(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetPrev)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrev, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrevChild)
+TTreeNode
+TreeNode_GetPrevChild(TTreeNode AObj, TTreeNode AValue) {
+    GET_FUNC_ADDR(TreeNode_GetPrevChild)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrevChild, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrevExpanded)
+TTreeNode
+TreeNode_GetPrevExpanded(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetPrevExpanded)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrevExpanded, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrevMultiSelected)
+TTreeNode
+TreeNode_GetPrevMultiSelected(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetPrevMultiSelected)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrevMultiSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrevSibling)
+TTreeNode
+TreeNode_GetPrevSibling(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetPrevSibling)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrevSibling, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrevVisible)
+TTreeNode
+TreeNode_GetPrevVisible(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetPrevVisible)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrevVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetPrevVisibleSibling)
+TTreeNode
+TreeNode_GetPrevVisibleSibling(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetPrevVisibleSibling)
+    return (TTreeNode)MySyscall(pTreeNode_GetPrevVisibleSibling, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetTextPath)
+char*
+TreeNode_GetTextPath(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetTextPath)
+    return (char*)MySyscall(pTreeNode_GetTextPath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_HasAsParent)
+BOOL
+TreeNode_HasAsParent(TTreeNode AObj, TTreeNode AValue) {
+    GET_FUNC_ADDR(TreeNode_HasAsParent)
+    return (BOOL)MySyscall(pTreeNode_HasAsParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_IndexOf)
+int32_t
+TreeNode_IndexOf(TTreeNode AObj, TTreeNode AValue) {
+    GET_FUNC_ADDR(TreeNode_IndexOf)
+    return (int32_t)MySyscall(pTreeNode_IndexOf, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_IndexOfText)
+int32_t
+TreeNode_IndexOfText(TTreeNode AObj, CChar char* NodeText) {
+    GET_FUNC_ADDR(TreeNode_IndexOfText)
+    return (int32_t)MySyscall(pTreeNode_IndexOfText, 2, AObj, NodeText ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_Assign)
 void
 TreeNode_Assign(TTreeNode AObj, TObject Source) {
@@ -52169,6 +52763,13 @@ TreeNode_Collapse(TTreeNode AObj, BOOL Recurse) {
     MySyscall(pTreeNode_Collapse, 2, AObj, Recurse ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_ConsistencyCheck)
+void
+TreeNode_ConsistencyCheck(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_ConsistencyCheck)
+    MySyscall(pTreeNode_ConsistencyCheck, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_Delete)
 void
 TreeNode_Delete(TTreeNode AObj) {
@@ -52176,20 +52777,18 @@ TreeNode_Delete(TTreeNode AObj) {
     MySyscall(pTreeNode_Delete, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(TreeNode_DisplayRect)
-TRect
-TreeNode_DisplayRect(TTreeNode AObj, BOOL TextOnly) {
-    GET_FUNC_ADDR(TreeNode_DisplayRect)
-    TRect result;
-    MySyscall(pTreeNode_DisplayRect, 3, AObj, TextOnly, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-    return result;
+DEFINE_FUNC_PTR(TreeNode_DeleteChildren)
+void
+TreeNode_DeleteChildren(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_DeleteChildren)
+    MySyscall(pTreeNode_DeleteChildren, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(TreeNode_EditText)
-BOOL
-TreeNode_EditText(TTreeNode AObj) {
-    GET_FUNC_ADDR(TreeNode_EditText)
-    return (BOOL)MySyscall(pTreeNode_EditText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(TreeNode_EndEdit)
+void
+TreeNode_EndEdit(TTreeNode AObj, BOOL Cancel) {
+    GET_FUNC_ADDR(TreeNode_EndEdit)
+    MySyscall(pTreeNode_EndEdit, 2, AObj, Cancel ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_Expand)
@@ -52199,11 +52798,18 @@ TreeNode_Expand(TTreeNode AObj, BOOL Recurse) {
     MySyscall(pTreeNode_Expand, 2, AObj, Recurse ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(TreeNode_IndexOf)
-int32_t
-TreeNode_IndexOf(TTreeNode AObj, TTreeNode Value) {
-    GET_FUNC_ADDR(TreeNode_IndexOf)
-    return (int32_t)MySyscall(pTreeNode_IndexOf, 2, AObj, Value ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+DEFINE_FUNC_PTR(TreeNode_ExpandParents)
+void
+TreeNode_ExpandParents(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_ExpandParents)
+    MySyscall(pTreeNode_ExpandParents, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_FreeAllNodeData)
+void
+TreeNode_FreeAllNodeData(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_FreeAllNodeData)
+    MySyscall(pTreeNode_FreeAllNodeData, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_MakeVisible)
@@ -52218,6 +52824,27 @@ void
 TreeNode_MoveTo(TTreeNode AObj, TTreeNode Destination, TNodeAttachMode Mode) {
     GET_FUNC_ADDR(TreeNode_MoveTo)
     MySyscall(pTreeNode_MoveTo, 3, AObj, Destination, Mode ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_MultiSelectGroup)
+void
+TreeNode_MultiSelectGroup(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_MultiSelectGroup)
+    MySyscall(pTreeNode_MultiSelectGroup, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_Update)
+void
+TreeNode_Update(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_Update)
+    MySyscall(pTreeNode_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_WriteDebugReport)
+void
+TreeNode_WriteDebugReport(TTreeNode AObj, CChar char* Prefix, BOOL Recurse) {
+    GET_FUNC_ADDR(TreeNode_WriteDebugReport)
+    MySyscall(pTreeNode_WriteDebugReport, 3, AObj, Prefix, Recurse ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_CustomSort)
@@ -52332,20 +52959,6 @@ TreeNode_GetDeleting(TTreeNode AObj) {
     return (BOOL)MySyscall(pTreeNode_GetDeleting, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(TreeNode_GetFocused)
-BOOL
-TreeNode_GetFocused(TTreeNode AObj) {
-    GET_FUNC_ADDR(TreeNode_GetFocused)
-    return (BOOL)MySyscall(pTreeNode_GetFocused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(TreeNode_SetFocused)
-void
-TreeNode_SetFocused(TTreeNode AObj, BOOL AValue) {
-    GET_FUNC_ADDR(TreeNode_SetFocused)
-    MySyscall(pTreeNode_SetFocused, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
 DEFINE_FUNC_PTR(TreeNode_GetDropTarget)
 BOOL
 TreeNode_GetDropTarget(TTreeNode AObj) {
@@ -52358,20 +52971,6 @@ void
 TreeNode_SetDropTarget(TTreeNode AObj, BOOL AValue) {
     GET_FUNC_ADDR(TreeNode_SetDropTarget)
     MySyscall(pTreeNode_SetDropTarget, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(TreeNode_GetSelected)
-BOOL
-TreeNode_GetSelected(TTreeNode AObj) {
-    GET_FUNC_ADDR(TreeNode_GetSelected)
-    return (BOOL)MySyscall(pTreeNode_GetSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(TreeNode_SetSelected)
-void
-TreeNode_SetSelected(TTreeNode AObj, BOOL AValue) {
-    GET_FUNC_ADDR(TreeNode_SetSelected)
-    MySyscall(pTreeNode_SetSelected, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_GetExpanded)
@@ -52388,11 +52987,25 @@ TreeNode_SetExpanded(TTreeNode AObj, BOOL AValue) {
     MySyscall(pTreeNode_SetExpanded, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_GetFocused)
+BOOL
+TreeNode_GetFocused(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetFocused)
+    return (BOOL)MySyscall(pTreeNode_GetFocused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetFocused)
+void
+TreeNode_SetFocused(TTreeNode AObj, BOOL AValue) {
+    GET_FUNC_ADDR(TreeNode_SetFocused)
+    MySyscall(pTreeNode_SetFocused, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_GetHandle)
-HWND
+uintptr_t
 TreeNode_GetHandle(TTreeNode AObj) {
     GET_FUNC_ADDR(TreeNode_GetHandle)
-    return (HWND)MySyscall(pTreeNode_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return (uintptr_t)MySyscall(pTreeNode_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_GetHasChildren)
@@ -52407,6 +53020,20 @@ void
 TreeNode_SetHasChildren(TTreeNode AObj, BOOL AValue) {
     GET_FUNC_ADDR(TreeNode_SetHasChildren)
     MySyscall(pTreeNode_SetHasChildren, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetHeight)
+int32_t
+TreeNode_GetHeight(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetHeight)
+    return (int32_t)MySyscall(pTreeNode_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetHeight)
+void
+TreeNode_SetHeight(TTreeNode AObj, int32_t AValue) {
+    GET_FUNC_ADDR(TreeNode_SetHeight)
+    MySyscall(pTreeNode_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_GetImageIndex)
@@ -52430,6 +53057,20 @@ TreeNode_GetIndex(TTreeNode AObj) {
     return (int32_t)MySyscall(pTreeNode_GetIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_SetIndex)
+void
+TreeNode_SetIndex(TTreeNode AObj, int32_t AValue) {
+    GET_FUNC_ADDR(TreeNode_SetIndex)
+    MySyscall(pTreeNode_SetIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetIsFullHeightVisible)
+BOOL
+TreeNode_GetIsFullHeightVisible(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetIsFullHeightVisible)
+    return (BOOL)MySyscall(pTreeNode_GetIsFullHeightVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_GetIsVisible)
 BOOL
 TreeNode_GetIsVisible(TTreeNode AObj) {
@@ -52444,6 +53085,34 @@ TreeNode_GetLevel(TTreeNode AObj) {
     return (int32_t)MySyscall(pTreeNode_GetLevel, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_GetMultiSelected)
+BOOL
+TreeNode_GetMultiSelected(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetMultiSelected)
+    return (BOOL)MySyscall(pTreeNode_GetMultiSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetMultiSelected)
+void
+TreeNode_SetMultiSelected(TTreeNode AObj, BOOL AValue) {
+    GET_FUNC_ADDR(TreeNode_SetMultiSelected)
+    MySyscall(pTreeNode_SetMultiSelected, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetOverlayIndex)
+int32_t
+TreeNode_GetOverlayIndex(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetOverlayIndex)
+    return (int32_t)MySyscall(pTreeNode_GetOverlayIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetOverlayIndex)
+void
+TreeNode_SetOverlayIndex(TTreeNode AObj, int32_t AValue) {
+    GET_FUNC_ADDR(TreeNode_SetOverlayIndex)
+    MySyscall(pTreeNode_SetOverlayIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_GetOwner)
 TTreeNodes
 TreeNode_GetOwner(TTreeNode AObj) {
@@ -52456,6 +53125,20 @@ TTreeNode
 TreeNode_GetParent(TTreeNode AObj) {
     GET_FUNC_ADDR(TreeNode_GetParent)
     return (TTreeNode)MySyscall(pTreeNode_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetSelected)
+BOOL
+TreeNode_GetSelected(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetSelected)
+    return (BOOL)MySyscall(pTreeNode_GetSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetSelected)
+void
+TreeNode_SetSelected(TTreeNode AObj, BOOL AValue) {
+    GET_FUNC_ADDR(TreeNode_SetSelected)
+    MySyscall(pTreeNode_SetSelected, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_GetSelectedIndex)
@@ -52486,6 +53169,13 @@ TreeNode_SetStateIndex(TTreeNode AObj, int32_t AValue) {
     MySyscall(pTreeNode_SetStateIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_GetSubTreeCount)
+int32_t
+TreeNode_GetSubTreeCount(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetSubTreeCount)
+    return (int32_t)MySyscall(pTreeNode_GetSubTreeCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_GetText)
 char*
 TreeNode_GetText(TTreeNode AObj) {
@@ -52500,11 +53190,53 @@ TreeNode_SetText(TTreeNode AObj, CChar char* AValue) {
     MySyscall(pTreeNode_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(TreeNode_GetTop)
+int32_t
+TreeNode_GetTop(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetTop)
+    return (int32_t)MySyscall(pTreeNode_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetTreeNodes)
+TTreeNodes
+TreeNode_GetTreeNodes(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetTreeNodes)
+    return (TTreeNodes)MySyscall(pTreeNode_GetTreeNodes, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(TreeNode_GetTreeView)
 TTreeView
 TreeNode_GetTreeView(TTreeNode AObj) {
     GET_FUNC_ADDR(TreeNode_GetTreeView)
     return (TTreeView)MySyscall(pTreeNode_GetTreeView, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetVisible)
+BOOL
+TreeNode_GetVisible(TTreeNode AObj) {
+    GET_FUNC_ADDR(TreeNode_GetVisible)
+    return (BOOL)MySyscall(pTreeNode_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetVisible)
+void
+TreeNode_SetVisible(TTreeNode AObj, BOOL AValue) {
+    GET_FUNC_ADDR(TreeNode_SetVisible)
+    MySyscall(pTreeNode_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_GetItems)
+TTreeNode
+TreeNode_GetItems(TTreeNode AObj, int32_t ItemIndex) {
+    GET_FUNC_ADDR(TreeNode_GetItems)
+    return (TTreeNode)MySyscall(pTreeNode_GetItems, 2, AObj, ItemIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(TreeNode_SetItems)
+void
+TreeNode_SetItems(TTreeNode AObj, int32_t ItemIndex, TTreeNode AValue) {
+    GET_FUNC_ADDR(TreeNode_SetItems)
+    MySyscall(pTreeNode_SetItems, 3, AObj, ItemIndex, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TreeNode_GetItem)
@@ -53058,6 +53790,20 @@ PageControl_GetPageCount(TPageControl AObj) {
     return (int32_t)MySyscall(pPageControl_GetPageCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(PageControl_GetActivePage)
+TTabSheet
+PageControl_GetActivePage(TPageControl AObj) {
+    GET_FUNC_ADDR(PageControl_GetActivePage)
+    return (TTabSheet)MySyscall(pPageControl_GetActivePage, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(PageControl_SetActivePage)
+void
+PageControl_SetActivePage(TPageControl AObj, TTabSheet AValue) {
+    GET_FUNC_ADDR(PageControl_SetActivePage)
+    MySyscall(pPageControl_SetActivePage, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(PageControl_GetAlign)
 TAlign
 PageControl_GetAlign(TPageControl AObj) {
@@ -53410,135 +54156,135 @@ PageControl_SetVisible(TPageControl AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(PageControl_SetOnChange)
 void
-PageControl_SetOnChange(TPageControl AObj, TNotifyEvent AEventId) {
+PageControl_SetOnChange(TPageControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnChange)
-    MySyscall(pPageControl_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnChanging)
 void
-PageControl_SetOnChanging(TPageControl AObj, TTabChangingEvent AEventId) {
+PageControl_SetOnChanging(TPageControl AObj, TTabChangingEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnChanging)
-    MySyscall(pPageControl_SetOnChanging, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnChanging, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnContextPopup)
 void
-PageControl_SetOnContextPopup(TPageControl AObj, TContextPopupEvent AEventId) {
+PageControl_SetOnContextPopup(TPageControl AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnContextPopup)
-    MySyscall(pPageControl_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnDockDrop)
 void
-PageControl_SetOnDockDrop(TPageControl AObj, TDockDropEvent AEventId) {
+PageControl_SetOnDockDrop(TPageControl AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnDockDrop)
-    MySyscall(pPageControl_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnDragDrop)
 void
-PageControl_SetOnDragDrop(TPageControl AObj, TDragDropEvent AEventId) {
+PageControl_SetOnDragDrop(TPageControl AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnDragDrop)
-    MySyscall(pPageControl_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnDragOver)
 void
-PageControl_SetOnDragOver(TPageControl AObj, TDragOverEvent AEventId) {
+PageControl_SetOnDragOver(TPageControl AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnDragOver)
-    MySyscall(pPageControl_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnEndDock)
 void
-PageControl_SetOnEndDock(TPageControl AObj, TEndDragEvent AEventId) {
+PageControl_SetOnEndDock(TPageControl AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnEndDock)
-    MySyscall(pPageControl_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnEndDrag)
 void
-PageControl_SetOnEndDrag(TPageControl AObj, TEndDragEvent AEventId) {
+PageControl_SetOnEndDrag(TPageControl AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnEndDrag)
-    MySyscall(pPageControl_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnEnter)
 void
-PageControl_SetOnEnter(TPageControl AObj, TNotifyEvent AEventId) {
+PageControl_SetOnEnter(TPageControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnEnter)
-    MySyscall(pPageControl_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnExit)
 void
-PageControl_SetOnExit(TPageControl AObj, TNotifyEvent AEventId) {
+PageControl_SetOnExit(TPageControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnExit)
-    MySyscall(pPageControl_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnGetSiteInfo)
 void
-PageControl_SetOnGetSiteInfo(TPageControl AObj, TGetSiteInfoEvent AEventId) {
+PageControl_SetOnGetSiteInfo(TPageControl AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnGetSiteInfo)
-    MySyscall(pPageControl_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnMouseDown)
 void
-PageControl_SetOnMouseDown(TPageControl AObj, TMouseEvent AEventId) {
+PageControl_SetOnMouseDown(TPageControl AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnMouseDown)
-    MySyscall(pPageControl_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnMouseEnter)
 void
-PageControl_SetOnMouseEnter(TPageControl AObj, TNotifyEvent AEventId) {
+PageControl_SetOnMouseEnter(TPageControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnMouseEnter)
-    MySyscall(pPageControl_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnMouseLeave)
 void
-PageControl_SetOnMouseLeave(TPageControl AObj, TNotifyEvent AEventId) {
+PageControl_SetOnMouseLeave(TPageControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnMouseLeave)
-    MySyscall(pPageControl_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnMouseMove)
 void
-PageControl_SetOnMouseMove(TPageControl AObj, TMouseMoveEvent AEventId) {
+PageControl_SetOnMouseMove(TPageControl AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnMouseMove)
-    MySyscall(pPageControl_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnMouseUp)
 void
-PageControl_SetOnMouseUp(TPageControl AObj, TMouseEvent AEventId) {
+PageControl_SetOnMouseUp(TPageControl AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnMouseUp)
-    MySyscall(pPageControl_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnResize)
 void
-PageControl_SetOnResize(TPageControl AObj, TNotifyEvent AEventId) {
+PageControl_SetOnResize(TPageControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnResize)
-    MySyscall(pPageControl_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnStartDock)
 void
-PageControl_SetOnStartDock(TPageControl AObj, TStartDockEvent AEventId) {
+PageControl_SetOnStartDock(TPageControl AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnStartDock)
-    MySyscall(pPageControl_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_SetOnUnDock)
 void
-PageControl_SetOnUnDock(TPageControl AObj, TUnDockEvent AEventId) {
+PageControl_SetOnUnDock(TPageControl AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(PageControl_SetOnUnDock)
-    MySyscall(pPageControl_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageControl_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageControl_GetDockClientCount)
@@ -54777,100 +55523,100 @@ TabSheet_SetWidth(TTabSheet AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(TabSheet_SetOnContextPopup)
 void
-TabSheet_SetOnContextPopup(TTabSheet AObj, TContextPopupEvent AEventId) {
+TabSheet_SetOnContextPopup(TTabSheet AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnContextPopup)
-    MySyscall(pTabSheet_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnDragDrop)
 void
-TabSheet_SetOnDragDrop(TTabSheet AObj, TDragDropEvent AEventId) {
+TabSheet_SetOnDragDrop(TTabSheet AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnDragDrop)
-    MySyscall(pTabSheet_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnDragOver)
 void
-TabSheet_SetOnDragOver(TTabSheet AObj, TDragOverEvent AEventId) {
+TabSheet_SetOnDragOver(TTabSheet AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnDragOver)
-    MySyscall(pTabSheet_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnEndDrag)
 void
-TabSheet_SetOnEndDrag(TTabSheet AObj, TEndDragEvent AEventId) {
+TabSheet_SetOnEndDrag(TTabSheet AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnEndDrag)
-    MySyscall(pTabSheet_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnEnter)
 void
-TabSheet_SetOnEnter(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnEnter(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnEnter)
-    MySyscall(pTabSheet_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnExit)
 void
-TabSheet_SetOnExit(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnExit(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnExit)
-    MySyscall(pTabSheet_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnHide)
 void
-TabSheet_SetOnHide(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnHide(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnHide)
-    MySyscall(pTabSheet_SetOnHide, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnHide, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnMouseDown)
 void
-TabSheet_SetOnMouseDown(TTabSheet AObj, TMouseEvent AEventId) {
+TabSheet_SetOnMouseDown(TTabSheet AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnMouseDown)
-    MySyscall(pTabSheet_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnMouseEnter)
 void
-TabSheet_SetOnMouseEnter(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnMouseEnter(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnMouseEnter)
-    MySyscall(pTabSheet_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnMouseLeave)
 void
-TabSheet_SetOnMouseLeave(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnMouseLeave(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnMouseLeave)
-    MySyscall(pTabSheet_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnMouseMove)
 void
-TabSheet_SetOnMouseMove(TTabSheet AObj, TMouseMoveEvent AEventId) {
+TabSheet_SetOnMouseMove(TTabSheet AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnMouseMove)
-    MySyscall(pTabSheet_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnMouseUp)
 void
-TabSheet_SetOnMouseUp(TTabSheet AObj, TMouseEvent AEventId) {
+TabSheet_SetOnMouseUp(TTabSheet AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnMouseUp)
-    MySyscall(pTabSheet_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnResize)
 void
-TabSheet_SetOnResize(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnResize(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnResize)
-    MySyscall(pTabSheet_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_SetOnShow)
 void
-TabSheet_SetOnShow(TTabSheet AObj, TNotifyEvent AEventId) {
+TabSheet_SetOnShow(TTabSheet AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(TabSheet_SetOnShow)
-    MySyscall(pTabSheet_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTabSheet_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TabSheet_GetDockClientCount)
@@ -56172,107 +56918,107 @@ Button_SetVisible(TButton AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Button_SetOnClick)
 void
-Button_SetOnClick(TButton AObj, TNotifyEvent AEventId) {
+Button_SetOnClick(TButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnClick)
-    MySyscall(pButton_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnContextPopup)
 void
-Button_SetOnContextPopup(TButton AObj, TContextPopupEvent AEventId) {
+Button_SetOnContextPopup(TButton AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnContextPopup)
-    MySyscall(pButton_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnDragDrop)
 void
-Button_SetOnDragDrop(TButton AObj, TDragDropEvent AEventId) {
+Button_SetOnDragDrop(TButton AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnDragDrop)
-    MySyscall(pButton_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnDragOver)
 void
-Button_SetOnDragOver(TButton AObj, TDragOverEvent AEventId) {
+Button_SetOnDragOver(TButton AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnDragOver)
-    MySyscall(pButton_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnEndDrag)
 void
-Button_SetOnEndDrag(TButton AObj, TEndDragEvent AEventId) {
+Button_SetOnEndDrag(TButton AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnEndDrag)
-    MySyscall(pButton_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnEnter)
 void
-Button_SetOnEnter(TButton AObj, TNotifyEvent AEventId) {
+Button_SetOnEnter(TButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnEnter)
-    MySyscall(pButton_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnExit)
 void
-Button_SetOnExit(TButton AObj, TNotifyEvent AEventId) {
+Button_SetOnExit(TButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnExit)
-    MySyscall(pButton_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnKeyDown)
 void
-Button_SetOnKeyDown(TButton AObj, TKeyEvent AEventId) {
+Button_SetOnKeyDown(TButton AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnKeyDown)
-    MySyscall(pButton_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnKeyPress)
 void
-Button_SetOnKeyPress(TButton AObj, TKeyPressEvent AEventId) {
+Button_SetOnKeyPress(TButton AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnKeyPress)
-    MySyscall(pButton_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnKeyUp)
 void
-Button_SetOnKeyUp(TButton AObj, TKeyEvent AEventId) {
+Button_SetOnKeyUp(TButton AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnKeyUp)
-    MySyscall(pButton_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnMouseDown)
 void
-Button_SetOnMouseDown(TButton AObj, TMouseEvent AEventId) {
+Button_SetOnMouseDown(TButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnMouseDown)
-    MySyscall(pButton_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnMouseEnter)
 void
-Button_SetOnMouseEnter(TButton AObj, TNotifyEvent AEventId) {
+Button_SetOnMouseEnter(TButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnMouseEnter)
-    MySyscall(pButton_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnMouseLeave)
 void
-Button_SetOnMouseLeave(TButton AObj, TNotifyEvent AEventId) {
+Button_SetOnMouseLeave(TButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnMouseLeave)
-    MySyscall(pButton_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnMouseMove)
 void
-Button_SetOnMouseMove(TButton AObj, TMouseMoveEvent AEventId) {
+Button_SetOnMouseMove(TButton AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnMouseMove)
-    MySyscall(pButton_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_SetOnMouseUp)
 void
-Button_SetOnMouseUp(TButton AObj, TMouseEvent AEventId) {
+Button_SetOnMouseUp(TButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Button_SetOnMouseUp)
-    MySyscall(pButton_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Button_GetDockClientCount)
@@ -57714,121 +58460,121 @@ Edit_SetVisible(TEdit AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Edit_SetOnChange)
 void
-Edit_SetOnChange(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnChange(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnChange)
-    MySyscall(pEdit_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnClick)
 void
-Edit_SetOnClick(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnClick(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnClick)
-    MySyscall(pEdit_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnContextPopup)
 void
-Edit_SetOnContextPopup(TEdit AObj, TContextPopupEvent AEventId) {
+Edit_SetOnContextPopup(TEdit AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnContextPopup)
-    MySyscall(pEdit_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnDblClick)
 void
-Edit_SetOnDblClick(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnDblClick(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnDblClick)
-    MySyscall(pEdit_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnDragDrop)
 void
-Edit_SetOnDragDrop(TEdit AObj, TDragDropEvent AEventId) {
+Edit_SetOnDragDrop(TEdit AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnDragDrop)
-    MySyscall(pEdit_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnDragOver)
 void
-Edit_SetOnDragOver(TEdit AObj, TDragOverEvent AEventId) {
+Edit_SetOnDragOver(TEdit AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnDragOver)
-    MySyscall(pEdit_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnEndDrag)
 void
-Edit_SetOnEndDrag(TEdit AObj, TEndDragEvent AEventId) {
+Edit_SetOnEndDrag(TEdit AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnEndDrag)
-    MySyscall(pEdit_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnEnter)
 void
-Edit_SetOnEnter(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnEnter(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnEnter)
-    MySyscall(pEdit_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnExit)
 void
-Edit_SetOnExit(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnExit(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnExit)
-    MySyscall(pEdit_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnKeyDown)
 void
-Edit_SetOnKeyDown(TEdit AObj, TKeyEvent AEventId) {
+Edit_SetOnKeyDown(TEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnKeyDown)
-    MySyscall(pEdit_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnKeyPress)
 void
-Edit_SetOnKeyPress(TEdit AObj, TKeyPressEvent AEventId) {
+Edit_SetOnKeyPress(TEdit AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnKeyPress)
-    MySyscall(pEdit_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnKeyUp)
 void
-Edit_SetOnKeyUp(TEdit AObj, TKeyEvent AEventId) {
+Edit_SetOnKeyUp(TEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnKeyUp)
-    MySyscall(pEdit_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnMouseDown)
 void
-Edit_SetOnMouseDown(TEdit AObj, TMouseEvent AEventId) {
+Edit_SetOnMouseDown(TEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnMouseDown)
-    MySyscall(pEdit_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnMouseEnter)
 void
-Edit_SetOnMouseEnter(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnMouseEnter(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnMouseEnter)
-    MySyscall(pEdit_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnMouseLeave)
 void
-Edit_SetOnMouseLeave(TEdit AObj, TNotifyEvent AEventId) {
+Edit_SetOnMouseLeave(TEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnMouseLeave)
-    MySyscall(pEdit_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnMouseMove)
 void
-Edit_SetOnMouseMove(TEdit AObj, TMouseMoveEvent AEventId) {
+Edit_SetOnMouseMove(TEdit AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnMouseMove)
-    MySyscall(pEdit_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_SetOnMouseUp)
 void
-Edit_SetOnMouseUp(TEdit AObj, TMouseEvent AEventId) {
+Edit_SetOnMouseUp(TEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Edit_SetOnMouseUp)
-    MySyscall(pEdit_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Edit_GetCanUndo)
@@ -58385,6 +59131,34 @@ Screen_Free(TScreen AObj) {
     MySyscall(pScreen_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Screen_BeginTempCursor)
+void
+Screen_BeginTempCursor(TScreen AObj, TCursor aCursor) {
+    GET_FUNC_ADDR(Screen_BeginTempCursor)
+    MySyscall(pScreen_BeginTempCursor, 2, AObj, aCursor ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Screen_EndTempCursor)
+void
+Screen_EndTempCursor(TScreen AObj, TCursor aCursor) {
+    GET_FUNC_ADDR(Screen_EndTempCursor)
+    MySyscall(pScreen_EndTempCursor, 2, AObj, aCursor ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Screen_BeginWaitCursor)
+void
+Screen_BeginWaitCursor(TScreen AObj) {
+    GET_FUNC_ADDR(Screen_BeginWaitCursor)
+    MySyscall(pScreen_BeginWaitCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Screen_EndWaitCursor)
+void
+Screen_EndWaitCursor(TScreen AObj) {
+    GET_FUNC_ADDR(Screen_EndWaitCursor)
+    MySyscall(pScreen_EndWaitCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Screen_FindComponent)
 TComponent
 Screen_FindComponent(TScreen AObj, CChar char* AName) {
@@ -58462,6 +59236,20 @@ Screen_ToString(TScreen AObj) {
     return (char*)MySyscall(pScreen_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Screen_GetRealCursor)
+TCursor
+Screen_GetRealCursor(TScreen AObj) {
+    GET_FUNC_ADDR(Screen_GetRealCursor)
+    return (TCursor)MySyscall(pScreen_GetRealCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Screen_GetFocusedForm)
+TForm
+Screen_GetFocusedForm(TScreen AObj) {
+    GET_FUNC_ADDR(Screen_GetFocusedForm)
+    return (TForm)MySyscall(pScreen_GetFocusedForm, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Screen_GetActiveControl)
 TWinControl
 Screen_GetActiveControl(TScreen AObj) {
@@ -58495,13 +59283,6 @@ void
 Screen_SetCursor(TScreen AObj, TCursor AValue) {
     GET_FUNC_ADDR(Screen_SetCursor)
     MySyscall(pScreen_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Screen_GetFocusedForm)
-TForm
-Screen_GetFocusedForm(TScreen AObj) {
-    GET_FUNC_ADDR(Screen_GetFocusedForm)
-    return (TForm)MySyscall(pScreen_GetFocusedForm, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Screen_GetMonitorCount)
@@ -60422,72 +61203,72 @@ SpinEdit_SetVisible(TSpinEdit AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnChange)
 void
-SpinEdit_SetOnChange(TSpinEdit AObj, TNotifyEvent AEventId) {
+SpinEdit_SetOnChange(TSpinEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnChange)
-    MySyscall(pSpinEdit_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnClick)
 void
-SpinEdit_SetOnClick(TSpinEdit AObj, TNotifyEvent AEventId) {
+SpinEdit_SetOnClick(TSpinEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnClick)
-    MySyscall(pSpinEdit_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnEnter)
 void
-SpinEdit_SetOnEnter(TSpinEdit AObj, TNotifyEvent AEventId) {
+SpinEdit_SetOnEnter(TSpinEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnEnter)
-    MySyscall(pSpinEdit_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnExit)
 void
-SpinEdit_SetOnExit(TSpinEdit AObj, TNotifyEvent AEventId) {
+SpinEdit_SetOnExit(TSpinEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnExit)
-    MySyscall(pSpinEdit_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnKeyDown)
 void
-SpinEdit_SetOnKeyDown(TSpinEdit AObj, TKeyEvent AEventId) {
+SpinEdit_SetOnKeyDown(TSpinEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnKeyDown)
-    MySyscall(pSpinEdit_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnKeyPress)
 void
-SpinEdit_SetOnKeyPress(TSpinEdit AObj, TKeyPressEvent AEventId) {
+SpinEdit_SetOnKeyPress(TSpinEdit AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnKeyPress)
-    MySyscall(pSpinEdit_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnKeyUp)
 void
-SpinEdit_SetOnKeyUp(TSpinEdit AObj, TKeyEvent AEventId) {
+SpinEdit_SetOnKeyUp(TSpinEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnKeyUp)
-    MySyscall(pSpinEdit_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnMouseDown)
 void
-SpinEdit_SetOnMouseDown(TSpinEdit AObj, TMouseEvent AEventId) {
+SpinEdit_SetOnMouseDown(TSpinEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnMouseDown)
-    MySyscall(pSpinEdit_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnMouseMove)
 void
-SpinEdit_SetOnMouseMove(TSpinEdit AObj, TMouseMoveEvent AEventId) {
+SpinEdit_SetOnMouseMove(TSpinEdit AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnMouseMove)
-    MySyscall(pSpinEdit_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_SetOnMouseUp)
 void
-SpinEdit_SetOnMouseUp(TSpinEdit AObj, TMouseEvent AEventId) {
+SpinEdit_SetOnMouseUp(TSpinEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(SpinEdit_SetOnMouseUp)
-    MySyscall(pSpinEdit_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSpinEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SpinEdit_GetAlignment)
@@ -61126,6 +61907,4803 @@ SpinEdit_StaticClassType() {
     return (TClass)MySyscall(pSpinEdit_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+// -------------------TFloatSpinEdit-------------------
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Create)
+TFloatSpinEdit
+FloatSpinEdit_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(FloatSpinEdit_Create)
+    return (TFloatSpinEdit)MySyscall(pFloatSpinEdit_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Free)
+void
+FloatSpinEdit_Free(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Free)
+    MySyscall(pFloatSpinEdit_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Clear)
+void
+FloatSpinEdit_Clear(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Clear)
+    MySyscall(pFloatSpinEdit_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ClearSelection)
+void
+FloatSpinEdit_ClearSelection(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_ClearSelection)
+    MySyscall(pFloatSpinEdit_ClearSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_CopyToClipboard)
+void
+FloatSpinEdit_CopyToClipboard(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_CopyToClipboard)
+    MySyscall(pFloatSpinEdit_CopyToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_CutToClipboard)
+void
+FloatSpinEdit_CutToClipboard(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_CutToClipboard)
+    MySyscall(pFloatSpinEdit_CutToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_PasteFromClipboard)
+void
+FloatSpinEdit_PasteFromClipboard(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_PasteFromClipboard)
+    MySyscall(pFloatSpinEdit_PasteFromClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Undo)
+void
+FloatSpinEdit_Undo(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Undo)
+    MySyscall(pFloatSpinEdit_Undo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SelectAll)
+void
+FloatSpinEdit_SelectAll(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_SelectAll)
+    MySyscall(pFloatSpinEdit_SelectAll, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_CanFocus)
+BOOL
+FloatSpinEdit_CanFocus(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_CanFocus)
+    return (BOOL)MySyscall(pFloatSpinEdit_CanFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ContainsControl)
+BOOL
+FloatSpinEdit_ContainsControl(TFloatSpinEdit AObj, TControl Control) {
+    GET_FUNC_ADDR(FloatSpinEdit_ContainsControl)
+    return (BOOL)MySyscall(pFloatSpinEdit_ContainsControl, 2, AObj, Control ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ControlAtPos)
+TControl
+FloatSpinEdit_ControlAtPos(TFloatSpinEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+    GET_FUNC_ADDR(FloatSpinEdit_ControlAtPos)
+    return (TControl)MySyscall(pFloatSpinEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_DisableAlign)
+void
+FloatSpinEdit_DisableAlign(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_DisableAlign)
+    MySyscall(pFloatSpinEdit_DisableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_EnableAlign)
+void
+FloatSpinEdit_EnableAlign(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_EnableAlign)
+    MySyscall(pFloatSpinEdit_EnableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_FindChildControl)
+TControl
+FloatSpinEdit_FindChildControl(TFloatSpinEdit AObj, CChar char* ControlName) {
+    GET_FUNC_ADDR(FloatSpinEdit_FindChildControl)
+    return (TControl)MySyscall(pFloatSpinEdit_FindChildControl, 2, AObj, ControlName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_FlipChildren)
+void
+FloatSpinEdit_FlipChildren(TFloatSpinEdit AObj, BOOL AllLevels) {
+    GET_FUNC_ADDR(FloatSpinEdit_FlipChildren)
+    MySyscall(pFloatSpinEdit_FlipChildren, 2, AObj, AllLevels ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Focused)
+BOOL
+FloatSpinEdit_Focused(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Focused)
+    return (BOOL)MySyscall(pFloatSpinEdit_Focused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_HandleAllocated)
+BOOL
+FloatSpinEdit_HandleAllocated(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_HandleAllocated)
+    return (BOOL)MySyscall(pFloatSpinEdit_HandleAllocated, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_InsertControl)
+void
+FloatSpinEdit_InsertControl(TFloatSpinEdit AObj, TControl AControl) {
+    GET_FUNC_ADDR(FloatSpinEdit_InsertControl)
+    MySyscall(pFloatSpinEdit_InsertControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Invalidate)
+void
+FloatSpinEdit_Invalidate(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Invalidate)
+    MySyscall(pFloatSpinEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_PaintTo)
+void
+FloatSpinEdit_PaintTo(TFloatSpinEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(FloatSpinEdit_PaintTo)
+    MySyscall(pFloatSpinEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_RemoveControl)
+void
+FloatSpinEdit_RemoveControl(TFloatSpinEdit AObj, TControl AControl) {
+    GET_FUNC_ADDR(FloatSpinEdit_RemoveControl)
+    MySyscall(pFloatSpinEdit_RemoveControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Realign)
+void
+FloatSpinEdit_Realign(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Realign)
+    MySyscall(pFloatSpinEdit_Realign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Repaint)
+void
+FloatSpinEdit_Repaint(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Repaint)
+    MySyscall(pFloatSpinEdit_Repaint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleBy)
+void
+FloatSpinEdit_ScaleBy(TFloatSpinEdit AObj, int32_t M, int32_t D) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleBy)
+    MySyscall(pFloatSpinEdit_ScaleBy, 3, AObj, M, D ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScrollBy)
+void
+FloatSpinEdit_ScrollBy(TFloatSpinEdit AObj, int32_t DeltaX, int32_t DeltaY) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScrollBy)
+    MySyscall(pFloatSpinEdit_ScrollBy, 3, AObj, DeltaX, DeltaY ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetBounds)
+void
+FloatSpinEdit_SetBounds(TFloatSpinEdit AObj, int32_t ALeft, int32_t ATop, int32_t AWidth, int32_t AHeight) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetBounds)
+    MySyscall(pFloatSpinEdit_SetBounds, 5, AObj, ALeft, ATop, AWidth, AHeight ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetFocus)
+void
+FloatSpinEdit_SetFocus(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetFocus)
+    MySyscall(pFloatSpinEdit_SetFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Update)
+void
+FloatSpinEdit_Update(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Update)
+    MySyscall(pFloatSpinEdit_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_BringToFront)
+void
+FloatSpinEdit_BringToFront(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_BringToFront)
+    MySyscall(pFloatSpinEdit_BringToFront, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ClientToScreen)
+TPoint
+FloatSpinEdit_ClientToScreen(TFloatSpinEdit AObj, TPoint Point) {
+    GET_FUNC_ADDR(FloatSpinEdit_ClientToScreen)
+    TPoint result;
+    MySyscall(pFloatSpinEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ClientToParent)
+TPoint
+FloatSpinEdit_ClientToParent(TFloatSpinEdit AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(FloatSpinEdit_ClientToParent)
+    TPoint result;
+    MySyscall(pFloatSpinEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Dragging)
+BOOL
+FloatSpinEdit_Dragging(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Dragging)
+    return (BOOL)MySyscall(pFloatSpinEdit_Dragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_HasParent)
+BOOL
+FloatSpinEdit_HasParent(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_HasParent)
+    return (BOOL)MySyscall(pFloatSpinEdit_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Hide)
+void
+FloatSpinEdit_Hide(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Hide)
+    MySyscall(pFloatSpinEdit_Hide, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Perform)
+intptr_t
+FloatSpinEdit_Perform(TFloatSpinEdit AObj, uint32_t Msg, uintptr_t WParam, intptr_t LParam) {
+    GET_FUNC_ADDR(FloatSpinEdit_Perform)
+    return (intptr_t)MySyscall(pFloatSpinEdit_Perform, 4, AObj, Msg, WParam, LParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Refresh)
+void
+FloatSpinEdit_Refresh(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Refresh)
+    MySyscall(pFloatSpinEdit_Refresh, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScreenToClient)
+TPoint
+FloatSpinEdit_ScreenToClient(TFloatSpinEdit AObj, TPoint Point) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScreenToClient)
+    TPoint result;
+    MySyscall(pFloatSpinEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ParentToClient)
+TPoint
+FloatSpinEdit_ParentToClient(TFloatSpinEdit AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(FloatSpinEdit_ParentToClient)
+    TPoint result;
+    MySyscall(pFloatSpinEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SendToBack)
+void
+FloatSpinEdit_SendToBack(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_SendToBack)
+    MySyscall(pFloatSpinEdit_SendToBack, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Show)
+void
+FloatSpinEdit_Show(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Show)
+    MySyscall(pFloatSpinEdit_Show, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTextBuf)
+int32_t
+FloatSpinEdit_GetTextBuf(TFloatSpinEdit AObj, CChar char* Buffer, int32_t BufSize) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTextBuf)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTextLen)
+int32_t
+FloatSpinEdit_GetTextLen(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTextLen)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetTextLen, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetTextBuf)
+void
+FloatSpinEdit_SetTextBuf(TFloatSpinEdit AObj, CChar char* Buffer) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetTextBuf)
+    MySyscall(pFloatSpinEdit_SetTextBuf, 2, AObj, Buffer ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_FindComponent)
+TComponent
+FloatSpinEdit_FindComponent(TFloatSpinEdit AObj, CChar char* AName) {
+    GET_FUNC_ADDR(FloatSpinEdit_FindComponent)
+    return (TComponent)MySyscall(pFloatSpinEdit_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetNamePath)
+char*
+FloatSpinEdit_GetNamePath(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetNamePath)
+    return (char*)MySyscall(pFloatSpinEdit_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Assign)
+void
+FloatSpinEdit_Assign(TFloatSpinEdit AObj, TObject Source) {
+    GET_FUNC_ADDR(FloatSpinEdit_Assign)
+    MySyscall(pFloatSpinEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ClassType)
+TClass
+FloatSpinEdit_ClassType(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_ClassType)
+    return (TClass)MySyscall(pFloatSpinEdit_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ClassName)
+char*
+FloatSpinEdit_ClassName(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_ClassName)
+    return (char*)MySyscall(pFloatSpinEdit_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_InstanceSize)
+int32_t
+FloatSpinEdit_InstanceSize(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_InstanceSize)
+    return (int32_t)MySyscall(pFloatSpinEdit_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_InheritsFrom)
+BOOL
+FloatSpinEdit_InheritsFrom(TFloatSpinEdit AObj, TClass AClass) {
+    GET_FUNC_ADDR(FloatSpinEdit_InheritsFrom)
+    return (BOOL)MySyscall(pFloatSpinEdit_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Equals)
+BOOL
+FloatSpinEdit_Equals(TFloatSpinEdit AObj, TObject Obj) {
+    GET_FUNC_ADDR(FloatSpinEdit_Equals)
+    return (BOOL)MySyscall(pFloatSpinEdit_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetHashCode)
+int32_t
+FloatSpinEdit_GetHashCode(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetHashCode)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ToString)
+char*
+FloatSpinEdit_ToString(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_ToString)
+    return (char*)MySyscall(pFloatSpinEdit_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorToNeighbour)
+void
+FloatSpinEdit_AnchorToNeighbour(TFloatSpinEdit AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorToNeighbour)
+    MySyscall(pFloatSpinEdit_AnchorToNeighbour, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorParallel)
+void
+FloatSpinEdit_AnchorParallel(TFloatSpinEdit AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorParallel)
+    MySyscall(pFloatSpinEdit_AnchorParallel, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorHorizontalCenterTo)
+void
+FloatSpinEdit_AnchorHorizontalCenterTo(TFloatSpinEdit AObj, TControl ASibling) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorHorizontalCenterTo)
+    MySyscall(pFloatSpinEdit_AnchorHorizontalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorVerticalCenterTo)
+void
+FloatSpinEdit_AnchorVerticalCenterTo(TFloatSpinEdit AObj, TControl ASibling) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorVerticalCenterTo)
+    MySyscall(pFloatSpinEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorSame)
+void
+FloatSpinEdit_AnchorSame(TFloatSpinEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorSame)
+    MySyscall(pFloatSpinEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorAsAlign)
+void
+FloatSpinEdit_AnchorAsAlign(TFloatSpinEdit AObj, TAlign ATheAlign, int32_t ASpace) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorAsAlign)
+    MySyscall(pFloatSpinEdit_AnchorAsAlign, 3, AObj, ATheAlign, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AnchorClient)
+void
+FloatSpinEdit_AnchorClient(TFloatSpinEdit AObj, int32_t ASpace) {
+    GET_FUNC_ADDR(FloatSpinEdit_AnchorClient)
+    MySyscall(pFloatSpinEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleDesignToForm)
+int32_t
+FloatSpinEdit_ScaleDesignToForm(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleFormToDesign)
+int32_t
+FloatSpinEdit_ScaleFormToDesign(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Scale96ToForm)
+int32_t
+FloatSpinEdit_Scale96ToForm(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_Scale96ToForm)
+    return (int32_t)MySyscall(pFloatSpinEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleFormTo96)
+int32_t
+FloatSpinEdit_ScaleFormTo96(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleFormTo96)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Scale96ToFont)
+int32_t
+FloatSpinEdit_Scale96ToFont(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_Scale96ToFont)
+    return (int32_t)MySyscall(pFloatSpinEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleFontTo96)
+int32_t
+FloatSpinEdit_ScaleFontTo96(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleFontTo96)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleScreenToFont)
+int32_t
+FloatSpinEdit_ScaleScreenToFont(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleFontToScreen)
+int32_t
+FloatSpinEdit_ScaleFontToScreen(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_Scale96ToScreen)
+int32_t
+FloatSpinEdit_Scale96ToScreen(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_Scale96ToScreen)
+    return (int32_t)MySyscall(pFloatSpinEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleScreenTo96)
+int32_t
+FloatSpinEdit_ScaleScreenTo96(TFloatSpinEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pFloatSpinEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_AutoAdjustLayout)
+void
+FloatSpinEdit_AutoAdjustLayout(TFloatSpinEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(FloatSpinEdit_AutoAdjustLayout)
+    MySyscall(pFloatSpinEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_FixDesignFontsPPI)
+void
+FloatSpinEdit_FixDesignFontsPPI(TFloatSpinEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(FloatSpinEdit_FixDesignFontsPPI)
+    MySyscall(pFloatSpinEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_ScaleFontsPPI)
+void
+FloatSpinEdit_ScaleFontsPPI(TFloatSpinEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(FloatSpinEdit_ScaleFontsPPI)
+    MySyscall(pFloatSpinEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAutoSelected)
+BOOL
+FloatSpinEdit_GetAutoSelected(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAutoSelected)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetAutoSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAutoSelected)
+void
+FloatSpinEdit_SetAutoSelected(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAutoSelected)
+    MySyscall(pFloatSpinEdit_SetAutoSelected, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAlign)
+TAlign
+FloatSpinEdit_GetAlign(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAlign)
+    return (TAlign)MySyscall(pFloatSpinEdit_GetAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAlign)
+void
+FloatSpinEdit_SetAlign(TFloatSpinEdit AObj, TAlign AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAlign)
+    MySyscall(pFloatSpinEdit_SetAlign, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAlignment)
+TAlignment
+FloatSpinEdit_GetAlignment(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAlignment)
+    return (TAlignment)MySyscall(pFloatSpinEdit_GetAlignment, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAlignment)
+void
+FloatSpinEdit_SetAlignment(TFloatSpinEdit AObj, TAlignment AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAlignment)
+    MySyscall(pFloatSpinEdit_SetAlignment, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAnchors)
+TAnchors
+FloatSpinEdit_GetAnchors(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAnchors)
+    return (TAnchors)MySyscall(pFloatSpinEdit_GetAnchors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAnchors)
+void
+FloatSpinEdit_SetAnchors(TFloatSpinEdit AObj, TAnchors AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAnchors)
+    MySyscall(pFloatSpinEdit_SetAnchors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAutoSelect)
+BOOL
+FloatSpinEdit_GetAutoSelect(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAutoSelect)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetAutoSelect, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAutoSelect)
+void
+FloatSpinEdit_SetAutoSelect(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAutoSelect)
+    MySyscall(pFloatSpinEdit_SetAutoSelect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAutoSize)
+BOOL
+FloatSpinEdit_GetAutoSize(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAutoSize)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetAutoSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAutoSize)
+void
+FloatSpinEdit_SetAutoSize(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAutoSize)
+    MySyscall(pFloatSpinEdit_SetAutoSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetColor)
+TColor
+FloatSpinEdit_GetColor(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetColor)
+    return (TColor)MySyscall(pFloatSpinEdit_GetColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetColor)
+void
+FloatSpinEdit_SetColor(TFloatSpinEdit AObj, TColor AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetColor)
+    MySyscall(pFloatSpinEdit_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetConstraints)
+TSizeConstraints
+FloatSpinEdit_GetConstraints(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetConstraints)
+    return (TSizeConstraints)MySyscall(pFloatSpinEdit_GetConstraints, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetConstraints)
+void
+FloatSpinEdit_SetConstraints(TFloatSpinEdit AObj, TSizeConstraints AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetConstraints)
+    MySyscall(pFloatSpinEdit_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetEnabled)
+BOOL
+FloatSpinEdit_GetEnabled(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetEnabled)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetEnabled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetEnabled)
+void
+FloatSpinEdit_SetEnabled(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetEnabled)
+    MySyscall(pFloatSpinEdit_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetFont)
+TFont
+FloatSpinEdit_GetFont(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetFont)
+    return (TFont)MySyscall(pFloatSpinEdit_GetFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetFont)
+void
+FloatSpinEdit_SetFont(TFloatSpinEdit AObj, TFont AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetFont)
+    MySyscall(pFloatSpinEdit_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetIncrement)
+double
+FloatSpinEdit_GetIncrement(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetIncrement)
+    double result;
+    MySyscall(pFloatSpinEdit_GetIncrement, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetIncrement)
+void
+FloatSpinEdit_SetIncrement(TFloatSpinEdit AObj, double AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetIncrement)
+    MySyscall(pFloatSpinEdit_SetIncrement, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetMaxValue)
+double
+FloatSpinEdit_GetMaxValue(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetMaxValue)
+    double result;
+    MySyscall(pFloatSpinEdit_GetMaxValue, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetMaxValue)
+void
+FloatSpinEdit_SetMaxValue(TFloatSpinEdit AObj, double AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetMaxValue)
+    MySyscall(pFloatSpinEdit_SetMaxValue, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetMinValue)
+double
+FloatSpinEdit_GetMinValue(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetMinValue)
+    double result;
+    MySyscall(pFloatSpinEdit_GetMinValue, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetMinValue)
+void
+FloatSpinEdit_SetMinValue(TFloatSpinEdit AObj, double AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetMinValue)
+    MySyscall(pFloatSpinEdit_SetMinValue, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnChange)
+void
+FloatSpinEdit_SetOnChange(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnChange)
+    MySyscall(pFloatSpinEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnClick)
+void
+FloatSpinEdit_SetOnClick(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnClick)
+    MySyscall(pFloatSpinEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnEnter)
+void
+FloatSpinEdit_SetOnEnter(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnEnter)
+    MySyscall(pFloatSpinEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnExit)
+void
+FloatSpinEdit_SetOnExit(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnExit)
+    MySyscall(pFloatSpinEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnKeyDown)
+void
+FloatSpinEdit_SetOnKeyDown(TFloatSpinEdit AObj, TKeyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnKeyDown)
+    MySyscall(pFloatSpinEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnKeyPress)
+void
+FloatSpinEdit_SetOnKeyPress(TFloatSpinEdit AObj, TKeyPressEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnKeyPress)
+    MySyscall(pFloatSpinEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnKeyUp)
+void
+FloatSpinEdit_SetOnKeyUp(TFloatSpinEdit AObj, TKeyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnKeyUp)
+    MySyscall(pFloatSpinEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseDown)
+void
+FloatSpinEdit_SetOnMouseDown(TFloatSpinEdit AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseDown)
+    MySyscall(pFloatSpinEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseEnter)
+void
+FloatSpinEdit_SetOnMouseEnter(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseEnter)
+    MySyscall(pFloatSpinEdit_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseLeave)
+void
+FloatSpinEdit_SetOnMouseLeave(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseLeave)
+    MySyscall(pFloatSpinEdit_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseMove)
+void
+FloatSpinEdit_SetOnMouseMove(TFloatSpinEdit AObj, TMouseMoveEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseMove)
+    MySyscall(pFloatSpinEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseUp)
+void
+FloatSpinEdit_SetOnMouseUp(TFloatSpinEdit AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseUp)
+    MySyscall(pFloatSpinEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseWheel)
+void
+FloatSpinEdit_SetOnMouseWheel(TFloatSpinEdit AObj, TMouseWheelEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseWheel)
+    MySyscall(pFloatSpinEdit_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseWheelDown)
+void
+FloatSpinEdit_SetOnMouseWheelDown(TFloatSpinEdit AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseWheelDown)
+    MySyscall(pFloatSpinEdit_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnMouseWheelUp)
+void
+FloatSpinEdit_SetOnMouseWheelUp(TFloatSpinEdit AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnMouseWheelUp)
+    MySyscall(pFloatSpinEdit_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetOnResize)
+void
+FloatSpinEdit_SetOnResize(TFloatSpinEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetOnResize)
+    MySyscall(pFloatSpinEdit_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetParentColor)
+BOOL
+FloatSpinEdit_GetParentColor(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetParentColor)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetParentColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetParentColor)
+void
+FloatSpinEdit_SetParentColor(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetParentColor)
+    MySyscall(pFloatSpinEdit_SetParentColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetParentFont)
+BOOL
+FloatSpinEdit_GetParentFont(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetParentFont)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetParentFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetParentFont)
+void
+FloatSpinEdit_SetParentFont(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetParentFont)
+    MySyscall(pFloatSpinEdit_SetParentFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetParentShowHint)
+BOOL
+FloatSpinEdit_GetParentShowHint(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetParentShowHint)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetParentShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetParentShowHint)
+void
+FloatSpinEdit_SetParentShowHint(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetParentShowHint)
+    MySyscall(pFloatSpinEdit_SetParentShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetPopupMenu)
+TPopupMenu
+FloatSpinEdit_GetPopupMenu(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetPopupMenu)
+    return (TPopupMenu)MySyscall(pFloatSpinEdit_GetPopupMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetPopupMenu)
+void
+FloatSpinEdit_SetPopupMenu(TFloatSpinEdit AObj, TPopupMenu AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetPopupMenu)
+    MySyscall(pFloatSpinEdit_SetPopupMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetReadOnly)
+BOOL
+FloatSpinEdit_GetReadOnly(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetReadOnly)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetReadOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetReadOnly)
+void
+FloatSpinEdit_SetReadOnly(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetReadOnly)
+    MySyscall(pFloatSpinEdit_SetReadOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetShowHint)
+BOOL
+FloatSpinEdit_GetShowHint(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetShowHint)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetShowHint)
+void
+FloatSpinEdit_SetShowHint(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetShowHint)
+    MySyscall(pFloatSpinEdit_SetShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTabStop)
+BOOL
+FloatSpinEdit_GetTabStop(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTabStop)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetTabStop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetTabStop)
+void
+FloatSpinEdit_SetTabStop(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetTabStop)
+    MySyscall(pFloatSpinEdit_SetTabStop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTabOrder)
+TTabOrder
+FloatSpinEdit_GetTabOrder(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTabOrder)
+    return (TTabOrder)MySyscall(pFloatSpinEdit_GetTabOrder, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetTabOrder)
+void
+FloatSpinEdit_SetTabOrder(TFloatSpinEdit AObj, TTabOrder AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetTabOrder)
+    MySyscall(pFloatSpinEdit_SetTabOrder, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetValue)
+double
+FloatSpinEdit_GetValue(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetValue)
+    double result;
+    MySyscall(pFloatSpinEdit_GetValue, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetValue)
+void
+FloatSpinEdit_SetValue(TFloatSpinEdit AObj, double AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetValue)
+    MySyscall(pFloatSpinEdit_SetValue, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetVisible)
+BOOL
+FloatSpinEdit_GetVisible(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetVisible)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetVisible)
+void
+FloatSpinEdit_SetVisible(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetVisible)
+    MySyscall(pFloatSpinEdit_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetCanUndo)
+BOOL
+FloatSpinEdit_GetCanUndo(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetCanUndo)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetCanUndo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetModified)
+BOOL
+FloatSpinEdit_GetModified(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetModified)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetModified)
+void
+FloatSpinEdit_SetModified(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetModified)
+    MySyscall(pFloatSpinEdit_SetModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetSelLength)
+int32_t
+FloatSpinEdit_GetSelLength(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetSelLength)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetSelLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetSelLength)
+void
+FloatSpinEdit_SetSelLength(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetSelLength)
+    MySyscall(pFloatSpinEdit_SetSelLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetSelStart)
+int32_t
+FloatSpinEdit_GetSelStart(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetSelStart)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetSelStart, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetSelStart)
+void
+FloatSpinEdit_SetSelStart(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetSelStart)
+    MySyscall(pFloatSpinEdit_SetSelStart, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetSelText)
+char*
+FloatSpinEdit_GetSelText(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetSelText)
+    return (char*)MySyscall(pFloatSpinEdit_GetSelText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetSelText)
+void
+FloatSpinEdit_SetSelText(TFloatSpinEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetSelText)
+    MySyscall(pFloatSpinEdit_SetSelText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetText)
+char*
+FloatSpinEdit_GetText(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetText)
+    return (char*)MySyscall(pFloatSpinEdit_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetText)
+void
+FloatSpinEdit_SetText(TFloatSpinEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetText)
+    MySyscall(pFloatSpinEdit_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTextHint)
+char*
+FloatSpinEdit_GetTextHint(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTextHint)
+    return (char*)MySyscall(pFloatSpinEdit_GetTextHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetTextHint)
+void
+FloatSpinEdit_SetTextHint(TFloatSpinEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetTextHint)
+    MySyscall(pFloatSpinEdit_SetTextHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetDockClientCount)
+int32_t
+FloatSpinEdit_GetDockClientCount(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetDockClientCount)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetDockSite)
+BOOL
+FloatSpinEdit_GetDockSite(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetDockSite)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetDockSite, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetDockSite)
+void
+FloatSpinEdit_SetDockSite(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetDockSite)
+    MySyscall(pFloatSpinEdit_SetDockSite, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetDoubleBuffered)
+BOOL
+FloatSpinEdit_GetDoubleBuffered(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetDoubleBuffered)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetDoubleBuffered)
+void
+FloatSpinEdit_SetDoubleBuffered(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetDoubleBuffered)
+    MySyscall(pFloatSpinEdit_SetDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetMouseInClient)
+BOOL
+FloatSpinEdit_GetMouseInClient(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetMouseInClient)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetMouseInClient, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetVisibleDockClientCount)
+int32_t
+FloatSpinEdit_GetVisibleDockClientCount(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetVisibleDockClientCount)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetVisibleDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetBrush)
+TBrush
+FloatSpinEdit_GetBrush(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetBrush)
+    return (TBrush)MySyscall(pFloatSpinEdit_GetBrush, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetControlCount)
+int32_t
+FloatSpinEdit_GetControlCount(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetControlCount)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetControlCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetHandle)
+HWND
+FloatSpinEdit_GetHandle(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetHandle)
+    return (HWND)MySyscall(pFloatSpinEdit_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetParentDoubleBuffered)
+BOOL
+FloatSpinEdit_GetParentDoubleBuffered(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetParentDoubleBuffered)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetParentDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetParentDoubleBuffered)
+void
+FloatSpinEdit_SetParentDoubleBuffered(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetParentDoubleBuffered)
+    MySyscall(pFloatSpinEdit_SetParentDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetParentWindow)
+HWND
+FloatSpinEdit_GetParentWindow(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetParentWindow)
+    return (HWND)MySyscall(pFloatSpinEdit_GetParentWindow, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetParentWindow)
+void
+FloatSpinEdit_SetParentWindow(TFloatSpinEdit AObj, HWND AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetParentWindow)
+    MySyscall(pFloatSpinEdit_SetParentWindow, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetShowing)
+BOOL
+FloatSpinEdit_GetShowing(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetShowing)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetShowing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetUseDockManager)
+BOOL
+FloatSpinEdit_GetUseDockManager(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetUseDockManager)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetUseDockManager, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetUseDockManager)
+void
+FloatSpinEdit_SetUseDockManager(TFloatSpinEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetUseDockManager)
+    MySyscall(pFloatSpinEdit_SetUseDockManager, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAction)
+TAction
+FloatSpinEdit_GetAction(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAction)
+    return (TAction)MySyscall(pFloatSpinEdit_GetAction, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAction)
+void
+FloatSpinEdit_SetAction(TFloatSpinEdit AObj, TAction AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAction)
+    MySyscall(pFloatSpinEdit_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetBiDiMode)
+TBiDiMode
+FloatSpinEdit_GetBiDiMode(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pFloatSpinEdit_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetBiDiMode)
+void
+FloatSpinEdit_SetBiDiMode(TFloatSpinEdit AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetBiDiMode)
+    MySyscall(pFloatSpinEdit_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetBoundsRect)
+TRect
+FloatSpinEdit_GetBoundsRect(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetBoundsRect)
+    TRect result;
+    MySyscall(pFloatSpinEdit_GetBoundsRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetBoundsRect)
+void
+FloatSpinEdit_SetBoundsRect(TFloatSpinEdit AObj, TRect AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetBoundsRect)
+    MySyscall(pFloatSpinEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetClientHeight)
+int32_t
+FloatSpinEdit_GetClientHeight(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetClientHeight)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetClientHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetClientHeight)
+void
+FloatSpinEdit_SetClientHeight(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetClientHeight)
+    MySyscall(pFloatSpinEdit_SetClientHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetClientOrigin)
+TPoint
+FloatSpinEdit_GetClientOrigin(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetClientOrigin)
+    TPoint result;
+    MySyscall(pFloatSpinEdit_GetClientOrigin, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetClientRect)
+TRect
+FloatSpinEdit_GetClientRect(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetClientRect)
+    TRect result;
+    MySyscall(pFloatSpinEdit_GetClientRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetClientWidth)
+int32_t
+FloatSpinEdit_GetClientWidth(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetClientWidth)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetClientWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetClientWidth)
+void
+FloatSpinEdit_SetClientWidth(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetClientWidth)
+    MySyscall(pFloatSpinEdit_SetClientWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetControlState)
+TControlState
+FloatSpinEdit_GetControlState(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetControlState)
+    return (TControlState)MySyscall(pFloatSpinEdit_GetControlState, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetControlState)
+void
+FloatSpinEdit_SetControlState(TFloatSpinEdit AObj, TControlState AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetControlState)
+    MySyscall(pFloatSpinEdit_SetControlState, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetControlStyle)
+TControlStyle
+FloatSpinEdit_GetControlStyle(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetControlStyle)
+    return (TControlStyle)MySyscall(pFloatSpinEdit_GetControlStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetControlStyle)
+void
+FloatSpinEdit_SetControlStyle(TFloatSpinEdit AObj, TControlStyle AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetControlStyle)
+    MySyscall(pFloatSpinEdit_SetControlStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetFloating)
+BOOL
+FloatSpinEdit_GetFloating(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetFloating)
+    return (BOOL)MySyscall(pFloatSpinEdit_GetFloating, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetParent)
+TWinControl
+FloatSpinEdit_GetParent(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetParent)
+    return (TWinControl)MySyscall(pFloatSpinEdit_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetParent)
+void
+FloatSpinEdit_SetParent(TFloatSpinEdit AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetParent)
+    MySyscall(pFloatSpinEdit_SetParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetLeft)
+int32_t
+FloatSpinEdit_GetLeft(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetLeft)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetLeft)
+void
+FloatSpinEdit_SetLeft(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetLeft)
+    MySyscall(pFloatSpinEdit_SetLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTop)
+int32_t
+FloatSpinEdit_GetTop(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTop)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetTop)
+void
+FloatSpinEdit_SetTop(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetTop)
+    MySyscall(pFloatSpinEdit_SetTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetWidth)
+int32_t
+FloatSpinEdit_GetWidth(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetWidth)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetWidth)
+void
+FloatSpinEdit_SetWidth(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetWidth)
+    MySyscall(pFloatSpinEdit_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetHeight)
+int32_t
+FloatSpinEdit_GetHeight(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetHeight)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetHeight)
+void
+FloatSpinEdit_SetHeight(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetHeight)
+    MySyscall(pFloatSpinEdit_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetCursor)
+TCursor
+FloatSpinEdit_GetCursor(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetCursor)
+    return (TCursor)MySyscall(pFloatSpinEdit_GetCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetCursor)
+void
+FloatSpinEdit_SetCursor(TFloatSpinEdit AObj, TCursor AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetCursor)
+    MySyscall(pFloatSpinEdit_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetHint)
+char*
+FloatSpinEdit_GetHint(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetHint)
+    return (char*)MySyscall(pFloatSpinEdit_GetHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetHint)
+void
+FloatSpinEdit_SetHint(TFloatSpinEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetHint)
+    MySyscall(pFloatSpinEdit_SetHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetComponentCount)
+int32_t
+FloatSpinEdit_GetComponentCount(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetComponentCount)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetComponentIndex)
+int32_t
+FloatSpinEdit_GetComponentIndex(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetComponentIndex)
+    return (int32_t)MySyscall(pFloatSpinEdit_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetComponentIndex)
+void
+FloatSpinEdit_SetComponentIndex(TFloatSpinEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetComponentIndex)
+    MySyscall(pFloatSpinEdit_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetOwner)
+TComponent
+FloatSpinEdit_GetOwner(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetOwner)
+    return (TComponent)MySyscall(pFloatSpinEdit_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetName)
+char*
+FloatSpinEdit_GetName(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetName)
+    return (char*)MySyscall(pFloatSpinEdit_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetName)
+void
+FloatSpinEdit_SetName(TFloatSpinEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetName)
+    MySyscall(pFloatSpinEdit_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetTag)
+intptr_t
+FloatSpinEdit_GetTag(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetTag)
+    return (intptr_t)MySyscall(pFloatSpinEdit_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetTag)
+void
+FloatSpinEdit_SetTag(TFloatSpinEdit AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetTag)
+    MySyscall(pFloatSpinEdit_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAnchorSideLeft)
+TAnchorSide
+FloatSpinEdit_GetAnchorSideLeft(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAnchorSideLeft)
+    return (TAnchorSide)MySyscall(pFloatSpinEdit_GetAnchorSideLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAnchorSideLeft)
+void
+FloatSpinEdit_SetAnchorSideLeft(TFloatSpinEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAnchorSideLeft)
+    MySyscall(pFloatSpinEdit_SetAnchorSideLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAnchorSideTop)
+TAnchorSide
+FloatSpinEdit_GetAnchorSideTop(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAnchorSideTop)
+    return (TAnchorSide)MySyscall(pFloatSpinEdit_GetAnchorSideTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAnchorSideTop)
+void
+FloatSpinEdit_SetAnchorSideTop(TFloatSpinEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAnchorSideTop)
+    MySyscall(pFloatSpinEdit_SetAnchorSideTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAnchorSideRight)
+TAnchorSide
+FloatSpinEdit_GetAnchorSideRight(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAnchorSideRight)
+    return (TAnchorSide)MySyscall(pFloatSpinEdit_GetAnchorSideRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAnchorSideRight)
+void
+FloatSpinEdit_SetAnchorSideRight(TFloatSpinEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAnchorSideRight)
+    MySyscall(pFloatSpinEdit_SetAnchorSideRight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAnchorSideBottom)
+TAnchorSide
+FloatSpinEdit_GetAnchorSideBottom(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAnchorSideBottom)
+    return (TAnchorSide)MySyscall(pFloatSpinEdit_GetAnchorSideBottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetAnchorSideBottom)
+void
+FloatSpinEdit_SetAnchorSideBottom(TFloatSpinEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetAnchorSideBottom)
+    MySyscall(pFloatSpinEdit_SetAnchorSideBottom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetChildSizing)
+TControlChildSizing
+FloatSpinEdit_GetChildSizing(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetChildSizing)
+    return (TControlChildSizing)MySyscall(pFloatSpinEdit_GetChildSizing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetChildSizing)
+void
+FloatSpinEdit_SetChildSizing(TFloatSpinEdit AObj, TControlChildSizing AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetChildSizing)
+    MySyscall(pFloatSpinEdit_SetChildSizing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetBorderSpacing)
+TControlBorderSpacing
+FloatSpinEdit_GetBorderSpacing(TFloatSpinEdit AObj) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetBorderSpacing)
+    return (TControlBorderSpacing)MySyscall(pFloatSpinEdit_GetBorderSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_SetBorderSpacing)
+void
+FloatSpinEdit_SetBorderSpacing(TFloatSpinEdit AObj, TControlBorderSpacing AValue) {
+    GET_FUNC_ADDR(FloatSpinEdit_SetBorderSpacing)
+    MySyscall(pFloatSpinEdit_SetBorderSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetDockClients)
+TControl
+FloatSpinEdit_GetDockClients(TFloatSpinEdit AObj, int32_t Index) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetDockClients)
+    return (TControl)MySyscall(pFloatSpinEdit_GetDockClients, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetControls)
+TControl
+FloatSpinEdit_GetControls(TFloatSpinEdit AObj, int32_t Index) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetControls)
+    return (TControl)MySyscall(pFloatSpinEdit_GetControls, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetComponents)
+TComponent
+FloatSpinEdit_GetComponents(TFloatSpinEdit AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetComponents)
+    return (TComponent)MySyscall(pFloatSpinEdit_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_GetAnchorSide)
+TAnchorSide
+FloatSpinEdit_GetAnchorSide(TFloatSpinEdit AObj, TAnchorKind AKind) {
+    GET_FUNC_ADDR(FloatSpinEdit_GetAnchorSide)
+    return (TAnchorSide)MySyscall(pFloatSpinEdit_GetAnchorSide, 2, AObj, AKind ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FloatSpinEdit_StaticClassType)
+TClass
+FloatSpinEdit_StaticClassType() {
+    GET_FUNC_ADDR(FloatSpinEdit_StaticClassType)
+    return (TClass)MySyscall(pFloatSpinEdit_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+// -------------------TDirectoryEdit-------------------
+
+DEFINE_FUNC_PTR(DirectoryEdit_Create)
+TDirectoryEdit
+irectoryEdit_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(DirectoryEdit_Create)
+    return (TDirectoryEdit)MySyscall(pDirectoryEdit_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Free)
+void
+irectoryEdit_Free(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Free)
+    MySyscall(pDirectoryEdit_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetFocus)
+void
+irectoryEdit_SetFocus(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_SetFocus)
+    MySyscall(pDirectoryEdit_SetFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Focused)
+BOOL
+irectoryEdit_Focused(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Focused)
+    return (BOOL)MySyscall(pDirectoryEdit_Focused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Clear)
+void
+irectoryEdit_Clear(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Clear)
+    MySyscall(pDirectoryEdit_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ClearSelection)
+void
+irectoryEdit_ClearSelection(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_ClearSelection)
+    MySyscall(pDirectoryEdit_ClearSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_CopyToClipboard)
+void
+irectoryEdit_CopyToClipboard(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_CopyToClipboard)
+    MySyscall(pDirectoryEdit_CopyToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_CutToClipboard)
+void
+irectoryEdit_CutToClipboard(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_CutToClipboard)
+    MySyscall(pDirectoryEdit_CutToClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_PasteFromClipboard)
+void
+irectoryEdit_PasteFromClipboard(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_PasteFromClipboard)
+    MySyscall(pDirectoryEdit_PasteFromClipboard, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SelectAll)
+void
+irectoryEdit_SelectAll(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_SelectAll)
+    MySyscall(pDirectoryEdit_SelectAll, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Undo)
+void
+irectoryEdit_Undo(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Undo)
+    MySyscall(pDirectoryEdit_Undo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ValidateEdit)
+void
+irectoryEdit_ValidateEdit(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_ValidateEdit)
+    MySyscall(pDirectoryEdit_ValidateEdit, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_CanFocus)
+BOOL
+irectoryEdit_CanFocus(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_CanFocus)
+    return (BOOL)MySyscall(pDirectoryEdit_CanFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ContainsControl)
+BOOL
+irectoryEdit_ContainsControl(TDirectoryEdit AObj, TControl Control) {
+    GET_FUNC_ADDR(DirectoryEdit_ContainsControl)
+    return (BOOL)MySyscall(pDirectoryEdit_ContainsControl, 2, AObj, Control ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ControlAtPos)
+TControl
+irectoryEdit_ControlAtPos(TDirectoryEdit AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+    GET_FUNC_ADDR(DirectoryEdit_ControlAtPos)
+    return (TControl)MySyscall(pDirectoryEdit_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_DisableAlign)
+void
+irectoryEdit_DisableAlign(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_DisableAlign)
+    MySyscall(pDirectoryEdit_DisableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_EnableAlign)
+void
+irectoryEdit_EnableAlign(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_EnableAlign)
+    MySyscall(pDirectoryEdit_EnableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_FindChildControl)
+TControl
+irectoryEdit_FindChildControl(TDirectoryEdit AObj, CChar char* ControlName) {
+    GET_FUNC_ADDR(DirectoryEdit_FindChildControl)
+    return (TControl)MySyscall(pDirectoryEdit_FindChildControl, 2, AObj, ControlName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_FlipChildren)
+void
+irectoryEdit_FlipChildren(TDirectoryEdit AObj, BOOL AllLevels) {
+    GET_FUNC_ADDR(DirectoryEdit_FlipChildren)
+    MySyscall(pDirectoryEdit_FlipChildren, 2, AObj, AllLevels ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_HandleAllocated)
+BOOL
+irectoryEdit_HandleAllocated(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_HandleAllocated)
+    return (BOOL)MySyscall(pDirectoryEdit_HandleAllocated, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_InsertControl)
+void
+irectoryEdit_InsertControl(TDirectoryEdit AObj, TControl AControl) {
+    GET_FUNC_ADDR(DirectoryEdit_InsertControl)
+    MySyscall(pDirectoryEdit_InsertControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Invalidate)
+void
+irectoryEdit_Invalidate(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Invalidate)
+    MySyscall(pDirectoryEdit_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_PaintTo)
+void
+irectoryEdit_PaintTo(TDirectoryEdit AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(DirectoryEdit_PaintTo)
+    MySyscall(pDirectoryEdit_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_RemoveControl)
+void
+irectoryEdit_RemoveControl(TDirectoryEdit AObj, TControl AControl) {
+    GET_FUNC_ADDR(DirectoryEdit_RemoveControl)
+    MySyscall(pDirectoryEdit_RemoveControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Realign)
+void
+irectoryEdit_Realign(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Realign)
+    MySyscall(pDirectoryEdit_Realign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Repaint)
+void
+irectoryEdit_Repaint(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Repaint)
+    MySyscall(pDirectoryEdit_Repaint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleBy)
+void
+irectoryEdit_ScaleBy(TDirectoryEdit AObj, int32_t M, int32_t D) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleBy)
+    MySyscall(pDirectoryEdit_ScaleBy, 3, AObj, M, D ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScrollBy)
+void
+irectoryEdit_ScrollBy(TDirectoryEdit AObj, int32_t DeltaX, int32_t DeltaY) {
+    GET_FUNC_ADDR(DirectoryEdit_ScrollBy)
+    MySyscall(pDirectoryEdit_ScrollBy, 3, AObj, DeltaX, DeltaY ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetBounds)
+void
+irectoryEdit_SetBounds(TDirectoryEdit AObj, int32_t ALeft, int32_t ATop, int32_t AWidth, int32_t AHeight) {
+    GET_FUNC_ADDR(DirectoryEdit_SetBounds)
+    MySyscall(pDirectoryEdit_SetBounds, 5, AObj, ALeft, ATop, AWidth, AHeight ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Update)
+void
+irectoryEdit_Update(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Update)
+    MySyscall(pDirectoryEdit_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_BringToFront)
+void
+irectoryEdit_BringToFront(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_BringToFront)
+    MySyscall(pDirectoryEdit_BringToFront, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ClientToScreen)
+TPoint
+irectoryEdit_ClientToScreen(TDirectoryEdit AObj, TPoint Point) {
+    GET_FUNC_ADDR(DirectoryEdit_ClientToScreen)
+    TPoint result;
+    MySyscall(pDirectoryEdit_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ClientToParent)
+TPoint
+irectoryEdit_ClientToParent(TDirectoryEdit AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(DirectoryEdit_ClientToParent)
+    TPoint result;
+    MySyscall(pDirectoryEdit_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Dragging)
+BOOL
+irectoryEdit_Dragging(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Dragging)
+    return (BOOL)MySyscall(pDirectoryEdit_Dragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_HasParent)
+BOOL
+irectoryEdit_HasParent(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_HasParent)
+    return (BOOL)MySyscall(pDirectoryEdit_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Hide)
+void
+irectoryEdit_Hide(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Hide)
+    MySyscall(pDirectoryEdit_Hide, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Perform)
+intptr_t
+irectoryEdit_Perform(TDirectoryEdit AObj, uint32_t Msg, uintptr_t WParam, intptr_t LParam) {
+    GET_FUNC_ADDR(DirectoryEdit_Perform)
+    return (intptr_t)MySyscall(pDirectoryEdit_Perform, 4, AObj, Msg, WParam, LParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Refresh)
+void
+irectoryEdit_Refresh(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Refresh)
+    MySyscall(pDirectoryEdit_Refresh, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScreenToClient)
+TPoint
+irectoryEdit_ScreenToClient(TDirectoryEdit AObj, TPoint Point) {
+    GET_FUNC_ADDR(DirectoryEdit_ScreenToClient)
+    TPoint result;
+    MySyscall(pDirectoryEdit_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ParentToClient)
+TPoint
+irectoryEdit_ParentToClient(TDirectoryEdit AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(DirectoryEdit_ParentToClient)
+    TPoint result;
+    MySyscall(pDirectoryEdit_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SendToBack)
+void
+irectoryEdit_SendToBack(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_SendToBack)
+    MySyscall(pDirectoryEdit_SendToBack, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Show)
+void
+irectoryEdit_Show(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_Show)
+    MySyscall(pDirectoryEdit_Show, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTextBuf)
+int32_t
+irectoryEdit_GetTextBuf(TDirectoryEdit AObj, CChar char* Buffer, int32_t BufSize) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTextBuf)
+    return (int32_t)MySyscall(pDirectoryEdit_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTextLen)
+int32_t
+irectoryEdit_GetTextLen(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTextLen)
+    return (int32_t)MySyscall(pDirectoryEdit_GetTextLen, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetTextBuf)
+void
+irectoryEdit_SetTextBuf(TDirectoryEdit AObj, CChar char* Buffer) {
+    GET_FUNC_ADDR(DirectoryEdit_SetTextBuf)
+    MySyscall(pDirectoryEdit_SetTextBuf, 2, AObj, Buffer ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_FindComponent)
+TComponent
+irectoryEdit_FindComponent(TDirectoryEdit AObj, CChar char* AName) {
+    GET_FUNC_ADDR(DirectoryEdit_FindComponent)
+    return (TComponent)MySyscall(pDirectoryEdit_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetNamePath)
+char*
+irectoryEdit_GetNamePath(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetNamePath)
+    return (char*)MySyscall(pDirectoryEdit_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Assign)
+void
+irectoryEdit_Assign(TDirectoryEdit AObj, TObject Source) {
+    GET_FUNC_ADDR(DirectoryEdit_Assign)
+    MySyscall(pDirectoryEdit_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ClassType)
+TClass
+irectoryEdit_ClassType(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_ClassType)
+    return (TClass)MySyscall(pDirectoryEdit_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ClassName)
+char*
+irectoryEdit_ClassName(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_ClassName)
+    return (char*)MySyscall(pDirectoryEdit_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_InstanceSize)
+int32_t
+DirectoryEdit_InstanceSize(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_InstanceSize)
+    return (int32_t)MySyscall(pDirectoryEdit_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_InheritsFrom)
+BOOL
+irectoryEdit_InheritsFrom(TDirectoryEdit AObj, TClass AClass) {
+    GET_FUNC_ADDR(DirectoryEdit_InheritsFrom)
+    return (BOOL)MySyscall(pDirectoryEdit_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Equals)
+BOOL
+irectoryEdit_Equals(TDirectoryEdit AObj, TObject Obj) {
+    GET_FUNC_ADDR(DirectoryEdit_Equals)
+    return (BOOL)MySyscall(pDirectoryEdit_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetHashCode)
+int32_t
+irectoryEdit_GetHashCode(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetHashCode)
+    return (int32_t)MySyscall(pDirectoryEdit_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ToString)
+char*
+irectoryEdit_ToString(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_ToString)
+    return (char*)MySyscall(pDirectoryEdit_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorToNeighbour)
+void
+irectoryEdit_AnchorToNeighbour(TDirectoryEdit AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorToNeighbour)
+    MySyscall(pDirectoryEdit_AnchorToNeighbour, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorParallel)
+void
+irectoryEdit_AnchorParallel(TDirectoryEdit AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorParallel)
+    MySyscall(pDirectoryEdit_AnchorParallel, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorHorizontalCenterTo)
+void
+irectoryEdit_AnchorHorizontalCenterTo(TDirectoryEdit AObj, TControl ASibling) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorHorizontalCenterTo)
+    MySyscall(pDirectoryEdit_AnchorHorizontalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorVerticalCenterTo)
+void
+irectoryEdit_AnchorVerticalCenterTo(TDirectoryEdit AObj, TControl ASibling) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorVerticalCenterTo)
+    MySyscall(pDirectoryEdit_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorSame)
+void
+irectoryEdit_AnchorSame(TDirectoryEdit AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorSame)
+    MySyscall(pDirectoryEdit_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorAsAlign)
+void
+irectoryEdit_AnchorAsAlign(TDirectoryEdit AObj, TAlign ATheAlign, int32_t ASpace) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorAsAlign)
+    MySyscall(pDirectoryEdit_AnchorAsAlign, 3, AObj, ATheAlign, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AnchorClient)
+void
+irectoryEdit_AnchorClient(TDirectoryEdit AObj, int32_t ASpace) {
+    GET_FUNC_ADDR(DirectoryEdit_AnchorClient)
+    MySyscall(pDirectoryEdit_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleDesignToForm)
+int32_t
+irectoryEdit_ScaleDesignToForm(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleDesignToForm)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleFormToDesign)
+int32_t
+irectoryEdit_ScaleFormToDesign(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleFormToDesign)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Scale96ToForm)
+int32_t
+irectoryEdit_Scale96ToForm(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_Scale96ToForm)
+    return (int32_t)MySyscall(pDirectoryEdit_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleFormTo96)
+int32_t
+irectoryEdit_ScaleFormTo96(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleFormTo96)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Scale96ToFont)
+int32_t
+irectoryEdit_Scale96ToFont(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_Scale96ToFont)
+    return (int32_t)MySyscall(pDirectoryEdit_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleFontTo96)
+int32_t
+irectoryEdit_ScaleFontTo96(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleFontTo96)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleScreenToFont)
+int32_t
+irectoryEdit_ScaleScreenToFont(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleScreenToFont)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleFontToScreen)
+int32_t
+irectoryEdit_ScaleFontToScreen(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleFontToScreen)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_Scale96ToScreen)
+int32_t
+irectoryEdit_Scale96ToScreen(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_Scale96ToScreen)
+    return (int32_t)MySyscall(pDirectoryEdit_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleScreenTo96)
+int32_t
+irectoryEdit_ScaleScreenTo96(TDirectoryEdit AObj, int32_t ASize) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleScreenTo96)
+    return (int32_t)MySyscall(pDirectoryEdit_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_AutoAdjustLayout)
+void
+irectoryEdit_AutoAdjustLayout(TDirectoryEdit AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(DirectoryEdit_AutoAdjustLayout)
+    MySyscall(pDirectoryEdit_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_FixDesignFontsPPI)
+void
+irectoryEdit_FixDesignFontsPPI(TDirectoryEdit AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(DirectoryEdit_FixDesignFontsPPI)
+    MySyscall(pDirectoryEdit_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_ScaleFontsPPI)
+void
+irectoryEdit_ScaleFontsPPI(TDirectoryEdit AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(DirectoryEdit_ScaleFontsPPI)
+    MySyscall(pDirectoryEdit_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAutoSelected)
+BOOL
+irectoryEdit_GetAutoSelected(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAutoSelected)
+    return (BOOL)MySyscall(pDirectoryEdit_GetAutoSelected, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAutoSelected)
+void
+irectoryEdit_SetAutoSelected(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAutoSelected)
+    MySyscall(pDirectoryEdit_SetAutoSelected, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDirectory)
+char*
+irectoryEdit_GetDirectory(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDirectory)
+    return (char*)MySyscall(pDirectoryEdit_GetDirectory, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDirectory)
+void
+irectoryEdit_SetDirectory(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDirectory)
+    MySyscall(pDirectoryEdit_SetDirectory, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetRootDir)
+char*
+irectoryEdit_GetRootDir(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetRootDir)
+    return (char*)MySyscall(pDirectoryEdit_GetRootDir, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetRootDir)
+void
+irectoryEdit_SetRootDir(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetRootDir)
+    MySyscall(pDirectoryEdit_SetRootDir, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnAcceptDirectory)
+void
+irectoryEdit_SetOnAcceptDirectory(TDirectoryEdit AObj, TAcceptFileNameEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnAcceptDirectory)
+    MySyscall(pDirectoryEdit_SetOnAcceptDirectory, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDialogTitle)
+char*
+irectoryEdit_GetDialogTitle(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDialogTitle)
+    return (char*)MySyscall(pDirectoryEdit_GetDialogTitle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDialogTitle)
+void
+irectoryEdit_SetDialogTitle(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDialogTitle)
+    MySyscall(pDirectoryEdit_SetDialogTitle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDialogOptions)
+TOpenOptions
+irectoryEdit_GetDialogOptions(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDialogOptions)
+    return (TOpenOptions)MySyscall(pDirectoryEdit_GetDialogOptions, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDialogOptions)
+void
+irectoryEdit_SetDialogOptions(TDirectoryEdit AObj, TOpenOptions AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDialogOptions)
+    MySyscall(pDirectoryEdit_SetDialogOptions, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetShowHidden)
+BOOL
+irectoryEdit_GetShowHidden(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetShowHidden)
+    return (BOOL)MySyscall(pDirectoryEdit_GetShowHidden, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetShowHidden)
+void
+irectoryEdit_SetShowHidden(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetShowHidden)
+    MySyscall(pDirectoryEdit_SetShowHidden, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetButtonCaption)
+char*
+irectoryEdit_GetButtonCaption(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetButtonCaption)
+    return (char*)MySyscall(pDirectoryEdit_GetButtonCaption, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetButtonCaption)
+void
+irectoryEdit_SetButtonCaption(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetButtonCaption)
+    MySyscall(pDirectoryEdit_SetButtonCaption, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetButtonCursor)
+TCursor
+irectoryEdit_GetButtonCursor(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetButtonCursor)
+    return (TCursor)MySyscall(pDirectoryEdit_GetButtonCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetButtonCursor)
+void
+irectoryEdit_SetButtonCursor(TDirectoryEdit AObj, TCursor AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetButtonCursor)
+    MySyscall(pDirectoryEdit_SetButtonCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetButtonHint)
+char*
+irectoryEdit_GetButtonHint(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetButtonHint)
+    return (char*)MySyscall(pDirectoryEdit_GetButtonHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetButtonHint)
+void
+irectoryEdit_SetButtonHint(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetButtonHint)
+    MySyscall(pDirectoryEdit_SetButtonHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetButtonOnlyWhenFocused)
+BOOL
+irectoryEdit_GetButtonOnlyWhenFocused(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetButtonOnlyWhenFocused)
+    return (BOOL)MySyscall(pDirectoryEdit_GetButtonOnlyWhenFocused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetButtonOnlyWhenFocused)
+void
+irectoryEdit_SetButtonOnlyWhenFocused(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetButtonOnlyWhenFocused)
+    MySyscall(pDirectoryEdit_SetButtonOnlyWhenFocused, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetButtonWidth)
+int32_t
+irectoryEdit_GetButtonWidth(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetButtonWidth)
+    return (int32_t)MySyscall(pDirectoryEdit_GetButtonWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetButtonWidth)
+void
+irectoryEdit_SetButtonWidth(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetButtonWidth)
+    MySyscall(pDirectoryEdit_SetButtonWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetConstraints)
+TSizeConstraints
+irectoryEdit_GetConstraints(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetConstraints)
+    return (TSizeConstraints)MySyscall(pDirectoryEdit_GetConstraints, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetConstraints)
+void
+irectoryEdit_SetConstraints(TDirectoryEdit AObj, TSizeConstraints AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetConstraints)
+    MySyscall(pDirectoryEdit_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDirectInput)
+BOOL
+irectoryEdit_GetDirectInput(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDirectInput)
+    return (BOOL)MySyscall(pDirectoryEdit_GetDirectInput, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDirectInput)
+void
+irectoryEdit_SetDirectInput(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDirectInput)
+    MySyscall(pDirectoryEdit_SetDirectInput, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetGlyph)
+TBitmap
+irectoryEdit_GetGlyph(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetGlyph)
+    return (TBitmap)MySyscall(pDirectoryEdit_GetGlyph, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetGlyph)
+void
+irectoryEdit_SetGlyph(TDirectoryEdit AObj, TBitmap AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetGlyph)
+    MySyscall(pDirectoryEdit_SetGlyph, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetNumGlyphs)
+int32_t
+irectoryEdit_GetNumGlyphs(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetNumGlyphs)
+    return (int32_t)MySyscall(pDirectoryEdit_GetNumGlyphs, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetNumGlyphs)
+void
+irectoryEdit_SetNumGlyphs(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetNumGlyphs)
+    MySyscall(pDirectoryEdit_SetNumGlyphs, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetImages)
+TImageList
+irectoryEdit_GetImages(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetImages)
+    return (TImageList)MySyscall(pDirectoryEdit_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetImages)
+void
+irectoryEdit_SetImages(TDirectoryEdit AObj, TImageList AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetImages)
+    MySyscall(pDirectoryEdit_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetImageIndex)
+int32_t
+irectoryEdit_GetImageIndex(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetImageIndex)
+    return (int32_t)MySyscall(pDirectoryEdit_GetImageIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetImageIndex)
+void
+irectoryEdit_SetImageIndex(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetImageIndex)
+    MySyscall(pDirectoryEdit_SetImageIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetImageWidth)
+int32_t
+irectoryEdit_GetImageWidth(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetImageWidth)
+    return (int32_t)MySyscall(pDirectoryEdit_GetImageWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetImageWidth)
+void
+irectoryEdit_SetImageWidth(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetImageWidth)
+    MySyscall(pDirectoryEdit_SetImageWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetFlat)
+BOOL
+irectoryEdit_GetFlat(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetFlat)
+    return (BOOL)MySyscall(pDirectoryEdit_GetFlat, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetFlat)
+void
+irectoryEdit_SetFlat(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetFlat)
+    MySyscall(pDirectoryEdit_SetFlat, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetFocusOnButtonClick)
+BOOL
+irectoryEdit_GetFocusOnButtonClick(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetFocusOnButtonClick)
+    return (BOOL)MySyscall(pDirectoryEdit_GetFocusOnButtonClick, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetFocusOnButtonClick)
+void
+irectoryEdit_SetFocusOnButtonClick(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetFocusOnButtonClick)
+    MySyscall(pDirectoryEdit_SetFocusOnButtonClick, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAlign)
+TAlign
+irectoryEdit_GetAlign(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAlign)
+    return (TAlign)MySyscall(pDirectoryEdit_GetAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAlign)
+void
+irectoryEdit_SetAlign(TDirectoryEdit AObj, TAlign AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAlign)
+    MySyscall(pDirectoryEdit_SetAlign, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAnchors)
+TAnchors
+irectoryEdit_GetAnchors(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAnchors)
+    return (TAnchors)MySyscall(pDirectoryEdit_GetAnchors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAnchors)
+void
+irectoryEdit_SetAnchors(TDirectoryEdit AObj, TAnchors AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAnchors)
+    MySyscall(pDirectoryEdit_SetAnchors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAutoSize)
+BOOL
+irectoryEdit_GetAutoSize(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAutoSize)
+    return (BOOL)MySyscall(pDirectoryEdit_GetAutoSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAutoSize)
+void
+irectoryEdit_SetAutoSize(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAutoSize)
+    MySyscall(pDirectoryEdit_SetAutoSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAutoSelect)
+BOOL
+irectoryEdit_GetAutoSelect(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAutoSelect)
+    return (BOOL)MySyscall(pDirectoryEdit_GetAutoSelect, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAutoSelect)
+void
+irectoryEdit_SetAutoSelect(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAutoSelect)
+    MySyscall(pDirectoryEdit_SetAutoSelect, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetColor)
+TColor
+irectoryEdit_GetColor(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetColor)
+    return (TColor)MySyscall(pDirectoryEdit_GetColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetColor)
+void
+irectoryEdit_SetColor(TDirectoryEdit AObj, TColor AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetColor)
+    MySyscall(pDirectoryEdit_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDragCursor)
+TCursor
+irectoryEdit_GetDragCursor(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDragCursor)
+    return (TCursor)MySyscall(pDirectoryEdit_GetDragCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDragCursor)
+void
+irectoryEdit_SetDragCursor(TDirectoryEdit AObj, TCursor AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDragCursor)
+    MySyscall(pDirectoryEdit_SetDragCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDragMode)
+TDragMode
+irectoryEdit_GetDragMode(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDragMode)
+    return (TDragMode)MySyscall(pDirectoryEdit_GetDragMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDragMode)
+void
+irectoryEdit_SetDragMode(TDirectoryEdit AObj, TDragMode AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDragMode)
+    MySyscall(pDirectoryEdit_SetDragMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetEnabled)
+BOOL
+irectoryEdit_GetEnabled(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetEnabled)
+    return (BOOL)MySyscall(pDirectoryEdit_GetEnabled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetEnabled)
+void
+irectoryEdit_SetEnabled(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetEnabled)
+    MySyscall(pDirectoryEdit_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetFont)
+TFont
+irectoryEdit_GetFont(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetFont)
+    return (TFont)MySyscall(pDirectoryEdit_GetFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetFont)
+void
+irectoryEdit_SetFont(TDirectoryEdit AObj, TFont AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetFont)
+    MySyscall(pDirectoryEdit_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetLayout)
+TLeftRight
+irectoryEdit_GetLayout(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetLayout)
+    return (TLeftRight)MySyscall(pDirectoryEdit_GetLayout, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetLayout)
+void
+irectoryEdit_SetLayout(TDirectoryEdit AObj, TLeftRight AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetLayout)
+    MySyscall(pDirectoryEdit_SetLayout, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetMaxLength)
+int32_t
+irectoryEdit_GetMaxLength(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetMaxLength)
+    return (int32_t)MySyscall(pDirectoryEdit_GetMaxLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetMaxLength)
+void
+irectoryEdit_SetMaxLength(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetMaxLength)
+    MySyscall(pDirectoryEdit_SetMaxLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetParentColor)
+BOOL
+irectoryEdit_GetParentColor(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetParentColor)
+    return (BOOL)MySyscall(pDirectoryEdit_GetParentColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetParentColor)
+void
+irectoryEdit_SetParentColor(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetParentColor)
+    MySyscall(pDirectoryEdit_SetParentColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetParentFont)
+BOOL
+irectoryEdit_GetParentFont(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetParentFont)
+    return (BOOL)MySyscall(pDirectoryEdit_GetParentFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetParentFont)
+void
+irectoryEdit_SetParentFont(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetParentFont)
+    MySyscall(pDirectoryEdit_SetParentFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetParentShowHint)
+BOOL
+irectoryEdit_GetParentShowHint(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetParentShowHint)
+    return (BOOL)MySyscall(pDirectoryEdit_GetParentShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetParentShowHint)
+void
+irectoryEdit_SetParentShowHint(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetParentShowHint)
+    MySyscall(pDirectoryEdit_SetParentShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetPopupMenu)
+TPopupMenu
+irectoryEdit_GetPopupMenu(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetPopupMenu)
+    return (TPopupMenu)MySyscall(pDirectoryEdit_GetPopupMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetPopupMenu)
+void
+irectoryEdit_SetPopupMenu(TDirectoryEdit AObj, TPopupMenu AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetPopupMenu)
+    MySyscall(pDirectoryEdit_SetPopupMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetReadOnly)
+BOOL
+irectoryEdit_GetReadOnly(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetReadOnly)
+    return (BOOL)MySyscall(pDirectoryEdit_GetReadOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetReadOnly)
+void
+irectoryEdit_SetReadOnly(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetReadOnly)
+    MySyscall(pDirectoryEdit_SetReadOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetShowHint)
+BOOL
+irectoryEdit_GetShowHint(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetShowHint)
+    return (BOOL)MySyscall(pDirectoryEdit_GetShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetShowHint)
+void
+irectoryEdit_SetShowHint(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetShowHint)
+    MySyscall(pDirectoryEdit_SetShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTabOrder)
+TTabOrder
+irectoryEdit_GetTabOrder(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTabOrder)
+    return (TTabOrder)MySyscall(pDirectoryEdit_GetTabOrder, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetTabOrder)
+void
+irectoryEdit_SetTabOrder(TDirectoryEdit AObj, TTabOrder AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetTabOrder)
+    MySyscall(pDirectoryEdit_SetTabOrder, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetSpacing)
+int32_t
+irectoryEdit_GetSpacing(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetSpacing)
+    return (int32_t)MySyscall(pDirectoryEdit_GetSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetSpacing)
+void
+irectoryEdit_SetSpacing(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetSpacing)
+    MySyscall(pDirectoryEdit_SetSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTabStop)
+BOOL
+irectoryEdit_GetTabStop(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTabStop)
+    return (BOOL)MySyscall(pDirectoryEdit_GetTabStop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetTabStop)
+void
+irectoryEdit_SetTabStop(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetTabStop)
+    MySyscall(pDirectoryEdit_SetTabStop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetVisible)
+BOOL
+irectoryEdit_GetVisible(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetVisible)
+    return (BOOL)MySyscall(pDirectoryEdit_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetVisible)
+void
+irectoryEdit_SetVisible(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetVisible)
+    MySyscall(pDirectoryEdit_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnButtonClick)
+void
+irectoryEdit_SetOnButtonClick(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnButtonClick)
+    MySyscall(pDirectoryEdit_SetOnButtonClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnChange)
+void
+irectoryEdit_SetOnChange(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnChange)
+    MySyscall(pDirectoryEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnClick)
+void
+irectoryEdit_SetOnClick(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnClick)
+    MySyscall(pDirectoryEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnContextPopup)
+void
+irectoryEdit_SetOnContextPopup(TDirectoryEdit AObj, TContextPopupEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnContextPopup)
+    MySyscall(pDirectoryEdit_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnDblClick)
+void
+irectoryEdit_SetOnDblClick(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnDblClick)
+    MySyscall(pDirectoryEdit_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnDragDrop)
+void
+irectoryEdit_SetOnDragDrop(TDirectoryEdit AObj, TDragDropEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnDragDrop)
+    MySyscall(pDirectoryEdit_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnDragOver)
+void
+irectoryEdit_SetOnDragOver(TDirectoryEdit AObj, TDragOverEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnDragOver)
+    MySyscall(pDirectoryEdit_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnEditingDone)
+void
+irectoryEdit_SetOnEditingDone(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnEditingDone)
+    MySyscall(pDirectoryEdit_SetOnEditingDone, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnEndDrag)
+void
+irectoryEdit_SetOnEndDrag(TDirectoryEdit AObj, TEndDragEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnEndDrag)
+    MySyscall(pDirectoryEdit_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnEnter)
+void
+irectoryEdit_SetOnEnter(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnEnter)
+    MySyscall(pDirectoryEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnExit)
+void
+irectoryEdit_SetOnExit(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnExit)
+    MySyscall(pDirectoryEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnKeyDown)
+void
+irectoryEdit_SetOnKeyDown(TDirectoryEdit AObj, TKeyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnKeyDown)
+    MySyscall(pDirectoryEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnKeyPress)
+void
+irectoryEdit_SetOnKeyPress(TDirectoryEdit AObj, TKeyPressEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnKeyPress)
+    MySyscall(pDirectoryEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnKeyUp)
+void
+irectoryEdit_SetOnKeyUp(TDirectoryEdit AObj, TKeyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnKeyUp)
+    MySyscall(pDirectoryEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseDown)
+void
+irectoryEdit_SetOnMouseDown(TDirectoryEdit AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseDown)
+    MySyscall(pDirectoryEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseEnter)
+void
+irectoryEdit_SetOnMouseEnter(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseEnter)
+    MySyscall(pDirectoryEdit_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseLeave)
+void
+irectoryEdit_SetOnMouseLeave(TDirectoryEdit AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseLeave)
+    MySyscall(pDirectoryEdit_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseMove)
+void
+irectoryEdit_SetOnMouseMove(TDirectoryEdit AObj, TMouseMoveEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseMove)
+    MySyscall(pDirectoryEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseUp)
+void
+irectoryEdit_SetOnMouseUp(TDirectoryEdit AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseUp)
+    MySyscall(pDirectoryEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseWheel)
+void
+irectoryEdit_SetOnMouseWheel(TDirectoryEdit AObj, TMouseWheelEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseWheel)
+    MySyscall(pDirectoryEdit_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseWheelDown)
+void
+irectoryEdit_SetOnMouseWheelDown(TDirectoryEdit AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseWheelDown)
+    MySyscall(pDirectoryEdit_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetOnMouseWheelUp)
+void
+irectoryEdit_SetOnMouseWheelUp(TDirectoryEdit AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(DirectoryEdit_SetOnMouseWheelUp)
+    MySyscall(pDirectoryEdit_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetText)
+char*
+irectoryEdit_GetText(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetText)
+    return (char*)MySyscall(pDirectoryEdit_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetText)
+void
+irectoryEdit_SetText(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetText)
+    MySyscall(pDirectoryEdit_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTextHint)
+char*
+irectoryEdit_GetTextHint(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTextHint)
+    return (char*)MySyscall(pDirectoryEdit_GetTextHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetTextHint)
+void
+irectoryEdit_SetTextHint(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetTextHint)
+    MySyscall(pDirectoryEdit_SetTextHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAlignment)
+TAlignment
+irectoryEdit_GetAlignment(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAlignment)
+    return (TAlignment)MySyscall(pDirectoryEdit_GetAlignment, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAlignment)
+void
+irectoryEdit_SetAlignment(TDirectoryEdit AObj, TAlignment AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAlignment)
+    MySyscall(pDirectoryEdit_SetAlignment, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetCanUndo)
+BOOL
+irectoryEdit_GetCanUndo(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetCanUndo)
+    return (BOOL)MySyscall(pDirectoryEdit_GetCanUndo, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetCaretPos)
+TPoint
+irectoryEdit_GetCaretPos(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetCaretPos)
+    TPoint result;
+    MySyscall(pDirectoryEdit_GetCaretPos, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetCaretPos)
+void
+irectoryEdit_SetCaretPos(TDirectoryEdit AObj, TPoint AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetCaretPos)
+    MySyscall(pDirectoryEdit_SetCaretPos, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetCharCase)
+TEditCharCase
+irectoryEdit_GetCharCase(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetCharCase)
+    return (TEditCharCase)MySyscall(pDirectoryEdit_GetCharCase, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetCharCase)
+void
+irectoryEdit_SetCharCase(TDirectoryEdit AObj, TEditCharCase AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetCharCase)
+    MySyscall(pDirectoryEdit_SetCharCase, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetHideSelection)
+BOOL
+irectoryEdit_GetHideSelection(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetHideSelection)
+    return (BOOL)MySyscall(pDirectoryEdit_GetHideSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetHideSelection)
+void
+irectoryEdit_SetHideSelection(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetHideSelection)
+    MySyscall(pDirectoryEdit_SetHideSelection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetModified)
+BOOL
+irectoryEdit_GetModified(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetModified)
+    return (BOOL)MySyscall(pDirectoryEdit_GetModified, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetModified)
+void
+irectoryEdit_SetModified(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetModified)
+    MySyscall(pDirectoryEdit_SetModified, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetNumbersOnly)
+BOOL
+irectoryEdit_GetNumbersOnly(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetNumbersOnly)
+    return (BOOL)MySyscall(pDirectoryEdit_GetNumbersOnly, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetNumbersOnly)
+void
+irectoryEdit_SetNumbersOnly(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetNumbersOnly)
+    MySyscall(pDirectoryEdit_SetNumbersOnly, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetPasswordChar)
+Char
+irectoryEdit_GetPasswordChar(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetPasswordChar)
+    return (Char)MySyscall(pDirectoryEdit_GetPasswordChar, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetPasswordChar)
+void
+irectoryEdit_SetPasswordChar(TDirectoryEdit AObj, Char AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetPasswordChar)
+    MySyscall(pDirectoryEdit_SetPasswordChar, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetSelLength)
+int32_t
+irectoryEdit_GetSelLength(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetSelLength)
+    return (int32_t)MySyscall(pDirectoryEdit_GetSelLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetSelLength)
+void
+irectoryEdit_SetSelLength(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetSelLength)
+    MySyscall(pDirectoryEdit_SetSelLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetSelStart)
+int32_t
+irectoryEdit_GetSelStart(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetSelStart)
+    return (int32_t)MySyscall(pDirectoryEdit_GetSelStart, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetSelStart)
+void
+irectoryEdit_SetSelStart(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetSelStart)
+    MySyscall(pDirectoryEdit_SetSelStart, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetSelText)
+char*
+irectoryEdit_GetSelText(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetSelText)
+    return (char*)MySyscall(pDirectoryEdit_GetSelText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetSelText)
+void
+irectoryEdit_SetSelText(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetSelText)
+    MySyscall(pDirectoryEdit_SetSelText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDockClientCount)
+int32_t
+irectoryEdit_GetDockClientCount(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDockClientCount)
+    return (int32_t)MySyscall(pDirectoryEdit_GetDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDockSite)
+BOOL
+irectoryEdit_GetDockSite(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDockSite)
+    return (BOOL)MySyscall(pDirectoryEdit_GetDockSite, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDockSite)
+void
+irectoryEdit_SetDockSite(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDockSite)
+    MySyscall(pDirectoryEdit_SetDockSite, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDoubleBuffered)
+BOOL
+irectoryEdit_GetDoubleBuffered(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDoubleBuffered)
+    return (BOOL)MySyscall(pDirectoryEdit_GetDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetDoubleBuffered)
+void
+irectoryEdit_SetDoubleBuffered(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetDoubleBuffered)
+    MySyscall(pDirectoryEdit_SetDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetMouseInClient)
+BOOL
+irectoryEdit_GetMouseInClient(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetMouseInClient)
+    return (BOOL)MySyscall(pDirectoryEdit_GetMouseInClient, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetVisibleDockClientCount)
+int32_t
+irectoryEdit_GetVisibleDockClientCount(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetVisibleDockClientCount)
+    return (int32_t)MySyscall(pDirectoryEdit_GetVisibleDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetBrush)
+TBrush
+irectoryEdit_GetBrush(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetBrush)
+    return (TBrush)MySyscall(pDirectoryEdit_GetBrush, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetControlCount)
+int32_t
+irectoryEdit_GetControlCount(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetControlCount)
+    return (int32_t)MySyscall(pDirectoryEdit_GetControlCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetHandle)
+HWND
+irectoryEdit_GetHandle(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetHandle)
+    return (HWND)MySyscall(pDirectoryEdit_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetParentDoubleBuffered)
+BOOL
+irectoryEdit_GetParentDoubleBuffered(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetParentDoubleBuffered)
+    return (BOOL)MySyscall(pDirectoryEdit_GetParentDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetParentDoubleBuffered)
+void
+irectoryEdit_SetParentDoubleBuffered(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetParentDoubleBuffered)
+    MySyscall(pDirectoryEdit_SetParentDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetParentWindow)
+HWND
+irectoryEdit_GetParentWindow(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetParentWindow)
+    return (HWND)MySyscall(pDirectoryEdit_GetParentWindow, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetParentWindow)
+void
+irectoryEdit_SetParentWindow(TDirectoryEdit AObj, HWND AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetParentWindow)
+    MySyscall(pDirectoryEdit_SetParentWindow, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetShowing)
+BOOL
+irectoryEdit_GetShowing(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetShowing)
+    return (BOOL)MySyscall(pDirectoryEdit_GetShowing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetUseDockManager)
+BOOL
+irectoryEdit_GetUseDockManager(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetUseDockManager)
+    return (BOOL)MySyscall(pDirectoryEdit_GetUseDockManager, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetUseDockManager)
+void
+irectoryEdit_SetUseDockManager(TDirectoryEdit AObj, BOOL AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetUseDockManager)
+    MySyscall(pDirectoryEdit_SetUseDockManager, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAction)
+TAction
+irectoryEdit_GetAction(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAction)
+    return (TAction)MySyscall(pDirectoryEdit_GetAction, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAction)
+void
+irectoryEdit_SetAction(TDirectoryEdit AObj, TAction AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAction)
+    MySyscall(pDirectoryEdit_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetBiDiMode)
+TBiDiMode
+irectoryEdit_GetBiDiMode(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pDirectoryEdit_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetBiDiMode)
+void
+irectoryEdit_SetBiDiMode(TDirectoryEdit AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetBiDiMode)
+    MySyscall(pDirectoryEdit_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetBoundsRect)
+TRect
+irectoryEdit_GetBoundsRect(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetBoundsRect)
+    TRect result;
+    MySyscall(pDirectoryEdit_GetBoundsRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetBoundsRect)
+void
+irectoryEdit_SetBoundsRect(TDirectoryEdit AObj, TRect AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetBoundsRect)
+    MySyscall(pDirectoryEdit_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetClientHeight)
+int32_t
+irectoryEdit_GetClientHeight(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetClientHeight)
+    return (int32_t)MySyscall(pDirectoryEdit_GetClientHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetClientHeight)
+void
+irectoryEdit_SetClientHeight(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetClientHeight)
+    MySyscall(pDirectoryEdit_SetClientHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetClientOrigin)
+TPoint
+irectoryEdit_GetClientOrigin(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetClientOrigin)
+    TPoint result;
+    MySyscall(pDirectoryEdit_GetClientOrigin, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetClientRect)
+TRect
+irectoryEdit_GetClientRect(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetClientRect)
+    TRect result;
+    MySyscall(pDirectoryEdit_GetClientRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetClientWidth)
+int32_t
+irectoryEdit_GetClientWidth(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetClientWidth)
+    return (int32_t)MySyscall(pDirectoryEdit_GetClientWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetClientWidth)
+void
+irectoryEdit_SetClientWidth(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetClientWidth)
+    MySyscall(pDirectoryEdit_SetClientWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetControlState)
+TControlState
+irectoryEdit_GetControlState(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetControlState)
+    return (TControlState)MySyscall(pDirectoryEdit_GetControlState, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetControlState)
+void
+irectoryEdit_SetControlState(TDirectoryEdit AObj, TControlState AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetControlState)
+    MySyscall(pDirectoryEdit_SetControlState, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetControlStyle)
+TControlStyle
+irectoryEdit_GetControlStyle(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetControlStyle)
+    return (TControlStyle)MySyscall(pDirectoryEdit_GetControlStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetControlStyle)
+void
+irectoryEdit_SetControlStyle(TDirectoryEdit AObj, TControlStyle AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetControlStyle)
+    MySyscall(pDirectoryEdit_SetControlStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetFloating)
+BOOL
+irectoryEdit_GetFloating(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetFloating)
+    return (BOOL)MySyscall(pDirectoryEdit_GetFloating, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetParent)
+TWinControl
+irectoryEdit_GetParent(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetParent)
+    return (TWinControl)MySyscall(pDirectoryEdit_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetParent)
+void
+irectoryEdit_SetParent(TDirectoryEdit AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetParent)
+    MySyscall(pDirectoryEdit_SetParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetLeft)
+int32_t
+irectoryEdit_GetLeft(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetLeft)
+    return (int32_t)MySyscall(pDirectoryEdit_GetLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetLeft)
+void
+irectoryEdit_SetLeft(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetLeft)
+    MySyscall(pDirectoryEdit_SetLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTop)
+int32_t
+irectoryEdit_GetTop(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTop)
+    return (int32_t)MySyscall(pDirectoryEdit_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetTop)
+void
+irectoryEdit_SetTop(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetTop)
+    MySyscall(pDirectoryEdit_SetTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetWidth)
+int32_t
+irectoryEdit_GetWidth(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetWidth)
+    return (int32_t)MySyscall(pDirectoryEdit_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetWidth)
+void
+irectoryEdit_SetWidth(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetWidth)
+    MySyscall(pDirectoryEdit_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetHeight)
+int32_t
+irectoryEdit_GetHeight(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetHeight)
+    return (int32_t)MySyscall(pDirectoryEdit_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetHeight)
+void
+irectoryEdit_SetHeight(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetHeight)
+    MySyscall(pDirectoryEdit_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetCursor)
+TCursor
+irectoryEdit_GetCursor(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetCursor)
+    return (TCursor)MySyscall(pDirectoryEdit_GetCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetCursor)
+void
+irectoryEdit_SetCursor(TDirectoryEdit AObj, TCursor AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetCursor)
+    MySyscall(pDirectoryEdit_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetHint)
+char*
+irectoryEdit_GetHint(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetHint)
+    return (char*)MySyscall(pDirectoryEdit_GetHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetHint)
+void
+irectoryEdit_SetHint(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetHint)
+    MySyscall(pDirectoryEdit_SetHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetComponentCount)
+int32_t
+irectoryEdit_GetComponentCount(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetComponentCount)
+    return (int32_t)MySyscall(pDirectoryEdit_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetComponentIndex)
+int32_t
+irectoryEdit_GetComponentIndex(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetComponentIndex)
+    return (int32_t)MySyscall(pDirectoryEdit_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetComponentIndex)
+void
+irectoryEdit_SetComponentIndex(TDirectoryEdit AObj, int32_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetComponentIndex)
+    MySyscall(pDirectoryEdit_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetOwner)
+TComponent
+irectoryEdit_GetOwner(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetOwner)
+    return (TComponent)MySyscall(pDirectoryEdit_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetName)
+char*
+irectoryEdit_GetName(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetName)
+    return (char*)MySyscall(pDirectoryEdit_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetName)
+void
+irectoryEdit_SetName(TDirectoryEdit AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetName)
+    MySyscall(pDirectoryEdit_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetTag)
+intptr_t
+irectoryEdit_GetTag(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetTag)
+    return (intptr_t)MySyscall(pDirectoryEdit_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetTag)
+void
+irectoryEdit_SetTag(TDirectoryEdit AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetTag)
+    MySyscall(pDirectoryEdit_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAnchorSideLeft)
+TAnchorSide
+irectoryEdit_GetAnchorSideLeft(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAnchorSideLeft)
+    return (TAnchorSide)MySyscall(pDirectoryEdit_GetAnchorSideLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAnchorSideLeft)
+void
+irectoryEdit_SetAnchorSideLeft(TDirectoryEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAnchorSideLeft)
+    MySyscall(pDirectoryEdit_SetAnchorSideLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAnchorSideTop)
+TAnchorSide
+irectoryEdit_GetAnchorSideTop(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAnchorSideTop)
+    return (TAnchorSide)MySyscall(pDirectoryEdit_GetAnchorSideTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAnchorSideTop)
+void
+irectoryEdit_SetAnchorSideTop(TDirectoryEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAnchorSideTop)
+    MySyscall(pDirectoryEdit_SetAnchorSideTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAnchorSideRight)
+TAnchorSide
+irectoryEdit_GetAnchorSideRight(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAnchorSideRight)
+    return (TAnchorSide)MySyscall(pDirectoryEdit_GetAnchorSideRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAnchorSideRight)
+void
+irectoryEdit_SetAnchorSideRight(TDirectoryEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAnchorSideRight)
+    MySyscall(pDirectoryEdit_SetAnchorSideRight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAnchorSideBottom)
+TAnchorSide
+irectoryEdit_GetAnchorSideBottom(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAnchorSideBottom)
+    return (TAnchorSide)MySyscall(pDirectoryEdit_GetAnchorSideBottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetAnchorSideBottom)
+void
+irectoryEdit_SetAnchorSideBottom(TDirectoryEdit AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetAnchorSideBottom)
+    MySyscall(pDirectoryEdit_SetAnchorSideBottom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetChildSizing)
+TControlChildSizing
+irectoryEdit_GetChildSizing(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetChildSizing)
+    return (TControlChildSizing)MySyscall(pDirectoryEdit_GetChildSizing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetChildSizing)
+void
+irectoryEdit_SetChildSizing(TDirectoryEdit AObj, TControlChildSizing AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetChildSizing)
+    MySyscall(pDirectoryEdit_SetChildSizing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetBorderSpacing)
+TControlBorderSpacing
+irectoryEdit_GetBorderSpacing(TDirectoryEdit AObj) {
+    GET_FUNC_ADDR(DirectoryEdit_GetBorderSpacing)
+    return (TControlBorderSpacing)MySyscall(pDirectoryEdit_GetBorderSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_SetBorderSpacing)
+void
+irectoryEdit_SetBorderSpacing(TDirectoryEdit AObj, TControlBorderSpacing AValue) {
+    GET_FUNC_ADDR(DirectoryEdit_SetBorderSpacing)
+    MySyscall(pDirectoryEdit_SetBorderSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetDockClients)
+TControl
+irectoryEdit_GetDockClients(TDirectoryEdit AObj, int32_t Index) {
+    GET_FUNC_ADDR(DirectoryEdit_GetDockClients)
+    return (TControl)MySyscall(pDirectoryEdit_GetDockClients, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetControls)
+TControl
+irectoryEdit_GetControls(TDirectoryEdit AObj, int32_t Index) {
+    GET_FUNC_ADDR(DirectoryEdit_GetControls)
+    return (TControl)MySyscall(pDirectoryEdit_GetControls, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetComponents)
+TComponent
+irectoryEdit_GetComponents(TDirectoryEdit AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(DirectoryEdit_GetComponents)
+    return (TComponent)MySyscall(pDirectoryEdit_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_GetAnchorSide)
+TAnchorSide
+irectoryEdit_GetAnchorSide(TDirectoryEdit AObj, TAnchorKind AKind) {
+    GET_FUNC_ADDR(DirectoryEdit_GetAnchorSide)
+    return (TAnchorSide)MySyscall(pDirectoryEdit_GetAnchorSide, 2, AObj, AKind ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DirectoryEdit_StaticClassType)
+TClass
+irectoryEdit_StaticClassType() {
+    GET_FUNC_ADDR(DirectoryEdit_StaticClassType)
+    return (TClass)MySyscall(pDirectoryEdit_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+// -------------------TColorButton-------------------
+
+DEFINE_FUNC_PTR(ColorButton_Create)
+TColorButton
+ColorButton_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(ColorButton_Create)
+    return (TColorButton)MySyscall(pColorButton_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Free)
+void
+ColorButton_Free(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Free)
+    MySyscall(pColorButton_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Click)
+void
+ColorButton_Click(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Click)
+    MySyscall(pColorButton_Click, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_BringToFront)
+void
+ColorButton_BringToFront(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_BringToFront)
+    MySyscall(pColorButton_BringToFront, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ClientToScreen)
+TPoint
+ColorButton_ClientToScreen(TColorButton AObj, TPoint Point) {
+    GET_FUNC_ADDR(ColorButton_ClientToScreen)
+    TPoint result;
+    MySyscall(pColorButton_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_ClientToParent)
+TPoint
+ColorButton_ClientToParent(TColorButton AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(ColorButton_ClientToParent)
+    TPoint result;
+    MySyscall(pColorButton_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_Dragging)
+BOOL
+ColorButton_Dragging(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Dragging)
+    return (BOOL)MySyscall(pColorButton_Dragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_HasParent)
+BOOL
+ColorButton_HasParent(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_HasParent)
+    return (BOOL)MySyscall(pColorButton_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Hide)
+void
+ColorButton_Hide(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Hide)
+    MySyscall(pColorButton_Hide, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Invalidate)
+void
+ColorButton_Invalidate(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Invalidate)
+    MySyscall(pColorButton_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Perform)
+intptr_t
+ColorButton_Perform(TColorButton AObj, uint32_t Msg, uintptr_t WParam, intptr_t LParam) {
+    GET_FUNC_ADDR(ColorButton_Perform)
+    return (intptr_t)MySyscall(pColorButton_Perform, 4, AObj, Msg, WParam, LParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Refresh)
+void
+ColorButton_Refresh(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Refresh)
+    MySyscall(pColorButton_Refresh, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Repaint)
+void
+ColorButton_Repaint(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Repaint)
+    MySyscall(pColorButton_Repaint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScreenToClient)
+TPoint
+ColorButton_ScreenToClient(TColorButton AObj, TPoint Point) {
+    GET_FUNC_ADDR(ColorButton_ScreenToClient)
+    TPoint result;
+    MySyscall(pColorButton_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_ParentToClient)
+TPoint
+ColorButton_ParentToClient(TColorButton AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(ColorButton_ParentToClient)
+    TPoint result;
+    MySyscall(pColorButton_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_SendToBack)
+void
+ColorButton_SendToBack(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_SendToBack)
+    MySyscall(pColorButton_SendToBack, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetBounds)
+void
+ColorButton_SetBounds(TColorButton AObj, int32_t ALeft, int32_t ATop, int32_t AWidth, int32_t AHeight) {
+    GET_FUNC_ADDR(ColorButton_SetBounds)
+    MySyscall(pColorButton_SetBounds, 5, AObj, ALeft, ATop, AWidth, AHeight ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Show)
+void
+ColorButton_Show(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Show)
+    MySyscall(pColorButton_Show, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Update)
+void
+ColorButton_Update(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_Update)
+    MySyscall(pColorButton_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetTextBuf)
+int32_t
+ColorButton_GetTextBuf(TColorButton AObj, CChar char* Buffer, int32_t BufSize) {
+    GET_FUNC_ADDR(ColorButton_GetTextBuf)
+    return (int32_t)MySyscall(pColorButton_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetTextLen)
+int32_t
+ColorButton_GetTextLen(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetTextLen)
+    return (int32_t)MySyscall(pColorButton_GetTextLen, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetTextBuf)
+void
+ColorButton_SetTextBuf(TColorButton AObj, CChar char* Buffer) {
+    GET_FUNC_ADDR(ColorButton_SetTextBuf)
+    MySyscall(pColorButton_SetTextBuf, 2, AObj, Buffer ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_FindComponent)
+TComponent
+ColorButton_FindComponent(TColorButton AObj, CChar char* AName) {
+    GET_FUNC_ADDR(ColorButton_FindComponent)
+    return (TComponent)MySyscall(pColorButton_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetNamePath)
+char*
+ColorButton_GetNamePath(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetNamePath)
+    return (char*)MySyscall(pColorButton_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Assign)
+void
+ColorButton_Assign(TColorButton AObj, TObject Source) {
+    GET_FUNC_ADDR(ColorButton_Assign)
+    MySyscall(pColorButton_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ClassType)
+TClass
+ColorButton_ClassType(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_ClassType)
+    return (TClass)MySyscall(pColorButton_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ClassName)
+char*
+ColorButton_ClassName(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_ClassName)
+    return (char*)MySyscall(pColorButton_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_InstanceSize)
+int32_t
+ColorButton_InstanceSize(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_InstanceSize)
+    return (int32_t)MySyscall(pColorButton_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_InheritsFrom)
+BOOL
+ColorButton_InheritsFrom(TColorButton AObj, TClass AClass) {
+    GET_FUNC_ADDR(ColorButton_InheritsFrom)
+    return (BOOL)MySyscall(pColorButton_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Equals)
+BOOL
+ColorButton_Equals(TColorButton AObj, TObject Obj) {
+    GET_FUNC_ADDR(ColorButton_Equals)
+    return (BOOL)MySyscall(pColorButton_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetHashCode)
+int32_t
+ColorButton_GetHashCode(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetHashCode)
+    return (int32_t)MySyscall(pColorButton_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ToString)
+char*
+ColorButton_ToString(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_ToString)
+    return (char*)MySyscall(pColorButton_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorToNeighbour)
+void
+ColorButton_AnchorToNeighbour(TColorButton AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(ColorButton_AnchorToNeighbour)
+    MySyscall(pColorButton_AnchorToNeighbour, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorParallel)
+void
+ColorButton_AnchorParallel(TColorButton AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(ColorButton_AnchorParallel)
+    MySyscall(pColorButton_AnchorParallel, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorHorizontalCenterTo)
+void
+ColorButton_AnchorHorizontalCenterTo(TColorButton AObj, TControl ASibling) {
+    GET_FUNC_ADDR(ColorButton_AnchorHorizontalCenterTo)
+    MySyscall(pColorButton_AnchorHorizontalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorVerticalCenterTo)
+void
+ColorButton_AnchorVerticalCenterTo(TColorButton AObj, TControl ASibling) {
+    GET_FUNC_ADDR(ColorButton_AnchorVerticalCenterTo)
+    MySyscall(pColorButton_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorSame)
+void
+ColorButton_AnchorSame(TColorButton AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(ColorButton_AnchorSame)
+    MySyscall(pColorButton_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorAsAlign)
+void
+ColorButton_AnchorAsAlign(TColorButton AObj, TAlign ATheAlign, int32_t ASpace) {
+    GET_FUNC_ADDR(ColorButton_AnchorAsAlign)
+    MySyscall(pColorButton_AnchorAsAlign, 3, AObj, ATheAlign, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AnchorClient)
+void
+ColorButton_AnchorClient(TColorButton AObj, int32_t ASpace) {
+    GET_FUNC_ADDR(ColorButton_AnchorClient)
+    MySyscall(pColorButton_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleDesignToForm)
+int32_t
+ColorButton_ScaleDesignToForm(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleDesignToForm)
+    return (int32_t)MySyscall(pColorButton_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleFormToDesign)
+int32_t
+ColorButton_ScaleFormToDesign(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleFormToDesign)
+    return (int32_t)MySyscall(pColorButton_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Scale96ToForm)
+int32_t
+ColorButton_Scale96ToForm(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_Scale96ToForm)
+    return (int32_t)MySyscall(pColorButton_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleFormTo96)
+int32_t
+ColorButton_ScaleFormTo96(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleFormTo96)
+    return (int32_t)MySyscall(pColorButton_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Scale96ToFont)
+int32_t
+ColorButton_Scale96ToFont(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_Scale96ToFont)
+    return (int32_t)MySyscall(pColorButton_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleFontTo96)
+int32_t
+ColorButton_ScaleFontTo96(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleFontTo96)
+    return (int32_t)MySyscall(pColorButton_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleScreenToFont)
+int32_t
+ColorButton_ScaleScreenToFont(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleScreenToFont)
+    return (int32_t)MySyscall(pColorButton_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleFontToScreen)
+int32_t
+ColorButton_ScaleFontToScreen(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleFontToScreen)
+    return (int32_t)MySyscall(pColorButton_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_Scale96ToScreen)
+int32_t
+ColorButton_Scale96ToScreen(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_Scale96ToScreen)
+    return (int32_t)MySyscall(pColorButton_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleScreenTo96)
+int32_t
+ColorButton_ScaleScreenTo96(TColorButton AObj, int32_t ASize) {
+    GET_FUNC_ADDR(ColorButton_ScaleScreenTo96)
+    return (int32_t)MySyscall(pColorButton_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_AutoAdjustLayout)
+void
+ColorButton_AutoAdjustLayout(TColorButton AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(ColorButton_AutoAdjustLayout)
+    MySyscall(pColorButton_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_FixDesignFontsPPI)
+void
+ColorButton_FixDesignFontsPPI(TColorButton AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(ColorButton_FixDesignFontsPPI)
+    MySyscall(pColorButton_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_ScaleFontsPPI)
+void
+ColorButton_ScaleFontsPPI(TColorButton AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(ColorButton_ScaleFontsPPI)
+    MySyscall(pColorButton_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAction)
+TAction
+ColorButton_GetAction(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAction)
+    return (TAction)MySyscall(pColorButton_GetAction, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAction)
+void
+ColorButton_SetAction(TColorButton AObj, TAction AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAction)
+    MySyscall(pColorButton_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAlign)
+TAlign
+ColorButton_GetAlign(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAlign)
+    return (TAlign)MySyscall(pColorButton_GetAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAlign)
+void
+ColorButton_SetAlign(TColorButton AObj, TAlign AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAlign)
+    MySyscall(pColorButton_SetAlign, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAnchors)
+TAnchors
+ColorButton_GetAnchors(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAnchors)
+    return (TAnchors)MySyscall(pColorButton_GetAnchors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAnchors)
+void
+ColorButton_SetAnchors(TColorButton AObj, TAnchors AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAnchors)
+    MySyscall(pColorButton_SetAnchors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAllowAllUp)
+BOOL
+ColorButton_GetAllowAllUp(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAllowAllUp)
+    return (BOOL)MySyscall(pColorButton_GetAllowAllUp, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAllowAllUp)
+void
+ColorButton_SetAllowAllUp(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAllowAllUp)
+    MySyscall(pColorButton_SetAllowAllUp, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetBorderWidth)
+int32_t
+ColorButton_GetBorderWidth(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetBorderWidth)
+    return (int32_t)MySyscall(pColorButton_GetBorderWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetBorderWidth)
+void
+ColorButton_SetBorderWidth(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetBorderWidth)
+    MySyscall(pColorButton_SetBorderWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetButtonColorAutoSize)
+BOOL
+ColorButton_GetButtonColorAutoSize(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetButtonColorAutoSize)
+    return (BOOL)MySyscall(pColorButton_GetButtonColorAutoSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetButtonColorAutoSize)
+void
+ColorButton_SetButtonColorAutoSize(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetButtonColorAutoSize)
+    MySyscall(pColorButton_SetButtonColorAutoSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetButtonColorSize)
+int32_t
+ColorButton_GetButtonColorSize(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetButtonColorSize)
+    return (int32_t)MySyscall(pColorButton_GetButtonColorSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetButtonColorSize)
+void
+ColorButton_SetButtonColorSize(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetButtonColorSize)
+    MySyscall(pColorButton_SetButtonColorSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetButtonColor)
+TColor
+ColorButton_GetButtonColor(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetButtonColor)
+    return (TColor)MySyscall(pColorButton_GetButtonColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetButtonColor)
+void
+ColorButton_SetButtonColor(TColorButton AObj, TColor AValue) {
+    GET_FUNC_ADDR(ColorButton_SetButtonColor)
+    MySyscall(pColorButton_SetButtonColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetColorDialog)
+TColorDialog
+ColorButton_GetColorDialog(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetColorDialog)
+    return (TColorDialog)MySyscall(pColorButton_GetColorDialog, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetColorDialog)
+void
+ColorButton_SetColorDialog(TColorButton AObj, TColorDialog AValue) {
+    GET_FUNC_ADDR(ColorButton_SetColorDialog)
+    MySyscall(pColorButton_SetColorDialog, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetConstraints)
+TSizeConstraints
+ColorButton_GetConstraints(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetConstraints)
+    return (TSizeConstraints)MySyscall(pColorButton_GetConstraints, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetConstraints)
+void
+ColorButton_SetConstraints(TColorButton AObj, TSizeConstraints AValue) {
+    GET_FUNC_ADDR(ColorButton_SetConstraints)
+    MySyscall(pColorButton_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetCaption)
+char*
+ColorButton_GetCaption(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetCaption)
+    return (char*)MySyscall(pColorButton_GetCaption, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetCaption)
+void
+ColorButton_SetCaption(TColorButton AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(ColorButton_SetCaption)
+    MySyscall(pColorButton_SetCaption, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetColor)
+TColor
+ColorButton_GetColor(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetColor)
+    return (TColor)MySyscall(pColorButton_GetColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetColor)
+void
+ColorButton_SetColor(TColorButton AObj, TColor AValue) {
+    GET_FUNC_ADDR(ColorButton_SetColor)
+    MySyscall(pColorButton_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetDown)
+BOOL
+ColorButton_GetDown(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetDown)
+    return (BOOL)MySyscall(pColorButton_GetDown, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetDown)
+void
+ColorButton_SetDown(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetDown)
+    MySyscall(pColorButton_SetDown, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetEnabled)
+BOOL
+ColorButton_GetEnabled(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetEnabled)
+    return (BOOL)MySyscall(pColorButton_GetEnabled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetEnabled)
+void
+ColorButton_SetEnabled(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetEnabled)
+    MySyscall(pColorButton_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetFlat)
+BOOL
+ColorButton_GetFlat(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetFlat)
+    return (BOOL)MySyscall(pColorButton_GetFlat, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetFlat)
+void
+ColorButton_SetFlat(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetFlat)
+    MySyscall(pColorButton_SetFlat, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetFont)
+TFont
+ColorButton_GetFont(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetFont)
+    return (TFont)MySyscall(pColorButton_GetFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetFont)
+void
+ColorButton_SetFont(TColorButton AObj, TFont AValue) {
+    GET_FUNC_ADDR(ColorButton_SetFont)
+    MySyscall(pColorButton_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetGroupIndex)
+int32_t
+ColorButton_GetGroupIndex(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetGroupIndex)
+    return (int32_t)MySyscall(pColorButton_GetGroupIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetGroupIndex)
+void
+ColorButton_SetGroupIndex(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetGroupIndex)
+    MySyscall(pColorButton_SetGroupIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetHint)
+char*
+ColorButton_GetHint(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetHint)
+    return (char*)MySyscall(pColorButton_GetHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetHint)
+void
+ColorButton_SetHint(TColorButton AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(ColorButton_SetHint)
+    MySyscall(pColorButton_SetHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetLayout)
+TButtonLayout
+ColorButton_GetLayout(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetLayout)
+    return (TButtonLayout)MySyscall(pColorButton_GetLayout, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetLayout)
+void
+ColorButton_SetLayout(TColorButton AObj, TButtonLayout AValue) {
+    GET_FUNC_ADDR(ColorButton_SetLayout)
+    MySyscall(pColorButton_SetLayout, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetSpacing)
+int32_t
+ColorButton_GetSpacing(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetSpacing)
+    return (int32_t)MySyscall(pColorButton_GetSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetSpacing)
+void
+ColorButton_SetSpacing(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetSpacing)
+    MySyscall(pColorButton_SetSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetTransparent)
+BOOL
+ColorButton_GetTransparent(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetTransparent)
+    return (BOOL)MySyscall(pColorButton_GetTransparent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetTransparent)
+void
+ColorButton_SetTransparent(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetTransparent)
+    MySyscall(pColorButton_SetTransparent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetVisible)
+BOOL
+ColorButton_GetVisible(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetVisible)
+    return (BOOL)MySyscall(pColorButton_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetVisible)
+void
+ColorButton_SetVisible(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetVisible)
+    MySyscall(pColorButton_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnClick)
+void
+ColorButton_SetOnClick(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnClick)
+    MySyscall(pColorButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnColorChanged)
+void
+ColorButton_SetOnColorChanged(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnColorChanged)
+    MySyscall(pColorButton_SetOnColorChanged, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnDblClick)
+void
+ColorButton_SetOnDblClick(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnDblClick)
+    MySyscall(pColorButton_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseDown)
+void
+ColorButton_SetOnMouseDown(TColorButton AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseDown)
+    MySyscall(pColorButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseEnter)
+void
+ColorButton_SetOnMouseEnter(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseEnter)
+    MySyscall(pColorButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseLeave)
+void
+ColorButton_SetOnMouseLeave(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseLeave)
+    MySyscall(pColorButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseMove)
+void
+ColorButton_SetOnMouseMove(TColorButton AObj, TMouseMoveEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseMove)
+    MySyscall(pColorButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseUp)
+void
+ColorButton_SetOnMouseUp(TColorButton AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseUp)
+    MySyscall(pColorButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseWheel)
+void
+ColorButton_SetOnMouseWheel(TColorButton AObj, TMouseWheelEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseWheel)
+    MySyscall(pColorButton_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseWheelDown)
+void
+ColorButton_SetOnMouseWheelDown(TColorButton AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseWheelDown)
+    MySyscall(pColorButton_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnMouseWheelUp)
+void
+ColorButton_SetOnMouseWheelUp(TColorButton AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnMouseWheelUp)
+    MySyscall(pColorButton_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnPaint)
+void
+ColorButton_SetOnPaint(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnPaint)
+    MySyscall(pColorButton_SetOnPaint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetOnResize)
+void
+ColorButton_SetOnResize(TColorButton AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(ColorButton_SetOnResize)
+    MySyscall(pColorButton_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetShowHint)
+BOOL
+ColorButton_GetShowHint(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetShowHint)
+    return (BOOL)MySyscall(pColorButton_GetShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetShowHint)
+void
+ColorButton_SetShowHint(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetShowHint)
+    MySyscall(pColorButton_SetShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetParentFont)
+BOOL
+ColorButton_GetParentFont(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetParentFont)
+    return (BOOL)MySyscall(pColorButton_GetParentFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetParentFont)
+void
+ColorButton_SetParentFont(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetParentFont)
+    MySyscall(pColorButton_SetParentFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetParentShowHint)
+BOOL
+ColorButton_GetParentShowHint(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetParentShowHint)
+    return (BOOL)MySyscall(pColorButton_GetParentShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetParentShowHint)
+void
+ColorButton_SetParentShowHint(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetParentShowHint)
+    MySyscall(pColorButton_SetParentShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetPopupMenu)
+TPopupMenu
+ColorButton_GetPopupMenu(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetPopupMenu)
+    return (TPopupMenu)MySyscall(pColorButton_GetPopupMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetPopupMenu)
+void
+ColorButton_SetPopupMenu(TColorButton AObj, TPopupMenu AValue) {
+    GET_FUNC_ADDR(ColorButton_SetPopupMenu)
+    MySyscall(pColorButton_SetPopupMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetImageIndex)
+int32_t
+ColorButton_GetImageIndex(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetImageIndex)
+    return (int32_t)MySyscall(pColorButton_GetImageIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetImageIndex)
+void
+ColorButton_SetImageIndex(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetImageIndex)
+    MySyscall(pColorButton_SetImageIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetImages)
+TImageList
+ColorButton_GetImages(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetImages)
+    return (TImageList)MySyscall(pColorButton_GetImages, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetImages)
+void
+ColorButton_SetImages(TColorButton AObj, TImageList AValue) {
+    GET_FUNC_ADDR(ColorButton_SetImages)
+    MySyscall(pColorButton_SetImages, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetImageWidth)
+int32_t
+ColorButton_GetImageWidth(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetImageWidth)
+    return (int32_t)MySyscall(pColorButton_GetImageWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetImageWidth)
+void
+ColorButton_SetImageWidth(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetImageWidth)
+    MySyscall(pColorButton_SetImageWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetShowCaption)
+BOOL
+ColorButton_GetShowCaption(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetShowCaption)
+    return (BOOL)MySyscall(pColorButton_GetShowCaption, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetShowCaption)
+void
+ColorButton_SetShowCaption(TColorButton AObj, BOOL AValue) {
+    GET_FUNC_ADDR(ColorButton_SetShowCaption)
+    MySyscall(pColorButton_SetShowCaption, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetBiDiMode)
+TBiDiMode
+ColorButton_GetBiDiMode(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pColorButton_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetBiDiMode)
+void
+ColorButton_SetBiDiMode(TColorButton AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(ColorButton_SetBiDiMode)
+    MySyscall(pColorButton_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetGlyph)
+TBitmap
+ColorButton_GetGlyph(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetGlyph)
+    return (TBitmap)MySyscall(pColorButton_GetGlyph, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetGlyph)
+void
+ColorButton_SetGlyph(TColorButton AObj, TBitmap AValue) {
+    GET_FUNC_ADDR(ColorButton_SetGlyph)
+    MySyscall(pColorButton_SetGlyph, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetNumGlyphs)
+TNumGlyphs
+ColorButton_GetNumGlyphs(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetNumGlyphs)
+    return (TNumGlyphs)MySyscall(pColorButton_GetNumGlyphs, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetNumGlyphs)
+void
+ColorButton_SetNumGlyphs(TColorButton AObj, TNumGlyphs AValue) {
+    GET_FUNC_ADDR(ColorButton_SetNumGlyphs)
+    MySyscall(pColorButton_SetNumGlyphs, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetBoundsRect)
+TRect
+ColorButton_GetBoundsRect(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetBoundsRect)
+    TRect result;
+    MySyscall(pColorButton_GetBoundsRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetBoundsRect)
+void
+ColorButton_SetBoundsRect(TColorButton AObj, TRect AValue) {
+    GET_FUNC_ADDR(ColorButton_SetBoundsRect)
+    MySyscall(pColorButton_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetClientHeight)
+int32_t
+ColorButton_GetClientHeight(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetClientHeight)
+    return (int32_t)MySyscall(pColorButton_GetClientHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetClientHeight)
+void
+ColorButton_SetClientHeight(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetClientHeight)
+    MySyscall(pColorButton_SetClientHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetClientOrigin)
+TPoint
+ColorButton_GetClientOrigin(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetClientOrigin)
+    TPoint result;
+    MySyscall(pColorButton_GetClientOrigin, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetClientRect)
+TRect
+ColorButton_GetClientRect(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetClientRect)
+    TRect result;
+    MySyscall(pColorButton_GetClientRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetClientWidth)
+int32_t
+ColorButton_GetClientWidth(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetClientWidth)
+    return (int32_t)MySyscall(pColorButton_GetClientWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetClientWidth)
+void
+ColorButton_SetClientWidth(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetClientWidth)
+    MySyscall(pColorButton_SetClientWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetControlState)
+TControlState
+ColorButton_GetControlState(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetControlState)
+    return (TControlState)MySyscall(pColorButton_GetControlState, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetControlState)
+void
+ColorButton_SetControlState(TColorButton AObj, TControlState AValue) {
+    GET_FUNC_ADDR(ColorButton_SetControlState)
+    MySyscall(pColorButton_SetControlState, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetControlStyle)
+TControlStyle
+ColorButton_GetControlStyle(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetControlStyle)
+    return (TControlStyle)MySyscall(pColorButton_GetControlStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetControlStyle)
+void
+ColorButton_SetControlStyle(TColorButton AObj, TControlStyle AValue) {
+    GET_FUNC_ADDR(ColorButton_SetControlStyle)
+    MySyscall(pColorButton_SetControlStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetFloating)
+BOOL
+ColorButton_GetFloating(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetFloating)
+    return (BOOL)MySyscall(pColorButton_GetFloating, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetParent)
+TWinControl
+ColorButton_GetParent(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetParent)
+    return (TWinControl)MySyscall(pColorButton_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetParent)
+void
+ColorButton_SetParent(TColorButton AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(ColorButton_SetParent)
+    MySyscall(pColorButton_SetParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetLeft)
+int32_t
+ColorButton_GetLeft(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetLeft)
+    return (int32_t)MySyscall(pColorButton_GetLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetLeft)
+void
+ColorButton_SetLeft(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetLeft)
+    MySyscall(pColorButton_SetLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetTop)
+int32_t
+ColorButton_GetTop(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetTop)
+    return (int32_t)MySyscall(pColorButton_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetTop)
+void
+ColorButton_SetTop(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetTop)
+    MySyscall(pColorButton_SetTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetWidth)
+int32_t
+ColorButton_GetWidth(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetWidth)
+    return (int32_t)MySyscall(pColorButton_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetWidth)
+void
+ColorButton_SetWidth(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetWidth)
+    MySyscall(pColorButton_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetHeight)
+int32_t
+ColorButton_GetHeight(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetHeight)
+    return (int32_t)MySyscall(pColorButton_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetHeight)
+void
+ColorButton_SetHeight(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetHeight)
+    MySyscall(pColorButton_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetCursor)
+TCursor
+ColorButton_GetCursor(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetCursor)
+    return (TCursor)MySyscall(pColorButton_GetCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetCursor)
+void
+ColorButton_SetCursor(TColorButton AObj, TCursor AValue) {
+    GET_FUNC_ADDR(ColorButton_SetCursor)
+    MySyscall(pColorButton_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetComponentCount)
+int32_t
+ColorButton_GetComponentCount(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetComponentCount)
+    return (int32_t)MySyscall(pColorButton_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetComponentIndex)
+int32_t
+ColorButton_GetComponentIndex(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetComponentIndex)
+    return (int32_t)MySyscall(pColorButton_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetComponentIndex)
+void
+ColorButton_SetComponentIndex(TColorButton AObj, int32_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetComponentIndex)
+    MySyscall(pColorButton_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetOwner)
+TComponent
+ColorButton_GetOwner(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetOwner)
+    return (TComponent)MySyscall(pColorButton_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetName)
+char*
+ColorButton_GetName(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetName)
+    return (char*)MySyscall(pColorButton_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetName)
+void
+ColorButton_SetName(TColorButton AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(ColorButton_SetName)
+    MySyscall(pColorButton_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetTag)
+intptr_t
+ColorButton_GetTag(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetTag)
+    return (intptr_t)MySyscall(pColorButton_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetTag)
+void
+ColorButton_SetTag(TColorButton AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(ColorButton_SetTag)
+    MySyscall(pColorButton_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAnchorSideLeft)
+TAnchorSide
+ColorButton_GetAnchorSideLeft(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAnchorSideLeft)
+    return (TAnchorSide)MySyscall(pColorButton_GetAnchorSideLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAnchorSideLeft)
+void
+ColorButton_SetAnchorSideLeft(TColorButton AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAnchorSideLeft)
+    MySyscall(pColorButton_SetAnchorSideLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAnchorSideTop)
+TAnchorSide
+ColorButton_GetAnchorSideTop(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAnchorSideTop)
+    return (TAnchorSide)MySyscall(pColorButton_GetAnchorSideTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAnchorSideTop)
+void
+ColorButton_SetAnchorSideTop(TColorButton AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAnchorSideTop)
+    MySyscall(pColorButton_SetAnchorSideTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAnchorSideRight)
+TAnchorSide
+ColorButton_GetAnchorSideRight(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAnchorSideRight)
+    return (TAnchorSide)MySyscall(pColorButton_GetAnchorSideRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAnchorSideRight)
+void
+ColorButton_SetAnchorSideRight(TColorButton AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAnchorSideRight)
+    MySyscall(pColorButton_SetAnchorSideRight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAnchorSideBottom)
+TAnchorSide
+ColorButton_GetAnchorSideBottom(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetAnchorSideBottom)
+    return (TAnchorSide)MySyscall(pColorButton_GetAnchorSideBottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetAnchorSideBottom)
+void
+ColorButton_SetAnchorSideBottom(TColorButton AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(ColorButton_SetAnchorSideBottom)
+    MySyscall(pColorButton_SetAnchorSideBottom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetBorderSpacing)
+TControlBorderSpacing
+ColorButton_GetBorderSpacing(TColorButton AObj) {
+    GET_FUNC_ADDR(ColorButton_GetBorderSpacing)
+    return (TControlBorderSpacing)MySyscall(pColorButton_GetBorderSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_SetBorderSpacing)
+void
+ColorButton_SetBorderSpacing(TColorButton AObj, TControlBorderSpacing AValue) {
+    GET_FUNC_ADDR(ColorButton_SetBorderSpacing)
+    MySyscall(pColorButton_SetBorderSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetComponents)
+TComponent
+ColorButton_GetComponents(TColorButton AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(ColorButton_GetComponents)
+    return (TComponent)MySyscall(pColorButton_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_GetAnchorSide)
+TAnchorSide
+ColorButton_GetAnchorSide(TColorButton AObj, TAnchorKind AKind) {
+    GET_FUNC_ADDR(ColorButton_GetAnchorSide)
+    return (TAnchorSide)MySyscall(pColorButton_GetAnchorSide, 2, AObj, AKind ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ColorButton_StaticClassType)
+TClass
+ColorButton_StaticClassType() {
+    GET_FUNC_ADDR(ColorButton_StaticClassType)
+    return (TClass)MySyscall(pColorButton_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 // -------------------TMiniWebview-------------------
 
 DEFINE_FUNC_PTR(MiniWebview_Create)
@@ -61747,16 +67325,16 @@ MiniWebview_SetVisible(TMiniWebview AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(MiniWebview_SetOnTitleChange)
 void
-MiniWebview_SetOnTitleChange(TMiniWebview AObj, TWebTitleChangeEvent AEventId) {
+MiniWebview_SetOnTitleChange(TMiniWebview AObj, TWebTitleChangeEvent AEventData) {
     GET_FUNC_ADDR(MiniWebview_SetOnTitleChange)
-    MySyscall(pMiniWebview_SetOnTitleChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_SetOnTitleChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MiniWebview_SetOnJSExternal)
 void
-MiniWebview_SetOnJSExternal(TMiniWebview AObj, TWebJSExternalEvent AEventId) {
+MiniWebview_SetOnJSExternal(TMiniWebview AObj, TWebJSExternalEvent AEventData) {
     GET_FUNC_ADDR(MiniWebview_SetOnJSExternal)
-    MySyscall(pMiniWebview_SetOnJSExternal, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMiniWebview_SetOnJSExternal, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MiniWebview_GetDockClientCount)
@@ -62604,16 +68182,16 @@ Canvas_SetPen(TCanvas AObj, TPen AValue) {
 
 DEFINE_FUNC_PTR(Canvas_SetOnChange)
 void
-Canvas_SetOnChange(TCanvas AObj, TNotifyEvent AEventId) {
+Canvas_SetOnChange(TCanvas AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Canvas_SetOnChange)
-    MySyscall(pCanvas_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCanvas_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Canvas_SetOnChanging)
 void
-Canvas_SetOnChanging(TCanvas AObj, TNotifyEvent AEventId) {
+Canvas_SetOnChanging(TCanvas AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Canvas_SetOnChanging)
-    MySyscall(pCanvas_SetOnChanging, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCanvas_SetOnChanging, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Canvas_GetPixels)
@@ -63159,58 +68737,58 @@ Application_SetTitle(TApplication AObj, CChar char* AValue) {
 
 DEFINE_FUNC_PTR(Application_SetOnActivate)
 void
-Application_SetOnActivate(TApplication AObj, TNotifyEvent AEventId) {
+Application_SetOnActivate(TApplication AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnActivate)
-    MySyscall(pApplication_SetOnActivate, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnActivate, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnDeactivate)
 void
-Application_SetOnDeactivate(TApplication AObj, TNotifyEvent AEventId) {
+Application_SetOnDeactivate(TApplication AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnDeactivate)
-    MySyscall(pApplication_SetOnDeactivate, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnDeactivate, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnException)
 void
-Application_SetOnException(TApplication AObj, TExceptionEvent AEventId) {
+Application_SetOnException(TApplication AObj, TExceptionEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnException)
-    MySyscall(pApplication_SetOnException, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnException, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnHelp)
 void
-Application_SetOnHelp(TApplication AObj, THelpEvent AEventId) {
+Application_SetOnHelp(TApplication AObj, THelpEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnHelp)
-    MySyscall(pApplication_SetOnHelp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnHelp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnHint)
 void
-Application_SetOnHint(TApplication AObj, TNotifyEvent AEventId) {
+Application_SetOnHint(TApplication AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnHint)
-    MySyscall(pApplication_SetOnHint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnHint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnMinimize)
 void
-Application_SetOnMinimize(TApplication AObj, TNotifyEvent AEventId) {
+Application_SetOnMinimize(TApplication AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnMinimize)
-    MySyscall(pApplication_SetOnMinimize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnMinimize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnRestore)
 void
-Application_SetOnRestore(TApplication AObj, TNotifyEvent AEventId) {
+Application_SetOnRestore(TApplication AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnRestore)
-    MySyscall(pApplication_SetOnRestore, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnRestore, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_SetOnShortCut)
 void
-Application_SetOnShortCut(TApplication AObj, TShortCutEvent AEventId) {
+Application_SetOnShortCut(TApplication AObj, TShortCutEvent AEventData) {
     GET_FUNC_ADDR(Application_SetOnShortCut)
-    MySyscall(pApplication_SetOnShortCut, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pApplication_SetOnShortCut, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Application_GetHandle)
@@ -63425,6 +69003,20 @@ MainMenu_SetImagesWidth(TMainMenu AObj, int32_t AValue) {
     MySyscall(pMainMenu_SetImagesWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(MainMenu_SetOnDrawItem)
+void
+MainMenu_SetOnDrawItem(TMainMenu AObj, TMenuDrawItemEvent AEventData) {
+    GET_FUNC_ADDR(MainMenu_SetOnDrawItem)
+    MySyscall(pMainMenu_SetOnDrawItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(MainMenu_SetOnMeasureItem)
+void
+MainMenu_SetOnMeasureItem(TMainMenu AObj, TMenuMeasureItemEvent AEventData) {
+    GET_FUNC_ADDR(MainMenu_SetOnMeasureItem)
+    MySyscall(pMainMenu_SetOnMeasureItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(MainMenu_GetBiDiMode)
 TBiDiMode
 MainMenu_GetBiDiMode(TMainMenu AObj) {
@@ -63469,9 +69061,9 @@ MainMenu_SetOwnerDraw(TMainMenu AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(MainMenu_SetOnChange)
 void
-MainMenu_SetOnChange(TMainMenu AObj, TMenuChangeEvent AEventId) {
+MainMenu_SetOnChange(TMainMenu AObj, TMenuChangeEvent AEventData) {
     GET_FUNC_ADDR(MainMenu_SetOnChange)
-    MySyscall(pMainMenu_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMainMenu_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MainMenu_GetHandle)
@@ -63772,9 +69364,9 @@ PngImage_SetTransparent(TPngImage AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(PngImage_SetOnChange)
 void
-PngImage_SetOnChange(TPngImage AObj, TNotifyEvent AEventId) {
+PngImage_SetOnChange(TPngImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PngImage_SetOnChange)
-    MySyscall(pPngImage_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPngImage_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PngImage_StaticClassType)
@@ -64026,9 +69618,9 @@ JPEGImage_SetWidth(TJPEGImage AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(JPEGImage_SetOnChange)
 void
-JPEGImage_SetOnChange(TJPEGImage AObj, TNotifyEvent AEventId) {
+JPEGImage_SetOnChange(TJPEGImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(JPEGImage_SetOnChange)
-    MySyscall(pJPEGImage_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pJPEGImage_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(JPEGImage_StaticClassType)
@@ -64252,9 +69844,9 @@ GIFImage_SetWidth(TGIFImage AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(GIFImage_SetOnChange)
 void
-GIFImage_SetOnChange(TGIFImage AObj, TNotifyEvent AEventId) {
+GIFImage_SetOnChange(TGIFImage AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(GIFImage_SetOnChange)
-    MySyscall(pGIFImage_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pGIFImage_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(GIFImage_StaticClassType)
@@ -64387,9 +69979,9 @@ ActionList_SetState(TActionList AObj, TActionListState AValue) {
 
 DEFINE_FUNC_PTR(ActionList_SetOnChange)
 void
-ActionList_SetOnChange(TActionList AObj, TNotifyEvent AEventId) {
+ActionList_SetOnChange(TActionList AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ActionList_SetOnChange)
-    MySyscall(pActionList_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pActionList_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ActionList_GetComponentCount)
@@ -64697,16 +70289,16 @@ Action_SetVisible(TAction AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Action_SetOnExecute)
 void
-Action_SetOnExecute(TAction AObj, TNotifyEvent AEventId) {
+Action_SetOnExecute(TAction AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Action_SetOnExecute)
-    MySyscall(pAction_SetOnExecute, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pAction_SetOnExecute, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Action_SetOnUpdate)
 void
-Action_SetOnUpdate(TAction AObj, TNotifyEvent AEventId) {
+Action_SetOnUpdate(TAction AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Action_SetOnUpdate)
-    MySyscall(pAction_SetOnUpdate, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pAction_SetOnUpdate, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Action_GetIndex)
@@ -65491,86 +71083,86 @@ ToolButton_SetWidth(TToolButton AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(ToolButton_SetOnClick)
 void
-ToolButton_SetOnClick(TToolButton AObj, TNotifyEvent AEventId) {
+ToolButton_SetOnClick(TToolButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnClick)
-    MySyscall(pToolButton_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnContextPopup)
 void
-ToolButton_SetOnContextPopup(TToolButton AObj, TContextPopupEvent AEventId) {
+ToolButton_SetOnContextPopup(TToolButton AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnContextPopup)
-    MySyscall(pToolButton_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnDragDrop)
 void
-ToolButton_SetOnDragDrop(TToolButton AObj, TDragDropEvent AEventId) {
+ToolButton_SetOnDragDrop(TToolButton AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnDragDrop)
-    MySyscall(pToolButton_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnDragOver)
 void
-ToolButton_SetOnDragOver(TToolButton AObj, TDragOverEvent AEventId) {
+ToolButton_SetOnDragOver(TToolButton AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnDragOver)
-    MySyscall(pToolButton_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnEndDock)
 void
-ToolButton_SetOnEndDock(TToolButton AObj, TEndDragEvent AEventId) {
+ToolButton_SetOnEndDock(TToolButton AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnEndDock)
-    MySyscall(pToolButton_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnEndDrag)
 void
-ToolButton_SetOnEndDrag(TToolButton AObj, TEndDragEvent AEventId) {
+ToolButton_SetOnEndDrag(TToolButton AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnEndDrag)
-    MySyscall(pToolButton_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnMouseDown)
 void
-ToolButton_SetOnMouseDown(TToolButton AObj, TMouseEvent AEventId) {
+ToolButton_SetOnMouseDown(TToolButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnMouseDown)
-    MySyscall(pToolButton_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnMouseEnter)
 void
-ToolButton_SetOnMouseEnter(TToolButton AObj, TNotifyEvent AEventId) {
+ToolButton_SetOnMouseEnter(TToolButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnMouseEnter)
-    MySyscall(pToolButton_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnMouseLeave)
 void
-ToolButton_SetOnMouseLeave(TToolButton AObj, TNotifyEvent AEventId) {
+ToolButton_SetOnMouseLeave(TToolButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnMouseLeave)
-    MySyscall(pToolButton_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnMouseMove)
 void
-ToolButton_SetOnMouseMove(TToolButton AObj, TMouseMoveEvent AEventId) {
+ToolButton_SetOnMouseMove(TToolButton AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnMouseMove)
-    MySyscall(pToolButton_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnMouseUp)
 void
-ToolButton_SetOnMouseUp(TToolButton AObj, TMouseEvent AEventId) {
+ToolButton_SetOnMouseUp(TToolButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnMouseUp)
-    MySyscall(pToolButton_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_SetOnStartDock)
 void
-ToolButton_SetOnStartDock(TToolButton AObj, TStartDockEvent AEventId) {
+ToolButton_SetOnStartDock(TToolButton AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(ToolButton_SetOnStartDock)
-    MySyscall(pToolButton_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToolButton_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToolButton_GetAlign)
@@ -66569,13 +72161,6 @@ Clipboard_FindFormatID(TClipboard AObj, CChar char* FormatName) {
     return (TClipboardFormat)MySyscall(pClipboard_FindFormatID, 2, AObj, FormatName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Clipboard_GetAsHtml)
-char*
-Clipboard_GetAsHtml(TClipboard AObj, BOOL ExtractFragmentOnly) {
-    GET_FUNC_ADDR(Clipboard_GetAsHtml)
-    return (char*)MySyscall(pClipboard_GetAsHtml, 2, AObj, ExtractFragmentOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
 DEFINE_FUNC_PTR(Clipboard_SupportedFormats)
 void
 Clipboard_SupportedFormats(TClipboard AObj, TStrings List) {
@@ -66604,6 +72189,13 @@ Clipboard_SetAsHtml(TClipboard AObj, CChar char* Html, CChar char* PlainText) {
     MySyscall(pClipboard_SetAsHtml, 3, AObj, Html, PlainText ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Clipboard_GetFormat)
+BOOL
+Clipboard_GetFormat(TClipboard AObj, TClipboardFormat FormatID, TStream Stream) {
+    GET_FUNC_ADDR(Clipboard_GetFormat)
+    return (BOOL)MySyscall(pClipboard_GetFormat, 3, AObj, FormatID, Stream ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Clipboard_Assign)
 void
 Clipboard_Assign(TClipboard AObj, TObject Source) {
@@ -66630,13 +72222,6 @@ void
 Clipboard_Open(TClipboard AObj) {
     GET_FUNC_ADDR(Clipboard_Open)
     MySyscall(pClipboard_Open, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Clipboard_GetTextBuf)
-int32_t
-Clipboard_GetTextBuf(TClipboard AObj, CChar char* Buffer, int32_t BufSize) {
-    GET_FUNC_ADDR(Clipboard_GetTextBuf)
-    return (int32_t)MySyscall(pClipboard_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Clipboard_SetTextBuf)
@@ -66702,20 +72287,6 @@ Clipboard_ToString(TClipboard AObj) {
     return (char*)MySyscall(pClipboard_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
-DEFINE_FUNC_PTR(Clipboard_GetAsText)
-char*
-Clipboard_GetAsText(TClipboard AObj) {
-    GET_FUNC_ADDR(Clipboard_GetAsText)
-    return (char*)MySyscall(pClipboard_GetAsText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
-DEFINE_FUNC_PTR(Clipboard_SetAsText)
-void
-Clipboard_SetAsText(TClipboard AObj, CChar char* AValue) {
-    GET_FUNC_ADDR(Clipboard_SetAsText)
-    MySyscall(pClipboard_SetAsText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-
 DEFINE_FUNC_PTR(Clipboard_GetFormatCount)
 int32_t
 Clipboard_GetFormatCount(TClipboard AObj) {
@@ -66742,6 +72313,34 @@ BOOL
 Clipboard_HasFormat(TClipboard AObj, TClipboardFormat AFormatID) {
     GET_FUNC_ADDR(Clipboard_HasFormat)
     return (BOOL)MySyscall(pClipboard_HasFormat, 2, AObj, AFormatID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_GetTextBuf)
+int32_t
+Clipboard_GetTextBuf(TClipboard AObj, CChar char* Buffer, int32_t BufSize) {
+    GET_FUNC_ADDR(Clipboard_GetTextBuf)
+    return (int32_t)MySyscall(pClipboard_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_GetAsText)
+char*
+Clipboard_GetAsText(TClipboard AObj) {
+    GET_FUNC_ADDR(Clipboard_GetAsText)
+    return (char*)MySyscall(pClipboard_GetAsText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_SetAsText)
+void
+Clipboard_SetAsText(TClipboard AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(Clipboard_SetAsText)
+    MySyscall(pClipboard_SetAsText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Clipboard_GetAsHtml)
+char*
+Clipboard_GetAsHtml(TClipboard AObj, BOOL ExtractFragmentOnly) {
+    GET_FUNC_ADDR(Clipboard_GetAsHtml)
+    return (char*)MySyscall(pClipboard_GetAsHtml, 2, AObj, ExtractFragmentOnly ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TMonitor-------------------
@@ -67462,79 +73061,79 @@ PaintBox_SetVisible(TPaintBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(PaintBox_SetOnClick)
 void
-PaintBox_SetOnClick(TPaintBox AObj, TNotifyEvent AEventId) {
+PaintBox_SetOnClick(TPaintBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnClick)
-    MySyscall(pPaintBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnDblClick)
 void
-PaintBox_SetOnDblClick(TPaintBox AObj, TNotifyEvent AEventId) {
+PaintBox_SetOnDblClick(TPaintBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnDblClick)
-    MySyscall(pPaintBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnDragDrop)
 void
-PaintBox_SetOnDragDrop(TPaintBox AObj, TDragDropEvent AEventId) {
+PaintBox_SetOnDragDrop(TPaintBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnDragDrop)
-    MySyscall(pPaintBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnDragOver)
 void
-PaintBox_SetOnDragOver(TPaintBox AObj, TDragOverEvent AEventId) {
+PaintBox_SetOnDragOver(TPaintBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnDragOver)
-    MySyscall(pPaintBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnEndDrag)
 void
-PaintBox_SetOnEndDrag(TPaintBox AObj, TEndDragEvent AEventId) {
+PaintBox_SetOnEndDrag(TPaintBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnEndDrag)
-    MySyscall(pPaintBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnMouseDown)
 void
-PaintBox_SetOnMouseDown(TPaintBox AObj, TMouseEvent AEventId) {
+PaintBox_SetOnMouseDown(TPaintBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnMouseDown)
-    MySyscall(pPaintBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnMouseEnter)
 void
-PaintBox_SetOnMouseEnter(TPaintBox AObj, TNotifyEvent AEventId) {
+PaintBox_SetOnMouseEnter(TPaintBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnMouseEnter)
-    MySyscall(pPaintBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnMouseLeave)
 void
-PaintBox_SetOnMouseLeave(TPaintBox AObj, TNotifyEvent AEventId) {
+PaintBox_SetOnMouseLeave(TPaintBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnMouseLeave)
-    MySyscall(pPaintBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnMouseMove)
 void
-PaintBox_SetOnMouseMove(TPaintBox AObj, TMouseMoveEvent AEventId) {
+PaintBox_SetOnMouseMove(TPaintBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnMouseMove)
-    MySyscall(pPaintBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnMouseUp)
 void
-PaintBox_SetOnMouseUp(TPaintBox AObj, TMouseEvent AEventId) {
+PaintBox_SetOnMouseUp(TPaintBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnMouseUp)
-    MySyscall(pPaintBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_SetOnPaint)
 void
-PaintBox_SetOnPaint(TPaintBox AObj, TNotifyEvent AEventId) {
+PaintBox_SetOnPaint(TPaintBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PaintBox_SetOnPaint)
-    MySyscall(pPaintBox_SetOnPaint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPaintBox_SetOnPaint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PaintBox_GetAction)
@@ -68030,9 +73629,9 @@ Timer_SetInterval(TTimer AObj, uint32_t AValue) {
 
 DEFINE_FUNC_PTR(Timer_SetOnTimer)
 void
-Timer_SetOnTimer(TTimer AObj, TNotifyEvent AEventId) {
+Timer_SetOnTimer(TTimer AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Timer_SetOnTimer)
-    MySyscall(pTimer_SetOnTimer, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTimer_SetOnTimer, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Timer_GetComponentCount)
@@ -68140,6 +73739,13 @@ void
 List_Delete(TList AObj, int32_t Index) {
     GET_FUNC_ADDR(List_Delete)
     MySyscall(pList_Delete, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(List_Exchange)
+void
+List_Exchange(TList AObj, int32_t Index1, int32_t Index2) {
+    GET_FUNC_ADDR(List_Exchange)
+    MySyscall(pList_Exchange, 3, AObj, Index1, Index2 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(List_Expand)
@@ -68861,9 +74467,9 @@ Form_SetAllowDropFiles(TForm AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Form_SetOnDropFiles)
 void
-Form_SetOnDropFiles(TForm AObj, TDropFilesEvent AEventId) {
+Form_SetOnDropFiles(TForm AObj, TDropFilesEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDropFiles)
-    MySyscall(pForm_SetOnDropFiles, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDropFiles, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_GetShowInTaskBar)
@@ -68892,6 +74498,13 @@ void
 Form_SetDesignTimePPI(TForm AObj, int32_t AValue) {
     GET_FUNC_ADDR(Form_SetDesignTimePPI)
     MySyscall(pForm_SetDesignTimePPI, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetOnUTF8KeyPress)
+void
+Form_SetOnUTF8KeyPress(TForm AObj, TUTF8KeyPressEvent AEventData) {
+    GET_FUNC_ADDR(Form_SetOnUTF8KeyPress)
+    MySyscall(pForm_SetOnUTF8KeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_GetAction)
@@ -69470,240 +75083,240 @@ Form_SetWindowState(TForm AObj, TWindowState AValue) {
 
 DEFINE_FUNC_PTR(Form_SetOnActivate)
 void
-Form_SetOnActivate(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnActivate(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnActivate)
-    MySyscall(pForm_SetOnActivate, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnActivate, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnAlignPosition)
 void
-Form_SetOnAlignPosition(TForm AObj, TAlignPositionEvent AEventId) {
+Form_SetOnAlignPosition(TForm AObj, TAlignPositionEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnAlignPosition)
-    MySyscall(pForm_SetOnAlignPosition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnAlignPosition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnClick)
 void
-Form_SetOnClick(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnClick(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnClick)
-    MySyscall(pForm_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnClose)
 void
-Form_SetOnClose(TForm AObj, TCloseEvent AEventId) {
+Form_SetOnClose(TForm AObj, TCloseEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnClose)
-    MySyscall(pForm_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnCloseQuery)
 void
-Form_SetOnCloseQuery(TForm AObj, TCloseQueryEvent AEventId) {
+Form_SetOnCloseQuery(TForm AObj, TCloseQueryEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnCloseQuery)
-    MySyscall(pForm_SetOnCloseQuery, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnCloseQuery, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnConstrainedResize)
 void
-Form_SetOnConstrainedResize(TForm AObj, TConstrainedResizeEvent AEventId) {
+Form_SetOnConstrainedResize(TForm AObj, TConstrainedResizeEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnConstrainedResize)
-    MySyscall(pForm_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnConstrainedResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnContextPopup)
 void
-Form_SetOnContextPopup(TForm AObj, TContextPopupEvent AEventId) {
+Form_SetOnContextPopup(TForm AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnContextPopup)
-    MySyscall(pForm_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDblClick)
 void
-Form_SetOnDblClick(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnDblClick(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDblClick)
-    MySyscall(pForm_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDestroy)
 void
-Form_SetOnDestroy(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnDestroy(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDestroy)
-    MySyscall(pForm_SetOnDestroy, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDestroy, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDeactivate)
 void
-Form_SetOnDeactivate(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnDeactivate(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDeactivate)
-    MySyscall(pForm_SetOnDeactivate, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDeactivate, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDockDrop)
 void
-Form_SetOnDockDrop(TForm AObj, TDockDropEvent AEventId) {
+Form_SetOnDockDrop(TForm AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDockDrop)
-    MySyscall(pForm_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDragDrop)
 void
-Form_SetOnDragDrop(TForm AObj, TDragDropEvent AEventId) {
+Form_SetOnDragDrop(TForm AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDragDrop)
-    MySyscall(pForm_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnDragOver)
 void
-Form_SetOnDragOver(TForm AObj, TDragOverEvent AEventId) {
+Form_SetOnDragOver(TForm AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnDragOver)
-    MySyscall(pForm_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnEndDock)
 void
-Form_SetOnEndDock(TForm AObj, TEndDragEvent AEventId) {
+Form_SetOnEndDock(TForm AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnEndDock)
-    MySyscall(pForm_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnGetSiteInfo)
 void
-Form_SetOnGetSiteInfo(TForm AObj, TGetSiteInfoEvent AEventId) {
+Form_SetOnGetSiteInfo(TForm AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnGetSiteInfo)
-    MySyscall(pForm_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnHide)
 void
-Form_SetOnHide(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnHide(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnHide)
-    MySyscall(pForm_SetOnHide, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnHide, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnHelp)
 void
-Form_SetOnHelp(TForm AObj, THelpEvent AEventId) {
+Form_SetOnHelp(TForm AObj, THelpEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnHelp)
-    MySyscall(pForm_SetOnHelp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnHelp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnKeyDown)
 void
-Form_SetOnKeyDown(TForm AObj, TKeyEvent AEventId) {
+Form_SetOnKeyDown(TForm AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnKeyDown)
-    MySyscall(pForm_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnKeyPress)
 void
-Form_SetOnKeyPress(TForm AObj, TKeyPressEvent AEventId) {
+Form_SetOnKeyPress(TForm AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnKeyPress)
-    MySyscall(pForm_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnKeyUp)
 void
-Form_SetOnKeyUp(TForm AObj, TKeyEvent AEventId) {
+Form_SetOnKeyUp(TForm AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnKeyUp)
-    MySyscall(pForm_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseDown)
 void
-Form_SetOnMouseDown(TForm AObj, TMouseEvent AEventId) {
+Form_SetOnMouseDown(TForm AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseDown)
-    MySyscall(pForm_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseEnter)
 void
-Form_SetOnMouseEnter(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnMouseEnter(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseEnter)
-    MySyscall(pForm_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseLeave)
 void
-Form_SetOnMouseLeave(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnMouseLeave(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseLeave)
-    MySyscall(pForm_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseMove)
 void
-Form_SetOnMouseMove(TForm AObj, TMouseMoveEvent AEventId) {
+Form_SetOnMouseMove(TForm AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseMove)
-    MySyscall(pForm_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseUp)
 void
-Form_SetOnMouseUp(TForm AObj, TMouseEvent AEventId) {
+Form_SetOnMouseUp(TForm AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseUp)
-    MySyscall(pForm_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseWheel)
 void
-Form_SetOnMouseWheel(TForm AObj, TMouseWheelEvent AEventId) {
+Form_SetOnMouseWheel(TForm AObj, TMouseWheelEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseWheel)
-    MySyscall(pForm_SetOnMouseWheel, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseWheelDown)
 void
-Form_SetOnMouseWheelDown(TForm AObj, TMouseWheelUpDownEvent AEventId) {
+Form_SetOnMouseWheelDown(TForm AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseWheelDown)
-    MySyscall(pForm_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnMouseWheelUp)
 void
-Form_SetOnMouseWheelUp(TForm AObj, TMouseWheelUpDownEvent AEventId) {
+Form_SetOnMouseWheelUp(TForm AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnMouseWheelUp)
-    MySyscall(pForm_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnPaint)
 void
-Form_SetOnPaint(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnPaint(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnPaint)
-    MySyscall(pForm_SetOnPaint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnPaint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnResize)
 void
-Form_SetOnResize(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnResize(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnResize)
-    MySyscall(pForm_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnShortCut)
 void
-Form_SetOnShortCut(TForm AObj, TShortCutEvent AEventId) {
+Form_SetOnShortCut(TForm AObj, TShortCutEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnShortCut)
-    MySyscall(pForm_SetOnShortCut, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnShortCut, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnShow)
 void
-Form_SetOnShow(TForm AObj, TNotifyEvent AEventId) {
+Form_SetOnShow(TForm AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnShow)
-    MySyscall(pForm_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnStartDock)
 void
-Form_SetOnStartDock(TForm AObj, TStartDockEvent AEventId) {
+Form_SetOnStartDock(TForm AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnStartDock)
-    MySyscall(pForm_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_SetOnUnDock)
 void
-Form_SetOnUnDock(TForm AObj, TUnDockEvent AEventId) {
+Form_SetOnUnDock(TForm AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnUnDock)
-    MySyscall(pForm_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Form_GetCanvas)
@@ -70162,9 +75775,16 @@ Form_Create2(TComponent AOwner, BOOL AInitScale) {
 
 DEFINE_FUNC_PTR(Form_SetOnWndProc)
 void
-Form_SetOnWndProc(TForm AObj, TWndProcEvent AEventId) {
+Form_SetOnWndProc(TForm AObj, TWndProcEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnWndProc)
-    MySyscall(pForm_SetOnWndProc, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pForm_SetOnWndProc, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Form_SetGoPtr)
+void
+Form_SetGoPtr(TForm AObj, void* APtr) {
+    GET_FUNC_ADDR(Form_SetGoPtr)
+    MySyscall(pForm_SetGoPtr, 2, AObj, APtr ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TParaAttributes-------------------
@@ -71291,6 +76911,20 @@ ScrollBar_SetEnabled(TScrollBar AObj, BOOL AValue) {
     MySyscall(pScrollBar_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ScrollBar_GetKind)
+TScrollBarKind
+ScrollBar_GetKind(TScrollBar AObj) {
+    GET_FUNC_ADDR(ScrollBar_GetKind)
+    return (TScrollBarKind)MySyscall(pScrollBar_GetKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(ScrollBar_SetKind)
+void
+ScrollBar_SetKind(TScrollBar AObj, TScrollBarKind AValue) {
+    GET_FUNC_ADDR(ScrollBar_SetKind)
+    MySyscall(pScrollBar_SetKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ScrollBar_GetLargeChange)
 TScrollBarInc
 ScrollBar_GetLargeChange(TScrollBar AObj) {
@@ -71475,72 +77109,72 @@ ScrollBar_SetVisible(TScrollBar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnContextPopup)
 void
-ScrollBar_SetOnContextPopup(TScrollBar AObj, TContextPopupEvent AEventId) {
+ScrollBar_SetOnContextPopup(TScrollBar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnContextPopup)
-    MySyscall(pScrollBar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnChange)
 void
-ScrollBar_SetOnChange(TScrollBar AObj, TNotifyEvent AEventId) {
+ScrollBar_SetOnChange(TScrollBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnChange)
-    MySyscall(pScrollBar_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnDragDrop)
 void
-ScrollBar_SetOnDragDrop(TScrollBar AObj, TDragDropEvent AEventId) {
+ScrollBar_SetOnDragDrop(TScrollBar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnDragDrop)
-    MySyscall(pScrollBar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnDragOver)
 void
-ScrollBar_SetOnDragOver(TScrollBar AObj, TDragOverEvent AEventId) {
+ScrollBar_SetOnDragOver(TScrollBar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnDragOver)
-    MySyscall(pScrollBar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnEndDrag)
 void
-ScrollBar_SetOnEndDrag(TScrollBar AObj, TEndDragEvent AEventId) {
+ScrollBar_SetOnEndDrag(TScrollBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnEndDrag)
-    MySyscall(pScrollBar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnEnter)
 void
-ScrollBar_SetOnEnter(TScrollBar AObj, TNotifyEvent AEventId) {
+ScrollBar_SetOnEnter(TScrollBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnEnter)
-    MySyscall(pScrollBar_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnExit)
 void
-ScrollBar_SetOnExit(TScrollBar AObj, TNotifyEvent AEventId) {
+ScrollBar_SetOnExit(TScrollBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnExit)
-    MySyscall(pScrollBar_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnKeyDown)
 void
-ScrollBar_SetOnKeyDown(TScrollBar AObj, TKeyEvent AEventId) {
+ScrollBar_SetOnKeyDown(TScrollBar AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnKeyDown)
-    MySyscall(pScrollBar_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnKeyPress)
 void
-ScrollBar_SetOnKeyPress(TScrollBar AObj, TKeyPressEvent AEventId) {
+ScrollBar_SetOnKeyPress(TScrollBar AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnKeyPress)
-    MySyscall(pScrollBar_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_SetOnKeyUp)
 void
-ScrollBar_SetOnKeyUp(TScrollBar AObj, TKeyEvent AEventId) {
+ScrollBar_SetOnKeyUp(TScrollBar AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBar_SetOnKeyUp)
-    MySyscall(pScrollBar_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBar_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBar_GetDockClientCount)
@@ -72975,128 +78609,128 @@ MaskEdit_SetVisible(TMaskEdit AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnChange)
 void
-MaskEdit_SetOnChange(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnChange(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnChange)
-    MySyscall(pMaskEdit_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnClick)
 void
-MaskEdit_SetOnClick(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnClick(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnClick)
-    MySyscall(pMaskEdit_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnDblClick)
 void
-MaskEdit_SetOnDblClick(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnDblClick(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnDblClick)
-    MySyscall(pMaskEdit_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnDragDrop)
 void
-MaskEdit_SetOnDragDrop(TMaskEdit AObj, TDragDropEvent AEventId) {
+MaskEdit_SetOnDragDrop(TMaskEdit AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnDragDrop)
-    MySyscall(pMaskEdit_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnDragOver)
 void
-MaskEdit_SetOnDragOver(TMaskEdit AObj, TDragOverEvent AEventId) {
+MaskEdit_SetOnDragOver(TMaskEdit AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnDragOver)
-    MySyscall(pMaskEdit_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnEndDock)
 void
-MaskEdit_SetOnEndDock(TMaskEdit AObj, TEndDragEvent AEventId) {
+MaskEdit_SetOnEndDock(TMaskEdit AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnEndDock)
-    MySyscall(pMaskEdit_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnEndDrag)
 void
-MaskEdit_SetOnEndDrag(TMaskEdit AObj, TEndDragEvent AEventId) {
+MaskEdit_SetOnEndDrag(TMaskEdit AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnEndDrag)
-    MySyscall(pMaskEdit_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnEnter)
 void
-MaskEdit_SetOnEnter(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnEnter(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnEnter)
-    MySyscall(pMaskEdit_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnExit)
 void
-MaskEdit_SetOnExit(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnExit(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnExit)
-    MySyscall(pMaskEdit_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnKeyDown)
 void
-MaskEdit_SetOnKeyDown(TMaskEdit AObj, TKeyEvent AEventId) {
+MaskEdit_SetOnKeyDown(TMaskEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnKeyDown)
-    MySyscall(pMaskEdit_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnKeyPress)
 void
-MaskEdit_SetOnKeyPress(TMaskEdit AObj, TKeyPressEvent AEventId) {
+MaskEdit_SetOnKeyPress(TMaskEdit AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnKeyPress)
-    MySyscall(pMaskEdit_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnKeyUp)
 void
-MaskEdit_SetOnKeyUp(TMaskEdit AObj, TKeyEvent AEventId) {
+MaskEdit_SetOnKeyUp(TMaskEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnKeyUp)
-    MySyscall(pMaskEdit_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnMouseDown)
 void
-MaskEdit_SetOnMouseDown(TMaskEdit AObj, TMouseEvent AEventId) {
+MaskEdit_SetOnMouseDown(TMaskEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnMouseDown)
-    MySyscall(pMaskEdit_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnMouseEnter)
 void
-MaskEdit_SetOnMouseEnter(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnMouseEnter(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnMouseEnter)
-    MySyscall(pMaskEdit_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnMouseLeave)
 void
-MaskEdit_SetOnMouseLeave(TMaskEdit AObj, TNotifyEvent AEventId) {
+MaskEdit_SetOnMouseLeave(TMaskEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnMouseLeave)
-    MySyscall(pMaskEdit_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnMouseMove)
 void
-MaskEdit_SetOnMouseMove(TMaskEdit AObj, TMouseMoveEvent AEventId) {
+MaskEdit_SetOnMouseMove(TMaskEdit AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnMouseMove)
-    MySyscall(pMaskEdit_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnMouseUp)
 void
-MaskEdit_SetOnMouseUp(TMaskEdit AObj, TMouseEvent AEventId) {
+MaskEdit_SetOnMouseUp(TMaskEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnMouseUp)
-    MySyscall(pMaskEdit_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_SetOnStartDock)
 void
-MaskEdit_SetOnStartDock(TMaskEdit AObj, TStartDockEvent AEventId) {
+MaskEdit_SetOnStartDock(TMaskEdit AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(MaskEdit_SetOnStartDock)
-    MySyscall(pMaskEdit_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pMaskEdit_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(MaskEdit_GetIsMasked)
@@ -74209,58 +79843,58 @@ Shape_SetVisible(TShape AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Shape_SetOnDragDrop)
 void
-Shape_SetOnDragDrop(TShape AObj, TDragDropEvent AEventId) {
+Shape_SetOnDragDrop(TShape AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnDragDrop)
-    MySyscall(pShape_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnDragOver)
 void
-Shape_SetOnDragOver(TShape AObj, TDragOverEvent AEventId) {
+Shape_SetOnDragOver(TShape AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnDragOver)
-    MySyscall(pShape_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnEndDrag)
 void
-Shape_SetOnEndDrag(TShape AObj, TEndDragEvent AEventId) {
+Shape_SetOnEndDrag(TShape AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnEndDrag)
-    MySyscall(pShape_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnMouseDown)
 void
-Shape_SetOnMouseDown(TShape AObj, TMouseEvent AEventId) {
+Shape_SetOnMouseDown(TShape AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnMouseDown)
-    MySyscall(pShape_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnMouseEnter)
 void
-Shape_SetOnMouseEnter(TShape AObj, TNotifyEvent AEventId) {
+Shape_SetOnMouseEnter(TShape AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnMouseEnter)
-    MySyscall(pShape_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnMouseLeave)
 void
-Shape_SetOnMouseLeave(TShape AObj, TNotifyEvent AEventId) {
+Shape_SetOnMouseLeave(TShape AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnMouseLeave)
-    MySyscall(pShape_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnMouseMove)
 void
-Shape_SetOnMouseMove(TShape AObj, TMouseMoveEvent AEventId) {
+Shape_SetOnMouseMove(TShape AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnMouseMove)
-    MySyscall(pShape_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_SetOnMouseUp)
 void
-Shape_SetOnMouseUp(TShape AObj, TMouseEvent AEventId) {
+Shape_SetOnMouseUp(TShape AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Shape_SetOnMouseUp)
-    MySyscall(pShape_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pShape_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Shape_GetAction)
@@ -76334,149 +81968,149 @@ ScrollBox_SetVisible(TScrollBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnClick)
 void
-ScrollBox_SetOnClick(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnClick(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnClick)
-    MySyscall(pScrollBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnConstrainedResize)
 void
-ScrollBox_SetOnConstrainedResize(TScrollBox AObj, TConstrainedResizeEvent AEventId) {
+ScrollBox_SetOnConstrainedResize(TScrollBox AObj, TConstrainedResizeEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnConstrainedResize)
-    MySyscall(pScrollBox_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnConstrainedResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnDblClick)
 void
-ScrollBox_SetOnDblClick(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnDblClick(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnDblClick)
-    MySyscall(pScrollBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnDockDrop)
 void
-ScrollBox_SetOnDockDrop(TScrollBox AObj, TDockDropEvent AEventId) {
+ScrollBox_SetOnDockDrop(TScrollBox AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnDockDrop)
-    MySyscall(pScrollBox_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnDragDrop)
 void
-ScrollBox_SetOnDragDrop(TScrollBox AObj, TDragDropEvent AEventId) {
+ScrollBox_SetOnDragDrop(TScrollBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnDragDrop)
-    MySyscall(pScrollBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnDragOver)
 void
-ScrollBox_SetOnDragOver(TScrollBox AObj, TDragOverEvent AEventId) {
+ScrollBox_SetOnDragOver(TScrollBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnDragOver)
-    MySyscall(pScrollBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnEndDrag)
 void
-ScrollBox_SetOnEndDrag(TScrollBox AObj, TEndDragEvent AEventId) {
+ScrollBox_SetOnEndDrag(TScrollBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnEndDrag)
-    MySyscall(pScrollBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnEnter)
 void
-ScrollBox_SetOnEnter(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnEnter(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnEnter)
-    MySyscall(pScrollBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnExit)
 void
-ScrollBox_SetOnExit(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnExit(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnExit)
-    MySyscall(pScrollBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnGetSiteInfo)
 void
-ScrollBox_SetOnGetSiteInfo(TScrollBox AObj, TGetSiteInfoEvent AEventId) {
+ScrollBox_SetOnGetSiteInfo(TScrollBox AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnGetSiteInfo)
-    MySyscall(pScrollBox_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseDown)
 void
-ScrollBox_SetOnMouseDown(TScrollBox AObj, TMouseEvent AEventId) {
+ScrollBox_SetOnMouseDown(TScrollBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseDown)
-    MySyscall(pScrollBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseEnter)
 void
-ScrollBox_SetOnMouseEnter(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnMouseEnter(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseEnter)
-    MySyscall(pScrollBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseLeave)
 void
-ScrollBox_SetOnMouseLeave(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnMouseLeave(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseLeave)
-    MySyscall(pScrollBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseMove)
 void
-ScrollBox_SetOnMouseMove(TScrollBox AObj, TMouseMoveEvent AEventId) {
+ScrollBox_SetOnMouseMove(TScrollBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseMove)
-    MySyscall(pScrollBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseUp)
 void
-ScrollBox_SetOnMouseUp(TScrollBox AObj, TMouseEvent AEventId) {
+ScrollBox_SetOnMouseUp(TScrollBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseUp)
-    MySyscall(pScrollBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseWheel)
 void
-ScrollBox_SetOnMouseWheel(TScrollBox AObj, TMouseWheelEvent AEventId) {
+ScrollBox_SetOnMouseWheel(TScrollBox AObj, TMouseWheelEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseWheel)
-    MySyscall(pScrollBox_SetOnMouseWheel, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseWheelDown)
 void
-ScrollBox_SetOnMouseWheelDown(TScrollBox AObj, TMouseWheelUpDownEvent AEventId) {
+ScrollBox_SetOnMouseWheelDown(TScrollBox AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseWheelDown)
-    MySyscall(pScrollBox_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnMouseWheelUp)
 void
-ScrollBox_SetOnMouseWheelUp(TScrollBox AObj, TMouseWheelUpDownEvent AEventId) {
+ScrollBox_SetOnMouseWheelUp(TScrollBox AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnMouseWheelUp)
-    MySyscall(pScrollBox_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnResize)
 void
-ScrollBox_SetOnResize(TScrollBox AObj, TNotifyEvent AEventId) {
+ScrollBox_SetOnResize(TScrollBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnResize)
-    MySyscall(pScrollBox_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnUnDock)
 void
-ScrollBox_SetOnUnDock(TScrollBox AObj, TUnDockEvent AEventId) {
+ScrollBox_SetOnUnDock(TScrollBox AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnUnDock)
-    MySyscall(pScrollBox_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_SetOnAlignPosition)
 void
-ScrollBox_SetOnAlignPosition(TScrollBox AObj, TAlignPositionEvent AEventId) {
+ScrollBox_SetOnAlignPosition(TScrollBox AObj, TAlignPositionEvent AEventData) {
     GET_FUNC_ADDR(ScrollBox_SetOnAlignPosition)
-    MySyscall(pScrollBox_SetOnAlignPosition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pScrollBox_SetOnAlignPosition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ScrollBox_GetHorzScrollBar)
@@ -77507,9 +83141,9 @@ CheckListBox_ScaleFontsPPI(TCheckListBox AObj, int32_t AToPPI, double AProportio
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnClickCheck)
 void
-CheckListBox_SetOnClickCheck(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnClickCheck(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnClickCheck)
-    MySyscall(pCheckListBox_SetOnClickCheck, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnClickCheck, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_GetAlign)
@@ -77878,121 +83512,121 @@ CheckListBox_SetVisible(TCheckListBox AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnClick)
 void
-CheckListBox_SetOnClick(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnClick(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnClick)
-    MySyscall(pCheckListBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnContextPopup)
 void
-CheckListBox_SetOnContextPopup(TCheckListBox AObj, TContextPopupEvent AEventId) {
+CheckListBox_SetOnContextPopup(TCheckListBox AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnContextPopup)
-    MySyscall(pCheckListBox_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnDblClick)
 void
-CheckListBox_SetOnDblClick(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnDblClick(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnDblClick)
-    MySyscall(pCheckListBox_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnDragDrop)
 void
-CheckListBox_SetOnDragDrop(TCheckListBox AObj, TDragDropEvent AEventId) {
+CheckListBox_SetOnDragDrop(TCheckListBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnDragDrop)
-    MySyscall(pCheckListBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnDragOver)
 void
-CheckListBox_SetOnDragOver(TCheckListBox AObj, TDragOverEvent AEventId) {
+CheckListBox_SetOnDragOver(TCheckListBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnDragOver)
-    MySyscall(pCheckListBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnEndDrag)
 void
-CheckListBox_SetOnEndDrag(TCheckListBox AObj, TEndDragEvent AEventId) {
+CheckListBox_SetOnEndDrag(TCheckListBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnEndDrag)
-    MySyscall(pCheckListBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnEnter)
 void
-CheckListBox_SetOnEnter(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnEnter(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnEnter)
-    MySyscall(pCheckListBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnExit)
 void
-CheckListBox_SetOnExit(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnExit(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnExit)
-    MySyscall(pCheckListBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnKeyDown)
 void
-CheckListBox_SetOnKeyDown(TCheckListBox AObj, TKeyEvent AEventId) {
+CheckListBox_SetOnKeyDown(TCheckListBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnKeyDown)
-    MySyscall(pCheckListBox_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnKeyPress)
 void
-CheckListBox_SetOnKeyPress(TCheckListBox AObj, TKeyPressEvent AEventId) {
+CheckListBox_SetOnKeyPress(TCheckListBox AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnKeyPress)
-    MySyscall(pCheckListBox_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnKeyUp)
 void
-CheckListBox_SetOnKeyUp(TCheckListBox AObj, TKeyEvent AEventId) {
+CheckListBox_SetOnKeyUp(TCheckListBox AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnKeyUp)
-    MySyscall(pCheckListBox_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnMeasureItem)
 void
-CheckListBox_SetOnMeasureItem(TCheckListBox AObj, TMeasureItemEvent AEventId) {
+CheckListBox_SetOnMeasureItem(TCheckListBox AObj, TMeasureItemEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnMeasureItem)
-    MySyscall(pCheckListBox_SetOnMeasureItem, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnMeasureItem, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnMouseDown)
 void
-CheckListBox_SetOnMouseDown(TCheckListBox AObj, TMouseEvent AEventId) {
+CheckListBox_SetOnMouseDown(TCheckListBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnMouseDown)
-    MySyscall(pCheckListBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnMouseEnter)
 void
-CheckListBox_SetOnMouseEnter(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnMouseEnter(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnMouseEnter)
-    MySyscall(pCheckListBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnMouseLeave)
 void
-CheckListBox_SetOnMouseLeave(TCheckListBox AObj, TNotifyEvent AEventId) {
+CheckListBox_SetOnMouseLeave(TCheckListBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnMouseLeave)
-    MySyscall(pCheckListBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnMouseMove)
 void
-CheckListBox_SetOnMouseMove(TCheckListBox AObj, TMouseMoveEvent AEventId) {
+CheckListBox_SetOnMouseMove(TCheckListBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnMouseMove)
-    MySyscall(pCheckListBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_SetOnMouseUp)
 void
-CheckListBox_SetOnMouseUp(TCheckListBox AObj, TMouseEvent AEventId) {
+CheckListBox_SetOnMouseUp(TCheckListBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CheckListBox_SetOnMouseUp)
-    MySyscall(pCheckListBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckListBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckListBox_GetCanvas)
@@ -79108,6 +84742,20 @@ void
 Gauge_SetFont(TGauge AObj, TFont AValue) {
     GET_FUNC_ADDR(Gauge_SetFont)
     MySyscall(pGauge_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_GetKind)
+TGaugeKind
+Gauge_GetKind(TGauge AObj) {
+    GET_FUNC_ADDR(Gauge_GetKind)
+    return (TGaugeKind)MySyscall(pGauge_GetKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Gauge_SetKind)
+void
+Gauge_SetKind(TGauge AObj, TGaugeKind AValue) {
+    GET_FUNC_ADDR(Gauge_SetKind)
+    MySyscall(pGauge_SetKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Gauge_GetMinValue)
@@ -80290,86 +85938,86 @@ ImageButton_SetVisible(TImageButton AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ImageButton_SetOnClick)
 void
-ImageButton_SetOnClick(TImageButton AObj, TNotifyEvent AEventId) {
+ImageButton_SetOnClick(TImageButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnClick)
-    MySyscall(pImageButton_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnContextPopup)
 void
-ImageButton_SetOnContextPopup(TImageButton AObj, TContextPopupEvent AEventId) {
+ImageButton_SetOnContextPopup(TImageButton AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnContextPopup)
-    MySyscall(pImageButton_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnDblClick)
 void
-ImageButton_SetOnDblClick(TImageButton AObj, TNotifyEvent AEventId) {
+ImageButton_SetOnDblClick(TImageButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnDblClick)
-    MySyscall(pImageButton_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnDragDrop)
 void
-ImageButton_SetOnDragDrop(TImageButton AObj, TDragDropEvent AEventId) {
+ImageButton_SetOnDragDrop(TImageButton AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnDragDrop)
-    MySyscall(pImageButton_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnDragOver)
 void
-ImageButton_SetOnDragOver(TImageButton AObj, TDragOverEvent AEventId) {
+ImageButton_SetOnDragOver(TImageButton AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnDragOver)
-    MySyscall(pImageButton_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnEndDock)
 void
-ImageButton_SetOnEndDock(TImageButton AObj, TEndDragEvent AEventId) {
+ImageButton_SetOnEndDock(TImageButton AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnEndDock)
-    MySyscall(pImageButton_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnEndDrag)
 void
-ImageButton_SetOnEndDrag(TImageButton AObj, TEndDragEvent AEventId) {
+ImageButton_SetOnEndDrag(TImageButton AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnEndDrag)
-    MySyscall(pImageButton_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnMouseDown)
 void
-ImageButton_SetOnMouseDown(TImageButton AObj, TMouseEvent AEventId) {
+ImageButton_SetOnMouseDown(TImageButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnMouseDown)
-    MySyscall(pImageButton_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnMouseEnter)
 void
-ImageButton_SetOnMouseEnter(TImageButton AObj, TNotifyEvent AEventId) {
+ImageButton_SetOnMouseEnter(TImageButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnMouseEnter)
-    MySyscall(pImageButton_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnMouseLeave)
 void
-ImageButton_SetOnMouseLeave(TImageButton AObj, TNotifyEvent AEventId) {
+ImageButton_SetOnMouseLeave(TImageButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnMouseLeave)
-    MySyscall(pImageButton_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnMouseMove)
 void
-ImageButton_SetOnMouseMove(TImageButton AObj, TMouseMoveEvent AEventId) {
+ImageButton_SetOnMouseMove(TImageButton AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnMouseMove)
-    MySyscall(pImageButton_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_SetOnMouseUp)
 void
-ImageButton_SetOnMouseUp(TImageButton AObj, TMouseEvent AEventId) {
+ImageButton_SetOnMouseUp(TImageButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ImageButton_SetOnMouseUp)
-    MySyscall(pImageButton_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pImageButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ImageButton_GetBiDiMode)
@@ -80909,9 +86557,9 @@ FindDialog_SetOptions(TFindDialog AObj, TFindOptions AValue) {
 
 DEFINE_FUNC_PTR(FindDialog_SetOnFind)
 void
-FindDialog_SetOnFind(TFindDialog AObj, TNotifyEvent AEventId) {
+FindDialog_SetOnFind(TFindDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FindDialog_SetOnFind)
-    MySyscall(pFindDialog_SetOnFind, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFindDialog_SetOnFind, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FindDialog_GetHandle)
@@ -80923,16 +86571,16 @@ FindDialog_GetHandle(TFindDialog AObj) {
 
 DEFINE_FUNC_PTR(FindDialog_SetOnClose)
 void
-FindDialog_SetOnClose(TFindDialog AObj, TNotifyEvent AEventId) {
+FindDialog_SetOnClose(TFindDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FindDialog_SetOnClose)
-    MySyscall(pFindDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFindDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FindDialog_SetOnShow)
 void
-FindDialog_SetOnShow(TFindDialog AObj, TNotifyEvent AEventId) {
+FindDialog_SetOnShow(TFindDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FindDialog_SetOnShow)
-    MySyscall(pFindDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFindDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FindDialog_GetComponentCount)
@@ -81128,9 +86776,9 @@ ReplaceDialog_SetReplaceText(TReplaceDialog AObj, CChar char* AValue) {
 
 DEFINE_FUNC_PTR(ReplaceDialog_SetOnReplace)
 void
-ReplaceDialog_SetOnReplace(TReplaceDialog AObj, TNotifyEvent AEventId) {
+ReplaceDialog_SetOnReplace(TReplaceDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ReplaceDialog_SetOnReplace)
-    MySyscall(pReplaceDialog_SetOnReplace, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pReplaceDialog_SetOnReplace, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ReplaceDialog_GetLeft)
@@ -81207,9 +86855,9 @@ ReplaceDialog_SetOptions(TReplaceDialog AObj, TFindOptions AValue) {
 
 DEFINE_FUNC_PTR(ReplaceDialog_SetOnFind)
 void
-ReplaceDialog_SetOnFind(TReplaceDialog AObj, TNotifyEvent AEventId) {
+ReplaceDialog_SetOnFind(TReplaceDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ReplaceDialog_SetOnFind)
-    MySyscall(pReplaceDialog_SetOnFind, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pReplaceDialog_SetOnFind, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ReplaceDialog_GetHandle)
@@ -81221,16 +86869,16 @@ ReplaceDialog_GetHandle(TReplaceDialog AObj) {
 
 DEFINE_FUNC_PTR(ReplaceDialog_SetOnClose)
 void
-ReplaceDialog_SetOnClose(TReplaceDialog AObj, TNotifyEvent AEventId) {
+ReplaceDialog_SetOnClose(TReplaceDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ReplaceDialog_SetOnClose)
-    MySyscall(pReplaceDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pReplaceDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ReplaceDialog_SetOnShow)
 void
-ReplaceDialog_SetOnShow(TReplaceDialog AObj, TNotifyEvent AEventId) {
+ReplaceDialog_SetOnShow(TReplaceDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ReplaceDialog_SetOnShow)
-    MySyscall(pReplaceDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pReplaceDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ReplaceDialog_GetComponentCount)
@@ -81412,16 +87060,16 @@ PrinterSetupDialog_GetHandle(TPrinterSetupDialog AObj) {
 
 DEFINE_FUNC_PTR(PrinterSetupDialog_SetOnClose)
 void
-PrinterSetupDialog_SetOnClose(TPrinterSetupDialog AObj, TNotifyEvent AEventId) {
+PrinterSetupDialog_SetOnClose(TPrinterSetupDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PrinterSetupDialog_SetOnClose)
-    MySyscall(pPrinterSetupDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPrinterSetupDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PrinterSetupDialog_SetOnShow)
 void
-PrinterSetupDialog_SetOnShow(TPrinterSetupDialog AObj, TNotifyEvent AEventId) {
+PrinterSetupDialog_SetOnShow(TPrinterSetupDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PrinterSetupDialog_SetOnShow)
-    MySyscall(pPrinterSetupDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPrinterSetupDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PrinterSetupDialog_GetComponentCount)
@@ -81708,16 +87356,16 @@ PageSetupDialog_GetHandle(TPageSetupDialog AObj) {
 
 DEFINE_FUNC_PTR(PageSetupDialog_SetOnClose)
 void
-PageSetupDialog_SetOnClose(TPageSetupDialog AObj, TNotifyEvent AEventId) {
+PageSetupDialog_SetOnClose(TPageSetupDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageSetupDialog_SetOnClose)
-    MySyscall(pPageSetupDialog_SetOnClose, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageSetupDialog_SetOnClose, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageSetupDialog_SetOnShow)
 void
-PageSetupDialog_SetOnShow(TPageSetupDialog AObj, TNotifyEvent AEventId) {
+PageSetupDialog_SetOnShow(TPageSetupDialog AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(PageSetupDialog_SetOnShow)
-    MySyscall(pPageSetupDialog_SetOnShow, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pPageSetupDialog_SetOnShow, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(PageSetupDialog_GetComponentCount)
@@ -83093,149 +88741,156 @@ StringGrid_GetSortColumn(TStringGrid AObj) {
 
 DEFINE_FUNC_PTR(StringGrid_SetOnAfterSelection)
 void
-StringGrid_SetOnAfterSelection(TStringGrid AObj, TOnSelectEvent AEventId) {
+StringGrid_SetOnAfterSelection(TStringGrid AObj, TOnSelectEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnAfterSelection)
-    MySyscall(pStringGrid_SetOnAfterSelection, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnAfterSelection, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnBeforeSelection)
 void
-StringGrid_SetOnBeforeSelection(TStringGrid AObj, TOnSelectEvent AEventId) {
+StringGrid_SetOnBeforeSelection(TStringGrid AObj, TOnSelectEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnBeforeSelection)
-    MySyscall(pStringGrid_SetOnBeforeSelection, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnBeforeSelection, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnButtonClick)
 void
-StringGrid_SetOnButtonClick(TStringGrid AObj, TOnSelectEvent AEventId) {
+StringGrid_SetOnButtonClick(TStringGrid AObj, TOnSelectEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnButtonClick)
-    MySyscall(pStringGrid_SetOnButtonClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnButtonClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnCheckboxToggled)
 void
-StringGrid_SetOnCheckboxToggled(TStringGrid AObj, TToggledCheckboxEvent AEventId) {
+StringGrid_SetOnCheckboxToggled(TStringGrid AObj, TToggledCheckboxEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnCheckboxToggled)
-    MySyscall(pStringGrid_SetOnCheckboxToggled, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnCheckboxToggled, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnColRowDeleted)
 void
-StringGrid_SetOnColRowDeleted(TStringGrid AObj, TGridOperationEvent AEventId) {
+StringGrid_SetOnColRowDeleted(TStringGrid AObj, TGridOperationEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnColRowDeleted)
-    MySyscall(pStringGrid_SetOnColRowDeleted, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnColRowDeleted, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnColRowExchanged)
 void
-StringGrid_SetOnColRowExchanged(TStringGrid AObj, TGridOperationEvent AEventId) {
+StringGrid_SetOnColRowExchanged(TStringGrid AObj, TGridOperationEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnColRowExchanged)
-    MySyscall(pStringGrid_SetOnColRowExchanged, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnColRowExchanged, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnColRowInserted)
 void
-StringGrid_SetOnColRowInserted(TStringGrid AObj, TGridOperationEvent AEventId) {
+StringGrid_SetOnColRowInserted(TStringGrid AObj, TGridOperationEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnColRowInserted)
-    MySyscall(pStringGrid_SetOnColRowInserted, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnColRowInserted, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnColRowMoved)
 void
-StringGrid_SetOnColRowMoved(TStringGrid AObj, TGridOperationEvent AEventId) {
+StringGrid_SetOnColRowMoved(TStringGrid AObj, TGridOperationEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnColRowMoved)
-    MySyscall(pStringGrid_SetOnColRowMoved, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnColRowMoved, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnCompareCells)
 void
-StringGrid_SetOnCompareCells(TStringGrid AObj, TOnCompareCells AEventId) {
+StringGrid_SetOnCompareCells(TStringGrid AObj, TOnCompareCells AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnCompareCells)
-    MySyscall(pStringGrid_SetOnCompareCells, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnCompareCells, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnEditingDone)
 void
-StringGrid_SetOnEditingDone(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnEditingDone(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnEditingDone)
-    MySyscall(pStringGrid_SetOnEditingDone, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnEditingDone, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnGetCellHint)
 void
-StringGrid_SetOnGetCellHint(TStringGrid AObj, TGetCellHintEvent AEventId) {
+StringGrid_SetOnGetCellHint(TStringGrid AObj, TGetCellHintEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnGetCellHint)
-    MySyscall(pStringGrid_SetOnGetCellHint, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnGetCellHint, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnGetCheckboxState)
 void
-StringGrid_SetOnGetCheckboxState(TStringGrid AObj, TGetCheckboxStateEvent AEventId) {
+StringGrid_SetOnGetCheckboxState(TStringGrid AObj, TGetCheckboxStateEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnGetCheckboxState)
-    MySyscall(pStringGrid_SetOnGetCheckboxState, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnGetCheckboxState, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnSetCheckboxState)
 void
-StringGrid_SetOnSetCheckboxState(TStringGrid AObj, TSetCheckboxStateEvent AEventId) {
+StringGrid_SetOnSetCheckboxState(TStringGrid AObj, TSetCheckboxStateEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnSetCheckboxState)
-    MySyscall(pStringGrid_SetOnSetCheckboxState, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnSetCheckboxState, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnHeaderClick)
 void
-StringGrid_SetOnHeaderClick(TStringGrid AObj, THdrEvent AEventId) {
+StringGrid_SetOnHeaderClick(TStringGrid AObj, THdrEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnHeaderClick)
-    MySyscall(pStringGrid_SetOnHeaderClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnHeaderClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnHeaderSized)
 void
-StringGrid_SetOnHeaderSized(TStringGrid AObj, THdrEvent AEventId) {
+StringGrid_SetOnHeaderSized(TStringGrid AObj, THdrEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnHeaderSized)
-    MySyscall(pStringGrid_SetOnHeaderSized, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnHeaderSized, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnHeaderSizing)
 void
-StringGrid_SetOnHeaderSizing(TStringGrid AObj, THeaderSizingEvent AEventId) {
+StringGrid_SetOnHeaderSizing(TStringGrid AObj, THeaderSizingEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnHeaderSizing)
-    MySyscall(pStringGrid_SetOnHeaderSizing, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnHeaderSizing, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnPickListSelect)
 void
-StringGrid_SetOnPickListSelect(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnPickListSelect(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnPickListSelect)
-    MySyscall(pStringGrid_SetOnPickListSelect, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnPickListSelect, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnSelection)
 void
-StringGrid_SetOnSelection(TStringGrid AObj, TOnSelectEvent AEventId) {
+StringGrid_SetOnSelection(TStringGrid AObj, TOnSelectEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnSelection)
-    MySyscall(pStringGrid_SetOnSelection, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnSelection, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnSelectEditor)
 void
-StringGrid_SetOnSelectEditor(TStringGrid AObj, TSelectEditorEvent AEventId) {
+StringGrid_SetOnSelectEditor(TStringGrid AObj, TSelectEditorEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnSelectEditor)
-    MySyscall(pStringGrid_SetOnSelectEditor, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnSelectEditor, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnUserCheckboxBitmap)
 void
-StringGrid_SetOnUserCheckboxBitmap(TStringGrid AObj, TUserCheckBoxBitmapEvent AEventId) {
+StringGrid_SetOnUserCheckboxBitmap(TStringGrid AObj, TUserCheckBoxBitmapEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnUserCheckboxBitmap)
-    MySyscall(pStringGrid_SetOnUserCheckboxBitmap, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnUserCheckboxBitmap, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnValidateEntry)
 void
-StringGrid_SetOnValidateEntry(TStringGrid AObj, TValidateEntryEvent AEventId) {
+StringGrid_SetOnValidateEntry(TStringGrid AObj, TValidateEntryEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnValidateEntry)
-    MySyscall(pStringGrid_SetOnValidateEntry, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnValidateEntry, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(StringGrid_SetOnPrepareCanvas)
+void
+StringGrid_SetOnPrepareCanvas(TStringGrid AObj, TOnPrepareCanvasEvent AEventData) {
+    GET_FUNC_ADDR(StringGrid_SetOnPrepareCanvas)
+    MySyscall(pStringGrid_SetOnPrepareCanvas, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_GetAlternateColor)
@@ -83982,184 +89637,184 @@ StringGrid_GetVisibleRowCount(TStringGrid AObj) {
 
 DEFINE_FUNC_PTR(StringGrid_SetOnClick)
 void
-StringGrid_SetOnClick(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnClick(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnClick)
-    MySyscall(pStringGrid_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnContextPopup)
 void
-StringGrid_SetOnContextPopup(TStringGrid AObj, TContextPopupEvent AEventId) {
+StringGrid_SetOnContextPopup(TStringGrid AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnContextPopup)
-    MySyscall(pStringGrid_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnDblClick)
 void
-StringGrid_SetOnDblClick(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnDblClick(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnDblClick)
-    MySyscall(pStringGrid_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnDragDrop)
 void
-StringGrid_SetOnDragDrop(TStringGrid AObj, TDragDropEvent AEventId) {
+StringGrid_SetOnDragDrop(TStringGrid AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnDragDrop)
-    MySyscall(pStringGrid_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnDragOver)
 void
-StringGrid_SetOnDragOver(TStringGrid AObj, TDragOverEvent AEventId) {
+StringGrid_SetOnDragOver(TStringGrid AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnDragOver)
-    MySyscall(pStringGrid_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnDrawCell)
 void
-StringGrid_SetOnDrawCell(TStringGrid AObj, TDrawCellEvent AEventId) {
+StringGrid_SetOnDrawCell(TStringGrid AObj, TDrawCellEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnDrawCell)
-    MySyscall(pStringGrid_SetOnDrawCell, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnDrawCell, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnEndDock)
 void
-StringGrid_SetOnEndDock(TStringGrid AObj, TEndDragEvent AEventId) {
+StringGrid_SetOnEndDock(TStringGrid AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnEndDock)
-    MySyscall(pStringGrid_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnEndDrag)
 void
-StringGrid_SetOnEndDrag(TStringGrid AObj, TEndDragEvent AEventId) {
+StringGrid_SetOnEndDrag(TStringGrid AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnEndDrag)
-    MySyscall(pStringGrid_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnEnter)
 void
-StringGrid_SetOnEnter(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnEnter(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnEnter)
-    MySyscall(pStringGrid_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnExit)
 void
-StringGrid_SetOnExit(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnExit(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnExit)
-    MySyscall(pStringGrid_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnGetEditMask)
 void
-StringGrid_SetOnGetEditMask(TStringGrid AObj, TGetEditEvent AEventId) {
+StringGrid_SetOnGetEditMask(TStringGrid AObj, TGetEditEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnGetEditMask)
-    MySyscall(pStringGrid_SetOnGetEditMask, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnGetEditMask, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnGetEditText)
 void
-StringGrid_SetOnGetEditText(TStringGrid AObj, TGetEditEvent AEventId) {
+StringGrid_SetOnGetEditText(TStringGrid AObj, TGetEditEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnGetEditText)
-    MySyscall(pStringGrid_SetOnGetEditText, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnGetEditText, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnKeyDown)
 void
-StringGrid_SetOnKeyDown(TStringGrid AObj, TKeyEvent AEventId) {
+StringGrid_SetOnKeyDown(TStringGrid AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnKeyDown)
-    MySyscall(pStringGrid_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnKeyPress)
 void
-StringGrid_SetOnKeyPress(TStringGrid AObj, TKeyPressEvent AEventId) {
+StringGrid_SetOnKeyPress(TStringGrid AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnKeyPress)
-    MySyscall(pStringGrid_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnKeyUp)
 void
-StringGrid_SetOnKeyUp(TStringGrid AObj, TKeyEvent AEventId) {
+StringGrid_SetOnKeyUp(TStringGrid AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnKeyUp)
-    MySyscall(pStringGrid_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseDown)
 void
-StringGrid_SetOnMouseDown(TStringGrid AObj, TMouseEvent AEventId) {
+StringGrid_SetOnMouseDown(TStringGrid AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseDown)
-    MySyscall(pStringGrid_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseEnter)
 void
-StringGrid_SetOnMouseEnter(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnMouseEnter(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseEnter)
-    MySyscall(pStringGrid_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseLeave)
 void
-StringGrid_SetOnMouseLeave(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnMouseLeave(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseLeave)
-    MySyscall(pStringGrid_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseMove)
 void
-StringGrid_SetOnMouseMove(TStringGrid AObj, TMouseMoveEvent AEventId) {
+StringGrid_SetOnMouseMove(TStringGrid AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseMove)
-    MySyscall(pStringGrid_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseUp)
 void
-StringGrid_SetOnMouseUp(TStringGrid AObj, TMouseEvent AEventId) {
+StringGrid_SetOnMouseUp(TStringGrid AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseUp)
-    MySyscall(pStringGrid_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseWheelDown)
 void
-StringGrid_SetOnMouseWheelDown(TStringGrid AObj, TMouseWheelUpDownEvent AEventId) {
+StringGrid_SetOnMouseWheelDown(TStringGrid AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseWheelDown)
-    MySyscall(pStringGrid_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnMouseWheelUp)
 void
-StringGrid_SetOnMouseWheelUp(TStringGrid AObj, TMouseWheelUpDownEvent AEventId) {
+StringGrid_SetOnMouseWheelUp(TStringGrid AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnMouseWheelUp)
-    MySyscall(pStringGrid_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnSelectCell)
 void
-StringGrid_SetOnSelectCell(TStringGrid AObj, TSelectCellEvent AEventId) {
+StringGrid_SetOnSelectCell(TStringGrid AObj, TSelectCellEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnSelectCell)
-    MySyscall(pStringGrid_SetOnSelectCell, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnSelectCell, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnSetEditText)
 void
-StringGrid_SetOnSetEditText(TStringGrid AObj, TSetEditEvent AEventId) {
+StringGrid_SetOnSetEditText(TStringGrid AObj, TSetEditEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnSetEditText)
-    MySyscall(pStringGrid_SetOnSetEditText, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnSetEditText, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnStartDock)
 void
-StringGrid_SetOnStartDock(TStringGrid AObj, TStartDockEvent AEventId) {
+StringGrid_SetOnStartDock(TStringGrid AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnStartDock)
-    MySyscall(pStringGrid_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_SetOnTopLeftChanged)
 void
-StringGrid_SetOnTopLeftChanged(TStringGrid AObj, TNotifyEvent AEventId) {
+StringGrid_SetOnTopLeftChanged(TStringGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(StringGrid_SetOnTopLeftChanged)
-    MySyscall(pStringGrid_SetOnTopLeftChanged, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pStringGrid_SetOnTopLeftChanged, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(StringGrid_GetCanvas)
@@ -85341,9 +90996,16 @@ rawGrid_ScaleFontsPPI(TDrawGrid AObj, int32_t AToPPI, double AProportion) {
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnColRowMoved)
 void
-rawGrid_SetOnColRowMoved(TDrawGrid AObj, TGridOperationEvent AEventId) {
+rawGrid_SetOnColRowMoved(TDrawGrid AObj, TGridOperationEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnColRowMoved)
-    MySyscall(pDrawGrid_SetOnColRowMoved, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnColRowMoved, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(DrawGrid_SetOnPrepareCanvas)
+void
+rawGrid_SetOnPrepareCanvas(TDrawGrid AObj, TOnPrepareCanvasEvent AEventData) {
+    GET_FUNC_ADDR(DrawGrid_SetOnPrepareCanvas)
+    MySyscall(pDrawGrid_SetOnPrepareCanvas, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_GetAlign)
@@ -85796,184 +91458,184 @@ rawGrid_GetVisibleRowCount(TDrawGrid AObj) {
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnClick)
 void
-rawGrid_SetOnClick(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnClick(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnClick)
-    MySyscall(pDrawGrid_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnContextPopup)
 void
-rawGrid_SetOnContextPopup(TDrawGrid AObj, TContextPopupEvent AEventId) {
+rawGrid_SetOnContextPopup(TDrawGrid AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnContextPopup)
-    MySyscall(pDrawGrid_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnDblClick)
 void
-rawGrid_SetOnDblClick(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnDblClick(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnDblClick)
-    MySyscall(pDrawGrid_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnDragDrop)
 void
-rawGrid_SetOnDragDrop(TDrawGrid AObj, TDragDropEvent AEventId) {
+rawGrid_SetOnDragDrop(TDrawGrid AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnDragDrop)
-    MySyscall(pDrawGrid_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnDragOver)
 void
-rawGrid_SetOnDragOver(TDrawGrid AObj, TDragOverEvent AEventId) {
+rawGrid_SetOnDragOver(TDrawGrid AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnDragOver)
-    MySyscall(pDrawGrid_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnDrawCell)
 void
-rawGrid_SetOnDrawCell(TDrawGrid AObj, TDrawCellEvent AEventId) {
+rawGrid_SetOnDrawCell(TDrawGrid AObj, TDrawCellEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnDrawCell)
-    MySyscall(pDrawGrid_SetOnDrawCell, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnDrawCell, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnEndDock)
 void
-rawGrid_SetOnEndDock(TDrawGrid AObj, TEndDragEvent AEventId) {
+rawGrid_SetOnEndDock(TDrawGrid AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnEndDock)
-    MySyscall(pDrawGrid_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnEndDrag)
 void
-rawGrid_SetOnEndDrag(TDrawGrid AObj, TEndDragEvent AEventId) {
+rawGrid_SetOnEndDrag(TDrawGrid AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnEndDrag)
-    MySyscall(pDrawGrid_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnEnter)
 void
-rawGrid_SetOnEnter(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnEnter(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnEnter)
-    MySyscall(pDrawGrid_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnExit)
 void
-rawGrid_SetOnExit(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnExit(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnExit)
-    MySyscall(pDrawGrid_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnGetEditMask)
 void
-rawGrid_SetOnGetEditMask(TDrawGrid AObj, TGetEditEvent AEventId) {
+rawGrid_SetOnGetEditMask(TDrawGrid AObj, TGetEditEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnGetEditMask)
-    MySyscall(pDrawGrid_SetOnGetEditMask, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnGetEditMask, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnGetEditText)
 void
-rawGrid_SetOnGetEditText(TDrawGrid AObj, TGetEditEvent AEventId) {
+rawGrid_SetOnGetEditText(TDrawGrid AObj, TGetEditEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnGetEditText)
-    MySyscall(pDrawGrid_SetOnGetEditText, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnGetEditText, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnKeyDown)
 void
-rawGrid_SetOnKeyDown(TDrawGrid AObj, TKeyEvent AEventId) {
+rawGrid_SetOnKeyDown(TDrawGrid AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnKeyDown)
-    MySyscall(pDrawGrid_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnKeyPress)
 void
-rawGrid_SetOnKeyPress(TDrawGrid AObj, TKeyPressEvent AEventId) {
+rawGrid_SetOnKeyPress(TDrawGrid AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnKeyPress)
-    MySyscall(pDrawGrid_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnKeyUp)
 void
-rawGrid_SetOnKeyUp(TDrawGrid AObj, TKeyEvent AEventId) {
+rawGrid_SetOnKeyUp(TDrawGrid AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnKeyUp)
-    MySyscall(pDrawGrid_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseDown)
 void
-rawGrid_SetOnMouseDown(TDrawGrid AObj, TMouseEvent AEventId) {
+rawGrid_SetOnMouseDown(TDrawGrid AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseDown)
-    MySyscall(pDrawGrid_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseEnter)
 void
-rawGrid_SetOnMouseEnter(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnMouseEnter(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseEnter)
-    MySyscall(pDrawGrid_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseLeave)
 void
-rawGrid_SetOnMouseLeave(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnMouseLeave(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseLeave)
-    MySyscall(pDrawGrid_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseMove)
 void
-rawGrid_SetOnMouseMove(TDrawGrid AObj, TMouseMoveEvent AEventId) {
+rawGrid_SetOnMouseMove(TDrawGrid AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseMove)
-    MySyscall(pDrawGrid_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseUp)
 void
-rawGrid_SetOnMouseUp(TDrawGrid AObj, TMouseEvent AEventId) {
+rawGrid_SetOnMouseUp(TDrawGrid AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseUp)
-    MySyscall(pDrawGrid_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseWheelDown)
 void
-rawGrid_SetOnMouseWheelDown(TDrawGrid AObj, TMouseWheelUpDownEvent AEventId) {
+rawGrid_SetOnMouseWheelDown(TDrawGrid AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseWheelDown)
-    MySyscall(pDrawGrid_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnMouseWheelUp)
 void
-rawGrid_SetOnMouseWheelUp(TDrawGrid AObj, TMouseWheelUpDownEvent AEventId) {
+rawGrid_SetOnMouseWheelUp(TDrawGrid AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnMouseWheelUp)
-    MySyscall(pDrawGrid_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnSelectCell)
 void
-rawGrid_SetOnSelectCell(TDrawGrid AObj, TSelectCellEvent AEventId) {
+rawGrid_SetOnSelectCell(TDrawGrid AObj, TSelectCellEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnSelectCell)
-    MySyscall(pDrawGrid_SetOnSelectCell, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnSelectCell, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnSetEditText)
 void
-rawGrid_SetOnSetEditText(TDrawGrid AObj, TSetEditEvent AEventId) {
+rawGrid_SetOnSetEditText(TDrawGrid AObj, TSetEditEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnSetEditText)
-    MySyscall(pDrawGrid_SetOnSetEditText, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnSetEditText, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnStartDock)
 void
-rawGrid_SetOnStartDock(TDrawGrid AObj, TStartDockEvent AEventId) {
+rawGrid_SetOnStartDock(TDrawGrid AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnStartDock)
-    MySyscall(pDrawGrid_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_SetOnTopLeftChanged)
 void
-rawGrid_SetOnTopLeftChanged(TDrawGrid AObj, TNotifyEvent AEventId) {
+rawGrid_SetOnTopLeftChanged(TDrawGrid AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(DrawGrid_SetOnTopLeftChanged)
-    MySyscall(pDrawGrid_SetOnTopLeftChanged, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pDrawGrid_SetOnTopLeftChanged, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(DrawGrid_GetCanvas)
@@ -87568,184 +93230,184 @@ ValueListEditor_SetVisible(TValueListEditor AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnClick)
 void
-ValueListEditor_SetOnClick(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnClick(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnClick)
-    MySyscall(pValueListEditor_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnContextPopup)
 void
-ValueListEditor_SetOnContextPopup(TValueListEditor AObj, TContextPopupEvent AEventId) {
+ValueListEditor_SetOnContextPopup(TValueListEditor AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnContextPopup)
-    MySyscall(pValueListEditor_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnDblClick)
 void
-ValueListEditor_SetOnDblClick(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnDblClick(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnDblClick)
-    MySyscall(pValueListEditor_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnDragDrop)
 void
-ValueListEditor_SetOnDragDrop(TValueListEditor AObj, TDragDropEvent AEventId) {
+ValueListEditor_SetOnDragDrop(TValueListEditor AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnDragDrop)
-    MySyscall(pValueListEditor_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnDragOver)
 void
-ValueListEditor_SetOnDragOver(TValueListEditor AObj, TDragOverEvent AEventId) {
+ValueListEditor_SetOnDragOver(TValueListEditor AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnDragOver)
-    MySyscall(pValueListEditor_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnDrawCell)
 void
-ValueListEditor_SetOnDrawCell(TValueListEditor AObj, TDrawCellEvent AEventId) {
+ValueListEditor_SetOnDrawCell(TValueListEditor AObj, TDrawCellEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnDrawCell)
-    MySyscall(pValueListEditor_SetOnDrawCell, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnDrawCell, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnEndDock)
 void
-ValueListEditor_SetOnEndDock(TValueListEditor AObj, TEndDragEvent AEventId) {
+ValueListEditor_SetOnEndDock(TValueListEditor AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnEndDock)
-    MySyscall(pValueListEditor_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnEndDrag)
 void
-ValueListEditor_SetOnEndDrag(TValueListEditor AObj, TEndDragEvent AEventId) {
+ValueListEditor_SetOnEndDrag(TValueListEditor AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnEndDrag)
-    MySyscall(pValueListEditor_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnEnter)
 void
-ValueListEditor_SetOnEnter(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnEnter(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnEnter)
-    MySyscall(pValueListEditor_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnExit)
 void
-ValueListEditor_SetOnExit(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnExit(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnExit)
-    MySyscall(pValueListEditor_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnGetEditMask)
 void
-ValueListEditor_SetOnGetEditMask(TValueListEditor AObj, TGetEditEvent AEventId) {
+ValueListEditor_SetOnGetEditMask(TValueListEditor AObj, TGetEditEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnGetEditMask)
-    MySyscall(pValueListEditor_SetOnGetEditMask, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnGetEditMask, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnGetEditText)
 void
-ValueListEditor_SetOnGetEditText(TValueListEditor AObj, TGetEditEvent AEventId) {
+ValueListEditor_SetOnGetEditText(TValueListEditor AObj, TGetEditEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnGetEditText)
-    MySyscall(pValueListEditor_SetOnGetEditText, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnGetEditText, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnKeyDown)
 void
-ValueListEditor_SetOnKeyDown(TValueListEditor AObj, TKeyEvent AEventId) {
+ValueListEditor_SetOnKeyDown(TValueListEditor AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnKeyDown)
-    MySyscall(pValueListEditor_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnKeyPress)
 void
-ValueListEditor_SetOnKeyPress(TValueListEditor AObj, TKeyPressEvent AEventId) {
+ValueListEditor_SetOnKeyPress(TValueListEditor AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnKeyPress)
-    MySyscall(pValueListEditor_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnKeyUp)
 void
-ValueListEditor_SetOnKeyUp(TValueListEditor AObj, TKeyEvent AEventId) {
+ValueListEditor_SetOnKeyUp(TValueListEditor AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnKeyUp)
-    MySyscall(pValueListEditor_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseDown)
 void
-ValueListEditor_SetOnMouseDown(TValueListEditor AObj, TMouseEvent AEventId) {
+ValueListEditor_SetOnMouseDown(TValueListEditor AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseDown)
-    MySyscall(pValueListEditor_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseEnter)
 void
-ValueListEditor_SetOnMouseEnter(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnMouseEnter(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseEnter)
-    MySyscall(pValueListEditor_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseLeave)
 void
-ValueListEditor_SetOnMouseLeave(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnMouseLeave(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseLeave)
-    MySyscall(pValueListEditor_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseMove)
 void
-ValueListEditor_SetOnMouseMove(TValueListEditor AObj, TMouseMoveEvent AEventId) {
+ValueListEditor_SetOnMouseMove(TValueListEditor AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseMove)
-    MySyscall(pValueListEditor_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseUp)
 void
-ValueListEditor_SetOnMouseUp(TValueListEditor AObj, TMouseEvent AEventId) {
+ValueListEditor_SetOnMouseUp(TValueListEditor AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseUp)
-    MySyscall(pValueListEditor_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseWheelDown)
 void
-ValueListEditor_SetOnMouseWheelDown(TValueListEditor AObj, TMouseWheelUpDownEvent AEventId) {
+ValueListEditor_SetOnMouseWheelDown(TValueListEditor AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseWheelDown)
-    MySyscall(pValueListEditor_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnMouseWheelUp)
 void
-ValueListEditor_SetOnMouseWheelUp(TValueListEditor AObj, TMouseWheelUpDownEvent AEventId) {
+ValueListEditor_SetOnMouseWheelUp(TValueListEditor AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnMouseWheelUp)
-    MySyscall(pValueListEditor_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnSelectCell)
 void
-ValueListEditor_SetOnSelectCell(TValueListEditor AObj, TSelectCellEvent AEventId) {
+ValueListEditor_SetOnSelectCell(TValueListEditor AObj, TSelectCellEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnSelectCell)
-    MySyscall(pValueListEditor_SetOnSelectCell, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnSelectCell, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnSetEditText)
 void
-ValueListEditor_SetOnSetEditText(TValueListEditor AObj, TSetEditEvent AEventId) {
+ValueListEditor_SetOnSetEditText(TValueListEditor AObj, TSetEditEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnSetEditText)
-    MySyscall(pValueListEditor_SetOnSetEditText, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnSetEditText, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnStartDock)
 void
-ValueListEditor_SetOnStartDock(TValueListEditor AObj, TStartDockEvent AEventId) {
+ValueListEditor_SetOnStartDock(TValueListEditor AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnStartDock)
-    MySyscall(pValueListEditor_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_SetOnTopLeftChanged)
 void
-ValueListEditor_SetOnTopLeftChanged(TValueListEditor AObj, TNotifyEvent AEventId) {
+ValueListEditor_SetOnTopLeftChanged(TValueListEditor AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ValueListEditor_SetOnTopLeftChanged)
-    MySyscall(pValueListEditor_SetOnTopLeftChanged, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pValueListEditor_SetOnTopLeftChanged, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ValueListEditor_GetCanvas)
@@ -89133,114 +94795,114 @@ HeaderControl_SetVisible(THeaderControl AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnContextPopup)
 void
-HeaderControl_SetOnContextPopup(THeaderControl AObj, TContextPopupEvent AEventId) {
+HeaderControl_SetOnContextPopup(THeaderControl AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnContextPopup)
-    MySyscall(pHeaderControl_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnDragDrop)
 void
-HeaderControl_SetOnDragDrop(THeaderControl AObj, TDragDropEvent AEventId) {
+HeaderControl_SetOnDragDrop(THeaderControl AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnDragDrop)
-    MySyscall(pHeaderControl_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnDragOver)
 void
-HeaderControl_SetOnDragOver(THeaderControl AObj, TDragOverEvent AEventId) {
+HeaderControl_SetOnDragOver(THeaderControl AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnDragOver)
-    MySyscall(pHeaderControl_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnEndDock)
 void
-HeaderControl_SetOnEndDock(THeaderControl AObj, TEndDragEvent AEventId) {
+HeaderControl_SetOnEndDock(THeaderControl AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnEndDock)
-    MySyscall(pHeaderControl_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnEndDrag)
 void
-HeaderControl_SetOnEndDrag(THeaderControl AObj, TEndDragEvent AEventId) {
+HeaderControl_SetOnEndDrag(THeaderControl AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnEndDrag)
-    MySyscall(pHeaderControl_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnMouseDown)
 void
-HeaderControl_SetOnMouseDown(THeaderControl AObj, TMouseEvent AEventId) {
+HeaderControl_SetOnMouseDown(THeaderControl AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnMouseDown)
-    MySyscall(pHeaderControl_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnMouseEnter)
 void
-HeaderControl_SetOnMouseEnter(THeaderControl AObj, TNotifyEvent AEventId) {
+HeaderControl_SetOnMouseEnter(THeaderControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnMouseEnter)
-    MySyscall(pHeaderControl_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnMouseLeave)
 void
-HeaderControl_SetOnMouseLeave(THeaderControl AObj, TNotifyEvent AEventId) {
+HeaderControl_SetOnMouseLeave(THeaderControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnMouseLeave)
-    MySyscall(pHeaderControl_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnMouseMove)
 void
-HeaderControl_SetOnMouseMove(THeaderControl AObj, TMouseMoveEvent AEventId) {
+HeaderControl_SetOnMouseMove(THeaderControl AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnMouseMove)
-    MySyscall(pHeaderControl_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnMouseUp)
 void
-HeaderControl_SetOnMouseUp(THeaderControl AObj, TMouseEvent AEventId) {
+HeaderControl_SetOnMouseUp(THeaderControl AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnMouseUp)
-    MySyscall(pHeaderControl_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnResize)
 void
-HeaderControl_SetOnResize(THeaderControl AObj, TNotifyEvent AEventId) {
+HeaderControl_SetOnResize(THeaderControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnResize)
-    MySyscall(pHeaderControl_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnSectionClick)
 void
-HeaderControl_SetOnSectionClick(THeaderControl AObj, TSectionNotifyEvent AEventId) {
+HeaderControl_SetOnSectionClick(THeaderControl AObj, TSectionNotifyEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnSectionClick)
-    MySyscall(pHeaderControl_SetOnSectionClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnSectionClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnSectionResize)
 void
-HeaderControl_SetOnSectionResize(THeaderControl AObj, TSectionNotifyEvent AEventId) {
+HeaderControl_SetOnSectionResize(THeaderControl AObj, TSectionNotifyEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnSectionResize)
-    MySyscall(pHeaderControl_SetOnSectionResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnSectionResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnSectionTrack)
 void
-HeaderControl_SetOnSectionTrack(THeaderControl AObj, TSectionTrackEvent AEventId) {
+HeaderControl_SetOnSectionTrack(THeaderControl AObj, TSectionTrackEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnSectionTrack)
-    MySyscall(pHeaderControl_SetOnSectionTrack, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnSectionTrack, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnSectionDrag)
 void
-HeaderControl_SetOnSectionDrag(THeaderControl AObj, TSectionDragEvent AEventId) {
+HeaderControl_SetOnSectionDrag(THeaderControl AObj, TSectionDragEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnSectionDrag)
-    MySyscall(pHeaderControl_SetOnSectionDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnSectionDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_SetOnSectionEndDrag)
 void
-HeaderControl_SetOnSectionEndDrag(THeaderControl AObj, TNotifyEvent AEventId) {
+HeaderControl_SetOnSectionEndDrag(THeaderControl AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(HeaderControl_SetOnSectionEndDrag)
-    MySyscall(pHeaderControl_SetOnSectionEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pHeaderControl_SetOnSectionEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(HeaderControl_GetCanvas)
@@ -91134,114 +96796,114 @@ LabeledEdit_SetVisible(TLabeledEdit AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnChange)
 void
-LabeledEdit_SetOnChange(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnChange(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnChange)
-    MySyscall(pLabeledEdit_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnClick)
 void
-LabeledEdit_SetOnClick(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnClick(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnClick)
-    MySyscall(pLabeledEdit_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnDblClick)
 void
-LabeledEdit_SetOnDblClick(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnDblClick(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnDblClick)
-    MySyscall(pLabeledEdit_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnDragDrop)
 void
-LabeledEdit_SetOnDragDrop(TLabeledEdit AObj, TDragDropEvent AEventId) {
+LabeledEdit_SetOnDragDrop(TLabeledEdit AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnDragDrop)
-    MySyscall(pLabeledEdit_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnDragOver)
 void
-LabeledEdit_SetOnDragOver(TLabeledEdit AObj, TDragOverEvent AEventId) {
+LabeledEdit_SetOnDragOver(TLabeledEdit AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnDragOver)
-    MySyscall(pLabeledEdit_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnEndDrag)
 void
-LabeledEdit_SetOnEndDrag(TLabeledEdit AObj, TEndDragEvent AEventId) {
+LabeledEdit_SetOnEndDrag(TLabeledEdit AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnEndDrag)
-    MySyscall(pLabeledEdit_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnEnter)
 void
-LabeledEdit_SetOnEnter(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnEnter(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnEnter)
-    MySyscall(pLabeledEdit_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnExit)
 void
-LabeledEdit_SetOnExit(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnExit(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnExit)
-    MySyscall(pLabeledEdit_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnKeyDown)
 void
-LabeledEdit_SetOnKeyDown(TLabeledEdit AObj, TKeyEvent AEventId) {
+LabeledEdit_SetOnKeyDown(TLabeledEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnKeyDown)
-    MySyscall(pLabeledEdit_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnKeyPress)
 void
-LabeledEdit_SetOnKeyPress(TLabeledEdit AObj, TKeyPressEvent AEventId) {
+LabeledEdit_SetOnKeyPress(TLabeledEdit AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnKeyPress)
-    MySyscall(pLabeledEdit_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnKeyUp)
 void
-LabeledEdit_SetOnKeyUp(TLabeledEdit AObj, TKeyEvent AEventId) {
+LabeledEdit_SetOnKeyUp(TLabeledEdit AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnKeyUp)
-    MySyscall(pLabeledEdit_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnMouseDown)
 void
-LabeledEdit_SetOnMouseDown(TLabeledEdit AObj, TMouseEvent AEventId) {
+LabeledEdit_SetOnMouseDown(TLabeledEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnMouseDown)
-    MySyscall(pLabeledEdit_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnMouseEnter)
 void
-LabeledEdit_SetOnMouseEnter(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnMouseEnter(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnMouseEnter)
-    MySyscall(pLabeledEdit_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnMouseLeave)
 void
-LabeledEdit_SetOnMouseLeave(TLabeledEdit AObj, TNotifyEvent AEventId) {
+LabeledEdit_SetOnMouseLeave(TLabeledEdit AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnMouseLeave)
-    MySyscall(pLabeledEdit_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnMouseMove)
 void
-LabeledEdit_SetOnMouseMove(TLabeledEdit AObj, TMouseMoveEvent AEventId) {
+LabeledEdit_SetOnMouseMove(TLabeledEdit AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnMouseMove)
-    MySyscall(pLabeledEdit_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_SetOnMouseUp)
 void
-LabeledEdit_SetOnMouseUp(TLabeledEdit AObj, TMouseEvent AEventId) {
+LabeledEdit_SetOnMouseUp(TLabeledEdit AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(LabeledEdit_SetOnMouseUp)
-    MySyscall(pLabeledEdit_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pLabeledEdit_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(LabeledEdit_GetCanUndo)
@@ -92403,58 +98065,58 @@ BoundLabel_SetWidth(TBoundLabel AObj, int32_t AValue) {
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnClick)
 void
-BoundLabel_SetOnClick(TBoundLabel AObj, TNotifyEvent AEventId) {
+BoundLabel_SetOnClick(TBoundLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnClick)
-    MySyscall(pBoundLabel_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnDblClick)
 void
-BoundLabel_SetOnDblClick(TBoundLabel AObj, TNotifyEvent AEventId) {
+BoundLabel_SetOnDblClick(TBoundLabel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnDblClick)
-    MySyscall(pBoundLabel_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnDragDrop)
 void
-BoundLabel_SetOnDragDrop(TBoundLabel AObj, TDragDropEvent AEventId) {
+BoundLabel_SetOnDragDrop(TBoundLabel AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnDragDrop)
-    MySyscall(pBoundLabel_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnDragOver)
 void
-BoundLabel_SetOnDragOver(TBoundLabel AObj, TDragOverEvent AEventId) {
+BoundLabel_SetOnDragOver(TBoundLabel AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnDragOver)
-    MySyscall(pBoundLabel_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnEndDrag)
 void
-BoundLabel_SetOnEndDrag(TBoundLabel AObj, TEndDragEvent AEventId) {
+BoundLabel_SetOnEndDrag(TBoundLabel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnEndDrag)
-    MySyscall(pBoundLabel_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnMouseDown)
 void
-BoundLabel_SetOnMouseDown(TBoundLabel AObj, TMouseEvent AEventId) {
+BoundLabel_SetOnMouseDown(TBoundLabel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnMouseDown)
-    MySyscall(pBoundLabel_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnMouseMove)
 void
-BoundLabel_SetOnMouseMove(TBoundLabel AObj, TMouseMoveEvent AEventId) {
+BoundLabel_SetOnMouseMove(TBoundLabel AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnMouseMove)
-    MySyscall(pBoundLabel_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_SetOnMouseUp)
 void
-BoundLabel_SetOnMouseUp(TBoundLabel AObj, TMouseEvent AEventId) {
+BoundLabel_SetOnMouseUp(TBoundLabel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(BoundLabel_SetOnMouseUp)
-    MySyscall(pBoundLabel_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pBoundLabel_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(BoundLabel_GetCanvas)
@@ -93327,6 +98989,20 @@ FlowPanel_ScaleFontsPPI(TFlowPanel AObj, int32_t AToPPI, double AProportion) {
     MySyscall(pFlowPanel_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(FlowPanel_GetControlList)
+TFlowPanelControlList
+FlowPanel_GetControlList(TFlowPanel AObj) {
+    GET_FUNC_ADDR(FlowPanel_GetControlList)
+    return (TFlowPanelControlList)MySyscall(pFlowPanel_GetControlList, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanel_SetControlList)
+void
+FlowPanel_SetControlList(TFlowPanel AObj, TFlowPanelControlList AValue) {
+    GET_FUNC_ADDR(FlowPanel_SetControlList)
+    MySyscall(pFlowPanel_SetControlList, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(FlowPanel_GetAlign)
 TAlign
 FlowPanel_GetAlign(TFlowPanel AObj) {
@@ -93763,149 +99439,149 @@ FlowPanel_SetVisible(TFlowPanel AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnAlignPosition)
 void
-FlowPanel_SetOnAlignPosition(TFlowPanel AObj, TAlignPositionEvent AEventId) {
+FlowPanel_SetOnAlignPosition(TFlowPanel AObj, TAlignPositionEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnAlignPosition)
-    MySyscall(pFlowPanel_SetOnAlignPosition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnAlignPosition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnClick)
 void
-FlowPanel_SetOnClick(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnClick(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnClick)
-    MySyscall(pFlowPanel_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnConstrainedResize)
 void
-FlowPanel_SetOnConstrainedResize(TFlowPanel AObj, TConstrainedResizeEvent AEventId) {
+FlowPanel_SetOnConstrainedResize(TFlowPanel AObj, TConstrainedResizeEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnConstrainedResize)
-    MySyscall(pFlowPanel_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnConstrainedResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnContextPopup)
 void
-FlowPanel_SetOnContextPopup(TFlowPanel AObj, TContextPopupEvent AEventId) {
+FlowPanel_SetOnContextPopup(TFlowPanel AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnContextPopup)
-    MySyscall(pFlowPanel_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnDockDrop)
 void
-FlowPanel_SetOnDockDrop(TFlowPanel AObj, TDockDropEvent AEventId) {
+FlowPanel_SetOnDockDrop(TFlowPanel AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnDockDrop)
-    MySyscall(pFlowPanel_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnDblClick)
 void
-FlowPanel_SetOnDblClick(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnDblClick(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnDblClick)
-    MySyscall(pFlowPanel_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnDragDrop)
 void
-FlowPanel_SetOnDragDrop(TFlowPanel AObj, TDragDropEvent AEventId) {
+FlowPanel_SetOnDragDrop(TFlowPanel AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnDragDrop)
-    MySyscall(pFlowPanel_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnDragOver)
 void
-FlowPanel_SetOnDragOver(TFlowPanel AObj, TDragOverEvent AEventId) {
+FlowPanel_SetOnDragOver(TFlowPanel AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnDragOver)
-    MySyscall(pFlowPanel_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnEndDock)
 void
-FlowPanel_SetOnEndDock(TFlowPanel AObj, TEndDragEvent AEventId) {
+FlowPanel_SetOnEndDock(TFlowPanel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnEndDock)
-    MySyscall(pFlowPanel_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnEndDrag)
 void
-FlowPanel_SetOnEndDrag(TFlowPanel AObj, TEndDragEvent AEventId) {
+FlowPanel_SetOnEndDrag(TFlowPanel AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnEndDrag)
-    MySyscall(pFlowPanel_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnEnter)
 void
-FlowPanel_SetOnEnter(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnEnter(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnEnter)
-    MySyscall(pFlowPanel_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnExit)
 void
-FlowPanel_SetOnExit(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnExit(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnExit)
-    MySyscall(pFlowPanel_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnGetSiteInfo)
 void
-FlowPanel_SetOnGetSiteInfo(TFlowPanel AObj, TGetSiteInfoEvent AEventId) {
+FlowPanel_SetOnGetSiteInfo(TFlowPanel AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnGetSiteInfo)
-    MySyscall(pFlowPanel_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnMouseDown)
 void
-FlowPanel_SetOnMouseDown(TFlowPanel AObj, TMouseEvent AEventId) {
+FlowPanel_SetOnMouseDown(TFlowPanel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnMouseDown)
-    MySyscall(pFlowPanel_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnMouseEnter)
 void
-FlowPanel_SetOnMouseEnter(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnMouseEnter(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnMouseEnter)
-    MySyscall(pFlowPanel_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnMouseLeave)
 void
-FlowPanel_SetOnMouseLeave(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnMouseLeave(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnMouseLeave)
-    MySyscall(pFlowPanel_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnMouseMove)
 void
-FlowPanel_SetOnMouseMove(TFlowPanel AObj, TMouseMoveEvent AEventId) {
+FlowPanel_SetOnMouseMove(TFlowPanel AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnMouseMove)
-    MySyscall(pFlowPanel_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnMouseUp)
 void
-FlowPanel_SetOnMouseUp(TFlowPanel AObj, TMouseEvent AEventId) {
+FlowPanel_SetOnMouseUp(TFlowPanel AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnMouseUp)
-    MySyscall(pFlowPanel_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnResize)
 void
-FlowPanel_SetOnResize(TFlowPanel AObj, TNotifyEvent AEventId) {
+FlowPanel_SetOnResize(TFlowPanel AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnResize)
-    MySyscall(pFlowPanel_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnStartDock)
 void
-FlowPanel_SetOnStartDock(TFlowPanel AObj, TStartDockEvent AEventId) {
+FlowPanel_SetOnStartDock(TFlowPanel AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnStartDock)
-    MySyscall(pFlowPanel_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_SetOnUnDock)
 void
-FlowPanel_SetOnUnDock(TFlowPanel AObj, TUnDockEvent AEventId) {
+FlowPanel_SetOnUnDock(TFlowPanel AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(FlowPanel_SetOnUnDock)
-    MySyscall(pFlowPanel_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFlowPanel_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(FlowPanel_GetDockClientCount)
@@ -94353,6 +100029,346 @@ TClass
 FlowPanel_StaticClassType() {
     GET_FUNC_ADDR(FlowPanel_StaticClassType)
     return (TClass)MySyscall(pFlowPanel_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+// -------------------TFlowPanelControlList-------------------
+
+DEFINE_FUNC_PTR(FlowPanelControlList_IndexOf)
+int32_t
+FlowPanelControlList_IndexOf(TFlowPanelControlList AObj, TControl AControl) {
+    GET_FUNC_ADDR(FlowPanelControlList_IndexOf)
+    return (int32_t)MySyscall(pFlowPanelControlList_IndexOf, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Exchange)
+void
+FlowPanelControlList_Exchange(TFlowPanelControlList AObj, int32_t Index1, int32_t index2) {
+    GET_FUNC_ADDR(FlowPanelControlList_Exchange)
+    MySyscall(pFlowPanelControlList_Exchange, 3, AObj, Index1, index2 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Move)
+void
+FlowPanelControlList_Move(TFlowPanelControlList AObj, int32_t Index1, int32_t index2) {
+    GET_FUNC_ADDR(FlowPanelControlList_Move)
+    MySyscall(pFlowPanelControlList_Move, 3, AObj, Index1, index2 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_AllowAdd)
+BOOL
+FlowPanelControlList_AllowAdd(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_AllowAdd)
+    return (BOOL)MySyscall(pFlowPanelControlList_AllowAdd, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_AllowDelete)
+BOOL
+FlowPanelControlList_AllowDelete(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_AllowDelete)
+    return (BOOL)MySyscall(pFlowPanelControlList_AllowDelete, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Owner)
+TObject
+FlowPanelControlList_Owner(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_Owner)
+    return (TObject)MySyscall(pFlowPanelControlList_Owner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Add)
+TCollectionItem
+FlowPanelControlList_Add(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_Add)
+    return (TCollectionItem)MySyscall(pFlowPanelControlList_Add, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Assign)
+void
+FlowPanelControlList_Assign(TFlowPanelControlList AObj, TObject Source) {
+    GET_FUNC_ADDR(FlowPanelControlList_Assign)
+    MySyscall(pFlowPanelControlList_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_BeginUpdate)
+void
+FlowPanelControlList_BeginUpdate(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_BeginUpdate)
+    MySyscall(pFlowPanelControlList_BeginUpdate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Clear)
+void
+FlowPanelControlList_Clear(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_Clear)
+    MySyscall(pFlowPanelControlList_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Delete)
+void
+FlowPanelControlList_Delete(TFlowPanelControlList AObj, int32_t Index) {
+    GET_FUNC_ADDR(FlowPanelControlList_Delete)
+    MySyscall(pFlowPanelControlList_Delete, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_EndUpdate)
+void
+FlowPanelControlList_EndUpdate(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_EndUpdate)
+    MySyscall(pFlowPanelControlList_EndUpdate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_FindItemID)
+TCollectionItem
+FlowPanelControlList_FindItemID(TFlowPanelControlList AObj, int32_t ID) {
+    GET_FUNC_ADDR(FlowPanelControlList_FindItemID)
+    return (TCollectionItem)MySyscall(pFlowPanelControlList_FindItemID, 2, AObj, ID ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_GetNamePath)
+char*
+FlowPanelControlList_GetNamePath(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_GetNamePath)
+    return (char*)MySyscall(pFlowPanelControlList_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Insert)
+TCollectionItem
+FlowPanelControlList_Insert(TFlowPanelControlList AObj, int32_t Index) {
+    GET_FUNC_ADDR(FlowPanelControlList_Insert)
+    return (TCollectionItem)MySyscall(pFlowPanelControlList_Insert, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_ClassType)
+TClass
+FlowPanelControlList_ClassType(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_ClassType)
+    return (TClass)MySyscall(pFlowPanelControlList_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_ClassName)
+char*
+FlowPanelControlList_ClassName(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_ClassName)
+    return (char*)MySyscall(pFlowPanelControlList_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_InstanceSize)
+int32_t
+FlowPanelControlList_InstanceSize(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_InstanceSize)
+    return (int32_t)MySyscall(pFlowPanelControlList_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_InheritsFrom)
+BOOL
+FlowPanelControlList_InheritsFrom(TFlowPanelControlList AObj, TClass AClass) {
+    GET_FUNC_ADDR(FlowPanelControlList_InheritsFrom)
+    return (BOOL)MySyscall(pFlowPanelControlList_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_Equals)
+BOOL
+FlowPanelControlList_Equals(TFlowPanelControlList AObj, TObject Obj) {
+    GET_FUNC_ADDR(FlowPanelControlList_Equals)
+    return (BOOL)MySyscall(pFlowPanelControlList_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_GetHashCode)
+int32_t
+FlowPanelControlList_GetHashCode(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_GetHashCode)
+    return (int32_t)MySyscall(pFlowPanelControlList_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_ToString)
+char*
+FlowPanelControlList_ToString(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_ToString)
+    return (char*)MySyscall(pFlowPanelControlList_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_GetCount)
+int32_t
+FlowPanelControlList_GetCount(TFlowPanelControlList AObj) {
+    GET_FUNC_ADDR(FlowPanelControlList_GetCount)
+    return (int32_t)MySyscall(pFlowPanelControlList_GetCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_GetItems)
+TFlowPanelControl
+FlowPanelControlList_GetItems(TFlowPanelControlList AObj, int32_t Index) {
+    GET_FUNC_ADDR(FlowPanelControlList_GetItems)
+    return (TFlowPanelControl)MySyscall(pFlowPanelControlList_GetItems, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_SetItems)
+void
+FlowPanelControlList_SetItems(TFlowPanelControlList AObj, int32_t Index, TFlowPanelControl AValue) {
+    GET_FUNC_ADDR(FlowPanelControlList_SetItems)
+    MySyscall(pFlowPanelControlList_SetItems, 3, AObj, Index, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControlList_StaticClassType)
+TClass
+FlowPanelControlList_StaticClassType() {
+    GET_FUNC_ADDR(FlowPanelControlList_StaticClassType)
+    return (TClass)MySyscall(pFlowPanelControlList_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+// -------------------TFlowPanelControl-------------------
+
+DEFINE_FUNC_PTR(FlowPanelControl_AllowAdd)
+BOOL
+FlowPanelControl_AllowAdd(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_AllowAdd)
+    return (BOOL)MySyscall(pFlowPanelControl_AllowAdd, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_AllowDelete)
+BOOL
+FlowPanelControl_AllowDelete(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_AllowDelete)
+    return (BOOL)MySyscall(pFlowPanelControl_AllowDelete, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetNamePath)
+char*
+FlowPanelControl_GetNamePath(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetNamePath)
+    return (char*)MySyscall(pFlowPanelControl_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_Assign)
+void
+FlowPanelControl_Assign(TFlowPanelControl AObj, TObject Source) {
+    GET_FUNC_ADDR(FlowPanelControl_Assign)
+    MySyscall(pFlowPanelControl_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_ClassType)
+TClass
+FlowPanelControl_ClassType(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_ClassType)
+    return (TClass)MySyscall(pFlowPanelControl_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_ClassName)
+char*
+FlowPanelControl_ClassName(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_ClassName)
+    return (char*)MySyscall(pFlowPanelControl_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_InstanceSize)
+int32_t
+FlowPanelControl_InstanceSize(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_InstanceSize)
+    return (int32_t)MySyscall(pFlowPanelControl_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_InheritsFrom)
+BOOL
+FlowPanelControl_InheritsFrom(TFlowPanelControl AObj, TClass AClass) {
+    GET_FUNC_ADDR(FlowPanelControl_InheritsFrom)
+    return (BOOL)MySyscall(pFlowPanelControl_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_Equals)
+BOOL
+FlowPanelControl_Equals(TFlowPanelControl AObj, TObject Obj) {
+    GET_FUNC_ADDR(FlowPanelControl_Equals)
+    return (BOOL)MySyscall(pFlowPanelControl_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetHashCode)
+int32_t
+FlowPanelControl_GetHashCode(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetHashCode)
+    return (int32_t)MySyscall(pFlowPanelControl_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_ToString)
+char*
+FlowPanelControl_ToString(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_ToString)
+    return (char*)MySyscall(pFlowPanelControl_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetControl)
+TControl
+FlowPanelControl_GetControl(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetControl)
+    return (TControl)MySyscall(pFlowPanelControl_GetControl, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_SetControl)
+void
+FlowPanelControl_SetControl(TFlowPanelControl AObj, TControl AValue) {
+    GET_FUNC_ADDR(FlowPanelControl_SetControl)
+    MySyscall(pFlowPanelControl_SetControl, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetWrapAfter)
+TWrapAfter
+FlowPanelControl_GetWrapAfter(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetWrapAfter)
+    return (TWrapAfter)MySyscall(pFlowPanelControl_GetWrapAfter, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_SetWrapAfter)
+void
+FlowPanelControl_SetWrapAfter(TFlowPanelControl AObj, TWrapAfter AValue) {
+    GET_FUNC_ADDR(FlowPanelControl_SetWrapAfter)
+    MySyscall(pFlowPanelControl_SetWrapAfter, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetIndex)
+int32_t
+FlowPanelControl_GetIndex(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetIndex)
+    return (int32_t)MySyscall(pFlowPanelControl_GetIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_SetIndex)
+void
+FlowPanelControl_SetIndex(TFlowPanelControl AObj, int32_t AValue) {
+    GET_FUNC_ADDR(FlowPanelControl_SetIndex)
+    MySyscall(pFlowPanelControl_SetIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetCollection)
+TCollection
+FlowPanelControl_GetCollection(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetCollection)
+    return (TCollection)MySyscall(pFlowPanelControl_GetCollection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_SetCollection)
+void
+FlowPanelControl_SetCollection(TFlowPanelControl AObj, TCollection AValue) {
+    GET_FUNC_ADDR(FlowPanelControl_SetCollection)
+    MySyscall(pFlowPanelControl_SetCollection, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_GetDisplayName)
+char*
+FlowPanelControl_GetDisplayName(TFlowPanelControl AObj) {
+    GET_FUNC_ADDR(FlowPanelControl_GetDisplayName)
+    return (char*)MySyscall(pFlowPanelControl_GetDisplayName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_SetDisplayName)
+void
+FlowPanelControl_SetDisplayName(TFlowPanelControl AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(FlowPanelControl_SetDisplayName)
+    MySyscall(pFlowPanelControl_SetDisplayName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(FlowPanelControl_StaticClassType)
+TClass
+FlowPanelControl_StaticClassType() {
+    GET_FUNC_ADDR(FlowPanelControl_StaticClassType)
+    return (TClass)MySyscall(pFlowPanelControl_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TCoolBar-------------------
@@ -95277,128 +101293,128 @@ CoolBar_SetVisible(TCoolBar AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(CoolBar_SetOnChange)
 void
-CoolBar_SetOnChange(TCoolBar AObj, TNotifyEvent AEventId) {
+CoolBar_SetOnChange(TCoolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnChange)
-    MySyscall(pCoolBar_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnClick)
 void
-CoolBar_SetOnClick(TCoolBar AObj, TNotifyEvent AEventId) {
+CoolBar_SetOnClick(TCoolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnClick)
-    MySyscall(pCoolBar_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnContextPopup)
 void
-CoolBar_SetOnContextPopup(TCoolBar AObj, TContextPopupEvent AEventId) {
+CoolBar_SetOnContextPopup(TCoolBar AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnContextPopup)
-    MySyscall(pCoolBar_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnDblClick)
 void
-CoolBar_SetOnDblClick(TCoolBar AObj, TNotifyEvent AEventId) {
+CoolBar_SetOnDblClick(TCoolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnDblClick)
-    MySyscall(pCoolBar_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnDockDrop)
 void
-CoolBar_SetOnDockDrop(TCoolBar AObj, TDockDropEvent AEventId) {
+CoolBar_SetOnDockDrop(TCoolBar AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnDockDrop)
-    MySyscall(pCoolBar_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnDragDrop)
 void
-CoolBar_SetOnDragDrop(TCoolBar AObj, TDragDropEvent AEventId) {
+CoolBar_SetOnDragDrop(TCoolBar AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnDragDrop)
-    MySyscall(pCoolBar_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnDragOver)
 void
-CoolBar_SetOnDragOver(TCoolBar AObj, TDragOverEvent AEventId) {
+CoolBar_SetOnDragOver(TCoolBar AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnDragOver)
-    MySyscall(pCoolBar_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnEndDock)
 void
-CoolBar_SetOnEndDock(TCoolBar AObj, TEndDragEvent AEventId) {
+CoolBar_SetOnEndDock(TCoolBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnEndDock)
-    MySyscall(pCoolBar_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnEndDrag)
 void
-CoolBar_SetOnEndDrag(TCoolBar AObj, TEndDragEvent AEventId) {
+CoolBar_SetOnEndDrag(TCoolBar AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnEndDrag)
-    MySyscall(pCoolBar_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnGetSiteInfo)
 void
-CoolBar_SetOnGetSiteInfo(TCoolBar AObj, TGetSiteInfoEvent AEventId) {
+CoolBar_SetOnGetSiteInfo(TCoolBar AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnGetSiteInfo)
-    MySyscall(pCoolBar_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnMouseDown)
 void
-CoolBar_SetOnMouseDown(TCoolBar AObj, TMouseEvent AEventId) {
+CoolBar_SetOnMouseDown(TCoolBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnMouseDown)
-    MySyscall(pCoolBar_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnMouseEnter)
 void
-CoolBar_SetOnMouseEnter(TCoolBar AObj, TNotifyEvent AEventId) {
+CoolBar_SetOnMouseEnter(TCoolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnMouseEnter)
-    MySyscall(pCoolBar_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnMouseLeave)
 void
-CoolBar_SetOnMouseLeave(TCoolBar AObj, TNotifyEvent AEventId) {
+CoolBar_SetOnMouseLeave(TCoolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnMouseLeave)
-    MySyscall(pCoolBar_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnMouseMove)
 void
-CoolBar_SetOnMouseMove(TCoolBar AObj, TMouseMoveEvent AEventId) {
+CoolBar_SetOnMouseMove(TCoolBar AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnMouseMove)
-    MySyscall(pCoolBar_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnMouseUp)
 void
-CoolBar_SetOnMouseUp(TCoolBar AObj, TMouseEvent AEventId) {
+CoolBar_SetOnMouseUp(TCoolBar AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnMouseUp)
-    MySyscall(pCoolBar_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnResize)
 void
-CoolBar_SetOnResize(TCoolBar AObj, TNotifyEvent AEventId) {
+CoolBar_SetOnResize(TCoolBar AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnResize)
-    MySyscall(pCoolBar_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnStartDock)
 void
-CoolBar_SetOnStartDock(TCoolBar AObj, TStartDockEvent AEventId) {
+CoolBar_SetOnStartDock(TCoolBar AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnStartDock)
-    MySyscall(pCoolBar_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_SetOnUnDock)
 void
-CoolBar_SetOnUnDock(TCoolBar AObj, TUnDockEvent AEventId) {
+CoolBar_SetOnUnDock(TCoolBar AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(CoolBar_SetOnUnDock)
-    MySyscall(pCoolBar_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCoolBar_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CoolBar_GetDockClientCount)
@@ -97120,9 +103136,9 @@ TaskDialog_SetVerificationText(TTaskDialog AObj, CChar char* AValue) {
 
 DEFINE_FUNC_PTR(TaskDialog_SetOnButtonClicked)
 void
-TaskDialog_SetOnButtonClicked(TTaskDialog AObj, TTaskDlgClickEvent AEventId) {
+TaskDialog_SetOnButtonClicked(TTaskDialog AObj, TTaskDlgClickEvent AEventData) {
     GET_FUNC_ADDR(TaskDialog_SetOnButtonClicked)
-    MySyscall(pTaskDialog_SetOnButtonClicked, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pTaskDialog_SetOnButtonClicked, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(TaskDialog_GetButton)
@@ -98818,121 +104834,121 @@ ComboBoxEx_SetVisible(TComboBoxEx AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnChange)
 void
-ComboBoxEx_SetOnChange(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnChange(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnChange)
-    MySyscall(pComboBoxEx_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnClick)
 void
-ComboBoxEx_SetOnClick(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnClick(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnClick)
-    MySyscall(pComboBoxEx_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnContextPopup)
 void
-ComboBoxEx_SetOnContextPopup(TComboBoxEx AObj, TContextPopupEvent AEventId) {
+ComboBoxEx_SetOnContextPopup(TComboBoxEx AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnContextPopup)
-    MySyscall(pComboBoxEx_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnDblClick)
 void
-ComboBoxEx_SetOnDblClick(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnDblClick(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnDblClick)
-    MySyscall(pComboBoxEx_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnDragDrop)
 void
-ComboBoxEx_SetOnDragDrop(TComboBoxEx AObj, TDragDropEvent AEventId) {
+ComboBoxEx_SetOnDragDrop(TComboBoxEx AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnDragDrop)
-    MySyscall(pComboBoxEx_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnDragOver)
 void
-ComboBoxEx_SetOnDragOver(TComboBoxEx AObj, TDragOverEvent AEventId) {
+ComboBoxEx_SetOnDragOver(TComboBoxEx AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnDragOver)
-    MySyscall(pComboBoxEx_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnDropDown)
 void
-ComboBoxEx_SetOnDropDown(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnDropDown(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnDropDown)
-    MySyscall(pComboBoxEx_SetOnDropDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnDropDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnEndDock)
 void
-ComboBoxEx_SetOnEndDock(TComboBoxEx AObj, TEndDragEvent AEventId) {
+ComboBoxEx_SetOnEndDock(TComboBoxEx AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnEndDock)
-    MySyscall(pComboBoxEx_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnEndDrag)
 void
-ComboBoxEx_SetOnEndDrag(TComboBoxEx AObj, TEndDragEvent AEventId) {
+ComboBoxEx_SetOnEndDrag(TComboBoxEx AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnEndDrag)
-    MySyscall(pComboBoxEx_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnEnter)
 void
-ComboBoxEx_SetOnEnter(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnEnter(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnEnter)
-    MySyscall(pComboBoxEx_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnExit)
 void
-ComboBoxEx_SetOnExit(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnExit(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnExit)
-    MySyscall(pComboBoxEx_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnKeyDown)
 void
-ComboBoxEx_SetOnKeyDown(TComboBoxEx AObj, TKeyEvent AEventId) {
+ComboBoxEx_SetOnKeyDown(TComboBoxEx AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnKeyDown)
-    MySyscall(pComboBoxEx_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnKeyPress)
 void
-ComboBoxEx_SetOnKeyPress(TComboBoxEx AObj, TKeyPressEvent AEventId) {
+ComboBoxEx_SetOnKeyPress(TComboBoxEx AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnKeyPress)
-    MySyscall(pComboBoxEx_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnKeyUp)
 void
-ComboBoxEx_SetOnKeyUp(TComboBoxEx AObj, TKeyEvent AEventId) {
+ComboBoxEx_SetOnKeyUp(TComboBoxEx AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnKeyUp)
-    MySyscall(pComboBoxEx_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnMouseMove)
 void
-ComboBoxEx_SetOnMouseMove(TComboBoxEx AObj, TMouseMoveEvent AEventId) {
+ComboBoxEx_SetOnMouseMove(TComboBoxEx AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnMouseMove)
-    MySyscall(pComboBoxEx_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnSelect)
 void
-ComboBoxEx_SetOnSelect(TComboBoxEx AObj, TNotifyEvent AEventId) {
+ComboBoxEx_SetOnSelect(TComboBoxEx AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnSelect)
-    MySyscall(pComboBoxEx_SetOnSelect, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnSelect, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_SetOnStartDock)
 void
-ComboBoxEx_SetOnStartDock(TComboBoxEx AObj, TStartDockEvent AEventId) {
+ComboBoxEx_SetOnStartDock(TComboBoxEx AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(ComboBoxEx_SetOnStartDock)
-    MySyscall(pComboBoxEx_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pComboBoxEx_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ComboBoxEx_GetImages)
@@ -100544,6 +106560,20 @@ Frame_SetFont(TFrame AObj, TFont AValue) {
     MySyscall(pFrame_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(Frame_GetParentBackground)
+BOOL
+Frame_GetParentBackground(TFrame AObj) {
+    GET_FUNC_ADDR(Frame_GetParentBackground)
+    return (BOOL)MySyscall(pFrame_GetParentBackground, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(Frame_SetParentBackground)
+void
+Frame_SetParentBackground(TFrame AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Frame_SetParentBackground)
+    MySyscall(pFrame_SetParentBackground, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(Frame_GetParentColor)
 BOOL
 Frame_GetParentColor(TFrame AObj) {
@@ -100672,170 +106702,170 @@ Frame_SetVisible(TFrame AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(Frame_SetOnAlignPosition)
 void
-Frame_SetOnAlignPosition(TFrame AObj, TAlignPositionEvent AEventId) {
+Frame_SetOnAlignPosition(TFrame AObj, TAlignPositionEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnAlignPosition)
-    MySyscall(pFrame_SetOnAlignPosition, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnAlignPosition, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnClick)
 void
-Frame_SetOnClick(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnClick(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnClick)
-    MySyscall(pFrame_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnConstrainedResize)
 void
-Frame_SetOnConstrainedResize(TFrame AObj, TConstrainedResizeEvent AEventId) {
+Frame_SetOnConstrainedResize(TFrame AObj, TConstrainedResizeEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnConstrainedResize)
-    MySyscall(pFrame_SetOnConstrainedResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnConstrainedResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnContextPopup)
 void
-Frame_SetOnContextPopup(TFrame AObj, TContextPopupEvent AEventId) {
+Frame_SetOnContextPopup(TFrame AObj, TContextPopupEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnContextPopup)
-    MySyscall(pFrame_SetOnContextPopup, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnDblClick)
 void
-Frame_SetOnDblClick(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnDblClick(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnDblClick)
-    MySyscall(pFrame_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnDockDrop)
 void
-Frame_SetOnDockDrop(TFrame AObj, TDockDropEvent AEventId) {
+Frame_SetOnDockDrop(TFrame AObj, TDockDropEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnDockDrop)
-    MySyscall(pFrame_SetOnDockDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnDockDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnDragDrop)
 void
-Frame_SetOnDragDrop(TFrame AObj, TDragDropEvent AEventId) {
+Frame_SetOnDragDrop(TFrame AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnDragDrop)
-    MySyscall(pFrame_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnDragOver)
 void
-Frame_SetOnDragOver(TFrame AObj, TDragOverEvent AEventId) {
+Frame_SetOnDragOver(TFrame AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnDragOver)
-    MySyscall(pFrame_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnEndDock)
 void
-Frame_SetOnEndDock(TFrame AObj, TEndDragEvent AEventId) {
+Frame_SetOnEndDock(TFrame AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnEndDock)
-    MySyscall(pFrame_SetOnEndDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnEndDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnEndDrag)
 void
-Frame_SetOnEndDrag(TFrame AObj, TEndDragEvent AEventId) {
+Frame_SetOnEndDrag(TFrame AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnEndDrag)
-    MySyscall(pFrame_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnEnter)
 void
-Frame_SetOnEnter(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnEnter(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnEnter)
-    MySyscall(pFrame_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnExit)
 void
-Frame_SetOnExit(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnExit(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnExit)
-    MySyscall(pFrame_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnGetSiteInfo)
 void
-Frame_SetOnGetSiteInfo(TFrame AObj, TGetSiteInfoEvent AEventId) {
+Frame_SetOnGetSiteInfo(TFrame AObj, TGetSiteInfoEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnGetSiteInfo)
-    MySyscall(pFrame_SetOnGetSiteInfo, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnGetSiteInfo, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseDown)
 void
-Frame_SetOnMouseDown(TFrame AObj, TMouseEvent AEventId) {
+Frame_SetOnMouseDown(TFrame AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseDown)
-    MySyscall(pFrame_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseEnter)
 void
-Frame_SetOnMouseEnter(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnMouseEnter(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseEnter)
-    MySyscall(pFrame_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseLeave)
 void
-Frame_SetOnMouseLeave(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnMouseLeave(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseLeave)
-    MySyscall(pFrame_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseMove)
 void
-Frame_SetOnMouseMove(TFrame AObj, TMouseMoveEvent AEventId) {
+Frame_SetOnMouseMove(TFrame AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseMove)
-    MySyscall(pFrame_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseUp)
 void
-Frame_SetOnMouseUp(TFrame AObj, TMouseEvent AEventId) {
+Frame_SetOnMouseUp(TFrame AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseUp)
-    MySyscall(pFrame_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseWheel)
 void
-Frame_SetOnMouseWheel(TFrame AObj, TMouseWheelEvent AEventId) {
+Frame_SetOnMouseWheel(TFrame AObj, TMouseWheelEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseWheel)
-    MySyscall(pFrame_SetOnMouseWheel, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseWheelDown)
 void
-Frame_SetOnMouseWheelDown(TFrame AObj, TMouseWheelUpDownEvent AEventId) {
+Frame_SetOnMouseWheelDown(TFrame AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseWheelDown)
-    MySyscall(pFrame_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnMouseWheelUp)
 void
-Frame_SetOnMouseWheelUp(TFrame AObj, TMouseWheelUpDownEvent AEventId) {
+Frame_SetOnMouseWheelUp(TFrame AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnMouseWheelUp)
-    MySyscall(pFrame_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnResize)
 void
-Frame_SetOnResize(TFrame AObj, TNotifyEvent AEventId) {
+Frame_SetOnResize(TFrame AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnResize)
-    MySyscall(pFrame_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnStartDock)
 void
-Frame_SetOnStartDock(TFrame AObj, TStartDockEvent AEventId) {
+Frame_SetOnStartDock(TFrame AObj, TStartDockEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnStartDock)
-    MySyscall(pFrame_SetOnStartDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnStartDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_SetOnUnDock)
 void
-Frame_SetOnUnDock(TFrame AObj, TUnDockEvent AEventId) {
+Frame_SetOnUnDock(TFrame AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(Frame_SetOnUnDock)
-    MySyscall(pFrame_SetOnUnDock, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pFrame_SetOnUnDock, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(Frame_GetHorzScrollBar)
@@ -101399,6 +107429,13 @@ ControlScrollBar_ToString(TControlScrollBar AObj) {
     return (char*)MySyscall(pControlScrollBar_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(ControlScrollBar_GetKind)
+TScrollBarKind
+ControlScrollBar_GetKind(TControlScrollBar AObj) {
+    GET_FUNC_ADDR(ControlScrollBar_GetKind)
+    return (TScrollBarKind)MySyscall(pControlScrollBar_GetKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(ControlScrollBar_GetScrollPos)
 int32_t
 ControlScrollBar_GetScrollPos(TControlScrollBar AObj) {
@@ -101564,9 +107601,9 @@ SizeConstraints_ToString(TSizeConstraints AObj) {
 
 DEFINE_FUNC_PTR(SizeConstraints_SetOnChange)
 void
-SizeConstraints_SetOnChange(TSizeConstraints AObj, TNotifyEvent AEventId) {
+SizeConstraints_SetOnChange(TSizeConstraints AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(SizeConstraints_SetOnChange)
-    MySyscall(pSizeConstraints_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pSizeConstraints_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(SizeConstraints_GetMaxHeight)
@@ -102337,51 +108374,51 @@ XButton_SetVisible(TXButton AObj, BOOL AValue) {
 
 DEFINE_FUNC_PTR(XButton_SetOnClick)
 void
-XButton_SetOnClick(TXButton AObj, TNotifyEvent AEventId) {
+XButton_SetOnClick(TXButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnClick)
-    MySyscall(pXButton_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_SetOnDblClick)
 void
-XButton_SetOnDblClick(TXButton AObj, TNotifyEvent AEventId) {
+XButton_SetOnDblClick(TXButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnDblClick)
-    MySyscall(pXButton_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_SetOnMouseDown)
 void
-XButton_SetOnMouseDown(TXButton AObj, TMouseEvent AEventId) {
+XButton_SetOnMouseDown(TXButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnMouseDown)
-    MySyscall(pXButton_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_SetOnMouseEnter)
 void
-XButton_SetOnMouseEnter(TXButton AObj, TNotifyEvent AEventId) {
+XButton_SetOnMouseEnter(TXButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnMouseEnter)
-    MySyscall(pXButton_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_SetOnMouseLeave)
 void
-XButton_SetOnMouseLeave(TXButton AObj, TNotifyEvent AEventId) {
+XButton_SetOnMouseLeave(TXButton AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnMouseLeave)
-    MySyscall(pXButton_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_SetOnMouseMove)
 void
-XButton_SetOnMouseMove(TXButton AObj, TMouseMoveEvent AEventId) {
+XButton_SetOnMouseMove(TXButton AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnMouseMove)
-    MySyscall(pXButton_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_SetOnMouseUp)
 void
-XButton_SetOnMouseUp(TXButton AObj, TMouseEvent AEventId) {
+XButton_SetOnMouseUp(TXButton AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(XButton_SetOnMouseUp)
-    MySyscall(pXButton_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pXButton_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(XButton_GetBoundsRect)
@@ -102798,6 +108835,13 @@ AnchorSide_GetOwner(TAnchorSide AObj) {
     return (TControl)MySyscall(pAnchorSide_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
+DEFINE_FUNC_PTR(AnchorSide_GetKind)
+TAnchorKind
+AnchorSide_GetKind(TAnchorSide AObj) {
+    GET_FUNC_ADDR(AnchorSide_GetKind)
+    return (TAnchorKind)MySyscall(pAnchorSide_GetKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
 DEFINE_FUNC_PTR(AnchorSide_GetControl)
 TControl
 AnchorSide_GetControl(TAnchorSide AObj) {
@@ -102977,9 +109021,9 @@ ControlBorderSpacing_GetControlBottom(TControlBorderSpacing AObj) {
 
 DEFINE_FUNC_PTR(ControlBorderSpacing_SetOnChange)
 void
-ControlBorderSpacing_SetOnChange(TControlBorderSpacing AObj, TNotifyEvent AEventId) {
+ControlBorderSpacing_SetOnChange(TControlBorderSpacing AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ControlBorderSpacing_SetOnChange)
-    MySyscall(pControlBorderSpacing_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControlBorderSpacing_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ControlBorderSpacing_GetLeft)
@@ -103189,9 +109233,9 @@ ControlChildSizing_GetControl(TControlChildSizing AObj) {
 
 DEFINE_FUNC_PTR(ControlChildSizing_SetOnChange)
 void
-ControlChildSizing_SetOnChange(TControlChildSizing AObj, TNotifyEvent AEventId) {
+ControlChildSizing_SetOnChange(TControlChildSizing AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ControlChildSizing_SetOnChange)
-    MySyscall(pControlChildSizing_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pControlChildSizing_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ControlChildSizing_GetLeftRightSpacing)
@@ -104081,142 +110125,142 @@ CheckGroup_SetItems(TCheckGroup AObj, TStrings AValue) {
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnClick)
 void
-CheckGroup_SetOnClick(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnClick(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnClick)
-    MySyscall(pCheckGroup_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnDblClick)
 void
-CheckGroup_SetOnDblClick(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnDblClick(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnDblClick)
-    MySyscall(pCheckGroup_SetOnDblClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnDragDrop)
 void
-CheckGroup_SetOnDragDrop(TCheckGroup AObj, TDragDropEvent AEventId) {
+CheckGroup_SetOnDragDrop(TCheckGroup AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnDragDrop)
-    MySyscall(pCheckGroup_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnDragOver)
 void
-CheckGroup_SetOnDragOver(TCheckGroup AObj, TDragOverEvent AEventId) {
+CheckGroup_SetOnDragOver(TCheckGroup AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnDragOver)
-    MySyscall(pCheckGroup_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnEndDrag)
 void
-CheckGroup_SetOnEndDrag(TCheckGroup AObj, TEndDragEvent AEventId) {
+CheckGroup_SetOnEndDrag(TCheckGroup AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnEndDrag)
-    MySyscall(pCheckGroup_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnEnter)
 void
-CheckGroup_SetOnEnter(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnEnter(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnEnter)
-    MySyscall(pCheckGroup_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnExit)
 void
-CheckGroup_SetOnExit(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnExit(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnExit)
-    MySyscall(pCheckGroup_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnItemClick)
 void
-CheckGroup_SetOnItemClick(TCheckGroup AObj, TCheckGroupClicked AEventId) {
+CheckGroup_SetOnItemClick(TCheckGroup AObj, TCheckGroupClicked AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnItemClick)
-    MySyscall(pCheckGroup_SetOnItemClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnItemClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnKeyDown)
 void
-CheckGroup_SetOnKeyDown(TCheckGroup AObj, TKeyEvent AEventId) {
+CheckGroup_SetOnKeyDown(TCheckGroup AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnKeyDown)
-    MySyscall(pCheckGroup_SetOnKeyDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnKeyPress)
 void
-CheckGroup_SetOnKeyPress(TCheckGroup AObj, TKeyPressEvent AEventId) {
+CheckGroup_SetOnKeyPress(TCheckGroup AObj, TKeyPressEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnKeyPress)
-    MySyscall(pCheckGroup_SetOnKeyPress, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnKeyUp)
 void
-CheckGroup_SetOnKeyUp(TCheckGroup AObj, TKeyEvent AEventId) {
+CheckGroup_SetOnKeyUp(TCheckGroup AObj, TKeyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnKeyUp)
-    MySyscall(pCheckGroup_SetOnKeyUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseDown)
 void
-CheckGroup_SetOnMouseDown(TCheckGroup AObj, TMouseEvent AEventId) {
+CheckGroup_SetOnMouseDown(TCheckGroup AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseDown)
-    MySyscall(pCheckGroup_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseEnter)
 void
-CheckGroup_SetOnMouseEnter(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnMouseEnter(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseEnter)
-    MySyscall(pCheckGroup_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseLeave)
 void
-CheckGroup_SetOnMouseLeave(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnMouseLeave(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseLeave)
-    MySyscall(pCheckGroup_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseMove)
 void
-CheckGroup_SetOnMouseMove(TCheckGroup AObj, TMouseMoveEvent AEventId) {
+CheckGroup_SetOnMouseMove(TCheckGroup AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseMove)
-    MySyscall(pCheckGroup_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseUp)
 void
-CheckGroup_SetOnMouseUp(TCheckGroup AObj, TMouseEvent AEventId) {
+CheckGroup_SetOnMouseUp(TCheckGroup AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseUp)
-    MySyscall(pCheckGroup_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseWheel)
 void
-CheckGroup_SetOnMouseWheel(TCheckGroup AObj, TMouseWheelEvent AEventId) {
+CheckGroup_SetOnMouseWheel(TCheckGroup AObj, TMouseWheelEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseWheel)
-    MySyscall(pCheckGroup_SetOnMouseWheel, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseWheelDown)
 void
-CheckGroup_SetOnMouseWheelDown(TCheckGroup AObj, TMouseWheelUpDownEvent AEventId) {
+CheckGroup_SetOnMouseWheelDown(TCheckGroup AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseWheelDown)
-    MySyscall(pCheckGroup_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnMouseWheelUp)
 void
-CheckGroup_SetOnMouseWheelUp(TCheckGroup AObj, TMouseWheelUpDownEvent AEventId) {
+CheckGroup_SetOnMouseWheelUp(TCheckGroup AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnMouseWheelUp)
-    MySyscall(pCheckGroup_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_SetOnResize)
 void
-CheckGroup_SetOnResize(TCheckGroup AObj, TNotifyEvent AEventId) {
+CheckGroup_SetOnResize(TCheckGroup AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(CheckGroup_SetOnResize)
-    MySyscall(pCheckGroup_SetOnResize, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pCheckGroup_SetOnResize, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_GetParentFont)
@@ -104343,6 +110387,20 @@ void
 CheckGroup_SetVisible(TCheckGroup AObj, BOOL AValue) {
     GET_FUNC_ADDR(CheckGroup_SetVisible)
     MySyscall(pCheckGroup_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_GetParentBackground)
+BOOL
+CheckGroup_GetParentBackground(TCheckGroup AObj) {
+    GET_FUNC_ADDR(CheckGroup_GetParentBackground)
+    return (BOOL)MySyscall(pCheckGroup_GetParentBackground, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckGroup_SetParentBackground)
+void
+CheckGroup_SetParentBackground(TCheckGroup AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckGroup_SetParentBackground)
+    MySyscall(pCheckGroup_SetParentBackground, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(CheckGroup_GetDockClientCount)
@@ -105511,107 +111569,107 @@ ToggleBox_SetHint(TToggleBox AObj, CChar char* AValue) {
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnChange)
 void
-ToggleBox_SetOnChange(TToggleBox AObj, TNotifyEvent AEventId) {
+ToggleBox_SetOnChange(TToggleBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnChange)
-    MySyscall(pToggleBox_SetOnChange, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnClick)
 void
-ToggleBox_SetOnClick(TToggleBox AObj, TNotifyEvent AEventId) {
+ToggleBox_SetOnClick(TToggleBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnClick)
-    MySyscall(pToggleBox_SetOnClick, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnDragDrop)
 void
-ToggleBox_SetOnDragDrop(TToggleBox AObj, TDragDropEvent AEventId) {
+ToggleBox_SetOnDragDrop(TToggleBox AObj, TDragDropEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnDragDrop)
-    MySyscall(pToggleBox_SetOnDragDrop, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnDragOver)
 void
-ToggleBox_SetOnDragOver(TToggleBox AObj, TDragOverEvent AEventId) {
+ToggleBox_SetOnDragOver(TToggleBox AObj, TDragOverEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnDragOver)
-    MySyscall(pToggleBox_SetOnDragOver, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnEndDrag)
 void
-ToggleBox_SetOnEndDrag(TToggleBox AObj, TEndDragEvent AEventId) {
+ToggleBox_SetOnEndDrag(TToggleBox AObj, TEndDragEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnEndDrag)
-    MySyscall(pToggleBox_SetOnEndDrag, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnEnter)
 void
-ToggleBox_SetOnEnter(TToggleBox AObj, TNotifyEvent AEventId) {
+ToggleBox_SetOnEnter(TToggleBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnEnter)
-    MySyscall(pToggleBox_SetOnEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnExit)
 void
-ToggleBox_SetOnExit(TToggleBox AObj, TNotifyEvent AEventId) {
+ToggleBox_SetOnExit(TToggleBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnExit)
-    MySyscall(pToggleBox_SetOnExit, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseDown)
 void
-ToggleBox_SetOnMouseDown(TToggleBox AObj, TMouseEvent AEventId) {
+ToggleBox_SetOnMouseDown(TToggleBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseDown)
-    MySyscall(pToggleBox_SetOnMouseDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseEnter)
 void
-ToggleBox_SetOnMouseEnter(TToggleBox AObj, TNotifyEvent AEventId) {
+ToggleBox_SetOnMouseEnter(TToggleBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseEnter)
-    MySyscall(pToggleBox_SetOnMouseEnter, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseLeave)
 void
-ToggleBox_SetOnMouseLeave(TToggleBox AObj, TNotifyEvent AEventId) {
+ToggleBox_SetOnMouseLeave(TToggleBox AObj, TNotifyEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseLeave)
-    MySyscall(pToggleBox_SetOnMouseLeave, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseMove)
 void
-ToggleBox_SetOnMouseMove(TToggleBox AObj, TMouseMoveEvent AEventId) {
+ToggleBox_SetOnMouseMove(TToggleBox AObj, TMouseMoveEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseMove)
-    MySyscall(pToggleBox_SetOnMouseMove, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseUp)
 void
-ToggleBox_SetOnMouseUp(TToggleBox AObj, TMouseEvent AEventId) {
+ToggleBox_SetOnMouseUp(TToggleBox AObj, TMouseEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseUp)
-    MySyscall(pToggleBox_SetOnMouseUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseWheel)
 void
-ToggleBox_SetOnMouseWheel(TToggleBox AObj, TMouseWheelEvent AEventId) {
+ToggleBox_SetOnMouseWheel(TToggleBox AObj, TMouseWheelEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseWheel)
-    MySyscall(pToggleBox_SetOnMouseWheel, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseWheelDown)
 void
-ToggleBox_SetOnMouseWheelDown(TToggleBox AObj, TMouseWheelUpDownEvent AEventId) {
+ToggleBox_SetOnMouseWheelDown(TToggleBox AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseWheelDown)
-    MySyscall(pToggleBox_SetOnMouseWheelDown, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_SetOnMouseWheelUp)
 void
-ToggleBox_SetOnMouseWheelUp(TToggleBox AObj, TMouseWheelUpDownEvent AEventId) {
+ToggleBox_SetOnMouseWheelUp(TToggleBox AObj, TMouseWheelUpDownEvent AEventData) {
     GET_FUNC_ADDR(ToggleBox_SetOnMouseWheelUp)
-    MySyscall(pToggleBox_SetOnMouseWheelUp, 2, AObj, AEventId ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    MySyscall(pToggleBox_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 DEFINE_FUNC_PTR(ToggleBox_GetParentDoubleBuffered)
@@ -106213,6 +112271,1786 @@ TClass
 ToggleBox_StaticClassType() {
     GET_FUNC_ADDR(ToggleBox_StaticClassType)
     return (TClass)MySyscall(pToggleBox_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+// -------------------TCheckComboBox-------------------
+
+DEFINE_FUNC_PTR(CheckComboBox_Create)
+TCheckComboBox
+CheckComboBox_Create(TComponent AOwner) {
+    GET_FUNC_ADDR(CheckComboBox_Create)
+    return (TCheckComboBox)MySyscall(pCheckComboBox_Create, 1, AOwner ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Free)
+void
+CheckComboBox_Free(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Free)
+    MySyscall(pCheckComboBox_Free, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AddItem)
+void
+CheckComboBox_AddItem(TCheckComboBox AObj, CChar char* AItem, TCheckBoxState AState, BOOL AEnabled) {
+    GET_FUNC_ADDR(CheckComboBox_AddItem)
+    MySyscall(pCheckComboBox_AddItem, 4, AObj, AItem, AState, AEnabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AssignItems)
+void
+CheckComboBox_AssignItems(TCheckComboBox AObj, TStrings AItems) {
+    GET_FUNC_ADDR(CheckComboBox_AssignItems)
+    MySyscall(pCheckComboBox_AssignItems, 2, AObj, AItems ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Clear)
+void
+CheckComboBox_Clear(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Clear)
+    MySyscall(pCheckComboBox_Clear, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_DeleteItem)
+void
+CheckComboBox_DeleteItem(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_DeleteItem)
+    MySyscall(pCheckComboBox_DeleteItem, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_CheckAll)
+void
+CheckComboBox_CheckAll(TCheckComboBox AObj, TCheckBoxState AState, BOOL AAllowGrayed, BOOL AAllowDisabled) {
+    GET_FUNC_ADDR(CheckComboBox_CheckAll)
+    MySyscall(pCheckComboBox_CheckAll, 4, AObj, AState, AAllowGrayed, AAllowDisabled ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Toggle)
+void
+CheckComboBox_Toggle(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_Toggle)
+    MySyscall(pCheckComboBox_Toggle, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ClearSelection)
+void
+CheckComboBox_ClearSelection(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_ClearSelection)
+    MySyscall(pCheckComboBox_ClearSelection, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Focused)
+BOOL
+CheckComboBox_Focused(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Focused)
+    return (BOOL)MySyscall(pCheckComboBox_Focused, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SelectAll)
+void
+CheckComboBox_SelectAll(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_SelectAll)
+    MySyscall(pCheckComboBox_SelectAll, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_CanFocus)
+BOOL
+CheckComboBox_CanFocus(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_CanFocus)
+    return (BOOL)MySyscall(pCheckComboBox_CanFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ContainsControl)
+BOOL
+CheckComboBox_ContainsControl(TCheckComboBox AObj, TControl Control) {
+    GET_FUNC_ADDR(CheckComboBox_ContainsControl)
+    return (BOOL)MySyscall(pCheckComboBox_ContainsControl, 2, AObj, Control ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ControlAtPos)
+TControl
+CheckComboBox_ControlAtPos(TCheckComboBox AObj, TPoint Pos, BOOL AllowDisabled, BOOL AllowWinControls) {
+    GET_FUNC_ADDR(CheckComboBox_ControlAtPos)
+    return (TControl)MySyscall(pCheckComboBox_ControlAtPos, 4, AObj, &Pos, AllowDisabled, AllowWinControls ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_DisableAlign)
+void
+CheckComboBox_DisableAlign(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_DisableAlign)
+    MySyscall(pCheckComboBox_DisableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_EnableAlign)
+void
+CheckComboBox_EnableAlign(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_EnableAlign)
+    MySyscall(pCheckComboBox_EnableAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_FindChildControl)
+TControl
+CheckComboBox_FindChildControl(TCheckComboBox AObj, CChar char* ControlName) {
+    GET_FUNC_ADDR(CheckComboBox_FindChildControl)
+    return (TControl)MySyscall(pCheckComboBox_FindChildControl, 2, AObj, ControlName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_FlipChildren)
+void
+CheckComboBox_FlipChildren(TCheckComboBox AObj, BOOL AllLevels) {
+    GET_FUNC_ADDR(CheckComboBox_FlipChildren)
+    MySyscall(pCheckComboBox_FlipChildren, 2, AObj, AllLevels ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_HandleAllocated)
+BOOL
+CheckComboBox_HandleAllocated(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_HandleAllocated)
+    return (BOOL)MySyscall(pCheckComboBox_HandleAllocated, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_InsertControl)
+void
+CheckComboBox_InsertControl(TCheckComboBox AObj, TControl AControl) {
+    GET_FUNC_ADDR(CheckComboBox_InsertControl)
+    MySyscall(pCheckComboBox_InsertControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Invalidate)
+void
+CheckComboBox_Invalidate(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Invalidate)
+    MySyscall(pCheckComboBox_Invalidate, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_PaintTo)
+void
+CheckComboBox_PaintTo(TCheckComboBox AObj, HDC DC, int32_t X, int32_t Y) {
+    GET_FUNC_ADDR(CheckComboBox_PaintTo)
+    MySyscall(pCheckComboBox_PaintTo, 4, AObj, DC, X, Y ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_RemoveControl)
+void
+CheckComboBox_RemoveControl(TCheckComboBox AObj, TControl AControl) {
+    GET_FUNC_ADDR(CheckComboBox_RemoveControl)
+    MySyscall(pCheckComboBox_RemoveControl, 2, AObj, AControl ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Realign)
+void
+CheckComboBox_Realign(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Realign)
+    MySyscall(pCheckComboBox_Realign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Repaint)
+void
+CheckComboBox_Repaint(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Repaint)
+    MySyscall(pCheckComboBox_Repaint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleBy)
+void
+CheckComboBox_ScaleBy(TCheckComboBox AObj, int32_t M, int32_t D) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleBy)
+    MySyscall(pCheckComboBox_ScaleBy, 3, AObj, M, D ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScrollBy)
+void
+CheckComboBox_ScrollBy(TCheckComboBox AObj, int32_t DeltaX, int32_t DeltaY) {
+    GET_FUNC_ADDR(CheckComboBox_ScrollBy)
+    MySyscall(pCheckComboBox_ScrollBy, 3, AObj, DeltaX, DeltaY ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetBounds)
+void
+CheckComboBox_SetBounds(TCheckComboBox AObj, int32_t ALeft, int32_t ATop, int32_t AWidth, int32_t AHeight) {
+    GET_FUNC_ADDR(CheckComboBox_SetBounds)
+    MySyscall(pCheckComboBox_SetBounds, 5, AObj, ALeft, ATop, AWidth, AHeight ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetFocus)
+void
+CheckComboBox_SetFocus(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_SetFocus)
+    MySyscall(pCheckComboBox_SetFocus, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Update)
+void
+CheckComboBox_Update(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Update)
+    MySyscall(pCheckComboBox_Update, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_BringToFront)
+void
+CheckComboBox_BringToFront(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_BringToFront)
+    MySyscall(pCheckComboBox_BringToFront, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ClientToScreen)
+TPoint
+CheckComboBox_ClientToScreen(TCheckComboBox AObj, TPoint Point) {
+    GET_FUNC_ADDR(CheckComboBox_ClientToScreen)
+    TPoint result;
+    MySyscall(pCheckComboBox_ClientToScreen, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ClientToParent)
+TPoint
+CheckComboBox_ClientToParent(TCheckComboBox AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(CheckComboBox_ClientToParent)
+    TPoint result;
+    MySyscall(pCheckComboBox_ClientToParent, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Dragging)
+BOOL
+CheckComboBox_Dragging(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Dragging)
+    return (BOOL)MySyscall(pCheckComboBox_Dragging, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_HasParent)
+BOOL
+CheckComboBox_HasParent(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_HasParent)
+    return (BOOL)MySyscall(pCheckComboBox_HasParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Hide)
+void
+CheckComboBox_Hide(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Hide)
+    MySyscall(pCheckComboBox_Hide, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Perform)
+intptr_t
+CheckComboBox_Perform(TCheckComboBox AObj, uint32_t Msg, uintptr_t WParam, intptr_t LParam) {
+    GET_FUNC_ADDR(CheckComboBox_Perform)
+    return (intptr_t)MySyscall(pCheckComboBox_Perform, 4, AObj, Msg, WParam, LParam ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Refresh)
+void
+CheckComboBox_Refresh(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Refresh)
+    MySyscall(pCheckComboBox_Refresh, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScreenToClient)
+TPoint
+CheckComboBox_ScreenToClient(TCheckComboBox AObj, TPoint Point) {
+    GET_FUNC_ADDR(CheckComboBox_ScreenToClient)
+    TPoint result;
+    MySyscall(pCheckComboBox_ScreenToClient, 3, AObj, &Point, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ParentToClient)
+TPoint
+CheckComboBox_ParentToClient(TCheckComboBox AObj, TPoint Point, TWinControl AParent) {
+    GET_FUNC_ADDR(CheckComboBox_ParentToClient)
+    TPoint result;
+    MySyscall(pCheckComboBox_ParentToClient, 4, AObj, &Point, AParent, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SendToBack)
+void
+CheckComboBox_SendToBack(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_SendToBack)
+    MySyscall(pCheckComboBox_SendToBack, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Show)
+void
+CheckComboBox_Show(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_Show)
+    MySyscall(pCheckComboBox_Show, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTextBuf)
+int32_t
+CheckComboBox_GetTextBuf(TCheckComboBox AObj, CChar char* Buffer, int32_t BufSize) {
+    GET_FUNC_ADDR(CheckComboBox_GetTextBuf)
+    return (int32_t)MySyscall(pCheckComboBox_GetTextBuf, 3, AObj, Buffer, BufSize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTextLen)
+int32_t
+CheckComboBox_GetTextLen(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetTextLen)
+    return (int32_t)MySyscall(pCheckComboBox_GetTextLen, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetTextBuf)
+void
+CheckComboBox_SetTextBuf(TCheckComboBox AObj, CChar char* Buffer) {
+    GET_FUNC_ADDR(CheckComboBox_SetTextBuf)
+    MySyscall(pCheckComboBox_SetTextBuf, 2, AObj, Buffer ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_FindComponent)
+TComponent
+CheckComboBox_FindComponent(TCheckComboBox AObj, CChar char* AName) {
+    GET_FUNC_ADDR(CheckComboBox_FindComponent)
+    return (TComponent)MySyscall(pCheckComboBox_FindComponent, 2, AObj, AName ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetNamePath)
+char*
+CheckComboBox_GetNamePath(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetNamePath)
+    return (char*)MySyscall(pCheckComboBox_GetNamePath, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Assign)
+void
+CheckComboBox_Assign(TCheckComboBox AObj, TObject Source) {
+    GET_FUNC_ADDR(CheckComboBox_Assign)
+    MySyscall(pCheckComboBox_Assign, 2, AObj, Source ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ClassType)
+TClass
+CheckComboBox_ClassType(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_ClassType)
+    return (TClass)MySyscall(pCheckComboBox_ClassType, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ClassName)
+char*
+CheckComboBox_ClassName(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_ClassName)
+    return (char*)MySyscall(pCheckComboBox_ClassName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_InstanceSize)
+int32_t
+CheckComboBox_InstanceSize(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_InstanceSize)
+    return (int32_t)MySyscall(pCheckComboBox_InstanceSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_InheritsFrom)
+BOOL
+CheckComboBox_InheritsFrom(TCheckComboBox AObj, TClass AClass) {
+    GET_FUNC_ADDR(CheckComboBox_InheritsFrom)
+    return (BOOL)MySyscall(pCheckComboBox_InheritsFrom, 2, AObj, AClass ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Equals)
+BOOL
+CheckComboBox_Equals(TCheckComboBox AObj, TObject Obj) {
+    GET_FUNC_ADDR(CheckComboBox_Equals)
+    return (BOOL)MySyscall(pCheckComboBox_Equals, 2, AObj, Obj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetHashCode)
+int32_t
+CheckComboBox_GetHashCode(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetHashCode)
+    return (int32_t)MySyscall(pCheckComboBox_GetHashCode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ToString)
+char*
+CheckComboBox_ToString(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_ToString)
+    return (char*)MySyscall(pCheckComboBox_ToString, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorToNeighbour)
+void
+CheckComboBox_AnchorToNeighbour(TCheckComboBox AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorToNeighbour)
+    MySyscall(pCheckComboBox_AnchorToNeighbour, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorParallel)
+void
+CheckComboBox_AnchorParallel(TCheckComboBox AObj, TAnchorKind ASide, int32_t ASpace, TControl ASibling) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorParallel)
+    MySyscall(pCheckComboBox_AnchorParallel, 4, AObj, ASide, ASpace, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorHorizontalCenterTo)
+void
+CheckComboBox_AnchorHorizontalCenterTo(TCheckComboBox AObj, TControl ASibling) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorHorizontalCenterTo)
+    MySyscall(pCheckComboBox_AnchorHorizontalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorVerticalCenterTo)
+void
+CheckComboBox_AnchorVerticalCenterTo(TCheckComboBox AObj, TControl ASibling) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorVerticalCenterTo)
+    MySyscall(pCheckComboBox_AnchorVerticalCenterTo, 2, AObj, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorSame)
+void
+CheckComboBox_AnchorSame(TCheckComboBox AObj, TAnchorKind ASide, TControl ASibling) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorSame)
+    MySyscall(pCheckComboBox_AnchorSame, 3, AObj, ASide, ASibling ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorAsAlign)
+void
+CheckComboBox_AnchorAsAlign(TCheckComboBox AObj, TAlign ATheAlign, int32_t ASpace) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorAsAlign)
+    MySyscall(pCheckComboBox_AnchorAsAlign, 3, AObj, ATheAlign, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AnchorClient)
+void
+CheckComboBox_AnchorClient(TCheckComboBox AObj, int32_t ASpace) {
+    GET_FUNC_ADDR(CheckComboBox_AnchorClient)
+    MySyscall(pCheckComboBox_AnchorClient, 2, AObj, ASpace ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleDesignToForm)
+int32_t
+CheckComboBox_ScaleDesignToForm(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleDesignToForm)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleDesignToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleFormToDesign)
+int32_t
+CheckComboBox_ScaleFormToDesign(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleFormToDesign)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleFormToDesign, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Scale96ToForm)
+int32_t
+CheckComboBox_Scale96ToForm(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_Scale96ToForm)
+    return (int32_t)MySyscall(pCheckComboBox_Scale96ToForm, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleFormTo96)
+int32_t
+CheckComboBox_ScaleFormTo96(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleFormTo96)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleFormTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Scale96ToFont)
+int32_t
+CheckComboBox_Scale96ToFont(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_Scale96ToFont)
+    return (int32_t)MySyscall(pCheckComboBox_Scale96ToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleFontTo96)
+int32_t
+CheckComboBox_ScaleFontTo96(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleFontTo96)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleFontTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleScreenToFont)
+int32_t
+CheckComboBox_ScaleScreenToFont(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleScreenToFont)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleScreenToFont, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleFontToScreen)
+int32_t
+CheckComboBox_ScaleFontToScreen(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleFontToScreen)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleFontToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_Scale96ToScreen)
+int32_t
+CheckComboBox_Scale96ToScreen(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_Scale96ToScreen)
+    return (int32_t)MySyscall(pCheckComboBox_Scale96ToScreen, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleScreenTo96)
+int32_t
+CheckComboBox_ScaleScreenTo96(TCheckComboBox AObj, int32_t ASize) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleScreenTo96)
+    return (int32_t)MySyscall(pCheckComboBox_ScaleScreenTo96, 2, AObj, ASize ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_AutoAdjustLayout)
+void
+CheckComboBox_AutoAdjustLayout(TCheckComboBox AObj, TLayoutAdjustmentPolicy AMode, int32_t AFromPPI, int32_t AToPPI, int32_t AOldFormWidth, int32_t ANewFormWidth) {
+    GET_FUNC_ADDR(CheckComboBox_AutoAdjustLayout)
+    MySyscall(pCheckComboBox_AutoAdjustLayout, 6, AObj, AMode, AFromPPI, AToPPI, AOldFormWidth, ANewFormWidth ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_FixDesignFontsPPI)
+void
+CheckComboBox_FixDesignFontsPPI(TCheckComboBox AObj, int32_t ADesignTimePPI) {
+    GET_FUNC_ADDR(CheckComboBox_FixDesignFontsPPI)
+    MySyscall(pCheckComboBox_FixDesignFontsPPI, 2, AObj, ADesignTimePPI ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_ScaleFontsPPI)
+void
+CheckComboBox_ScaleFontsPPI(TCheckComboBox AObj, int32_t AToPPI, double AProportion) {
+    GET_FUNC_ADDR(CheckComboBox_ScaleFontsPPI)
+    MySyscall(pCheckComboBox_ScaleFontsPPI, 3, AObj, AToPPI, &AProportion ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAlign)
+TAlign
+CheckComboBox_GetAlign(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAlign)
+    return (TAlign)MySyscall(pCheckComboBox_GetAlign, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAlign)
+void
+CheckComboBox_SetAlign(TCheckComboBox AObj, TAlign AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAlign)
+    MySyscall(pCheckComboBox_SetAlign, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAllowGrayed)
+BOOL
+CheckComboBox_GetAllowGrayed(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAllowGrayed)
+    return (BOOL)MySyscall(pCheckComboBox_GetAllowGrayed, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAllowGrayed)
+void
+CheckComboBox_SetAllowGrayed(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAllowGrayed)
+    MySyscall(pCheckComboBox_SetAllowGrayed, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAnchors)
+TAnchors
+CheckComboBox_GetAnchors(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAnchors)
+    return (TAnchors)MySyscall(pCheckComboBox_GetAnchors, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAnchors)
+void
+CheckComboBox_SetAnchors(TCheckComboBox AObj, TAnchors AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAnchors)
+    MySyscall(pCheckComboBox_SetAnchors, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAutoDropDown)
+BOOL
+CheckComboBox_GetAutoDropDown(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAutoDropDown)
+    return (BOOL)MySyscall(pCheckComboBox_GetAutoDropDown, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAutoDropDown)
+void
+CheckComboBox_SetAutoDropDown(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAutoDropDown)
+    MySyscall(pCheckComboBox_SetAutoDropDown, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAutoSize)
+BOOL
+CheckComboBox_GetAutoSize(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAutoSize)
+    return (BOOL)MySyscall(pCheckComboBox_GetAutoSize, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAutoSize)
+void
+CheckComboBox_SetAutoSize(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAutoSize)
+    MySyscall(pCheckComboBox_SetAutoSize, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetColor)
+TColor
+CheckComboBox_GetColor(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetColor)
+    return (TColor)MySyscall(pCheckComboBox_GetColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetColor)
+void
+CheckComboBox_SetColor(TCheckComboBox AObj, TColor AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetColor)
+    MySyscall(pCheckComboBox_SetColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetConstraints)
+TSizeConstraints
+CheckComboBox_GetConstraints(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetConstraints)
+    return (TSizeConstraints)MySyscall(pCheckComboBox_GetConstraints, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetConstraints)
+void
+CheckComboBox_SetConstraints(TCheckComboBox AObj, TSizeConstraints AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetConstraints)
+    MySyscall(pCheckComboBox_SetConstraints, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetCount)
+int32_t
+CheckComboBox_GetCount(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetCount)
+    return (int32_t)MySyscall(pCheckComboBox_GetCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDragCursor)
+TCursor
+CheckComboBox_GetDragCursor(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDragCursor)
+    return (TCursor)MySyscall(pCheckComboBox_GetDragCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDragCursor)
+void
+CheckComboBox_SetDragCursor(TCheckComboBox AObj, TCursor AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDragCursor)
+    MySyscall(pCheckComboBox_SetDragCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDragKind)
+TDragKind
+CheckComboBox_GetDragKind(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDragKind)
+    return (TDragKind)MySyscall(pCheckComboBox_GetDragKind, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDragKind)
+void
+CheckComboBox_SetDragKind(TCheckComboBox AObj, TDragKind AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDragKind)
+    MySyscall(pCheckComboBox_SetDragKind, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDragMode)
+TDragMode
+CheckComboBox_GetDragMode(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDragMode)
+    return (TDragMode)MySyscall(pCheckComboBox_GetDragMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDragMode)
+void
+CheckComboBox_SetDragMode(TCheckComboBox AObj, TDragMode AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDragMode)
+    MySyscall(pCheckComboBox_SetDragMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDropDownCount)
+int32_t
+CheckComboBox_GetDropDownCount(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDropDownCount)
+    return (int32_t)MySyscall(pCheckComboBox_GetDropDownCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDropDownCount)
+void
+CheckComboBox_SetDropDownCount(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDropDownCount)
+    MySyscall(pCheckComboBox_SetDropDownCount, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetEnabled)
+BOOL
+CheckComboBox_GetEnabled(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetEnabled)
+    return (BOOL)MySyscall(pCheckComboBox_GetEnabled, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetEnabled)
+void
+CheckComboBox_SetEnabled(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetEnabled)
+    MySyscall(pCheckComboBox_SetEnabled, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetFont)
+TFont
+CheckComboBox_GetFont(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetFont)
+    return (TFont)MySyscall(pCheckComboBox_GetFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetFont)
+void
+CheckComboBox_SetFont(TCheckComboBox AObj, TFont AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetFont)
+    MySyscall(pCheckComboBox_SetFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetItemHeight)
+int32_t
+CheckComboBox_GetItemHeight(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetItemHeight)
+    return (int32_t)MySyscall(pCheckComboBox_GetItemHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetItemHeight)
+void
+CheckComboBox_SetItemHeight(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetItemHeight)
+    MySyscall(pCheckComboBox_SetItemHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetItemIndex)
+int32_t
+CheckComboBox_GetItemIndex(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetItemIndex)
+    return (int32_t)MySyscall(pCheckComboBox_GetItemIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetItemIndex)
+void
+CheckComboBox_SetItemIndex(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetItemIndex)
+    MySyscall(pCheckComboBox_SetItemIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetItems)
+TStrings
+CheckComboBox_GetItems(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetItems)
+    return (TStrings)MySyscall(pCheckComboBox_GetItems, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetItems)
+void
+CheckComboBox_SetItems(TCheckComboBox AObj, TStrings AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetItems)
+    MySyscall(pCheckComboBox_SetItems, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetItemWidth)
+int32_t
+CheckComboBox_GetItemWidth(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetItemWidth)
+    return (int32_t)MySyscall(pCheckComboBox_GetItemWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetItemWidth)
+void
+CheckComboBox_SetItemWidth(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetItemWidth)
+    MySyscall(pCheckComboBox_SetItemWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetMaxLength)
+int32_t
+CheckComboBox_GetMaxLength(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetMaxLength)
+    return (int32_t)MySyscall(pCheckComboBox_GetMaxLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetMaxLength)
+void
+CheckComboBox_SetMaxLength(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetMaxLength)
+    MySyscall(pCheckComboBox_SetMaxLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnChange)
+void
+CheckComboBox_SetOnChange(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnChange)
+    MySyscall(pCheckComboBox_SetOnChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnClick)
+void
+CheckComboBox_SetOnClick(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnClick)
+    MySyscall(pCheckComboBox_SetOnClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnCloseUp)
+void
+CheckComboBox_SetOnCloseUp(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnCloseUp)
+    MySyscall(pCheckComboBox_SetOnCloseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnContextPopup)
+void
+CheckComboBox_SetOnContextPopup(TCheckComboBox AObj, TContextPopupEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnContextPopup)
+    MySyscall(pCheckComboBox_SetOnContextPopup, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnDblClick)
+void
+CheckComboBox_SetOnDblClick(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnDblClick)
+    MySyscall(pCheckComboBox_SetOnDblClick, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnDragDrop)
+void
+CheckComboBox_SetOnDragDrop(TCheckComboBox AObj, TDragDropEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnDragDrop)
+    MySyscall(pCheckComboBox_SetOnDragDrop, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnDragOver)
+void
+CheckComboBox_SetOnDragOver(TCheckComboBox AObj, TDragOverEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnDragOver)
+    MySyscall(pCheckComboBox_SetOnDragOver, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnEndDrag)
+void
+CheckComboBox_SetOnEndDrag(TCheckComboBox AObj, TEndDragEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnEndDrag)
+    MySyscall(pCheckComboBox_SetOnEndDrag, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnDropDown)
+void
+CheckComboBox_SetOnDropDown(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnDropDown)
+    MySyscall(pCheckComboBox_SetOnDropDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnEnter)
+void
+CheckComboBox_SetOnEnter(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnEnter)
+    MySyscall(pCheckComboBox_SetOnEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnExit)
+void
+CheckComboBox_SetOnExit(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnExit)
+    MySyscall(pCheckComboBox_SetOnExit, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnItemChange)
+void
+CheckComboBox_SetOnItemChange(TCheckComboBox AObj, TCheckItemChange AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnItemChange)
+    MySyscall(pCheckComboBox_SetOnItemChange, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnKeyDown)
+void
+CheckComboBox_SetOnKeyDown(TCheckComboBox AObj, TKeyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnKeyDown)
+    MySyscall(pCheckComboBox_SetOnKeyDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnKeyPress)
+void
+CheckComboBox_SetOnKeyPress(TCheckComboBox AObj, TKeyPressEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnKeyPress)
+    MySyscall(pCheckComboBox_SetOnKeyPress, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnKeyUp)
+void
+CheckComboBox_SetOnKeyUp(TCheckComboBox AObj, TKeyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnKeyUp)
+    MySyscall(pCheckComboBox_SetOnKeyUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseDown)
+void
+CheckComboBox_SetOnMouseDown(TCheckComboBox AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseDown)
+    MySyscall(pCheckComboBox_SetOnMouseDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseEnter)
+void
+CheckComboBox_SetOnMouseEnter(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseEnter)
+    MySyscall(pCheckComboBox_SetOnMouseEnter, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseLeave)
+void
+CheckComboBox_SetOnMouseLeave(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseLeave)
+    MySyscall(pCheckComboBox_SetOnMouseLeave, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseMove)
+void
+CheckComboBox_SetOnMouseMove(TCheckComboBox AObj, TMouseMoveEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseMove)
+    MySyscall(pCheckComboBox_SetOnMouseMove, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseUp)
+void
+CheckComboBox_SetOnMouseUp(TCheckComboBox AObj, TMouseEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseUp)
+    MySyscall(pCheckComboBox_SetOnMouseUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseWheel)
+void
+CheckComboBox_SetOnMouseWheel(TCheckComboBox AObj, TMouseWheelEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseWheel)
+    MySyscall(pCheckComboBox_SetOnMouseWheel, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseWheelDown)
+void
+CheckComboBox_SetOnMouseWheelDown(TCheckComboBox AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseWheelDown)
+    MySyscall(pCheckComboBox_SetOnMouseWheelDown, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnMouseWheelUp)
+void
+CheckComboBox_SetOnMouseWheelUp(TCheckComboBox AObj, TMouseWheelUpDownEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnMouseWheelUp)
+    MySyscall(pCheckComboBox_SetOnMouseWheelUp, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetOnSelect)
+void
+CheckComboBox_SetOnSelect(TCheckComboBox AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(CheckComboBox_SetOnSelect)
+    MySyscall(pCheckComboBox_SetOnSelect, 2, AObj, AEventData ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetParentColor)
+BOOL
+CheckComboBox_GetParentColor(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetParentColor)
+    return (BOOL)MySyscall(pCheckComboBox_GetParentColor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetParentColor)
+void
+CheckComboBox_SetParentColor(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetParentColor)
+    MySyscall(pCheckComboBox_SetParentColor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetParentFont)
+BOOL
+CheckComboBox_GetParentFont(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetParentFont)
+    return (BOOL)MySyscall(pCheckComboBox_GetParentFont, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetParentFont)
+void
+CheckComboBox_SetParentFont(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetParentFont)
+    MySyscall(pCheckComboBox_SetParentFont, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetParentShowHint)
+BOOL
+CheckComboBox_GetParentShowHint(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetParentShowHint)
+    return (BOOL)MySyscall(pCheckComboBox_GetParentShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetParentShowHint)
+void
+CheckComboBox_SetParentShowHint(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetParentShowHint)
+    MySyscall(pCheckComboBox_SetParentShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetPopupMenu)
+TPopupMenu
+CheckComboBox_GetPopupMenu(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetPopupMenu)
+    return (TPopupMenu)MySyscall(pCheckComboBox_GetPopupMenu, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetPopupMenu)
+void
+CheckComboBox_SetPopupMenu(TCheckComboBox AObj, TPopupMenu AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetPopupMenu)
+    MySyscall(pCheckComboBox_SetPopupMenu, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetShowHint)
+BOOL
+CheckComboBox_GetShowHint(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetShowHint)
+    return (BOOL)MySyscall(pCheckComboBox_GetShowHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetShowHint)
+void
+CheckComboBox_SetShowHint(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetShowHint)
+    MySyscall(pCheckComboBox_SetShowHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetSorted)
+BOOL
+CheckComboBox_GetSorted(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetSorted)
+    return (BOOL)MySyscall(pCheckComboBox_GetSorted, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetSorted)
+void
+CheckComboBox_SetSorted(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetSorted)
+    MySyscall(pCheckComboBox_SetSorted, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTabOrder)
+TTabOrder
+CheckComboBox_GetTabOrder(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetTabOrder)
+    return (TTabOrder)MySyscall(pCheckComboBox_GetTabOrder, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetTabOrder)
+void
+CheckComboBox_SetTabOrder(TCheckComboBox AObj, TTabOrder AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetTabOrder)
+    MySyscall(pCheckComboBox_SetTabOrder, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTabStop)
+BOOL
+CheckComboBox_GetTabStop(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetTabStop)
+    return (BOOL)MySyscall(pCheckComboBox_GetTabStop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetTabStop)
+void
+CheckComboBox_SetTabStop(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetTabStop)
+    MySyscall(pCheckComboBox_SetTabStop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetText)
+char*
+CheckComboBox_GetText(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetText)
+    return (char*)MySyscall(pCheckComboBox_GetText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetText)
+void
+CheckComboBox_SetText(TCheckComboBox AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetText)
+    MySyscall(pCheckComboBox_SetText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTextHint)
+char*
+CheckComboBox_GetTextHint(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetTextHint)
+    return (char*)MySyscall(pCheckComboBox_GetTextHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetTextHint)
+void
+CheckComboBox_SetTextHint(TCheckComboBox AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetTextHint)
+    MySyscall(pCheckComboBox_SetTextHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetVisible)
+BOOL
+CheckComboBox_GetVisible(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetVisible)
+    return (BOOL)MySyscall(pCheckComboBox_GetVisible, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetVisible)
+void
+CheckComboBox_SetVisible(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetVisible)
+    MySyscall(pCheckComboBox_SetVisible, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAutoComplete)
+BOOL
+CheckComboBox_GetAutoComplete(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAutoComplete)
+    return (BOOL)MySyscall(pCheckComboBox_GetAutoComplete, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAutoComplete)
+void
+CheckComboBox_SetAutoComplete(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAutoComplete)
+    MySyscall(pCheckComboBox_SetAutoComplete, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetCharCase)
+TEditCharCase
+CheckComboBox_GetCharCase(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetCharCase)
+    return (TEditCharCase)MySyscall(pCheckComboBox_GetCharCase, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetCharCase)
+void
+CheckComboBox_SetCharCase(TCheckComboBox AObj, TEditCharCase AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetCharCase)
+    MySyscall(pCheckComboBox_SetCharCase, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetSelText)
+char*
+CheckComboBox_GetSelText(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetSelText)
+    return (char*)MySyscall(pCheckComboBox_GetSelText, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetSelText)
+void
+CheckComboBox_SetSelText(TCheckComboBox AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetSelText)
+    MySyscall(pCheckComboBox_SetSelText, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetCanvas)
+TCanvas
+CheckComboBox_GetCanvas(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetCanvas)
+    return (TCanvas)MySyscall(pCheckComboBox_GetCanvas, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDroppedDown)
+BOOL
+CheckComboBox_GetDroppedDown(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDroppedDown)
+    return (BOOL)MySyscall(pCheckComboBox_GetDroppedDown, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDroppedDown)
+void
+CheckComboBox_SetDroppedDown(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDroppedDown)
+    MySyscall(pCheckComboBox_SetDroppedDown, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetSelLength)
+int32_t
+CheckComboBox_GetSelLength(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetSelLength)
+    return (int32_t)MySyscall(pCheckComboBox_GetSelLength, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetSelLength)
+void
+CheckComboBox_SetSelLength(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetSelLength)
+    MySyscall(pCheckComboBox_SetSelLength, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetSelStart)
+int32_t
+CheckComboBox_GetSelStart(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetSelStart)
+    return (int32_t)MySyscall(pCheckComboBox_GetSelStart, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetSelStart)
+void
+CheckComboBox_SetSelStart(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetSelStart)
+    MySyscall(pCheckComboBox_SetSelStart, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDockClientCount)
+int32_t
+CheckComboBox_GetDockClientCount(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDockClientCount)
+    return (int32_t)MySyscall(pCheckComboBox_GetDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDockSite)
+BOOL
+CheckComboBox_GetDockSite(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDockSite)
+    return (BOOL)MySyscall(pCheckComboBox_GetDockSite, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDockSite)
+void
+CheckComboBox_SetDockSite(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDockSite)
+    MySyscall(pCheckComboBox_SetDockSite, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDoubleBuffered)
+BOOL
+CheckComboBox_GetDoubleBuffered(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetDoubleBuffered)
+    return (BOOL)MySyscall(pCheckComboBox_GetDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetDoubleBuffered)
+void
+CheckComboBox_SetDoubleBuffered(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetDoubleBuffered)
+    MySyscall(pCheckComboBox_SetDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetMouseInClient)
+BOOL
+CheckComboBox_GetMouseInClient(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetMouseInClient)
+    return (BOOL)MySyscall(pCheckComboBox_GetMouseInClient, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetVisibleDockClientCount)
+int32_t
+CheckComboBox_GetVisibleDockClientCount(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetVisibleDockClientCount)
+    return (int32_t)MySyscall(pCheckComboBox_GetVisibleDockClientCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetBrush)
+TBrush
+CheckComboBox_GetBrush(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetBrush)
+    return (TBrush)MySyscall(pCheckComboBox_GetBrush, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetControlCount)
+int32_t
+CheckComboBox_GetControlCount(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetControlCount)
+    return (int32_t)MySyscall(pCheckComboBox_GetControlCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetHandle)
+HWND
+CheckComboBox_GetHandle(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetHandle)
+    return (HWND)MySyscall(pCheckComboBox_GetHandle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetParentDoubleBuffered)
+BOOL
+CheckComboBox_GetParentDoubleBuffered(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetParentDoubleBuffered)
+    return (BOOL)MySyscall(pCheckComboBox_GetParentDoubleBuffered, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetParentDoubleBuffered)
+void
+CheckComboBox_SetParentDoubleBuffered(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetParentDoubleBuffered)
+    MySyscall(pCheckComboBox_SetParentDoubleBuffered, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetParentWindow)
+HWND
+CheckComboBox_GetParentWindow(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetParentWindow)
+    return (HWND)MySyscall(pCheckComboBox_GetParentWindow, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetParentWindow)
+void
+CheckComboBox_SetParentWindow(TCheckComboBox AObj, HWND AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetParentWindow)
+    MySyscall(pCheckComboBox_SetParentWindow, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetShowing)
+BOOL
+CheckComboBox_GetShowing(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetShowing)
+    return (BOOL)MySyscall(pCheckComboBox_GetShowing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetUseDockManager)
+BOOL
+CheckComboBox_GetUseDockManager(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetUseDockManager)
+    return (BOOL)MySyscall(pCheckComboBox_GetUseDockManager, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetUseDockManager)
+void
+CheckComboBox_SetUseDockManager(TCheckComboBox AObj, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetUseDockManager)
+    MySyscall(pCheckComboBox_SetUseDockManager, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAction)
+TAction
+CheckComboBox_GetAction(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAction)
+    return (TAction)MySyscall(pCheckComboBox_GetAction, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAction)
+void
+CheckComboBox_SetAction(TCheckComboBox AObj, TAction AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAction)
+    MySyscall(pCheckComboBox_SetAction, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetBiDiMode)
+TBiDiMode
+CheckComboBox_GetBiDiMode(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetBiDiMode)
+    return (TBiDiMode)MySyscall(pCheckComboBox_GetBiDiMode, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetBiDiMode)
+void
+CheckComboBox_SetBiDiMode(TCheckComboBox AObj, TBiDiMode AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetBiDiMode)
+    MySyscall(pCheckComboBox_SetBiDiMode, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetBoundsRect)
+TRect
+CheckComboBox_GetBoundsRect(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetBoundsRect)
+    TRect result;
+    MySyscall(pCheckComboBox_GetBoundsRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetBoundsRect)
+void
+CheckComboBox_SetBoundsRect(TCheckComboBox AObj, TRect AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetBoundsRect)
+    MySyscall(pCheckComboBox_SetBoundsRect, 2, AObj, &AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetClientHeight)
+int32_t
+CheckComboBox_GetClientHeight(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetClientHeight)
+    return (int32_t)MySyscall(pCheckComboBox_GetClientHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetClientHeight)
+void
+CheckComboBox_SetClientHeight(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetClientHeight)
+    MySyscall(pCheckComboBox_SetClientHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetClientOrigin)
+TPoint
+CheckComboBox_GetClientOrigin(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetClientOrigin)
+    TPoint result;
+    MySyscall(pCheckComboBox_GetClientOrigin, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetClientRect)
+TRect
+CheckComboBox_GetClientRect(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetClientRect)
+    TRect result;
+    MySyscall(pCheckComboBox_GetClientRect, 2, AObj, &result ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+    return result;
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetClientWidth)
+int32_t
+CheckComboBox_GetClientWidth(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetClientWidth)
+    return (int32_t)MySyscall(pCheckComboBox_GetClientWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetClientWidth)
+void
+CheckComboBox_SetClientWidth(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetClientWidth)
+    MySyscall(pCheckComboBox_SetClientWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetControlState)
+TControlState
+CheckComboBox_GetControlState(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetControlState)
+    return (TControlState)MySyscall(pCheckComboBox_GetControlState, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetControlState)
+void
+CheckComboBox_SetControlState(TCheckComboBox AObj, TControlState AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetControlState)
+    MySyscall(pCheckComboBox_SetControlState, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetControlStyle)
+TControlStyle
+CheckComboBox_GetControlStyle(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetControlStyle)
+    return (TControlStyle)MySyscall(pCheckComboBox_GetControlStyle, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetControlStyle)
+void
+CheckComboBox_SetControlStyle(TCheckComboBox AObj, TControlStyle AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetControlStyle)
+    MySyscall(pCheckComboBox_SetControlStyle, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetFloating)
+BOOL
+CheckComboBox_GetFloating(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetFloating)
+    return (BOOL)MySyscall(pCheckComboBox_GetFloating, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetParent)
+TWinControl
+CheckComboBox_GetParent(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetParent)
+    return (TWinControl)MySyscall(pCheckComboBox_GetParent, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetParent)
+void
+CheckComboBox_SetParent(TCheckComboBox AObj, TWinControl AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetParent)
+    MySyscall(pCheckComboBox_SetParent, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetLeft)
+int32_t
+CheckComboBox_GetLeft(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetLeft)
+    return (int32_t)MySyscall(pCheckComboBox_GetLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetLeft)
+void
+CheckComboBox_SetLeft(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetLeft)
+    MySyscall(pCheckComboBox_SetLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTop)
+int32_t
+CheckComboBox_GetTop(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetTop)
+    return (int32_t)MySyscall(pCheckComboBox_GetTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetTop)
+void
+CheckComboBox_SetTop(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetTop)
+    MySyscall(pCheckComboBox_SetTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetWidth)
+int32_t
+CheckComboBox_GetWidth(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetWidth)
+    return (int32_t)MySyscall(pCheckComboBox_GetWidth, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetWidth)
+void
+CheckComboBox_SetWidth(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetWidth)
+    MySyscall(pCheckComboBox_SetWidth, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetHeight)
+int32_t
+CheckComboBox_GetHeight(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetHeight)
+    return (int32_t)MySyscall(pCheckComboBox_GetHeight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetHeight)
+void
+CheckComboBox_SetHeight(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetHeight)
+    MySyscall(pCheckComboBox_SetHeight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetCursor)
+TCursor
+CheckComboBox_GetCursor(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetCursor)
+    return (TCursor)MySyscall(pCheckComboBox_GetCursor, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetCursor)
+void
+CheckComboBox_SetCursor(TCheckComboBox AObj, TCursor AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetCursor)
+    MySyscall(pCheckComboBox_SetCursor, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetHint)
+char*
+CheckComboBox_GetHint(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetHint)
+    return (char*)MySyscall(pCheckComboBox_GetHint, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetHint)
+void
+CheckComboBox_SetHint(TCheckComboBox AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetHint)
+    MySyscall(pCheckComboBox_SetHint, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetComponentCount)
+int32_t
+CheckComboBox_GetComponentCount(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetComponentCount)
+    return (int32_t)MySyscall(pCheckComboBox_GetComponentCount, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetComponentIndex)
+int32_t
+CheckComboBox_GetComponentIndex(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetComponentIndex)
+    return (int32_t)MySyscall(pCheckComboBox_GetComponentIndex, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetComponentIndex)
+void
+CheckComboBox_SetComponentIndex(TCheckComboBox AObj, int32_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetComponentIndex)
+    MySyscall(pCheckComboBox_SetComponentIndex, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetOwner)
+TComponent
+CheckComboBox_GetOwner(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetOwner)
+    return (TComponent)MySyscall(pCheckComboBox_GetOwner, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetName)
+char*
+CheckComboBox_GetName(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetName)
+    return (char*)MySyscall(pCheckComboBox_GetName, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetName)
+void
+CheckComboBox_SetName(TCheckComboBox AObj, CChar char* AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetName)
+    MySyscall(pCheckComboBox_SetName, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetTag)
+intptr_t
+CheckComboBox_GetTag(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetTag)
+    return (intptr_t)MySyscall(pCheckComboBox_GetTag, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetTag)
+void
+CheckComboBox_SetTag(TCheckComboBox AObj, intptr_t AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetTag)
+    MySyscall(pCheckComboBox_SetTag, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAnchorSideLeft)
+TAnchorSide
+CheckComboBox_GetAnchorSideLeft(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAnchorSideLeft)
+    return (TAnchorSide)MySyscall(pCheckComboBox_GetAnchorSideLeft, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAnchorSideLeft)
+void
+CheckComboBox_SetAnchorSideLeft(TCheckComboBox AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAnchorSideLeft)
+    MySyscall(pCheckComboBox_SetAnchorSideLeft, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAnchorSideTop)
+TAnchorSide
+CheckComboBox_GetAnchorSideTop(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAnchorSideTop)
+    return (TAnchorSide)MySyscall(pCheckComboBox_GetAnchorSideTop, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAnchorSideTop)
+void
+CheckComboBox_SetAnchorSideTop(TCheckComboBox AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAnchorSideTop)
+    MySyscall(pCheckComboBox_SetAnchorSideTop, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAnchorSideRight)
+TAnchorSide
+CheckComboBox_GetAnchorSideRight(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAnchorSideRight)
+    return (TAnchorSide)MySyscall(pCheckComboBox_GetAnchorSideRight, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAnchorSideRight)
+void
+CheckComboBox_SetAnchorSideRight(TCheckComboBox AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAnchorSideRight)
+    MySyscall(pCheckComboBox_SetAnchorSideRight, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAnchorSideBottom)
+TAnchorSide
+CheckComboBox_GetAnchorSideBottom(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetAnchorSideBottom)
+    return (TAnchorSide)MySyscall(pCheckComboBox_GetAnchorSideBottom, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetAnchorSideBottom)
+void
+CheckComboBox_SetAnchorSideBottom(TCheckComboBox AObj, TAnchorSide AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetAnchorSideBottom)
+    MySyscall(pCheckComboBox_SetAnchorSideBottom, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetChildSizing)
+TControlChildSizing
+CheckComboBox_GetChildSizing(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetChildSizing)
+    return (TControlChildSizing)MySyscall(pCheckComboBox_GetChildSizing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetChildSizing)
+void
+CheckComboBox_SetChildSizing(TCheckComboBox AObj, TControlChildSizing AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetChildSizing)
+    MySyscall(pCheckComboBox_SetChildSizing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetBorderSpacing)
+TControlBorderSpacing
+CheckComboBox_GetBorderSpacing(TCheckComboBox AObj) {
+    GET_FUNC_ADDR(CheckComboBox_GetBorderSpacing)
+    return (TControlBorderSpacing)MySyscall(pCheckComboBox_GetBorderSpacing, 1, AObj ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetBorderSpacing)
+void
+CheckComboBox_SetBorderSpacing(TCheckComboBox AObj, TControlBorderSpacing AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetBorderSpacing)
+    MySyscall(pCheckComboBox_SetBorderSpacing, 2, AObj, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetChecked)
+BOOL
+CheckComboBox_GetChecked(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_GetChecked)
+    return (BOOL)MySyscall(pCheckComboBox_GetChecked, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetChecked)
+void
+CheckComboBox_SetChecked(TCheckComboBox AObj, int32_t AIndex, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetChecked)
+    MySyscall(pCheckComboBox_SetChecked, 3, AObj, AIndex, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetItemEnabled)
+BOOL
+CheckComboBox_GetItemEnabled(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_GetItemEnabled)
+    return (BOOL)MySyscall(pCheckComboBox_GetItemEnabled, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetItemEnabled)
+void
+CheckComboBox_SetItemEnabled(TCheckComboBox AObj, int32_t AIndex, BOOL AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetItemEnabled)
+    MySyscall(pCheckComboBox_SetItemEnabled, 3, AObj, AIndex, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetObjects)
+TObject
+CheckComboBox_GetObjects(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_GetObjects)
+    return (TObject)MySyscall(pCheckComboBox_GetObjects, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetObjects)
+void
+CheckComboBox_SetObjects(TCheckComboBox AObj, int32_t AIndex, TObject AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetObjects)
+    MySyscall(pCheckComboBox_SetObjects, 3, AObj, AIndex, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetState)
+TCheckBoxState
+CheckComboBox_GetState(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_GetState)
+    return (TCheckBoxState)MySyscall(pCheckComboBox_GetState, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_SetState)
+void
+CheckComboBox_SetState(TCheckComboBox AObj, int32_t AIndex, TCheckBoxState AValue) {
+    GET_FUNC_ADDR(CheckComboBox_SetState)
+    MySyscall(pCheckComboBox_SetState, 3, AObj, AIndex, AValue ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetDockClients)
+TControl
+CheckComboBox_GetDockClients(TCheckComboBox AObj, int32_t Index) {
+    GET_FUNC_ADDR(CheckComboBox_GetDockClients)
+    return (TControl)MySyscall(pCheckComboBox_GetDockClients, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetControls)
+TControl
+CheckComboBox_GetControls(TCheckComboBox AObj, int32_t Index) {
+    GET_FUNC_ADDR(CheckComboBox_GetControls)
+    return (TControl)MySyscall(pCheckComboBox_GetControls, 2, AObj, Index ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetComponents)
+TComponent
+CheckComboBox_GetComponents(TCheckComboBox AObj, int32_t AIndex) {
+    GET_FUNC_ADDR(CheckComboBox_GetComponents)
+    return (TComponent)MySyscall(pCheckComboBox_GetComponents, 2, AObj, AIndex ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_GetAnchorSide)
+TAnchorSide
+CheckComboBox_GetAnchorSide(TCheckComboBox AObj, TAnchorKind AKind) {
+    GET_FUNC_ADDR(CheckComboBox_GetAnchorSide)
+    return (TAnchorSide)MySyscall(pCheckComboBox_GetAnchorSide, 2, AObj, AKind ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
+}
+
+DEFINE_FUNC_PTR(CheckComboBox_StaticClassType)
+TClass
+CheckComboBox_StaticClassType() {
+    GET_FUNC_ADDR(CheckComboBox_StaticClassType)
+    return (TClass)MySyscall(pCheckComboBox_StaticClassType, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
 }
 
 // -------------------TGridColumnTitle-------------------
