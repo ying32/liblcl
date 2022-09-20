@@ -230,17 +230,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageSetupDialog_SetOnClose(AObj: TPageSetupDialog; AEventId: NativeUInt); extdecl;
+procedure PageSetupDialog_SetOnClose(AObj: TPageSetupDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClose}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClose}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageSetupDialog_SetOnShow(AObj: TPageSetupDialog; AEventId: NativeUInt); extdecl;
+procedure PageSetupDialog_SetOnShow(AObj: TPageSetupDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnShow}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnShow}
   EventMethodCode
 end;

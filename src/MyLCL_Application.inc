@@ -467,65 +467,65 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Application_SetOnActivate(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnActivate(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnActivate}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnActivate}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Application_SetOnDeactivate(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnDeactivate(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDeactivate}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDeactivate}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TExceptionEvent
-procedure Application_SetOnException(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnException(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTExceptionEvent_OnException}
+  {$DEFINE EventMethodName := OnTExceptionEvent}
   {$DEFINE EventName := OnException}
   EventMethodCode
 end;
 
 //EVENT_TYPE:THelpEvent
-procedure Application_SetOnHelp(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnHelp(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTHelpEvent_OnHelp}
+  {$DEFINE EventMethodName := OnTHelpEvent}
   {$DEFINE EventName := OnHelp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Application_SetOnHint(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnHint(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnHint}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnHint}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Application_SetOnMinimize(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnMinimize(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMinimize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMinimize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Application_SetOnRestore(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnRestore(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnRestore}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnRestore}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TShortCutEvent
-procedure Application_SetOnShortCut(AObj: TApplication; AEventId: NativeUInt); extdecl;
+procedure Application_SetOnShortCut(AObj: TApplication; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTShortCutEvent_OnShortCut}
+  {$DEFINE EventMethodName := OnTShortCutEvent}
   {$DEFINE EventName := OnShortCut}
   EventMethodCode
 end;

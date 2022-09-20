@@ -1091,129 +1091,129 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnClick(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnClick(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ToolBar_SetOnContextPopup(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnContextPopup(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnDblClick(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnDblClick(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDockDropEvent
-procedure ToolBar_SetOnDockDrop(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnDockDrop(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDockDropEvent_OnDockDrop}
+  {$DEFINE EventMethodName := OnTDockDropEvent}
   {$DEFINE EventName := OnDockDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ToolBar_SetOnDragDrop(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnDragDrop(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ToolBar_SetOnDragOver(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnDragOver(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ToolBar_SetOnEndDrag(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnEndDrag(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnEnter(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnEnter(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnExit(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnExit(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ToolBar_SetOnMouseDown(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnMouseDown(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnMouseEnter(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnMouseEnter(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnMouseLeave(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnMouseLeave(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ToolBar_SetOnMouseMove(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnMouseMove(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ToolBar_SetOnMouseUp(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnMouseUp(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToolBar_SetOnResize(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnResize(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUnDockEvent
-procedure ToolBar_SetOnUnDock(AObj: TToolBar; AEventId: NativeUInt); extdecl;
+procedure ToolBar_SetOnUnDock(AObj: TToolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUnDockEvent_OnUnDock}
+  {$DEFINE EventMethodName := OnTUnDockEvent}
   {$DEFINE EventName := OnUnDock}
   EventMethodCode
 end;

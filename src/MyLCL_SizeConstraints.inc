@@ -80,9 +80,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SizeConstraints_SetOnChange(AObj: TSizeConstraints; AEventId: NativeUInt); extdecl;
+procedure SizeConstraints_SetOnChange(AObj: TSizeConstraints; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

@@ -16,9 +16,6 @@
   
 //{$endif windows}
 
-{$I MyLCL_PageSetupDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_DragObject.inc}  //BASECLASS:TObject
-{$I MyLCL_DragDockObject.inc}  //BASECLASS:TObject
 {$I MyLCL_StringGrid.inc}  //BASECLASS:TWinControl
 {$I MyLCL_DrawGrid.inc}  //BASECLASS:TWinControl
 {$I MyLCL_ValueListEditor.inc}  //BASECLASS:TWinControl
@@ -28,6 +25,8 @@
 {$I MyLCL_LabeledEdit.inc}  //BASECLASS:TWinControl
 {$I MyLCL_BoundLabel.inc}  //BASECLASS:TControl
 {$I MyLCL_FlowPanel.inc}  //BASECLASS:TWinControl
+{$I MyLCL_FlowPanelControlList.inc}  //BASECLASS:TObject
+{$I MyLCL_FlowPanelControl.inc}  //BASECLASS:TObject
 {$I MyLCL_CoolBar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_CoolBands.inc}  //BASECLASS:TObject
 {$I MyLCL_CoolBand.inc}  //BASECLASS:TObject

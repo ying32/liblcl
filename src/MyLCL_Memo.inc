@@ -1050,137 +1050,137 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnChange(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnChange(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnClick(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnClick(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure Memo_SetOnContextPopup(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnContextPopup(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnDblClick(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnDblClick(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure Memo_SetOnDragDrop(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnDragDrop(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure Memo_SetOnDragOver(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnDragOver(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Memo_SetOnEndDrag(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnEndDrag(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnEnter(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnEnter(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnExit(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnExit(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure Memo_SetOnKeyDown(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnKeyDown(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure Memo_SetOnKeyPress(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnKeyPress(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure Memo_SetOnKeyUp(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnKeyUp(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Memo_SetOnMouseDown(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnMouseDown(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnMouseEnter(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnMouseEnter(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Memo_SetOnMouseLeave(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnMouseLeave(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure Memo_SetOnMouseMove(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnMouseMove(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Memo_SetOnMouseUp(AObj: TMemo; AEventId: NativeUInt); extdecl;
+procedure Memo_SetOnMouseUp(AObj: TMemo; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

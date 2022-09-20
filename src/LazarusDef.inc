@@ -17,7 +17,7 @@ end;
 function DLibVersion: Cardinal; extdecl;
 begin
   // 共8位，2位2位的
-  Result := $02020000;
+  Result := $02020200;
 end;
 
 // 一些初始
@@ -140,17 +140,16 @@ begin
 end;
 
 //EVENT_TYPE:TWndProcEvent
-procedure Form_SetOnWndProc(AObj: TGoForm; AEventId: NativeUInt); extdecl;
+procedure Form_SetOnWndProc(AObj: TGoForm; AEventData: Pointer); extdecl;
 begin
   handleExceptionBegin
-  if AEventId = 0 then
+  if AEventData = nil then
   begin
+    TLCLMessageEvent.Remove(TMethod(AObj.OnWndProc));
     AObj.OnWndProc := nil;
-    TMessageEventClass.Remove(AObj);
     Exit;
   end;
-  AObj.OnWndProc := TMessageEventClass.OnWndProc;
-  TMessageEventClass.Add(AObj, AEventId);
+  AObj.OnWndProc := TLCLMessageEvent.Create(AEventData).OnTWndProcEvent;
   handleExceptionEnd
 end;
 
@@ -649,6 +648,11 @@ begin
   GRequestCallCreateParamsPtr := APtr;
 end;
 
+procedure SetRemoveEventCallback(APtr: Pointer); extdecl;
+begin
+  GRemoveEventCallbackPtr := APtr;
+end;
+
 // 从string数组中获取成员
 function DGetStringArrOf(P: Pointer; AIndex: NativeInt): PChar; extdecl;
 begin
@@ -699,9 +703,9 @@ procedure DSynchronize(AUseMsg: LongBool); extdecl;
 begin
   handleExceptionBegin
   if MainThreadId = TThread.CurrentThread.ThreadID then
-    TEventClass.ThreadProc()
+    TLCLEvent.ThreadProc()
   else
-    TThread.Synchronize(nil, TEventClass.ThreadProc);
+    TThread.Synchronize(nil, TLCLEvent.ThreadProc);
   handleExceptionEnd
 end;
 
@@ -1253,6 +1257,7 @@ exports
   SetThreadSyncCallback,
   SetExceptionHandlerCallback,
   SetRequestCallCreateParamsCallback,
+  SetRemoveEventCallback,
 
   //DSetDefaultLang,
   //DGetDefaultLang,

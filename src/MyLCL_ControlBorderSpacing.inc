@@ -157,9 +157,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ControlBorderSpacing_SetOnChange(AObj: TControlBorderSpacing; AEventId: NativeUInt); extdecl;
+procedure ControlBorderSpacing_SetOnChange(AObj: TControlBorderSpacing; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

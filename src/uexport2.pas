@@ -16,7 +16,6 @@
   
 //{$endif windows}
 
-{$I MyLCL_ProgressBar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_DateTimePicker.inc}  //BASECLASS:TWinControl
 {$I MyLCL_MonthCalendar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_ListView.inc}  //BASECLASS:TWinControl
@@ -51,6 +50,8 @@
 {$I MyLCL_StatusPanel.inc}  //BASECLASS:TObject
 {$I MyLCL_SpinEdit.inc}  //BASECLASS:TWinControl
 {$I MyLCL_FloatSpinEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_DirectoryEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ColorButton.inc}  //BASECLASS:TControl
 
 
 //{$ifdef windows}

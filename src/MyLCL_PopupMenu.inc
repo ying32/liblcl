@@ -139,6 +139,22 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TMenuDrawItemEvent
+procedure PopupMenu_SetOnDrawItem(AObj: TPopupMenu; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTMenuDrawItemEvent}
+  {$DEFINE EventName := OnDrawItem}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TMenuMeasureItemEvent
+procedure PopupMenu_SetOnMeasureItem(AObj: TPopupMenu; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTMenuMeasureItemEvent}
+  {$DEFINE EventName := OnMeasureItem}
+  EventMethodCode
+end;
+
 function PopupMenu_GetPopupComponent(AObj: TPopupMenu): TComponent; extdecl;
 begin
   handleExceptionBegin
@@ -218,9 +234,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PopupMenu_SetOnPopup(AObj: TPopupMenu; AEventId: NativeUInt); extdecl;
+procedure PopupMenu_SetOnPopup(AObj: TPopupMenu; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnPopup}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnPopup}
   EventMethodCode
 end;
@@ -325,6 +341,8 @@ exports
   PopupMenu_ToString,
   PopupMenu_GetImagesWidth,
   PopupMenu_SetImagesWidth,
+  PopupMenu_SetOnDrawItem,
+  PopupMenu_SetOnMeasureItem,
   PopupMenu_GetPopupComponent,
   PopupMenu_SetPopupComponent,
   PopupMenu_GetPopupPoint,

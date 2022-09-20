@@ -1251,97 +1251,97 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnClick(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnClick(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnCloseUp(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnCloseUp(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnCloseUp}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnCloseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnChange(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnChange(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure DateTimePicker_SetOnContextPopup(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnContextPopup(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnDropDown(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnDropDown(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnEnter(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnEnter(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnExit(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnExit(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure DateTimePicker_SetOnKeyDown(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnKeyDown(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure DateTimePicker_SetOnKeyPress(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnKeyPress(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure DateTimePicker_SetOnKeyUp(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnKeyUp(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnMouseEnter(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnMouseEnter(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DateTimePicker_SetOnMouseLeave(AObj: TDateTimePicker; AEventId: NativeUInt); extdecl;
+procedure DateTimePicker_SetOnMouseLeave(AObj: TDateTimePicker; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;

@@ -230,17 +230,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SaveDialog_SetOnClose(AObj: TSaveDialog; AEventId: NativeUInt); extdecl;
+procedure SaveDialog_SetOnClose(AObj: TSaveDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClose}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClose}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SaveDialog_SetOnShow(AObj: TSaveDialog; AEventId: NativeUInt); extdecl;
+procedure SaveDialog_SetOnShow(AObj: TSaveDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnShow}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnShow}
   EventMethodCode
 end;

@@ -57,7 +57,6 @@ begin
       TComboBoxEx,TXButton, TCheckGroup, TToggleBox, TFloatSpinEdit,TDirectoryEdit,
       TColorButton,TCheckComboBox
   ]);
-  {$I UserDefineComponentsClass.inc}
 end;
 
 

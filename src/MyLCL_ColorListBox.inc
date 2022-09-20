@@ -918,129 +918,129 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorListBox_SetOnClick(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnClick(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ColorListBox_SetOnContextPopup(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnContextPopup(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorListBox_SetOnDblClick(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnDblClick(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ColorListBox_SetOnDragDrop(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnDragDrop(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ColorListBox_SetOnDragOver(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnDragOver(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ColorListBox_SetOnEndDrag(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnEndDrag(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorListBox_SetOnEnter(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnEnter(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorListBox_SetOnExit(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnExit(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ColorListBox_SetOnKeyDown(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnKeyDown(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure ColorListBox_SetOnKeyPress(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnKeyPress(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ColorListBox_SetOnKeyUp(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnKeyUp(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ColorListBox_SetOnMouseDown(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnMouseDown(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorListBox_SetOnMouseEnter(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnMouseEnter(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorListBox_SetOnMouseLeave(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnMouseLeave(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ColorListBox_SetOnMouseMove(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnMouseMove(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ColorListBox_SetOnMouseUp(AObj: TColorListBox; AEventId: NativeUInt); extdecl;
+procedure ColorListBox_SetOnMouseUp(AObj: TColorListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

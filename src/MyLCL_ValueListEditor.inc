@@ -1041,209 +1041,209 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnClick(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnClick(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ValueListEditor_SetOnContextPopup(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnContextPopup(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnDblClick(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnDblClick(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ValueListEditor_SetOnDragDrop(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnDragDrop(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ValueListEditor_SetOnDragOver(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnDragOver(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDrawCellEvent
-procedure ValueListEditor_SetOnDrawCell(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnDrawCell(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDrawCellEvent_OnDrawCell}
+  {$DEFINE EventMethodName := OnTDrawCellEvent}
   {$DEFINE EventName := OnDrawCell}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ValueListEditor_SetOnEndDock(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnEndDock(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ValueListEditor_SetOnEndDrag(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnEndDrag(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnEnter(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnEnter(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnExit(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnExit(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetEditEvent
-procedure ValueListEditor_SetOnGetEditMask(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnGetEditMask(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetEditEvent_OnGetEditMask}
+  {$DEFINE EventMethodName := OnTGetEditEvent}
   {$DEFINE EventName := OnGetEditMask}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetEditEvent
-procedure ValueListEditor_SetOnGetEditText(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnGetEditText(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetEditEvent_OnGetEditText}
+  {$DEFINE EventMethodName := OnTGetEditEvent}
   {$DEFINE EventName := OnGetEditText}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ValueListEditor_SetOnKeyDown(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnKeyDown(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure ValueListEditor_SetOnKeyPress(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnKeyPress(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ValueListEditor_SetOnKeyUp(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnKeyUp(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ValueListEditor_SetOnMouseDown(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseDown(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnMouseEnter(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseEnter(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnMouseLeave(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseLeave(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ValueListEditor_SetOnMouseMove(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseMove(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ValueListEditor_SetOnMouseUp(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseUp(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure ValueListEditor_SetOnMouseWheelDown(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseWheelDown(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure ValueListEditor_SetOnMouseWheelUp(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnMouseWheelUp(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSelectCellEvent
-procedure ValueListEditor_SetOnSelectCell(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnSelectCell(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSelectCellEvent_OnSelectCell}
+  {$DEFINE EventMethodName := OnTSelectCellEvent}
   {$DEFINE EventName := OnSelectCell}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSetEditEvent
-procedure ValueListEditor_SetOnSetEditText(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnSetEditText(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSetEditEvent_OnSetEditText}
+  {$DEFINE EventMethodName := OnTSetEditEvent}
   {$DEFINE EventName := OnSetEditText}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure ValueListEditor_SetOnStartDock(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnStartDock(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ValueListEditor_SetOnTopLeftChanged(AObj: TValueListEditor; AEventId: NativeUInt); extdecl;
+procedure ValueListEditor_SetOnTopLeftChanged(AObj: TValueListEditor; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnTopLeftChanged}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnTopLeftChanged}
   EventMethodCode
 end;

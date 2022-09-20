@@ -942,129 +942,129 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnChange(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnChange(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnCloseUp(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnCloseUp(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnCloseUp}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnCloseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnClick(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnClick(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ColorBox_SetOnContextPopup(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnContextPopup(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ColorBox_SetOnDragDrop(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnDragDrop(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ColorBox_SetOnDragOver(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnDragOver(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnDropDown(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnDropDown(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ColorBox_SetOnEndDrag(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnEndDrag(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnEnter(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnEnter(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnExit(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnExit(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ColorBox_SetOnKeyDown(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnKeyDown(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure ColorBox_SetOnKeyPress(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnKeyPress(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ColorBox_SetOnKeyUp(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnKeyUp(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnMouseEnter(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnMouseEnter(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnMouseLeave(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnMouseLeave(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorBox_SetOnSelect(AObj: TColorBox; AEventId: NativeUInt); extdecl;
+procedure ColorBox_SetOnSelect(AObj: TColorBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnSelect}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnSelect}
   EventMethodCode
 end;

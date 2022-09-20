@@ -314,9 +314,9 @@ begin
 end;
 
 //EVENT_TYPE:TTaskDlgClickEvent
-procedure TaskDialog_SetOnButtonClicked(AObj: TTaskDialog; AEventId: NativeUInt); extdecl;
+procedure TaskDialog_SetOnButtonClicked(AObj: TTaskDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTaskDlgClickEvent_OnButtonClicked}
+  {$DEFINE EventMethodName := OnTTaskDlgClickEvent}
   {$DEFINE EventName := OnButtonClicked}
   EventMethodCode
 end;

@@ -605,65 +605,65 @@ begin
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure Shape_SetOnDragDrop(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnDragDrop(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure Shape_SetOnDragOver(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnDragOver(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Shape_SetOnEndDrag(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnEndDrag(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Shape_SetOnMouseDown(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnMouseDown(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Shape_SetOnMouseEnter(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnMouseEnter(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Shape_SetOnMouseLeave(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnMouseLeave(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure Shape_SetOnMouseMove(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnMouseMove(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Shape_SetOnMouseUp(AObj: TShape; AEventId: NativeUInt); extdecl;
+procedure Shape_SetOnMouseUp(AObj: TShape; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

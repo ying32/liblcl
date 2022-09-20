@@ -804,81 +804,81 @@ begin
 end;
 
 //EVENT_TYPE:TUDChangingEvent
-procedure UpDown_SetOnChanging(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnChanging(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUDChangingEvent_OnChanging}
+  {$DEFINE EventMethodName := OnTUDChangingEvent}
   {$DEFINE EventName := OnChanging}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure UpDown_SetOnContextPopup(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnContextPopup(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUDClickEvent
-procedure UpDown_SetOnClick(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnClick(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUDClickEvent_OnClick}
+  {$DEFINE EventMethodName := OnTUDClickEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure UpDown_SetOnEnter(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnEnter(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure UpDown_SetOnExit(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnExit(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure UpDown_SetOnMouseDown(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnMouseDown(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure UpDown_SetOnMouseEnter(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnMouseEnter(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure UpDown_SetOnMouseLeave(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnMouseLeave(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure UpDown_SetOnMouseMove(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnMouseMove(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure UpDown_SetOnMouseUp(AObj: TUpDown; AEventId: NativeUInt); extdecl;
+procedure UpDown_SetOnMouseUp(AObj: TUpDown; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

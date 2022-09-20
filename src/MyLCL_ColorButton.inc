@@ -739,105 +739,105 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnClick(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnClick(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnColorChanged(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnColorChanged(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnColorChanged}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnColorChanged}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnDblClick(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnDblClick(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ColorButton_SetOnMouseDown(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseDown(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnMouseEnter(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseEnter(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnMouseLeave(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseLeave(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ColorButton_SetOnMouseMove(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseMove(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ColorButton_SetOnMouseUp(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseUp(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure ColorButton_SetOnMouseWheel(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseWheel(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure ColorButton_SetOnMouseWheelDown(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseWheelDown(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure ColorButton_SetOnMouseWheelUp(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnMouseWheelUp(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnPaint(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnPaint(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnPaint}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnPaint}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorButton_SetOnResize(AObj: TColorButton; AEventId: NativeUInt); extdecl;
+procedure ColorButton_SetOnResize(AObj: TColorButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;

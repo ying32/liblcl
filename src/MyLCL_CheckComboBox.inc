@@ -875,193 +875,193 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnChange(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnChange(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnClick(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnClick(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnCloseUp(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnCloseUp(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnCloseUp}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnCloseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure CheckComboBox_SetOnContextPopup(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnContextPopup(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnDblClick(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnDblClick(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure CheckComboBox_SetOnDragDrop(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnDragDrop(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure CheckComboBox_SetOnDragOver(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnDragOver(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure CheckComboBox_SetOnEndDrag(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnEndDrag(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnDropDown(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnDropDown(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnEnter(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnEnter(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnExit(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnExit(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TCheckItemChange
-procedure CheckComboBox_SetOnItemChange(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnItemChange(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTCheckItemChange_OnItemChange}
+  {$DEFINE EventMethodName := OnTCheckItemChange}
   {$DEFINE EventName := OnItemChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure CheckComboBox_SetOnKeyDown(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnKeyDown(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure CheckComboBox_SetOnKeyPress(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnKeyPress(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure CheckComboBox_SetOnKeyUp(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnKeyUp(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure CheckComboBox_SetOnMouseDown(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseDown(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnMouseEnter(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseEnter(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnMouseLeave(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseLeave(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure CheckComboBox_SetOnMouseMove(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseMove(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure CheckComboBox_SetOnMouseUp(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseUp(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure CheckComboBox_SetOnMouseWheel(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseWheel(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure CheckComboBox_SetOnMouseWheelDown(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseWheelDown(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure CheckComboBox_SetOnMouseWheelUp(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnMouseWheelUp(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckComboBox_SetOnSelect(AObj: TCheckComboBox; AEventId: NativeUInt); extdecl;
+procedure CheckComboBox_SetOnSelect(AObj: TCheckComboBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnSelect}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnSelect}
   EventMethodCode
 end;

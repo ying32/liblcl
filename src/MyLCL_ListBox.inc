@@ -1044,145 +1044,145 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ListBox_SetOnClick(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnClick(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ListBox_SetOnContextPopup(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnContextPopup(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ListBox_SetOnDblClick(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnDblClick(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ListBox_SetOnDragDrop(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnDragDrop(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ListBox_SetOnDragOver(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnDragOver(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDrawItemEvent
-procedure ListBox_SetOnDrawItem(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnDrawItem(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDrawItemEvent_OnDrawItem}
+  {$DEFINE EventMethodName := OnTDrawItemEvent}
   {$DEFINE EventName := OnDrawItem}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ListBox_SetOnEndDrag(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnEndDrag(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ListBox_SetOnEnter(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnEnter(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ListBox_SetOnExit(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnExit(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ListBox_SetOnKeyDown(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnKeyDown(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure ListBox_SetOnKeyPress(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnKeyPress(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ListBox_SetOnKeyUp(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnKeyUp(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMeasureItemEvent
-procedure ListBox_SetOnMeasureItem(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnMeasureItem(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMeasureItemEvent_OnMeasureItem}
+  {$DEFINE EventMethodName := OnTMeasureItemEvent}
   {$DEFINE EventName := OnMeasureItem}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ListBox_SetOnMouseDown(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnMouseDown(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ListBox_SetOnMouseEnter(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnMouseEnter(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ListBox_SetOnMouseLeave(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnMouseLeave(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ListBox_SetOnMouseMove(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnMouseMove(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ListBox_SetOnMouseUp(AObj: TListBox; AEventId: NativeUInt); extdecl;
+procedure ListBox_SetOnMouseUp(AObj: TListBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

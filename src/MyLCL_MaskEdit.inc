@@ -1036,145 +1036,145 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnChange(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnChange(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnClick(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnClick(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnDblClick(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnDblClick(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure MaskEdit_SetOnDragDrop(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnDragDrop(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure MaskEdit_SetOnDragOver(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnDragOver(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure MaskEdit_SetOnEndDock(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnEndDock(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure MaskEdit_SetOnEndDrag(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnEndDrag(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnEnter(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnEnter(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnExit(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnExit(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure MaskEdit_SetOnKeyDown(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnKeyDown(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure MaskEdit_SetOnKeyPress(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnKeyPress(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure MaskEdit_SetOnKeyUp(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnKeyUp(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure MaskEdit_SetOnMouseDown(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnMouseDown(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnMouseEnter(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnMouseEnter(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure MaskEdit_SetOnMouseLeave(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnMouseLeave(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure MaskEdit_SetOnMouseMove(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnMouseMove(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure MaskEdit_SetOnMouseUp(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnMouseUp(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure MaskEdit_SetOnStartDock(AObj: TMaskEdit; AEventId: NativeUInt); extdecl;
+procedure MaskEdit_SetOnStartDock(AObj: TMaskEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;

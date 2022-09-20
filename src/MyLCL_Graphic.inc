@@ -217,9 +217,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Graphic_SetOnChange(AObj: TGraphic; AEventId: NativeUInt); extdecl;
+procedure Graphic_SetOnChange(AObj: TGraphic; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

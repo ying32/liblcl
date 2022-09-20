@@ -904,89 +904,89 @@ begin
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ProgressBar_SetOnContextPopup(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnContextPopup(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ProgressBar_SetOnDragDrop(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnDragDrop(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ProgressBar_SetOnDragOver(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnDragOver(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ProgressBar_SetOnEndDrag(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnEndDrag(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ProgressBar_SetOnEnter(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnEnter(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ProgressBar_SetOnExit(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnExit(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ProgressBar_SetOnMouseDown(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnMouseDown(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ProgressBar_SetOnMouseEnter(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnMouseEnter(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ProgressBar_SetOnMouseLeave(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnMouseLeave(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ProgressBar_SetOnMouseMove(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnMouseMove(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ProgressBar_SetOnMouseUp(AObj: TProgressBar; AEventId: NativeUInt); extdecl;
+procedure ProgressBar_SetOnMouseUp(AObj: TProgressBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

@@ -910,193 +910,193 @@ begin
 end;
 
 //EVENT_TYPE:TAlignPositionEvent
-procedure Frame_SetOnAlignPosition(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnAlignPosition(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTAlignPositionEvent_OnAlignPosition}
+  {$DEFINE EventMethodName := OnTAlignPositionEvent}
   {$DEFINE EventName := OnAlignPosition}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnClick(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnClick(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TConstrainedResizeEvent
-procedure Frame_SetOnConstrainedResize(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnConstrainedResize(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTConstrainedResizeEvent_OnConstrainedResize}
+  {$DEFINE EventMethodName := OnTConstrainedResizeEvent}
   {$DEFINE EventName := OnConstrainedResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure Frame_SetOnContextPopup(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnContextPopup(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnDblClick(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnDblClick(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDockDropEvent
-procedure Frame_SetOnDockDrop(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnDockDrop(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDockDropEvent_OnDockDrop}
+  {$DEFINE EventMethodName := OnTDockDropEvent}
   {$DEFINE EventName := OnDockDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure Frame_SetOnDragDrop(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnDragDrop(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure Frame_SetOnDragOver(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnDragOver(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Frame_SetOnEndDock(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnEndDock(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Frame_SetOnEndDrag(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnEndDrag(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnEnter(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnEnter(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnExit(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnExit(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetSiteInfoEvent
-procedure Frame_SetOnGetSiteInfo(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnGetSiteInfo(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetSiteInfoEvent_OnGetSiteInfo}
+  {$DEFINE EventMethodName := OnTGetSiteInfoEvent}
   {$DEFINE EventName := OnGetSiteInfo}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Frame_SetOnMouseDown(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseDown(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnMouseEnter(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseEnter(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnMouseLeave(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseLeave(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure Frame_SetOnMouseMove(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseMove(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Frame_SetOnMouseUp(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseUp(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure Frame_SetOnMouseWheel(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseWheel(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure Frame_SetOnMouseWheelDown(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseWheelDown(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure Frame_SetOnMouseWheelUp(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnMouseWheelUp(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Frame_SetOnResize(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnResize(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure Frame_SetOnStartDock(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnStartDock(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUnDockEvent
-procedure Frame_SetOnUnDock(AObj: TFrame; AEventId: NativeUInt); extdecl;
+procedure Frame_SetOnUnDock(AObj: TFrame; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUnDockEvent_OnUnDock}
+  {$DEFINE EventMethodName := OnTUnDockEvent}
   {$DEFINE EventName := OnUnDock}
   EventMethodCode
 end;

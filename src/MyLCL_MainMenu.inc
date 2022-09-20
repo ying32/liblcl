@@ -123,6 +123,22 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TMenuDrawItemEvent
+procedure MainMenu_SetOnDrawItem(AObj: TMainMenu; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTMenuDrawItemEvent}
+  {$DEFINE EventName := OnDrawItem}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TMenuMeasureItemEvent
+procedure MainMenu_SetOnMeasureItem(AObj: TMainMenu; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTMenuMeasureItemEvent}
+  {$DEFINE EventName := OnMeasureItem}
+  EventMethodCode
+end;
+
 function MainMenu_GetBiDiMode(AObj: TMainMenu): TBiDiMode; extdecl;
 begin
   handleExceptionBegin
@@ -166,9 +182,9 @@ begin
 end;
 
 //EVENT_TYPE:TMenuChangeEvent
-procedure MainMenu_SetOnChange(AObj: TMainMenu; AEventId: NativeUInt); extdecl;
+procedure MainMenu_SetOnChange(AObj: TMainMenu; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMenuChangeEvent_OnChange}
+  {$DEFINE EventMethodName := OnTMenuChangeEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
@@ -271,6 +287,8 @@ exports
   MainMenu_ToString,
   MainMenu_GetImagesWidth,
   MainMenu_SetImagesWidth,
+  MainMenu_SetOnDrawItem,
+  MainMenu_SetOnMeasureItem,
   MainMenu_GetBiDiMode,
   MainMenu_SetBiDiMode,
   MainMenu_GetImages,

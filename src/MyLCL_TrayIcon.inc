@@ -244,41 +244,41 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TrayIcon_SetOnClick(AObj: TTrayIcon; AEventId: NativeUInt); extdecl;
+procedure TrayIcon_SetOnClick(AObj: TTrayIcon; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TrayIcon_SetOnDblClick(AObj: TTrayIcon; AEventId: NativeUInt); extdecl;
+procedure TrayIcon_SetOnDblClick(AObj: TTrayIcon; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure TrayIcon_SetOnMouseMove(AObj: TTrayIcon; AEventId: NativeUInt); extdecl;
+procedure TrayIcon_SetOnMouseMove(AObj: TTrayIcon; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure TrayIcon_SetOnMouseUp(AObj: TTrayIcon; AEventId: NativeUInt); extdecl;
+procedure TrayIcon_SetOnMouseUp(AObj: TTrayIcon; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure TrayIcon_SetOnMouseDown(AObj: TTrayIcon; AEventId: NativeUInt); extdecl;
+procedure TrayIcon_SetOnMouseDown(AObj: TTrayIcon; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;

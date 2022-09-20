@@ -626,89 +626,89 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PaintBox_SetOnClick(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnClick(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PaintBox_SetOnDblClick(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnDblClick(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure PaintBox_SetOnDragDrop(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnDragDrop(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure PaintBox_SetOnDragOver(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnDragOver(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure PaintBox_SetOnEndDrag(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnEndDrag(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure PaintBox_SetOnMouseDown(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnMouseDown(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PaintBox_SetOnMouseEnter(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnMouseEnter(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PaintBox_SetOnMouseLeave(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnMouseLeave(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure PaintBox_SetOnMouseMove(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnMouseMove(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure PaintBox_SetOnMouseUp(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnMouseUp(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PaintBox_SetOnPaint(AObj: TPaintBox; AEventId: NativeUInt); extdecl;
+procedure PaintBox_SetOnPaint(AObj: TPaintBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnPaint}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnPaint}
   EventMethodCode
 end;

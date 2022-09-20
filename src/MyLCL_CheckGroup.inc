@@ -812,161 +812,161 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnClick(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnClick(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnDblClick(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnDblClick(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure CheckGroup_SetOnDragDrop(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnDragDrop(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure CheckGroup_SetOnDragOver(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnDragOver(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure CheckGroup_SetOnEndDrag(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnEndDrag(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnEnter(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnEnter(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnExit(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnExit(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TCheckGroupClicked
-procedure CheckGroup_SetOnItemClick(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnItemClick(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTCheckGroupClicked_OnItemClick}
+  {$DEFINE EventMethodName := OnTCheckGroupClicked}
   {$DEFINE EventName := OnItemClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure CheckGroup_SetOnKeyDown(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnKeyDown(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure CheckGroup_SetOnKeyPress(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnKeyPress(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure CheckGroup_SetOnKeyUp(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnKeyUp(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure CheckGroup_SetOnMouseDown(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseDown(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnMouseEnter(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseEnter(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnMouseLeave(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseLeave(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure CheckGroup_SetOnMouseMove(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseMove(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure CheckGroup_SetOnMouseUp(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseUp(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure CheckGroup_SetOnMouseWheel(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseWheel(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure CheckGroup_SetOnMouseWheelDown(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseWheelDown(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure CheckGroup_SetOnMouseWheelUp(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnMouseWheelUp(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CheckGroup_SetOnResize(AObj: TCheckGroup; AEventId: NativeUInt); extdecl;
+procedure CheckGroup_SetOnResize(AObj: TCheckGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;

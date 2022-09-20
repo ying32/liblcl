@@ -62,6 +62,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StringList_Exchange(AObj: TStringList; Index1: Integer; Index2: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Exchange(Index1, Index2);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function StringList_IndexOf(AObj: TStringList; S: PChar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -244,17 +252,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure StringList_SetOnChange(AObj: TStringList; AEventId: NativeUInt); extdecl;
+procedure StringList_SetOnChange(AObj: TStringList; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure StringList_SetOnChanging(AObj: TStringList; AEventId: NativeUInt); extdecl;
+procedure StringList_SetOnChanging(AObj: TStringList; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChanging}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChanging}
   EventMethodCode
 end;
@@ -405,6 +413,7 @@ exports
   StringList_Assign,
   StringList_Clear,
   StringList_Delete,
+  StringList_Exchange,
   StringList_IndexOf,
   StringList_Insert,
   StringList_InsertObject,

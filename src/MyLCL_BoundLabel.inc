@@ -661,65 +661,65 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BoundLabel_SetOnClick(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnClick(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BoundLabel_SetOnDblClick(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnDblClick(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure BoundLabel_SetOnDragDrop(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnDragDrop(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure BoundLabel_SetOnDragOver(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnDragOver(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure BoundLabel_SetOnEndDrag(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnEndDrag(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure BoundLabel_SetOnMouseDown(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnMouseDown(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure BoundLabel_SetOnMouseMove(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnMouseMove(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure BoundLabel_SetOnMouseUp(AObj: TBoundLabel; AEventId: NativeUInt); extdecl;
+procedure BoundLabel_SetOnMouseUp(AObj: TBoundLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

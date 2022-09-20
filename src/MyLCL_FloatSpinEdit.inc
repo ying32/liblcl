@@ -796,129 +796,129 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnChange(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnChange(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnClick(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnClick(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnEnter(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnEnter(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnExit(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnExit(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure FloatSpinEdit_SetOnKeyDown(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnKeyDown(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure FloatSpinEdit_SetOnKeyPress(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnKeyPress(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure FloatSpinEdit_SetOnKeyUp(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnKeyUp(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure FloatSpinEdit_SetOnMouseDown(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseDown(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnMouseEnter(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseEnter(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnMouseLeave(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseLeave(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure FloatSpinEdit_SetOnMouseMove(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseMove(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure FloatSpinEdit_SetOnMouseUp(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseUp(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure FloatSpinEdit_SetOnMouseWheel(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseWheel(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure FloatSpinEdit_SetOnMouseWheelDown(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseWheelDown(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure FloatSpinEdit_SetOnMouseWheelUp(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnMouseWheelUp(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FloatSpinEdit_SetOnResize(AObj: TFloatSpinEdit; AEventId: NativeUInt); extdecl;
+procedure FloatSpinEdit_SetOnResize(AObj: TFloatSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;

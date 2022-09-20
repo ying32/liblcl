@@ -566,9 +566,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnPaint(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnPaint(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnPaint}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnPaint}
   EventMethodCode
 end;
@@ -1008,161 +1008,161 @@ begin
 end;
 
 //EVENT_TYPE:TAlignPositionEvent
-procedure Panel_SetOnAlignPosition(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnAlignPosition(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTAlignPositionEvent_OnAlignPosition}
+  {$DEFINE EventMethodName := OnTAlignPositionEvent}
   {$DEFINE EventName := OnAlignPosition}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnClick(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnClick(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure Panel_SetOnContextPopup(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnContextPopup(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDockDropEvent
-procedure Panel_SetOnDockDrop(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnDockDrop(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDockDropEvent_OnDockDrop}
+  {$DEFINE EventMethodName := OnTDockDropEvent}
   {$DEFINE EventName := OnDockDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnDblClick(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnDblClick(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure Panel_SetOnDragDrop(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnDragDrop(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure Panel_SetOnDragOver(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnDragOver(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Panel_SetOnEndDock(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnEndDock(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Panel_SetOnEndDrag(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnEndDrag(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnEnter(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnEnter(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnExit(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnExit(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetSiteInfoEvent
-procedure Panel_SetOnGetSiteInfo(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnGetSiteInfo(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetSiteInfoEvent_OnGetSiteInfo}
+  {$DEFINE EventMethodName := OnTGetSiteInfoEvent}
   {$DEFINE EventName := OnGetSiteInfo}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Panel_SetOnMouseDown(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnMouseDown(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnMouseEnter(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnMouseEnter(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnMouseLeave(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnMouseLeave(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure Panel_SetOnMouseMove(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnMouseMove(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Panel_SetOnMouseUp(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnMouseUp(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Panel_SetOnResize(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnResize(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure Panel_SetOnStartDock(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnStartDock(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUnDockEvent
-procedure Panel_SetOnUnDock(AObj: TPanel; AEventId: NativeUInt); extdecl;
+procedure Panel_SetOnUnDock(AObj: TPanel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUnDockEvent_OnUnDock}
+  {$DEFINE EventMethodName := OnTUnDockEvent}
   {$DEFINE EventName := OnUnDock}
   EventMethodCode
 end;

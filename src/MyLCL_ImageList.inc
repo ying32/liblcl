@@ -397,9 +397,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ImageList_SetOnChange(AObj: TImageList; AEventId: NativeUInt); extdecl;
+procedure ImageList_SetOnChange(AObj: TImageList; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

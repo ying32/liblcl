@@ -675,97 +675,97 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure LinkLabel_SetOnClick(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnClick(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure LinkLabel_SetOnContextPopup(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnContextPopup(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure LinkLabel_SetOnDblClick(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnDblClick(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure LinkLabel_SetOnDragDrop(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnDragDrop(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure LinkLabel_SetOnDragOver(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnDragOver(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure LinkLabel_SetOnEndDrag(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnEndDrag(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure LinkLabel_SetOnMouseDown(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnMouseDown(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure LinkLabel_SetOnMouseEnter(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnMouseEnter(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure LinkLabel_SetOnMouseLeave(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnMouseLeave(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure LinkLabel_SetOnMouseMove(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnMouseMove(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure LinkLabel_SetOnMouseUp(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnMouseUp(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSysLinkEvent
-procedure LinkLabel_SetOnLinkClick(AObj: TLinkLabel; AEventId: NativeUInt); extdecl;
+procedure LinkLabel_SetOnLinkClick(AObj: TLinkLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSysLinkEvent_OnLinkClick}
+  {$DEFINE EventMethodName := OnTSysLinkEvent}
   {$DEFINE EventName := OnLinkClick}
   EventMethodCode
 end;

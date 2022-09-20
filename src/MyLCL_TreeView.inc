@@ -1390,257 +1390,257 @@ begin
 end;
 
 //EVENT_TYPE:TTVExpandedEvent
-procedure TreeView_SetOnAddition(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnAddition(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVExpandedEvent_OnAddition}
+  {$DEFINE EventMethodName := OnTTVExpandedEvent}
   {$DEFINE EventName := OnAddition}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVAdvancedCustomDrawEvent
-procedure TreeView_SetOnAdvancedCustomDraw(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnAdvancedCustomDraw(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVAdvancedCustomDrawEvent_OnAdvancedCustomDraw}
+  {$DEFINE EventMethodName := OnTTVAdvancedCustomDrawEvent}
   {$DEFINE EventName := OnAdvancedCustomDraw}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVAdvancedCustomDrawItemEvent
-procedure TreeView_SetOnAdvancedCustomDrawItem(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnAdvancedCustomDrawItem(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVAdvancedCustomDrawItemEvent_OnAdvancedCustomDrawItem}
+  {$DEFINE EventMethodName := OnTTVAdvancedCustomDrawItemEvent}
   {$DEFINE EventName := OnAdvancedCustomDrawItem}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVChangedEvent
-procedure TreeView_SetOnChange(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnChange(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVChangedEvent_OnChange}
+  {$DEFINE EventMethodName := OnTTVChangedEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVChangingEvent
-procedure TreeView_SetOnChanging(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnChanging(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVChangingEvent_OnChanging}
+  {$DEFINE EventMethodName := OnTTVChangingEvent}
   {$DEFINE EventName := OnChanging}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TreeView_SetOnClick(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnClick(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVExpandedEvent
-procedure TreeView_SetOnCollapsed(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnCollapsed(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVExpandedEvent_OnCollapsed}
+  {$DEFINE EventMethodName := OnTTVExpandedEvent}
   {$DEFINE EventName := OnCollapsed}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVCollapsingEvent
-procedure TreeView_SetOnCollapsing(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnCollapsing(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVCollapsingEvent_OnCollapsing}
+  {$DEFINE EventMethodName := OnTTVCollapsingEvent}
   {$DEFINE EventName := OnCollapsing}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVCompareEvent
-procedure TreeView_SetOnCompare(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnCompare(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVCompareEvent_OnCompare}
+  {$DEFINE EventMethodName := OnTTVCompareEvent}
   {$DEFINE EventName := OnCompare}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure TreeView_SetOnContextPopup(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnContextPopup(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVCustomDrawEvent
-procedure TreeView_SetOnCustomDraw(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnCustomDraw(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVCustomDrawEvent_OnCustomDraw}
+  {$DEFINE EventMethodName := OnTTVCustomDrawEvent}
   {$DEFINE EventName := OnCustomDraw}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVCustomDrawItemEvent
-procedure TreeView_SetOnCustomDrawItem(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnCustomDrawItem(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVCustomDrawItemEvent_OnCustomDrawItem}
+  {$DEFINE EventMethodName := OnTTVCustomDrawItemEvent}
   {$DEFINE EventName := OnCustomDrawItem}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TreeView_SetOnDblClick(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnDblClick(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVExpandedEvent
-procedure TreeView_SetOnDeletion(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnDeletion(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVExpandedEvent_OnDeletion}
+  {$DEFINE EventMethodName := OnTTVExpandedEvent}
   {$DEFINE EventName := OnDeletion}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure TreeView_SetOnDragDrop(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnDragDrop(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure TreeView_SetOnDragOver(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnDragOver(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVEditedEvent
-procedure TreeView_SetOnEdited(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnEdited(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVEditedEvent_OnEdited}
+  {$DEFINE EventMethodName := OnTTVEditedEvent}
   {$DEFINE EventName := OnEdited}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVEditingEvent
-procedure TreeView_SetOnEditing(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnEditing(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVEditingEvent_OnEditing}
+  {$DEFINE EventMethodName := OnTTVEditingEvent}
   {$DEFINE EventName := OnEditing}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure TreeView_SetOnEndDrag(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnEndDrag(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TreeView_SetOnEnter(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnEnter(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TreeView_SetOnExit(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnExit(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVExpandingEvent
-procedure TreeView_SetOnExpanding(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnExpanding(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVExpandingEvent_OnExpanding}
+  {$DEFINE EventMethodName := OnTTVExpandingEvent}
   {$DEFINE EventName := OnExpanding}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVExpandedEvent
-procedure TreeView_SetOnExpanded(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnExpanded(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVExpandedEvent_OnExpanded}
+  {$DEFINE EventMethodName := OnTTVExpandedEvent}
   {$DEFINE EventName := OnExpanded}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTVExpandedEvent
-procedure TreeView_SetOnGetSelectedIndex(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnGetSelectedIndex(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTVExpandedEvent_OnGetSelectedIndex}
+  {$DEFINE EventMethodName := OnTTVExpandedEvent}
   {$DEFINE EventName := OnGetSelectedIndex}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure TreeView_SetOnKeyDown(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnKeyDown(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure TreeView_SetOnKeyPress(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnKeyPress(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure TreeView_SetOnKeyUp(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnKeyUp(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure TreeView_SetOnMouseDown(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnMouseDown(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TreeView_SetOnMouseEnter(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnMouseEnter(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TreeView_SetOnMouseLeave(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnMouseLeave(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure TreeView_SetOnMouseMove(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnMouseMove(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure TreeView_SetOnMouseUp(AObj: TTreeView; AEventId: NativeUInt); extdecl;
+procedure TreeView_SetOnMouseUp(AObj: TTreeView; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

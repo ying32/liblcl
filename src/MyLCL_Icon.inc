@@ -263,9 +263,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Icon_SetOnChange(AObj: TIcon; AEventId: NativeUInt); extdecl;
+procedure Icon_SetOnChange(AObj: TIcon; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

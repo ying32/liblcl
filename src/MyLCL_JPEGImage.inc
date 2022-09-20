@@ -260,9 +260,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure JPEGImage_SetOnChange(AObj: TJPEGImage; AEventId: NativeUInt); extdecl;
+procedure JPEGImage_SetOnChange(AObj: TJPEGImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

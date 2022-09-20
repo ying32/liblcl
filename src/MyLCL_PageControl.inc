@@ -968,153 +968,153 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageControl_SetOnChange(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnChange(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TTabChangingEvent
-procedure PageControl_SetOnChanging(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnChanging(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTTabChangingEvent_OnChanging}
+  {$DEFINE EventMethodName := OnTTabChangingEvent}
   {$DEFINE EventName := OnChanging}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure PageControl_SetOnContextPopup(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnContextPopup(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDockDropEvent
-procedure PageControl_SetOnDockDrop(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnDockDrop(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDockDropEvent_OnDockDrop}
+  {$DEFINE EventMethodName := OnTDockDropEvent}
   {$DEFINE EventName := OnDockDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure PageControl_SetOnDragDrop(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnDragDrop(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure PageControl_SetOnDragOver(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnDragOver(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure PageControl_SetOnEndDock(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnEndDock(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure PageControl_SetOnEndDrag(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnEndDrag(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageControl_SetOnEnter(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnEnter(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageControl_SetOnExit(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnExit(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetSiteInfoEvent
-procedure PageControl_SetOnGetSiteInfo(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnGetSiteInfo(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetSiteInfoEvent_OnGetSiteInfo}
+  {$DEFINE EventMethodName := OnTGetSiteInfoEvent}
   {$DEFINE EventName := OnGetSiteInfo}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure PageControl_SetOnMouseDown(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnMouseDown(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageControl_SetOnMouseEnter(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnMouseEnter(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageControl_SetOnMouseLeave(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnMouseLeave(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure PageControl_SetOnMouseMove(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnMouseMove(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure PageControl_SetOnMouseUp(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnMouseUp(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure PageControl_SetOnResize(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnResize(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure PageControl_SetOnStartDock(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnStartDock(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUnDockEvent
-procedure PageControl_SetOnUnDock(AObj: TPageControl; AEventId: NativeUInt); extdecl;
+procedure PageControl_SetOnUnDock(AObj: TPageControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUnDockEvent_OnUnDock}
+  {$DEFINE EventMethodName := OnTUnDockEvent}
   {$DEFINE EventName := OnUnDock}
   EventMethodCode
 end;

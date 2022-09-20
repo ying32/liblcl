@@ -773,89 +773,89 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Label_SetOnClick(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnClick(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure Label_SetOnContextPopup(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnContextPopup(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Label_SetOnDblClick(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnDblClick(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure Label_SetOnDragDrop(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnDragDrop(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure Label_SetOnDragOver(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnDragOver(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Label_SetOnEndDrag(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnEndDrag(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Label_SetOnMouseDown(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnMouseDown(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure Label_SetOnMouseMove(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnMouseMove(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Label_SetOnMouseUp(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnMouseUp(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Label_SetOnMouseEnter(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnMouseEnter(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Label_SetOnMouseLeave(AObj: TLabel; AEventId: NativeUInt); extdecl;
+procedure Label_SetOnMouseLeave(AObj: TLabel; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;

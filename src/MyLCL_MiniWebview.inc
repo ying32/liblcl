@@ -701,17 +701,17 @@ begin
 end;
 
 //EVENT_TYPE:TWebTitleChangeEvent
-procedure MiniWebview_SetOnTitleChange(AObj: TMiniWebview; AEventId: NativeUInt); extdecl;
+procedure MiniWebview_SetOnTitleChange(AObj: TMiniWebview; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTWebTitleChangeEvent_OnTitleChange}
+  {$DEFINE EventMethodName := OnTWebTitleChangeEvent}
   {$DEFINE EventName := OnTitleChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TWebJSExternalEvent
-procedure MiniWebview_SetOnJSExternal(AObj: TMiniWebview; AEventId: NativeUInt); extdecl;
+procedure MiniWebview_SetOnJSExternal(AObj: TMiniWebview; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTWebJSExternalEvent_OnJSExternal}
+  {$DEFINE EventMethodName := OnTWebJSExternalEvent}
   {$DEFINE EventName := OnJSExternal}
   EventMethodCode
 end;

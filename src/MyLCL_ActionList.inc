@@ -138,9 +138,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ActionList_SetOnChange(AObj: TActionList; AEventId: NativeUInt); extdecl;
+procedure ActionList_SetOnChange(AObj: TActionList; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

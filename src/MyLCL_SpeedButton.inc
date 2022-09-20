@@ -795,57 +795,57 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpeedButton_SetOnClick(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnClick(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpeedButton_SetOnDblClick(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnDblClick(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure SpeedButton_SetOnMouseDown(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnMouseDown(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpeedButton_SetOnMouseEnter(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnMouseEnter(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpeedButton_SetOnMouseLeave(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnMouseLeave(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure SpeedButton_SetOnMouseMove(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnMouseMove(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure SpeedButton_SetOnMouseUp(AObj: TSpeedButton; AEventId: NativeUInt); extdecl;
+procedure SpeedButton_SetOnMouseUp(AObj: TSpeedButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

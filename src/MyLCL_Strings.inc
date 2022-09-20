@@ -94,6 +94,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Strings_Exchange(AObj: TStrings; Index1: Integer; Index2: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Exchange(Index1, Index2);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function Strings_IndexOf(AObj: TStrings; S: PChar): Integer; extdecl;
 begin
   handleExceptionBegin
@@ -379,6 +387,7 @@ exports
   Strings_Delete,
   Strings_EndUpdate,
   Strings_Equals,
+  Strings_Exchange,
   Strings_IndexOf,
   Strings_IndexOfName,
   Strings_IndexOfObject,

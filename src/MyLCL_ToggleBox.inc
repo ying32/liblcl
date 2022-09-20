@@ -762,121 +762,121 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToggleBox_SetOnChange(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnChange(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToggleBox_SetOnClick(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnClick(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ToggleBox_SetOnDragDrop(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnDragDrop(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ToggleBox_SetOnDragOver(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnDragOver(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ToggleBox_SetOnEndDrag(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnEndDrag(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToggleBox_SetOnEnter(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnEnter(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToggleBox_SetOnExit(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnExit(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ToggleBox_SetOnMouseDown(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseDown(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToggleBox_SetOnMouseEnter(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseEnter(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ToggleBox_SetOnMouseLeave(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseLeave(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ToggleBox_SetOnMouseMove(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseMove(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure ToggleBox_SetOnMouseUp(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseUp(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure ToggleBox_SetOnMouseWheel(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseWheel(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure ToggleBox_SetOnMouseWheelDown(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseWheelDown(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure ToggleBox_SetOnMouseWheelUp(AObj: TToggleBox; AEventId: NativeUInt); extdecl;
+procedure ToggleBox_SetOnMouseWheelUp(AObj: TToggleBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;

@@ -938,81 +938,81 @@ begin
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure TrackBar_SetOnContextPopup(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnContextPopup(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TrackBar_SetOnChange(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnChange(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure TrackBar_SetOnDragDrop(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnDragDrop(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure TrackBar_SetOnDragOver(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnDragOver(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure TrackBar_SetOnEndDrag(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnEndDrag(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TrackBar_SetOnEnter(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnEnter(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure TrackBar_SetOnExit(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnExit(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure TrackBar_SetOnKeyDown(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnKeyDown(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure TrackBar_SetOnKeyPress(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnKeyPress(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure TrackBar_SetOnKeyUp(AObj: TTrackBar; AEventId: NativeUInt); extdecl;
+procedure TrackBar_SetOnKeyUp(AObj: TTrackBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;

@@ -153,17 +153,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorDialog_SetOnClose(AObj: TColorDialog; AEventId: NativeUInt); extdecl;
+procedure ColorDialog_SetOnClose(AObj: TColorDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClose}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClose}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ColorDialog_SetOnShow(AObj: TColorDialog; AEventId: NativeUInt); extdecl;
+procedure ColorDialog_SetOnShow(AObj: TColorDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnShow}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnShow}
   EventMethodCode
 end;

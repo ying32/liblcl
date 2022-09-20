@@ -198,9 +198,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FindDialog_SetOnFind(AObj: TFindDialog; AEventId: NativeUInt); extdecl;
+procedure FindDialog_SetOnFind(AObj: TFindDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnFind}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnFind}
   EventMethodCode
 end;
@@ -213,17 +213,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FindDialog_SetOnClose(AObj: TFindDialog; AEventId: NativeUInt); extdecl;
+procedure FindDialog_SetOnClose(AObj: TFindDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClose}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClose}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure FindDialog_SetOnShow(AObj: TFindDialog; AEventId: NativeUInt); extdecl;
+procedure FindDialog_SetOnShow(AObj: TFindDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnShow}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnShow}
   EventMethodCode
 end;

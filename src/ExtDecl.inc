@@ -45,14 +45,15 @@
 // 事件方法定义
 {$DEFINE EventMethodCode :=
     handleExceptionBegin
-    if AEventId = 0 then
+    if AEventData = nil then
     begin
+      // 这里移除掉对象
+      TLCLEvent.Remove(TMethod(AObj.EventName));
       AObj.EventName := nil;
-      TEventClass.Remove(AObj, @TEventClass.EventMethodName);
       Exit;
     end;
-    AObj.EventName := TEventClass.EventMethodName;
-    TEventClass.Add(AObj, @TEventClass.EventMethodName, AEventId);
+    // 创建一个事件对象
+    AObj.EventName := TLCLEvent.Create(AEventData).EventMethodName;
     handleExceptionEnd
 }
 

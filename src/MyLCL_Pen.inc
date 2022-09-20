@@ -164,9 +164,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Pen_SetOnChange(AObj: TPen; AEventId: NativeUInt); extdecl;
+procedure Pen_SetOnChange(AObj: TPen; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

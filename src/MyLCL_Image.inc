@@ -724,81 +724,81 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Image_SetOnClick(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnClick(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Image_SetOnDblClick(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnDblClick(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure Image_SetOnDragDrop(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnDragDrop(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure Image_SetOnDragOver(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnDragOver(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure Image_SetOnEndDrag(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnEndDrag(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Image_SetOnMouseDown(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnMouseDown(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Image_SetOnMouseEnter(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnMouseEnter(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Image_SetOnMouseLeave(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnMouseLeave(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure Image_SetOnMouseMove(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnMouseMove(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure Image_SetOnMouseUp(AObj: TImage; AEventId: NativeUInt); extdecl;
+procedure Image_SetOnMouseUp(AObj: TImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

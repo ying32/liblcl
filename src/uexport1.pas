@@ -51,6 +51,7 @@
 {$I MyLCL_TrackBar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_ImageList.inc}  //BASECLASS:TComponent
 {$I MyLCL_UpDown.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ProgressBar.inc}  //BASECLASS:TWinControl
 
 
 //{$ifdef windows}

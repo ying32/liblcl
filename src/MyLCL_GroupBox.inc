@@ -874,153 +874,153 @@ begin
 end;
 
 //EVENT_TYPE:TAlignPositionEvent
-procedure GroupBox_SetOnAlignPosition(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnAlignPosition(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTAlignPositionEvent_OnAlignPosition}
+  {$DEFINE EventMethodName := OnTAlignPositionEvent}
   {$DEFINE EventName := OnAlignPosition}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GroupBox_SetOnClick(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnClick(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure GroupBox_SetOnContextPopup(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnContextPopup(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GroupBox_SetOnDblClick(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnDblClick(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure GroupBox_SetOnDragDrop(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnDragDrop(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDockDropEvent
-procedure GroupBox_SetOnDockDrop(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnDockDrop(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDockDropEvent_OnDockDrop}
+  {$DEFINE EventMethodName := OnTDockDropEvent}
   {$DEFINE EventName := OnDockDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure GroupBox_SetOnDragOver(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnDragOver(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure GroupBox_SetOnEndDock(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnEndDock(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure GroupBox_SetOnEndDrag(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnEndDrag(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GroupBox_SetOnEnter(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnEnter(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GroupBox_SetOnExit(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnExit(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetSiteInfoEvent
-procedure GroupBox_SetOnGetSiteInfo(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnGetSiteInfo(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetSiteInfoEvent_OnGetSiteInfo}
+  {$DEFINE EventMethodName := OnTGetSiteInfoEvent}
   {$DEFINE EventName := OnGetSiteInfo}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure GroupBox_SetOnMouseDown(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnMouseDown(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GroupBox_SetOnMouseEnter(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnMouseEnter(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GroupBox_SetOnMouseLeave(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnMouseLeave(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure GroupBox_SetOnMouseMove(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnMouseMove(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure GroupBox_SetOnMouseUp(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnMouseUp(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure GroupBox_SetOnStartDock(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnStartDock(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUnDockEvent
-procedure GroupBox_SetOnUnDock(AObj: TGroupBox; AEventId: NativeUInt); extdecl;
+procedure GroupBox_SetOnUnDock(AObj: TGroupBox; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUnDockEvent_OnUnDock}
+  {$DEFINE EventMethodName := OnTUnDockEvent}
   {$DEFINE EventName := OnUnDock}
   EventMethodCode
 end;

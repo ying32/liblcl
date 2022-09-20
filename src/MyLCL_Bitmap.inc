@@ -366,9 +366,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Bitmap_SetOnChange(AObj: TBitmap; AEventId: NativeUInt); extdecl;
+procedure Bitmap_SetOnChange(AObj: TBitmap; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

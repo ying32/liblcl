@@ -992,145 +992,145 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CoolBar_SetOnChange(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnChange(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CoolBar_SetOnClick(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnClick(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure CoolBar_SetOnContextPopup(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnContextPopup(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CoolBar_SetOnDblClick(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnDblClick(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDockDropEvent
-procedure CoolBar_SetOnDockDrop(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnDockDrop(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDockDropEvent_OnDockDrop}
+  {$DEFINE EventMethodName := OnTDockDropEvent}
   {$DEFINE EventName := OnDockDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure CoolBar_SetOnDragDrop(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnDragDrop(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure CoolBar_SetOnDragOver(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnDragOver(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure CoolBar_SetOnEndDock(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnEndDock(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure CoolBar_SetOnEndDrag(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnEndDrag(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetSiteInfoEvent
-procedure CoolBar_SetOnGetSiteInfo(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnGetSiteInfo(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetSiteInfoEvent_OnGetSiteInfo}
+  {$DEFINE EventMethodName := OnTGetSiteInfoEvent}
   {$DEFINE EventName := OnGetSiteInfo}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure CoolBar_SetOnMouseDown(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnMouseDown(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CoolBar_SetOnMouseEnter(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnMouseEnter(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CoolBar_SetOnMouseLeave(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnMouseLeave(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure CoolBar_SetOnMouseMove(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnMouseMove(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure CoolBar_SetOnMouseUp(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnMouseUp(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure CoolBar_SetOnResize(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnResize(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure CoolBar_SetOnStartDock(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnStartDock(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TUnDockEvent
-procedure CoolBar_SetOnUnDock(AObj: TCoolBar; AEventId: NativeUInt); extdecl;
+procedure CoolBar_SetOnUnDock(AObj: TCoolBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTUnDockEvent_OnUnDock}
+  {$DEFINE EventMethodName := OnTUnDockEvent}
   {$DEFINE EventName := OnUnDock}
   EventMethodCode
 end;

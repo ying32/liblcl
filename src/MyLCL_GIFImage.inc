@@ -233,9 +233,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure GIFImage_SetOnChange(AObj: TGIFImage; AEventId: NativeUInt); extdecl;
+procedure GIFImage_SetOnChange(AObj: TGIFImage; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

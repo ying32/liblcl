@@ -552,9 +552,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioGroup_SetOnSelectionChanged(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnSelectionChanged(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnSelectionChanged}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnSelectionChanged}
   EventMethodCode
 end;
@@ -896,49 +896,49 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioGroup_SetOnClick(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnClick(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure RadioGroup_SetOnDragDrop(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnDragDrop(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure RadioGroup_SetOnDragOver(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnDragOver(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure RadioGroup_SetOnEndDrag(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnEndDrag(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioGroup_SetOnEnter(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnEnter(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioGroup_SetOnExit(AObj: TRadioGroup; AEventId: NativeUInt); extdecl;
+procedure RadioGroup_SetOnExit(AObj: TRadioGroup; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;

@@ -16,8 +16,6 @@
   
 //{$endif windows}
 
-{$I MyLCL_DirectoryEdit.inc}  //BASECLASS:TWinControl
-{$I MyLCL_ColorButton.inc}  //BASECLASS:TControl
 {$I MyLCL_MiniWebview.inc}  //BASECLASS:TWinControl
 {$I MyLCL_Canvas.inc}  //BASECLASS:TObject
 {$I MyLCL_Object.inc}  //BASECLASS:TObject
@@ -51,6 +49,9 @@
 {$I MyLCL_FindDialog.inc}  //BASECLASS:TComponent
 {$I MyLCL_ReplaceDialog.inc}  //BASECLASS:TComponent
 {$I MyLCL_PrinterSetupDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_PageSetupDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_DragObject.inc}  //BASECLASS:TObject
+{$I MyLCL_DragDockObject.inc}  //BASECLASS:TObject
 
 
 //{$ifdef windows}

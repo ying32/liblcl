@@ -930,89 +930,89 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure StaticText_SetOnClick(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnClick(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure StaticText_SetOnContextPopup(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnContextPopup(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure StaticText_SetOnDblClick(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnDblClick(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure StaticText_SetOnDragDrop(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnDragDrop(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure StaticText_SetOnDragOver(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnDragOver(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure StaticText_SetOnEndDrag(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnEndDrag(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure StaticText_SetOnMouseDown(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnMouseDown(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure StaticText_SetOnMouseEnter(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnMouseEnter(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure StaticText_SetOnMouseLeave(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnMouseLeave(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure StaticText_SetOnMouseMove(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnMouseMove(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure StaticText_SetOnMouseUp(AObj: TStaticText; AEventId: NativeUInt); extdecl;
+procedure StaticText_SetOnMouseUp(AObj: TStaticText; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

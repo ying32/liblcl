@@ -252,17 +252,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Action_SetOnExecute(AObj: TAction; AEventId: NativeUInt); extdecl;
+procedure Action_SetOnExecute(AObj: TAction; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExecute}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExecute}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Action_SetOnUpdate(AObj: TAction; AEventId: NativeUInt); extdecl;
+procedure Action_SetOnUpdate(AObj: TAction; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnUpdate}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnUpdate}
   EventMethodCode
 end;

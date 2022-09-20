@@ -46,6 +46,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure List_Exchange(AObj: TList; Index1: Integer; Index2: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Exchange(Index1, Index2);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 function List_Expand(AObj: TList): TList; extdecl;
 begin
   handleExceptionBegin
@@ -193,6 +201,7 @@ exports
   List_Add,
   List_Clear,
   List_Delete,
+  List_Exchange,
   List_Expand,
   List_IndexOf,
   List_Insert,

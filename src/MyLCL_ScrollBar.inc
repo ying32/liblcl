@@ -882,81 +882,81 @@ begin
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ScrollBar_SetOnContextPopup(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnContextPopup(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ScrollBar_SetOnChange(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnChange(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ScrollBar_SetOnDragDrop(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnDragDrop(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ScrollBar_SetOnDragOver(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnDragOver(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ScrollBar_SetOnEndDrag(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnEndDrag(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ScrollBar_SetOnEnter(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnEnter(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ScrollBar_SetOnExit(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnExit(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ScrollBar_SetOnKeyDown(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnKeyDown(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure ScrollBar_SetOnKeyPress(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnKeyPress(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ScrollBar_SetOnKeyUp(AObj: TScrollBar; AEventId: NativeUInt); extdecl;
+procedure ScrollBar_SetOnKeyUp(AObj: TScrollBar; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;

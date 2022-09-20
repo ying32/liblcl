@@ -556,9 +556,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Splitter_SetOnPaint(AObj: TSplitter; AEventId: NativeUInt); extdecl;
+procedure Splitter_SetOnPaint(AObj: TSplitter; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnPaint}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnPaint}
   EventMethodCode
 end;

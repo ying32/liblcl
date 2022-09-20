@@ -984,137 +984,137 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnChange(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnChange(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnClick(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnClick(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure ComboBoxEx_SetOnContextPopup(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnContextPopup(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnDblClick(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnDblClick(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure ComboBoxEx_SetOnDragDrop(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnDragDrop(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure ComboBoxEx_SetOnDragOver(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnDragOver(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnDropDown(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnDropDown(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDropDown}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDropDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ComboBoxEx_SetOnEndDock(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnEndDock(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure ComboBoxEx_SetOnEndDrag(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnEndDrag(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnEnter(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnEnter(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnExit(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnExit(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ComboBoxEx_SetOnKeyDown(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnKeyDown(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure ComboBoxEx_SetOnKeyPress(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnKeyPress(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure ComboBoxEx_SetOnKeyUp(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnKeyUp(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure ComboBoxEx_SetOnMouseMove(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnMouseMove(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ComboBoxEx_SetOnSelect(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnSelect(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnSelect}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnSelect}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure ComboBoxEx_SetOnStartDock(AObj: TComboBoxEx; AEventId: NativeUInt); extdecl;
+procedure ComboBoxEx_SetOnStartDock(AObj: TComboBoxEx; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;

@@ -804,129 +804,129 @@ begin
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure HeaderControl_SetOnContextPopup(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnContextPopup(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure HeaderControl_SetOnDragDrop(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnDragDrop(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure HeaderControl_SetOnDragOver(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnDragOver(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure HeaderControl_SetOnEndDock(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnEndDock(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure HeaderControl_SetOnEndDrag(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnEndDrag(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure HeaderControl_SetOnMouseDown(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnMouseDown(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure HeaderControl_SetOnMouseEnter(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnMouseEnter(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure HeaderControl_SetOnMouseLeave(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnMouseLeave(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure HeaderControl_SetOnMouseMove(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnMouseMove(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure HeaderControl_SetOnMouseUp(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnMouseUp(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure HeaderControl_SetOnResize(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnResize(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnResize}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSectionNotifyEvent
-procedure HeaderControl_SetOnSectionClick(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnSectionClick(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSectionNotifyEvent_OnSectionClick}
+  {$DEFINE EventMethodName := OnTSectionNotifyEvent}
   {$DEFINE EventName := OnSectionClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSectionNotifyEvent
-procedure HeaderControl_SetOnSectionResize(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnSectionResize(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSectionNotifyEvent_OnSectionResize}
+  {$DEFINE EventMethodName := OnTSectionNotifyEvent}
   {$DEFINE EventName := OnSectionResize}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSectionTrackEvent
-procedure HeaderControl_SetOnSectionTrack(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnSectionTrack(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSectionTrackEvent_OnSectionTrack}
+  {$DEFINE EventMethodName := OnTSectionTrackEvent}
   {$DEFINE EventName := OnSectionTrack}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSectionDragEvent
-procedure HeaderControl_SetOnSectionDrag(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnSectionDrag(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSectionDragEvent_OnSectionDrag}
+  {$DEFINE EventMethodName := OnTSectionDragEvent}
   {$DEFINE EventName := OnSectionDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure HeaderControl_SetOnSectionEndDrag(AObj: THeaderControl; AEventId: NativeUInt); extdecl;
+procedure HeaderControl_SetOnSectionEndDrag(AObj: THeaderControl; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnSectionEndDrag}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnSectionEndDrag}
   EventMethodCode
 end;

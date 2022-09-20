@@ -980,121 +980,121 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BitBtn_SetOnClick(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnClick(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure BitBtn_SetOnContextPopup(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnContextPopup(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure BitBtn_SetOnDragDrop(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnDragDrop(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure BitBtn_SetOnDragOver(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnDragOver(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure BitBtn_SetOnEndDrag(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnEndDrag(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BitBtn_SetOnEnter(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnEnter(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BitBtn_SetOnExit(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnExit(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure BitBtn_SetOnKeyDown(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnKeyDown(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure BitBtn_SetOnKeyPress(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnKeyPress(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure BitBtn_SetOnKeyUp(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnKeyUp(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure BitBtn_SetOnMouseDown(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnMouseDown(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BitBtn_SetOnMouseEnter(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnMouseEnter(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure BitBtn_SetOnMouseLeave(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnMouseLeave(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure BitBtn_SetOnMouseMove(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnMouseMove(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure BitBtn_SetOnMouseUp(AObj: TBitBtn; AEventId: NativeUInt); extdecl;
+procedure BitBtn_SetOnMouseUp(AObj: TBitBtn; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

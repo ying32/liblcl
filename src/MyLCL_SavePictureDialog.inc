@@ -230,17 +230,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SavePictureDialog_SetOnClose(AObj: TSavePictureDialog; AEventId: NativeUInt); extdecl;
+procedure SavePictureDialog_SetOnClose(AObj: TSavePictureDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClose}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClose}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SavePictureDialog_SetOnShow(AObj: TSavePictureDialog; AEventId: NativeUInt); extdecl;
+procedure SavePictureDialog_SetOnShow(AObj: TSavePictureDialog; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnShow}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnShow}
   EventMethodCode
 end;

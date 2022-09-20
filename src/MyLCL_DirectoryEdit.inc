@@ -658,9 +658,9 @@ begin
 end;
 
 //EVENT_TYPE:TAcceptFileNameEvent
-procedure DirectoryEdit_SetOnAcceptDirectory(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnAcceptDirectory(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTAcceptFileNameEvent_OnAcceptDirectory}
+  {$DEFINE EventMethodName := OnTAcceptFileNameEvent}
   {$DEFINE EventName := OnAcceptDirectory}
   EventMethodCode
 end;
@@ -1198,177 +1198,177 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnButtonClick(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnButtonClick(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnButtonClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnButtonClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnChange(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnChange(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnClick(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnClick(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure DirectoryEdit_SetOnContextPopup(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnContextPopup(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnDblClick(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnDblClick(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure DirectoryEdit_SetOnDragDrop(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnDragDrop(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure DirectoryEdit_SetOnDragOver(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnDragOver(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnEditingDone(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnEditingDone(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEditingDone}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEditingDone}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure DirectoryEdit_SetOnEndDrag(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnEndDrag(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnEnter(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnEnter(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnExit(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnExit(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure DirectoryEdit_SetOnKeyDown(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnKeyDown(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure DirectoryEdit_SetOnKeyPress(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnKeyPress(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure DirectoryEdit_SetOnKeyUp(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnKeyUp(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure DirectoryEdit_SetOnMouseDown(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseDown(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnMouseEnter(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseEnter(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DirectoryEdit_SetOnMouseLeave(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseLeave(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure DirectoryEdit_SetOnMouseMove(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseMove(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure DirectoryEdit_SetOnMouseUp(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseUp(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelEvent
-procedure DirectoryEdit_SetOnMouseWheel(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseWheel(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelEvent_OnMouseWheel}
+  {$DEFINE EventMethodName := OnTMouseWheelEvent}
   {$DEFINE EventName := OnMouseWheel}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure DirectoryEdit_SetOnMouseWheelDown(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseWheelDown(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure DirectoryEdit_SetOnMouseWheelUp(AObj: TDirectoryEdit; AEventId: NativeUInt); extdecl;
+procedure DirectoryEdit_SetOnMouseWheelUp(AObj: TDirectoryEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;

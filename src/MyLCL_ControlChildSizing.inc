@@ -87,9 +87,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure ControlChildSizing_SetOnChange(AObj: TControlChildSizing; AEventId: NativeUInt); extdecl;
+procedure ControlChildSizing_SetOnChange(AObj: TControlChildSizing; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

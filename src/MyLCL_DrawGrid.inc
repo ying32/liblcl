@@ -578,17 +578,17 @@ begin
 end;
 
 //EVENT_TYPE:TGridOperationEvent
-procedure DrawGrid_SetOnColRowMoved(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnColRowMoved(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGridOperationEvent_OnColRowMoved}
+  {$DEFINE EventMethodName := OnTGridOperationEvent}
   {$DEFINE EventName := OnColRowMoved}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TOnPrepareCanvasEvent
-procedure DrawGrid_SetOnPrepareCanvas(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnPrepareCanvas(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTOnPrepareCanvasEvent_OnPrepareCanvas}
+  {$DEFINE EventMethodName := OnTOnPrepareCanvasEvent}
   {$DEFINE EventName := OnPrepareCanvas}
   EventMethodCode
 end;
@@ -1042,209 +1042,209 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnClick(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnClick(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure DrawGrid_SetOnContextPopup(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnContextPopup(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnDblClick(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnDblClick(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnDblClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnDblClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure DrawGrid_SetOnDragDrop(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnDragDrop(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure DrawGrid_SetOnDragOver(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnDragOver(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDrawCellEvent
-procedure DrawGrid_SetOnDrawCell(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnDrawCell(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDrawCellEvent_OnDrawCell}
+  {$DEFINE EventMethodName := OnTDrawCellEvent}
   {$DEFINE EventName := OnDrawCell}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure DrawGrid_SetOnEndDock(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnEndDock(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDock}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure DrawGrid_SetOnEndDrag(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnEndDrag(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnEnter(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnEnter(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnExit(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnExit(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetEditEvent
-procedure DrawGrid_SetOnGetEditMask(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnGetEditMask(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetEditEvent_OnGetEditMask}
+  {$DEFINE EventMethodName := OnTGetEditEvent}
   {$DEFINE EventName := OnGetEditMask}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TGetEditEvent
-procedure DrawGrid_SetOnGetEditText(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnGetEditText(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTGetEditEvent_OnGetEditText}
+  {$DEFINE EventMethodName := OnTGetEditEvent}
   {$DEFINE EventName := OnGetEditText}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure DrawGrid_SetOnKeyDown(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnKeyDown(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure DrawGrid_SetOnKeyPress(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnKeyPress(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure DrawGrid_SetOnKeyUp(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnKeyUp(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure DrawGrid_SetOnMouseDown(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseDown(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnMouseEnter(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseEnter(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnMouseLeave(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseLeave(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure DrawGrid_SetOnMouseMove(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseMove(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure DrawGrid_SetOnMouseUp(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseUp(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure DrawGrid_SetOnMouseWheelDown(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseWheelDown(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelDown}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseWheelUpDownEvent
-procedure DrawGrid_SetOnMouseWheelUp(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnMouseWheelUp(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent_OnMouseWheelUp}
+  {$DEFINE EventMethodName := OnTMouseWheelUpDownEvent}
   {$DEFINE EventName := OnMouseWheelUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSelectCellEvent
-procedure DrawGrid_SetOnSelectCell(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnSelectCell(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSelectCellEvent_OnSelectCell}
+  {$DEFINE EventMethodName := OnTSelectCellEvent}
   {$DEFINE EventName := OnSelectCell}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TSetEditEvent
-procedure DrawGrid_SetOnSetEditText(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnSetEditText(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTSetEditEvent_OnSetEditText}
+  {$DEFINE EventMethodName := OnTSetEditEvent}
   {$DEFINE EventName := OnSetEditText}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TStartDockEvent
-procedure DrawGrid_SetOnStartDock(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnStartDock(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTStartDockEvent_OnStartDock}
+  {$DEFINE EventMethodName := OnTStartDockEvent}
   {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure DrawGrid_SetOnTopLeftChanged(AObj: TDrawGrid; AEventId: NativeUInt); extdecl;
+procedure DrawGrid_SetOnTopLeftChanged(AObj: TDrawGrid; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnTopLeftChanged}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnTopLeftChanged}
   EventMethodCode
 end;

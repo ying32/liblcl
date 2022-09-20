@@ -902,81 +902,81 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpinEdit_SetOnChange(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnChange(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpinEdit_SetOnClick(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnClick(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpinEdit_SetOnEnter(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnEnter(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure SpinEdit_SetOnExit(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnExit(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure SpinEdit_SetOnKeyDown(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnKeyDown(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure SpinEdit_SetOnKeyPress(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnKeyPress(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure SpinEdit_SetOnKeyUp(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnKeyUp(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure SpinEdit_SetOnMouseDown(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnMouseDown(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure SpinEdit_SetOnMouseMove(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnMouseMove(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure SpinEdit_SetOnMouseUp(AObj: TSpinEdit; AEventId: NativeUInt); extdecl;
+procedure SpinEdit_SetOnMouseUp(AObj: TSpinEdit; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

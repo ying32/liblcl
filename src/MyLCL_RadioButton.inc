@@ -552,9 +552,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioButton_SetOnChange(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnChange(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
@@ -896,121 +896,121 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioButton_SetOnClick(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnClick(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnClick}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnClick}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TContextPopupEvent
-procedure RadioButton_SetOnContextPopup(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnContextPopup(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTContextPopupEvent_OnContextPopup}
+  {$DEFINE EventMethodName := OnTContextPopupEvent}
   {$DEFINE EventName := OnContextPopup}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragDropEvent
-procedure RadioButton_SetOnDragDrop(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnDragDrop(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragDropEvent_OnDragDrop}
+  {$DEFINE EventMethodName := OnTDragDropEvent}
   {$DEFINE EventName := OnDragDrop}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TDragOverEvent
-procedure RadioButton_SetOnDragOver(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnDragOver(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTDragOverEvent_OnDragOver}
+  {$DEFINE EventMethodName := OnTDragOverEvent}
   {$DEFINE EventName := OnDragOver}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TEndDragEvent
-procedure RadioButton_SetOnEndDrag(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnEndDrag(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTEndDragEvent_OnEndDrag}
+  {$DEFINE EventMethodName := OnTEndDragEvent}
   {$DEFINE EventName := OnEndDrag}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioButton_SetOnEnter(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnEnter(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioButton_SetOnExit(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnExit(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnExit}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnExit}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure RadioButton_SetOnKeyDown(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnKeyDown(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyDown}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyPressEvent
-procedure RadioButton_SetOnKeyPress(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnKeyPress(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyPressEvent_OnKeyPress}
+  {$DEFINE EventMethodName := OnTKeyPressEvent}
   {$DEFINE EventName := OnKeyPress}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TKeyEvent
-procedure RadioButton_SetOnKeyUp(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnKeyUp(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTKeyEvent_OnKeyUp}
+  {$DEFINE EventMethodName := OnTKeyEvent}
   {$DEFINE EventName := OnKeyUp}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure RadioButton_SetOnMouseDown(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnMouseDown(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseDown}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseDown}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioButton_SetOnMouseEnter(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnMouseEnter(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseEnter}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseEnter}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure RadioButton_SetOnMouseLeave(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnMouseLeave(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnMouseLeave}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnMouseLeave}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseMoveEvent
-procedure RadioButton_SetOnMouseMove(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnMouseMove(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseMoveEvent_OnMouseMove}
+  {$DEFINE EventMethodName := OnTMouseMoveEvent}
   {$DEFINE EventName := OnMouseMove}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TMouseEvent
-procedure RadioButton_SetOnMouseUp(AObj: TRadioButton; AEventId: NativeUInt); extdecl;
+procedure RadioButton_SetOnMouseUp(AObj: TRadioButton; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTMouseEvent_OnMouseUp}
+  {$DEFINE EventMethodName := OnTMouseEvent}
   {$DEFINE EventName := OnMouseUp}
   EventMethodCode
 end;

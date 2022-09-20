@@ -319,17 +319,17 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Canvas_SetOnChange(AObj: TCanvas; AEventId: NativeUInt); extdecl;
+procedure Canvas_SetOnChange(AObj: TCanvas; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Canvas_SetOnChanging(AObj: TCanvas; AEventId: NativeUInt); extdecl;
+procedure Canvas_SetOnChanging(AObj: TCanvas; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChanging}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChanging}
   EventMethodCode
 end;

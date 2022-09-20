@@ -256,9 +256,9 @@ begin
 end;
 
 //EVENT_TYPE:TNotifyEvent
-procedure Font_SetOnChange(AObj: TFont; AEventId: NativeUInt); extdecl;
+procedure Font_SetOnChange(AObj: TFont; AEventData: Pointer); extdecl;
 begin
-  {$DEFINE EventMethodName := OnTNotifyEvent_OnChange}
+  {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnChange}
   EventMethodCode
 end;

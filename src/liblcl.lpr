@@ -39,7 +39,8 @@ uses
 {$ENDIF}
   uExceptionHandle,
   uComponents,
-  uControlPatchs;
+  uControlPatchs,
+  LResources;
 
 {$IFDEF WINDOWS}
   {$R *.res}
@@ -53,10 +54,6 @@ uses
 {$I uExport2.pas}
 {$I uExport3.pas}
 {$I uExport4.pas}
-
-
-// 用户自己定义的组件
-{$I UserDefineComponents.inc}
 
 begin
   RequireDerivedFormResource := False;
