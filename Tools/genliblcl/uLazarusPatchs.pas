@@ -1598,6 +1598,18 @@ type
     procedure Clear;
   end;
 
+  TCustomBitmap = class(vcl.Graphics.TGraphic)
+
+  end;
+
+  TGraphicsDrawEffect =
+  (
+    gdeNormal,      // no effect
+    gdeDisabled,    // grayed image
+    gdeHighlighted, // a bit highlighted image
+    gdeShadowed,    // a bit shadowed image
+    gde1Bit         // 1 Bit image (for non-XP windows buttons)
+  );
 
   TImageList = class(Vcl.Controls.TImageList)
   private
@@ -1611,14 +1623,26 @@ type
     function GetWidthForPPI(AImageWidth, APPI: Integer): Integer;
   public
     procedure StretchDraw(ACanvas: TCanvas; AIndex: Integer; ARect: TRect; AEnabled: Boolean);
-    function AddSliced(Image: TBitmap; AHorizontalCount, AVerticalCount: Integer): Integer;
+    function AddSliced(Image: TCustomBitmap; AHorizontalCount, AVerticalCount: Integer): Integer;
     function AddLazarusResource(const ResourceName: string; MaskColor: TColor): integer;
     function AddResourceName(Instance: THandle; const ResourceName: string; MaskColor: TColor): integer;
-    function AddSlice(Image: TBitmap; AImageRect: TRect): Integer;
-    function AddSliceCentered(Image: TBitmap): Integer;
+    function AddSlice(Image: TCustomBitmap; AImageRect: TRect): Integer;
+    function AddSliceCentered(Image: TCustomBitmap): Integer;
 //    function AddMultipleResolutions(Images: array of TBitmap): Integer;
     procedure RegisterResolutions(const AResolutionWidths: array of Integer);
     procedure DeleteResolution(const AWidth: Integer);
+
+    // 要修改类型
+    function AddMultipleResolutions(Images: array of TCustomBitmap): Integer; // always pass sorted array from smallest to biggest
+    function Add(Image, Mask: TCustomBitmap): Integer;
+    procedure Insert(AIndex: Integer; AImage, AMask: TCustomBitmap);
+    procedure InsertMasked(Index: Integer; AImage: TCustomBitmap; MaskColor: TColor);
+    procedure Replace(AIndex: Integer; AImage, AMask: TCustomBitmap; const AllResolutions: Boolean = True);
+    procedure ReplaceMasked(Index: Integer; NewImage: TCustomBitmap; MaskColor: TColor; const AllResolutions: Boolean = True);
+    procedure ReplaceIcon(AIndex: Integer; AIcon: TIcon);
+
+    procedure GetBitmap(Index: Integer; Image: TCustomBitmap; AEffect: TGraphicsDrawEffect);
+    procedure GetFullBitmap(Image: TCustomBitmap; AEffect: TGraphicsDrawEffect = gdeNormal);
 
     property Scaled: Boolean read FScaled write FScaled;
     property ShareImages: Boolean read FShareImages write FShareImages;
@@ -3850,8 +3874,19 @@ end;
 
 { TImageList }
 
+function TImageList.Add(Image, Mask: TCustomBitmap): Integer;
+begin
+
+end;
+
 function TImageList.AddLazarusResource(const ResourceName: string;
   MaskColor: TColor): integer;
+begin
+
+end;
+
+function TImageList.AddMultipleResolutions(
+  Images: array of TCustomBitmap): Integer;
 begin
 
 end;
@@ -3862,23 +3897,35 @@ begin
 
 end;
 
-function TImageList.AddSlice(Image: TBitmap; AImageRect: TRect): Integer;
+function TImageList.AddSlice(Image: TCustomBitmap; AImageRect: TRect): Integer;
 begin
 
 end;
 
-function TImageList.AddSliceCentered(Image: TBitmap): Integer;
+function TImageList.AddSliceCentered(Image: TCustomBitmap): Integer;
 begin
 
 end;
 
-function TImageList.AddSliced(Image: TBitmap; AHorizontalCount,
+function TImageList.AddSliced(Image: TCustomBitmap; AHorizontalCount,
   AVerticalCount: Integer): Integer;
 begin
 
 end;
 
 procedure TImageList.DeleteResolution(const AWidth: Integer);
+begin
+
+end;
+
+procedure TImageList.GetBitmap(Index: Integer; Image: TCustomBitmap;
+  AEffect: TGraphicsDrawEffect);
+begin
+
+end;
+
+procedure TImageList.GetFullBitmap(Image: TCustomBitmap;
+  AEffect: TGraphicsDrawEffect);
 begin
 
 end;
@@ -3903,8 +3950,36 @@ begin
 
 end;
 
+procedure TImageList.Insert(AIndex: Integer; AImage, AMask: TCustomBitmap);
+begin
+
+end;
+
+procedure TImageList.InsertMasked(Index: Integer; AImage: TCustomBitmap;
+  MaskColor: TColor);
+begin
+
+end;
+
 procedure TImageList.RegisterResolutions(
   const AResolutionWidths: array of Integer);
+begin
+
+end;
+
+procedure TImageList.Replace(AIndex: Integer; AImage, AMask: TCustomBitmap;
+  const AllResolutions: Boolean);
+begin
+
+end;
+
+procedure TImageList.ReplaceIcon(AIndex: Integer; AIcon: TIcon);
+begin
+
+end;
+
+procedure TImageList.ReplaceMasked(Index: Integer; NewImage: TCustomBitmap;
+  MaskColor: TColor; const AllResolutions: Boolean);
 begin
 
 end;

@@ -777,6 +777,8 @@ var
         Result := 'IObject'
       else if AN.Equals('TStrings') and not AIsRet then
         Result := 'IStrings'
+      else if AN.Equals('TCustomBitmap') and not AIsRet then
+        Result := 'IBitmap'
       else Result := '*' + AN;
     end;
 
@@ -1683,7 +1685,7 @@ begin
           else if LOrgInstName.Equals('TGraphic') or
             LOrgInstName.Equals('TJPEGImage') or LOrgInstName.Equals('TPngImage') or
             LOrgInstName.Equals('TGIFImage') or LOrgInstName.Equals('TBitmap') or LOrgInstName.Equals('TIcon') then
-            LBaseClassName := 'IGraphic'
+            LBaseClassName := 'IBitmap'
 
         end;
         //  LFileGoVcl.Add('    IObject');
@@ -2239,7 +2241,7 @@ begin
                 //  LCode := LCode + LType.Remove(0,2) + 'From(' + LP.Name + '.Instance())'
                 //else
                 if  (LType[1] = '*') or LType.Equals('IObject') or LType.Equals('IControl') or LType.Equals('IComponent')
-                  or LType.Equals('IWinControl') or LType.Equals('IStrings') or LType.Equals('IStream') or LType.Equals('IGraphic') then
+                  or LType.Equals('IWinControl') or LType.Equals('IStrings') or LType.Equals('IStream') or LType.Equals('IGraphic') or LType.Equals('IBitmap') then
                   LCode := LCode + 'CheckPtr(' + LP.Name + ')' // .Instance() LCode := LCode + ')';
                 else
                 begin

@@ -31,10 +31,74 @@ begin
 end;
 
 //CLASSMETHOD:
-function ImageList_AddSliced(AObj: TImageList; Image: TBitmap; AHorizontalCount: Integer; AVerticalCount: Integer): Integer; extdecl;
+function ImageList_AddSliced(AObj: TImageList; Image: TCustomBitmap; AHorizontalCount: Integer; AVerticalCount: Integer): Integer; extdecl;
 begin
   handleExceptionBegin
   Result :=  AObj.AddSliced(Image, AHorizontalCount, AVerticalCount);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageList_Add(AObj: TImageList; Image: TCustomBitmap; Mask: TCustomBitmap): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.Add(Image, Mask);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_Insert(AObj: TImageList; AIndex: Integer; AImage: TCustomBitmap; AMask: TCustomBitmap); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Insert(AIndex, AImage, AMask);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_InsertMasked(AObj: TImageList; Index: Integer; AImage: TCustomBitmap; MaskColor: TColor); extdecl;
+begin
+  handleExceptionBegin
+  AObj.InsertMasked(Index, AImage, MaskColor);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_Replace(AObj: TImageList; AIndex: Integer; AImage: TCustomBitmap; AMask: TCustomBitmap; AllResolutions: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Replace(AIndex, AImage, AMask, AllResolutions);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_ReplaceMasked(AObj: TImageList; Index: Integer; NewImage: TCustomBitmap; MaskColor: TColor; AllResolutions: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ReplaceMasked(Index, NewImage, MaskColor, AllResolutions);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_ReplaceIcon(AObj: TImageList; AIndex: Integer; AIcon: TIcon); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ReplaceIcon(AIndex, AIcon);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_GetBitmap(AObj: TImageList; Index: Integer; Image: TCustomBitmap; AEffect: TGraphicsDrawEffect); extdecl;
+begin
+  handleExceptionBegin
+  AObj.GetBitmap(Index, Image, AEffect);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageList_GetFullBitmap(AObj: TImageList; Image: TCustomBitmap; AEffect: TGraphicsDrawEffect); extdecl;
+begin
+  handleExceptionBegin
+  AObj.GetFullBitmap(Image, AEffect);
   handleExceptionEnd
 end;
 
@@ -68,14 +132,6 @@ procedure ImageList_Assign(AObj: TImageList; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
   AObj.Assign(Source);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-function ImageList_Add(AObj: TImageList; Image: TBitmap; Mask: TBitmap): Integer; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.Add(Image, Mask);
   handleExceptionEnd
 end;
 
@@ -120,14 +176,6 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure ImageList_Insert(AObj: TImageList; Index: Integer; Image: TBitmap; Mask: TBitmap); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Insert(Index, Image, Mask);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
 procedure ImageList_InsertIcon(AObj: TImageList; Index: Integer; Image: TIcon); extdecl;
 begin
   handleExceptionBegin
@@ -136,34 +184,10 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure ImageList_InsertMasked(AObj: TImageList; Index: Integer; Image: TBitmap; MaskColor: TColor); extdecl;
-begin
-  handleExceptionBegin
-  AObj.InsertMasked(Index, Image, MaskColor);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
 procedure ImageList_Move(AObj: TImageList; CurIndex: Integer; NewIndex: Integer); extdecl;
 begin
   handleExceptionBegin
   AObj.Move(CurIndex, NewIndex);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure ImageList_Replace(AObj: TImageList; Index: Integer; Image: TBitmap; Mask: TBitmap); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Replace(Index, Image, Mask);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-procedure ImageList_ReplaceMasked(AObj: TImageList; Index: Integer; NewImage: TBitmap; MaskColor: TColor); extdecl;
-begin
-  handleExceptionBegin
-  AObj.ReplaceMasked(Index, NewImage, MaskColor);
   handleExceptionEnd
 end;
 
@@ -512,22 +536,25 @@ exports
   ImageList_Free,
   ImageList_StretchDraw,
   ImageList_AddSliced,
+  ImageList_Add,
+  ImageList_Insert,
+  ImageList_InsertMasked,
+  ImageList_Replace,
+  ImageList_ReplaceMasked,
+  ImageList_ReplaceIcon,
+  ImageList_GetBitmap,
+  ImageList_GetFullBitmap,
   ImageList_GetHotSpot,
   ImageList_HideDragImage,
   ImageList_ShowDragImage,
   ImageList_Assign,
-  ImageList_Add,
   ImageList_AddIcon,
   ImageList_AddImages,
   ImageList_AddMasked,
   ImageList_Clear,
   ImageList_Delete,
-  ImageList_Insert,
   ImageList_InsertIcon,
-  ImageList_InsertMasked,
   ImageList_Move,
-  ImageList_Replace,
-  ImageList_ReplaceMasked,
   ImageList_BeginUpdate,
   ImageList_EndUpdate,
   ImageList_FindComponent,

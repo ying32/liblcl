@@ -49,6 +49,7 @@
   Printers,
   ComboEx,
   EditBtn,
+  GraphType,
   uLinkLabel,
   uEventCallback,
   ImageButton,

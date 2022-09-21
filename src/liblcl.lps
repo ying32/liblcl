@@ -222,16 +222,15 @@
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="28"/>
-        <CursorPos X="16" Y="10"/>
+        <TopLine Value="23"/>
+        <CursorPos X="4" Y="29"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="uEventCallback.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="333"/>
         <CursorPos X="67" Y="350"/>
         <UsageCount Value="201"/>
@@ -258,7 +257,7 @@
         <Filename Value="ucomponents.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uComponents"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="34"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -283,7 +282,7 @@
         <Filename Value="ucontrolpatchs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uControlPatchs"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="56"/>
         <UsageCount Value="180"/>
         <Loaded Value="True"/>
@@ -326,7 +325,7 @@
       <Unit12>
         <Filename Value="uFormDesignerFile.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="391"/>
         <UsageCount Value="153"/>
         <Loaded Value="True"/>
@@ -335,8 +334,9 @@
         <Filename Value="uexport1.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uExport1"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="148"/>
+        <Loaded Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="uexport2.pas"/>
@@ -348,9 +348,11 @@
       <Unit15>
         <Filename Value="UseAll.inc"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="21"/>
+        <CursorPos X="13" Y="52"/>
         <UsageCount Value="145"/>
+        <Loaded Value="True"/>
       </Unit15>
       <Unit16>
         <Filename Value="uexceptionhandle.pas"/>
@@ -710,10 +712,12 @@
       </Unit64>
       <Unit65>
         <Filename Value="MyLCL_ImageList.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="49"/>
-        <CursorPos X="34" Y="70"/>
-        <UsageCount Value="2"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="79"/>
+        <CursorPos X="81" Y="106"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit65>
       <Unit66>
         <Filename Value="MyLCL_ProgressBar.inc"/>
@@ -972,7 +976,7 @@
       </Unit102>
       <Unit103>
         <Filename Value="LazarusDef.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="136"/>
         <CursorPos X="73" Y="149"/>
         <UsageCount Value="101"/>
@@ -1043,7 +1047,7 @@
       </Unit112>
       <Unit113>
         <Filename Value="ExtDecl.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="24"/>
         <CursorPos X="61" Y="55"/>
         <UsageCount Value="39"/>
@@ -3448,88 +3452,87 @@
         <Caret Line="49" Column="10" TopLine="23"/>
       </Position1>
       <Position2>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="10" Column="16" TopLine="13"/>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="85" Column="51" TopLine="55"/>
       </Position2>
       <Position3>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="10" Column="16" TopLine="23"/>
+        <Filename Value="uEventCallback.pas"/>
+        <Caret Line="335" Column="3" TopLine="317"/>
       </Position3>
       <Position4>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="85" Column="51" TopLine="55"/>
+        <Caret Line="316" Column="34" TopLine="312"/>
       </Position4>
       <Position5>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="335" Column="3" TopLine="317"/>
+        <Caret Line="86" Column="28" TopLine="66"/>
       </Position5>
       <Position6>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="316" Column="34" TopLine="312"/>
+        <Caret Line="316" Column="34" TopLine="307"/>
       </Position6>
       <Position7>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="86" Column="28" TopLine="66"/>
+        <Caret Line="75" Column="53" TopLine="60"/>
       </Position7>
       <Position8>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="316" Column="34" TopLine="307"/>
+        <Caret Line="253" Column="36" TopLine="243"/>
       </Position8>
       <Position9>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="75" Column="53" TopLine="60"/>
+        <Caret Line="86" Column="27" TopLine="51"/>
       </Position9>
       <Position10>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="253" Column="36" TopLine="243"/>
+        <Caret Line="329" Column="7" TopLine="322"/>
       </Position10>
       <Position11>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="86" Column="27" TopLine="51"/>
+        <Caret Line="76" Column="21" TopLine="57"/>
       </Position11>
       <Position12>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="329" Column="7" TopLine="322"/>
+        <Caret Line="254" Column="42" TopLine="254"/>
       </Position12>
       <Position13>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="76" Column="21" TopLine="57"/>
+        <Caret Line="86" Column="20" TopLine="56"/>
       </Position13>
       <Position14>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="254" Column="42" TopLine="254"/>
+        <Caret Line="348" Column="8" TopLine="314"/>
       </Position14>
       <Position15>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="86" Column="20" TopLine="56"/>
+        <Caret Line="76" Column="21" TopLine="57"/>
       </Position15>
       <Position16>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="348" Column="8" TopLine="314"/>
+        <Caret Line="87" Column="23" TopLine="57"/>
       </Position16>
       <Position17>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="76" Column="21" TopLine="57"/>
+        <Caret Line="348" Column="52" TopLine="324"/>
       </Position17>
       <Position18>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="87" Column="23" TopLine="57"/>
+        <Caret Line="87" Column="78" TopLine="69"/>
       </Position18>
       <Position19>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="348" Column="52" TopLine="324"/>
+        <Caret Line="348" Column="41" TopLine="323"/>
       </Position19>
       <Position20>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="87" Column="78" TopLine="69"/>
+        <Filename Value="liblcl.lpr"/>
+        <Caret Line="10" Column="16" TopLine="28"/>
       </Position20>
       <Position21>
-        <Filename Value="uEventCallback.pas"/>
-        <Caret Line="348" Column="41" TopLine="323"/>
+        <Filename Value="uexport1.pas"/>
       </Position21>
       <Position22>
         <Filename Value="liblcl.lpr"/>
-        <Caret Line="10" Column="16" TopLine="28"/>
+        <Caret Line="29" Column="4" TopLine="23"/>
       </Position22>
     </JumpHistory>
     <RunParams>

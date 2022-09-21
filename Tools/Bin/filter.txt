@@ -1658,3 +1658,10 @@ AllowDelete
 ControlList
 Exchange
 WrapAfter
+
+
+//2022/9/21
+ReplaceIcon
+GetBitmap
+GetFullBitmap
+//AddMultipleResolutions
