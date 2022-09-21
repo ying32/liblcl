@@ -1682,7 +1682,9 @@ begin
             LBaseClassName := 'IStrings'
           else if LOrgInstName.Equals('TMemoryStream') then
             LBaseClassName := 'IStream'
-          else if LOrgInstName.Equals('TGraphic') or
+          else if LOrgInstName.Equals('TGraphic') then
+            LBaseClassName := 'IGraphic'
+          else if
             LOrgInstName.Equals('TJPEGImage') or LOrgInstName.Equals('TPngImage') or
             LOrgInstName.Equals('TGIFImage') or LOrgInstName.Equals('TBitmap') or LOrgInstName.Equals('TIcon') then
             LBaseClassName := 'IBitmap'
