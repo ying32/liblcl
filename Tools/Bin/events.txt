@@ -190,3 +190,5 @@ OnColorChanged
 OnItemChange
 
 OnUTF8KeyPress
+
+OnCloseTabClicked

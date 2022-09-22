@@ -22,10 +22,50 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure PageControl_SelectNextPage(AObj: TPageControl; GoForward: LongBool; CheckTabVisible: LongBool); extdecl;
+procedure PageControl_Clear(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
-  AObj.SelectNextPage(GoForward, CheckTabVisible);
+  AObj.Clear;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_FindNextPage(AObj: TPageControl; CurPage: TTabSheet; GoForward: LongBool; CheckTabVisible: LongBool): TTabSheet; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.FindNextPage(CurPage, GoForward, CheckTabVisible);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PageControl_SelectNextPage(AObj: TPageControl; GoForward: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.SelectNextPage(GoForward);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_AddTabSheet(AObj: TPageControl): TTabSheet; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.AddTabSheet;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_IndexOfTabAt(AObj: TPageControl; X: Integer; Y: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IndexOfTabAt(X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function PageControl_IndexOfPageAt(AObj: TPageControl; X: Integer; Y: Integer): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.IndexOfPageAt(X, Y);
   handleExceptionEnd
 end;
 
@@ -568,6 +608,48 @@ begin
   handleExceptionEnd
 end;
 
+function PageControl_GetRaggedRight(AObj: TPageControl): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.RaggedRight;
+  handleExceptionEnd
+end;
+
+procedure PageControl_SetRaggedRight(AObj: TPageControl; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.RaggedRight := AValue;
+  handleExceptionEnd
+end;
+
+function PageControl_GetScrollOpposite(AObj: TPageControl): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.ScrollOpposite;
+  handleExceptionEnd
+end;
+
+procedure PageControl_SetScrollOpposite(AObj: TPageControl; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ScrollOpposite := AValue;
+  handleExceptionEnd
+end;
+
+function PageControl_GetPageIndex(AObj: TPageControl): Integer; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.PageIndex;
+  handleExceptionEnd
+end;
+
+procedure PageControl_SetPageIndex(AObj: TPageControl; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.PageIndex := AValue;
+  handleExceptionEnd
+end;
+
 function PageControl_GetOptions(AObj: TPageControl): TCTabControlOptions; extdecl;
 begin
   handleExceptionBegin
@@ -579,6 +661,28 @@ procedure PageControl_SetOptions(AObj: TPageControl; AValue: TCTabControlOptions
 begin
   handleExceptionBegin
   AObj.Options := AValue;
+  handleExceptionEnd
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure PageControl_SetOnCloseTabClicked(AObj: TPageControl; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent}
+  {$DEFINE EventName := OnCloseTabClicked}
+  EventMethodCode
+end;
+
+function PageControl_GetMultiSelect(AObj: TPageControl): LongBool; extdecl;
+begin
+  handleExceptionBegin
+  Result :=  AObj.MultiSelect;
+  handleExceptionEnd
+end;
+
+procedure PageControl_SetMultiSelect(AObj: TPageControl; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.MultiSelect := AValue;
   handleExceptionEnd
 end;
 
@@ -1586,7 +1690,12 @@ end;
 exports
   PageControl_Create,
   PageControl_Free,
+  PageControl_Clear,
+  PageControl_FindNextPage,
   PageControl_SelectNextPage,
+  PageControl_AddTabSheet,
+  PageControl_IndexOfTabAt,
+  PageControl_IndexOfPageAt,
   PageControl_TabRect,
   PageControl_CanFocus,
   PageControl_ContainsControl,
@@ -1653,8 +1762,17 @@ exports
   PageControl_AutoAdjustLayout,
   PageControl_FixDesignFontsPPI,
   PageControl_ScaleFontsPPI,
+  PageControl_GetRaggedRight,
+  PageControl_SetRaggedRight,
+  PageControl_GetScrollOpposite,
+  PageControl_SetScrollOpposite,
+  PageControl_GetPageIndex,
+  PageControl_SetPageIndex,
   PageControl_GetOptions,
   PageControl_SetOptions,
+  PageControl_SetOnCloseTabClicked,
+  PageControl_GetMultiSelect,
+  PageControl_SetMultiSelect,
   PageControl_GetActivePageIndex,
   PageControl_SetActivePageIndex,
   PageControl_GetPageCount,

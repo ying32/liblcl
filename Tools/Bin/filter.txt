@@ -1665,3 +1665,10 @@ ReplaceIcon
 GetBitmap
 GetFullBitmap
 //AddMultipleResolutions
+
+ScrollOpposite
+RaggedRight
+IndexOfPageAt
+IndexOfTabAt
+AddTabSheet
+FindNextPage

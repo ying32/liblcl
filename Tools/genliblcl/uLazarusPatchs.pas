@@ -1242,8 +1242,32 @@ type
   TPageControl = class(Vcl.ComCtrls.TPageControl)
   private
     FOptions: TCTabControlOptions;
+    FScrollOpposite: Boolean;
+    FMultiSelect: Boolean;
+    FHotTrack: Boolean;
+    FPageIndex: Integer;
+    FOwnerDraw: Boolean;
+    FRaggedRight: Boolean;
+    FOnCloseTabClicked: TNotifyEvent;
+    procedure SetPageIndex(const Value: Integer);
+  public
+    procedure Clear;
+    function FindNextPage(CurPage: TTabSheet; GoForward, CheckTabVisible: Boolean): TTabSheet;
+    procedure SelectNextPage(GoForward: Boolean);
+    function AddTabSheet: TTabSheet;
+    function IndexOfTabAt(X, Y: Integer): Integer;
+    function IndexOfPageAt(X, Y: Integer): Integer;
+    property RaggedRight: Boolean read FRaggedRight write FRaggedRight default False;
+    property ScrollOpposite: Boolean read FScrollOpposite write FScrollOpposite default False;
+    property OwnerDraw: Boolean read FOwnerDraw write FOwnerDraw default False;
+    property HotTrack: Boolean read FHotTrack write FHotTrack default False;
+    property PageIndex: Integer read FPageIndex write SetPageIndex default -1;
+
   published
     property Options: TCTabControlOptions read FOptions write FOptions default [];
+
+    property OnCloseTabClicked: TNotifyEvent read FOnCloseTabClicked  write FOnCloseTabClicked;
+    property MultiSelect: Boolean read FMultiSelect write FMultiSelect default False;
   end;
 
 
@@ -5409,6 +5433,44 @@ end;
 procedure TFlowPanelControl.SetWrapAfter(const AWrapAfter: TWrapAfter);
 begin
 
+end;
+
+{ TPageControl }
+
+function TPageControl.AddTabSheet: TTabSheet;
+begin
+
+end;
+
+procedure TPageControl.Clear;
+begin
+
+end;
+
+function TPageControl.FindNextPage(CurPage: TTabSheet; GoForward,
+  CheckTabVisible: Boolean): TTabSheet;
+begin
+
+end;
+
+function TPageControl.IndexOfPageAt(X, Y: Integer): Integer;
+begin
+
+end;
+
+function TPageControl.IndexOfTabAt(X, Y: Integer): Integer;
+begin
+
+end;
+
+procedure TPageControl.SelectNextPage(GoForward: Boolean);
+begin
+
+end;
+
+procedure TPageControl.SetPageIndex(const Value: Integer);
+begin
+  FPageIndex := Value;
 end;
 
 initialization
