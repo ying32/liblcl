@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="4">
+  <Package Version="5">
     <PathDelim Value="\"/>
     <Name Value="mylazpkgs"/>
     <Type Value="RunAndDesignTime"/>
@@ -9,6 +9,8 @@
       <Version Value="11"/>
       <PathDelim Value="\"/>
       <SearchPaths>
+        <IncludeFiles Value="3rd-party\richmemo\qt;3rd-party\richmemo\qt5"/>
+        <OtherUnitFiles Value="3rd-party\ATFlatControls;3rd-party\richmemo;3rd-party\richmemo\carbon;3rd-party\richmemo\cocoa;3rd-party\richmemo\gtk2;3rd-party\richmemo\win32"/>
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
@@ -49,6 +51,7 @@
         <UnitName Value="uRegComponents"/>
       </Item8>
     </Files>
+    <CompatibilityMode Value="True"/>
     <RequiredPkgs Count="2">
       <Item1>
         <PackageName Value="LCL"/>
