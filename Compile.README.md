@@ -33,4 +33,4 @@ liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、M
 
 > Windows: `"..\liblcl"`     
 > Linux: `"../liblcl"`  
-> MacOS: `"../../../../../bin/liblcl"`
+> MacOS: `"$(HOME)liblcl"`

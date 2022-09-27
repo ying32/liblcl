@@ -31,4 +31,4 @@ Output liblcl location modification: `Menu -> Project -> Project Options -> Comp
 
 > Windows: `"..\liblcl"`     
 > Linux: `"../liblcl"`  
-> MacOS: `"../../../../../bin/liblcl"`
+> MacOS: `"$(HOME)liblcl"`

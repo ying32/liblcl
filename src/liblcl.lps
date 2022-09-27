@@ -176,7 +176,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\..\..\..\..\bin\liblcl"/>
+            <Filename Value="$(HOME)liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -204,7 +204,7 @@
           </Linking>
           <Other>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;..\..\..\..\..\bin\liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@loader_path\liblcl.dylib&quot; &quot;$(HOME)liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
