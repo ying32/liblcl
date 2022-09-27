@@ -31,6 +31,6 @@ liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、M
 **注意：此目录为我本机编译目录，自行编译请修改相应的输出位置。**
 输出liblcl位置修改：`Menu -> Project -> Project Options -> Compiler Options -> Build modes Switch the relevant ring mode -> Target file name`  
 
-> Windows: `"..\..\..\..\..\bin\liblcl"`     
-> Linux: `"../bin/liblcl"`  
+> Windows: `"..\liblcl"`     
+> Linux: `"../liblcl"`  
 > MacOS: `"../../../../../bin/liblcl"`

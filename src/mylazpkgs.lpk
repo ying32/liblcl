@@ -10,9 +10,15 @@
       <PathDelim Value="\"/>
       <SearchPaths>
         <IncludeFiles Value="3rd-party\richmemo\qt;3rd-party\richmemo\qt5"/>
-        <OtherUnitFiles Value="3rd-party\ATFlatControls;3rd-party\richmemo;3rd-party\richmemo\carbon;3rd-party\richmemo\cocoa;3rd-party\richmemo\gtk2;3rd-party\richmemo\win32"/>
+        <OtherUnitFiles Value="3rd-party\richmemo;3rd-party\richmemo\carbon;3rd-party\richmemo\cocoa;3rd-party\richmemo\gtk2;3rd-party\richmemo\win32;3rd-party\ATFlatControls\atflatcontrols"/>
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
+      <Other>
+        <CustomOptions Value="-dRMLCLTRUNK"/>
+        <OtherDefines Count="1">
+          <Define0 Value="RMLCLTRUNK"/>
+        </OtherDefines>
+      </Other>
     </CompilerOptions>
     <Description Value="govcl components"/>
     <Version Major="1"/>

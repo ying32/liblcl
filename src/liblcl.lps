@@ -58,7 +58,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\liblcl"/>
+            <Filename Value="../liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -100,7 +100,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\liblcl"/>
+            <Filename Value="../liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -715,7 +715,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="79"/>
-        <CursorPos X="81" Y="106"/>
+        <CursorPos X="13" Y="109"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit65>
@@ -3446,7 +3446,7 @@
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="22" HistoryIndex="21">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="49" Column="10" TopLine="23"/>
@@ -3524,16 +3524,12 @@
         <Caret Line="348" Column="41" TopLine="323"/>
       </Position19>
       <Position20>
-        <Filename Value="liblcl.lpr"/>
-        <Caret Line="10" Column="16" TopLine="28"/>
+        <Filename Value="uexport1.pas"/>
       </Position20>
       <Position21>
-        <Filename Value="uexport1.pas"/>
-      </Position21>
-      <Position22>
         <Filename Value="liblcl.lpr"/>
         <Caret Line="29" Column="4" TopLine="23"/>
-      </Position22>
+      </Position21>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
