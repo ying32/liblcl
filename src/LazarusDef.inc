@@ -142,17 +142,9 @@ end;
 //EVENT_TYPE:TWndProcEvent
 procedure Form_SetOnWndProc(AObj: TGoForm; AEventData: Pointer); extdecl;
 begin
-  handleExceptionBegin
-  if AEventData = nil then
-  begin
-    TLCLMessageEvent.Remove(TMethod(AObj.OnWndProc));
-    AObj.OnWndProc := nil;
-    Exit;
-  end;
-  if TLCLMessageEvent.CheckAndUpdate(TMethod(AObj.OnWndProc), AEventData) then
-    Exit;
-  AObj.OnWndProc := TLCLMessageEvent.Create(AEventData).OnTWndProcEvent;
-  handleExceptionEnd
+  {$DEFINE EventMethodName := OnTWndProcEvent}
+  {$DEFINE EventName := OnWndProc}
+  EventMethodCode
 end;
 
 //CLASSMETHOD:
@@ -440,6 +432,13 @@ begin
   handleExceptionEnd
 end;
 
+////CLASSMETHOD:
+//procedure Canvas_TextRect3(AObj: TCanvas; ARect: TRect; X, Y: integer; AText: PChar; var AStyle: TTextStyle); extdecl;
+//begin
+//  handleExceptionBegin
+//  AObj.TextRect(ARect, X, Y, AText, AStyle);
+//  handleExceptionEnd
+//end;
 
 //  Canvas.Polygon();
 //  Canvas.Polyline();

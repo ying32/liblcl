@@ -194,31 +194,18 @@ type
 
     procedure OnTMenuDrawItemEvent(Sender: TObject; ACanvas: TCanvas; ARect: TRect; AState: TOwnerDrawState);
 
+    procedure OnTWndProcEvent(Sender: TObject; var TheMessage: TLMessage);
   public
     // thread sync
     class procedure ThreadProc;
     class property ThreadEvtId: NativeUInt read FThreadEvtId write FThreadEvtId;
   end;
 
-   // 窗口消息的，不与之前的事件混在一起。
-  { TLCLMessageEvent }
-
-  TLCLMessageEvent = class(TLCLEventBase)
-  public
-    procedure OnTWndProcEvent(Sender: TObject; var TheMessage: TLMessage);
-  end;
 
 
 implementation
 
-{ TLCLMessageEvent }
 
-procedure TLCLMessageEvent.OnTWndProcEvent(Sender: TObject;
-  var TheMessage: TLMessage);
-begin
-  if Assigned(GMessageCallbackPtr) and CheckDataPtr then
-    GMessageCallbackPtr(DataPtr, @TheMessage);
-end;
 
 
 { TLCLEventBase }
@@ -951,6 +938,12 @@ begin
   SendEvent([Sender, IsColumn, sIndex, tIndex]);
 end;
 
+procedure TLCLEvent.OnTWndProcEvent(Sender: TObject;
+  var TheMessage: TLMessage);
+begin
+  if Assigned(GMessageCallbackPtr) and CheckDataPtr then
+    GMessageCallbackPtr(DataPtr, @TheMessage);
+end;
 
 
 end.

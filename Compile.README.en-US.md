@@ -17,10 +17,12 @@ Compile steps:
 * 4. Menu -> Project -> Project Options -> Compiler Options -> Build modes Switch the relevant ring mode. The current valid mode is as follows:  
    * Win32  
    * Win64  
+   * Linux32 **(Untested)**
    * Linux64  
-   * Linux32
-   * LinuxARM           
-   * MacOS64(cocoa)   
+   * LinuxARM **(Untested)** 
+   * LinuxARM64 **(Untested)**
+   * MacOS64(cocoa)
+   * MacOS M1 **(Untested)**
   
 * 5. menu -> Run-> Build or Shift + F9 (Must use Build)   
 

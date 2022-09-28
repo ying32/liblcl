@@ -18,10 +18,13 @@ liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、M
 * 4、菜单->Project->Project Options -> Compiler Options -> Build modes 切换相关编环模式，当前有效模式为以下几种种：   
    * Win32  
    * Win64  
+   * Linux32 **(未经测试)**
    * Linux64  
-   * Linux32
-   * LinuxARM           
-   * MacOS64(cocoa) 。 
+   * LinuxARM **(未经测试)** 
+   * LinuxARM64 **(未经测试)**
+   * MacOS64(cocoa)
+   * MacOS M1 **(未经测试)**
+   
 * 5、菜单 -> Run -> Build 或者 Shift + F9 (必须使用Build)  
 
 **注意： 如你想要编译ARM和Linux 32位的liblcl则需要在对应平台安装相应的[Lazarus](http://www.lazarus-ide.org/)和FPC。也可考虑安装[CodeTyphon](http://www.pilotlogic.com/sitejoom/index.php/codetyphon)进行交叉编译，不过挺麻烦。**
