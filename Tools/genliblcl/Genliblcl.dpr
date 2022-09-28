@@ -3241,7 +3241,7 @@ end;
 
 procedure MakeVclObjectUnit;
 var
-  LGoHeaderFile, LDelphiUnitFile, LExportTplStr, LDllImportDef: TStringList;
+  LGoHeaderFile, LDelphiUnitFile, LExportTplStr, LDllImportAuto, LDllImportDef, LDllImportTable: TStringList;
   LPath: string;
   LExportI: Integer;
   LExportTplText: string;
@@ -3263,7 +3263,7 @@ var
     LDelphiUnitFile.Add('');
 	  LDelphiUnitFile.Add('{$ifndef windows}');
     LDelphiUnitFile.Add('  {$define UseCThreads}');
-    LDelphiUnitFile.Add('{$endif}'); 
+    LDelphiUnitFile.Add('{$endif}');
     LDelphiUnitFile.Add('');
     LUses := TStringList.Create;
     try
@@ -3311,7 +3311,7 @@ var
 
   // 添加Go的默认，从cdef.txt文件
   procedure AddDefaultGoHeader;
-  var 
+  var
     LStr: TStringList;
   begin
     AddHeaderInfo(LGoHeaderFile, True);
@@ -3359,10 +3359,27 @@ var
   end;
 
 
+  procedure AddDllImportTable(AList: TStrings; AVarName: string);
+  begin
+//    AList.Sorted := False;
+    AddHeaderInfo(AList, True);
+    AList.Add('');
+    AList.Add('package dllimports');
+    AList.Add('');
+    AList.Add('import (');
+    AList.Add('	"github.com/ying32/dylib"');
+    AList.Add(')');
+    AList.Add('');
+    AList.Add('var ' + AVarName + ' = []struct {');
+    AList.Add('	name string');
+    AList.Add('	proc *dylib.LazyProc');
+    AList.Add('}{');
+  end;
+
 
 var
-  LRootPath: string;
-
+  LRootPath, LS: string;
+  LIndex, LCount: Integer;
 begin
   LRootPath := GetEnvironmentVariable('GOPATH') + '\src\github.com\ying32\govcl';
   if not DirectoryExists(LRootPath) then
@@ -3379,7 +3396,9 @@ begin
   LExportTplStr := TStringList.Create;
   GExportTable := TStringList.Create;
   GDllImportTable := TStringList.Create;
+  LDllImportAuto := TStringList.Create;
   LDllImportDef := TStringList.Create;
+  LDllImportTable := TStringList.Create;
   try
     // vcl.dpr
     LPath := ExtractFilePath(ParamStr(0)) + '..\..\src\';
@@ -3407,24 +3426,8 @@ begin
     GGoSrcFile.Add(')');
     GGoSrcFile.Add('');
 
-    LDllImportDef.Sorted := False;
-    AddHeaderInfo(LDllImportDef, True);
-    LDllImportDef.Add('');
-    LDllImportDef.Add('package dllimports');
-    LDllImportDef.Add('');
-    LDllImportDef.Add('import (');
-//    LDllImportDef.Add('	"sync"');
-//    LDllImportDef.Add('	"sync/atomic"');
-//    LDllImportDef.Add('	"unsafe"');
-//    LDllImportDef.Add('');
-    LDllImportDef.Add('	"github.com/ying32/dylib"');
-    LDllImportDef.Add(')');
-    LDllImportDef.Add('');
-    LDllImportDef.Add('var dllImports = []struct {');
-    LDllImportDef.Add('	name string');
-    LDllImportDef.Add('	proc *dylib.LazyProc');
-    LDllImportDef.Add('}{');
-
+    // 自动导入表
+    AddDllImportTable(LDllImportAuto, 'dllImports');
 
 
 
@@ -3637,7 +3640,7 @@ begin
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TReplaceDialog);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPrinterSetupDialog);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPageSetupDialog);
-	
+
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TDragObject, True);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TDragDockObject, True);
 
@@ -3715,28 +3718,44 @@ begin
     SaveToUTF8(GGoSrcFile, GGoApiPath + 'importFuncsAuto.go');
 
 
-    LDllImportDef.AddStrings(GDllImportTable);
-    LDllImportDef.Add('}');
-//    LDllImportDef.Add('');
-//    LDllImportDef.Add('var (');
-//    LDllImportDef.Add('	refs sync.Mutex');
-//    LDllImportDef.Add(')');
-//    LDllImportDef.Add('');
-//    LDllImportDef.Add('func GetImportFunc(uiLib *dylib.LazyDLL, index int) *dylib.LazyProc {');
-//    LDllImportDef.Add('	item := dllImports[index]');
-//    LDllImportDef.Add('	if atomic.LoadPointer((*unsafe.Pointer)(unsafe.Pointer(&item.proc))) == nil {');
-//    LDllImportDef.Add('		if item.proc == nil {');
-//    LDllImportDef.Add('			refs.Lock()');
-//    LDllImportDef.Add('			defer refs.Unlock()');
-//    LDllImportDef.Add('			item.proc = uiLib.NewProc(item.name)');
-//    LDllImportDef.Add('			dllImports[index] = item');
-//    LDllImportDef.Add('		}');
-//    LDllImportDef.Add('	}');
-//    LDllImportDef.Add('	return item.proc');
-//    LDllImportDef.Add('}');
+    // 自动导入表
+    LDllImportAuto.AddStrings(GDllImportTable);
+    LDllImportAuto.Add('}');
+    SaveToUTF8(LDllImportAuto, GGoApiPath + 'dllimports\' + 'dllimports.go');
+    // 手动导出的
+    LDllImportTable.LoadFromFile('dllimportdefs.txt');
 
-    // 不保存了，这个行不通
-    SaveToUTF8(LDllImportDef, GGoApiPath + 'dllimports\' + 'dllimports.go');
+        // 手动导出的
+    AddDllImportTable(LDllImportDef, 'dllImportDefs');
+    for LIndex := 0 to LDllImportTable.Count - 1 do
+    begin
+      LS := LDllImportTable[LIndex].Trim;
+      if LS.IsEmpty then
+        Continue;
+      if LS.StartsWith('//') then
+        Continue;
+      LDllImportDef.Add(Format('    {"%s", nil},', [LS]));
+    end;
+    LDllImportDef.Add('}');
+    LDllImportDef.Add('');
+    LDllImportDef.Add('');
+    LDllImportDef.Add('const (');
+    LCount := 0;
+    for LIndex := 0 to LDllImportTable.Count - 1 do
+    begin
+      LS := LDllImportTable[LIndex].Trim;
+      if LS.IsEmpty then
+        Continue;
+      if LS.StartsWith('//') then
+        Continue;
+      LDllImportDef.Add(Format('    %s = %d', [LS.ToUpper, LCount]));
+      Inc(LCount);
+    end;
+
+    LDllImportDef.Add(')');
+    SaveToUTF8(LDllImportDef, GGoApiPath + 'dllimports\' + 'dllimportdefs.go');
+
+
 
 //    SaveToUTF8(LGoHeaderFile, GGoApiPath + 'importAuto.go');
 
@@ -3787,6 +3806,8 @@ begin
 
   finally
     LDllImportDef.Free;
+    LDllImportTable.Free;
+    LDllImportAuto.Free;
     GDllImportTable.Free;
     GExportTable.Free;
     LExportTplStr.Free;
