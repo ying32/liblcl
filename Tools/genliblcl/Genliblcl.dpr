@@ -1576,7 +1576,7 @@ var
    begin
 //     Result := '"' + AName + '"';
      // 行不通啊，还是只能原来的方式
-     LIndex := GDllImportTable.Add(Format('    {"%s", nil},', [AName]));
+     LIndex := GDllImportTable.Add(Format('    /*%d*/ {"%s", nil},', [GDllImportTable.Count, AName]));
      Result := LIndex.ToString;// (GDllImportTable.Count - 1).ToString;
    end;
 
@@ -3370,10 +3370,7 @@ var
     AList.Add('	"github.com/ying32/dylib"');
     AList.Add(')');
     AList.Add('');
-    AList.Add('var ' + AVarName + ' = []struct {');
-    AList.Add('	name string');
-    AList.Add('	proc *dylib.LazyProc');
-    AList.Add('}{');
+    AList.Add('var ' + AVarName + ' = []importTable{');
   end;
 
 
@@ -3727,6 +3724,7 @@ begin
 
         // 手动导出的
     AddDllImportTable(LDllImportDef, 'dllImportDefs');
+    LCount := 0;
     for LIndex := 0 to LDllImportTable.Count - 1 do
     begin
       LS := LDllImportTable[LIndex].Trim;
@@ -3734,7 +3732,8 @@ begin
         Continue;
       if LS.StartsWith('//') then
         Continue;
-      LDllImportDef.Add(Format('    {"%s", nil},', [LS]));
+      LDllImportDef.Add(Format('    /*%d*/ {"%s", nil},', [LCount, LS]));
+      Inc(LCount);
     end;
     LDllImportDef.Add('}');
     LDllImportDef.Add('');
