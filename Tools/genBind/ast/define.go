@@ -166,6 +166,7 @@ var baseTypes = map[string]string{
 	"TBasicAction":         "TAction",
 	"TPersistent":          "TObject",
 	"Byte":                 "i8",
+	"byte":                 "i8",
 	"TBorderWidth":         "i32",
 	"TCustomImageList":     "TImageList",
 	"TUnixDateTime":        "datetime",

@@ -2277,7 +2277,7 @@ typedef uintptr_t HGLOBAL;
 
 typedef uintptr_t TFNWndEnumProc;
 
-typedef uint64_t TXID;
+typedef uint64_t TXId;
 
 typedef uint16_t ATOM;
 
@@ -2288,8 +2288,8 @@ typedef uintptr_t SIZE_T;
 typedef uintptr_t DWORD_PTR;
 
 typedef struct TUTF8Char {
-    byte len;
-    byte content[7];
+    int8_t len;
+    int8_t content[7];
 } TUTF8Char;
 
 typedef struct TMsg {
