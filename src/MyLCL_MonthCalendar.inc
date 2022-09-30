@@ -9,6 +9,7 @@
 
 function MonthCalendar_Create(AOwner: TComponent): TMonthCalendar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMonthCalendar.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_CanFocus(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ContainsControl(AObj: TMonthCalendar; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -41,6 +44,7 @@ end;
 //PARAMS:2=nonPtr
 function MonthCalendar_ControlAtPos(AObj: TMonthCalendar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -65,6 +69,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_FindChildControl(AObj: TMonthCalendar; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Focused(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_HandleAllocated(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -213,6 +220,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Dragging(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_HasParent(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Perform(AObj: TMonthCalendar; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -289,6 +299,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_GetTextBuf(AObj: TMonthCalendar; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_GetTextLen(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_FindComponent(AObj: TMonthCalendar; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_GetNamePath(AObj: TMonthCalendar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ClassType(AObj: TMonthCalendar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ClassName(AObj: TMonthCalendar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_InstanceSize(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_InheritsFrom(AObj: TMonthCalendar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Equals(AObj: TMonthCalendar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_GetHashCode(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ToString(AObj: TMonthCalendar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleDesignToForm(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleFormToDesign(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Scale96ToForm(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleFormTo96(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Scale96ToFont(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleFontTo96(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleScreenToFont(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleFontToScreen(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_Scale96ToScreen(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function MonthCalendar_ScaleScreenTo96(AObj: TMonthCalendar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -569,6 +600,7 @@ end;
 
 function MonthCalendar_GetAlign(AObj: TMonthCalendar): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -583,6 +615,7 @@ end;
 
 function MonthCalendar_GetAnchors(AObj: TMonthCalendar): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -597,6 +630,7 @@ end;
 
 function MonthCalendar_GetAutoSize(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -611,6 +645,7 @@ end;
 
 function MonthCalendar_GetBorderWidth(AObj: TMonthCalendar): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -625,6 +660,7 @@ end;
 
 function MonthCalendar_GetBiDiMode(AObj: TMonthCalendar): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -639,6 +675,7 @@ end;
 
 function MonthCalendar_GetConstraints(AObj: TMonthCalendar): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -669,6 +706,7 @@ end;
 
 function MonthCalendar_GetDoubleBuffered(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -683,6 +721,7 @@ end;
 
 function MonthCalendar_GetDragCursor(AObj: TMonthCalendar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -697,6 +736,7 @@ end;
 
 function MonthCalendar_GetDragKind(AObj: TMonthCalendar): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -711,6 +751,7 @@ end;
 
 function MonthCalendar_GetDragMode(AObj: TMonthCalendar): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -725,6 +766,7 @@ end;
 
 function MonthCalendar_GetEnabled(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -739,6 +781,7 @@ end;
 
 function MonthCalendar_GetFont(AObj: TMonthCalendar): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -753,6 +796,7 @@ end;
 
 function MonthCalendar_GetParentDoubleBuffered(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -767,6 +811,7 @@ end;
 
 function MonthCalendar_GetPopupMenu(AObj: TMonthCalendar): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -781,6 +826,7 @@ end;
 
 function MonthCalendar_GetShowHint(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -795,6 +841,7 @@ end;
 
 function MonthCalendar_GetTabOrder(AObj: TMonthCalendar): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -809,6 +856,7 @@ end;
 
 function MonthCalendar_GetTabStop(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -823,6 +871,7 @@ end;
 
 function MonthCalendar_GetVisible(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -957,6 +1006,7 @@ end;
 
 function MonthCalendar_GetDockClientCount(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -964,6 +1014,7 @@ end;
 
 function MonthCalendar_GetDockSite(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -978,6 +1029,7 @@ end;
 
 function MonthCalendar_GetMouseInClient(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -985,6 +1037,7 @@ end;
 
 function MonthCalendar_GetVisibleDockClientCount(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -992,6 +1045,7 @@ end;
 
 function MonthCalendar_GetBrush(AObj: TMonthCalendar): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -999,6 +1053,7 @@ end;
 
 function MonthCalendar_GetControlCount(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1006,6 +1061,7 @@ end;
 
 function MonthCalendar_GetHandle(AObj: TMonthCalendar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1013,6 +1069,7 @@ end;
 
 function MonthCalendar_GetParentWindow(AObj: TMonthCalendar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1027,6 +1084,7 @@ end;
 
 function MonthCalendar_GetShowing(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1034,6 +1092,7 @@ end;
 
 function MonthCalendar_GetUseDockManager(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1048,6 +1107,7 @@ end;
 
 function MonthCalendar_GetAction(AObj: TMonthCalendar): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1078,6 +1138,7 @@ end;
 
 function MonthCalendar_GetClientHeight(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1108,6 +1169,7 @@ end;
 
 function MonthCalendar_GetClientWidth(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1122,6 +1184,7 @@ end;
 
 function MonthCalendar_GetControlState(AObj: TMonthCalendar): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1136,6 +1199,7 @@ end;
 
 function MonthCalendar_GetControlStyle(AObj: TMonthCalendar): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1150,6 +1214,7 @@ end;
 
 function MonthCalendar_GetFloating(AObj: TMonthCalendar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1157,6 +1222,7 @@ end;
 
 function MonthCalendar_GetParent(AObj: TMonthCalendar): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1171,6 +1237,7 @@ end;
 
 function MonthCalendar_GetLeft(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1185,6 +1252,7 @@ end;
 
 function MonthCalendar_GetTop(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1199,6 +1267,7 @@ end;
 
 function MonthCalendar_GetWidth(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1213,6 +1282,7 @@ end;
 
 function MonthCalendar_GetHeight(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1227,6 +1297,7 @@ end;
 
 function MonthCalendar_GetCursor(AObj: TMonthCalendar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1241,6 +1312,7 @@ end;
 
 function MonthCalendar_GetHint(AObj: TMonthCalendar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1255,6 +1327,7 @@ end;
 
 function MonthCalendar_GetComponentCount(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1262,6 +1335,7 @@ end;
 
 function MonthCalendar_GetComponentIndex(AObj: TMonthCalendar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1276,6 +1350,7 @@ end;
 
 function MonthCalendar_GetOwner(AObj: TMonthCalendar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1283,6 +1358,7 @@ end;
 
 function MonthCalendar_GetName(AObj: TMonthCalendar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1297,6 +1373,7 @@ end;
 
 function MonthCalendar_GetTag(AObj: TMonthCalendar): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1311,6 +1388,7 @@ end;
 
 function MonthCalendar_GetAnchorSideLeft(AObj: TMonthCalendar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1325,6 +1403,7 @@ end;
 
 function MonthCalendar_GetAnchorSideTop(AObj: TMonthCalendar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1339,6 +1418,7 @@ end;
 
 function MonthCalendar_GetAnchorSideRight(AObj: TMonthCalendar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1353,6 +1433,7 @@ end;
 
 function MonthCalendar_GetAnchorSideBottom(AObj: TMonthCalendar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1367,6 +1448,7 @@ end;
 
 function MonthCalendar_GetChildSizing(AObj: TMonthCalendar): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1381,6 +1463,7 @@ end;
 
 function MonthCalendar_GetBorderSpacing(AObj: TMonthCalendar): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1395,6 +1478,7 @@ end;
 
 function MonthCalendar_GetDockClients(AObj: TMonthCalendar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1402,6 +1486,7 @@ end;
 
 function MonthCalendar_GetControls(AObj: TMonthCalendar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1409,6 +1494,7 @@ end;
 
 function MonthCalendar_GetComponents(AObj: TMonthCalendar; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1416,6 +1502,7 @@ end;
 
 function MonthCalendar_GetAnchorSide(AObj: TMonthCalendar; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

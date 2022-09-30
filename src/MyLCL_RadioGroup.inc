@@ -9,6 +9,7 @@
 
 function RadioGroup_Create(AOwner: TComponent): TRadioGroup; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TRadioGroup.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_CanFocus(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ContainsControl(AObj: TRadioGroup; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function RadioGroup_ControlAtPos(AObj: TRadioGroup; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_FindChildControl(AObj: TRadioGroup; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Focused(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_HandleAllocated(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -213,6 +220,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Dragging(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_HasParent(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Perform(AObj: TRadioGroup; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -289,6 +299,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_GetTextBuf(AObj: TRadioGroup; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_GetTextLen(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_FindComponent(AObj: TRadioGroup; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_GetNamePath(AObj: TRadioGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ClassType(AObj: TRadioGroup): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ClassName(AObj: TRadioGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_InstanceSize(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_InheritsFrom(AObj: TRadioGroup; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Equals(AObj: TRadioGroup; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_GetHashCode(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ToString(AObj: TRadioGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleDesignToForm(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleFormToDesign(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Scale96ToForm(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleFormTo96(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Scale96ToFont(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleFontTo96(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleScreenToFont(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleFontToScreen(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_Scale96ToScreen(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function RadioGroup_ScaleScreenTo96(AObj: TRadioGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -561,6 +592,7 @@ end;
 
 function RadioGroup_GetAlign(AObj: TRadioGroup): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -575,6 +607,7 @@ end;
 
 function RadioGroup_GetAnchors(AObj: TRadioGroup): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -589,6 +622,7 @@ end;
 
 function RadioGroup_GetBiDiMode(AObj: TRadioGroup): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -603,6 +637,7 @@ end;
 
 function RadioGroup_GetCaption(AObj: TRadioGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -617,6 +652,7 @@ end;
 
 function RadioGroup_GetColor(AObj: TRadioGroup): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -631,6 +667,7 @@ end;
 
 function RadioGroup_GetColumns(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Columns;
   handleExceptionEnd
@@ -645,6 +682,7 @@ end;
 
 function RadioGroup_GetDoubleBuffered(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -659,6 +697,7 @@ end;
 
 function RadioGroup_GetDragCursor(AObj: TRadioGroup): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -673,6 +712,7 @@ end;
 
 function RadioGroup_GetDragMode(AObj: TRadioGroup): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -687,6 +727,7 @@ end;
 
 function RadioGroup_GetEnabled(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -701,6 +742,7 @@ end;
 
 function RadioGroup_GetFont(AObj: TRadioGroup): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -715,6 +757,7 @@ end;
 
 function RadioGroup_GetItemIndex(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemIndex;
   handleExceptionEnd
@@ -729,6 +772,7 @@ end;
 
 function RadioGroup_GetItems(AObj: TRadioGroup): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -743,6 +787,7 @@ end;
 
 function RadioGroup_GetConstraints(AObj: TRadioGroup): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -757,6 +802,7 @@ end;
 
 function RadioGroup_GetParentBackground(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentBackground;
   handleExceptionEnd
@@ -771,6 +817,7 @@ end;
 
 function RadioGroup_GetParentColor(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -785,6 +832,7 @@ end;
 
 function RadioGroup_GetParentDoubleBuffered(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -799,6 +847,7 @@ end;
 
 function RadioGroup_GetParentFont(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -813,6 +862,7 @@ end;
 
 function RadioGroup_GetParentShowHint(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -827,6 +877,7 @@ end;
 
 function RadioGroup_GetPopupMenu(AObj: TRadioGroup): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -841,6 +892,7 @@ end;
 
 function RadioGroup_GetShowHint(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -855,6 +907,7 @@ end;
 
 function RadioGroup_GetTabOrder(AObj: TRadioGroup): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -869,6 +922,7 @@ end;
 
 function RadioGroup_GetTabStop(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -883,6 +937,7 @@ end;
 
 function RadioGroup_GetVisible(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -945,6 +1000,7 @@ end;
 
 function RadioGroup_GetDockClientCount(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -952,6 +1008,7 @@ end;
 
 function RadioGroup_GetDockSite(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -966,6 +1023,7 @@ end;
 
 function RadioGroup_GetMouseInClient(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -973,6 +1031,7 @@ end;
 
 function RadioGroup_GetVisibleDockClientCount(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -980,6 +1039,7 @@ end;
 
 function RadioGroup_GetBrush(AObj: TRadioGroup): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -987,6 +1047,7 @@ end;
 
 function RadioGroup_GetControlCount(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -994,6 +1055,7 @@ end;
 
 function RadioGroup_GetHandle(AObj: TRadioGroup): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1001,6 +1063,7 @@ end;
 
 function RadioGroup_GetParentWindow(AObj: TRadioGroup): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1015,6 +1078,7 @@ end;
 
 function RadioGroup_GetShowing(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1022,6 +1086,7 @@ end;
 
 function RadioGroup_GetUseDockManager(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1036,6 +1101,7 @@ end;
 
 function RadioGroup_GetAction(AObj: TRadioGroup): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1066,6 +1132,7 @@ end;
 
 function RadioGroup_GetClientHeight(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1096,6 +1163,7 @@ end;
 
 function RadioGroup_GetClientWidth(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1110,6 +1178,7 @@ end;
 
 function RadioGroup_GetControlState(AObj: TRadioGroup): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1124,6 +1193,7 @@ end;
 
 function RadioGroup_GetControlStyle(AObj: TRadioGroup): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1138,6 +1208,7 @@ end;
 
 function RadioGroup_GetFloating(AObj: TRadioGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1145,6 +1216,7 @@ end;
 
 function RadioGroup_GetParent(AObj: TRadioGroup): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1159,6 +1231,7 @@ end;
 
 function RadioGroup_GetLeft(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1173,6 +1246,7 @@ end;
 
 function RadioGroup_GetTop(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1187,6 +1261,7 @@ end;
 
 function RadioGroup_GetWidth(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1201,6 +1276,7 @@ end;
 
 function RadioGroup_GetHeight(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1215,6 +1291,7 @@ end;
 
 function RadioGroup_GetCursor(AObj: TRadioGroup): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1229,6 +1306,7 @@ end;
 
 function RadioGroup_GetHint(AObj: TRadioGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1243,6 +1321,7 @@ end;
 
 function RadioGroup_GetComponentCount(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1250,6 +1329,7 @@ end;
 
 function RadioGroup_GetComponentIndex(AObj: TRadioGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1264,6 +1344,7 @@ end;
 
 function RadioGroup_GetOwner(AObj: TRadioGroup): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1271,6 +1352,7 @@ end;
 
 function RadioGroup_GetName(AObj: TRadioGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1285,6 +1367,7 @@ end;
 
 function RadioGroup_GetTag(AObj: TRadioGroup): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1299,6 +1382,7 @@ end;
 
 function RadioGroup_GetAnchorSideLeft(AObj: TRadioGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1313,6 +1397,7 @@ end;
 
 function RadioGroup_GetAnchorSideTop(AObj: TRadioGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1327,6 +1412,7 @@ end;
 
 function RadioGroup_GetAnchorSideRight(AObj: TRadioGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1341,6 +1427,7 @@ end;
 
 function RadioGroup_GetAnchorSideBottom(AObj: TRadioGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1355,6 +1442,7 @@ end;
 
 function RadioGroup_GetChildSizing(AObj: TRadioGroup): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1369,6 +1457,7 @@ end;
 
 function RadioGroup_GetBorderSpacing(AObj: TRadioGroup): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1383,6 +1472,7 @@ end;
 
 function RadioGroup_GetDockClients(AObj: TRadioGroup; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1390,6 +1480,7 @@ end;
 
 function RadioGroup_GetControls(AObj: TRadioGroup; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1397,6 +1488,7 @@ end;
 
 function RadioGroup_GetComponents(AObj: TRadioGroup; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1404,6 +1496,7 @@ end;
 
 function RadioGroup_GetAnchorSide(AObj: TRadioGroup; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

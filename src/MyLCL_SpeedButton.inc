@@ -9,6 +9,7 @@
 
 function SpeedButton_Create(AOwner: TComponent): TSpeedButton; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TSpeedButton.Create(AOwner);
   handleExceptionEnd
@@ -60,6 +61,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_Dragging(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -68,6 +70,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_HasParent(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -92,6 +95,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_Perform(AObj: TSpeedButton; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -168,6 +172,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_GetTextBuf(AObj: TSpeedButton; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -176,6 +181,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_GetTextLen(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -192,6 +198,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_FindComponent(AObj: TSpeedButton; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -200,6 +207,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_GetNamePath(AObj: TSpeedButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -216,6 +224,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ClassType(AObj: TSpeedButton): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -224,6 +233,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ClassName(AObj: TSpeedButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -232,6 +242,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_InstanceSize(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -240,6 +251,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_InheritsFrom(AObj: TSpeedButton; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -248,6 +260,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_Equals(AObj: TSpeedButton; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -256,6 +269,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_GetHashCode(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -264,6 +278,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ToString(AObj: TSpeedButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -328,6 +343,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleDesignToForm(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -336,6 +352,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleFormToDesign(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -344,6 +361,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_Scale96ToForm(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -352,6 +370,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleFormTo96(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -360,6 +379,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_Scale96ToFont(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -368,6 +388,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleFontTo96(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -376,6 +397,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleScreenToFont(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -384,6 +406,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleFontToScreen(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +415,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_Scale96ToScreen(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -400,6 +424,7 @@ end;
 //CLASSMETHOD:
 function SpeedButton_ScaleScreenTo96(AObj: TSpeedButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -432,6 +457,7 @@ end;
 
 function SpeedButton_GetImageIndex(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -446,6 +472,7 @@ end;
 
 function SpeedButton_GetImages(AObj: TSpeedButton): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -460,6 +487,7 @@ end;
 
 function SpeedButton_GetImageWidth(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageWidth;
   handleExceptionEnd
@@ -474,6 +502,7 @@ end;
 
 function SpeedButton_GetShowCaption(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowCaption;
   handleExceptionEnd
@@ -488,6 +517,7 @@ end;
 
 function SpeedButton_GetAction(AObj: TSpeedButton): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -502,6 +532,7 @@ end;
 
 function SpeedButton_GetAlign(AObj: TSpeedButton): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -516,6 +547,7 @@ end;
 
 function SpeedButton_GetAllowAllUp(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowAllUp;
   handleExceptionEnd
@@ -530,6 +562,7 @@ end;
 
 function SpeedButton_GetAnchors(AObj: TSpeedButton): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -544,6 +577,7 @@ end;
 
 function SpeedButton_GetBiDiMode(AObj: TSpeedButton): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -558,6 +592,7 @@ end;
 
 function SpeedButton_GetConstraints(AObj: TSpeedButton): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -572,6 +607,7 @@ end;
 
 function SpeedButton_GetGroupIndex(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GroupIndex;
   handleExceptionEnd
@@ -586,6 +622,7 @@ end;
 
 function SpeedButton_GetDown(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Down;
   handleExceptionEnd
@@ -600,6 +637,7 @@ end;
 
 function SpeedButton_GetCaption(AObj: TSpeedButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -614,6 +652,7 @@ end;
 
 function SpeedButton_GetEnabled(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -628,6 +667,7 @@ end;
 
 function SpeedButton_GetFlat(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Flat;
   handleExceptionEnd
@@ -642,6 +682,7 @@ end;
 
 function SpeedButton_GetFont(AObj: TSpeedButton): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -656,6 +697,7 @@ end;
 
 function SpeedButton_GetGlyph(AObj: TSpeedButton): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Glyph;
   handleExceptionEnd
@@ -670,6 +712,7 @@ end;
 
 function SpeedButton_GetLayout(AObj: TSpeedButton): TButtonLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := TButtonLayout(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -684,6 +727,7 @@ end;
 
 function SpeedButton_GetNumGlyphs(AObj: TSpeedButton): TNumGlyphs; extdecl;
 begin
+{$ifdef UsehandleException}Result := TNumGlyphs(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.NumGlyphs;
   handleExceptionEnd
@@ -698,6 +742,7 @@ end;
 
 function SpeedButton_GetParentFont(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -712,6 +757,7 @@ end;
 
 function SpeedButton_GetParentShowHint(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -726,6 +772,7 @@ end;
 
 function SpeedButton_GetPopupMenu(AObj: TSpeedButton): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -740,6 +787,7 @@ end;
 
 function SpeedButton_GetShowHint(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -754,6 +802,7 @@ end;
 
 function SpeedButton_GetSpacing(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Spacing;
   handleExceptionEnd
@@ -768,6 +817,7 @@ end;
 
 function SpeedButton_GetTransparent(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -782,6 +832,7 @@ end;
 
 function SpeedButton_GetVisible(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -868,6 +919,7 @@ end;
 
 function SpeedButton_GetClientHeight(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -898,6 +950,7 @@ end;
 
 function SpeedButton_GetClientWidth(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -912,6 +965,7 @@ end;
 
 function SpeedButton_GetControlState(AObj: TSpeedButton): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -926,6 +980,7 @@ end;
 
 function SpeedButton_GetControlStyle(AObj: TSpeedButton): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -940,6 +995,7 @@ end;
 
 function SpeedButton_GetFloating(AObj: TSpeedButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -947,6 +1003,7 @@ end;
 
 function SpeedButton_GetParent(AObj: TSpeedButton): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -961,6 +1018,7 @@ end;
 
 function SpeedButton_GetLeft(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -975,6 +1033,7 @@ end;
 
 function SpeedButton_GetTop(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -989,6 +1048,7 @@ end;
 
 function SpeedButton_GetWidth(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1003,6 +1063,7 @@ end;
 
 function SpeedButton_GetHeight(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1017,6 +1078,7 @@ end;
 
 function SpeedButton_GetCursor(AObj: TSpeedButton): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1031,6 +1093,7 @@ end;
 
 function SpeedButton_GetHint(AObj: TSpeedButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1045,6 +1108,7 @@ end;
 
 function SpeedButton_GetComponentCount(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1052,6 +1116,7 @@ end;
 
 function SpeedButton_GetComponentIndex(AObj: TSpeedButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1066,6 +1131,7 @@ end;
 
 function SpeedButton_GetOwner(AObj: TSpeedButton): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1073,6 +1139,7 @@ end;
 
 function SpeedButton_GetName(AObj: TSpeedButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1087,6 +1154,7 @@ end;
 
 function SpeedButton_GetTag(AObj: TSpeedButton): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1101,6 +1169,7 @@ end;
 
 function SpeedButton_GetAnchorSideLeft(AObj: TSpeedButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1115,6 +1184,7 @@ end;
 
 function SpeedButton_GetAnchorSideTop(AObj: TSpeedButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1129,6 +1199,7 @@ end;
 
 function SpeedButton_GetAnchorSideRight(AObj: TSpeedButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1143,6 +1214,7 @@ end;
 
 function SpeedButton_GetAnchorSideBottom(AObj: TSpeedButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1157,6 +1229,7 @@ end;
 
 function SpeedButton_GetBorderSpacing(AObj: TSpeedButton): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1171,6 +1244,7 @@ end;
 
 function SpeedButton_GetComponents(AObj: TSpeedButton; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1178,6 +1252,7 @@ end;
 
 function SpeedButton_GetAnchorSide(AObj: TSpeedButton; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

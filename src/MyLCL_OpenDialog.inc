@@ -9,6 +9,7 @@
 
 function OpenDialog_Create(AOwner: TComponent): TOpenDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TOpenDialog.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_Execute(AObj: TOpenDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_FindComponent(AObj: TOpenDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_GetNamePath(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_HasParent(AObj: TOpenDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_ClassType(AObj: TOpenDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_ClassName(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_InstanceSize(AObj: TOpenDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_InheritsFrom(AObj: TOpenDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_Equals(AObj: TOpenDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_GetHashCode(AObj: TOpenDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function OpenDialog_ToString(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +131,7 @@ end;
 
 function OpenDialog_GetFiles(AObj: TOpenDialog): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Files;
   handleExceptionEnd
@@ -126,6 +139,7 @@ end;
 
 function OpenDialog_GetDefaultExt(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DefaultExt);
   handleExceptionEnd
@@ -140,6 +154,7 @@ end;
 
 function OpenDialog_GetFileName(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.FileName);
   handleExceptionEnd
@@ -154,6 +169,7 @@ end;
 
 function OpenDialog_GetFilter(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Filter);
   handleExceptionEnd
@@ -168,6 +184,7 @@ end;
 
 function OpenDialog_GetFilterIndex(AObj: TOpenDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FilterIndex;
   handleExceptionEnd
@@ -182,6 +199,7 @@ end;
 
 function OpenDialog_GetInitialDir(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.InitialDir);
   handleExceptionEnd
@@ -196,6 +214,7 @@ end;
 
 function OpenDialog_GetOptions(AObj: TOpenDialog): TOpenOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -210,6 +229,7 @@ end;
 
 function OpenDialog_GetTitle(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Title);
   handleExceptionEnd
@@ -224,6 +244,7 @@ end;
 
 function OpenDialog_GetHandle(AObj: TOpenDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -247,6 +268,7 @@ end;
 
 function OpenDialog_GetComponentCount(AObj: TOpenDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -254,6 +276,7 @@ end;
 
 function OpenDialog_GetComponentIndex(AObj: TOpenDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -268,6 +291,7 @@ end;
 
 function OpenDialog_GetOwner(AObj: TOpenDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -275,6 +299,7 @@ end;
 
 function OpenDialog_GetName(AObj: TOpenDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -289,6 +314,7 @@ end;
 
 function OpenDialog_GetTag(AObj: TOpenDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -303,6 +329,7 @@ end;
 
 function OpenDialog_GetComponents(AObj: TOpenDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

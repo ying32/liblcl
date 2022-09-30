@@ -9,6 +9,7 @@
 
 function ColorButton_Create(AOwner: TComponent): TColorButton; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TColorButton.Create(AOwner);
   handleExceptionEnd
@@ -60,6 +61,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_Dragging(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -68,6 +70,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_HasParent(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -92,6 +95,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_Perform(AObj: TColorButton; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -168,6 +172,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_GetTextBuf(AObj: TColorButton; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -176,6 +181,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_GetTextLen(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -192,6 +198,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_FindComponent(AObj: TColorButton; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -200,6 +207,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_GetNamePath(AObj: TColorButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -216,6 +224,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ClassType(AObj: TColorButton): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -224,6 +233,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ClassName(AObj: TColorButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -232,6 +242,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_InstanceSize(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -240,6 +251,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_InheritsFrom(AObj: TColorButton; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -248,6 +260,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_Equals(AObj: TColorButton; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -256,6 +269,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_GetHashCode(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -264,6 +278,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ToString(AObj: TColorButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -328,6 +343,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleDesignToForm(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -336,6 +352,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleFormToDesign(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -344,6 +361,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_Scale96ToForm(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -352,6 +370,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleFormTo96(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -360,6 +379,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_Scale96ToFont(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -368,6 +388,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleFontTo96(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -376,6 +397,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleScreenToFont(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -384,6 +406,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleFontToScreen(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +415,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_Scale96ToScreen(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -400,6 +424,7 @@ end;
 //CLASSMETHOD:
 function ColorButton_ScaleScreenTo96(AObj: TColorButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -432,6 +457,7 @@ end;
 
 function ColorButton_GetAction(AObj: TColorButton): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -446,6 +472,7 @@ end;
 
 function ColorButton_GetAlign(AObj: TColorButton): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -460,6 +487,7 @@ end;
 
 function ColorButton_GetAnchors(AObj: TColorButton): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -474,6 +502,7 @@ end;
 
 function ColorButton_GetAllowAllUp(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowAllUp;
   handleExceptionEnd
@@ -488,6 +517,7 @@ end;
 
 function ColorButton_GetBorderWidth(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -502,6 +532,7 @@ end;
 
 function ColorButton_GetButtonColorAutoSize(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonColorAutoSize;
   handleExceptionEnd
@@ -516,6 +547,7 @@ end;
 
 function ColorButton_GetButtonColorSize(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonColorSize;
   handleExceptionEnd
@@ -530,6 +562,7 @@ end;
 
 function ColorButton_GetButtonColor(AObj: TColorButton): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonColor;
   handleExceptionEnd
@@ -544,6 +577,7 @@ end;
 
 function ColorButton_GetColorDialog(AObj: TColorButton): TColorDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ColorDialog;
   handleExceptionEnd
@@ -558,6 +592,7 @@ end;
 
 function ColorButton_GetConstraints(AObj: TColorButton): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -572,6 +607,7 @@ end;
 
 function ColorButton_GetCaption(AObj: TColorButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -586,6 +622,7 @@ end;
 
 function ColorButton_GetColor(AObj: TColorButton): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -600,6 +637,7 @@ end;
 
 function ColorButton_GetDown(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Down;
   handleExceptionEnd
@@ -614,6 +652,7 @@ end;
 
 function ColorButton_GetEnabled(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -628,6 +667,7 @@ end;
 
 function ColorButton_GetFlat(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Flat;
   handleExceptionEnd
@@ -642,6 +682,7 @@ end;
 
 function ColorButton_GetFont(AObj: TColorButton): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -656,6 +697,7 @@ end;
 
 function ColorButton_GetGroupIndex(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GroupIndex;
   handleExceptionEnd
@@ -670,6 +712,7 @@ end;
 
 function ColorButton_GetHint(AObj: TColorButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -684,6 +727,7 @@ end;
 
 function ColorButton_GetLayout(AObj: TColorButton): TButtonLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := TButtonLayout(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -698,6 +742,7 @@ end;
 
 function ColorButton_GetSpacing(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Spacing;
   handleExceptionEnd
@@ -712,6 +757,7 @@ end;
 
 function ColorButton_GetTransparent(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -726,6 +772,7 @@ end;
 
 function ColorButton_GetVisible(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -844,6 +891,7 @@ end;
 
 function ColorButton_GetShowHint(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -858,6 +906,7 @@ end;
 
 function ColorButton_GetParentFont(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -872,6 +921,7 @@ end;
 
 function ColorButton_GetParentShowHint(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -886,6 +936,7 @@ end;
 
 function ColorButton_GetPopupMenu(AObj: TColorButton): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -900,6 +951,7 @@ end;
 
 function ColorButton_GetImageIndex(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -914,6 +966,7 @@ end;
 
 function ColorButton_GetImages(AObj: TColorButton): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -928,6 +981,7 @@ end;
 
 function ColorButton_GetImageWidth(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageWidth;
   handleExceptionEnd
@@ -942,6 +996,7 @@ end;
 
 function ColorButton_GetShowCaption(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowCaption;
   handleExceptionEnd
@@ -956,6 +1011,7 @@ end;
 
 function ColorButton_GetBiDiMode(AObj: TColorButton): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -970,6 +1026,7 @@ end;
 
 function ColorButton_GetGlyph(AObj: TColorButton): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Glyph;
   handleExceptionEnd
@@ -984,6 +1041,7 @@ end;
 
 function ColorButton_GetNumGlyphs(AObj: TColorButton): TNumGlyphs; extdecl;
 begin
+{$ifdef UsehandleException}Result := TNumGlyphs(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.NumGlyphs;
   handleExceptionEnd
@@ -1014,6 +1072,7 @@ end;
 
 function ColorButton_GetClientHeight(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1044,6 +1103,7 @@ end;
 
 function ColorButton_GetClientWidth(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1058,6 +1118,7 @@ end;
 
 function ColorButton_GetControlState(AObj: TColorButton): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1072,6 +1133,7 @@ end;
 
 function ColorButton_GetControlStyle(AObj: TColorButton): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1086,6 +1148,7 @@ end;
 
 function ColorButton_GetFloating(AObj: TColorButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1093,6 +1156,7 @@ end;
 
 function ColorButton_GetParent(AObj: TColorButton): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1107,6 +1171,7 @@ end;
 
 function ColorButton_GetLeft(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1121,6 +1186,7 @@ end;
 
 function ColorButton_GetTop(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1135,6 +1201,7 @@ end;
 
 function ColorButton_GetWidth(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1149,6 +1216,7 @@ end;
 
 function ColorButton_GetHeight(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1163,6 +1231,7 @@ end;
 
 function ColorButton_GetCursor(AObj: TColorButton): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1177,6 +1246,7 @@ end;
 
 function ColorButton_GetComponentCount(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1184,6 +1254,7 @@ end;
 
 function ColorButton_GetComponentIndex(AObj: TColorButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1198,6 +1269,7 @@ end;
 
 function ColorButton_GetOwner(AObj: TColorButton): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1205,6 +1277,7 @@ end;
 
 function ColorButton_GetName(AObj: TColorButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1219,6 +1292,7 @@ end;
 
 function ColorButton_GetTag(AObj: TColorButton): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1233,6 +1307,7 @@ end;
 
 function ColorButton_GetAnchorSideLeft(AObj: TColorButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1247,6 +1322,7 @@ end;
 
 function ColorButton_GetAnchorSideTop(AObj: TColorButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1261,6 +1337,7 @@ end;
 
 function ColorButton_GetAnchorSideRight(AObj: TColorButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1275,6 +1352,7 @@ end;
 
 function ColorButton_GetAnchorSideBottom(AObj: TColorButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1289,6 +1367,7 @@ end;
 
 function ColorButton_GetBorderSpacing(AObj: TColorButton): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1303,6 +1382,7 @@ end;
 
 function ColorButton_GetComponents(AObj: TColorButton; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1310,6 +1390,7 @@ end;
 
 function ColorButton_GetAnchorSide(AObj: TColorButton; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

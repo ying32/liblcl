@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_GetNamePath(AObj: TAnchorSide): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_ClassType(AObj: TAnchorSide): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_ClassName(AObj: TAnchorSide): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_InstanceSize(AObj: TAnchorSide): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_InheritsFrom(AObj: TAnchorSide; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_Equals(AObj: TAnchorSide; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_GetHashCode(AObj: TAnchorSide): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function AnchorSide_ToString(AObj: TAnchorSide): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -81,6 +89,7 @@ end;
 
 function AnchorSide_GetOwner(AObj: TAnchorSide): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -88,6 +97,7 @@ end;
 
 function AnchorSide_GetKind(AObj: TAnchorSide): TAnchorKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAnchorKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -95,6 +105,7 @@ end;
 
 function AnchorSide_GetControl(AObj: TAnchorSide): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Control;
   handleExceptionEnd
@@ -109,6 +120,7 @@ end;
 
 function AnchorSide_GetSide(AObj: TAnchorSide): TAnchorSideReference; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAnchorSideReference(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Side;
   handleExceptionEnd

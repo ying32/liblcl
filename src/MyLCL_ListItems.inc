@@ -9,6 +9,7 @@
 
 function ListItems_Create(AOwner: TCustomListView): TListItems; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TListItems.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function ListItems_Add(AObj: TListItems): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -72,6 +74,7 @@ end;
 //CLASSMETHOD:
 function ListItems_IndexOf(AObj: TListItems; Value: TListItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOf(Value);
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function ListItems_Insert(AObj: TListItems; Index: Integer): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function ListItems_GetNamePath(AObj: TListItems): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function ListItems_ClassType(AObj: TListItems): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function ListItems_ClassName(AObj: TListItems): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function ListItems_InstanceSize(AObj: TListItems): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -120,6 +128,7 @@ end;
 //CLASSMETHOD:
 function ListItems_InheritsFrom(AObj: TListItems; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -128,6 +137,7 @@ end;
 //CLASSMETHOD:
 function ListItems_Equals(AObj: TListItems; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -136,6 +146,7 @@ end;
 //CLASSMETHOD:
 function ListItems_GetHashCode(AObj: TListItems): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -144,6 +155,7 @@ end;
 //CLASSMETHOD:
 function ListItems_ToString(AObj: TListItems): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -151,6 +163,7 @@ end;
 
 function ListItems_GetCount(AObj: TListItems): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -165,6 +178,7 @@ end;
 
 function ListItems_GetOwner(AObj: TListItems): TCustomListView; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -172,6 +186,7 @@ end;
 
 function ListItems_GetItem(AObj: TListItems; Index: Integer): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Item[Index];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function UpDown_Create(AOwner: TComponent): TUpDown; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TUpDown.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function UpDown_CanFocus(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ContainsControl(AObj: TUpDown; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -41,6 +44,7 @@ end;
 //PARAMS:2=nonPtr
 function UpDown_ControlAtPos(AObj: TUpDown; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -65,6 +69,7 @@ end;
 //CLASSMETHOD:
 function UpDown_FindChildControl(AObj: TUpDown; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Focused(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function UpDown_HandleAllocated(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -213,6 +220,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Dragging(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function UpDown_HasParent(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Perform(AObj: TUpDown; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -289,6 +299,7 @@ end;
 //CLASSMETHOD:
 function UpDown_GetTextBuf(AObj: TUpDown; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function UpDown_GetTextLen(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function UpDown_FindComponent(AObj: TUpDown; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function UpDown_GetNamePath(AObj: TUpDown): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ClassType(AObj: TUpDown): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ClassName(AObj: TUpDown): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function UpDown_InstanceSize(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function UpDown_InheritsFrom(AObj: TUpDown; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Equals(AObj: TUpDown; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function UpDown_GetHashCode(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ToString(AObj: TUpDown): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleDesignToForm(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleFormToDesign(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Scale96ToForm(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleFormTo96(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Scale96ToFont(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleFontTo96(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleScreenToFont(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleFontToScreen(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function UpDown_Scale96ToScreen(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function UpDown_ScaleScreenTo96(AObj: TUpDown; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -553,6 +584,7 @@ end;
 
 function UpDown_GetAnchors(AObj: TUpDown): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -567,6 +599,7 @@ end;
 
 function UpDown_GetDoubleBuffered(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -581,6 +614,7 @@ end;
 
 function UpDown_GetEnabled(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -595,6 +629,7 @@ end;
 
 function UpDown_GetHint(AObj: TUpDown): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -609,6 +644,7 @@ end;
 
 function UpDown_GetMin(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Min;
   handleExceptionEnd
@@ -623,6 +659,7 @@ end;
 
 function UpDown_GetMax(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Max;
   handleExceptionEnd
@@ -637,6 +674,7 @@ end;
 
 function UpDown_GetIncrement(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Increment;
   handleExceptionEnd
@@ -651,6 +689,7 @@ end;
 
 function UpDown_GetConstraints(AObj: TUpDown): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -665,6 +704,7 @@ end;
 
 function UpDown_GetOrientation(AObj: TUpDown): TUDOrientation; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUDOrientation(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -679,6 +719,7 @@ end;
 
 function UpDown_GetParentDoubleBuffered(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -693,6 +734,7 @@ end;
 
 function UpDown_GetParentShowHint(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -707,6 +749,7 @@ end;
 
 function UpDown_GetPopupMenu(AObj: TUpDown): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -721,6 +764,7 @@ end;
 
 function UpDown_GetPosition(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
@@ -735,6 +779,7 @@ end;
 
 function UpDown_GetShowHint(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -749,6 +794,7 @@ end;
 
 function UpDown_GetTabOrder(AObj: TUpDown): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -763,6 +809,7 @@ end;
 
 function UpDown_GetTabStop(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -777,6 +824,7 @@ end;
 
 function UpDown_GetVisible(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -791,6 +839,7 @@ end;
 
 function UpDown_GetWrap(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Wrap;
   handleExceptionEnd
@@ -885,6 +934,7 @@ end;
 
 function UpDown_GetDockClientCount(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -892,6 +942,7 @@ end;
 
 function UpDown_GetDockSite(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -906,6 +957,7 @@ end;
 
 function UpDown_GetMouseInClient(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -913,6 +965,7 @@ end;
 
 function UpDown_GetVisibleDockClientCount(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -920,6 +973,7 @@ end;
 
 function UpDown_GetBrush(AObj: TUpDown): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -927,6 +981,7 @@ end;
 
 function UpDown_GetControlCount(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -934,6 +989,7 @@ end;
 
 function UpDown_GetHandle(AObj: TUpDown): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -941,6 +997,7 @@ end;
 
 function UpDown_GetParentWindow(AObj: TUpDown): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -955,6 +1012,7 @@ end;
 
 function UpDown_GetShowing(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -962,6 +1020,7 @@ end;
 
 function UpDown_GetUseDockManager(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -976,6 +1035,7 @@ end;
 
 function UpDown_GetAction(AObj: TUpDown): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -990,6 +1050,7 @@ end;
 
 function UpDown_GetAlign(AObj: TUpDown): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1004,6 +1065,7 @@ end;
 
 function UpDown_GetBiDiMode(AObj: TUpDown): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1034,6 +1096,7 @@ end;
 
 function UpDown_GetClientHeight(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1064,6 +1127,7 @@ end;
 
 function UpDown_GetClientWidth(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1078,6 +1142,7 @@ end;
 
 function UpDown_GetControlState(AObj: TUpDown): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1092,6 +1157,7 @@ end;
 
 function UpDown_GetControlStyle(AObj: TUpDown): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1106,6 +1172,7 @@ end;
 
 function UpDown_GetFloating(AObj: TUpDown): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1113,6 +1180,7 @@ end;
 
 function UpDown_GetParent(AObj: TUpDown): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1127,6 +1195,7 @@ end;
 
 function UpDown_GetLeft(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1141,6 +1210,7 @@ end;
 
 function UpDown_GetTop(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1155,6 +1225,7 @@ end;
 
 function UpDown_GetWidth(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1169,6 +1240,7 @@ end;
 
 function UpDown_GetHeight(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1183,6 +1255,7 @@ end;
 
 function UpDown_GetCursor(AObj: TUpDown): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1197,6 +1270,7 @@ end;
 
 function UpDown_GetComponentCount(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1204,6 +1278,7 @@ end;
 
 function UpDown_GetComponentIndex(AObj: TUpDown): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1218,6 +1293,7 @@ end;
 
 function UpDown_GetOwner(AObj: TUpDown): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1225,6 +1301,7 @@ end;
 
 function UpDown_GetName(AObj: TUpDown): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1239,6 +1316,7 @@ end;
 
 function UpDown_GetTag(AObj: TUpDown): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1253,6 +1331,7 @@ end;
 
 function UpDown_GetAnchorSideLeft(AObj: TUpDown): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1267,6 +1346,7 @@ end;
 
 function UpDown_GetAnchorSideTop(AObj: TUpDown): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1281,6 +1361,7 @@ end;
 
 function UpDown_GetAnchorSideRight(AObj: TUpDown): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1295,6 +1376,7 @@ end;
 
 function UpDown_GetAnchorSideBottom(AObj: TUpDown): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1309,6 +1391,7 @@ end;
 
 function UpDown_GetChildSizing(AObj: TUpDown): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1323,6 +1406,7 @@ end;
 
 function UpDown_GetBorderSpacing(AObj: TUpDown): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1337,6 +1421,7 @@ end;
 
 function UpDown_GetDockClients(AObj: TUpDown; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1344,6 +1429,7 @@ end;
 
 function UpDown_GetControls(AObj: TUpDown; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1351,6 +1437,7 @@ end;
 
 function UpDown_GetComponents(AObj: TUpDown; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1358,6 +1445,7 @@ end;
 
 function UpDown_GetAnchorSide(AObj: TUpDown; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

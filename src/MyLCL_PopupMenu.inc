@@ -9,6 +9,7 @@
 
 function PopupMenu_Create(AOwner: TComponent): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPopupMenu.Create(AOwner);
   handleExceptionEnd
@@ -40,6 +41,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_FindComponent(AObj: TPopupMenu; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_GetNamePath(AObj: TPopupMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -56,6 +59,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_HasParent(AObj: TPopupMenu): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -72,6 +76,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_ClassType(AObj: TPopupMenu): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -80,6 +85,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_ClassName(AObj: TPopupMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -88,6 +94,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_InstanceSize(AObj: TPopupMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -96,6 +103,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_InheritsFrom(AObj: TPopupMenu; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -104,6 +112,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_Equals(AObj: TPopupMenu; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -112,6 +121,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_GetHashCode(AObj: TPopupMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -120,6 +130,7 @@ end;
 //CLASSMETHOD:
 function PopupMenu_ToString(AObj: TPopupMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -127,6 +138,7 @@ end;
 
 function PopupMenu_GetImagesWidth(AObj: TPopupMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImagesWidth;
   handleExceptionEnd
@@ -157,6 +169,7 @@ end;
 
 function PopupMenu_GetPopupComponent(AObj: TPopupMenu): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupComponent;
   handleExceptionEnd
@@ -179,6 +192,7 @@ end;
 
 function PopupMenu_GetAlignment(AObj: TPopupMenu): TPopupAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TPopupAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -193,6 +207,7 @@ end;
 
 function PopupMenu_GetBiDiMode(AObj: TPopupMenu): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -207,6 +222,7 @@ end;
 
 function PopupMenu_GetImages(AObj: TPopupMenu): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -221,6 +237,7 @@ end;
 
 function PopupMenu_GetOwnerDraw(AObj: TPopupMenu): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.OwnerDraw;
   handleExceptionEnd
@@ -243,6 +260,7 @@ end;
 
 function PopupMenu_GetHandle(AObj: TPopupMenu): HMENU; extdecl;
 begin
+{$ifdef UsehandleException}Result := HMENU(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -250,6 +268,7 @@ end;
 
 function PopupMenu_GetItems(AObj: TPopupMenu): TMenuItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -257,6 +276,7 @@ end;
 
 function PopupMenu_GetComponentCount(AObj: TPopupMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -264,6 +284,7 @@ end;
 
 function PopupMenu_GetComponentIndex(AObj: TPopupMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -278,6 +299,7 @@ end;
 
 function PopupMenu_GetOwner(AObj: TPopupMenu): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -285,6 +307,7 @@ end;
 
 function PopupMenu_GetName(AObj: TPopupMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -299,6 +322,7 @@ end;
 
 function PopupMenu_GetTag(AObj: TPopupMenu): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -313,6 +337,7 @@ end;
 
 function PopupMenu_GetComponents(AObj: TPopupMenu; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

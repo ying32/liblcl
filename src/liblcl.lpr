@@ -8,6 +8,9 @@
 {$if FPC_FULLVERSION < 30200}
    {$ERROR 'Requires FPC version>=3.2'}
 {$endif}
+{$if defined(lclqt) or defined(lclqt5)}
+   {$ERROR 'Qt widgets are not supported'}
+{$endif}
 
 library liblcl;
 

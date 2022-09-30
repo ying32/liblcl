@@ -9,6 +9,7 @@
 
 function StatusBar_Create(AOwner: TComponent): TStatusBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TStatusBar.Create(AOwner);
   handleExceptionEnd
@@ -40,6 +41,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_CanFocus(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ContainsControl(AObj: TStatusBar; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -57,6 +60,7 @@ end;
 //PARAMS:2=nonPtr
 function StatusBar_ControlAtPos(AObj: TStatusBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -81,6 +85,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_FindChildControl(AObj: TStatusBar; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Focused(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_HandleAllocated(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -213,6 +220,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Dragging(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_HasParent(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Perform(AObj: TStatusBar; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -289,6 +299,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_GetTextBuf(AObj: TStatusBar; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_GetTextLen(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_FindComponent(AObj: TStatusBar; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_GetNamePath(AObj: TStatusBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ClassType(AObj: TStatusBar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ClassName(AObj: TStatusBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_InstanceSize(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_InheritsFrom(AObj: TStatusBar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Equals(AObj: TStatusBar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_GetHashCode(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ToString(AObj: TStatusBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleDesignToForm(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleFormToDesign(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Scale96ToForm(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleFormTo96(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Scale96ToFont(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleFontTo96(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleScreenToFont(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleFontToScreen(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_Scale96ToScreen(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function StatusBar_ScaleScreenTo96(AObj: TStatusBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -553,6 +584,7 @@ end;
 
 function StatusBar_GetAction(AObj: TStatusBar): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -567,6 +599,7 @@ end;
 
 function StatusBar_GetAutoHint(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoHint;
   handleExceptionEnd
@@ -581,6 +614,7 @@ end;
 
 function StatusBar_GetAlign(AObj: TStatusBar): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -595,6 +629,7 @@ end;
 
 function StatusBar_GetAnchors(AObj: TStatusBar): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -609,6 +644,7 @@ end;
 
 function StatusBar_GetBiDiMode(AObj: TStatusBar): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -623,6 +659,7 @@ end;
 
 function StatusBar_GetBorderWidth(AObj: TStatusBar): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -637,6 +674,7 @@ end;
 
 function StatusBar_GetColor(AObj: TStatusBar): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -651,6 +689,7 @@ end;
 
 function StatusBar_GetDoubleBuffered(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -665,6 +704,7 @@ end;
 
 function StatusBar_GetDragCursor(AObj: TStatusBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -679,6 +719,7 @@ end;
 
 function StatusBar_GetDragKind(AObj: TStatusBar): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -693,6 +734,7 @@ end;
 
 function StatusBar_GetDragMode(AObj: TStatusBar): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -707,6 +749,7 @@ end;
 
 function StatusBar_GetEnabled(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -721,6 +764,7 @@ end;
 
 function StatusBar_GetFont(AObj: TStatusBar): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -735,6 +779,7 @@ end;
 
 function StatusBar_GetConstraints(AObj: TStatusBar): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -749,6 +794,7 @@ end;
 
 function StatusBar_GetPanels(AObj: TStatusBar): TStatusPanels; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Panels;
   handleExceptionEnd
@@ -763,6 +809,7 @@ end;
 
 function StatusBar_GetParentColor(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -777,6 +824,7 @@ end;
 
 function StatusBar_GetParentDoubleBuffered(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -791,6 +839,7 @@ end;
 
 function StatusBar_GetParentFont(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -805,6 +854,7 @@ end;
 
 function StatusBar_GetParentShowHint(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -819,6 +869,7 @@ end;
 
 function StatusBar_GetPopupMenu(AObj: TStatusBar): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -833,6 +884,7 @@ end;
 
 function StatusBar_GetShowHint(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -847,6 +899,7 @@ end;
 
 function StatusBar_GetSimplePanel(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.SimplePanel;
   handleExceptionEnd
@@ -861,6 +914,7 @@ end;
 
 function StatusBar_GetSimpleText(AObj: TStatusBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SimpleText);
   handleExceptionEnd
@@ -875,6 +929,7 @@ end;
 
 function StatusBar_GetSizeGrip(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.SizeGrip;
   handleExceptionEnd
@@ -889,6 +944,7 @@ end;
 
 function StatusBar_GetUseSystemFont(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseSystemFont;
   handleExceptionEnd
@@ -903,6 +959,7 @@ end;
 
 function StatusBar_GetVisible(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1037,6 +1094,7 @@ end;
 
 function StatusBar_GetCanvas(AObj: TStatusBar): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1044,6 +1102,7 @@ end;
 
 function StatusBar_GetDockClientCount(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1051,6 +1110,7 @@ end;
 
 function StatusBar_GetDockSite(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1065,6 +1125,7 @@ end;
 
 function StatusBar_GetMouseInClient(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1072,6 +1133,7 @@ end;
 
 function StatusBar_GetVisibleDockClientCount(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1079,6 +1141,7 @@ end;
 
 function StatusBar_GetBrush(AObj: TStatusBar): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1086,6 +1149,7 @@ end;
 
 function StatusBar_GetControlCount(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1093,6 +1157,7 @@ end;
 
 function StatusBar_GetHandle(AObj: TStatusBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1100,6 +1165,7 @@ end;
 
 function StatusBar_GetParentWindow(AObj: TStatusBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1114,6 +1180,7 @@ end;
 
 function StatusBar_GetShowing(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1121,6 +1188,7 @@ end;
 
 function StatusBar_GetTabOrder(AObj: TStatusBar): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1135,6 +1203,7 @@ end;
 
 function StatusBar_GetTabStop(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1149,6 +1218,7 @@ end;
 
 function StatusBar_GetUseDockManager(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1179,6 +1249,7 @@ end;
 
 function StatusBar_GetClientHeight(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1209,6 +1280,7 @@ end;
 
 function StatusBar_GetClientWidth(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1223,6 +1295,7 @@ end;
 
 function StatusBar_GetControlState(AObj: TStatusBar): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1237,6 +1310,7 @@ end;
 
 function StatusBar_GetControlStyle(AObj: TStatusBar): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1251,6 +1325,7 @@ end;
 
 function StatusBar_GetFloating(AObj: TStatusBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1258,6 +1333,7 @@ end;
 
 function StatusBar_GetParent(AObj: TStatusBar): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1272,6 +1348,7 @@ end;
 
 function StatusBar_GetLeft(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1286,6 +1363,7 @@ end;
 
 function StatusBar_GetTop(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1300,6 +1378,7 @@ end;
 
 function StatusBar_GetWidth(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1314,6 +1393,7 @@ end;
 
 function StatusBar_GetHeight(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1328,6 +1408,7 @@ end;
 
 function StatusBar_GetCursor(AObj: TStatusBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1342,6 +1423,7 @@ end;
 
 function StatusBar_GetHint(AObj: TStatusBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1356,6 +1438,7 @@ end;
 
 function StatusBar_GetComponentCount(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1363,6 +1446,7 @@ end;
 
 function StatusBar_GetComponentIndex(AObj: TStatusBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1377,6 +1461,7 @@ end;
 
 function StatusBar_GetOwner(AObj: TStatusBar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1384,6 +1469,7 @@ end;
 
 function StatusBar_GetName(AObj: TStatusBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1398,6 +1484,7 @@ end;
 
 function StatusBar_GetTag(AObj: TStatusBar): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1412,6 +1499,7 @@ end;
 
 function StatusBar_GetAnchorSideLeft(AObj: TStatusBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1426,6 +1514,7 @@ end;
 
 function StatusBar_GetAnchorSideTop(AObj: TStatusBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1440,6 +1529,7 @@ end;
 
 function StatusBar_GetAnchorSideRight(AObj: TStatusBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1454,6 +1544,7 @@ end;
 
 function StatusBar_GetAnchorSideBottom(AObj: TStatusBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1468,6 +1559,7 @@ end;
 
 function StatusBar_GetChildSizing(AObj: TStatusBar): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1482,6 +1574,7 @@ end;
 
 function StatusBar_GetBorderSpacing(AObj: TStatusBar): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1496,6 +1589,7 @@ end;
 
 function StatusBar_GetDockClients(AObj: TStatusBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1503,6 +1597,7 @@ end;
 
 function StatusBar_GetControls(AObj: TStatusBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1510,6 +1605,7 @@ end;
 
 function StatusBar_GetComponents(AObj: TStatusBar; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1517,6 +1613,7 @@ end;
 
 function StatusBar_GetAnchorSide(AObj: TStatusBar; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

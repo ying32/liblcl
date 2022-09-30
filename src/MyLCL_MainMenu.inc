@@ -9,6 +9,7 @@
 
 function MainMenu_Create(AOwner: TComponent): TMainMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMainMenu.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_FindComponent(AObj: TMainMenu; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_GetNamePath(AObj: TMainMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_HasParent(AObj: TMainMenu): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_ClassType(AObj: TMainMenu): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_ClassName(AObj: TMainMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_InstanceSize(AObj: TMainMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_InheritsFrom(AObj: TMainMenu; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_Equals(AObj: TMainMenu; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_GetHashCode(AObj: TMainMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function MainMenu_ToString(AObj: TMainMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -111,6 +122,7 @@ end;
 
 function MainMenu_GetImagesWidth(AObj: TMainMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImagesWidth;
   handleExceptionEnd
@@ -141,6 +153,7 @@ end;
 
 function MainMenu_GetBiDiMode(AObj: TMainMenu): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -155,6 +168,7 @@ end;
 
 function MainMenu_GetImages(AObj: TMainMenu): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -169,6 +183,7 @@ end;
 
 function MainMenu_GetOwnerDraw(AObj: TMainMenu): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.OwnerDraw;
   handleExceptionEnd
@@ -191,6 +206,7 @@ end;
 
 function MainMenu_GetHandle(AObj: TMainMenu): HMENU; extdecl;
 begin
+{$ifdef UsehandleException}Result := HMENU(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -198,6 +214,7 @@ end;
 
 function MainMenu_GetItems(AObj: TMainMenu): TMenuItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -205,6 +222,7 @@ end;
 
 function MainMenu_GetComponentCount(AObj: TMainMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -212,6 +230,7 @@ end;
 
 function MainMenu_GetComponentIndex(AObj: TMainMenu): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -226,6 +245,7 @@ end;
 
 function MainMenu_GetOwner(AObj: TMainMenu): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -233,6 +253,7 @@ end;
 
 function MainMenu_GetName(AObj: TMainMenu): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -247,6 +268,7 @@ end;
 
 function MainMenu_GetTag(AObj: TMainMenu): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -261,6 +283,7 @@ end;
 
 function MainMenu_GetComponents(AObj: TMainMenu; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

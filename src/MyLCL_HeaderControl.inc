@@ -9,6 +9,7 @@
 
 function HeaderControl_Create(AOwner: TComponent): THeaderControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  THeaderControl.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_CanFocus(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ContainsControl(AObj: THeaderControl; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function HeaderControl_ControlAtPos(AObj: THeaderControl; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_FindChildControl(AObj: THeaderControl; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Focused(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_HandleAllocated(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -213,6 +220,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Dragging(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_HasParent(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Perform(AObj: THeaderControl; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -289,6 +299,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_GetTextBuf(AObj: THeaderControl; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_GetTextLen(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_FindComponent(AObj: THeaderControl; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_GetNamePath(AObj: THeaderControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ClassType(AObj: THeaderControl): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ClassName(AObj: THeaderControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_InstanceSize(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_InheritsFrom(AObj: THeaderControl; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Equals(AObj: THeaderControl; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_GetHashCode(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ToString(AObj: THeaderControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleDesignToForm(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleFormToDesign(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Scale96ToForm(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleFormTo96(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Scale96ToFont(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleFontTo96(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleScreenToFont(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleFontToScreen(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_Scale96ToScreen(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function HeaderControl_ScaleScreenTo96(AObj: THeaderControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -553,6 +584,7 @@ end;
 
 function HeaderControl_GetAlign(AObj: THeaderControl): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -567,6 +599,7 @@ end;
 
 function HeaderControl_GetAnchors(AObj: THeaderControl): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -581,6 +614,7 @@ end;
 
 function HeaderControl_GetBorderWidth(AObj: THeaderControl): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -595,6 +629,7 @@ end;
 
 function HeaderControl_GetDoubleBuffered(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -609,6 +644,7 @@ end;
 
 function HeaderControl_GetDragCursor(AObj: THeaderControl): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -623,6 +659,7 @@ end;
 
 function HeaderControl_GetDragKind(AObj: THeaderControl): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -637,6 +674,7 @@ end;
 
 function HeaderControl_GetDragMode(AObj: THeaderControl): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -651,6 +689,7 @@ end;
 
 function HeaderControl_GetEnabled(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -665,6 +704,7 @@ end;
 
 function HeaderControl_GetFont(AObj: THeaderControl): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -679,6 +719,7 @@ end;
 
 function HeaderControl_GetImages(AObj: THeaderControl): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -693,6 +734,7 @@ end;
 
 function HeaderControl_GetConstraints(AObj: THeaderControl): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -707,6 +749,7 @@ end;
 
 function HeaderControl_GetSections(AObj: THeaderControl): THeaderSections; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Sections;
   handleExceptionEnd
@@ -721,6 +764,7 @@ end;
 
 function HeaderControl_GetShowHint(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -735,6 +779,7 @@ end;
 
 function HeaderControl_GetParentDoubleBuffered(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -749,6 +794,7 @@ end;
 
 function HeaderControl_GetParentFont(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -763,6 +809,7 @@ end;
 
 function HeaderControl_GetParentShowHint(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -777,6 +824,7 @@ end;
 
 function HeaderControl_GetPopupMenu(AObj: THeaderControl): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -791,6 +839,7 @@ end;
 
 function HeaderControl_GetVisible(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -933,6 +982,7 @@ end;
 
 function HeaderControl_GetCanvas(AObj: THeaderControl): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -940,6 +990,7 @@ end;
 
 function HeaderControl_GetDockClientCount(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -947,6 +998,7 @@ end;
 
 function HeaderControl_GetDockSite(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -961,6 +1013,7 @@ end;
 
 function HeaderControl_GetMouseInClient(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -968,6 +1021,7 @@ end;
 
 function HeaderControl_GetVisibleDockClientCount(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -975,6 +1029,7 @@ end;
 
 function HeaderControl_GetBrush(AObj: THeaderControl): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -982,6 +1037,7 @@ end;
 
 function HeaderControl_GetControlCount(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -989,6 +1045,7 @@ end;
 
 function HeaderControl_GetHandle(AObj: THeaderControl): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -996,6 +1053,7 @@ end;
 
 function HeaderControl_GetParentWindow(AObj: THeaderControl): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1010,6 +1068,7 @@ end;
 
 function HeaderControl_GetShowing(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1017,6 +1076,7 @@ end;
 
 function HeaderControl_GetTabOrder(AObj: THeaderControl): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1031,6 +1091,7 @@ end;
 
 function HeaderControl_GetTabStop(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1045,6 +1106,7 @@ end;
 
 function HeaderControl_GetUseDockManager(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1059,6 +1121,7 @@ end;
 
 function HeaderControl_GetAction(AObj: THeaderControl): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1089,6 +1152,7 @@ end;
 
 function HeaderControl_GetClientHeight(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1119,6 +1183,7 @@ end;
 
 function HeaderControl_GetClientWidth(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1133,6 +1198,7 @@ end;
 
 function HeaderControl_GetControlState(AObj: THeaderControl): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1147,6 +1213,7 @@ end;
 
 function HeaderControl_GetControlStyle(AObj: THeaderControl): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1161,6 +1228,7 @@ end;
 
 function HeaderControl_GetFloating(AObj: THeaderControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1168,6 +1236,7 @@ end;
 
 function HeaderControl_GetParent(AObj: THeaderControl): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1182,6 +1251,7 @@ end;
 
 function HeaderControl_GetLeft(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1196,6 +1266,7 @@ end;
 
 function HeaderControl_GetTop(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1210,6 +1281,7 @@ end;
 
 function HeaderControl_GetWidth(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1224,6 +1296,7 @@ end;
 
 function HeaderControl_GetHeight(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1238,6 +1311,7 @@ end;
 
 function HeaderControl_GetCursor(AObj: THeaderControl): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1252,6 +1326,7 @@ end;
 
 function HeaderControl_GetHint(AObj: THeaderControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1266,6 +1341,7 @@ end;
 
 function HeaderControl_GetComponentCount(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1273,6 +1349,7 @@ end;
 
 function HeaderControl_GetComponentIndex(AObj: THeaderControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1287,6 +1364,7 @@ end;
 
 function HeaderControl_GetOwner(AObj: THeaderControl): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1294,6 +1372,7 @@ end;
 
 function HeaderControl_GetName(AObj: THeaderControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1308,6 +1387,7 @@ end;
 
 function HeaderControl_GetTag(AObj: THeaderControl): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1322,6 +1402,7 @@ end;
 
 function HeaderControl_GetAnchorSideLeft(AObj: THeaderControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1336,6 +1417,7 @@ end;
 
 function HeaderControl_GetAnchorSideTop(AObj: THeaderControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1350,6 +1432,7 @@ end;
 
 function HeaderControl_GetAnchorSideRight(AObj: THeaderControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1364,6 +1447,7 @@ end;
 
 function HeaderControl_GetAnchorSideBottom(AObj: THeaderControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1378,6 +1462,7 @@ end;
 
 function HeaderControl_GetChildSizing(AObj: THeaderControl): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1392,6 +1477,7 @@ end;
 
 function HeaderControl_GetBorderSpacing(AObj: THeaderControl): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1406,6 +1492,7 @@ end;
 
 function HeaderControl_GetDockClients(AObj: THeaderControl; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1413,6 +1500,7 @@ end;
 
 function HeaderControl_GetControls(AObj: THeaderControl; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1420,6 +1508,7 @@ end;
 
 function HeaderControl_GetComponents(AObj: THeaderControl; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1427,6 +1516,7 @@ end;
 
 function HeaderControl_GetAnchorSide(AObj: THeaderControl; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

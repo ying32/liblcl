@@ -9,6 +9,7 @@
 
 function ToolBar_Create(AOwner: TComponent): TToolBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TToolBar.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_CanFocus(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ContainsControl(AObj: TToolBar; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function ToolBar_ControlAtPos(AObj: TToolBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_FindChildControl(AObj: TToolBar; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Focused(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_HandleAllocated(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -213,6 +220,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Dragging(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_HasParent(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Perform(AObj: TToolBar; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -289,6 +299,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_GetTextBuf(AObj: TToolBar; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_GetTextLen(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_FindComponent(AObj: TToolBar; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_GetNamePath(AObj: TToolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ClassType(AObj: TToolBar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ClassName(AObj: TToolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_InstanceSize(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_InheritsFrom(AObj: TToolBar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Equals(AObj: TToolBar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_GetHashCode(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ToString(AObj: TToolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleDesignToForm(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleFormToDesign(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Scale96ToForm(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleFormTo96(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Scale96ToFont(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleFontTo96(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleScreenToFont(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleFontToScreen(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_Scale96ToScreen(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function ToolBar_ScaleScreenTo96(AObj: TToolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -553,6 +584,7 @@ end;
 
 function ToolBar_GetButtonCount(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonCount;
   handleExceptionEnd
@@ -560,6 +592,7 @@ end;
 
 function ToolBar_GetCanvas(AObj: TToolBar): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -567,6 +600,7 @@ end;
 
 function ToolBar_GetRowCount(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowCount;
   handleExceptionEnd
@@ -574,6 +608,7 @@ end;
 
 function ToolBar_GetAlign(AObj: TToolBar): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -588,6 +623,7 @@ end;
 
 function ToolBar_GetAnchors(AObj: TToolBar): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -602,6 +638,7 @@ end;
 
 function ToolBar_GetAutoSize(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -616,6 +653,7 @@ end;
 
 function ToolBar_GetBorderWidth(AObj: TToolBar): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -630,6 +668,7 @@ end;
 
 function ToolBar_GetButtonHeight(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonHeight;
   handleExceptionEnd
@@ -644,6 +683,7 @@ end;
 
 function ToolBar_GetButtonWidth(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonWidth;
   handleExceptionEnd
@@ -658,6 +698,7 @@ end;
 
 function ToolBar_GetCaption(AObj: TToolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -672,6 +713,7 @@ end;
 
 function ToolBar_GetColor(AObj: TToolBar): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -686,6 +728,7 @@ end;
 
 function ToolBar_GetConstraints(AObj: TToolBar): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -700,6 +743,7 @@ end;
 
 function ToolBar_GetDoubleBuffered(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -714,6 +758,7 @@ end;
 
 function ToolBar_GetDockSite(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -728,6 +773,7 @@ end;
 
 function ToolBar_GetDragCursor(AObj: TToolBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -742,6 +788,7 @@ end;
 
 function ToolBar_GetDragKind(AObj: TToolBar): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -756,6 +803,7 @@ end;
 
 function ToolBar_GetDragMode(AObj: TToolBar): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -770,6 +818,7 @@ end;
 
 function ToolBar_GetEdgeBorders(AObj: TToolBar): TEdgeBorders; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeBorders;
   handleExceptionEnd
@@ -784,6 +833,7 @@ end;
 
 function ToolBar_GetEdgeInner(AObj: TToolBar): TEdgeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeInner;
   handleExceptionEnd
@@ -798,6 +848,7 @@ end;
 
 function ToolBar_GetEdgeOuter(AObj: TToolBar): TEdgeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeOuter;
   handleExceptionEnd
@@ -812,6 +863,7 @@ end;
 
 function ToolBar_GetEnabled(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -826,6 +878,7 @@ end;
 
 function ToolBar_GetFlat(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Flat;
   handleExceptionEnd
@@ -840,6 +893,7 @@ end;
 
 function ToolBar_GetFont(AObj: TToolBar): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -854,6 +908,7 @@ end;
 
 function ToolBar_GetHeight(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -868,6 +923,7 @@ end;
 
 function ToolBar_GetHotImages(AObj: TToolBar): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.HotImages;
   handleExceptionEnd
@@ -882,6 +938,7 @@ end;
 
 function ToolBar_GetImages(AObj: TToolBar): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -896,6 +953,7 @@ end;
 
 function ToolBar_GetIndent(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Indent;
   handleExceptionEnd
@@ -910,6 +968,7 @@ end;
 
 function ToolBar_GetList(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.List;
   handleExceptionEnd
@@ -924,6 +983,7 @@ end;
 
 function ToolBar_GetParentColor(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -938,6 +998,7 @@ end;
 
 function ToolBar_GetParentDoubleBuffered(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -952,6 +1013,7 @@ end;
 
 function ToolBar_GetParentFont(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -966,6 +1028,7 @@ end;
 
 function ToolBar_GetParentShowHint(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -980,6 +1043,7 @@ end;
 
 function ToolBar_GetPopupMenu(AObj: TToolBar): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -994,6 +1058,7 @@ end;
 
 function ToolBar_GetShowCaptions(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowCaptions;
   handleExceptionEnd
@@ -1008,6 +1073,7 @@ end;
 
 function ToolBar_GetShowHint(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1022,6 +1088,7 @@ end;
 
 function ToolBar_GetTabOrder(AObj: TToolBar): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1036,6 +1103,7 @@ end;
 
 function ToolBar_GetTabStop(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1050,6 +1118,7 @@ end;
 
 function ToolBar_GetTransparent(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -1064,6 +1133,7 @@ end;
 
 function ToolBar_GetVisible(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1078,6 +1148,7 @@ end;
 
 function ToolBar_GetWrapable(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Wrapable;
   handleExceptionEnd
@@ -1220,6 +1291,7 @@ end;
 
 function ToolBar_GetDockClientCount(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1227,6 +1299,7 @@ end;
 
 function ToolBar_GetMouseInClient(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1234,6 +1307,7 @@ end;
 
 function ToolBar_GetVisibleDockClientCount(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1241,6 +1315,7 @@ end;
 
 function ToolBar_GetBrush(AObj: TToolBar): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1248,6 +1323,7 @@ end;
 
 function ToolBar_GetControlCount(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1255,6 +1331,7 @@ end;
 
 function ToolBar_GetHandle(AObj: TToolBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1262,6 +1339,7 @@ end;
 
 function ToolBar_GetParentWindow(AObj: TToolBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1276,6 +1354,7 @@ end;
 
 function ToolBar_GetShowing(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1283,6 +1362,7 @@ end;
 
 function ToolBar_GetUseDockManager(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1297,6 +1377,7 @@ end;
 
 function ToolBar_GetAction(AObj: TToolBar): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1311,6 +1392,7 @@ end;
 
 function ToolBar_GetBiDiMode(AObj: TToolBar): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1341,6 +1423,7 @@ end;
 
 function ToolBar_GetClientHeight(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1371,6 +1454,7 @@ end;
 
 function ToolBar_GetClientWidth(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1385,6 +1469,7 @@ end;
 
 function ToolBar_GetControlState(AObj: TToolBar): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1399,6 +1484,7 @@ end;
 
 function ToolBar_GetControlStyle(AObj: TToolBar): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1413,6 +1499,7 @@ end;
 
 function ToolBar_GetFloating(AObj: TToolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1420,6 +1507,7 @@ end;
 
 function ToolBar_GetParent(AObj: TToolBar): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1434,6 +1522,7 @@ end;
 
 function ToolBar_GetLeft(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1448,6 +1537,7 @@ end;
 
 function ToolBar_GetTop(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1462,6 +1552,7 @@ end;
 
 function ToolBar_GetWidth(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1476,6 +1567,7 @@ end;
 
 function ToolBar_GetCursor(AObj: TToolBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1490,6 +1582,7 @@ end;
 
 function ToolBar_GetHint(AObj: TToolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1504,6 +1597,7 @@ end;
 
 function ToolBar_GetComponentCount(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1511,6 +1605,7 @@ end;
 
 function ToolBar_GetComponentIndex(AObj: TToolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1525,6 +1620,7 @@ end;
 
 function ToolBar_GetOwner(AObj: TToolBar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1532,6 +1628,7 @@ end;
 
 function ToolBar_GetName(AObj: TToolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1546,6 +1643,7 @@ end;
 
 function ToolBar_GetTag(AObj: TToolBar): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1560,6 +1658,7 @@ end;
 
 function ToolBar_GetAnchorSideLeft(AObj: TToolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1574,6 +1673,7 @@ end;
 
 function ToolBar_GetAnchorSideTop(AObj: TToolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1588,6 +1688,7 @@ end;
 
 function ToolBar_GetAnchorSideRight(AObj: TToolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1602,6 +1703,7 @@ end;
 
 function ToolBar_GetAnchorSideBottom(AObj: TToolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1616,6 +1718,7 @@ end;
 
 function ToolBar_GetChildSizing(AObj: TToolBar): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1630,6 +1733,7 @@ end;
 
 function ToolBar_GetBorderSpacing(AObj: TToolBar): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1644,6 +1748,7 @@ end;
 
 function ToolBar_GetButtons(AObj: TToolBar; Index: Integer): TToolButton; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Buttons[Index];
   handleExceptionEnd
@@ -1651,6 +1756,7 @@ end;
 
 function ToolBar_GetDockClients(AObj: TToolBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1658,6 +1764,7 @@ end;
 
 function ToolBar_GetControls(AObj: TToolBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1665,6 +1772,7 @@ end;
 
 function ToolBar_GetComponents(AObj: TToolBar; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1672,6 +1780,7 @@ end;
 
 function ToolBar_GetAnchorSide(AObj: TToolBar; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function HeaderSections_Create(AOwner: TCustomHeaderControl): THeaderSections; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  THeaderSections.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_Add(AObj: THeaderSections): THeaderSection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_AddItem(AObj: THeaderSections; Item: THeaderSection; Index: Integer): THeaderSection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddItem(Item, Index);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_Insert(AObj: THeaderSections; Index: Integer): THeaderSection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_Owner(AObj: THeaderSections): TPersistent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_FindItemID(AObj: THeaderSections; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_GetNamePath(AObj: THeaderSections): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_ClassType(AObj: THeaderSections): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -120,6 +128,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_ClassName(AObj: THeaderSections): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -128,6 +137,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_InstanceSize(AObj: THeaderSections): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -136,6 +146,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_InheritsFrom(AObj: THeaderSections; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -144,6 +155,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_Equals(AObj: THeaderSections; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -152,6 +164,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_GetHashCode(AObj: THeaderSections): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -160,6 +173,7 @@ end;
 //CLASSMETHOD:
 function HeaderSections_ToString(AObj: THeaderSections): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -167,6 +181,7 @@ end;
 
 function HeaderSections_GetCount(AObj: THeaderSections): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -174,6 +189,7 @@ end;
 
 function HeaderSections_GetItems(AObj: THeaderSections; Index: Integer): THeaderSection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd

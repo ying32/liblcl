@@ -9,6 +9,7 @@
 
 function Action_Create(AOwner: TComponent): TAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TAction.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function Action_Execute(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function Action_Update(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Update;
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function Action_HasParent(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function Action_FindComponent(AObj: TAction; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -56,6 +61,7 @@ end;
 //CLASSMETHOD:
 function Action_GetNamePath(AObj: TAction): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function Action_ClassType(AObj: TAction): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function Action_ClassName(AObj: TAction): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function Action_InstanceSize(AObj: TAction): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function Action_InheritsFrom(AObj: TAction; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function Action_Equals(AObj: TAction; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function Action_GetHashCode(AObj: TAction): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -120,6 +132,7 @@ end;
 //CLASSMETHOD:
 function Action_ToString(AObj: TAction): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -127,6 +140,7 @@ end;
 
 function Action_GetAutoCheck(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoCheck;
   handleExceptionEnd
@@ -141,6 +155,7 @@ end;
 
 function Action_GetCaption(AObj: TAction): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -155,6 +170,7 @@ end;
 
 function Action_GetChecked(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checked;
   handleExceptionEnd
@@ -169,6 +185,7 @@ end;
 
 function Action_GetEnabled(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -183,6 +200,7 @@ end;
 
 function Action_GetGroupIndex(AObj: TAction): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GroupIndex;
   handleExceptionEnd
@@ -197,6 +215,7 @@ end;
 
 function Action_GetHint(AObj: TAction): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -211,6 +230,7 @@ end;
 
 function Action_GetImageIndex(AObj: TAction): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -225,6 +245,7 @@ end;
 
 function Action_GetShortCut(AObj: TAction): TShortCut; extdecl;
 begin
+{$ifdef UsehandleException}Result := TShortCut(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShortCut;
   handleExceptionEnd
@@ -239,6 +260,7 @@ end;
 
 function Action_GetVisible(AObj: TAction): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -269,6 +291,7 @@ end;
 
 function Action_GetIndex(AObj: TAction): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -283,6 +306,7 @@ end;
 
 function Action_GetComponentCount(AObj: TAction): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -290,6 +314,7 @@ end;
 
 function Action_GetComponentIndex(AObj: TAction): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -304,6 +329,7 @@ end;
 
 function Action_GetOwner(AObj: TAction): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -311,6 +337,7 @@ end;
 
 function Action_GetName(AObj: TAction): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -325,6 +352,7 @@ end;
 
 function Action_GetTag(AObj: TAction): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -339,6 +367,7 @@ end;
 
 function Action_GetComponents(AObj: TAction; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

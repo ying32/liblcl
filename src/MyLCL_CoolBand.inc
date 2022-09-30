@@ -9,6 +9,7 @@
 
 function CoolBand_Create(AOwner: TCollection): TCoolBand; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TCoolBand.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_GetNamePath(AObj: TCoolBand): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_ClassType(AObj: TCoolBand): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_ClassName(AObj: TCoolBand): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_InstanceSize(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_InheritsFrom(AObj: TCoolBand; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_Equals(AObj: TCoolBand; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_GetHashCode(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function CoolBand_ToString(AObj: TCoolBand): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function CoolBand_GetHeight(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -102,6 +112,7 @@ end;
 
 function CoolBand_GetBitmap(AObj: TCoolBand): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Bitmap;
   handleExceptionEnd
@@ -116,6 +127,7 @@ end;
 
 function CoolBand_GetBorderStyle(AObj: TCoolBand): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -130,6 +142,7 @@ end;
 
 function CoolBand_GetBreak(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Break;
   handleExceptionEnd
@@ -144,6 +157,7 @@ end;
 
 function CoolBand_GetColor(AObj: TCoolBand): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -158,6 +172,7 @@ end;
 
 function CoolBand_GetControl(AObj: TCoolBand): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Control as TWinControl;
   handleExceptionEnd
@@ -172,6 +187,7 @@ end;
 
 function CoolBand_GetFixedBackground(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedBackground;
   handleExceptionEnd
@@ -186,6 +202,7 @@ end;
 
 function CoolBand_GetFixedSize(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedSize;
   handleExceptionEnd
@@ -200,6 +217,7 @@ end;
 
 function CoolBand_GetHorizontalOnly(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HorizontalOnly;
   handleExceptionEnd
@@ -214,6 +232,7 @@ end;
 
 function CoolBand_GetImageIndex(AObj: TCoolBand): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -228,6 +247,7 @@ end;
 
 function CoolBand_GetMinHeight(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinHeight;
   handleExceptionEnd
@@ -242,6 +262,7 @@ end;
 
 function CoolBand_GetMinWidth(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinWidth;
   handleExceptionEnd
@@ -256,6 +277,7 @@ end;
 
 function CoolBand_GetParentColor(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -270,6 +292,7 @@ end;
 
 function CoolBand_GetParentBitmap(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentBitmap;
   handleExceptionEnd
@@ -284,6 +307,7 @@ end;
 
 function CoolBand_GetText(AObj: TCoolBand): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -298,6 +322,7 @@ end;
 
 function CoolBand_GetVisible(AObj: TCoolBand): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -312,6 +337,7 @@ end;
 
 function CoolBand_GetWidth(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -326,6 +352,7 @@ end;
 
 function CoolBand_GetCollection(AObj: TCoolBand): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -340,6 +367,7 @@ end;
 
 function CoolBand_GetIndex(AObj: TCoolBand): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -354,6 +382,7 @@ end;
 
 function CoolBand_GetDisplayName(AObj: TCoolBand): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

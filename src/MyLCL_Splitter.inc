@@ -9,6 +9,7 @@
 
 function Splitter_Create(AOwner: TComponent): TSplitter; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TSplitter.Create(AOwner);
   handleExceptionEnd
@@ -52,6 +53,7 @@ end;
 //CLASSMETHOD:
 function Splitter_Dragging(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -60,6 +62,7 @@ end;
 //CLASSMETHOD:
 function Splitter_HasParent(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -84,6 +87,7 @@ end;
 //CLASSMETHOD:
 function Splitter_Perform(AObj: TSplitter; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -160,6 +164,7 @@ end;
 //CLASSMETHOD:
 function Splitter_GetTextBuf(AObj: TSplitter; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -168,6 +173,7 @@ end;
 //CLASSMETHOD:
 function Splitter_GetTextLen(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -184,6 +190,7 @@ end;
 //CLASSMETHOD:
 function Splitter_FindComponent(AObj: TSplitter; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -192,6 +199,7 @@ end;
 //CLASSMETHOD:
 function Splitter_GetNamePath(AObj: TSplitter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -208,6 +216,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ClassType(AObj: TSplitter): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -216,6 +225,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ClassName(AObj: TSplitter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -224,6 +234,7 @@ end;
 //CLASSMETHOD:
 function Splitter_InstanceSize(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -232,6 +243,7 @@ end;
 //CLASSMETHOD:
 function Splitter_InheritsFrom(AObj: TSplitter; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -240,6 +252,7 @@ end;
 //CLASSMETHOD:
 function Splitter_Equals(AObj: TSplitter; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -248,6 +261,7 @@ end;
 //CLASSMETHOD:
 function Splitter_GetHashCode(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -256,6 +270,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ToString(AObj: TSplitter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -320,6 +335,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleDesignToForm(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -328,6 +344,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleFormToDesign(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -336,6 +353,7 @@ end;
 //CLASSMETHOD:
 function Splitter_Scale96ToForm(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -344,6 +362,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleFormTo96(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -352,6 +371,7 @@ end;
 //CLASSMETHOD:
 function Splitter_Scale96ToFont(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -360,6 +380,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleFontTo96(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -368,6 +389,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleScreenToFont(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -376,6 +398,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleFontToScreen(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -384,6 +407,7 @@ end;
 //CLASSMETHOD:
 function Splitter_Scale96ToScreen(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +416,7 @@ end;
 //CLASSMETHOD:
 function Splitter_ScaleScreenTo96(AObj: TSplitter; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -424,6 +449,7 @@ end;
 
 function Splitter_GetResizeAnchor(AObj: TSplitter): TAnchorKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAnchorKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ResizeAnchor;
   handleExceptionEnd
@@ -438,6 +464,7 @@ end;
 
 function Splitter_GetCanvas(AObj: TSplitter): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -445,6 +472,7 @@ end;
 
 function Splitter_GetAlign(AObj: TSplitter): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -459,6 +487,7 @@ end;
 
 function Splitter_GetColor(AObj: TSplitter): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -473,6 +502,7 @@ end;
 
 function Splitter_GetCursor(AObj: TSplitter): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -487,6 +517,7 @@ end;
 
 function Splitter_GetConstraints(AObj: TSplitter): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -501,6 +532,7 @@ end;
 
 function Splitter_GetMinSize(AObj: TSplitter): NaturalNumber; extdecl;
 begin
+{$ifdef UsehandleException}Result := NaturalNumber(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinSize;
   handleExceptionEnd
@@ -515,6 +547,7 @@ end;
 
 function Splitter_GetParentColor(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -529,6 +562,7 @@ end;
 
 function Splitter_GetVisible(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -543,6 +577,7 @@ end;
 
 function Splitter_GetWidth(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -565,6 +600,7 @@ end;
 
 function Splitter_GetEnabled(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -579,6 +615,7 @@ end;
 
 function Splitter_GetAction(AObj: TSplitter): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -593,6 +630,7 @@ end;
 
 function Splitter_GetAnchors(AObj: TSplitter): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -607,6 +645,7 @@ end;
 
 function Splitter_GetBiDiMode(AObj: TSplitter): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -637,6 +676,7 @@ end;
 
 function Splitter_GetClientHeight(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -667,6 +707,7 @@ end;
 
 function Splitter_GetClientWidth(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -681,6 +722,7 @@ end;
 
 function Splitter_GetControlState(AObj: TSplitter): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -695,6 +737,7 @@ end;
 
 function Splitter_GetControlStyle(AObj: TSplitter): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -709,6 +752,7 @@ end;
 
 function Splitter_GetFloating(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -716,6 +760,7 @@ end;
 
 function Splitter_GetShowHint(AObj: TSplitter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -730,6 +775,7 @@ end;
 
 function Splitter_GetParent(AObj: TSplitter): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -744,6 +790,7 @@ end;
 
 function Splitter_GetLeft(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -758,6 +805,7 @@ end;
 
 function Splitter_GetTop(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -772,6 +820,7 @@ end;
 
 function Splitter_GetHeight(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -786,6 +835,7 @@ end;
 
 function Splitter_GetHint(AObj: TSplitter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -800,6 +850,7 @@ end;
 
 function Splitter_GetComponentCount(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -807,6 +858,7 @@ end;
 
 function Splitter_GetComponentIndex(AObj: TSplitter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -821,6 +873,7 @@ end;
 
 function Splitter_GetOwner(AObj: TSplitter): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -828,6 +881,7 @@ end;
 
 function Splitter_GetName(AObj: TSplitter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -842,6 +896,7 @@ end;
 
 function Splitter_GetTag(AObj: TSplitter): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -856,6 +911,7 @@ end;
 
 function Splitter_GetAnchorSideLeft(AObj: TSplitter): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -870,6 +926,7 @@ end;
 
 function Splitter_GetAnchorSideTop(AObj: TSplitter): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -884,6 +941,7 @@ end;
 
 function Splitter_GetAnchorSideRight(AObj: TSplitter): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -898,6 +956,7 @@ end;
 
 function Splitter_GetAnchorSideBottom(AObj: TSplitter): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -912,6 +971,7 @@ end;
 
 function Splitter_GetBorderSpacing(AObj: TSplitter): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -926,6 +986,7 @@ end;
 
 function Splitter_GetComponents(AObj: TSplitter; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -933,6 +994,7 @@ end;
 
 function Splitter_GetAnchorSide(AObj: TSplitter; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

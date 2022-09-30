@@ -9,6 +9,7 @@
 
 function ListItem_Create(AOwner: TListItems): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TListItem.Create(AOwner);
   handleExceptionEnd
@@ -58,6 +59,7 @@ end;
 //CLASSMETHOD:
 function ListItem_EditCaption(AObj: TListItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.EditCaption;
   handleExceptionEnd
@@ -74,6 +76,7 @@ end;
 //CLASSMETHOD:
 function ListItem_GetNamePath(AObj: TListItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -82,6 +85,7 @@ end;
 //CLASSMETHOD:
 function ListItem_ClassType(AObj: TListItem): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -90,6 +94,7 @@ end;
 //CLASSMETHOD:
 function ListItem_ClassName(AObj: TListItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -98,6 +103,7 @@ end;
 //CLASSMETHOD:
 function ListItem_InstanceSize(AObj: TListItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -106,6 +112,7 @@ end;
 //CLASSMETHOD:
 function ListItem_InheritsFrom(AObj: TListItem; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -114,6 +121,7 @@ end;
 //CLASSMETHOD:
 function ListItem_Equals(AObj: TListItem; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -122,6 +130,7 @@ end;
 //CLASSMETHOD:
 function ListItem_GetHashCode(AObj: TListItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -130,6 +139,7 @@ end;
 //CLASSMETHOD:
 function ListItem_ToString(AObj: TListItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -137,6 +147,7 @@ end;
 
 function ListItem_GetDropTarget(AObj: TListItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DropTarget;
   handleExceptionEnd
@@ -151,6 +162,7 @@ end;
 
 function ListItem_GetCaption(AObj: TListItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -165,6 +177,7 @@ end;
 
 function ListItem_GetChecked(AObj: TListItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checked;
   handleExceptionEnd
@@ -179,6 +192,7 @@ end;
 
 function ListItem_GetCut(AObj: TListItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Cut;
   handleExceptionEnd
@@ -193,6 +207,7 @@ end;
 
 function ListItem_GetData(AObj: TListItem): Pointer; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Data;
   handleExceptionEnd
@@ -207,6 +222,7 @@ end;
 
 function ListItem_GetFocused(AObj: TListItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -221,6 +237,7 @@ end;
 
 function ListItem_GetImageIndex(AObj: TListItem): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -235,6 +252,7 @@ end;
 
 function ListItem_GetIndex(AObj: TListItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -242,6 +260,7 @@ end;
 
 function ListItem_GetLeft(AObj: TListItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -256,6 +275,7 @@ end;
 
 function ListItem_GetListView(AObj: TListItem): TCustomListView; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ListView;
   handleExceptionEnd
@@ -263,6 +283,7 @@ end;
 
 function ListItem_GetOwner(AObj: TListItem): TListItems; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -286,6 +307,7 @@ end;
 
 function ListItem_GetSelected(AObj: TListItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Selected;
   handleExceptionEnd
@@ -300,6 +322,7 @@ end;
 
 function ListItem_GetStateIndex(AObj: TListItem): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.StateIndex;
   handleExceptionEnd
@@ -314,6 +337,7 @@ end;
 
 function ListItem_GetSubItems(AObj: TListItem): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.SubItems;
   handleExceptionEnd
@@ -328,6 +352,7 @@ end;
 
 function ListItem_GetTop(AObj: TListItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -342,6 +367,7 @@ end;
 
 function ListItem_GetSubItemImages(AObj: TListItem; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SubItemImages[Index];
   handleExceptionEnd

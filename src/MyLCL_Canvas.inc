@@ -9,6 +9,7 @@
 
 function Canvas_Create: TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TCanvas.Create;
   handleExceptionEnd
@@ -73,6 +74,7 @@ end;
 //CLASSMETHOD:
 function Canvas_HandleAllocated(AObj: TCanvas): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -163,6 +165,7 @@ end;
 //CLASSMETHOD:
 function Canvas_TextHeight(AObj: TCanvas; Text: PChar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TextHeight(Text);
   handleExceptionEnd
@@ -171,6 +174,7 @@ end;
 //CLASSMETHOD:
 function Canvas_TextWidth(AObj: TCanvas; Text: PChar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TextWidth(Text);
   handleExceptionEnd
@@ -187,6 +191,7 @@ end;
 //CLASSMETHOD:
 function Canvas_GetNamePath(AObj: TCanvas): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -195,6 +200,7 @@ end;
 //CLASSMETHOD:
 function Canvas_ClassType(AObj: TCanvas): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -203,6 +209,7 @@ end;
 //CLASSMETHOD:
 function Canvas_ClassName(AObj: TCanvas): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -211,6 +218,7 @@ end;
 //CLASSMETHOD:
 function Canvas_InstanceSize(AObj: TCanvas): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -219,6 +227,7 @@ end;
 //CLASSMETHOD:
 function Canvas_InheritsFrom(AObj: TCanvas; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -227,6 +236,7 @@ end;
 //CLASSMETHOD:
 function Canvas_Equals(AObj: TCanvas; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -235,6 +245,7 @@ end;
 //CLASSMETHOD:
 function Canvas_GetHashCode(AObj: TCanvas): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -243,6 +254,7 @@ end;
 //CLASSMETHOD:
 function Canvas_ToString(AObj: TCanvas): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -250,6 +262,7 @@ end;
 
 function Canvas_GetHandle(AObj: TCanvas): HDC; extdecl;
 begin
+{$ifdef UsehandleException}Result := HDC(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -264,6 +277,7 @@ end;
 
 function Canvas_GetBrush(AObj: TCanvas): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -278,6 +292,7 @@ end;
 
 function Canvas_GetCopyMode(AObj: TCanvas): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CopyMode;
   handleExceptionEnd
@@ -292,6 +307,7 @@ end;
 
 function Canvas_GetFont(AObj: TCanvas): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -306,6 +322,7 @@ end;
 
 function Canvas_GetPen(AObj: TCanvas): TPen; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Pen;
   handleExceptionEnd
@@ -336,6 +353,7 @@ end;
 
 function Canvas_GetPixels(AObj: TCanvas; X: Integer; Y: Integer): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Pixels[X, Y];
   handleExceptionEnd

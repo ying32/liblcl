@@ -9,6 +9,7 @@
 
 function ListView_Create(AOwner: TComponent): TListView; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TListView.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function ListView_AlphaSort(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AlphaSort;
   handleExceptionEnd
@@ -64,6 +66,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetHitTestInfoAt(AObj: TListView; X: Integer; Y: Integer): THitTests; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHitTestInfoAt(X, Y);
   handleExceptionEnd
@@ -72,6 +75,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetItemAt(AObj: TListView; X: Integer; Y: Integer): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetItemAt(X, Y);
   handleExceptionEnd
@@ -81,6 +85,7 @@ end;
 //PARAMS:2=nonPtr
 function ListView_GetNearestItem(AObj: TListView; var Point: TPoint; Direction: TSearchDirection): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetNearestItem(Point, Direction);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetNextItem(AObj: TListView; StartItem: TListItem; Direction: TSearchDirection; States: TListItemStates): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetNextItem(StartItem, Direction, States);
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function ListView_IsEditing(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsEditing;
   handleExceptionEnd
@@ -113,6 +120,7 @@ end;
 //CLASSMETHOD:
 function ListView_CustomSort(AObj: TListView; SortProc: PFNLVCOMPARE; lParam: NativeInt): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CustomSort(SortProc, lParam);
   handleExceptionEnd
@@ -121,6 +129,7 @@ end;
 //CLASSMETHOD:
 function ListView_CanFocus(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -129,6 +138,7 @@ end;
 //CLASSMETHOD:
 function ListView_ContainsControl(AObj: TListView; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -138,6 +148,7 @@ end;
 //PARAMS:2=nonPtr
 function ListView_ControlAtPos(AObj: TListView; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -162,6 +173,7 @@ end;
 //CLASSMETHOD:
 function ListView_FindChildControl(AObj: TListView; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -178,6 +190,7 @@ end;
 //CLASSMETHOD:
 function ListView_Focused(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -186,6 +199,7 @@ end;
 //CLASSMETHOD:
 function ListView_HandleAllocated(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -310,6 +324,7 @@ end;
 //CLASSMETHOD:
 function ListView_Dragging(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -318,6 +333,7 @@ end;
 //CLASSMETHOD:
 function ListView_HasParent(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -334,6 +350,7 @@ end;
 //CLASSMETHOD:
 function ListView_Perform(AObj: TListView; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -386,6 +403,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetTextBuf(AObj: TListView; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -394,6 +412,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetTextLen(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -410,6 +429,7 @@ end;
 //CLASSMETHOD:
 function ListView_FindComponent(AObj: TListView; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -418,6 +438,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetNamePath(AObj: TListView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -434,6 +455,7 @@ end;
 //CLASSMETHOD:
 function ListView_ClassType(AObj: TListView): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -442,6 +464,7 @@ end;
 //CLASSMETHOD:
 function ListView_ClassName(AObj: TListView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -450,6 +473,7 @@ end;
 //CLASSMETHOD:
 function ListView_InstanceSize(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -458,6 +482,7 @@ end;
 //CLASSMETHOD:
 function ListView_InheritsFrom(AObj: TListView; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -466,6 +491,7 @@ end;
 //CLASSMETHOD:
 function ListView_Equals(AObj: TListView; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -474,6 +500,7 @@ end;
 //CLASSMETHOD:
 function ListView_GetHashCode(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -482,6 +509,7 @@ end;
 //CLASSMETHOD:
 function ListView_ToString(AObj: TListView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -546,6 +574,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleDesignToForm(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -554,6 +583,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleFormToDesign(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -562,6 +592,7 @@ end;
 //CLASSMETHOD:
 function ListView_Scale96ToForm(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -570,6 +601,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleFormTo96(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -578,6 +610,7 @@ end;
 //CLASSMETHOD:
 function ListView_Scale96ToFont(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -586,6 +619,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleFontTo96(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -594,6 +628,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleScreenToFont(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -602,6 +637,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleFontToScreen(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -610,6 +646,7 @@ end;
 //CLASSMETHOD:
 function ListView_Scale96ToScreen(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -618,6 +655,7 @@ end;
 //CLASSMETHOD:
 function ListView_ScaleScreenTo96(AObj: TListView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -650,6 +688,7 @@ end;
 
 function ListView_GetAutoSort(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSort;
   handleExceptionEnd
@@ -664,6 +703,7 @@ end;
 
 function ListView_GetAutoSortIndicator(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSortIndicator;
   handleExceptionEnd
@@ -678,6 +718,7 @@ end;
 
 function ListView_GetAutoWidthLastColumn(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoWidthLastColumn;
   handleExceptionEnd
@@ -692,6 +733,7 @@ end;
 
 function ListView_GetSmallImagesWidth(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SmallImagesWidth;
   handleExceptionEnd
@@ -706,6 +748,7 @@ end;
 
 function ListView_GetSortColumn(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortColumn;
   handleExceptionEnd
@@ -720,6 +763,7 @@ end;
 
 function ListView_GetSortDirection(AObj: TListView): TSortDirection; extdecl;
 begin
+{$ifdef UsehandleException}Result := TSortDirection(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortDirection;
   handleExceptionEnd
@@ -734,6 +778,7 @@ end;
 
 function ListView_GetLargeImagesWidth(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LargeImagesWidth;
   handleExceptionEnd
@@ -748,6 +793,7 @@ end;
 
 function ListView_GetStateImagesWidth(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.StateImagesWidth;
   handleExceptionEnd
@@ -762,6 +808,7 @@ end;
 
 function ListView_GetToolTips(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ToolTips;
   handleExceptionEnd
@@ -776,6 +823,7 @@ end;
 
 function ListView_GetScrollBars(AObj: TListView): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -790,6 +838,7 @@ end;
 
 function ListView_GetColumnCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColumnCount;
   handleExceptionEnd
@@ -797,6 +846,7 @@ end;
 
 function ListView_GetAction(AObj: TListView): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -811,6 +861,7 @@ end;
 
 function ListView_GetAlign(AObj: TListView): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -825,6 +876,7 @@ end;
 
 function ListView_GetAllocBy(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AllocBy;
   handleExceptionEnd
@@ -839,6 +891,7 @@ end;
 
 function ListView_GetAnchors(AObj: TListView): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -853,6 +906,7 @@ end;
 
 function ListView_GetBiDiMode(AObj: TListView): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -867,6 +921,7 @@ end;
 
 function ListView_GetBorderStyle(AObj: TListView): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -881,6 +936,7 @@ end;
 
 function ListView_GetBorderWidth(AObj: TListView): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -895,6 +951,7 @@ end;
 
 function ListView_GetCheckboxes(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checkboxes;
   handleExceptionEnd
@@ -909,6 +966,7 @@ end;
 
 function ListView_GetColor(AObj: TListView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -923,6 +981,7 @@ end;
 
 function ListView_GetColumns(AObj: TListView): TListColumns; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Columns;
   handleExceptionEnd
@@ -937,6 +996,7 @@ end;
 
 function ListView_GetColumnClick(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ColumnClick;
   handleExceptionEnd
@@ -951,6 +1011,7 @@ end;
 
 function ListView_GetConstraints(AObj: TListView): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -965,6 +1026,7 @@ end;
 
 function ListView_GetDoubleBuffered(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -979,6 +1041,7 @@ end;
 
 function ListView_GetDragCursor(AObj: TListView): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -993,6 +1056,7 @@ end;
 
 function ListView_GetDragKind(AObj: TListView): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1007,6 +1071,7 @@ end;
 
 function ListView_GetDragMode(AObj: TListView): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1021,6 +1086,7 @@ end;
 
 function ListView_GetEnabled(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -1035,6 +1101,7 @@ end;
 
 function ListView_GetFont(AObj: TListView): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -1049,6 +1116,7 @@ end;
 
 function ListView_GetFlatScrollBars(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FlatScrollBars;
   handleExceptionEnd
@@ -1063,6 +1131,7 @@ end;
 
 function ListView_GetFullDrag(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FullDrag;
   handleExceptionEnd
@@ -1077,6 +1146,7 @@ end;
 
 function ListView_GetGridLines(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLines;
   handleExceptionEnd
@@ -1091,6 +1161,7 @@ end;
 
 function ListView_GetHideSelection(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -1105,6 +1176,7 @@ end;
 
 function ListView_GetHotTrack(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HotTrack;
   handleExceptionEnd
@@ -1119,6 +1191,7 @@ end;
 
 function ListView_GetIconOptions(AObj: TListView): TIconOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.IconOptions;
   handleExceptionEnd
@@ -1133,6 +1206,7 @@ end;
 
 function ListView_GetItems(AObj: TListView): TListItems; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -1147,6 +1221,7 @@ end;
 
 function ListView_GetLargeImages(AObj: TListView): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.LargeImages;
   handleExceptionEnd
@@ -1161,6 +1236,7 @@ end;
 
 function ListView_GetMultiSelect(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiSelect;
   handleExceptionEnd
@@ -1175,6 +1251,7 @@ end;
 
 function ListView_GetOwnerData(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.OwnerData;
   handleExceptionEnd
@@ -1189,6 +1266,7 @@ end;
 
 function ListView_GetOwnerDraw(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.OwnerDraw;
   handleExceptionEnd
@@ -1203,6 +1281,7 @@ end;
 
 function ListView_GetReadOnly(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -1217,6 +1296,7 @@ end;
 
 function ListView_GetRowSelect(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RowSelect;
   handleExceptionEnd
@@ -1231,6 +1311,7 @@ end;
 
 function ListView_GetParentColor(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -1245,6 +1326,7 @@ end;
 
 function ListView_GetParentDoubleBuffered(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1259,6 +1341,7 @@ end;
 
 function ListView_GetParentFont(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -1273,6 +1356,7 @@ end;
 
 function ListView_GetParentShowHint(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -1287,6 +1371,7 @@ end;
 
 function ListView_GetPopupMenu(AObj: TListView): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1301,6 +1386,7 @@ end;
 
 function ListView_GetShowColumnHeaders(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowColumnHeaders;
   handleExceptionEnd
@@ -1315,6 +1401,7 @@ end;
 
 function ListView_GetShowHint(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1329,6 +1416,7 @@ end;
 
 function ListView_GetSmallImages(AObj: TListView): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.SmallImages;
   handleExceptionEnd
@@ -1343,6 +1431,7 @@ end;
 
 function ListView_GetSortType(AObj: TListView): TSortType; extdecl;
 begin
+{$ifdef UsehandleException}Result := TSortType(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortType;
   handleExceptionEnd
@@ -1357,6 +1446,7 @@ end;
 
 function ListView_GetStateImages(AObj: TListView): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.StateImages;
   handleExceptionEnd
@@ -1371,6 +1461,7 @@ end;
 
 function ListView_GetTabOrder(AObj: TListView): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1385,6 +1476,7 @@ end;
 
 function ListView_GetTabStop(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1399,6 +1491,7 @@ end;
 
 function ListView_GetViewStyle(AObj: TListView): TViewStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TViewStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ViewStyle;
   handleExceptionEnd
@@ -1413,6 +1506,7 @@ end;
 
 function ListView_GetVisible(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1731,6 +1825,7 @@ end;
 
 function ListView_GetCanvas(AObj: TListView): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1738,6 +1833,7 @@ end;
 
 function ListView_GetDropTarget(AObj: TListView): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DropTarget;
   handleExceptionEnd
@@ -1752,6 +1848,7 @@ end;
 
 function ListView_GetItemFocused(AObj: TListView): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemFocused;
   handleExceptionEnd
@@ -1766,6 +1863,7 @@ end;
 
 function ListView_GetSelCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelCount;
   handleExceptionEnd
@@ -1773,6 +1871,7 @@ end;
 
 function ListView_GetSelected(AObj: TListView): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Selected;
   handleExceptionEnd
@@ -1787,6 +1886,7 @@ end;
 
 function ListView_GetTopItem(AObj: TListView): TListItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.TopItem;
   handleExceptionEnd
@@ -1794,6 +1894,7 @@ end;
 
 function ListView_GetVisibleRowCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleRowCount;
   handleExceptionEnd
@@ -1801,6 +1902,7 @@ end;
 
 function ListView_GetItemIndex(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemIndex;
   handleExceptionEnd
@@ -1815,6 +1917,7 @@ end;
 
 function ListView_GetDockClientCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1822,6 +1925,7 @@ end;
 
 function ListView_GetDockSite(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1836,6 +1940,7 @@ end;
 
 function ListView_GetMouseInClient(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1843,6 +1948,7 @@ end;
 
 function ListView_GetVisibleDockClientCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1850,6 +1956,7 @@ end;
 
 function ListView_GetBrush(AObj: TListView): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1857,6 +1964,7 @@ end;
 
 function ListView_GetControlCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1864,6 +1972,7 @@ end;
 
 function ListView_GetHandle(AObj: TListView): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1871,6 +1980,7 @@ end;
 
 function ListView_GetParentWindow(AObj: TListView): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1885,6 +1995,7 @@ end;
 
 function ListView_GetShowing(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1892,6 +2003,7 @@ end;
 
 function ListView_GetUseDockManager(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1922,6 +2034,7 @@ end;
 
 function ListView_GetClientHeight(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1952,6 +2065,7 @@ end;
 
 function ListView_GetClientWidth(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1966,6 +2080,7 @@ end;
 
 function ListView_GetControlState(AObj: TListView): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1980,6 +2095,7 @@ end;
 
 function ListView_GetControlStyle(AObj: TListView): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1994,6 +2110,7 @@ end;
 
 function ListView_GetFloating(AObj: TListView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -2001,6 +2118,7 @@ end;
 
 function ListView_GetParent(AObj: TListView): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -2015,6 +2133,7 @@ end;
 
 function ListView_GetLeft(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -2029,6 +2148,7 @@ end;
 
 function ListView_GetTop(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -2043,6 +2163,7 @@ end;
 
 function ListView_GetWidth(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -2057,6 +2178,7 @@ end;
 
 function ListView_GetHeight(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -2071,6 +2193,7 @@ end;
 
 function ListView_GetCursor(AObj: TListView): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -2085,6 +2208,7 @@ end;
 
 function ListView_GetHint(AObj: TListView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -2099,6 +2223,7 @@ end;
 
 function ListView_GetComponentCount(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -2106,6 +2231,7 @@ end;
 
 function ListView_GetComponentIndex(AObj: TListView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -2120,6 +2246,7 @@ end;
 
 function ListView_GetOwner(AObj: TListView): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -2127,6 +2254,7 @@ end;
 
 function ListView_GetName(AObj: TListView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -2141,6 +2269,7 @@ end;
 
 function ListView_GetTag(AObj: TListView): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -2155,6 +2284,7 @@ end;
 
 function ListView_GetAnchorSideLeft(AObj: TListView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -2169,6 +2299,7 @@ end;
 
 function ListView_GetAnchorSideTop(AObj: TListView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -2183,6 +2314,7 @@ end;
 
 function ListView_GetAnchorSideRight(AObj: TListView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -2197,6 +2329,7 @@ end;
 
 function ListView_GetAnchorSideBottom(AObj: TListView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -2211,6 +2344,7 @@ end;
 
 function ListView_GetChildSizing(AObj: TListView): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -2225,6 +2359,7 @@ end;
 
 function ListView_GetBorderSpacing(AObj: TListView): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -2239,6 +2374,7 @@ end;
 
 function ListView_GetColumn(AObj: TListView; Index: Integer): TListColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Column[Index];
   handleExceptionEnd
@@ -2246,6 +2382,7 @@ end;
 
 function ListView_GetDockClients(AObj: TListView; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -2253,6 +2390,7 @@ end;
 
 function ListView_GetControls(AObj: TListView; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -2260,6 +2398,7 @@ end;
 
 function ListView_GetComponents(AObj: TListView; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -2267,6 +2406,7 @@ end;
 
 function ListView_GetAnchorSide(AObj: TListView; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

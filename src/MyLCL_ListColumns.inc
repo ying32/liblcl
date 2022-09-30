@@ -9,6 +9,7 @@
 
 function ListColumns_Create(AOwner: TCustomListView): TListColumns; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TListColumns.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_Add(AObj: TListColumns): TListColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_Owner(AObj: TListColumns): TCustomListView; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_FindItemID(AObj: TListColumns; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_GetNamePath(AObj: TListColumns): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_Insert(AObj: TListColumns; Index: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_ClassType(AObj: TListColumns): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_ClassName(AObj: TListColumns): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -120,6 +128,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_InstanceSize(AObj: TListColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -128,6 +137,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_InheritsFrom(AObj: TListColumns; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -136,6 +146,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_Equals(AObj: TListColumns; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -144,6 +155,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_GetHashCode(AObj: TListColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -152,6 +164,7 @@ end;
 //CLASSMETHOD:
 function ListColumns_ToString(AObj: TListColumns): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -159,6 +172,7 @@ end;
 
 function ListColumns_GetCount(AObj: TListColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -166,6 +180,7 @@ end;
 
 function ListColumns_GetItems(AObj: TListColumns; Index: Integer): TListColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd

@@ -32,18 +32,22 @@ procedure AddLazarusResources(AName: PChar; AValueType: PChar; AValue: Pointer; 
 var
   LRes: AnsiString;
 begin
+  handleExceptionBegin
   if (ALength = 0) or (AValue = nil) then
     Exit;
   SetLength(LRes, ALength);
   Move(AValue^, LRes[1], ALength);
   LazarusResources.Add(AnsiString(AName), AnsiString(AValueType), LRes);
+  handleExceptionEnd
 end;
 
 procedure AddLazarusResources2(AName: PChar; AValueType: PChar; AValue: PChar);
 begin
+  handleExceptionBegin
   if AValue = nil then
     Exit;
   LazarusResources.Add(AnsiString(AName), AnsiString(AValueType), AnsiString(AValue));
+  handleExceptionEnd
 end;
 
 // SysLocale  14byte
@@ -169,6 +173,7 @@ end;
 
 function DTextToShortCut(AText: PChar): TShortCut; extdecl;
 begin
+{$ifdef UsehandleException}Result := TShortCut(0);{$endif}
   handleExceptionBegin
   Result := TextToShortCut(AText);
   handleExceptionEnd
@@ -176,6 +181,7 @@ end;
 
 function DShortCutToText(AVal: TShortCut): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(ShortCutToText(AVal));
   handleExceptionEnd
@@ -207,6 +213,7 @@ const
   LCF_HTML = 701; // custom
   LCF_COMPONENT = 702; // custom
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   case AFormatID of
     LCF_TEXT: AFormatID := Clipbrd.CF_Text;
@@ -217,13 +224,14 @@ begin
     LCF_HTML: AFormatID := Clipbrd.CF_HTML;
     LCF_COMPONENT: AFormatID := Clipbrd.CF_Component;
   end;
-  AObj.HasFormat(AFormatID);
+  Result := AObj.HasFormat(AFormatID);
   handleExceptionEnd
 end;
 
 //CLASSMETHOD:
 function Clipboard_GetTextBuf(AObj: TClipboard; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -231,6 +239,7 @@ end;
 
 function Clipboard_GetAsText(AObj: TClipboard): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.AsText);
   handleExceptionEnd
@@ -246,6 +255,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_GetAsHtml(AObj: TClipboard; ExtractFragmentOnly: LongBool): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetAsHtml(ExtractFragmentOnly));
   handleExceptionEnd
@@ -253,11 +263,15 @@ end;
 
 function DPredefinedClipboardFormat(AFormat: TPredefinedClipboardFormat): TClipboardFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
+  handleExceptionBegin
   Result := PredefinedClipboardFormat(AFormat);
+  handleExceptionEnd
 end;
 
 function DSetClipboard(ANewClipboard: TClipboard): TClipboard; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := SetClipboard(ANewClipboard);
   handleExceptionEnd
@@ -268,6 +282,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_Write(AObj: TMemoryStream; Buffer: Pointer; Count: Longint): Longint; extdecl;
 begin
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := AObj.Write(Buffer^, Count);
   handleExceptionEnd
@@ -276,6 +291,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_Read(AObj: TMemoryStream; Buffer: Pointer; Count: Longint): Longint; extdecl;
 begin
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := AObj.Read(Buffer^, Count);
   handleExceptionEnd
@@ -401,7 +417,7 @@ function Canvas_TextRect2(AObj: TCanvas; var Rect: TRect; Text: PChar; TextForma
 var
   LStyle: TTextStyle;
 begin
-  Result := 0;
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   LStyle := AObj.TextStyle;
   if TTextFormats.tfSingleLine in TextFormat then
@@ -526,6 +542,7 @@ end;
 
 function MenuItem_GetShortCutText(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(ShortCutToText(AObj.ShortCut));
   handleExceptionEnd
@@ -542,13 +559,15 @@ end;
 //{$IFNDEF WINDOWS}
 function DSendMessage(hWd: HWND; msg: Cardinal; wParam: WParam; lParam: LParam): LResult; extdecl;
 begin
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := LCLIntf.SendMessage(hWd, msg, wParam, lParam);
   handleExceptionEnd
 end;
 
-function DPostMessage(hWd: HWND; msg: Cardinal; wParam: WParam; lParam: LParam): Boolean; extdecl;
+function DPostMessage(hWd: HWND; msg: Cardinal; wParam: WParam; lParam: LParam): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := LCLIntf.PostMessage(hWd, msg, wParam, lParam);
   handleExceptionEnd
@@ -556,6 +575,7 @@ end;
 
 function DIsIconic(hWnd: HWND): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := LCLIntf.IsIconic(hWnd);
   handleExceptionEnd
@@ -563,6 +583,7 @@ end;
 
 function DIsWindow(hWnd: HWND): LongBool; extdecl;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := LCLIntf.IsWindow(hWnd);
   handleExceptionEnd
@@ -570,6 +591,7 @@ end;
 
 function DIsZoomed(hWnd: HWND): LongBool; extdecl;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := LCLIntf.IsZoomed(hWnd);
   handleExceptionEnd
@@ -577,6 +599,7 @@ end;
 
 function DIsWindowVisible(hWnd: HWND): LongBool; extdecl;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := LCLIntf.IsWindowVisible(hWnd);
   handleExceptionEnd
@@ -584,6 +607,7 @@ end;
 
 function DGetDC(hWnd: HWND): HDC; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := LCLIntf.GetDC(hWnd);
   handleExceptionEnd
@@ -591,6 +615,7 @@ end;
 
 function DReleaseDC(hWnd: HWND; dc: HDC): Integer; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := LCLIntf.ReleaseDC(hWnd, dc);
   handleExceptionEnd
@@ -598,6 +623,7 @@ end;
 
 function DSetForegroundWindow(hWnd: HWND): LongBool; extdecl;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := LCLIntf.SetForegroundWindow(hWnd);
   handleExceptionEnd
@@ -605,6 +631,7 @@ end;
 
 function DRegisterClipboardFormat(AFormat: PChar): TClipboardFormat; extdecl;
 begin
+  {$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
   handleExceptionBegin
   Result := Clipbrd.RegisterClipboardFormat(AFormat);
   handleExceptionEnd
@@ -615,6 +642,7 @@ function DWindowFromPoint(point: PPoint): HWND; extdecl;
 begin
   if point = nil then
     Exit(0);
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := LCLIntf.WindowFromPoint(PPoint(point)^);
   handleExceptionEnd
@@ -657,6 +685,7 @@ end;
 // 从string数组中获取成员
 function DGetStringArrOf(P: Pointer; AIndex: NativeInt): PChar; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(PString(PByte(P) + AIndex * SizeOf(string))^);
   handleExceptionEnd
@@ -664,6 +693,7 @@ end;
 
 function DStrLen(p: PChar): NativeInt; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := Length(p); //UTF8Length(); UTF8LengthFast
   handleExceptionEnd
@@ -694,6 +724,7 @@ end;
 
 function DMessageDlg(const Msg: PChar; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; HelpCtx: Longint): Integer; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := MessageDlg(Msg, DlgType, Buttons, HelpCtx);
   handleExceptionEnd
@@ -717,6 +748,7 @@ end;
 
 function DCurrentThreadId: TThreadID; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := TThread.CurrentThread.ThreadID;
   handleExceptionEnd
@@ -724,11 +756,14 @@ end;
 
 procedure DSysOpen(FileName: PChar); extdecl;
 begin
+  handleExceptionBegin
   OpenURL(FileName);
+  handleExceptionEnd
 end;
 
 function DExtractFilePath(AFileName: PChar): PChar; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(ExtractFilePath(AFileName));
   handleExceptionEnd
@@ -736,6 +771,7 @@ end;
 
 function DFileExists(AFileName: PChar): LongBool; extdecl;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := FileExists(AFileName);
   handleExceptionEnd
@@ -745,6 +781,7 @@ function DSelectDirectory1(var Directory: PChar; Options: TSelectDirOpts; HelpCt
 var
   LDir: string;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := SelectDirectory(LDir, Options, HelpCtx);
   if Result then
@@ -756,6 +793,7 @@ function DSelectDirectory2(Caption, Root: PChar; AShowHidden: LongBool; var Dire
 var
   LDir: string;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := SelectDirectory(Caption, Root, LDir, AShowHidden, 0);
   if Result then
@@ -765,6 +803,7 @@ end;
 
 function DInputBox(ACaption, APrompt, ADefault: PChar): PChar; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(InputBox(ACaption, APrompt, ADefault));
   handleExceptionEnd
@@ -774,6 +813,7 @@ function DInputQuery(ACaption, APrompt: PChar; Value: PChar; out AOut: PChar): L
 var
   S: string;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   S := Value;
   Result := InputQuery(string(ACaption), string(APrompt), S);
@@ -785,6 +825,7 @@ end;
 
 function DPasswordBox(const ACaption, APrompt : PChar): PChar; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(PasswordBox(ACaption, APrompt));
   handleExceptionEnd
@@ -792,6 +833,7 @@ end;
 
 function DInputCombo(const ACaption, APrompt: PChar; const AList: TStrings): Integer; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := InputCombo(ACaption, APrompt, AList);
   handleExceptionEnd
@@ -799,6 +841,7 @@ end;
 
 function DInputComboEx(const ACaption, APrompt: PChar; const AList: TStrings; AllowCustomText: LongBool): PChar; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(InputComboEx(ACaption, APrompt, AList, AllowCustomText));
   handleExceptionEnd
@@ -840,6 +883,7 @@ var
   LPPFile : IPersistFile;
   LinkFilename : WideString;
 begin
+  {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   CoInitializeEx(nil, 0);
   try
@@ -933,6 +977,7 @@ end;
 //PARAMS:1=nonPtr
 function DGUIDToString(var AGUID: TGUID): PChar; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result := PChar(GUIDToString(AGUID));
   handleExceptionEnd
@@ -1155,36 +1200,54 @@ end;
 
 function DFindControl(AHandle: HWND): TWinControl; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
   Result := FindControl(AHandle);
+  handleExceptionEnd
 end;
 
 //PARAMS:1=nonPtr
 function DFindLCLControl(var AScreenPos: TPoint): TControl; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
   Result := FindLCLControl(AScreenPos);
+  handleExceptionEnd
 end;
 
 function DFindOwnerControl(Handle: HWND): TWinControl; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
   Result := FindOwnerControl(Handle);
+  handleExceptionEnd
 end;
 
 //PARAMS:1=nonPtr
 function DFindControlAtPosition(var APosition: TPoint; AllowDisabled: LongBool): TControl; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
   Result := FindControlAtPosition(APosition, AllowDisabled);
+  handleExceptionEnd
 end;
 
 //PARAMS:1=nonPtr
 function DFindLCLWindow(var AScreenPos: TPoint; AllowDisabled: LongBool): TWinControl; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
   Result := FindLCLWindow(AScreenPos, AllowDisabled);
+  handleExceptionEnd
 end;
 
 //PARAMS:1=nonPtr
 function DFindDragTarget(var APosition: TPoint; AllowDisabled: LongBool): TControl; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
   Result := FindDragTarget(APosition, AllowDisabled);
+  handleExceptionEnd
 end;
 
 

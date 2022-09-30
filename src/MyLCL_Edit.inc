@@ -9,6 +9,7 @@
 
 function Edit_Create(AOwner: TComponent): TEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TEdit.Create(AOwner);
   handleExceptionEnd
@@ -80,6 +81,7 @@ end;
 //CLASSMETHOD:
 function Edit_CanFocus(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -88,6 +90,7 @@ end;
 //CLASSMETHOD:
 function Edit_ContainsControl(AObj: TEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -97,6 +100,7 @@ end;
 //PARAMS:2=nonPtr
 function Edit_ControlAtPos(AObj: TEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -121,6 +125,7 @@ end;
 //CLASSMETHOD:
 function Edit_FindChildControl(AObj: TEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -137,6 +142,7 @@ end;
 //CLASSMETHOD:
 function Edit_Focused(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -145,6 +151,7 @@ end;
 //CLASSMETHOD:
 function Edit_HandleAllocated(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -269,6 +276,7 @@ end;
 //CLASSMETHOD:
 function Edit_Dragging(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -277,6 +285,7 @@ end;
 //CLASSMETHOD:
 function Edit_HasParent(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -293,6 +302,7 @@ end;
 //CLASSMETHOD:
 function Edit_Perform(AObj: TEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -345,6 +355,7 @@ end;
 //CLASSMETHOD:
 function Edit_GetTextBuf(AObj: TEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -353,6 +364,7 @@ end;
 //CLASSMETHOD:
 function Edit_GetTextLen(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -369,6 +381,7 @@ end;
 //CLASSMETHOD:
 function Edit_FindComponent(AObj: TEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -377,6 +390,7 @@ end;
 //CLASSMETHOD:
 function Edit_GetNamePath(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -393,6 +407,7 @@ end;
 //CLASSMETHOD:
 function Edit_ClassType(AObj: TEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -401,6 +416,7 @@ end;
 //CLASSMETHOD:
 function Edit_ClassName(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -409,6 +425,7 @@ end;
 //CLASSMETHOD:
 function Edit_InstanceSize(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -417,6 +434,7 @@ end;
 //CLASSMETHOD:
 function Edit_InheritsFrom(AObj: TEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -425,6 +443,7 @@ end;
 //CLASSMETHOD:
 function Edit_Equals(AObj: TEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -433,6 +452,7 @@ end;
 //CLASSMETHOD:
 function Edit_GetHashCode(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -441,6 +461,7 @@ end;
 //CLASSMETHOD:
 function Edit_ToString(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -505,6 +526,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleDesignToForm(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -513,6 +535,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleFormToDesign(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -521,6 +544,7 @@ end;
 //CLASSMETHOD:
 function Edit_Scale96ToForm(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -529,6 +553,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleFormTo96(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -537,6 +562,7 @@ end;
 //CLASSMETHOD:
 function Edit_Scale96ToFont(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -545,6 +571,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleFontTo96(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -553,6 +580,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleScreenToFont(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -561,6 +589,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleFontToScreen(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -569,6 +598,7 @@ end;
 //CLASSMETHOD:
 function Edit_Scale96ToScreen(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +607,7 @@ end;
 //CLASSMETHOD:
 function Edit_ScaleScreenTo96(AObj: TEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -609,6 +640,7 @@ end;
 
 function Edit_GetAlign(AObj: TEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -623,6 +655,7 @@ end;
 
 function Edit_GetAlignment(AObj: TEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -637,6 +670,7 @@ end;
 
 function Edit_GetAnchors(AObj: TEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -651,6 +685,7 @@ end;
 
 function Edit_GetAutoSelect(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelect;
   handleExceptionEnd
@@ -665,6 +700,7 @@ end;
 
 function Edit_GetAutoSize(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -679,6 +715,7 @@ end;
 
 function Edit_GetBiDiMode(AObj: TEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -693,6 +730,7 @@ end;
 
 function Edit_GetBorderStyle(AObj: TEdit): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -707,6 +745,7 @@ end;
 
 function Edit_GetCharCase(AObj: TEdit): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -721,6 +760,7 @@ end;
 
 function Edit_GetColor(AObj: TEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -735,6 +775,7 @@ end;
 
 function Edit_GetConstraints(AObj: TEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -749,6 +790,7 @@ end;
 
 function Edit_GetDoubleBuffered(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -763,6 +805,7 @@ end;
 
 function Edit_GetDragCursor(AObj: TEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -777,6 +820,7 @@ end;
 
 function Edit_GetDragKind(AObj: TEdit): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -791,6 +835,7 @@ end;
 
 function Edit_GetDragMode(AObj: TEdit): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -805,6 +850,7 @@ end;
 
 function Edit_GetEnabled(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -819,6 +865,7 @@ end;
 
 function Edit_GetFont(AObj: TEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -833,6 +880,7 @@ end;
 
 function Edit_GetHideSelection(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -847,6 +895,7 @@ end;
 
 function Edit_GetMaxLength(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -861,6 +910,7 @@ end;
 
 function Edit_GetNumbersOnly(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.NumbersOnly;
   handleExceptionEnd
@@ -875,6 +925,7 @@ end;
 
 function Edit_GetParentColor(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -889,6 +940,7 @@ end;
 
 function Edit_GetParentDoubleBuffered(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -903,6 +955,7 @@ end;
 
 function Edit_GetParentFont(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -917,6 +970,7 @@ end;
 
 function Edit_GetParentShowHint(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -931,6 +985,7 @@ end;
 
 function Edit_GetPasswordChar(AObj: TEdit): Char; extdecl;
 begin
+{$ifdef UsehandleException}Result := Char(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.PasswordChar;
   handleExceptionEnd
@@ -945,6 +1000,7 @@ end;
 
 function Edit_GetPopupMenu(AObj: TEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -959,6 +1015,7 @@ end;
 
 function Edit_GetReadOnly(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -973,6 +1030,7 @@ end;
 
 function Edit_GetShowHint(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -987,6 +1045,7 @@ end;
 
 function Edit_GetTabOrder(AObj: TEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1001,6 +1060,7 @@ end;
 
 function Edit_GetTabStop(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1015,6 +1075,7 @@ end;
 
 function Edit_GetText(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1029,6 +1090,7 @@ end;
 
 function Edit_GetTextHint(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1043,6 +1105,7 @@ end;
 
 function Edit_GetVisible(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1193,6 +1256,7 @@ end;
 
 function Edit_GetCanUndo(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1200,6 +1264,7 @@ end;
 
 function Edit_GetModified(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1214,6 +1279,7 @@ end;
 
 function Edit_GetSelLength(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1228,6 +1294,7 @@ end;
 
 function Edit_GetSelStart(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1242,6 +1309,7 @@ end;
 
 function Edit_GetSelText(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1256,6 +1324,7 @@ end;
 
 function Edit_GetDockClientCount(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1263,6 +1332,7 @@ end;
 
 function Edit_GetDockSite(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1277,6 +1347,7 @@ end;
 
 function Edit_GetMouseInClient(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1284,6 +1355,7 @@ end;
 
 function Edit_GetVisibleDockClientCount(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1291,6 +1363,7 @@ end;
 
 function Edit_GetBrush(AObj: TEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1298,6 +1371,7 @@ end;
 
 function Edit_GetControlCount(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1305,6 +1379,7 @@ end;
 
 function Edit_GetHandle(AObj: TEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1312,6 +1387,7 @@ end;
 
 function Edit_GetParentWindow(AObj: TEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1326,6 +1402,7 @@ end;
 
 function Edit_GetShowing(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1333,6 +1410,7 @@ end;
 
 function Edit_GetUseDockManager(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1347,6 +1425,7 @@ end;
 
 function Edit_GetAction(AObj: TEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1377,6 +1456,7 @@ end;
 
 function Edit_GetClientHeight(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1407,6 +1487,7 @@ end;
 
 function Edit_GetClientWidth(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1421,6 +1502,7 @@ end;
 
 function Edit_GetControlState(AObj: TEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1435,6 +1517,7 @@ end;
 
 function Edit_GetControlStyle(AObj: TEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1449,6 +1532,7 @@ end;
 
 function Edit_GetFloating(AObj: TEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1456,6 +1540,7 @@ end;
 
 function Edit_GetParent(AObj: TEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1470,6 +1555,7 @@ end;
 
 function Edit_GetLeft(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1484,6 +1570,7 @@ end;
 
 function Edit_GetTop(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1498,6 +1585,7 @@ end;
 
 function Edit_GetWidth(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1512,6 +1600,7 @@ end;
 
 function Edit_GetHeight(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1526,6 +1615,7 @@ end;
 
 function Edit_GetCursor(AObj: TEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1540,6 +1630,7 @@ end;
 
 function Edit_GetHint(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1554,6 +1645,7 @@ end;
 
 function Edit_GetComponentCount(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1561,6 +1653,7 @@ end;
 
 function Edit_GetComponentIndex(AObj: TEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1575,6 +1668,7 @@ end;
 
 function Edit_GetOwner(AObj: TEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1582,6 +1676,7 @@ end;
 
 function Edit_GetName(AObj: TEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1596,6 +1691,7 @@ end;
 
 function Edit_GetTag(AObj: TEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1610,6 +1706,7 @@ end;
 
 function Edit_GetAnchorSideLeft(AObj: TEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1624,6 +1721,7 @@ end;
 
 function Edit_GetAnchorSideTop(AObj: TEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1638,6 +1736,7 @@ end;
 
 function Edit_GetAnchorSideRight(AObj: TEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1652,6 +1751,7 @@ end;
 
 function Edit_GetAnchorSideBottom(AObj: TEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1666,6 +1766,7 @@ end;
 
 function Edit_GetChildSizing(AObj: TEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1680,6 +1781,7 @@ end;
 
 function Edit_GetBorderSpacing(AObj: TEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1694,6 +1796,7 @@ end;
 
 function Edit_GetDockClients(AObj: TEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1701,6 +1804,7 @@ end;
 
 function Edit_GetControls(AObj: TEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1708,6 +1812,7 @@ end;
 
 function Edit_GetComponents(AObj: TEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1715,6 +1820,7 @@ end;
 
 function Edit_GetAnchorSide(AObj: TEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

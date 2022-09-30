@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_GetNamePath(AObj: TParaAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_ClassType(AObj: TParaAttributes): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_ClassName(AObj: TParaAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_InstanceSize(AObj: TParaAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_InheritsFrom(AObj: TParaAttributes; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_Equals(AObj: TParaAttributes; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_GetHashCode(AObj: TParaAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function ParaAttributes_ToString(AObj: TParaAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -81,6 +89,7 @@ end;
 
 function ParaAttributes_GetAlignment(AObj: TParaAttributes): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function ParaAttributes_GetFirstIndent(AObj: TParaAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FirstIndent;
   handleExceptionEnd
@@ -109,6 +119,7 @@ end;
 
 function ParaAttributes_GetLeftIndent(AObj: TParaAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LeftIndent;
   handleExceptionEnd
@@ -123,6 +134,7 @@ end;
 
 function ParaAttributes_GetNumbering(AObj: TParaAttributes): TNumberingStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TNumberingStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Numbering;
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 
 function ParaAttributes_GetRightIndent(AObj: TParaAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RightIndent;
   handleExceptionEnd
@@ -151,6 +164,7 @@ end;
 
 function ParaAttributes_GetTabCount(AObj: TParaAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabCount;
   handleExceptionEnd
@@ -165,6 +179,7 @@ end;
 
 function ParaAttributes_GetTab(AObj: TParaAttributes; Index: Byte): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tab[Index];
   handleExceptionEnd

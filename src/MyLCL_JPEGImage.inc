@@ -9,6 +9,7 @@
 
 function JPEGImage_Create: TJPEGImage; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TJPEGImage.Create;
   handleExceptionEnd
@@ -48,6 +49,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_Equals(AObj: TJPEGImage; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +82,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_GetNamePath(AObj: TJPEGImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -88,6 +91,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_ClassType(AObj: TJPEGImage): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -96,6 +100,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_ClassName(AObj: TJPEGImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -104,6 +109,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_InstanceSize(AObj: TJPEGImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -112,6 +118,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_InheritsFrom(AObj: TJPEGImage; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -120,6 +127,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_GetHashCode(AObj: TJPEGImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -128,6 +136,7 @@ end;
 //CLASSMETHOD:
 function JPEGImage_ToString(AObj: TJPEGImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -135,6 +144,7 @@ end;
 
 function JPEGImage_GetPixelFormat(AObj: TJPEGImage): TPixelFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := TJPEGPixelFormat(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelFormat;
   handleExceptionEnd
@@ -149,6 +159,7 @@ end;
 
 function JPEGImage_GetPerformance(AObj: TJPEGImage): TJPEGPerformance; extdecl;
 begin
+{$ifdef UsehandleException}Result := TJPEGPerformance(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Performance;
   handleExceptionEnd
@@ -163,6 +174,7 @@ end;
 
 function JPEGImage_GetCanvas(AObj: TJPEGImage): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -170,6 +182,7 @@ end;
 
 function JPEGImage_GetEmpty(AObj: TJPEGImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Empty;
   handleExceptionEnd
@@ -177,6 +190,7 @@ end;
 
 function JPEGImage_GetHeight(AObj: TJPEGImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -191,6 +205,7 @@ end;
 
 function JPEGImage_GetModified(AObj: TJPEGImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -205,6 +220,7 @@ end;
 
 function JPEGImage_GetPalette(AObj: TJPEGImage): HPALETTE; extdecl;
 begin
+{$ifdef UsehandleException}Result := HPALETTE(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Palette;
   handleExceptionEnd
@@ -219,6 +235,7 @@ end;
 
 function JPEGImage_GetPaletteModified(AObj: TJPEGImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PaletteModified;
   handleExceptionEnd
@@ -233,6 +250,7 @@ end;
 
 function JPEGImage_GetTransparent(AObj: TJPEGImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -247,6 +265,7 @@ end;
 
 function JPEGImage_GetWidth(AObj: TJPEGImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd

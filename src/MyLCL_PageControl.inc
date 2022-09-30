@@ -9,6 +9,7 @@
 
 function PageControl_Create(AOwner: TComponent): TPageControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPageControl.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function PageControl_FindNextPage(AObj: TPageControl; CurPage: TTabSheet; GoForward: LongBool; CheckTabVisible: LongBool): TTabSheet; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindNextPage(CurPage, GoForward, CheckTabVisible);
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //CLASSMETHOD:
 function PageControl_AddTabSheet(AObj: TPageControl): TTabSheet; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddTabSheet;
   handleExceptionEnd
@@ -56,6 +59,7 @@ end;
 //CLASSMETHOD:
 function PageControl_IndexOfTabAt(AObj: TPageControl; X: Integer; Y: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOfTabAt(X, Y);
   handleExceptionEnd
@@ -64,6 +68,7 @@ end;
 //CLASSMETHOD:
 function PageControl_IndexOfPageAt(AObj: TPageControl; X: Integer; Y: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOfPageAt(X, Y);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function PageControl_CanFocus(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ContainsControl(AObj: TPageControl; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -98,6 +105,7 @@ end;
 //PARAMS:2=nonPtr
 function PageControl_ControlAtPos(AObj: TPageControl; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -122,6 +130,7 @@ end;
 //CLASSMETHOD:
 function PageControl_FindChildControl(AObj: TPageControl; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -138,6 +147,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Focused(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -146,6 +156,7 @@ end;
 //CLASSMETHOD:
 function PageControl_HandleAllocated(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -270,6 +281,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Dragging(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -278,6 +290,7 @@ end;
 //CLASSMETHOD:
 function PageControl_HasParent(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -294,6 +307,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Perform(AObj: TPageControl; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -346,6 +360,7 @@ end;
 //CLASSMETHOD:
 function PageControl_GetTextBuf(AObj: TPageControl; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -354,6 +369,7 @@ end;
 //CLASSMETHOD:
 function PageControl_GetTextLen(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -370,6 +386,7 @@ end;
 //CLASSMETHOD:
 function PageControl_FindComponent(AObj: TPageControl; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -378,6 +395,7 @@ end;
 //CLASSMETHOD:
 function PageControl_GetNamePath(AObj: TPageControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -394,6 +412,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ClassType(AObj: TPageControl): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -402,6 +421,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ClassName(AObj: TPageControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -410,6 +430,7 @@ end;
 //CLASSMETHOD:
 function PageControl_InstanceSize(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -418,6 +439,7 @@ end;
 //CLASSMETHOD:
 function PageControl_InheritsFrom(AObj: TPageControl; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -426,6 +448,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Equals(AObj: TPageControl; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -434,6 +457,7 @@ end;
 //CLASSMETHOD:
 function PageControl_GetHashCode(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -442,6 +466,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ToString(AObj: TPageControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -506,6 +531,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleDesignToForm(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -514,6 +540,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleFormToDesign(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -522,6 +549,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Scale96ToForm(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -530,6 +558,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleFormTo96(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -538,6 +567,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Scale96ToFont(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -546,6 +576,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleFontTo96(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -554,6 +585,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleScreenToFont(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -562,6 +594,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleFontToScreen(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -570,6 +603,7 @@ end;
 //CLASSMETHOD:
 function PageControl_Scale96ToScreen(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -578,6 +612,7 @@ end;
 //CLASSMETHOD:
 function PageControl_ScaleScreenTo96(AObj: TPageControl; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -610,6 +645,7 @@ end;
 
 function PageControl_GetRaggedRight(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RaggedRight;
   handleExceptionEnd
@@ -624,6 +660,7 @@ end;
 
 function PageControl_GetScrollOpposite(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollOpposite;
   handleExceptionEnd
@@ -638,6 +675,7 @@ end;
 
 function PageControl_GetPageIndex(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageIndex;
   handleExceptionEnd
@@ -652,6 +690,7 @@ end;
 
 function PageControl_GetOptions(AObj: TPageControl): TCTabControlOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -674,6 +713,7 @@ end;
 
 function PageControl_GetMultiSelect(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiSelect;
   handleExceptionEnd
@@ -688,6 +728,7 @@ end;
 
 function PageControl_GetActivePageIndex(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ActivePageIndex;
   handleExceptionEnd
@@ -702,6 +743,7 @@ end;
 
 function PageControl_GetPageCount(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageCount;
   handleExceptionEnd
@@ -709,6 +751,7 @@ end;
 
 function PageControl_GetActivePage(AObj: TPageControl): TTabSheet; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ActivePage;
   handleExceptionEnd
@@ -723,6 +766,7 @@ end;
 
 function PageControl_GetAlign(AObj: TPageControl): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -737,6 +781,7 @@ end;
 
 function PageControl_GetAnchors(AObj: TPageControl): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -751,6 +796,7 @@ end;
 
 function PageControl_GetBiDiMode(AObj: TPageControl): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -765,6 +811,7 @@ end;
 
 function PageControl_GetConstraints(AObj: TPageControl): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -779,6 +826,7 @@ end;
 
 function PageControl_GetDockSite(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -793,6 +841,7 @@ end;
 
 function PageControl_GetDoubleBuffered(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -807,6 +856,7 @@ end;
 
 function PageControl_GetDragCursor(AObj: TPageControl): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -821,6 +871,7 @@ end;
 
 function PageControl_GetDragKind(AObj: TPageControl): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -835,6 +886,7 @@ end;
 
 function PageControl_GetDragMode(AObj: TPageControl): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -849,6 +901,7 @@ end;
 
 function PageControl_GetEnabled(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -863,6 +916,7 @@ end;
 
 function PageControl_GetFont(AObj: TPageControl): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -877,6 +931,7 @@ end;
 
 function PageControl_GetImages(AObj: TPageControl): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -891,6 +946,7 @@ end;
 
 function PageControl_GetMultiLine(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiLine;
   handleExceptionEnd
@@ -905,6 +961,7 @@ end;
 
 function PageControl_GetParentDoubleBuffered(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -919,6 +976,7 @@ end;
 
 function PageControl_GetParentFont(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -933,6 +991,7 @@ end;
 
 function PageControl_GetParentShowHint(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -947,6 +1006,7 @@ end;
 
 function PageControl_GetPopupMenu(AObj: TPageControl): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -961,6 +1021,7 @@ end;
 
 function PageControl_GetShowHint(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -975,6 +1036,7 @@ end;
 
 function PageControl_GetTabHeight(AObj: TPageControl): SmallInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := SmallInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabHeight;
   handleExceptionEnd
@@ -989,6 +1051,7 @@ end;
 
 function PageControl_GetTabIndex(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabIndex;
   handleExceptionEnd
@@ -1003,6 +1066,7 @@ end;
 
 function PageControl_GetTabOrder(AObj: TPageControl): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1017,6 +1081,7 @@ end;
 
 function PageControl_GetTabPosition(AObj: TPageControl): TTabPosition; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabPosition(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabPosition;
   handleExceptionEnd
@@ -1031,6 +1096,7 @@ end;
 
 function PageControl_GetTabStop(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1045,6 +1111,7 @@ end;
 
 function PageControl_GetTabWidth(AObj: TPageControl): SmallInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := SmallInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabWidth;
   handleExceptionEnd
@@ -1059,6 +1126,7 @@ end;
 
 function PageControl_GetVisible(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1225,6 +1293,7 @@ end;
 
 function PageControl_GetDockClientCount(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1232,6 +1301,7 @@ end;
 
 function PageControl_GetMouseInClient(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1239,6 +1309,7 @@ end;
 
 function PageControl_GetVisibleDockClientCount(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1246,6 +1317,7 @@ end;
 
 function PageControl_GetBrush(AObj: TPageControl): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1253,6 +1325,7 @@ end;
 
 function PageControl_GetControlCount(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1260,6 +1333,7 @@ end;
 
 function PageControl_GetHandle(AObj: TPageControl): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1267,6 +1341,7 @@ end;
 
 function PageControl_GetParentWindow(AObj: TPageControl): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1281,6 +1356,7 @@ end;
 
 function PageControl_GetShowing(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1288,6 +1364,7 @@ end;
 
 function PageControl_GetUseDockManager(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1302,6 +1379,7 @@ end;
 
 function PageControl_GetAction(AObj: TPageControl): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1332,6 +1410,7 @@ end;
 
 function PageControl_GetClientHeight(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1362,6 +1441,7 @@ end;
 
 function PageControl_GetClientWidth(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1376,6 +1456,7 @@ end;
 
 function PageControl_GetControlState(AObj: TPageControl): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1390,6 +1471,7 @@ end;
 
 function PageControl_GetControlStyle(AObj: TPageControl): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1404,6 +1486,7 @@ end;
 
 function PageControl_GetFloating(AObj: TPageControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1411,6 +1494,7 @@ end;
 
 function PageControl_GetParent(AObj: TPageControl): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1425,6 +1509,7 @@ end;
 
 function PageControl_GetLeft(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1439,6 +1524,7 @@ end;
 
 function PageControl_GetTop(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1453,6 +1539,7 @@ end;
 
 function PageControl_GetWidth(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1467,6 +1554,7 @@ end;
 
 function PageControl_GetHeight(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1481,6 +1569,7 @@ end;
 
 function PageControl_GetCursor(AObj: TPageControl): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1495,6 +1584,7 @@ end;
 
 function PageControl_GetHint(AObj: TPageControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1509,6 +1599,7 @@ end;
 
 function PageControl_GetComponentCount(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1516,6 +1607,7 @@ end;
 
 function PageControl_GetComponentIndex(AObj: TPageControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1530,6 +1622,7 @@ end;
 
 function PageControl_GetOwner(AObj: TPageControl): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1537,6 +1630,7 @@ end;
 
 function PageControl_GetName(AObj: TPageControl): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1551,6 +1645,7 @@ end;
 
 function PageControl_GetTag(AObj: TPageControl): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1565,6 +1660,7 @@ end;
 
 function PageControl_GetAnchorSideLeft(AObj: TPageControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1579,6 +1675,7 @@ end;
 
 function PageControl_GetAnchorSideTop(AObj: TPageControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1593,6 +1690,7 @@ end;
 
 function PageControl_GetAnchorSideRight(AObj: TPageControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1607,6 +1705,7 @@ end;
 
 function PageControl_GetAnchorSideBottom(AObj: TPageControl): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1621,6 +1720,7 @@ end;
 
 function PageControl_GetChildSizing(AObj: TPageControl): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1635,6 +1735,7 @@ end;
 
 function PageControl_GetBorderSpacing(AObj: TPageControl): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1649,6 +1750,7 @@ end;
 
 function PageControl_GetPages(AObj: TPageControl; Index: Integer): TTabSheet; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Pages[Index];
   handleExceptionEnd
@@ -1656,6 +1758,7 @@ end;
 
 function PageControl_GetDockClients(AObj: TPageControl; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1663,6 +1766,7 @@ end;
 
 function PageControl_GetControls(AObj: TPageControl; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1670,6 +1774,7 @@ end;
 
 function PageControl_GetComponents(AObj: TPageControl; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1677,6 +1782,7 @@ end;
 
 function PageControl_GetAnchorSide(AObj: TPageControl; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

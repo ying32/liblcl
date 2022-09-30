@@ -9,6 +9,7 @@
 
 function SelectDirectoryDialog_Create(AOwner: TComponent): TSelectDirectoryDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TSelectDirectoryDialog.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_Execute(AObj: TSelectDirectoryDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_FindComponent(AObj: TSelectDirectoryDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_GetNamePath(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_HasParent(AObj: TSelectDirectoryDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_ClassType(AObj: TSelectDirectoryDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_ClassName(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_InstanceSize(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_InheritsFrom(AObj: TSelectDirectoryDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_Equals(AObj: TSelectDirectoryDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_GetHashCode(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function SelectDirectoryDialog_ToString(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +131,7 @@ end;
 
 function SelectDirectoryDialog_GetFiles(AObj: TSelectDirectoryDialog): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Files;
   handleExceptionEnd
@@ -126,6 +139,7 @@ end;
 
 function SelectDirectoryDialog_GetDefaultExt(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DefaultExt);
   handleExceptionEnd
@@ -140,6 +154,7 @@ end;
 
 function SelectDirectoryDialog_GetFileName(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.FileName);
   handleExceptionEnd
@@ -154,6 +169,7 @@ end;
 
 function SelectDirectoryDialog_GetFilter(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Filter);
   handleExceptionEnd
@@ -168,6 +184,7 @@ end;
 
 function SelectDirectoryDialog_GetFilterIndex(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FilterIndex;
   handleExceptionEnd
@@ -182,6 +199,7 @@ end;
 
 function SelectDirectoryDialog_GetInitialDir(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.InitialDir);
   handleExceptionEnd
@@ -196,6 +214,7 @@ end;
 
 function SelectDirectoryDialog_GetOptions(AObj: TSelectDirectoryDialog): TOpenOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -210,6 +229,7 @@ end;
 
 function SelectDirectoryDialog_GetTitle(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Title);
   handleExceptionEnd
@@ -224,6 +244,7 @@ end;
 
 function SelectDirectoryDialog_GetHandle(AObj: TSelectDirectoryDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -247,6 +268,7 @@ end;
 
 function SelectDirectoryDialog_GetComponentCount(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -254,6 +276,7 @@ end;
 
 function SelectDirectoryDialog_GetComponentIndex(AObj: TSelectDirectoryDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -268,6 +291,7 @@ end;
 
 function SelectDirectoryDialog_GetOwner(AObj: TSelectDirectoryDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -275,6 +299,7 @@ end;
 
 function SelectDirectoryDialog_GetName(AObj: TSelectDirectoryDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -289,6 +314,7 @@ end;
 
 function SelectDirectoryDialog_GetTag(AObj: TSelectDirectoryDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -303,6 +329,7 @@ end;
 
 function SelectDirectoryDialog_GetComponents(AObj: TSelectDirectoryDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

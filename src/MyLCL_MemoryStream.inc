@@ -9,6 +9,7 @@
 
 function MemoryStream_Create: TMemoryStream; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMemoryStream.Create;
   handleExceptionEnd
@@ -84,6 +85,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_ClassType(AObj: TMemoryStream): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -92,6 +94,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_ClassName(AObj: TMemoryStream): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -100,6 +103,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_InstanceSize(AObj: TMemoryStream): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -108,6 +112,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_InheritsFrom(AObj: TMemoryStream; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -116,6 +121,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_Equals(AObj: TMemoryStream; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -124,6 +130,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_GetHashCode(AObj: TMemoryStream): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -132,6 +139,7 @@ end;
 //CLASSMETHOD:
 function MemoryStream_ToString(AObj: TMemoryStream): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -139,6 +147,7 @@ end;
 
 function MemoryStream_GetMemory(AObj: TMemoryStream): Pointer; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Memory;
   handleExceptionEnd

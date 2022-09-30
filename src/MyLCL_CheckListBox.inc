@@ -9,6 +9,7 @@
 
 function CheckListBox_Create(AOwner: TComponent): TCheckListBox; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TCheckListBox.Create(AOwner);
   handleExceptionEnd
@@ -65,6 +66,7 @@ end;
 //PARAMS:2=nonPtr
 function CheckListBox_ItemAtPos(AObj: TCheckListBox; var Pos: TPoint; Existing: LongBool): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemAtPos(Pos, Existing);
   handleExceptionEnd
@@ -90,6 +92,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_CanFocus(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -98,6 +101,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ContainsControl(AObj: TCheckListBox; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -107,6 +111,7 @@ end;
 //PARAMS:2=nonPtr
 function CheckListBox_ControlAtPos(AObj: TCheckListBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -131,6 +136,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_FindChildControl(AObj: TCheckListBox; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -147,6 +153,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Focused(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -155,6 +162,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_HandleAllocated(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -279,6 +287,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Dragging(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -287,6 +296,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_HasParent(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -303,6 +313,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Perform(AObj: TCheckListBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -355,6 +366,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_GetTextBuf(AObj: TCheckListBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -363,6 +375,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_GetTextLen(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -379,6 +392,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_FindComponent(AObj: TCheckListBox; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -387,6 +401,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_GetNamePath(AObj: TCheckListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -403,6 +418,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ClassType(AObj: TCheckListBox): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -411,6 +427,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ClassName(AObj: TCheckListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -419,6 +436,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_InstanceSize(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -427,6 +445,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_InheritsFrom(AObj: TCheckListBox; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -435,6 +454,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Equals(AObj: TCheckListBox; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -443,6 +463,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_GetHashCode(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -451,6 +472,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ToString(AObj: TCheckListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -515,6 +537,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleDesignToForm(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -523,6 +546,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleFormToDesign(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -531,6 +555,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Scale96ToForm(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -539,6 +564,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleFormTo96(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -547,6 +573,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Scale96ToFont(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -555,6 +582,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleFontTo96(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -563,6 +591,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleScreenToFont(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -571,6 +600,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleFontToScreen(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -579,6 +609,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_Scale96ToScreen(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -587,6 +618,7 @@ end;
 //CLASSMETHOD:
 function CheckListBox_ScaleScreenTo96(AObj: TCheckListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -627,6 +659,7 @@ end;
 
 function CheckListBox_GetAlign(AObj: TCheckListBox): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -641,6 +674,7 @@ end;
 
 function CheckListBox_GetAllowGrayed(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowGrayed;
   handleExceptionEnd
@@ -655,6 +689,7 @@ end;
 
 function CheckListBox_GetAnchors(AObj: TCheckListBox): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -669,6 +704,7 @@ end;
 
 function CheckListBox_GetBiDiMode(AObj: TCheckListBox): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -683,6 +719,7 @@ end;
 
 function CheckListBox_GetBorderStyle(AObj: TCheckListBox): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -697,6 +734,7 @@ end;
 
 function CheckListBox_GetColor(AObj: TCheckListBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -711,6 +749,7 @@ end;
 
 function CheckListBox_GetColumns(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Columns;
   handleExceptionEnd
@@ -725,6 +764,7 @@ end;
 
 function CheckListBox_GetConstraints(AObj: TCheckListBox): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -739,6 +779,7 @@ end;
 
 function CheckListBox_GetDoubleBuffered(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -753,6 +794,7 @@ end;
 
 function CheckListBox_GetDragCursor(AObj: TCheckListBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -767,6 +809,7 @@ end;
 
 function CheckListBox_GetDragMode(AObj: TCheckListBox): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -781,6 +824,7 @@ end;
 
 function CheckListBox_GetEnabled(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -795,6 +839,7 @@ end;
 
 function CheckListBox_GetFont(AObj: TCheckListBox): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -809,6 +854,7 @@ end;
 
 function CheckListBox_GetItemHeight(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemHeight;
   handleExceptionEnd
@@ -823,6 +869,7 @@ end;
 
 function CheckListBox_GetItems(AObj: TCheckListBox): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -837,6 +884,7 @@ end;
 
 function CheckListBox_GetParentColor(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -851,6 +899,7 @@ end;
 
 function CheckListBox_GetParentDoubleBuffered(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -865,6 +914,7 @@ end;
 
 function CheckListBox_GetParentFont(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -879,6 +929,7 @@ end;
 
 function CheckListBox_GetParentShowHint(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -893,6 +944,7 @@ end;
 
 function CheckListBox_GetPopupMenu(AObj: TCheckListBox): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -907,6 +959,7 @@ end;
 
 function CheckListBox_GetShowHint(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -921,6 +974,7 @@ end;
 
 function CheckListBox_GetSorted(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Sorted;
   handleExceptionEnd
@@ -935,6 +989,7 @@ end;
 
 function CheckListBox_GetStyle(AObj: TCheckListBox): TListBoxStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TListBoxStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -949,6 +1004,7 @@ end;
 
 function CheckListBox_GetTabOrder(AObj: TCheckListBox): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -963,6 +1019,7 @@ end;
 
 function CheckListBox_GetTabStop(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -977,6 +1034,7 @@ end;
 
 function CheckListBox_GetVisible(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1127,6 +1185,7 @@ end;
 
 function CheckListBox_GetCanvas(AObj: TCheckListBox): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1134,6 +1193,7 @@ end;
 
 function CheckListBox_GetCount(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -1141,6 +1201,7 @@ end;
 
 function CheckListBox_GetTopIndex(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TopIndex;
   handleExceptionEnd
@@ -1155,6 +1216,7 @@ end;
 
 function CheckListBox_GetMultiSelect(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiSelect;
   handleExceptionEnd
@@ -1169,6 +1231,7 @@ end;
 
 function CheckListBox_GetSelCount(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelCount;
   handleExceptionEnd
@@ -1176,6 +1239,7 @@ end;
 
 function CheckListBox_GetItemIndex(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemIndex;
   handleExceptionEnd
@@ -1190,6 +1254,7 @@ end;
 
 function CheckListBox_GetDockClientCount(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1197,6 +1262,7 @@ end;
 
 function CheckListBox_GetDockSite(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1211,6 +1277,7 @@ end;
 
 function CheckListBox_GetMouseInClient(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1218,6 +1285,7 @@ end;
 
 function CheckListBox_GetVisibleDockClientCount(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1225,6 +1293,7 @@ end;
 
 function CheckListBox_GetBrush(AObj: TCheckListBox): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1232,6 +1301,7 @@ end;
 
 function CheckListBox_GetControlCount(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1239,6 +1309,7 @@ end;
 
 function CheckListBox_GetHandle(AObj: TCheckListBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1246,6 +1317,7 @@ end;
 
 function CheckListBox_GetParentWindow(AObj: TCheckListBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1260,6 +1332,7 @@ end;
 
 function CheckListBox_GetShowing(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1267,6 +1340,7 @@ end;
 
 function CheckListBox_GetUseDockManager(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1281,6 +1355,7 @@ end;
 
 function CheckListBox_GetAction(AObj: TCheckListBox): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1311,6 +1386,7 @@ end;
 
 function CheckListBox_GetClientHeight(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1341,6 +1417,7 @@ end;
 
 function CheckListBox_GetClientWidth(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1355,6 +1432,7 @@ end;
 
 function CheckListBox_GetControlState(AObj: TCheckListBox): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1369,6 +1447,7 @@ end;
 
 function CheckListBox_GetControlStyle(AObj: TCheckListBox): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1383,6 +1462,7 @@ end;
 
 function CheckListBox_GetFloating(AObj: TCheckListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1390,6 +1470,7 @@ end;
 
 function CheckListBox_GetParent(AObj: TCheckListBox): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1404,6 +1485,7 @@ end;
 
 function CheckListBox_GetLeft(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1418,6 +1500,7 @@ end;
 
 function CheckListBox_GetTop(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1432,6 +1515,7 @@ end;
 
 function CheckListBox_GetWidth(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1446,6 +1530,7 @@ end;
 
 function CheckListBox_GetHeight(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1460,6 +1545,7 @@ end;
 
 function CheckListBox_GetCursor(AObj: TCheckListBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1474,6 +1560,7 @@ end;
 
 function CheckListBox_GetHint(AObj: TCheckListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1488,6 +1575,7 @@ end;
 
 function CheckListBox_GetComponentCount(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1495,6 +1583,7 @@ end;
 
 function CheckListBox_GetComponentIndex(AObj: TCheckListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1509,6 +1598,7 @@ end;
 
 function CheckListBox_GetOwner(AObj: TCheckListBox): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1516,6 +1606,7 @@ end;
 
 function CheckListBox_GetName(AObj: TCheckListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1530,6 +1621,7 @@ end;
 
 function CheckListBox_GetTag(AObj: TCheckListBox): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1544,6 +1636,7 @@ end;
 
 function CheckListBox_GetAnchorSideLeft(AObj: TCheckListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1558,6 +1651,7 @@ end;
 
 function CheckListBox_GetAnchorSideTop(AObj: TCheckListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1572,6 +1666,7 @@ end;
 
 function CheckListBox_GetAnchorSideRight(AObj: TCheckListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1586,6 +1681,7 @@ end;
 
 function CheckListBox_GetAnchorSideBottom(AObj: TCheckListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1600,6 +1696,7 @@ end;
 
 function CheckListBox_GetChildSizing(AObj: TCheckListBox): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1614,6 +1711,7 @@ end;
 
 function CheckListBox_GetBorderSpacing(AObj: TCheckListBox): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1628,6 +1726,7 @@ end;
 
 function CheckListBox_GetChecked(AObj: TCheckListBox; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checked[Index];
   handleExceptionEnd
@@ -1642,6 +1741,7 @@ end;
 
 function CheckListBox_GetItemEnabled(AObj: TCheckListBox; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemEnabled[Index];
   handleExceptionEnd
@@ -1656,6 +1756,7 @@ end;
 
 function CheckListBox_GetState(AObj: TCheckListBox; Index: Integer): TCheckBoxState; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCheckBoxState(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.State[Index];
   handleExceptionEnd
@@ -1670,6 +1771,7 @@ end;
 
 function CheckListBox_GetHeader(AObj: TCheckListBox; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Header[Index];
   handleExceptionEnd
@@ -1684,6 +1786,7 @@ end;
 
 function CheckListBox_GetSelected(AObj: TCheckListBox; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Selected[Index];
   handleExceptionEnd
@@ -1698,6 +1801,7 @@ end;
 
 function CheckListBox_GetDockClients(AObj: TCheckListBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1705,6 +1809,7 @@ end;
 
 function CheckListBox_GetControls(AObj: TCheckListBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1712,6 +1817,7 @@ end;
 
 function CheckListBox_GetComponents(AObj: TCheckListBox; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1719,6 +1825,7 @@ end;
 
 function CheckListBox_GetAnchorSide(AObj: TCheckListBox; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

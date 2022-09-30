@@ -9,6 +9,7 @@
 
 function DragObject_Create(AOwner: TControl): TDragObject; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TDragObject.Create(AOwner);
   handleExceptionEnd
@@ -48,6 +49,7 @@ end;
 //CLASSMETHOD:
 function DragObject_ClassType(AObj: TDragObject): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -56,6 +58,7 @@ end;
 //CLASSMETHOD:
 function DragObject_ClassName(AObj: TDragObject): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -64,6 +67,7 @@ end;
 //CLASSMETHOD:
 function DragObject_InstanceSize(AObj: TDragObject): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -72,6 +76,7 @@ end;
 //CLASSMETHOD:
 function DragObject_InheritsFrom(AObj: TDragObject; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -80,6 +85,7 @@ end;
 //CLASSMETHOD:
 function DragObject_Equals(AObj: TDragObject; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -88,6 +94,7 @@ end;
 //CLASSMETHOD:
 function DragObject_GetHashCode(AObj: TDragObject): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -96,6 +103,7 @@ end;
 //CLASSMETHOD:
 function DragObject_ToString(AObj: TDragObject): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -103,6 +111,7 @@ end;
 
 function DragObject_GetAlwaysShowDragImages(AObj: TDragObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AlwaysShowDragImages;
   handleExceptionEnd
@@ -133,6 +142,7 @@ end;
 
 function DragObject_GetDragTarget(AObj: TDragObject): Pointer; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DragTarget;
   handleExceptionEnd
@@ -163,6 +173,7 @@ end;
 
 function DragObject_GetDropped(AObj: TDragObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dropped;
   handleExceptionEnd

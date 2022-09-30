@@ -153,6 +153,13 @@ begin
     Result := False;
   end;
 end;
+
+function GetReturnTypeKind(AType: TRttiType): TTypeKind;
+begin
+  Result := TTypeKind.tkUnknown;
+  if AType = nil then Exit;
+  Result := AType.TypeKind;
+end;
 //
 //function TypeIsDateTime22222(AType: TRttiType): Boolean;
 //var
@@ -313,7 +320,7 @@ end;
 function GetDelphiMethodCode(AOrgName, AInst, ARetType, AParamsStr, AParamNames: string;
    AIsConstructor: Boolean; AIsRead: Boolean = False; AIsWrite: Boolean = False;
    AIsComponent: Boolean = True; AIsRec: Boolean = False; AisIndex: Boolean = False;
-   AIndexName: string = ''; AIndexType: string = ''; AIndexName2: string = ''; AIndexType2: string = ''): string;
+   AIndexName: string = ''; AIndexType: string = ''; AIndexName2: string = ''; AIndexType2: string = ''; ATypeKind: TTypeKind = TTypeKind.tkUnknown): string;
 
    function GetRealOwnerType: string;
    begin
@@ -501,7 +508,29 @@ begin
 //  if IsOnlyWindowsFunc(LMName) then
 //    LCode := LCode + '{$IFDEF MSWINDOWS}'#13#10;
 
- // 异常开始
+  // 当定义使用异常处理时，有返回值的必须返回一个默认的
+  if (ARetType <> '') and (not AIsRec) then
+  begin
+    LCode := LCode + '{$ifdef UsehandleException}';
+    LCode := LCode + 'Result := ';
+
+    if ATypeKind = TTypeKind.tkSet then
+      LCode := LCode + '[]'
+    else if (ARetType.ToLower = 'shortstring') or (AIndexType.ToLower = 'shortstring') or ARetType.Equals('TPointerList') then
+      LCode := LCode + 'nil'
+    else if ARetType.Equals('LongBool') then
+      LCode := LCode + 'False'
+    else if (ATypeKind = TTypeKind.tkEnumeration) or (ATypeKind = TTypeKind.tkInteger) or (ATypeKind = TTypeKind.tkInt64) then
+      LCode := LCode + ARetType +  '(0)'
+    else if (ATypeKind = TTypeKind.tkClass) or (ATypeKind = TTypeKind.tkInterface) or (ATypeKind = TTypeKind.tkPointer) then
+      LCode := LCode + 'nil'
+    else
+      LCode := LCode + ARetType +  '(nil)';
+
+    LCode := LCode + ';';
+    LCode := LCode + '{$endif}'#13#10;
+  end;
+  // 异常开始
   LCode := LCode + '  handleExceptionBegin'#13#10;
 
 
@@ -716,7 +745,7 @@ var
       LIncFile.Add(GetDelphiMethodCode(AMethod.Name, AInstName, CovRetType(AMethod.Name, LDRetStr),
                    GetDelphiParamsStr(LParams, isMethodSub(AMethod.Name)),
          GetDelphiParamsName(LParams, isMethodSub(AMethod.Name)), False, False, False, True,
-         TypeIsRecOrFloat(AMethod.ReturnType) and not TypeIsDateTime(AMethod.ReturnType) ));
+         TypeIsRecOrFloat(AMethod.ReturnType) and not TypeIsDateTime(AMethod.ReturnType) , False, '', '', '', '', GetReturnTypeKind(AMethod.ReturnType)));
       AddExport(AInstName, AMethod.Name);
     end;
 
@@ -724,7 +753,8 @@ var
     begin
       AddHeaderInfo(LIncFile, False);
       // Create
-      LIncFile.Add(GetDelphiMethodCode('Create', AInstName, AInstName, '', '', True, False, False, AIsComponent));
+      LIncFile.Add(GetDelphiMethodCode('Create', AInstName, AInstName, '', '', True, False, False, AIsComponent,
+        False, False, '', '', '', '', TTypeKind.tkClass));
       AddExport(AInstName, 'Create');
 
       // Free
@@ -2389,7 +2419,7 @@ begin
                   LIncFile.Add('//RETURNISLASTPARAM:');
 
                 LIncFile.Add(GetDelphiMethodCode(LPR.Name, LOrgInstName, DTypeConvert(LPR.PropertyType), '', '', False, True, False, True,
-                  TypeIsRecOrFloat(LPR.PropertyType) {and not TypeIsDateTime(LPR.PropertyType)} ));
+                  TypeIsRecOrFloat(LPR.PropertyType) {and not TypeIsDateTime(LPR.PropertyType)}  , False, '', '', '', '', GetReturnTypeKind(LPR.PropertyType)));
                 //AGoHeaderFile.Add('    ' + LFirstCharLowerCaseName + '_' + LMName + ' = libvcl.NewProc("' + LWithoutTInstName + '_' + LMName + '")');
                 AddGoImport(LFirstCharLowerCaseName, LMName, LWithoutTInstName);
 
@@ -2749,7 +2779,7 @@ begin
                     LTemp1, LTemp2
                   //  IfThen(Length(LM.GetParameters) >= 2, LM.GetParameters[1].Name, ''),
                    // IfThen(Length(LM.GetParameters) >= 2, DTypeConvert(LM.GetParameters[1].ParamType), '')
-
+                     ,GetReturnTypeKind(LIdxP.PropertyType)
                    ));
                 //AGoHeaderFile.Add('    ' + LFirstCharLowerCaseName + '_' + LMName + ' = libvcl.NewProc("' + LWithoutTInstName + '_' + LMName + '")');
                 AddGoImport(LFirstCharLowerCaseName, LMName, LWithoutTInstName);

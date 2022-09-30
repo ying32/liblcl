@@ -9,6 +9,7 @@
 
 function SavePictureDialog_Create(AOwner: TComponent): TSavePictureDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TSavePictureDialog.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_Execute(AObj: TSavePictureDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_FindComponent(AObj: TSavePictureDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_GetNamePath(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_HasParent(AObj: TSavePictureDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_ClassType(AObj: TSavePictureDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_ClassName(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_InstanceSize(AObj: TSavePictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_InheritsFrom(AObj: TSavePictureDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_Equals(AObj: TSavePictureDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_GetHashCode(AObj: TSavePictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function SavePictureDialog_ToString(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +131,7 @@ end;
 
 function SavePictureDialog_GetFilter(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Filter);
   handleExceptionEnd
@@ -133,6 +146,7 @@ end;
 
 function SavePictureDialog_GetFiles(AObj: TSavePictureDialog): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Files;
   handleExceptionEnd
@@ -140,6 +154,7 @@ end;
 
 function SavePictureDialog_GetDefaultExt(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DefaultExt);
   handleExceptionEnd
@@ -154,6 +169,7 @@ end;
 
 function SavePictureDialog_GetFileName(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.FileName);
   handleExceptionEnd
@@ -168,6 +184,7 @@ end;
 
 function SavePictureDialog_GetFilterIndex(AObj: TSavePictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FilterIndex;
   handleExceptionEnd
@@ -182,6 +199,7 @@ end;
 
 function SavePictureDialog_GetInitialDir(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.InitialDir);
   handleExceptionEnd
@@ -196,6 +214,7 @@ end;
 
 function SavePictureDialog_GetOptions(AObj: TSavePictureDialog): TOpenOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -210,6 +229,7 @@ end;
 
 function SavePictureDialog_GetTitle(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Title);
   handleExceptionEnd
@@ -224,6 +244,7 @@ end;
 
 function SavePictureDialog_GetHandle(AObj: TSavePictureDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -247,6 +268,7 @@ end;
 
 function SavePictureDialog_GetComponentCount(AObj: TSavePictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -254,6 +276,7 @@ end;
 
 function SavePictureDialog_GetComponentIndex(AObj: TSavePictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -268,6 +291,7 @@ end;
 
 function SavePictureDialog_GetOwner(AObj: TSavePictureDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -275,6 +299,7 @@ end;
 
 function SavePictureDialog_GetName(AObj: TSavePictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -289,6 +314,7 @@ end;
 
 function SavePictureDialog_GetTag(AObj: TSavePictureDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -303,6 +329,7 @@ end;
 
 function SavePictureDialog_GetComponents(AObj: TSavePictureDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

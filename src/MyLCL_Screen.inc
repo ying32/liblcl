@@ -9,6 +9,7 @@
 
 function Screen_Create(AOwner: TComponent): TScreen; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TScreen.Create(AOwner);
   handleExceptionEnd
@@ -56,6 +57,7 @@ end;
 //CLASSMETHOD:
 function Screen_FindComponent(AObj: TScreen; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -64,6 +66,7 @@ end;
 //CLASSMETHOD:
 function Screen_GetNamePath(AObj: TScreen): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -72,6 +75,7 @@ end;
 //CLASSMETHOD:
 function Screen_HasParent(AObj: TScreen): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function Screen_ClassType(AObj: TScreen): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function Screen_ClassName(AObj: TScreen): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function Screen_InstanceSize(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function Screen_InheritsFrom(AObj: TScreen; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -120,6 +128,7 @@ end;
 //CLASSMETHOD:
 function Screen_Equals(AObj: TScreen; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -128,6 +137,7 @@ end;
 //CLASSMETHOD:
 function Screen_GetHashCode(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -136,6 +146,7 @@ end;
 //CLASSMETHOD:
 function Screen_ToString(AObj: TScreen): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -143,6 +154,7 @@ end;
 
 function Screen_GetRealCursor(AObj: TScreen): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RealCursor;
   handleExceptionEnd
@@ -150,6 +162,7 @@ end;
 
 function Screen_GetFocusedForm(AObj: TScreen): TCustomForm; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FocusedForm;
   handleExceptionEnd
@@ -157,6 +170,7 @@ end;
 
 function Screen_GetActiveControl(AObj: TScreen): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ActiveControl;
   handleExceptionEnd
@@ -164,6 +178,7 @@ end;
 
 function Screen_GetActiveForm(AObj: TScreen): TForm; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ActiveForm;
   handleExceptionEnd
@@ -171,6 +186,7 @@ end;
 
 function Screen_GetCustomFormCount(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CustomFormCount;
   handleExceptionEnd
@@ -178,6 +194,7 @@ end;
 
 function Screen_GetCursor(AObj: TScreen): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -192,6 +209,7 @@ end;
 
 function Screen_GetMonitorCount(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MonitorCount;
   handleExceptionEnd
@@ -207,6 +225,7 @@ end;
 
 function Screen_GetDesktopHeight(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DesktopHeight;
   handleExceptionEnd
@@ -214,6 +233,7 @@ end;
 
 function Screen_GetDesktopLeft(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DesktopLeft;
   handleExceptionEnd
@@ -221,6 +241,7 @@ end;
 
 function Screen_GetDesktopTop(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DesktopTop;
   handleExceptionEnd
@@ -228,6 +249,7 @@ end;
 
 function Screen_GetDesktopWidth(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DesktopWidth;
   handleExceptionEnd
@@ -243,6 +265,7 @@ end;
 
 function Screen_GetWorkAreaHeight(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.WorkAreaHeight;
   handleExceptionEnd
@@ -250,6 +273,7 @@ end;
 
 function Screen_GetWorkAreaLeft(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.WorkAreaLeft;
   handleExceptionEnd
@@ -257,6 +281,7 @@ end;
 
 function Screen_GetWorkAreaTop(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.WorkAreaTop;
   handleExceptionEnd
@@ -264,6 +289,7 @@ end;
 
 function Screen_GetWorkAreaWidth(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.WorkAreaWidth;
   handleExceptionEnd
@@ -271,6 +297,7 @@ end;
 
 function Screen_GetFonts(AObj: TScreen): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Fonts;
   handleExceptionEnd
@@ -278,6 +305,7 @@ end;
 
 function Screen_GetFormCount(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FormCount;
   handleExceptionEnd
@@ -285,6 +313,7 @@ end;
 
 function Screen_GetHeight(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -292,6 +321,7 @@ end;
 
 function Screen_GetPixelsPerInch(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelsPerInch;
   handleExceptionEnd
@@ -299,6 +329,7 @@ end;
 
 function Screen_GetPrimaryMonitor(AObj: TScreen): TMonitor; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PrimaryMonitor;
   handleExceptionEnd
@@ -306,6 +337,7 @@ end;
 
 function Screen_GetWidth(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -313,6 +345,7 @@ end;
 
 function Screen_GetComponentCount(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -320,6 +353,7 @@ end;
 
 function Screen_GetComponentIndex(AObj: TScreen): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -334,6 +368,7 @@ end;
 
 function Screen_GetOwner(AObj: TScreen): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -341,6 +376,7 @@ end;
 
 function Screen_GetName(AObj: TScreen): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -355,6 +391,7 @@ end;
 
 function Screen_GetTag(AObj: TScreen): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -369,6 +406,7 @@ end;
 
 function Screen_GetCursors(AObj: TScreen; Index: Integer): HICON; extdecl;
 begin
+{$ifdef UsehandleException}Result := HICON(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursors[Index];
   handleExceptionEnd
@@ -383,6 +421,7 @@ end;
 
 function Screen_GetMonitors(AObj: TScreen; Index: Integer): TMonitor; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Monitors[Index];
   handleExceptionEnd
@@ -390,6 +429,7 @@ end;
 
 function Screen_GetForms(AObj: TScreen; Index: Integer): TForm; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Forms[Index];
   handleExceptionEnd
@@ -397,6 +437,7 @@ end;
 
 function Screen_GetComponents(AObj: TScreen; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

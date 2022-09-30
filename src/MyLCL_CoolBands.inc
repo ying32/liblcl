@@ -9,6 +9,7 @@
 
 function CoolBands_Create(AOwner: TCoolBar): TCoolBands; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TCoolBands.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_Add(AObj: TCoolBands): TCoolBand; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_FindBand(AObj: TCoolBands; AControl: TControl): TCoolBand; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindBand(AControl);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_Owner(AObj: TCoolBands): TPersistent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_FindItemID(AObj: TCoolBands; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_GetNamePath(AObj: TCoolBands): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_Insert(AObj: TCoolBands; Index: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_ClassType(AObj: TCoolBands): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -120,6 +128,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_ClassName(AObj: TCoolBands): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -128,6 +137,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_InstanceSize(AObj: TCoolBands): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -136,6 +146,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_InheritsFrom(AObj: TCoolBands; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -144,6 +155,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_Equals(AObj: TCoolBands; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -152,6 +164,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_GetHashCode(AObj: TCoolBands): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -160,6 +173,7 @@ end;
 //CLASSMETHOD:
 function CoolBands_ToString(AObj: TCoolBands): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -167,6 +181,7 @@ end;
 
 function CoolBands_GetCount(AObj: TCoolBands): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -174,6 +189,7 @@ end;
 
 function CoolBands_GetItems(AObj: TCoolBands; Index: Integer): TCoolBand; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd

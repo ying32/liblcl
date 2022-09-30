@@ -9,6 +9,7 @@
 
 function LinkLabel_Create(AOwner: TComponent): TLinkLabel; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TLinkLabel.Create(AOwner);
   handleExceptionEnd
@@ -84,6 +85,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_Dragging(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -92,6 +94,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_HasParent(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -108,6 +111,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_Perform(AObj: TLinkLabel; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -160,6 +164,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_GetTextBuf(AObj: TLinkLabel; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -168,6 +173,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_GetTextLen(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -184,6 +190,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_FindComponent(AObj: TLinkLabel; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -192,6 +199,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_GetNamePath(AObj: TLinkLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -208,6 +216,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ClassType(AObj: TLinkLabel): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -216,6 +225,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ClassName(AObj: TLinkLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -224,6 +234,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_InstanceSize(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -232,6 +243,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_InheritsFrom(AObj: TLinkLabel; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -240,6 +252,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_Equals(AObj: TLinkLabel; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -248,6 +261,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_GetHashCode(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -256,6 +270,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ToString(AObj: TLinkLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -320,6 +335,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleDesignToForm(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -328,6 +344,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleFormToDesign(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -336,6 +353,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_Scale96ToForm(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -344,6 +362,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleFormTo96(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -352,6 +371,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_Scale96ToFont(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -360,6 +380,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleFontTo96(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -368,6 +389,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleScreenToFont(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -376,6 +398,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleFontToScreen(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -384,6 +407,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_Scale96ToScreen(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +416,7 @@ end;
 //CLASSMETHOD:
 function LinkLabel_ScaleScreenTo96(AObj: TLinkLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -424,6 +449,7 @@ end;
 
 function LinkLabel_GetAlign(AObj: TLinkLabel): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -438,6 +464,7 @@ end;
 
 function LinkLabel_GetAlignment(AObj: TLinkLabel): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -452,6 +479,7 @@ end;
 
 function LinkLabel_GetAnchors(AObj: TLinkLabel): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -466,6 +494,7 @@ end;
 
 function LinkLabel_GetAutoSize(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -480,6 +509,7 @@ end;
 
 function LinkLabel_GetCaption(AObj: TLinkLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -494,6 +524,7 @@ end;
 
 function LinkLabel_GetColor(AObj: TLinkLabel): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -508,6 +539,7 @@ end;
 
 function LinkLabel_GetConstraints(AObj: TLinkLabel): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -522,6 +554,7 @@ end;
 
 function LinkLabel_GetDragCursor(AObj: TLinkLabel): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -536,6 +569,7 @@ end;
 
 function LinkLabel_GetDragKind(AObj: TLinkLabel): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -550,6 +584,7 @@ end;
 
 function LinkLabel_GetDragMode(AObj: TLinkLabel): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -564,6 +599,7 @@ end;
 
 function LinkLabel_GetEnabled(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -578,6 +614,7 @@ end;
 
 function LinkLabel_GetFont(AObj: TLinkLabel): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -592,6 +629,7 @@ end;
 
 function LinkLabel_GetParentColor(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -606,6 +644,7 @@ end;
 
 function LinkLabel_GetParentFont(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -620,6 +659,7 @@ end;
 
 function LinkLabel_GetParentShowHint(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -634,6 +674,7 @@ end;
 
 function LinkLabel_GetPopupMenu(AObj: TLinkLabel): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -648,6 +689,7 @@ end;
 
 function LinkLabel_GetShowHint(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -662,6 +704,7 @@ end;
 
 function LinkLabel_GetVisible(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -772,6 +815,7 @@ end;
 
 function LinkLabel_GetMouseInClient(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -779,6 +823,7 @@ end;
 
 function LinkLabel_GetAction(AObj: TLinkLabel): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -793,6 +838,7 @@ end;
 
 function LinkLabel_GetBiDiMode(AObj: TLinkLabel): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -823,6 +869,7 @@ end;
 
 function LinkLabel_GetClientHeight(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -853,6 +900,7 @@ end;
 
 function LinkLabel_GetClientWidth(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -867,6 +915,7 @@ end;
 
 function LinkLabel_GetControlState(AObj: TLinkLabel): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -881,6 +930,7 @@ end;
 
 function LinkLabel_GetControlStyle(AObj: TLinkLabel): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -895,6 +945,7 @@ end;
 
 function LinkLabel_GetFloating(AObj: TLinkLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -902,6 +953,7 @@ end;
 
 function LinkLabel_GetParent(AObj: TLinkLabel): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -916,6 +968,7 @@ end;
 
 function LinkLabel_GetLeft(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -930,6 +983,7 @@ end;
 
 function LinkLabel_GetTop(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -944,6 +998,7 @@ end;
 
 function LinkLabel_GetWidth(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -958,6 +1013,7 @@ end;
 
 function LinkLabel_GetHeight(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -972,6 +1028,7 @@ end;
 
 function LinkLabel_GetHint(AObj: TLinkLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -986,6 +1043,7 @@ end;
 
 function LinkLabel_GetComponentCount(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -993,6 +1051,7 @@ end;
 
 function LinkLabel_GetComponentIndex(AObj: TLinkLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1007,6 +1066,7 @@ end;
 
 function LinkLabel_GetOwner(AObj: TLinkLabel): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1014,6 +1074,7 @@ end;
 
 function LinkLabel_GetName(AObj: TLinkLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1028,6 +1089,7 @@ end;
 
 function LinkLabel_GetTag(AObj: TLinkLabel): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1042,6 +1104,7 @@ end;
 
 function LinkLabel_GetAnchorSideLeft(AObj: TLinkLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1056,6 +1119,7 @@ end;
 
 function LinkLabel_GetAnchorSideTop(AObj: TLinkLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1070,6 +1134,7 @@ end;
 
 function LinkLabel_GetAnchorSideRight(AObj: TLinkLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1084,6 +1149,7 @@ end;
 
 function LinkLabel_GetAnchorSideBottom(AObj: TLinkLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1098,6 +1164,7 @@ end;
 
 function LinkLabel_GetBorderSpacing(AObj: TLinkLabel): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1112,6 +1179,7 @@ end;
 
 function LinkLabel_GetComponents(AObj: TLinkLabel; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1119,6 +1187,7 @@ end;
 
 function LinkLabel_GetAnchorSide(AObj: TLinkLabel; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

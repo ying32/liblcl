@@ -9,6 +9,7 @@
 
 function Bitmap_Create: TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TBitmap.Create;
   handleExceptionEnd
@@ -72,6 +73,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_HandleAllocated(AObj: TBitmap): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -120,6 +122,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_Equals(AObj: TBitmap; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -144,6 +147,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_GetNamePath(AObj: TBitmap): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -152,6 +156,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_ClassType(AObj: TBitmap): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -160,6 +165,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_ClassName(AObj: TBitmap): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -168,6 +174,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_InstanceSize(AObj: TBitmap): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -176,6 +183,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_InheritsFrom(AObj: TBitmap; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -184,6 +192,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_GetHashCode(AObj: TBitmap): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -192,6 +201,7 @@ end;
 //CLASSMETHOD:
 function Bitmap_ToString(AObj: TBitmap): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -199,6 +209,7 @@ end;
 
 function Bitmap_GetCanvas(AObj: TBitmap): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -206,6 +217,7 @@ end;
 
 function Bitmap_GetHandle(AObj: TBitmap): HBITMAP; extdecl;
 begin
+{$ifdef UsehandleException}Result := HBITMAP(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -220,6 +232,7 @@ end;
 
 function Bitmap_GetHandleType(AObj: TBitmap): TBitmapHandleType; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBitmapHandleType(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleType;
   handleExceptionEnd
@@ -234,6 +247,7 @@ end;
 
 function Bitmap_GetMaskHandle(AObj: TBitmap): HBITMAP; extdecl;
 begin
+{$ifdef UsehandleException}Result := HBITMAP(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaskHandle;
   handleExceptionEnd
@@ -248,6 +262,7 @@ end;
 
 function Bitmap_GetPixelFormat(AObj: TBitmap): TPixelFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := TPixelFormat(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelFormat;
   handleExceptionEnd
@@ -262,6 +277,7 @@ end;
 
 function Bitmap_GetTransparentMode(AObj: TBitmap): TTransparentMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTransparentMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TransparentMode;
   handleExceptionEnd
@@ -276,6 +292,7 @@ end;
 
 function Bitmap_GetEmpty(AObj: TBitmap): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Empty;
   handleExceptionEnd
@@ -283,6 +300,7 @@ end;
 
 function Bitmap_GetHeight(AObj: TBitmap): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -297,6 +315,7 @@ end;
 
 function Bitmap_GetModified(AObj: TBitmap): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -311,6 +330,7 @@ end;
 
 function Bitmap_GetPalette(AObj: TBitmap): HPALETTE; extdecl;
 begin
+{$ifdef UsehandleException}Result := HPALETTE(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Palette;
   handleExceptionEnd
@@ -325,6 +345,7 @@ end;
 
 function Bitmap_GetPaletteModified(AObj: TBitmap): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PaletteModified;
   handleExceptionEnd
@@ -339,6 +360,7 @@ end;
 
 function Bitmap_GetTransparent(AObj: TBitmap): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -353,6 +375,7 @@ end;
 
 function Bitmap_GetWidth(AObj: TBitmap): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -375,6 +398,7 @@ end;
 
 function Bitmap_GetScanLine(AObj: TBitmap; Row: Integer): Pointer; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ScanLine[Row];
   handleExceptionEnd

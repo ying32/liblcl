@@ -9,6 +9,7 @@
 
 function StringList_Create: TStringList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TStringList.Create;
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function StringList_Add(AObj: TStringList; S: PChar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Add(S);
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function StringList_AddObject(AObj: TStringList; S: PChar; AObject: TObject): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AddObject(S, AObject);
   handleExceptionEnd
@@ -72,6 +75,7 @@ end;
 //CLASSMETHOD:
 function StringList_IndexOf(AObj: TStringList; S: PChar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOf(S);
   handleExceptionEnd
@@ -120,6 +124,7 @@ end;
 //CLASSMETHOD:
 function StringList_Equals(AObj: TStringList; Strings: TStrings): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Strings);
   handleExceptionEnd
@@ -128,6 +133,7 @@ end;
 //CLASSMETHOD:
 function StringList_IndexOfName(AObj: TStringList; Name: PChar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOfName(Name);
   handleExceptionEnd
@@ -136,6 +142,7 @@ end;
 //CLASSMETHOD:
 function StringList_IndexOfObject(AObj: TStringList; AObject: TObject): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOfObject(AObject);
   handleExceptionEnd
@@ -184,6 +191,7 @@ end;
 //CLASSMETHOD:
 function StringList_GetNamePath(AObj: TStringList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -192,6 +200,7 @@ end;
 //CLASSMETHOD:
 function StringList_ClassType(AObj: TStringList): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -200,6 +209,7 @@ end;
 //CLASSMETHOD:
 function StringList_ClassName(AObj: TStringList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -208,6 +218,7 @@ end;
 //CLASSMETHOD:
 function StringList_InstanceSize(AObj: TStringList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -216,6 +227,7 @@ end;
 //CLASSMETHOD:
 function StringList_InheritsFrom(AObj: TStringList; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -224,6 +236,7 @@ end;
 //CLASSMETHOD:
 function StringList_GetHashCode(AObj: TStringList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -232,6 +245,7 @@ end;
 //CLASSMETHOD:
 function StringList_ToString(AObj: TStringList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -239,6 +253,7 @@ end;
 
 function StringList_GetSorted(AObj: TStringList): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Sorted;
   handleExceptionEnd
@@ -269,6 +284,7 @@ end;
 
 function StringList_GetCapacity(AObj: TStringList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Capacity;
   handleExceptionEnd
@@ -283,6 +299,7 @@ end;
 
 function StringList_GetCommaText(AObj: TStringList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.CommaText);
   handleExceptionEnd
@@ -297,6 +314,7 @@ end;
 
 function StringList_GetCount(AObj: TStringList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -304,6 +322,7 @@ end;
 
 function StringList_GetDelimiter(AObj: TStringList): Char; extdecl;
 begin
+{$ifdef UsehandleException}Result := Char(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.Delimiter;
   handleExceptionEnd
@@ -318,6 +337,7 @@ end;
 
 function StringList_GetNameValueSeparator(AObj: TStringList): Char; extdecl;
 begin
+{$ifdef UsehandleException}Result := Char(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.NameValueSeparator;
   handleExceptionEnd
@@ -332,6 +352,7 @@ end;
 
 function StringList_GetText(AObj: TStringList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -346,6 +367,7 @@ end;
 
 function StringList_GetObjects(AObj: TStringList; Index: Integer): TObject; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Objects[Index];
   handleExceptionEnd
@@ -360,6 +382,7 @@ end;
 
 function StringList_GetValues(AObj: TStringList; Name: PChar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Values[Name]);
   handleExceptionEnd
@@ -374,6 +397,7 @@ end;
 
 function StringList_GetValueFromIndex(AObj: TStringList; Index: Integer): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ValueFromIndex[Index]);
   handleExceptionEnd
@@ -388,6 +412,7 @@ end;
 
 function StringList_GetStrings(AObj: TStringList; Index: Integer): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Strings[Index]);
   handleExceptionEnd

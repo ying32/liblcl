@@ -9,6 +9,7 @@
 
 function Gauge_Create(AOwner: TComponent): TGauge; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TGauge.Create(AOwner);
   handleExceptionEnd
@@ -60,6 +61,7 @@ end;
 //CLASSMETHOD:
 function Gauge_Dragging(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -68,6 +70,7 @@ end;
 //CLASSMETHOD:
 function Gauge_HasParent(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -92,6 +95,7 @@ end;
 //CLASSMETHOD:
 function Gauge_Perform(AObj: TGauge; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -168,6 +172,7 @@ end;
 //CLASSMETHOD:
 function Gauge_GetTextBuf(AObj: TGauge; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -176,6 +181,7 @@ end;
 //CLASSMETHOD:
 function Gauge_GetTextLen(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -192,6 +198,7 @@ end;
 //CLASSMETHOD:
 function Gauge_FindComponent(AObj: TGauge; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -200,6 +207,7 @@ end;
 //CLASSMETHOD:
 function Gauge_GetNamePath(AObj: TGauge): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -216,6 +224,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ClassType(AObj: TGauge): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -224,6 +233,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ClassName(AObj: TGauge): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -232,6 +242,7 @@ end;
 //CLASSMETHOD:
 function Gauge_InstanceSize(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -240,6 +251,7 @@ end;
 //CLASSMETHOD:
 function Gauge_InheritsFrom(AObj: TGauge; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -248,6 +260,7 @@ end;
 //CLASSMETHOD:
 function Gauge_Equals(AObj: TGauge; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -256,6 +269,7 @@ end;
 //CLASSMETHOD:
 function Gauge_GetHashCode(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -264,6 +278,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ToString(AObj: TGauge): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -328,6 +343,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleDesignToForm(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -336,6 +352,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleFormToDesign(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -344,6 +361,7 @@ end;
 //CLASSMETHOD:
 function Gauge_Scale96ToForm(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -352,6 +370,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleFormTo96(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -360,6 +379,7 @@ end;
 //CLASSMETHOD:
 function Gauge_Scale96ToFont(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -368,6 +388,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleFontTo96(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -376,6 +397,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleScreenToFont(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -384,6 +406,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleFontToScreen(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +415,7 @@ end;
 //CLASSMETHOD:
 function Gauge_Scale96ToScreen(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -400,6 +424,7 @@ end;
 //CLASSMETHOD:
 function Gauge_ScaleScreenTo96(AObj: TGauge; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -432,6 +457,7 @@ end;
 
 function Gauge_GetPercentDone(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PercentDone;
   handleExceptionEnd
@@ -439,6 +465,7 @@ end;
 
 function Gauge_GetAlign(AObj: TGauge): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -453,6 +480,7 @@ end;
 
 function Gauge_GetAnchors(AObj: TGauge): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -467,6 +495,7 @@ end;
 
 function Gauge_GetBackColor(AObj: TGauge): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BackColor;
   handleExceptionEnd
@@ -481,6 +510,7 @@ end;
 
 function Gauge_GetBorderStyle(AObj: TGauge): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -495,6 +525,7 @@ end;
 
 function Gauge_GetColor(AObj: TGauge): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -509,6 +540,7 @@ end;
 
 function Gauge_GetConstraints(AObj: TGauge): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -523,6 +555,7 @@ end;
 
 function Gauge_GetEnabled(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -537,6 +570,7 @@ end;
 
 function Gauge_GetForeColor(AObj: TGauge): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ForeColor;
   handleExceptionEnd
@@ -551,6 +585,7 @@ end;
 
 function Gauge_GetFont(AObj: TGauge): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -565,6 +600,7 @@ end;
 
 function Gauge_GetKind(AObj: TGauge): TGaugeKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TGaugeKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -579,6 +615,7 @@ end;
 
 function Gauge_GetMinValue(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinValue;
   handleExceptionEnd
@@ -593,6 +630,7 @@ end;
 
 function Gauge_GetMaxValue(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxValue;
   handleExceptionEnd
@@ -607,6 +645,7 @@ end;
 
 function Gauge_GetParentColor(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -621,6 +660,7 @@ end;
 
 function Gauge_GetParentFont(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -635,6 +675,7 @@ end;
 
 function Gauge_GetParentShowHint(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -649,6 +690,7 @@ end;
 
 function Gauge_GetPopupMenu(AObj: TGauge): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -663,6 +705,7 @@ end;
 
 function Gauge_GetProgress(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Progress;
   handleExceptionEnd
@@ -677,6 +720,7 @@ end;
 
 function Gauge_GetShowHint(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -691,6 +735,7 @@ end;
 
 function Gauge_GetShowText(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowText;
   handleExceptionEnd
@@ -705,6 +750,7 @@ end;
 
 function Gauge_GetVisible(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -719,6 +765,7 @@ end;
 
 function Gauge_GetAction(AObj: TGauge): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -733,6 +780,7 @@ end;
 
 function Gauge_GetBiDiMode(AObj: TGauge): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -763,6 +811,7 @@ end;
 
 function Gauge_GetClientHeight(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -793,6 +842,7 @@ end;
 
 function Gauge_GetClientWidth(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -807,6 +857,7 @@ end;
 
 function Gauge_GetControlState(AObj: TGauge): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -821,6 +872,7 @@ end;
 
 function Gauge_GetControlStyle(AObj: TGauge): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -835,6 +887,7 @@ end;
 
 function Gauge_GetFloating(AObj: TGauge): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -842,6 +895,7 @@ end;
 
 function Gauge_GetParent(AObj: TGauge): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -856,6 +910,7 @@ end;
 
 function Gauge_GetLeft(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -870,6 +925,7 @@ end;
 
 function Gauge_GetTop(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -884,6 +940,7 @@ end;
 
 function Gauge_GetWidth(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -898,6 +955,7 @@ end;
 
 function Gauge_GetHeight(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -912,6 +970,7 @@ end;
 
 function Gauge_GetCursor(AObj: TGauge): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -926,6 +985,7 @@ end;
 
 function Gauge_GetHint(AObj: TGauge): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -940,6 +1000,7 @@ end;
 
 function Gauge_GetComponentCount(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -947,6 +1008,7 @@ end;
 
 function Gauge_GetComponentIndex(AObj: TGauge): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -961,6 +1023,7 @@ end;
 
 function Gauge_GetOwner(AObj: TGauge): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -968,6 +1031,7 @@ end;
 
 function Gauge_GetName(AObj: TGauge): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -982,6 +1046,7 @@ end;
 
 function Gauge_GetTag(AObj: TGauge): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -996,6 +1061,7 @@ end;
 
 function Gauge_GetAnchorSideLeft(AObj: TGauge): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1010,6 +1076,7 @@ end;
 
 function Gauge_GetAnchorSideTop(AObj: TGauge): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1024,6 +1091,7 @@ end;
 
 function Gauge_GetAnchorSideRight(AObj: TGauge): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1038,6 +1106,7 @@ end;
 
 function Gauge_GetAnchorSideBottom(AObj: TGauge): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1052,6 +1121,7 @@ end;
 
 function Gauge_GetBorderSpacing(AObj: TGauge): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1066,6 +1136,7 @@ end;
 
 function Gauge_GetComponents(AObj: TGauge; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1073,6 +1144,7 @@ end;
 
 function Gauge_GetAnchorSide(AObj: TGauge; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

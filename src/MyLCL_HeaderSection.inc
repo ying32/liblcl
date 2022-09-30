@@ -9,6 +9,7 @@
 
 function HeaderSection_Create(AOwner: TCollection): THeaderSection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  THeaderSection.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_GetNamePath(AObj: THeaderSection): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_ClassType(AObj: THeaderSection): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_ClassName(AObj: THeaderSection): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_InstanceSize(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_InheritsFrom(AObj: THeaderSection; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_Equals(AObj: THeaderSection; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_GetHashCode(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function HeaderSection_ToString(AObj: THeaderSection): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function HeaderSection_GetLeft(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -102,6 +112,7 @@ end;
 
 function HeaderSection_GetRight(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Right;
   handleExceptionEnd
@@ -109,6 +120,7 @@ end;
 
 function HeaderSection_GetAlignment(AObj: THeaderSection): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -123,6 +135,7 @@ end;
 
 function HeaderSection_GetImageIndex(AObj: THeaderSection): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -137,6 +150,7 @@ end;
 
 function HeaderSection_GetMaxWidth(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxWidth;
   handleExceptionEnd
@@ -151,6 +165,7 @@ end;
 
 function HeaderSection_GetMinWidth(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinWidth;
   handleExceptionEnd
@@ -165,6 +180,7 @@ end;
 
 function HeaderSection_GetText(AObj: THeaderSection): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -179,6 +195,7 @@ end;
 
 function HeaderSection_GetWidth(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -193,6 +210,7 @@ end;
 
 function HeaderSection_GetCollection(AObj: THeaderSection): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -207,6 +225,7 @@ end;
 
 function HeaderSection_GetIndex(AObj: THeaderSection): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -221,6 +240,7 @@ end;
 
 function HeaderSection_GetDisplayName(AObj: THeaderSection): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function StatusPanel_Create(AOwner: TCollection): TStatusPanel; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TStatusPanel.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_GetNamePath(AObj: TStatusPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_ClassType(AObj: TStatusPanel): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_ClassName(AObj: TStatusPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_InstanceSize(AObj: TStatusPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_InheritsFrom(AObj: TStatusPanel; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_Equals(AObj: TStatusPanel; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_GetHashCode(AObj: TStatusPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function StatusPanel_ToString(AObj: TStatusPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function StatusPanel_GetAlignment(AObj: TStatusPanel): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -109,6 +119,7 @@ end;
 
 function StatusPanel_GetBiDiMode(AObj: TStatusPanel): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -123,6 +134,7 @@ end;
 
 function StatusPanel_GetStyle(AObj: TStatusPanel): TStatusPanelStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TStatusPanelStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 
 function StatusPanel_GetText(AObj: TStatusPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -151,6 +164,7 @@ end;
 
 function StatusPanel_GetWidth(AObj: TStatusPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -165,6 +179,7 @@ end;
 
 function StatusPanel_GetCollection(AObj: TStatusPanel): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -179,6 +194,7 @@ end;
 
 function StatusPanel_GetIndex(AObj: TStatusPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -193,6 +209,7 @@ end;
 
 function StatusPanel_GetDisplayName(AObj: TStatusPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

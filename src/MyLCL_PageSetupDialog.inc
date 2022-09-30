@@ -9,6 +9,7 @@
 
 function PageSetupDialog_Create(AOwner: TComponent): TPageSetupDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPageSetupDialog.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_Execute(AObj: TPageSetupDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_FindComponent(AObj: TPageSetupDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_GetNamePath(AObj: TPageSetupDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_HasParent(AObj: TPageSetupDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_ClassType(AObj: TPageSetupDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_ClassName(AObj: TPageSetupDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_InstanceSize(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_InheritsFrom(AObj: TPageSetupDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_Equals(AObj: TPageSetupDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_GetHashCode(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function PageSetupDialog_ToString(AObj: TPageSetupDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +131,7 @@ end;
 
 function PageSetupDialog_GetMarginLeft(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MarginLeft;
   handleExceptionEnd
@@ -133,6 +146,7 @@ end;
 
 function PageSetupDialog_GetMarginTop(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MarginTop;
   handleExceptionEnd
@@ -147,6 +161,7 @@ end;
 
 function PageSetupDialog_GetMarginRight(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MarginRight;
   handleExceptionEnd
@@ -161,6 +176,7 @@ end;
 
 function PageSetupDialog_GetMarginBottom(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MarginBottom;
   handleExceptionEnd
@@ -175,6 +191,7 @@ end;
 
 function PageSetupDialog_GetOptions(AObj: TPageSetupDialog): TPageSetupDialogOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -189,6 +206,7 @@ end;
 
 function PageSetupDialog_GetPageWidth(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageWidth;
   handleExceptionEnd
@@ -203,6 +221,7 @@ end;
 
 function PageSetupDialog_GetPageHeight(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageHeight;
   handleExceptionEnd
@@ -217,6 +236,7 @@ end;
 
 function PageSetupDialog_GetUnits(AObj: TPageSetupDialog): TPageMeasureUnits; extdecl;
 begin
+{$ifdef UsehandleException}Result := TPageMeasureUnits(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Units;
   handleExceptionEnd
@@ -224,6 +244,7 @@ end;
 
 function PageSetupDialog_GetHandle(AObj: TPageSetupDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -247,6 +268,7 @@ end;
 
 function PageSetupDialog_GetComponentCount(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -254,6 +276,7 @@ end;
 
 function PageSetupDialog_GetComponentIndex(AObj: TPageSetupDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -268,6 +291,7 @@ end;
 
 function PageSetupDialog_GetOwner(AObj: TPageSetupDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -275,6 +299,7 @@ end;
 
 function PageSetupDialog_GetName(AObj: TPageSetupDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -289,6 +314,7 @@ end;
 
 function PageSetupDialog_GetTag(AObj: TPageSetupDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -303,6 +329,7 @@ end;
 
 function PageSetupDialog_GetComponents(AObj: TPageSetupDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

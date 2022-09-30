@@ -9,6 +9,7 @@
 
 function ProgressBar_Create(AOwner: TComponent): TProgressBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TProgressBar.Create(AOwner);
   handleExceptionEnd
@@ -40,6 +41,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_CanFocus(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ContainsControl(AObj: TProgressBar; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -57,6 +60,7 @@ end;
 //PARAMS:2=nonPtr
 function ProgressBar_ControlAtPos(AObj: TProgressBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -81,6 +85,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_FindChildControl(AObj: TProgressBar; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -97,6 +102,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Focused(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -105,6 +111,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_HandleAllocated(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -229,6 +236,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Dragging(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -237,6 +245,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_HasParent(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -253,6 +262,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Perform(AObj: TProgressBar; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -305,6 +315,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_GetTextBuf(AObj: TProgressBar; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -313,6 +324,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_GetTextLen(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -329,6 +341,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_FindComponent(AObj: TProgressBar; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -337,6 +350,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_GetNamePath(AObj: TProgressBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -353,6 +367,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ClassType(AObj: TProgressBar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -361,6 +376,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ClassName(AObj: TProgressBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -369,6 +385,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_InstanceSize(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -377,6 +394,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_InheritsFrom(AObj: TProgressBar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -385,6 +403,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Equals(AObj: TProgressBar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -393,6 +412,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_GetHashCode(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -401,6 +421,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ToString(AObj: TProgressBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -465,6 +486,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleDesignToForm(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -473,6 +495,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleFormToDesign(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -481,6 +504,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Scale96ToForm(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -489,6 +513,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleFormTo96(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -497,6 +522,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Scale96ToFont(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -505,6 +531,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleFontTo96(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -513,6 +540,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleScreenToFont(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -521,6 +549,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleFontToScreen(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +558,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_Scale96ToScreen(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -537,6 +567,7 @@ end;
 //CLASSMETHOD:
 function ProgressBar_ScaleScreenTo96(AObj: TProgressBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -569,6 +600,7 @@ end;
 
 function ProgressBar_GetAlign(AObj: TProgressBar): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -583,6 +615,7 @@ end;
 
 function ProgressBar_GetAnchors(AObj: TProgressBar): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -597,6 +630,7 @@ end;
 
 function ProgressBar_GetBorderWidth(AObj: TProgressBar): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -611,6 +645,7 @@ end;
 
 function ProgressBar_GetDoubleBuffered(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -625,6 +660,7 @@ end;
 
 function ProgressBar_GetDragCursor(AObj: TProgressBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -639,6 +675,7 @@ end;
 
 function ProgressBar_GetDragKind(AObj: TProgressBar): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -653,6 +690,7 @@ end;
 
 function ProgressBar_GetDragMode(AObj: TProgressBar): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -667,6 +705,7 @@ end;
 
 function ProgressBar_GetEnabled(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -681,6 +720,7 @@ end;
 
 function ProgressBar_GetHint(AObj: TProgressBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -695,6 +735,7 @@ end;
 
 function ProgressBar_GetConstraints(AObj: TProgressBar): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -709,6 +750,7 @@ end;
 
 function ProgressBar_GetMin(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Min;
   handleExceptionEnd
@@ -723,6 +765,7 @@ end;
 
 function ProgressBar_GetMax(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Max;
   handleExceptionEnd
@@ -737,6 +780,7 @@ end;
 
 function ProgressBar_GetOrientation(AObj: TProgressBar): TProgressBarOrientation; extdecl;
 begin
+{$ifdef UsehandleException}Result := TProgressBarOrientation(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -751,6 +795,7 @@ end;
 
 function ProgressBar_GetParentDoubleBuffered(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -765,6 +810,7 @@ end;
 
 function ProgressBar_GetParentShowHint(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -779,6 +825,7 @@ end;
 
 function ProgressBar_GetPopupMenu(AObj: TProgressBar): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -793,6 +840,7 @@ end;
 
 function ProgressBar_GetPosition(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
@@ -807,6 +855,7 @@ end;
 
 function ProgressBar_GetSmooth(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Smooth;
   handleExceptionEnd
@@ -821,6 +870,7 @@ end;
 
 function ProgressBar_GetStyle(AObj: TProgressBar): TProgressBarStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TProgressBarStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -835,6 +885,7 @@ end;
 
 function ProgressBar_GetStep(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Step;
   handleExceptionEnd
@@ -849,6 +900,7 @@ end;
 
 function ProgressBar_GetShowHint(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -863,6 +915,7 @@ end;
 
 function ProgressBar_GetTabOrder(AObj: TProgressBar): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -877,6 +930,7 @@ end;
 
 function ProgressBar_GetTabStop(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -891,6 +945,7 @@ end;
 
 function ProgressBar_GetVisible(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -993,6 +1048,7 @@ end;
 
 function ProgressBar_GetDockClientCount(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1000,6 +1056,7 @@ end;
 
 function ProgressBar_GetDockSite(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1014,6 +1071,7 @@ end;
 
 function ProgressBar_GetMouseInClient(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1021,6 +1079,7 @@ end;
 
 function ProgressBar_GetVisibleDockClientCount(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1028,6 +1087,7 @@ end;
 
 function ProgressBar_GetBrush(AObj: TProgressBar): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1035,6 +1095,7 @@ end;
 
 function ProgressBar_GetControlCount(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1042,6 +1103,7 @@ end;
 
 function ProgressBar_GetHandle(AObj: TProgressBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1049,6 +1111,7 @@ end;
 
 function ProgressBar_GetParentWindow(AObj: TProgressBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1063,6 +1126,7 @@ end;
 
 function ProgressBar_GetShowing(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1070,6 +1134,7 @@ end;
 
 function ProgressBar_GetUseDockManager(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1084,6 +1149,7 @@ end;
 
 function ProgressBar_GetAction(AObj: TProgressBar): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1098,6 +1164,7 @@ end;
 
 function ProgressBar_GetBiDiMode(AObj: TProgressBar): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1128,6 +1195,7 @@ end;
 
 function ProgressBar_GetClientHeight(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1158,6 +1226,7 @@ end;
 
 function ProgressBar_GetClientWidth(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1172,6 +1241,7 @@ end;
 
 function ProgressBar_GetControlState(AObj: TProgressBar): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1186,6 +1256,7 @@ end;
 
 function ProgressBar_GetControlStyle(AObj: TProgressBar): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1200,6 +1271,7 @@ end;
 
 function ProgressBar_GetFloating(AObj: TProgressBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1207,6 +1279,7 @@ end;
 
 function ProgressBar_GetParent(AObj: TProgressBar): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1221,6 +1294,7 @@ end;
 
 function ProgressBar_GetLeft(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1235,6 +1309,7 @@ end;
 
 function ProgressBar_GetTop(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1249,6 +1324,7 @@ end;
 
 function ProgressBar_GetWidth(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1263,6 +1339,7 @@ end;
 
 function ProgressBar_GetHeight(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1277,6 +1354,7 @@ end;
 
 function ProgressBar_GetCursor(AObj: TProgressBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1291,6 +1369,7 @@ end;
 
 function ProgressBar_GetComponentCount(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1298,6 +1377,7 @@ end;
 
 function ProgressBar_GetComponentIndex(AObj: TProgressBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1312,6 +1392,7 @@ end;
 
 function ProgressBar_GetOwner(AObj: TProgressBar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1319,6 +1400,7 @@ end;
 
 function ProgressBar_GetName(AObj: TProgressBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1333,6 +1415,7 @@ end;
 
 function ProgressBar_GetTag(AObj: TProgressBar): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1347,6 +1430,7 @@ end;
 
 function ProgressBar_GetAnchorSideLeft(AObj: TProgressBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1361,6 +1445,7 @@ end;
 
 function ProgressBar_GetAnchorSideTop(AObj: TProgressBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1375,6 +1460,7 @@ end;
 
 function ProgressBar_GetAnchorSideRight(AObj: TProgressBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1389,6 +1475,7 @@ end;
 
 function ProgressBar_GetAnchorSideBottom(AObj: TProgressBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1403,6 +1490,7 @@ end;
 
 function ProgressBar_GetChildSizing(AObj: TProgressBar): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1417,6 +1505,7 @@ end;
 
 function ProgressBar_GetBorderSpacing(AObj: TProgressBar): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1431,6 +1520,7 @@ end;
 
 function ProgressBar_GetDockClients(AObj: TProgressBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1438,6 +1528,7 @@ end;
 
 function ProgressBar_GetControls(AObj: TProgressBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1445,6 +1536,7 @@ end;
 
 function ProgressBar_GetComponents(AObj: TProgressBar; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1452,6 +1544,7 @@ end;
 
 function ProgressBar_GetAnchorSide(AObj: TProgressBar; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

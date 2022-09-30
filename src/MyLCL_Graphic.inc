@@ -9,6 +9,7 @@
 
 function Graphic_Create: TGraphic; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TGraphic.Create;
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function Graphic_Equals(AObj: TGraphic; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -72,6 +74,7 @@ end;
 //CLASSMETHOD:
 function Graphic_GetNamePath(AObj: TGraphic): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function Graphic_ClassType(AObj: TGraphic): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function Graphic_ClassName(AObj: TGraphic): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function Graphic_InstanceSize(AObj: TGraphic): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function Graphic_InheritsFrom(AObj: TGraphic; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function Graphic_GetHashCode(AObj: TGraphic): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -120,6 +128,7 @@ end;
 //CLASSMETHOD:
 function Graphic_ToString(AObj: TGraphic): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -127,6 +136,7 @@ end;
 
 function Graphic_GetEmpty(AObj: TGraphic): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Empty;
   handleExceptionEnd
@@ -134,6 +144,7 @@ end;
 
 function Graphic_GetHeight(AObj: TGraphic): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -148,6 +159,7 @@ end;
 
 function Graphic_GetModified(AObj: TGraphic): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -162,6 +174,7 @@ end;
 
 function Graphic_GetPalette(AObj: TGraphic): HPALETTE; extdecl;
 begin
+{$ifdef UsehandleException}Result := HPALETTE(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Palette;
   handleExceptionEnd
@@ -176,6 +189,7 @@ end;
 
 function Graphic_GetPaletteModified(AObj: TGraphic): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PaletteModified;
   handleExceptionEnd
@@ -190,6 +204,7 @@ end;
 
 function Graphic_GetTransparent(AObj: TGraphic): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -204,6 +219,7 @@ end;
 
 function Graphic_GetWidth(AObj: TGraphic): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd

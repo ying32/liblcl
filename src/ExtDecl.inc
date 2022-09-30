@@ -28,6 +28,7 @@
          CallException(E);
      end;
   }
+
 {$else}
   {$define handleExceptionBegin :=}
   {$define handleExceptionEnd :=}

@@ -9,6 +9,7 @@
 
 function PngImage_Create: TPngImage; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPngImage.Create;
   handleExceptionEnd
@@ -64,6 +65,7 @@ end;
 //CLASSMETHOD:
 function PngImage_Equals(AObj: TPngImage; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -96,6 +98,7 @@ end;
 //CLASSMETHOD:
 function PngImage_GetNamePath(AObj: TPngImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -104,6 +107,7 @@ end;
 //CLASSMETHOD:
 function PngImage_ClassType(AObj: TPngImage): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -112,6 +116,7 @@ end;
 //CLASSMETHOD:
 function PngImage_ClassName(AObj: TPngImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -120,6 +125,7 @@ end;
 //CLASSMETHOD:
 function PngImage_InstanceSize(AObj: TPngImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -128,6 +134,7 @@ end;
 //CLASSMETHOD:
 function PngImage_InheritsFrom(AObj: TPngImage; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -136,6 +143,7 @@ end;
 //CLASSMETHOD:
 function PngImage_GetHashCode(AObj: TPngImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -144,6 +152,7 @@ end;
 //CLASSMETHOD:
 function PngImage_ToString(AObj: TPngImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -151,6 +160,7 @@ end;
 
 function PngImage_GetCanvas(AObj: TPngImage): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -158,6 +168,7 @@ end;
 
 function PngImage_GetWidth(AObj: TPngImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -165,6 +176,7 @@ end;
 
 function PngImage_GetHeight(AObj: TPngImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -172,6 +184,7 @@ end;
 
 function PngImage_GetEmpty(AObj: TPngImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Empty;
   handleExceptionEnd
@@ -179,6 +192,7 @@ end;
 
 function PngImage_GetModified(AObj: TPngImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -193,6 +207,7 @@ end;
 
 function PngImage_GetPalette(AObj: TPngImage): HPALETTE; extdecl;
 begin
+{$ifdef UsehandleException}Result := HPALETTE(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Palette;
   handleExceptionEnd
@@ -207,6 +222,7 @@ end;
 
 function PngImage_GetPaletteModified(AObj: TPngImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PaletteModified;
   handleExceptionEnd
@@ -221,6 +237,7 @@ end;
 
 function PngImage_GetTransparent(AObj: TPngImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd

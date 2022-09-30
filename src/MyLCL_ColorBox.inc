@@ -9,6 +9,7 @@
 
 function ColorBox_Create(AOwner: TComponent): TColorBox; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TColorBox.Create(AOwner);
   handleExceptionEnd
@@ -56,6 +57,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Focused(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -72,6 +74,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_CanFocus(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ContainsControl(AObj: TColorBox; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -89,6 +93,7 @@ end;
 //PARAMS:2=nonPtr
 function ColorBox_ControlAtPos(AObj: TColorBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -113,6 +118,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_FindChildControl(AObj: TColorBox; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -129,6 +135,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_HandleAllocated(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -253,6 +260,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Dragging(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -261,6 +269,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_HasParent(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -277,6 +286,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Perform(AObj: TColorBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -329,6 +339,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_GetTextBuf(AObj: TColorBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -337,6 +348,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_GetTextLen(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -353,6 +365,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_FindComponent(AObj: TColorBox; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -361,6 +374,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_GetNamePath(AObj: TColorBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -377,6 +391,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ClassType(AObj: TColorBox): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -385,6 +400,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ClassName(AObj: TColorBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -393,6 +409,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_InstanceSize(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -401,6 +418,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_InheritsFrom(AObj: TColorBox; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -409,6 +427,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Equals(AObj: TColorBox; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -417,6 +436,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_GetHashCode(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -425,6 +445,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ToString(AObj: TColorBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -489,6 +510,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleDesignToForm(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -497,6 +519,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleFormToDesign(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -505,6 +528,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Scale96ToForm(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -513,6 +537,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleFormTo96(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -521,6 +546,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Scale96ToFont(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -529,6 +555,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleFontTo96(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -537,6 +564,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleScreenToFont(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -545,6 +573,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleFontToScreen(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -553,6 +582,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_Scale96ToScreen(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -561,6 +591,7 @@ end;
 //CLASSMETHOD:
 function ColorBox_ScaleScreenTo96(AObj: TColorBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -593,6 +624,7 @@ end;
 
 function ColorBox_GetAlign(AObj: TColorBox): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -607,6 +639,7 @@ end;
 
 function ColorBox_GetAutoComplete(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoComplete;
   handleExceptionEnd
@@ -621,6 +654,7 @@ end;
 
 function ColorBox_GetAutoDropDown(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoDropDown;
   handleExceptionEnd
@@ -635,6 +669,7 @@ end;
 
 function ColorBox_GetDefaultColorColor(AObj: TColorBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultColorColor;
   handleExceptionEnd
@@ -649,6 +684,7 @@ end;
 
 function ColorBox_GetNoneColorColor(AObj: TColorBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.NoneColorColor;
   handleExceptionEnd
@@ -663,6 +699,7 @@ end;
 
 function ColorBox_GetSelected(AObj: TColorBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Selected;
   handleExceptionEnd
@@ -677,6 +714,7 @@ end;
 
 function ColorBox_GetStyle(AObj: TColorBox): TColorBoxStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -691,6 +729,7 @@ end;
 
 function ColorBox_GetAnchors(AObj: TColorBox): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -705,6 +744,7 @@ end;
 
 function ColorBox_GetBiDiMode(AObj: TColorBox): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -719,6 +759,7 @@ end;
 
 function ColorBox_GetColor(AObj: TColorBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -733,6 +774,7 @@ end;
 
 function ColorBox_GetConstraints(AObj: TColorBox): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -747,6 +789,7 @@ end;
 
 function ColorBox_GetDoubleBuffered(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -761,6 +804,7 @@ end;
 
 function ColorBox_GetDropDownCount(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DropDownCount;
   handleExceptionEnd
@@ -775,6 +819,7 @@ end;
 
 function ColorBox_GetEnabled(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -789,6 +834,7 @@ end;
 
 function ColorBox_GetFont(AObj: TColorBox): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -803,6 +849,7 @@ end;
 
 function ColorBox_GetItemHeight(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemHeight;
   handleExceptionEnd
@@ -817,6 +864,7 @@ end;
 
 function ColorBox_GetParentColor(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -831,6 +879,7 @@ end;
 
 function ColorBox_GetParentDoubleBuffered(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -845,6 +894,7 @@ end;
 
 function ColorBox_GetParentFont(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -859,6 +909,7 @@ end;
 
 function ColorBox_GetParentShowHint(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -873,6 +924,7 @@ end;
 
 function ColorBox_GetPopupMenu(AObj: TColorBox): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -887,6 +939,7 @@ end;
 
 function ColorBox_GetShowHint(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -901,6 +954,7 @@ end;
 
 function ColorBox_GetTabOrder(AObj: TColorBox): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -915,6 +969,7 @@ end;
 
 function ColorBox_GetTabStop(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -929,6 +984,7 @@ end;
 
 function ColorBox_GetVisible(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1071,6 +1127,7 @@ end;
 
 function ColorBox_GetCharCase(AObj: TColorBox): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -1085,6 +1142,7 @@ end;
 
 function ColorBox_GetSelText(AObj: TColorBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1099,6 +1157,7 @@ end;
 
 function ColorBox_GetCanvas(AObj: TColorBox): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1106,6 +1165,7 @@ end;
 
 function ColorBox_GetDroppedDown(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DroppedDown;
   handleExceptionEnd
@@ -1120,6 +1180,7 @@ end;
 
 function ColorBox_GetItems(AObj: TColorBox): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -1134,6 +1195,7 @@ end;
 
 function ColorBox_GetSelLength(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1148,6 +1210,7 @@ end;
 
 function ColorBox_GetSelStart(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1162,6 +1225,7 @@ end;
 
 function ColorBox_GetItemIndex(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemIndex;
   handleExceptionEnd
@@ -1176,6 +1240,7 @@ end;
 
 function ColorBox_GetDockClientCount(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1183,6 +1248,7 @@ end;
 
 function ColorBox_GetDockSite(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1197,6 +1263,7 @@ end;
 
 function ColorBox_GetMouseInClient(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1204,6 +1271,7 @@ end;
 
 function ColorBox_GetVisibleDockClientCount(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1211,6 +1279,7 @@ end;
 
 function ColorBox_GetBrush(AObj: TColorBox): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1218,6 +1287,7 @@ end;
 
 function ColorBox_GetControlCount(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1225,6 +1295,7 @@ end;
 
 function ColorBox_GetHandle(AObj: TColorBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1232,6 +1303,7 @@ end;
 
 function ColorBox_GetParentWindow(AObj: TColorBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1246,6 +1318,7 @@ end;
 
 function ColorBox_GetShowing(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1253,6 +1326,7 @@ end;
 
 function ColorBox_GetUseDockManager(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1267,6 +1341,7 @@ end;
 
 function ColorBox_GetAction(AObj: TColorBox): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1297,6 +1372,7 @@ end;
 
 function ColorBox_GetClientHeight(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1327,6 +1403,7 @@ end;
 
 function ColorBox_GetClientWidth(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1341,6 +1418,7 @@ end;
 
 function ColorBox_GetControlState(AObj: TColorBox): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1355,6 +1433,7 @@ end;
 
 function ColorBox_GetControlStyle(AObj: TColorBox): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1369,6 +1448,7 @@ end;
 
 function ColorBox_GetFloating(AObj: TColorBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1376,6 +1456,7 @@ end;
 
 function ColorBox_GetParent(AObj: TColorBox): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1390,6 +1471,7 @@ end;
 
 function ColorBox_GetLeft(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1404,6 +1486,7 @@ end;
 
 function ColorBox_GetTop(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1418,6 +1501,7 @@ end;
 
 function ColorBox_GetWidth(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1432,6 +1516,7 @@ end;
 
 function ColorBox_GetHeight(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1446,6 +1531,7 @@ end;
 
 function ColorBox_GetCursor(AObj: TColorBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1460,6 +1546,7 @@ end;
 
 function ColorBox_GetHint(AObj: TColorBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1474,6 +1561,7 @@ end;
 
 function ColorBox_GetComponentCount(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1481,6 +1569,7 @@ end;
 
 function ColorBox_GetComponentIndex(AObj: TColorBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1495,6 +1584,7 @@ end;
 
 function ColorBox_GetOwner(AObj: TColorBox): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1502,6 +1592,7 @@ end;
 
 function ColorBox_GetName(AObj: TColorBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1516,6 +1607,7 @@ end;
 
 function ColorBox_GetTag(AObj: TColorBox): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1530,6 +1622,7 @@ end;
 
 function ColorBox_GetAnchorSideLeft(AObj: TColorBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1544,6 +1637,7 @@ end;
 
 function ColorBox_GetAnchorSideTop(AObj: TColorBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1558,6 +1652,7 @@ end;
 
 function ColorBox_GetAnchorSideRight(AObj: TColorBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1572,6 +1667,7 @@ end;
 
 function ColorBox_GetAnchorSideBottom(AObj: TColorBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1586,6 +1682,7 @@ end;
 
 function ColorBox_GetChildSizing(AObj: TColorBox): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1600,6 +1697,7 @@ end;
 
 function ColorBox_GetBorderSpacing(AObj: TColorBox): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1614,6 +1712,7 @@ end;
 
 function ColorBox_GetColors(AObj: TColorBox; Index: Integer): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Colors[Index];
   handleExceptionEnd
@@ -1621,6 +1720,7 @@ end;
 
 function ColorBox_GetColorNames(AObj: TColorBox; Index: Integer): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ColorNames[Index]);
   handleExceptionEnd
@@ -1628,6 +1728,7 @@ end;
 
 function ColorBox_GetDockClients(AObj: TColorBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1635,6 +1736,7 @@ end;
 
 function ColorBox_GetControls(AObj: TColorBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1642,6 +1744,7 @@ end;
 
 function ColorBox_GetComponents(AObj: TColorBox; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1649,6 +1752,7 @@ end;
 
 function ColorBox_GetAnchorSide(AObj: TColorBox; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

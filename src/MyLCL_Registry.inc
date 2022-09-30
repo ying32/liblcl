@@ -9,6 +9,7 @@
 
 function Registry_Create(AAccess: LongWord): TRegistry; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TRegistry.Create(AAccess);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function Registry_CreateKey(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CreateKey(Key);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function Registry_DeleteKey(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DeleteKey(Key);
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function Registry_DeleteValue(AObj: TRegistry; Name: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DeleteValue(Name);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function Registry_HasSubKeys(AObj: TRegistry): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasSubKeys;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function Registry_KeyExists(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.KeyExists(Key);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function Registry_LoadKey(AObj: TRegistry; Key: PChar; FileName: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.LoadKey(Key, FileName);
   handleExceptionEnd
@@ -88,6 +95,7 @@ end;
 //CLASSMETHOD:
 function Registry_OpenKey(AObj: TRegistry; Key: PChar; CanCreate: LongBool): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.OpenKey(Key, CanCreate);
   handleExceptionEnd
@@ -96,6 +104,7 @@ end;
 //CLASSMETHOD:
 function Registry_OpenKeyReadOnly(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.OpenKeyReadOnly(Key);
   handleExceptionEnd
@@ -104,6 +113,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadBool(AObj: TRegistry; Name: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadBool(Name);
   handleExceptionEnd
@@ -112,6 +122,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadDate(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDate(Name));
   handleExceptionEnd
@@ -120,6 +131,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadDateTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDateTime(Name));
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadInteger(AObj: TRegistry; Name: PChar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadInteger(Name);
   handleExceptionEnd
@@ -145,6 +158,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadString(AObj: TRegistry; Name: PChar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ReadString(Name));
   handleExceptionEnd
@@ -153,6 +167,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadTime(Name));
   handleExceptionEnd
@@ -161,6 +176,7 @@ end;
 //CLASSMETHOD:
 function Registry_RegistryConnect(AObj: TRegistry; UNCName: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RegistryConnect(UNCName);
   handleExceptionEnd
@@ -177,6 +193,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReplaceKey(AObj: TRegistry; Key: PChar; FileName: PChar; BackUpFileName: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReplaceKey(Key, FileName, BackUpFileName);
   handleExceptionEnd
@@ -185,6 +202,7 @@ end;
 //CLASSMETHOD:
 function Registry_RestoreKey(AObj: TRegistry; Key: PChar; FileName: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RestoreKey(Key, FileName);
   handleExceptionEnd
@@ -193,6 +211,7 @@ end;
 //CLASSMETHOD:
 function Registry_SaveKey(AObj: TRegistry; Key: PChar; FileName: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.SaveKey(Key, FileName);
   handleExceptionEnd
@@ -201,6 +220,7 @@ end;
 //CLASSMETHOD:
 function Registry_UnLoadKey(AObj: TRegistry; Key: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UnLoadKey(Key);
   handleExceptionEnd
@@ -209,6 +229,7 @@ end;
 //CLASSMETHOD:
 function Registry_ValueExists(AObj: TRegistry; Name: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ValueExists(Name);
   handleExceptionEnd
@@ -282,6 +303,7 @@ end;
 //CLASSMETHOD:
 function Registry_ClassType(AObj: TRegistry): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -290,6 +312,7 @@ end;
 //CLASSMETHOD:
 function Registry_ClassName(AObj: TRegistry): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -298,6 +321,7 @@ end;
 //CLASSMETHOD:
 function Registry_InstanceSize(AObj: TRegistry): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -306,6 +330,7 @@ end;
 //CLASSMETHOD:
 function Registry_InheritsFrom(AObj: TRegistry; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -314,6 +339,7 @@ end;
 //CLASSMETHOD:
 function Registry_Equals(AObj: TRegistry; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -322,6 +348,7 @@ end;
 //CLASSMETHOD:
 function Registry_GetHashCode(AObj: TRegistry): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -330,6 +357,7 @@ end;
 //CLASSMETHOD:
 function Registry_ToString(AObj: TRegistry): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -337,6 +365,7 @@ end;
 
 function Registry_GetCurrentKey(AObj: TRegistry): HKEY; extdecl;
 begin
+{$ifdef UsehandleException}Result := HKEY(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CurrentKey;
   handleExceptionEnd
@@ -344,6 +373,7 @@ end;
 
 function Registry_GetCurrentPath(AObj: TRegistry): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.CurrentPath);
   handleExceptionEnd
@@ -351,6 +381,7 @@ end;
 
 function Registry_GetLazyWrite(AObj: TRegistry): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.LazyWrite;
   handleExceptionEnd
@@ -365,6 +396,7 @@ end;
 
 function Registry_GetLastError(AObj: TRegistry): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LastError;
   handleExceptionEnd
@@ -372,6 +404,7 @@ end;
 
 function Registry_GetLastErrorMsg(AObj: TRegistry): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.LastErrorMsg);
   handleExceptionEnd
@@ -379,6 +412,7 @@ end;
 
 function Registry_GetRootKey(AObj: TRegistry): HKEY; extdecl;
 begin
+{$ifdef UsehandleException}Result := HKEY(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RootKey;
   handleExceptionEnd
@@ -393,6 +427,7 @@ end;
 
 function Registry_GetAccess(AObj: TRegistry): Cardinal; extdecl;
 begin
+{$ifdef UsehandleException}Result := Cardinal(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Access;
   handleExceptionEnd

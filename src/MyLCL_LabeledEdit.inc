@@ -9,6 +9,7 @@
 
 function LabeledEdit_Create(AOwner: TComponent): TLabeledEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TLabeledEdit.Create(AOwner);
   handleExceptionEnd
@@ -88,6 +89,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_CanFocus(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -96,6 +98,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ContainsControl(AObj: TLabeledEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -105,6 +108,7 @@ end;
 //PARAMS:2=nonPtr
 function LabeledEdit_ControlAtPos(AObj: TLabeledEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -129,6 +133,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_FindChildControl(AObj: TLabeledEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -145,6 +150,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Focused(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -153,6 +159,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_HandleAllocated(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -269,6 +276,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Dragging(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -277,6 +285,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_HasParent(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -293,6 +302,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Perform(AObj: TLabeledEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -345,6 +355,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_GetTextBuf(AObj: TLabeledEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -353,6 +364,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_GetTextLen(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -369,6 +381,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_FindComponent(AObj: TLabeledEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -377,6 +390,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_GetNamePath(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -393,6 +407,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ClassType(AObj: TLabeledEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -401,6 +416,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ClassName(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -409,6 +425,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_InstanceSize(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -417,6 +434,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_InheritsFrom(AObj: TLabeledEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -425,6 +443,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Equals(AObj: TLabeledEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -433,6 +452,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_GetHashCode(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -441,6 +461,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ToString(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -505,6 +526,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleDesignToForm(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -513,6 +535,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleFormToDesign(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -521,6 +544,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Scale96ToForm(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -529,6 +553,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleFormTo96(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -537,6 +562,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Scale96ToFont(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -545,6 +571,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleFontTo96(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -553,6 +580,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleScreenToFont(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -561,6 +589,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleFontToScreen(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -569,6 +598,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_Scale96ToScreen(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +607,7 @@ end;
 //CLASSMETHOD:
 function LabeledEdit_ScaleScreenTo96(AObj: TLabeledEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -609,6 +640,7 @@ end;
 
 function LabeledEdit_GetAlignment(AObj: TLabeledEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -623,6 +655,7 @@ end;
 
 function LabeledEdit_GetAnchors(AObj: TLabeledEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -637,6 +670,7 @@ end;
 
 function LabeledEdit_GetAutoSelect(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelect;
   handleExceptionEnd
@@ -651,6 +685,7 @@ end;
 
 function LabeledEdit_GetAutoSize(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -665,6 +700,7 @@ end;
 
 function LabeledEdit_GetBiDiMode(AObj: TLabeledEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -679,6 +715,7 @@ end;
 
 function LabeledEdit_GetBorderStyle(AObj: TLabeledEdit): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -693,6 +730,7 @@ end;
 
 function LabeledEdit_GetCharCase(AObj: TLabeledEdit): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -707,6 +745,7 @@ end;
 
 function LabeledEdit_GetColor(AObj: TLabeledEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -721,6 +760,7 @@ end;
 
 function LabeledEdit_GetConstraints(AObj: TLabeledEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -735,6 +775,7 @@ end;
 
 function LabeledEdit_GetDoubleBuffered(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -749,6 +790,7 @@ end;
 
 function LabeledEdit_GetDragCursor(AObj: TLabeledEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -763,6 +805,7 @@ end;
 
 function LabeledEdit_GetDragMode(AObj: TLabeledEdit): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -777,6 +820,7 @@ end;
 
 function LabeledEdit_GetEditLabel(AObj: TLabeledEdit): TBoundLabel; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.EditLabel;
   handleExceptionEnd
@@ -784,6 +828,7 @@ end;
 
 function LabeledEdit_GetEnabled(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -798,6 +843,7 @@ end;
 
 function LabeledEdit_GetFont(AObj: TLabeledEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -812,6 +858,7 @@ end;
 
 function LabeledEdit_GetHideSelection(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -826,6 +873,7 @@ end;
 
 function LabeledEdit_GetLabelPosition(AObj: TLabeledEdit): TLabelPosition; extdecl;
 begin
+{$ifdef UsehandleException}Result := TLabelPosition(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LabelPosition;
   handleExceptionEnd
@@ -840,6 +888,7 @@ end;
 
 function LabeledEdit_GetLabelSpacing(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LabelSpacing;
   handleExceptionEnd
@@ -854,6 +903,7 @@ end;
 
 function LabeledEdit_GetMaxLength(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -868,6 +918,7 @@ end;
 
 function LabeledEdit_GetNumbersOnly(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.NumbersOnly;
   handleExceptionEnd
@@ -882,6 +933,7 @@ end;
 
 function LabeledEdit_GetParentColor(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -896,6 +948,7 @@ end;
 
 function LabeledEdit_GetParentDoubleBuffered(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -910,6 +963,7 @@ end;
 
 function LabeledEdit_GetParentFont(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -924,6 +978,7 @@ end;
 
 function LabeledEdit_GetParentShowHint(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -938,6 +993,7 @@ end;
 
 function LabeledEdit_GetPasswordChar(AObj: TLabeledEdit): Char; extdecl;
 begin
+{$ifdef UsehandleException}Result := Char(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.PasswordChar;
   handleExceptionEnd
@@ -952,6 +1008,7 @@ end;
 
 function LabeledEdit_GetPopupMenu(AObj: TLabeledEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -966,6 +1023,7 @@ end;
 
 function LabeledEdit_GetReadOnly(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -980,6 +1038,7 @@ end;
 
 function LabeledEdit_GetShowHint(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -994,6 +1053,7 @@ end;
 
 function LabeledEdit_GetTabOrder(AObj: TLabeledEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1008,6 +1068,7 @@ end;
 
 function LabeledEdit_GetTabStop(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1022,6 +1083,7 @@ end;
 
 function LabeledEdit_GetText(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1036,6 +1098,7 @@ end;
 
 function LabeledEdit_GetTextHint(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1050,6 +1113,7 @@ end;
 
 function LabeledEdit_GetVisible(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1192,6 +1256,7 @@ end;
 
 function LabeledEdit_GetCanUndo(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1199,6 +1264,7 @@ end;
 
 function LabeledEdit_GetModified(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1213,6 +1279,7 @@ end;
 
 function LabeledEdit_GetSelLength(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1227,6 +1294,7 @@ end;
 
 function LabeledEdit_GetSelStart(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1241,6 +1309,7 @@ end;
 
 function LabeledEdit_GetSelText(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1255,6 +1324,7 @@ end;
 
 function LabeledEdit_GetDockClientCount(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1262,6 +1332,7 @@ end;
 
 function LabeledEdit_GetDockSite(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1276,6 +1347,7 @@ end;
 
 function LabeledEdit_GetMouseInClient(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1283,6 +1355,7 @@ end;
 
 function LabeledEdit_GetVisibleDockClientCount(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1290,6 +1363,7 @@ end;
 
 function LabeledEdit_GetBrush(AObj: TLabeledEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1297,6 +1371,7 @@ end;
 
 function LabeledEdit_GetControlCount(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1304,6 +1379,7 @@ end;
 
 function LabeledEdit_GetHandle(AObj: TLabeledEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1311,6 +1387,7 @@ end;
 
 function LabeledEdit_GetParentWindow(AObj: TLabeledEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1325,6 +1402,7 @@ end;
 
 function LabeledEdit_GetShowing(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1332,6 +1410,7 @@ end;
 
 function LabeledEdit_GetUseDockManager(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1346,6 +1425,7 @@ end;
 
 function LabeledEdit_GetAction(AObj: TLabeledEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1360,6 +1440,7 @@ end;
 
 function LabeledEdit_GetAlign(AObj: TLabeledEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1390,6 +1471,7 @@ end;
 
 function LabeledEdit_GetClientHeight(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1420,6 +1502,7 @@ end;
 
 function LabeledEdit_GetClientWidth(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1434,6 +1517,7 @@ end;
 
 function LabeledEdit_GetControlState(AObj: TLabeledEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1448,6 +1532,7 @@ end;
 
 function LabeledEdit_GetControlStyle(AObj: TLabeledEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1462,6 +1547,7 @@ end;
 
 function LabeledEdit_GetFloating(AObj: TLabeledEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1469,6 +1555,7 @@ end;
 
 function LabeledEdit_GetParent(AObj: TLabeledEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1483,6 +1570,7 @@ end;
 
 function LabeledEdit_GetLeft(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1497,6 +1585,7 @@ end;
 
 function LabeledEdit_GetTop(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1511,6 +1600,7 @@ end;
 
 function LabeledEdit_GetWidth(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1525,6 +1615,7 @@ end;
 
 function LabeledEdit_GetHeight(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1539,6 +1630,7 @@ end;
 
 function LabeledEdit_GetCursor(AObj: TLabeledEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1553,6 +1645,7 @@ end;
 
 function LabeledEdit_GetHint(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1567,6 +1660,7 @@ end;
 
 function LabeledEdit_GetComponentCount(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1574,6 +1668,7 @@ end;
 
 function LabeledEdit_GetComponentIndex(AObj: TLabeledEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1588,6 +1683,7 @@ end;
 
 function LabeledEdit_GetOwner(AObj: TLabeledEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1595,6 +1691,7 @@ end;
 
 function LabeledEdit_GetName(AObj: TLabeledEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1609,6 +1706,7 @@ end;
 
 function LabeledEdit_GetTag(AObj: TLabeledEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1623,6 +1721,7 @@ end;
 
 function LabeledEdit_GetAnchorSideLeft(AObj: TLabeledEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1637,6 +1736,7 @@ end;
 
 function LabeledEdit_GetAnchorSideTop(AObj: TLabeledEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1651,6 +1751,7 @@ end;
 
 function LabeledEdit_GetAnchorSideRight(AObj: TLabeledEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1665,6 +1766,7 @@ end;
 
 function LabeledEdit_GetAnchorSideBottom(AObj: TLabeledEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1679,6 +1781,7 @@ end;
 
 function LabeledEdit_GetChildSizing(AObj: TLabeledEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1693,6 +1796,7 @@ end;
 
 function LabeledEdit_GetBorderSpacing(AObj: TLabeledEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1707,6 +1811,7 @@ end;
 
 function LabeledEdit_GetDockClients(AObj: TLabeledEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1714,6 +1819,7 @@ end;
 
 function LabeledEdit_GetControls(AObj: TLabeledEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1721,6 +1827,7 @@ end;
 
 function LabeledEdit_GetComponents(AObj: TLabeledEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1728,6 +1835,7 @@ end;
 
 function LabeledEdit_GetAnchorSide(AObj: TLabeledEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

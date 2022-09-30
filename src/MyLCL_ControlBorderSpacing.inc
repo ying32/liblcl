@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_GetNamePath(AObj: TControlBorderSpacing): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_ClassType(AObj: TControlBorderSpacing): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_ClassName(AObj: TControlBorderSpacing): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_InstanceSize(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_InheritsFrom(AObj: TControlBorderSpacing; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_Equals(AObj: TControlBorderSpacing; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_GetHashCode(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function ControlBorderSpacing_ToString(AObj: TControlBorderSpacing): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -81,6 +89,7 @@ end;
 
 function ControlBorderSpacing_GetControl(AObj: TControlBorderSpacing): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Control;
   handleExceptionEnd
@@ -88,6 +97,7 @@ end;
 
 function ControlBorderSpacing_GetAroundLeft(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AroundLeft;
   handleExceptionEnd
@@ -95,6 +105,7 @@ end;
 
 function ControlBorderSpacing_GetAroundTop(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AroundTop;
   handleExceptionEnd
@@ -102,6 +113,7 @@ end;
 
 function ControlBorderSpacing_GetAroundRight(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AroundRight;
   handleExceptionEnd
@@ -109,6 +121,7 @@ end;
 
 function ControlBorderSpacing_GetAroundBottom(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AroundBottom;
   handleExceptionEnd
@@ -116,6 +129,7 @@ end;
 
 function ControlBorderSpacing_GetControlLeft(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlLeft;
   handleExceptionEnd
@@ -123,6 +137,7 @@ end;
 
 function ControlBorderSpacing_GetControlTop(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlTop;
   handleExceptionEnd
@@ -130,6 +145,7 @@ end;
 
 function ControlBorderSpacing_GetControlWidth(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlWidth;
   handleExceptionEnd
@@ -137,6 +153,7 @@ end;
 
 function ControlBorderSpacing_GetControlHeight(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlHeight;
   handleExceptionEnd
@@ -144,6 +161,7 @@ end;
 
 function ControlBorderSpacing_GetControlRight(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlRight;
   handleExceptionEnd
@@ -151,6 +169,7 @@ end;
 
 function ControlBorderSpacing_GetControlBottom(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlBottom;
   handleExceptionEnd
@@ -166,6 +185,7 @@ end;
 
 function ControlBorderSpacing_GetLeft(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -180,6 +200,7 @@ end;
 
 function ControlBorderSpacing_GetTop(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -194,6 +215,7 @@ end;
 
 function ControlBorderSpacing_GetRight(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Right;
   handleExceptionEnd
@@ -208,6 +230,7 @@ end;
 
 function ControlBorderSpacing_GetBottom(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Bottom;
   handleExceptionEnd
@@ -222,6 +245,7 @@ end;
 
 function ControlBorderSpacing_GetAround(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Around;
   handleExceptionEnd
@@ -236,6 +260,7 @@ end;
 
 function ControlBorderSpacing_GetInnerBorder(AObj: TControlBorderSpacing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InnerBorder;
   handleExceptionEnd
@@ -250,6 +275,7 @@ end;
 
 function ControlBorderSpacing_GetCellAlignHorizontal(AObj: TControlBorderSpacing): TControlCellAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TControlCellAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellAlignHorizontal;
   handleExceptionEnd
@@ -264,6 +290,7 @@ end;
 
 function ControlBorderSpacing_GetCellAlignVertical(AObj: TControlBorderSpacing): TControlCellAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TControlCellAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellAlignVertical;
   handleExceptionEnd
@@ -278,6 +305,7 @@ end;
 
 function ControlBorderSpacing_GetSpace(AObj: TControlBorderSpacing; Kind: TAnchorKind): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Space[Kind];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function MenuItem_Create(AOwner: TComponent): TMenuItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMenuItem.Create(AOwner);
   handleExceptionEnd
@@ -56,6 +57,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_IndexOf(AObj: TMenuItem; Item: TMenuItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOf(Item);
   handleExceptionEnd
@@ -64,6 +66,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_HasParent(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_FindComponent(AObj: TMenuItem; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_GetNamePath(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -104,6 +109,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_ClassType(AObj: TMenuItem): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -112,6 +118,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_ClassName(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -120,6 +127,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_InstanceSize(AObj: TMenuItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -128,6 +136,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_InheritsFrom(AObj: TMenuItem; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -136,6 +145,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_Equals(AObj: TMenuItem; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -144,6 +154,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_GetHashCode(AObj: TMenuItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -152,6 +163,7 @@ end;
 //CLASSMETHOD:
 function MenuItem_ToString(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -159,6 +171,7 @@ end;
 
 function MenuItem_GetHandle(AObj: TMenuItem): HMENU; extdecl;
 begin
+{$ifdef UsehandleException}Result := HMENU(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -166,6 +179,7 @@ end;
 
 function MenuItem_GetCount(AObj: TMenuItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -173,6 +187,7 @@ end;
 
 function MenuItem_GetParent(AObj: TMenuItem): TMenuItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -180,6 +195,7 @@ end;
 
 function MenuItem_GetAction(AObj: TMenuItem): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -194,6 +210,7 @@ end;
 
 function MenuItem_GetAutoCheck(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoCheck;
   handleExceptionEnd
@@ -208,6 +225,7 @@ end;
 
 function MenuItem_GetBitmap(AObj: TMenuItem): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Bitmap;
   handleExceptionEnd
@@ -222,6 +240,7 @@ end;
 
 function MenuItem_GetCaption(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -236,6 +255,7 @@ end;
 
 function MenuItem_GetChecked(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checked;
   handleExceptionEnd
@@ -250,6 +270,7 @@ end;
 
 function MenuItem_GetDefault(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Default;
   handleExceptionEnd
@@ -264,6 +285,7 @@ end;
 
 function MenuItem_GetEnabled(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -278,6 +300,7 @@ end;
 
 function MenuItem_GetGroupIndex(AObj: TMenuItem): Byte; extdecl;
 begin
+{$ifdef UsehandleException}Result := Byte(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GroupIndex;
   handleExceptionEnd
@@ -292,6 +315,7 @@ end;
 
 function MenuItem_GetHint(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -306,6 +330,7 @@ end;
 
 function MenuItem_GetImageIndex(AObj: TMenuItem): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -320,6 +345,7 @@ end;
 
 function MenuItem_GetRadioItem(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RadioItem;
   handleExceptionEnd
@@ -334,6 +360,7 @@ end;
 
 function MenuItem_GetShortCut(AObj: TMenuItem): TShortCut; extdecl;
 begin
+{$ifdef UsehandleException}Result := TShortCut(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShortCut;
   handleExceptionEnd
@@ -348,6 +375,7 @@ end;
 
 function MenuItem_GetVisible(AObj: TMenuItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -378,6 +406,7 @@ end;
 
 function MenuItem_GetComponentCount(AObj: TMenuItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -385,6 +414,7 @@ end;
 
 function MenuItem_GetComponentIndex(AObj: TMenuItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -399,6 +429,7 @@ end;
 
 function MenuItem_GetOwner(AObj: TMenuItem): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -406,6 +437,7 @@ end;
 
 function MenuItem_GetName(AObj: TMenuItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -420,6 +452,7 @@ end;
 
 function MenuItem_GetTag(AObj: TMenuItem): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -434,6 +467,7 @@ end;
 
 function MenuItem_GetItems(AObj: TMenuItem; Index: Integer): TMenuItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd
@@ -441,6 +475,7 @@ end;
 
 function MenuItem_GetComponents(AObj: TMenuItem; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

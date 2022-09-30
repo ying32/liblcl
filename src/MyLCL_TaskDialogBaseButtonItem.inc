@@ -9,6 +9,7 @@
 
 function TaskDialogBaseButtonItem_Create(AOwner: TCollection): TTaskDialogBaseButtonItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TTaskDialogBaseButtonItem.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_GetNamePath(AObj: TTaskDialogBaseButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_ClassType(AObj: TTaskDialogBaseButtonItem): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_ClassName(AObj: TTaskDialogBaseButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_InstanceSize(AObj: TTaskDialogBaseButtonItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_InheritsFrom(AObj: TTaskDialogBaseButtonItem; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_Equals(AObj: TTaskDialogBaseButtonItem; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_GetHashCode(AObj: TTaskDialogBaseButtonItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogBaseButtonItem_ToString(AObj: TTaskDialogBaseButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function TaskDialogBaseButtonItem_GetModalResult(AObj: TTaskDialogBaseButtonItem): TModalResult; extdecl;
 begin
+{$ifdef UsehandleException}Result := TModalResult(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ModalResult;
   handleExceptionEnd
@@ -109,6 +119,7 @@ end;
 
 function TaskDialogBaseButtonItem_GetCaption(AObj: TTaskDialogBaseButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -123,6 +134,7 @@ end;
 
 function TaskDialogBaseButtonItem_GetDefault(AObj: TTaskDialogBaseButtonItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Default;
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 
 function TaskDialogBaseButtonItem_GetCollection(AObj: TTaskDialogBaseButtonItem): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -151,6 +164,7 @@ end;
 
 function TaskDialogBaseButtonItem_GetIndex(AObj: TTaskDialogBaseButtonItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -165,6 +179,7 @@ end;
 
 function TaskDialogBaseButtonItem_GetDisplayName(AObj: TTaskDialogBaseButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_GetNamePath(AObj: TTextAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_ClassType(AObj: TTextAttributes): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_ClassName(AObj: TTextAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_InstanceSize(AObj: TTextAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_InheritsFrom(AObj: TTextAttributes; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_Equals(AObj: TTextAttributes; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_GetHashCode(AObj: TTextAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function TextAttributes_ToString(AObj: TTextAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -81,6 +89,7 @@ end;
 
 function TextAttributes_GetCharset(AObj: TTextAttributes): TFontCharset; extdecl;
 begin
+{$ifdef UsehandleException}Result := TFontCharset(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Charset;
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function TextAttributes_GetColor(AObj: TTextAttributes): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -109,6 +119,7 @@ end;
 
 function TextAttributes_GetName(AObj: TTextAttributes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -123,6 +134,7 @@ end;
 
 function TextAttributes_GetPitch(AObj: TTextAttributes): TFontPitch; extdecl;
 begin
+{$ifdef UsehandleException}Result := TFontPitch(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Pitch;
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 
 function TextAttributes_GetSize(AObj: TTextAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Size;
   handleExceptionEnd
@@ -151,6 +164,7 @@ end;
 
 function TextAttributes_GetStyle(AObj: TTextAttributes): TFontStyles; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -165,6 +179,7 @@ end;
 
 function TextAttributes_GetHeight(AObj: TTextAttributes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd

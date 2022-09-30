@@ -10,6 +10,7 @@
 //CLASSMETHOD:
 function TaskDialogButtons_Add(AObj: TTaskDialogButtons): TTaskDialogBaseButtonItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -18,6 +19,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_FindButton(AObj: TTaskDialogButtons; AModalResult: TModalResult): TTaskDialogBaseButtonItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindButton(AModalResult);
   handleExceptionEnd
@@ -26,6 +28,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_Owner(AObj: TTaskDialogButtons): TPersistent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -74,6 +77,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_FindItemID(AObj: TTaskDialogButtons; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -82,6 +86,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_GetNamePath(AObj: TTaskDialogButtons): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -90,6 +95,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_Insert(AObj: TTaskDialogButtons; Index: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -98,6 +104,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_ClassType(AObj: TTaskDialogButtons): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -106,6 +113,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_ClassName(AObj: TTaskDialogButtons): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -114,6 +122,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_InstanceSize(AObj: TTaskDialogButtons): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -122,6 +131,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_InheritsFrom(AObj: TTaskDialogButtons; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -130,6 +140,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_Equals(AObj: TTaskDialogButtons; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -138,6 +149,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_GetHashCode(AObj: TTaskDialogButtons): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -146,6 +158,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogButtons_ToString(AObj: TTaskDialogButtons): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -153,6 +166,7 @@ end;
 
 function TaskDialogButtons_GetDefaultButton(AObj: TTaskDialogButtons): TTaskDialogBaseButtonItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultButton;
   handleExceptionEnd
@@ -167,6 +181,7 @@ end;
 
 function TaskDialogButtons_GetCount(AObj: TTaskDialogButtons): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -174,6 +189,7 @@ end;
 
 function TaskDialogButtons_GetItems(AObj: TTaskDialogButtons; Index: Integer): TTaskDialogBaseButtonItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd

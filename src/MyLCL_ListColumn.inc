@@ -9,6 +9,7 @@
 
 function ListColumn_Create(AOwner: TCollection): TListColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TListColumn.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_GetNamePath(AObj: TListColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_ClassType(AObj: TListColumn): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_ClassName(AObj: TListColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_InstanceSize(AObj: TListColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_InheritsFrom(AObj: TListColumn; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_Equals(AObj: TListColumn; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_GetHashCode(AObj: TListColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function ListColumn_ToString(AObj: TListColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function ListColumn_GetSortIndicator(AObj: TListColumn): TSortIndicator; extdecl;
 begin
+{$ifdef UsehandleException}Result := TSortIndicator(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortIndicator;
   handleExceptionEnd
@@ -109,6 +119,7 @@ end;
 
 function ListColumn_GetAlignment(AObj: TListColumn): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -123,6 +134,7 @@ end;
 
 function ListColumn_GetAutoSize(AObj: TListColumn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 
 function ListColumn_GetCaption(AObj: TListColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -151,6 +164,7 @@ end;
 
 function ListColumn_GetImageIndex(AObj: TListColumn): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -165,6 +179,7 @@ end;
 
 function ListColumn_GetMaxWidth(AObj: TListColumn): TWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxWidth;
   handleExceptionEnd
@@ -179,6 +194,7 @@ end;
 
 function ListColumn_GetMinWidth(AObj: TListColumn): TWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinWidth;
   handleExceptionEnd
@@ -193,6 +209,7 @@ end;
 
 function ListColumn_GetTag(AObj: TListColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -207,6 +224,7 @@ end;
 
 function ListColumn_GetWidth(AObj: TListColumn): TWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -221,6 +239,7 @@ end;
 
 function ListColumn_GetCollection(AObj: TListColumn): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -235,6 +254,7 @@ end;
 
 function ListColumn_GetIndex(AObj: TListColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -249,6 +269,7 @@ end;
 
 function ListColumn_GetDisplayName(AObj: TListColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

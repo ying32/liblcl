@@ -9,6 +9,7 @@
 
 function StringGrid_Create(AOwner: TComponent): TStringGrid; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TStringGrid.Create(AOwner);
   handleExceptionEnd
@@ -80,6 +81,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_EditorByStyle(AObj: TStringGrid; Style: TColumnButtonStyle): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.EditorByStyle(Style);
   handleExceptionEnd
@@ -145,6 +147,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_CellToGridZone(AObj: TStringGrid; aCol: Integer; aRow: Integer): TGridZone; extdecl;
 begin
+{$ifdef UsehandleException}Result := TGridZone(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellToGridZone(aCol, aRow);
   handleExceptionEnd
@@ -161,6 +164,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ClearCols(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ClearCols;
   handleExceptionEnd
@@ -169,6 +173,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ClearRows(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ClearRows;
   handleExceptionEnd
@@ -193,6 +198,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_HasMultiSelection(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasMultiSelection;
   handleExceptionEnd
@@ -234,6 +240,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_IsCellVisible(AObj: TStringGrid; aCol: Integer; aRow: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsCellVisible(aCol, aRow);
   handleExceptionEnd
@@ -242,6 +249,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_IsFixedCellVisible(AObj: TStringGrid; aCol: Integer; aRow: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsFixedCellVisible(aCol, aRow);
   handleExceptionEnd
@@ -279,6 +287,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_MouseToGridZone(AObj: TStringGrid; X: Integer; Y: Integer): TGridZone; extdecl;
 begin
+{$ifdef UsehandleException}Result := TGridZone(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseToGridZone(X, Y);
   handleExceptionEnd
@@ -287,6 +296,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_CanFocus(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -295,6 +305,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ContainsControl(AObj: TStringGrid; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -304,6 +315,7 @@ end;
 //PARAMS:2=nonPtr
 function StringGrid_ControlAtPos(AObj: TStringGrid; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -328,6 +340,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_FindChildControl(AObj: TStringGrid; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -344,6 +357,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Focused(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -352,6 +366,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_HandleAllocated(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -476,6 +491,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Dragging(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -484,6 +500,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_HasParent(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -500,6 +517,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Perform(AObj: TStringGrid; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -552,6 +570,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_GetTextBuf(AObj: TStringGrid; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -560,6 +579,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_GetTextLen(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -576,6 +596,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_FindComponent(AObj: TStringGrid; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -584,6 +605,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_GetNamePath(AObj: TStringGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -600,6 +622,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ClassType(AObj: TStringGrid): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -608,6 +631,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ClassName(AObj: TStringGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -616,6 +640,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_InstanceSize(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -624,6 +649,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_InheritsFrom(AObj: TStringGrid; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -632,6 +658,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Equals(AObj: TStringGrid; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -640,6 +667,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_GetHashCode(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -648,6 +676,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ToString(AObj: TStringGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -712,6 +741,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleDesignToForm(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -720,6 +750,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleFormToDesign(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -728,6 +759,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Scale96ToForm(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -736,6 +768,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleFormTo96(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -744,6 +777,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Scale96ToFont(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -752,6 +786,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleFontTo96(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -760,6 +795,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleScreenToFont(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -768,6 +804,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleFontToScreen(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -776,6 +813,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_Scale96ToScreen(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -784,6 +822,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_ScaleScreenTo96(AObj: TStringGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -816,6 +855,7 @@ end;
 
 function StringGrid_GetSelectedColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelectedColor;
   handleExceptionEnd
@@ -830,6 +870,7 @@ end;
 
 function StringGrid_GetSelectedColumn(AObj: TStringGrid): TGridColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.SelectedColumn;
   handleExceptionEnd
@@ -837,6 +878,7 @@ end;
 
 function StringGrid_GetStrictSort(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.StrictSort;
   handleExceptionEnd
@@ -851,6 +893,7 @@ end;
 
 function StringGrid_GetFixedHotColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedHotColor;
   handleExceptionEnd
@@ -865,6 +908,7 @@ end;
 
 function StringGrid_GetFastEditing(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FastEditing;
   handleExceptionEnd
@@ -879,6 +923,7 @@ end;
 
 function StringGrid_GetFixedGridLineColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedGridLineColor;
   handleExceptionEnd
@@ -893,6 +938,7 @@ end;
 
 function StringGrid_GetFocusColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FocusColor;
   handleExceptionEnd
@@ -907,6 +953,7 @@ end;
 
 function StringGrid_GetFocusRectVisible(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FocusRectVisible;
   handleExceptionEnd
@@ -921,6 +968,7 @@ end;
 
 function StringGrid_GetGridLineColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLineColor;
   handleExceptionEnd
@@ -935,6 +983,7 @@ end;
 
 function StringGrid_GetGridLineStyle(AObj: TStringGrid): TPenStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TPenStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLineStyle;
   handleExceptionEnd
@@ -949,6 +998,7 @@ end;
 
 function StringGrid_GetEditor(AObj: TStringGrid): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Editor;
   handleExceptionEnd
@@ -963,6 +1013,7 @@ end;
 
 function StringGrid_GetEditorBorderStyle(AObj: TStringGrid): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.EditorBorderStyle;
   handleExceptionEnd
@@ -977,6 +1028,7 @@ end;
 
 function StringGrid_GetEditorMode(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.EditorMode;
   handleExceptionEnd
@@ -991,6 +1043,7 @@ end;
 
 function StringGrid_GetSortOrder(AObj: TStringGrid): TSortOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TSortOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortOrder;
   handleExceptionEnd
@@ -1005,6 +1058,7 @@ end;
 
 function StringGrid_GetSortColumn(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortColumn;
   handleExceptionEnd
@@ -1188,6 +1242,7 @@ end;
 
 function StringGrid_GetAlternateColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AlternateColor;
   handleExceptionEnd
@@ -1202,6 +1257,7 @@ end;
 
 function StringGrid_GetAutoAdvance(AObj: TStringGrid): TAutoAdvance; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAutoAdvance(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoAdvance;
   handleExceptionEnd
@@ -1216,6 +1272,7 @@ end;
 
 function StringGrid_GetAutoEdit(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoEdit;
   handleExceptionEnd
@@ -1230,6 +1287,7 @@ end;
 
 function StringGrid_GetAutoFillColumns(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoFillColumns;
   handleExceptionEnd
@@ -1244,6 +1302,7 @@ end;
 
 function StringGrid_GetCellHintPriority(AObj: TStringGrid): TCellHintPriority; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCellHintPriority(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellHintPriority;
   handleExceptionEnd
@@ -1258,6 +1317,7 @@ end;
 
 function StringGrid_GetColumnClickSorts(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ColumnClickSorts;
   handleExceptionEnd
@@ -1272,6 +1332,7 @@ end;
 
 function StringGrid_GetColumns(AObj: TStringGrid): TGridColumns; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Columns;
   handleExceptionEnd
@@ -1286,6 +1347,7 @@ end;
 
 function StringGrid_GetExtendedSelect(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ExtendedSelect;
   handleExceptionEnd
@@ -1300,6 +1362,7 @@ end;
 
 function StringGrid_GetFlat(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Flat;
   handleExceptionEnd
@@ -1314,6 +1377,7 @@ end;
 
 function StringGrid_GetHeaderHotZones(AObj: TStringGrid): TGridZoneSet; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.HeaderHotZones;
   handleExceptionEnd
@@ -1328,6 +1392,7 @@ end;
 
 function StringGrid_GetHeaderPushZones(AObj: TStringGrid): TGridZoneSet; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.HeaderPushZones;
   handleExceptionEnd
@@ -1342,6 +1407,7 @@ end;
 
 function StringGrid_GetImageIndexSortAsc(AObj: TStringGrid): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndexSortAsc;
   handleExceptionEnd
@@ -1356,6 +1422,7 @@ end;
 
 function StringGrid_GetImageIndexSortDesc(AObj: TStringGrid): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndexSortDesc;
   handleExceptionEnd
@@ -1370,6 +1437,7 @@ end;
 
 function StringGrid_GetMouseWheelOption(AObj: TStringGrid): TMouseWheelOption; extdecl;
 begin
+{$ifdef UsehandleException}Result := TMouseWheelOption(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseWheelOption;
   handleExceptionEnd
@@ -1384,6 +1452,7 @@ end;
 
 function StringGrid_GetOptions2(AObj: TStringGrid): TGridOptions2; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options2;
   handleExceptionEnd
@@ -1398,6 +1467,7 @@ end;
 
 function StringGrid_GetRangeSelectMode(AObj: TStringGrid): TRangeSelectMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TRangeSelectMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RangeSelectMode;
   handleExceptionEnd
@@ -1412,6 +1482,7 @@ end;
 
 function StringGrid_GetTabAdvance(AObj: TStringGrid): TAutoAdvance; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAutoAdvance(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabAdvance;
   handleExceptionEnd
@@ -1426,6 +1497,7 @@ end;
 
 function StringGrid_GetTitleFont(AObj: TStringGrid): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.TitleFont;
   handleExceptionEnd
@@ -1440,6 +1512,7 @@ end;
 
 function StringGrid_GetTitleImageList(AObj: TStringGrid): TImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.TitleImageList;
   handleExceptionEnd
@@ -1454,6 +1527,7 @@ end;
 
 function StringGrid_GetTitleStyle(AObj: TStringGrid): TTitleStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTitleStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TitleStyle;
   handleExceptionEnd
@@ -1468,6 +1542,7 @@ end;
 
 function StringGrid_GetUseXORFeatures(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseXORFeatures;
   handleExceptionEnd
@@ -1482,6 +1557,7 @@ end;
 
 function StringGrid_GetAlign(AObj: TStringGrid): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1496,6 +1572,7 @@ end;
 
 function StringGrid_GetAnchors(AObj: TStringGrid): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -1510,6 +1587,7 @@ end;
 
 function StringGrid_GetBiDiMode(AObj: TStringGrid): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1524,6 +1602,7 @@ end;
 
 function StringGrid_GetBorderStyle(AObj: TStringGrid): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -1538,6 +1617,7 @@ end;
 
 function StringGrid_GetColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -1552,6 +1632,7 @@ end;
 
 function StringGrid_GetColCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColCount;
   handleExceptionEnd
@@ -1566,6 +1647,7 @@ end;
 
 function StringGrid_GetConstraints(AObj: TStringGrid): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -1580,6 +1662,7 @@ end;
 
 function StringGrid_GetDefaultColWidth(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultColWidth;
   handleExceptionEnd
@@ -1594,6 +1677,7 @@ end;
 
 function StringGrid_GetDefaultRowHeight(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultRowHeight;
   handleExceptionEnd
@@ -1608,6 +1692,7 @@ end;
 
 function StringGrid_GetDefaultDrawing(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultDrawing;
   handleExceptionEnd
@@ -1622,6 +1707,7 @@ end;
 
 function StringGrid_GetDoubleBuffered(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1636,6 +1722,7 @@ end;
 
 function StringGrid_GetDragCursor(AObj: TStringGrid): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -1650,6 +1737,7 @@ end;
 
 function StringGrid_GetDragKind(AObj: TStringGrid): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1664,6 +1752,7 @@ end;
 
 function StringGrid_GetDragMode(AObj: TStringGrid): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1678,6 +1767,7 @@ end;
 
 function StringGrid_GetEnabled(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -1692,6 +1782,7 @@ end;
 
 function StringGrid_GetFixedColor(AObj: TStringGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedColor;
   handleExceptionEnd
@@ -1706,6 +1797,7 @@ end;
 
 function StringGrid_GetFixedCols(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedCols;
   handleExceptionEnd
@@ -1720,6 +1812,7 @@ end;
 
 function StringGrid_GetRowCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowCount;
   handleExceptionEnd
@@ -1734,6 +1827,7 @@ end;
 
 function StringGrid_GetFixedRows(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedRows;
   handleExceptionEnd
@@ -1748,6 +1842,7 @@ end;
 
 function StringGrid_GetFont(AObj: TStringGrid): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -1762,6 +1857,7 @@ end;
 
 function StringGrid_GetGridLineWidth(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLineWidth;
   handleExceptionEnd
@@ -1776,6 +1872,7 @@ end;
 
 function StringGrid_GetOptions(AObj: TStringGrid): TGridOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -1790,6 +1887,7 @@ end;
 
 function StringGrid_GetParentColor(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -1804,6 +1902,7 @@ end;
 
 function StringGrid_GetParentDoubleBuffered(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1818,6 +1917,7 @@ end;
 
 function StringGrid_GetParentFont(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -1832,6 +1932,7 @@ end;
 
 function StringGrid_GetParentShowHint(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -1846,6 +1947,7 @@ end;
 
 function StringGrid_GetPopupMenu(AObj: TStringGrid): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1860,6 +1962,7 @@ end;
 
 function StringGrid_GetScrollBars(AObj: TStringGrid): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -1874,6 +1977,7 @@ end;
 
 function StringGrid_GetShowHint(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1888,6 +1992,7 @@ end;
 
 function StringGrid_GetTabOrder(AObj: TStringGrid): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1902,6 +2007,7 @@ end;
 
 function StringGrid_GetVisible(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1916,6 +2022,7 @@ end;
 
 function StringGrid_GetVisibleColCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleColCount;
   handleExceptionEnd
@@ -1923,6 +2030,7 @@ end;
 
 function StringGrid_GetVisibleRowCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleRowCount;
   handleExceptionEnd
@@ -2138,6 +2246,7 @@ end;
 
 function StringGrid_GetCanvas(AObj: TStringGrid): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -2145,6 +2254,7 @@ end;
 
 function StringGrid_GetCol(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Col;
   handleExceptionEnd
@@ -2159,6 +2269,7 @@ end;
 
 function StringGrid_GetGridHeight(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridHeight;
   handleExceptionEnd
@@ -2166,6 +2277,7 @@ end;
 
 function StringGrid_GetGridWidth(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridWidth;
   handleExceptionEnd
@@ -2173,6 +2285,7 @@ end;
 
 function StringGrid_GetLeftCol(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LeftCol;
   handleExceptionEnd
@@ -2203,6 +2316,7 @@ end;
 
 function StringGrid_GetRow(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Row;
   handleExceptionEnd
@@ -2217,6 +2331,7 @@ end;
 
 function StringGrid_GetTopRow(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TopRow;
   handleExceptionEnd
@@ -2231,6 +2346,7 @@ end;
 
 function StringGrid_GetTabStop(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -2245,6 +2361,7 @@ end;
 
 function StringGrid_GetDockClientCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -2252,6 +2369,7 @@ end;
 
 function StringGrid_GetDockSite(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -2266,6 +2384,7 @@ end;
 
 function StringGrid_GetMouseInClient(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -2273,6 +2392,7 @@ end;
 
 function StringGrid_GetVisibleDockClientCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -2280,6 +2400,7 @@ end;
 
 function StringGrid_GetBrush(AObj: TStringGrid): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -2287,6 +2408,7 @@ end;
 
 function StringGrid_GetControlCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -2294,6 +2416,7 @@ end;
 
 function StringGrid_GetHandle(AObj: TStringGrid): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -2301,6 +2424,7 @@ end;
 
 function StringGrid_GetParentWindow(AObj: TStringGrid): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -2315,6 +2439,7 @@ end;
 
 function StringGrid_GetShowing(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -2322,6 +2447,7 @@ end;
 
 function StringGrid_GetUseDockManager(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -2336,6 +2462,7 @@ end;
 
 function StringGrid_GetAction(AObj: TStringGrid): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -2366,6 +2493,7 @@ end;
 
 function StringGrid_GetClientHeight(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -2396,6 +2524,7 @@ end;
 
 function StringGrid_GetClientWidth(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -2410,6 +2539,7 @@ end;
 
 function StringGrid_GetControlState(AObj: TStringGrid): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -2424,6 +2554,7 @@ end;
 
 function StringGrid_GetControlStyle(AObj: TStringGrid): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -2438,6 +2569,7 @@ end;
 
 function StringGrid_GetFloating(AObj: TStringGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -2445,6 +2577,7 @@ end;
 
 function StringGrid_GetParent(AObj: TStringGrid): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -2459,6 +2592,7 @@ end;
 
 function StringGrid_GetLeft(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -2473,6 +2607,7 @@ end;
 
 function StringGrid_GetTop(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -2487,6 +2622,7 @@ end;
 
 function StringGrid_GetWidth(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -2501,6 +2637,7 @@ end;
 
 function StringGrid_GetHeight(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -2515,6 +2652,7 @@ end;
 
 function StringGrid_GetCursor(AObj: TStringGrid): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -2529,6 +2667,7 @@ end;
 
 function StringGrid_GetHint(AObj: TStringGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -2543,6 +2682,7 @@ end;
 
 function StringGrid_GetComponentCount(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -2550,6 +2690,7 @@ end;
 
 function StringGrid_GetComponentIndex(AObj: TStringGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -2564,6 +2705,7 @@ end;
 
 function StringGrid_GetOwner(AObj: TStringGrid): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -2571,6 +2713,7 @@ end;
 
 function StringGrid_GetName(AObj: TStringGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -2585,6 +2728,7 @@ end;
 
 function StringGrid_GetTag(AObj: TStringGrid): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -2599,6 +2743,7 @@ end;
 
 function StringGrid_GetAnchorSideLeft(AObj: TStringGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -2613,6 +2758,7 @@ end;
 
 function StringGrid_GetAnchorSideTop(AObj: TStringGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -2627,6 +2773,7 @@ end;
 
 function StringGrid_GetAnchorSideRight(AObj: TStringGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -2641,6 +2788,7 @@ end;
 
 function StringGrid_GetAnchorSideBottom(AObj: TStringGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -2655,6 +2803,7 @@ end;
 
 function StringGrid_GetChildSizing(AObj: TStringGrid): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -2669,6 +2818,7 @@ end;
 
 function StringGrid_GetBorderSpacing(AObj: TStringGrid): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -2683,6 +2833,7 @@ end;
 
 function StringGrid_GetIsCellSelected(AObj: TStringGrid; aCol: Integer; aRow: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsCellSelected[aCol, aRow];
   handleExceptionEnd
@@ -2690,6 +2841,7 @@ end;
 
 function StringGrid_GetCells(AObj: TStringGrid; ACol: Integer; ARow: Integer): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Cells[ACol, ARow]);
   handleExceptionEnd
@@ -2704,6 +2856,7 @@ end;
 
 function StringGrid_GetCols(AObj: TStringGrid; Index: Integer): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Cols[Index];
   handleExceptionEnd
@@ -2718,6 +2871,7 @@ end;
 
 function StringGrid_GetObjects(AObj: TStringGrid; ACol: Integer; ARow: Integer): TObject; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Objects[ACol, ARow];
   handleExceptionEnd
@@ -2732,6 +2886,7 @@ end;
 
 function StringGrid_GetRows(AObj: TStringGrid; Index: Integer): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Rows[Index];
   handleExceptionEnd
@@ -2746,6 +2901,7 @@ end;
 
 function StringGrid_GetColWidths(AObj: TStringGrid; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColWidths[Index];
   handleExceptionEnd
@@ -2760,6 +2916,7 @@ end;
 
 function StringGrid_GetRowHeights(AObj: TStringGrid; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowHeights[Index];
   handleExceptionEnd
@@ -2774,6 +2931,7 @@ end;
 
 function StringGrid_GetDockClients(AObj: TStringGrid; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -2781,6 +2939,7 @@ end;
 
 function StringGrid_GetControls(AObj: TStringGrid; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -2788,6 +2947,7 @@ end;
 
 function StringGrid_GetComponents(AObj: TStringGrid; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -2795,6 +2955,7 @@ end;
 
 function StringGrid_GetAnchorSide(AObj: TStringGrid; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

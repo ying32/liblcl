@@ -9,6 +9,7 @@
 
 function IniFile_Create(AFileName: PChar): TIniFile; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TIniFile.Create(AFileName);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadString(AObj: TIniFile; Section: PChar; Ident: PChar; Default: PChar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ReadString(Section, Ident, Default));
   handleExceptionEnd
@@ -80,6 +82,7 @@ end;
 //CLASSMETHOD:
 function IniFile_SectionExists(AObj: TIniFile; Section: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.SectionExists(Section);
   handleExceptionEnd
@@ -88,6 +91,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadInteger(AObj: TIniFile; Section: PChar; Ident: PChar; Default: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadInteger(Section, Ident, Default);
   handleExceptionEnd
@@ -104,6 +108,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadBool(AObj: TIniFile; Section: PChar; Ident: PChar; Default: LongBool): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadBool(Section, Ident, Default);
   handleExceptionEnd
@@ -120,6 +125,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadDate(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDate(Section, Name, UnixToTime(Default)));
   handleExceptionEnd
@@ -128,6 +134,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadDateTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDateTime(Section, Name, UnixToTime(Default)));
   handleExceptionEnd
@@ -146,6 +153,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
+{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadTime(Section, Name, UnixToTime(Default)));
   handleExceptionEnd
@@ -187,6 +195,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ValueExists(AObj: TIniFile; Section: PChar; Ident: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ValueExists(Section, Ident);
   handleExceptionEnd
@@ -195,6 +204,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ClassType(AObj: TIniFile): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -203,6 +213,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ClassName(AObj: TIniFile): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -211,6 +222,7 @@ end;
 //CLASSMETHOD:
 function IniFile_InstanceSize(AObj: TIniFile): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -219,6 +231,7 @@ end;
 //CLASSMETHOD:
 function IniFile_InheritsFrom(AObj: TIniFile; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -227,6 +240,7 @@ end;
 //CLASSMETHOD:
 function IniFile_Equals(AObj: TIniFile; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -235,6 +249,7 @@ end;
 //CLASSMETHOD:
 function IniFile_GetHashCode(AObj: TIniFile): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -243,6 +258,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ToString(AObj: TIniFile): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -250,6 +266,7 @@ end;
 
 function IniFile_GetFileName(AObj: TIniFile): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.FileName);
   handleExceptionEnd

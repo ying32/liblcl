@@ -9,6 +9,7 @@
 
 function GIFImage_Create: TGIFImage; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TGIFImage.Create;
   handleExceptionEnd
@@ -56,6 +57,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_Equals(AObj: TGIFImage; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -88,6 +90,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_GetNamePath(AObj: TGIFImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -96,6 +99,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_ClassType(AObj: TGIFImage): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -104,6 +108,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_ClassName(AObj: TGIFImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -112,6 +117,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_InstanceSize(AObj: TGIFImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -120,6 +126,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_InheritsFrom(AObj: TGIFImage; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -128,6 +135,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_GetHashCode(AObj: TGIFImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -136,6 +144,7 @@ end;
 //CLASSMETHOD:
 function GIFImage_ToString(AObj: TGIFImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -143,6 +152,7 @@ end;
 
 function GIFImage_GetBitsPerPixel(AObj: TGIFImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BitsPerPixel;
   handleExceptionEnd
@@ -150,6 +160,7 @@ end;
 
 function GIFImage_GetEmpty(AObj: TGIFImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Empty;
   handleExceptionEnd
@@ -157,6 +168,7 @@ end;
 
 function GIFImage_GetHeight(AObj: TGIFImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -171,6 +183,7 @@ end;
 
 function GIFImage_GetModified(AObj: TGIFImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -185,6 +198,7 @@ end;
 
 function GIFImage_GetPalette(AObj: TGIFImage): HPALETTE; extdecl;
 begin
+{$ifdef UsehandleException}Result := HPALETTE(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Palette;
   handleExceptionEnd
@@ -199,6 +213,7 @@ end;
 
 function GIFImage_GetPaletteModified(AObj: TGIFImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PaletteModified;
   handleExceptionEnd
@@ -213,6 +228,7 @@ end;
 
 function GIFImage_GetTransparent(AObj: TGIFImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -220,6 +236,7 @@ end;
 
 function GIFImage_GetWidth(AObj: TGIFImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function CoolBar_Create(AOwner: TComponent): TCoolBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TCoolBar.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_CanFocus(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ContainsControl(AObj: TCoolBar; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function CoolBar_ControlAtPos(AObj: TCoolBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_FindChildControl(AObj: TCoolBar; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Focused(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_HandleAllocated(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -205,6 +212,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Dragging(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -213,6 +221,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_HasParent(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -229,6 +238,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Perform(AObj: TCoolBar; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -281,6 +291,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_GetTextBuf(AObj: TCoolBar; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -289,6 +300,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_GetTextLen(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -305,6 +317,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_FindComponent(AObj: TCoolBar; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -313,6 +326,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_GetNamePath(AObj: TCoolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -329,6 +343,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ClassType(AObj: TCoolBar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -337,6 +352,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ClassName(AObj: TCoolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -345,6 +361,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_InstanceSize(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -353,6 +370,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_InheritsFrom(AObj: TCoolBar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -361,6 +379,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Equals(AObj: TCoolBar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -369,6 +388,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_GetHashCode(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -377,6 +397,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ToString(AObj: TCoolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -441,6 +462,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleDesignToForm(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -449,6 +471,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleFormToDesign(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -457,6 +480,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Scale96ToForm(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -465,6 +489,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleFormTo96(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -473,6 +498,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Scale96ToFont(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -481,6 +507,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleFontTo96(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -489,6 +516,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleScreenToFont(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -497,6 +525,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleFontToScreen(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -505,6 +534,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_Scale96ToScreen(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -513,6 +543,7 @@ end;
 //CLASSMETHOD:
 function CoolBar_ScaleScreenTo96(AObj: TCoolBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -545,6 +576,7 @@ end;
 
 function CoolBar_GetAlign(AObj: TCoolBar): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -559,6 +591,7 @@ end;
 
 function CoolBar_GetAnchors(AObj: TCoolBar): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -573,6 +606,7 @@ end;
 
 function CoolBar_GetAutoSize(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -587,6 +621,7 @@ end;
 
 function CoolBar_GetBandBorderStyle(AObj: TCoolBar): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BandBorderStyle;
   handleExceptionEnd
@@ -601,6 +636,7 @@ end;
 
 function CoolBar_GetBandMaximize(AObj: TCoolBar): TCoolBandMaximize; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCoolBandMaximize(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BandMaximize;
   handleExceptionEnd
@@ -615,6 +651,7 @@ end;
 
 function CoolBar_GetBands(AObj: TCoolBar): TCoolBands; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Bands;
   handleExceptionEnd
@@ -629,6 +666,7 @@ end;
 
 function CoolBar_GetBorderWidth(AObj: TCoolBar): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -643,6 +681,7 @@ end;
 
 function CoolBar_GetColor(AObj: TCoolBar): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -657,6 +696,7 @@ end;
 
 function CoolBar_GetConstraints(AObj: TCoolBar): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -671,6 +711,7 @@ end;
 
 function CoolBar_GetDockSite(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -685,6 +726,7 @@ end;
 
 function CoolBar_GetDoubleBuffered(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -699,6 +741,7 @@ end;
 
 function CoolBar_GetDragCursor(AObj: TCoolBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -713,6 +756,7 @@ end;
 
 function CoolBar_GetDragKind(AObj: TCoolBar): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -727,6 +771,7 @@ end;
 
 function CoolBar_GetDragMode(AObj: TCoolBar): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -741,6 +786,7 @@ end;
 
 function CoolBar_GetEdgeBorders(AObj: TCoolBar): TEdgeBorders; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeBorders;
   handleExceptionEnd
@@ -755,6 +801,7 @@ end;
 
 function CoolBar_GetEdgeInner(AObj: TCoolBar): TEdgeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeInner;
   handleExceptionEnd
@@ -769,6 +816,7 @@ end;
 
 function CoolBar_GetEdgeOuter(AObj: TCoolBar): TEdgeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeOuter;
   handleExceptionEnd
@@ -783,6 +831,7 @@ end;
 
 function CoolBar_GetEnabled(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -797,6 +846,7 @@ end;
 
 function CoolBar_GetFixedSize(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedSize;
   handleExceptionEnd
@@ -811,6 +861,7 @@ end;
 
 function CoolBar_GetFixedOrder(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedOrder;
   handleExceptionEnd
@@ -825,6 +876,7 @@ end;
 
 function CoolBar_GetFont(AObj: TCoolBar): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -839,6 +891,7 @@ end;
 
 function CoolBar_GetImages(AObj: TCoolBar): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -853,6 +906,7 @@ end;
 
 function CoolBar_GetParentColor(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -867,6 +921,7 @@ end;
 
 function CoolBar_GetParentDoubleBuffered(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -881,6 +936,7 @@ end;
 
 function CoolBar_GetParentFont(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -895,6 +951,7 @@ end;
 
 function CoolBar_GetParentShowHint(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -909,6 +966,7 @@ end;
 
 function CoolBar_GetBitmap(AObj: TCoolBar): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Bitmap;
   handleExceptionEnd
@@ -923,6 +981,7 @@ end;
 
 function CoolBar_GetPopupMenu(AObj: TCoolBar): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -937,6 +996,7 @@ end;
 
 function CoolBar_GetShowHint(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -951,6 +1011,7 @@ end;
 
 function CoolBar_GetShowText(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowText;
   handleExceptionEnd
@@ -965,6 +1026,7 @@ end;
 
 function CoolBar_GetVertical(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Vertical;
   handleExceptionEnd
@@ -979,6 +1041,7 @@ end;
 
 function CoolBar_GetVisible(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1137,6 +1200,7 @@ end;
 
 function CoolBar_GetDockClientCount(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1144,6 +1208,7 @@ end;
 
 function CoolBar_GetMouseInClient(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1151,6 +1216,7 @@ end;
 
 function CoolBar_GetVisibleDockClientCount(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1158,6 +1224,7 @@ end;
 
 function CoolBar_GetBrush(AObj: TCoolBar): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1165,6 +1232,7 @@ end;
 
 function CoolBar_GetControlCount(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1172,6 +1240,7 @@ end;
 
 function CoolBar_GetHandle(AObj: TCoolBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1179,6 +1248,7 @@ end;
 
 function CoolBar_GetParentWindow(AObj: TCoolBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1193,6 +1263,7 @@ end;
 
 function CoolBar_GetShowing(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1200,6 +1271,7 @@ end;
 
 function CoolBar_GetTabOrder(AObj: TCoolBar): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1214,6 +1286,7 @@ end;
 
 function CoolBar_GetTabStop(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1228,6 +1301,7 @@ end;
 
 function CoolBar_GetUseDockManager(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1242,6 +1316,7 @@ end;
 
 function CoolBar_GetAction(AObj: TCoolBar): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1256,6 +1331,7 @@ end;
 
 function CoolBar_GetBiDiMode(AObj: TCoolBar): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1286,6 +1362,7 @@ end;
 
 function CoolBar_GetClientHeight(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1316,6 +1393,7 @@ end;
 
 function CoolBar_GetClientWidth(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1330,6 +1408,7 @@ end;
 
 function CoolBar_GetControlState(AObj: TCoolBar): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1344,6 +1423,7 @@ end;
 
 function CoolBar_GetControlStyle(AObj: TCoolBar): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1358,6 +1438,7 @@ end;
 
 function CoolBar_GetFloating(AObj: TCoolBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1365,6 +1446,7 @@ end;
 
 function CoolBar_GetParent(AObj: TCoolBar): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1379,6 +1461,7 @@ end;
 
 function CoolBar_GetLeft(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1393,6 +1476,7 @@ end;
 
 function CoolBar_GetTop(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1407,6 +1491,7 @@ end;
 
 function CoolBar_GetWidth(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1421,6 +1506,7 @@ end;
 
 function CoolBar_GetHeight(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1435,6 +1521,7 @@ end;
 
 function CoolBar_GetCursor(AObj: TCoolBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1449,6 +1536,7 @@ end;
 
 function CoolBar_GetHint(AObj: TCoolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1463,6 +1551,7 @@ end;
 
 function CoolBar_GetComponentCount(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1470,6 +1559,7 @@ end;
 
 function CoolBar_GetComponentIndex(AObj: TCoolBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1484,6 +1574,7 @@ end;
 
 function CoolBar_GetOwner(AObj: TCoolBar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1491,6 +1582,7 @@ end;
 
 function CoolBar_GetName(AObj: TCoolBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1505,6 +1597,7 @@ end;
 
 function CoolBar_GetTag(AObj: TCoolBar): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1519,6 +1612,7 @@ end;
 
 function CoolBar_GetAnchorSideLeft(AObj: TCoolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1533,6 +1627,7 @@ end;
 
 function CoolBar_GetAnchorSideTop(AObj: TCoolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1547,6 +1642,7 @@ end;
 
 function CoolBar_GetAnchorSideRight(AObj: TCoolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1561,6 +1657,7 @@ end;
 
 function CoolBar_GetAnchorSideBottom(AObj: TCoolBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1575,6 +1672,7 @@ end;
 
 function CoolBar_GetChildSizing(AObj: TCoolBar): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1589,6 +1687,7 @@ end;
 
 function CoolBar_GetBorderSpacing(AObj: TCoolBar): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1603,6 +1702,7 @@ end;
 
 function CoolBar_GetDockClients(AObj: TCoolBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1610,6 +1710,7 @@ end;
 
 function CoolBar_GetControls(AObj: TCoolBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1617,6 +1718,7 @@ end;
 
 function CoolBar_GetComponents(AObj: TCoolBar; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1624,6 +1726,7 @@ end;
 
 function CoolBar_GetAnchorSide(AObj: TCoolBar; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

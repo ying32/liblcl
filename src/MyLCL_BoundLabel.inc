@@ -9,6 +9,7 @@
 
 function BoundLabel_Create(AOwner: TComponent): TBoundLabel; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TBoundLabel.Create(AOwner);
   handleExceptionEnd
@@ -52,6 +53,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_Dragging(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -60,6 +62,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_HasParent(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -84,6 +87,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_Perform(AObj: TBoundLabel; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -160,6 +164,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_GetTextBuf(AObj: TBoundLabel; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -168,6 +173,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_GetTextLen(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -184,6 +190,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_FindComponent(AObj: TBoundLabel; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -192,6 +199,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_GetNamePath(AObj: TBoundLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -208,6 +216,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ClassType(AObj: TBoundLabel): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -216,6 +225,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ClassName(AObj: TBoundLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -224,6 +234,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_InstanceSize(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -232,6 +243,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_InheritsFrom(AObj: TBoundLabel; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -240,6 +252,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_Equals(AObj: TBoundLabel; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -248,6 +261,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_GetHashCode(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -256,6 +270,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ToString(AObj: TBoundLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -320,6 +335,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleDesignToForm(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -328,6 +344,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleFormToDesign(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -336,6 +353,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_Scale96ToForm(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -344,6 +362,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleFormTo96(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -352,6 +371,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_Scale96ToFont(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -360,6 +380,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleFontTo96(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -368,6 +389,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleScreenToFont(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -376,6 +398,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleFontToScreen(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -384,6 +407,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_Scale96ToScreen(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +416,7 @@ end;
 //CLASSMETHOD:
 function BoundLabel_ScaleScreenTo96(AObj: TBoundLabel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -424,6 +449,7 @@ end;
 
 function BoundLabel_GetBiDiMode(AObj: TBoundLabel): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -438,6 +464,7 @@ end;
 
 function BoundLabel_GetCaption(AObj: TBoundLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -452,6 +479,7 @@ end;
 
 function BoundLabel_GetColor(AObj: TBoundLabel): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -466,6 +494,7 @@ end;
 
 function BoundLabel_GetDragCursor(AObj: TBoundLabel): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -480,6 +509,7 @@ end;
 
 function BoundLabel_GetDragMode(AObj: TBoundLabel): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -494,6 +524,7 @@ end;
 
 function BoundLabel_GetFont(AObj: TBoundLabel): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -508,6 +539,7 @@ end;
 
 function BoundLabel_GetHeight(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -522,6 +554,7 @@ end;
 
 function BoundLabel_GetLeft(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -529,6 +562,7 @@ end;
 
 function BoundLabel_GetParentColor(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -543,6 +577,7 @@ end;
 
 function BoundLabel_GetParentFont(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -557,6 +592,7 @@ end;
 
 function BoundLabel_GetParentShowHint(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -571,6 +607,7 @@ end;
 
 function BoundLabel_GetPopupMenu(AObj: TBoundLabel): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -585,6 +622,7 @@ end;
 
 function BoundLabel_GetShowAccelChar(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowAccelChar;
   handleExceptionEnd
@@ -599,6 +637,7 @@ end;
 
 function BoundLabel_GetShowHint(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -613,6 +652,7 @@ end;
 
 function BoundLabel_GetTop(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -620,6 +660,7 @@ end;
 
 function BoundLabel_GetLayout(AObj: TBoundLabel): TTextLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTextLayout(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -634,6 +675,7 @@ end;
 
 function BoundLabel_GetWordWrap(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WordWrap;
   handleExceptionEnd
@@ -648,6 +690,7 @@ end;
 
 function BoundLabel_GetWidth(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -726,6 +769,7 @@ end;
 
 function BoundLabel_GetCanvas(AObj: TBoundLabel): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -733,6 +777,7 @@ end;
 
 function BoundLabel_GetEnabled(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -747,6 +792,7 @@ end;
 
 function BoundLabel_GetAction(AObj: TBoundLabel): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -761,6 +807,7 @@ end;
 
 function BoundLabel_GetAlign(AObj: TBoundLabel): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -775,6 +822,7 @@ end;
 
 function BoundLabel_GetAnchors(AObj: TBoundLabel): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -805,6 +853,7 @@ end;
 
 function BoundLabel_GetClientHeight(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -835,6 +884,7 @@ end;
 
 function BoundLabel_GetClientWidth(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -849,6 +899,7 @@ end;
 
 function BoundLabel_GetConstraints(AObj: TBoundLabel): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -863,6 +914,7 @@ end;
 
 function BoundLabel_GetControlState(AObj: TBoundLabel): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -877,6 +929,7 @@ end;
 
 function BoundLabel_GetControlStyle(AObj: TBoundLabel): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -891,6 +944,7 @@ end;
 
 function BoundLabel_GetFloating(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -898,6 +952,7 @@ end;
 
 function BoundLabel_GetVisible(AObj: TBoundLabel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -912,6 +967,7 @@ end;
 
 function BoundLabel_GetParent(AObj: TBoundLabel): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -926,6 +982,7 @@ end;
 
 function BoundLabel_GetCursor(AObj: TBoundLabel): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -940,6 +997,7 @@ end;
 
 function BoundLabel_GetHint(AObj: TBoundLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -954,6 +1012,7 @@ end;
 
 function BoundLabel_GetComponentCount(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -961,6 +1020,7 @@ end;
 
 function BoundLabel_GetComponentIndex(AObj: TBoundLabel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -975,6 +1035,7 @@ end;
 
 function BoundLabel_GetOwner(AObj: TBoundLabel): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -982,6 +1043,7 @@ end;
 
 function BoundLabel_GetName(AObj: TBoundLabel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -996,6 +1058,7 @@ end;
 
 function BoundLabel_GetTag(AObj: TBoundLabel): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1010,6 +1073,7 @@ end;
 
 function BoundLabel_GetAnchorSideLeft(AObj: TBoundLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1024,6 +1088,7 @@ end;
 
 function BoundLabel_GetAnchorSideTop(AObj: TBoundLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1038,6 +1103,7 @@ end;
 
 function BoundLabel_GetAnchorSideRight(AObj: TBoundLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1052,6 +1118,7 @@ end;
 
 function BoundLabel_GetAnchorSideBottom(AObj: TBoundLabel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1066,6 +1133,7 @@ end;
 
 function BoundLabel_GetBorderSpacing(AObj: TBoundLabel): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1080,6 +1148,7 @@ end;
 
 function BoundLabel_GetComponents(AObj: TBoundLabel; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1087,6 +1156,7 @@ end;
 
 function BoundLabel_GetAnchorSide(AObj: TBoundLabel; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

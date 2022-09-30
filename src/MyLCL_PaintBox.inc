@@ -9,6 +9,7 @@
 
 function PaintBox_Create(AOwner: TComponent): TPaintBox; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPaintBox.Create(AOwner);
   handleExceptionEnd
@@ -52,6 +53,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_Dragging(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -60,6 +62,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_HasParent(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -84,6 +87,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_Perform(AObj: TPaintBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -160,6 +164,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_GetTextBuf(AObj: TPaintBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -168,6 +173,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_GetTextLen(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -184,6 +190,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_FindComponent(AObj: TPaintBox; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -192,6 +199,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_GetNamePath(AObj: TPaintBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -208,6 +216,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ClassType(AObj: TPaintBox): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -216,6 +225,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ClassName(AObj: TPaintBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -224,6 +234,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_InstanceSize(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -232,6 +243,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_InheritsFrom(AObj: TPaintBox; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -240,6 +252,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_Equals(AObj: TPaintBox; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -248,6 +261,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_GetHashCode(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -256,6 +270,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ToString(AObj: TPaintBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -320,6 +335,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleDesignToForm(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -328,6 +344,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleFormToDesign(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -336,6 +353,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_Scale96ToForm(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -344,6 +362,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleFormTo96(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -352,6 +371,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_Scale96ToFont(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -360,6 +380,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleFontTo96(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -368,6 +389,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleScreenToFont(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -376,6 +398,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleFontToScreen(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -384,6 +407,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_Scale96ToScreen(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +416,7 @@ end;
 //CLASSMETHOD:
 function PaintBox_ScaleScreenTo96(AObj: TPaintBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -424,6 +449,7 @@ end;
 
 function PaintBox_GetCanvas(AObj: TPaintBox): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -431,6 +457,7 @@ end;
 
 function PaintBox_GetAlign(AObj: TPaintBox): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := TAlign(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -445,6 +472,7 @@ end;
 
 function PaintBox_GetAnchors(AObj: TPaintBox): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -459,6 +487,7 @@ end;
 
 function PaintBox_GetColor(AObj: TPaintBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -473,6 +502,7 @@ end;
 
 function PaintBox_GetConstraints(AObj: TPaintBox): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -487,6 +517,7 @@ end;
 
 function PaintBox_GetDragCursor(AObj: TPaintBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -501,6 +532,7 @@ end;
 
 function PaintBox_GetDragMode(AObj: TPaintBox): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -515,6 +547,7 @@ end;
 
 function PaintBox_GetEnabled(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -529,6 +562,7 @@ end;
 
 function PaintBox_GetFont(AObj: TPaintBox): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -543,6 +577,7 @@ end;
 
 function PaintBox_GetParentColor(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -557,6 +592,7 @@ end;
 
 function PaintBox_GetParentFont(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -571,6 +607,7 @@ end;
 
 function PaintBox_GetParentShowHint(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -585,6 +622,7 @@ end;
 
 function PaintBox_GetPopupMenu(AObj: TPaintBox): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -599,6 +637,7 @@ end;
 
 function PaintBox_GetShowHint(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -613,6 +652,7 @@ end;
 
 function PaintBox_GetVisible(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -715,6 +755,7 @@ end;
 
 function PaintBox_GetAction(AObj: TPaintBox): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -729,6 +770,7 @@ end;
 
 function PaintBox_GetBiDiMode(AObj: TPaintBox): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -759,6 +801,7 @@ end;
 
 function PaintBox_GetClientHeight(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -789,6 +832,7 @@ end;
 
 function PaintBox_GetClientWidth(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -803,6 +847,7 @@ end;
 
 function PaintBox_GetControlState(AObj: TPaintBox): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -817,6 +862,7 @@ end;
 
 function PaintBox_GetControlStyle(AObj: TPaintBox): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -831,6 +877,7 @@ end;
 
 function PaintBox_GetFloating(AObj: TPaintBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -838,6 +885,7 @@ end;
 
 function PaintBox_GetParent(AObj: TPaintBox): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -852,6 +900,7 @@ end;
 
 function PaintBox_GetLeft(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -866,6 +915,7 @@ end;
 
 function PaintBox_GetTop(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -880,6 +930,7 @@ end;
 
 function PaintBox_GetWidth(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -894,6 +945,7 @@ end;
 
 function PaintBox_GetHeight(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -908,6 +960,7 @@ end;
 
 function PaintBox_GetCursor(AObj: TPaintBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -922,6 +975,7 @@ end;
 
 function PaintBox_GetHint(AObj: TPaintBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -936,6 +990,7 @@ end;
 
 function PaintBox_GetComponentCount(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -943,6 +998,7 @@ end;
 
 function PaintBox_GetComponentIndex(AObj: TPaintBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -957,6 +1013,7 @@ end;
 
 function PaintBox_GetOwner(AObj: TPaintBox): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -964,6 +1021,7 @@ end;
 
 function PaintBox_GetName(AObj: TPaintBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -978,6 +1036,7 @@ end;
 
 function PaintBox_GetTag(AObj: TPaintBox): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -992,6 +1051,7 @@ end;
 
 function PaintBox_GetAnchorSideLeft(AObj: TPaintBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1006,6 +1066,7 @@ end;
 
 function PaintBox_GetAnchorSideTop(AObj: TPaintBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1020,6 +1081,7 @@ end;
 
 function PaintBox_GetAnchorSideRight(AObj: TPaintBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1034,6 +1096,7 @@ end;
 
 function PaintBox_GetAnchorSideBottom(AObj: TPaintBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1048,6 +1111,7 @@ end;
 
 function PaintBox_GetBorderSpacing(AObj: TPaintBox): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1062,6 +1126,7 @@ end;
 
 function PaintBox_GetComponents(AObj: TPaintBox; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1069,6 +1134,7 @@ end;
 
 function PaintBox_GetAnchorSide(AObj: TPaintBox; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd
