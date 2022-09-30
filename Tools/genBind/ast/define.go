@@ -192,6 +192,7 @@ var baseTypes = map[string]string{
 	"LResult":              "LRESULT",
 	"NaturalNumber":        "i32",
 	"TCustomGrid":          "TStringGrid",
+	"TCustomBitmap":        "TBitmap",
 }
 
 func GetTypes(s string) string {

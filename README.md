@@ -18,10 +18,6 @@
 
   * c/c++: [Tools/genBind/c](Tools/genBind/c)    
 
-* 完成度较高的语言：
-
-* 测试中的语言    
-
 ----
 
 语言绑定工具生成器：[genBind](Tools/genBind)，目前已经生成了c/c++、rust、nim的，详细参考这几种语言的绑定模板文件。
@@ -39,43 +35,6 @@
 ##### 字符编码  
 
 在所有平台上都默认使用`utf-8`编码。
-
-----
-
-##### 使用结构化异常处理的函数  
-
-*注： 如果在liblcl源代码`ExtDecl.inc`文件中启用了`UsehandleException`编译指令，则不再需要`MySyscall`处理异常，但编译出的文件会增大，Windows下会增加约1M左右，Linux下会增加3M左右，macOS下会增加2.5M左右。*   
-
-```c
-// 类型定义
-typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-
-// 从DLL中获取此函数
-pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");  
-
-// ----------- 使用方法 -----------  
-#define DEFINE_FUNC_PTR(name) \
-static void* p##name; 
-
-#define GET_FUNC_ADDR(name) \
-if(!p##name) \
-   p##name = get_proc_addr(""#name""); \
-assert(p##name != NULL); 
-
-#define COV_PARAM(name) \
-(uintptr_t)name
-
-#define MySyscall(addr, len, a1, a2 , a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) \
-    pMySyscall((void*)addr, (intptr_t)len, COV_PARAM(a1), COV_PARAM(a2), COV_PARAM(a3), COV_PARAM(a4), COV_PARAM(a5), COV_PARAM(a6), COV_PARAM(a7), COV_PARAM(a8), COV_PARAM(a9), COV_PARAM(a10), COV_PARAM(a11), COV_PARAM(a12))
-
-
-// 如此定义的函数就可以捕捉DLL中LCL抛出的异常
-DEFINE_FUNC_PTR(Application_Instance) 
-TApplication Application_Instance() {
-    GET_FUNC_ADDR(Application_Instance)
-    return (TApplication)MySyscall(pApplication_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-```
 
 ----
 
@@ -121,19 +80,19 @@ Printer = Printer_Instance();
 
 ```c
  
-typedef void(*SYSCALL0)();  
-typedef void(*SYSCALL1)(intptr_t);  
-typedef void(*SYSCALL2)(intptr_t, uintptr_t);  
-typedef void(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-typedef void(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL0)();  
+typedef intptr_t(*SYSCALL1)(intptr_t);  
+typedef intptr_t(*SYSCALL2)(intptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+typedef intptr_t(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
 
 
 // 回调函数原型

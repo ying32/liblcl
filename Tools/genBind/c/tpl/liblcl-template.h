@@ -263,16 +263,24 @@ BOOL InSet(uint32_t s, uint8_t val) {
 // liblcl句柄
 static uintptr_t libHandle;
 ##
-// 用于处理异常的模拟call
-typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+
 ##
-// 函数指针
-static MYSYSCALL pMySyscall;
+// 不知道有什么方法可以简化下
+typedef intptr_t(*SYSCALL0)();
+typedef intptr_t(*SYSCALL1)(intptr_t);
+typedef intptr_t(*SYSCALL2)(intptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 ##
-// 异常处理函数实体
-#define MySyscall(addr, len, a1, a2 , a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) \
-    pMySyscall((void*)addr, (intptr_t)len, COV_PARAM(a1), COV_PARAM(a2), COV_PARAM(a3), COV_PARAM(a4), COV_PARAM(a5), COV_PARAM(a6), COV_PARAM(a7), COV_PARAM(a8), COV_PARAM(a9), COV_PARAM(a10), COV_PARAM(a11), COV_PARAM(a12))
-##
+
 // 全局实例类定义
 {{range $el := .InstanceObjects}}
 {{$el.Type}} {{$el.Name}};
@@ -310,7 +318,6 @@ BOOL load_liblcl(const char *name) {
     libHandle = (uintptr_t)dlopen(name, RTLD_LAZY|RTLD_GLOBAL);
 #endif
     if(libHandle > 0) {
-         pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");
          // 初始库
          init_lib_lcl();
     }
@@ -381,22 +388,28 @@ void close_liblcl() {
     {{if not (isEmpty $el.Return)}}
        {{$buff.Write "return (" (covType $el.Return) ")"}}
     {{end}}
-    {{$buff.Write "MySyscall(p" $el.Name ", " (len $el.Params)}}
+	{{$buff.Write "(((SYSCALL" (len $el.Params) ") (p" $el.Name "))(" }}
     {{/*参数传递*/}}
     {{range $idx, $ps := $el.Params}}
       {{if canOutParam $el $idx}}
-        {{$buff.Write ", "}}
+		{{if gt $idx 0}}
+          {{$buff.Write ", "}}
+		{{end}}
+		{{$buff.Write "COV_PARAM("}}
         {{if and $ps.IsVar (eq $ps.Flag "nonPtr")}}
           {{$buff.Write "&"}}
         {{end}}
         {{$buff.Write $ps.Name}}
+		{{$buff.Write ")"}}
       {{end}}
     {{end}}
     {{if $isPsRet}}
-      {{$buff.Write ", &result"}}
+	  {{if gt (len $el.Params) 1}}
+        {{$buff.Write ", "}}
+	  {{end}} 		
+      {{$buff.Write "COV_PARAM(&result)"}}
     {{end}}
-    {{cPsZero $el.Params|$buff.Write}}
-    {{$buff.Writeln ");"}}
+    {{$buff.Writeln "));"}}
 
     {{if $isPsRet}}
        {{$buff.Writeln "    return result;"}}
@@ -464,22 +477,6 @@ static inline char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
     return GetStringArrOf(P, AIndex);
 }
 
-
-##
-// 不知道有什么方法可以简化下
-typedef void(*SYSCALL0)();
-typedef void(*SYSCALL1)(intptr_t);
-typedef void(*SYSCALL2)(intptr_t, uintptr_t);
-typedef void(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 ##
 ##
 // getParam 从指定索引和地址获取事件中的参数

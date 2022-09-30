@@ -19,11 +19,6 @@ A common cross-platform GUI library, the core uses Lazarus LCL, [Genliblcl tool 
 
   * c/c++: [Tools/genBind/c](Tools/genBind/c)    
 
-* Highly completed languages:  
-
-* Language under test  
-
-
 ----
 
 Language binding tool generator: [genBind](Tools/genBind), c/c++, rust and nim have been generated. Refer to the binding template files of these languages for details.
@@ -39,44 +34,6 @@ Language binding tool generator: [genBind](Tools/genBind), c/c++, rust and nim h
 ##### Character Encoding   
 
 The `utf-8` encoding is used by default on all platforms.
-
-----
-
-##### Use structured exception handling functions   
-
-*Note: If the `UsehandleException` compilation instruction is enabled in the `ExtDecl.inc` file of the liblcl source code, then there is no longer a need for `MySyscall` to handle exceptions, but the compiled file will increase, and it will increase by about 1M under Windows, Linux It will increase about 3M under macOS, and about 2.5M under macOS.*  
-
-```c
-
-// Type definition
-typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
-
-// Get this function from DLL
-pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");  
-
-// ----------- Instructions -----------  
-#define DEFINE_FUNC_PTR(name) \
-static void* p##name; 
-
-#define GET_FUNC_ADDR(name) \
-if(!p##name) \
-   p##name = get_proc_addr(""#name""); \
-assert(p##name != NULL); 
-
-#define COV_PARAM(name) \
-(uintptr_t)name
-
-#define MySyscall(addr, len, a1, a2 , a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) \
-    pMySyscall((void*)addr, (intptr_t)len, COV_PARAM(a1), COV_PARAM(a2), COV_PARAM(a3), COV_PARAM(a4), COV_PARAM(a5), COV_PARAM(a6), COV_PARAM(a7), COV_PARAM(a8), COV_PARAM(a9), COV_PARAM(a10), COV_PARAM(a11), COV_PARAM(a12))
-
-
-// The function defined in this way can catch the exception thrown by LCL in DLL
-DEFINE_FUNC_PTR(Application_Instance) 
-TApplication Application_Instance() {
-    GET_FUNC_ADDR(Application_Instance)
-    return (TApplication)MySyscall(pApplication_Instance, 0 ,0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0);
-}
-```
 
 ----
 
@@ -120,19 +77,19 @@ Printer = Printer_Instance();
 * Basic event callback  
 
 ```c
- typedef void(*SYSCALL0)();  
- typedef void(*SYSCALL1)(intptr_t);  
- typedef void(*SYSCALL2)(intptr_t, uintptr_t);  
- typedef void(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
- typedef void(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL0)();  
+ typedef intptr_t(*SYSCALL1)(intptr_t);  
+ typedef intptr_t(*SYSCALL2)(intptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
+ typedef intptr_t(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);  
  
 
 // Callback function prototype

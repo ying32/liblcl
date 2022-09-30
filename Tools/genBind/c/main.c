@@ -24,12 +24,20 @@ char *UTF8Decode(char* str) {
 // 控件全局定义
 TMemo mmoText;
 TForm form2;
+TOpenDialog dlgOpen;
 
 // 按钮单击事件
 void onButton1Click(TObject sender) {
     ShowMessage("Hello world!");
 }
 
+
+void onBtnOpenFileClick(TObject sender) {
+    if (OpenDialog_Execute(dlgOpen)){
+		TStrings lines = Memo_GetLines(mmoText);
+		Strings_LoadFromFile(lines, OpenDialog_GetFileName(dlgOpen));
+	}
+}
 
 // 文件拖放事件
 void onOnDropFiles(TObject sender, void* aFileNames, intptr_t len) {
@@ -111,7 +119,7 @@ int main()
         Application_Initialize(Application);
 
         // 创建窗口
-        TForm form = Application_CreateForm(Application, FALSE);
+        TForm form = Application_CreateForm(Application);
 		// 设置窗口标题
         Form_SetCaption(form, "LCL Form");
 		// 设置窗口位置
@@ -154,9 +162,20 @@ int main()
         Button_SetLeft(btn, 100);
 		// 设置按钮在Parent的顶边位置
         Button_SetTop(btn, 100);
+		
+		
+		dlgOpen = OpenDialog_Create(form);
+		OpenDialog_SetFilter(dlgOpen, "Text File(*.txt)|*.txt|C Files(*.h;*.c)|*.h;*.c");
+		
+		TButton btnOpenFile = Button_Create(form);
+		Button_SetParent(btnOpenFile, form);
+		Button_SetCaption(btnOpenFile, "Open File");
+		Button_SetLeft(btnOpenFile, 100);
+		Button_SetTop(btnOpenFile, Button_GetTop(btn) - 40);
+		Button_SetOnClick(btnOpenFile, onBtnOpenFileClick);
 
         //form2
-        form2 = Application_CreateForm(Application, FALSE);
+        form2 = Application_CreateForm(Application);
         Form_SetPosition(form2, poScreenCenter);
         TStringGrid grid = StringGrid_Create(form2);
         StringGrid_SetParent(grid, form2);
@@ -221,6 +240,10 @@ int main()
         //Memo_SetHeight(mmoText, 300);
         Memo_SetAlign(mmoText, alRight);
         Memo_SetScrollBars(mmoText, ssAutoVertical);
+		// font set
+		TFont font = Memo_GetFont(mmoText);
+		Font_SetSize(font, 12);
+		Font_SetName(font, "Courier New");
 
 
         // TListBox
