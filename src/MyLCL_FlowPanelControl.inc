@@ -122,7 +122,7 @@ end;
 
 function FlowPanelControl_GetWrapAfter(AObj: TFlowPanelControl): TWrapAfter; extdecl;
 begin
-{$ifdef UsehandleException}Result := TWrapAfter(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TWrapAfter);{$endif}
   handleExceptionBegin
   Result :=  AObj.WrapAfter;
   handleExceptionEnd

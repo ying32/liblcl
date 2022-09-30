@@ -144,7 +144,7 @@ end;
 
 function JPEGImage_GetPixelFormat(AObj: TJPEGImage): TPixelFormat; extdecl;
 begin
-{$ifdef UsehandleException}Result := TJPEGPixelFormat(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TJPEGPixelFormat);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelFormat;
   handleExceptionEnd
@@ -159,7 +159,7 @@ end;
 
 function JPEGImage_GetPerformance(AObj: TJPEGImage): TJPEGPerformance; extdecl;
 begin
-{$ifdef UsehandleException}Result := TJPEGPerformance(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TJPEGPerformance);{$endif}
   handleExceptionBegin
   Result :=  AObj.Performance;
   handleExceptionEnd

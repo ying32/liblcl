@@ -640,7 +640,7 @@ end;
 
 function LabeledEdit_GetAlignment(AObj: TLabeledEdit): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -700,7 +700,7 @@ end;
 
 function LabeledEdit_GetBiDiMode(AObj: TLabeledEdit): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -715,7 +715,7 @@ end;
 
 function LabeledEdit_GetBorderStyle(AObj: TLabeledEdit): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -730,7 +730,7 @@ end;
 
 function LabeledEdit_GetCharCase(AObj: TLabeledEdit): TEditCharCase; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -805,7 +805,7 @@ end;
 
 function LabeledEdit_GetDragMode(AObj: TLabeledEdit): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -873,7 +873,7 @@ end;
 
 function LabeledEdit_GetLabelPosition(AObj: TLabeledEdit): TLabelPosition; extdecl;
 begin
-{$ifdef UsehandleException}Result := TLabelPosition(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TLabelPosition);{$endif}
   handleExceptionBegin
   Result :=  AObj.LabelPosition;
   handleExceptionEnd
@@ -993,7 +993,7 @@ end;
 
 function LabeledEdit_GetPasswordChar(AObj: TLabeledEdit): Char; extdecl;
 begin
-{$ifdef UsehandleException}Result := Char(nil);{$endif}
+{$ifdef UsehandleException}Result := #0;{$endif}
   handleExceptionBegin
   Result :=  AObj.PasswordChar;
   handleExceptionEnd
@@ -1440,7 +1440,7 @@ end;
 
 function LabeledEdit_GetAlign(AObj: TLabeledEdit): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd

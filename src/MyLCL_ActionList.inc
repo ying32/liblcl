@@ -137,7 +137,7 @@ end;
 
 function ActionList_GetState(AObj: TActionList): TActionListState; extdecl;
 begin
-{$ifdef UsehandleException}Result := TActionListState(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TActionListState);{$endif}
   handleExceptionBegin
   Result :=  AObj.State;
   handleExceptionEnd

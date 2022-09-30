@@ -166,7 +166,7 @@ end;
 
 function Printer_GetOrientation(AObj: TPrinter): TPrinterOrientation; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPrinterOrientation(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPrinterOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd

@@ -1035,7 +1035,7 @@ end;
 
 function SpinEdit_GetAlignment(AObj: TSpinEdit): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -1294,7 +1294,7 @@ end;
 
 function SpinEdit_GetAlign(AObj: TSpinEdit): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1309,7 +1309,7 @@ end;
 
 function SpinEdit_GetBiDiMode(AObj: TSpinEdit): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

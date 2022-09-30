@@ -176,7 +176,7 @@ end;
 
 function TaskDialog_GetDefaultButton(AObj: TTaskDialog): TTaskDialogCommonButton; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTaskDialogCommonButton(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTaskDialogCommonButton);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultButton;
   handleExceptionEnd

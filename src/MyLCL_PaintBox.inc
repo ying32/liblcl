@@ -457,7 +457,7 @@ end;
 
 function PaintBox_GetAlign(AObj: TPaintBox): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -532,7 +532,7 @@ end;
 
 function PaintBox_GetDragMode(AObj: TPaintBox): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -770,7 +770,7 @@ end;
 
 function PaintBox_GetBiDiMode(AObj: TPaintBox): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

@@ -127,7 +127,7 @@ end;
 
 function DragDockObject_GetDropAlign(AObj: TDragDockObject): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.DropAlign;
   handleExceptionEnd

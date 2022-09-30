@@ -614,7 +614,7 @@ end;
 
 function StatusBar_GetAlign(AObj: TStatusBar): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -644,7 +644,7 @@ end;
 
 function StatusBar_GetBiDiMode(AObj: TStatusBar): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -719,7 +719,7 @@ end;
 
 function StatusBar_GetDragKind(AObj: TStatusBar): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -734,7 +734,7 @@ end;
 
 function StatusBar_GetDragMode(AObj: TStatusBar): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

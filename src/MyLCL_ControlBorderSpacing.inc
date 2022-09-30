@@ -275,7 +275,7 @@ end;
 
 function ControlBorderSpacing_GetCellAlignHorizontal(AObj: TControlBorderSpacing): TControlCellAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TControlCellAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TControlCellAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellAlignHorizontal;
   handleExceptionEnd
@@ -290,7 +290,7 @@ end;
 
 function ControlBorderSpacing_GetCellAlignVertical(AObj: TControlBorderSpacing): TControlCellAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TControlCellAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TControlCellAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellAlignVertical;
   handleExceptionEnd

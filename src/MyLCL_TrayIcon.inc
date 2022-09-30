@@ -205,7 +205,7 @@ end;
 
 function TrayIcon_GetBalloonFlags(AObj: TTrayIcon): TBalloonFlags; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBalloonFlags(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBalloonFlags);{$endif}
   handleExceptionBegin
   Result :=  AObj.BalloonFlags;
   handleExceptionEnd

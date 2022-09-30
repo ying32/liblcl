@@ -1150,7 +1150,7 @@ end;
 
 function TabSheet_GetAlign(AObj: TTabSheet): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1180,7 +1180,7 @@ end;
 
 function TabSheet_GetBiDiMode(AObj: TTabSheet): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

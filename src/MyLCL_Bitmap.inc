@@ -232,7 +232,7 @@ end;
 
 function Bitmap_GetHandleType(AObj: TBitmap): TBitmapHandleType; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBitmapHandleType(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBitmapHandleType);{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleType;
   handleExceptionEnd
@@ -262,7 +262,7 @@ end;
 
 function Bitmap_GetPixelFormat(AObj: TBitmap): TPixelFormat; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPixelFormat(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPixelFormat);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelFormat;
   handleExceptionEnd
@@ -277,7 +277,7 @@ end;
 
 function Bitmap_GetTransparentMode(AObj: TBitmap): TTransparentMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTransparentMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTransparentMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.TransparentMode;
   handleExceptionEnd

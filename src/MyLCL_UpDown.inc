@@ -704,7 +704,7 @@ end;
 
 function UpDown_GetOrientation(AObj: TUpDown): TUDOrientation; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUDOrientation(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TUDOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -1050,7 +1050,7 @@ end;
 
 function UpDown_GetAlign(AObj: TUpDown): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1065,7 +1065,7 @@ end;
 
 function UpDown_GetBiDiMode(AObj: TUpDown): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

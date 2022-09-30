@@ -648,7 +648,7 @@ end;
 
 function Memo_GetAlign(AObj: TMemo): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -663,7 +663,7 @@ end;
 
 function Memo_GetAlignment(AObj: TMemo): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -693,7 +693,7 @@ end;
 
 function Memo_GetBiDiMode(AObj: TMemo): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -708,7 +708,7 @@ end;
 
 function Memo_GetBorderStyle(AObj: TMemo): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -723,7 +723,7 @@ end;
 
 function Memo_GetCharCase(AObj: TMemo): TEditCharCase; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -798,7 +798,7 @@ end;
 
 function Memo_GetDragKind(AObj: TMemo): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -813,7 +813,7 @@ end;
 
 function Memo_GetDragMode(AObj: TMemo): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -993,7 +993,7 @@ end;
 
 function Memo_GetScrollBars(AObj: TMemo): TScrollStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd

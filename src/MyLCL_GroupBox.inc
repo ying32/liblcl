@@ -584,7 +584,7 @@ end;
 
 function GroupBox_GetAlign(AObj: TGroupBox): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -614,7 +614,7 @@ end;
 
 function GroupBox_GetBiDiMode(AObj: TGroupBox): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -719,7 +719,7 @@ end;
 
 function GroupBox_GetDragKind(AObj: TGroupBox): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -734,7 +734,7 @@ end;
 
 function GroupBox_GetDragMode(AObj: TGroupBox): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

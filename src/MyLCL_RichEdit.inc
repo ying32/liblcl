@@ -649,7 +649,7 @@ end;
 
 function RichEdit_GetAlign(AObj: TRichEdit): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -664,7 +664,7 @@ end;
 
 function RichEdit_GetAlignment(AObj: TRichEdit): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -694,7 +694,7 @@ end;
 
 function RichEdit_GetBiDiMode(AObj: TRichEdit): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -709,7 +709,7 @@ end;
 
 function RichEdit_GetBorderStyle(AObj: TRichEdit): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -769,7 +769,7 @@ end;
 
 function RichEdit_GetDragKind(AObj: TRichEdit): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -784,7 +784,7 @@ end;
 
 function RichEdit_GetDragMode(AObj: TRichEdit): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -964,7 +964,7 @@ end;
 
 function RichEdit_GetScrollBars(AObj: TRichEdit): TScrollStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd

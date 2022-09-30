@@ -236,7 +236,7 @@ end;
 
 function PageSetupDialog_GetUnits(AObj: TPageSetupDialog): TPageMeasureUnits; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPageMeasureUnits(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPageMeasureUnits);{$endif}
   handleExceptionBegin
   Result :=  AObj.Units;
   handleExceptionEnd

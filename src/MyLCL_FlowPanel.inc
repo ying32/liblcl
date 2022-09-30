@@ -616,7 +616,7 @@ end;
 
 function FlowPanel_GetAlign(AObj: TFlowPanel): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -631,7 +631,7 @@ end;
 
 function FlowPanel_GetAlignment(AObj: TFlowPanel): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -691,7 +691,7 @@ end;
 
 function FlowPanel_GetBiDiMode(AObj: TFlowPanel): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -721,7 +721,7 @@ end;
 
 function FlowPanel_GetBorderStyle(AObj: TFlowPanel): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -841,7 +841,7 @@ end;
 
 function FlowPanel_GetDragKind(AObj: TFlowPanel): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -856,7 +856,7 @@ end;
 
 function FlowPanel_GetDragMode(AObj: TFlowPanel): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -886,7 +886,7 @@ end;
 
 function FlowPanel_GetFlowStyle(AObj: TFlowPanel): TFlowStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TFlowStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TFlowStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.FlowStyle;
   handleExceptionEnd

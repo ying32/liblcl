@@ -658,7 +658,7 @@ end;
 
 function MiniWebview_GetReadyState(AObj: TMiniWebview): TReadyState; extdecl;
 begin
-{$ifdef UsehandleException}Result := TReadyState(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TReadyState);{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadyState;
   handleExceptionEnd
@@ -666,7 +666,7 @@ end;
 
 function MiniWebview_GetAlign(AObj: TMiniWebview): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -933,7 +933,7 @@ end;
 
 function MiniWebview_GetBiDiMode(AObj: TMiniWebview): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

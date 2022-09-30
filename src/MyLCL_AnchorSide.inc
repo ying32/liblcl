@@ -97,7 +97,7 @@ end;
 
 function AnchorSide_GetKind(AObj: TAnchorSide): TAnchorKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAnchorKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAnchorKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -120,7 +120,7 @@ end;
 
 function AnchorSide_GetSide(AObj: TAnchorSide): TAnchorSideReference; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAnchorSideReference(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAnchorSideReference);{$endif}
   handleExceptionBegin
   Result :=  AObj.Side;
   handleExceptionEnd

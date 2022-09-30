@@ -127,7 +127,7 @@ end;
 
 function CoolBand_GetBorderStyle(AObj: TCoolBand): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd

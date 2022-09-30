@@ -147,7 +147,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_CellToGridZone(AObj: TStringGrid; aCol: Integer; aRow: Integer): TGridZone; extdecl;
 begin
-{$ifdef UsehandleException}Result := TGridZone(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TGridZone);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellToGridZone(aCol, aRow);
   handleExceptionEnd
@@ -287,7 +287,7 @@ end;
 //CLASSMETHOD:
 function StringGrid_MouseToGridZone(AObj: TStringGrid; X: Integer; Y: Integer): TGridZone; extdecl;
 begin
-{$ifdef UsehandleException}Result := TGridZone(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TGridZone);{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseToGridZone(X, Y);
   handleExceptionEnd
@@ -983,7 +983,7 @@ end;
 
 function StringGrid_GetGridLineStyle(AObj: TStringGrid): TPenStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPenStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPenStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLineStyle;
   handleExceptionEnd
@@ -1013,7 +1013,7 @@ end;
 
 function StringGrid_GetEditorBorderStyle(AObj: TStringGrid): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EditorBorderStyle;
   handleExceptionEnd
@@ -1043,7 +1043,7 @@ end;
 
 function StringGrid_GetSortOrder(AObj: TStringGrid): TSortOrder; extdecl;
 begin
-{$ifdef UsehandleException}Result := TSortOrder(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TSortOrder);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortOrder;
   handleExceptionEnd
@@ -1257,7 +1257,7 @@ end;
 
 function StringGrid_GetAutoAdvance(AObj: TStringGrid): TAutoAdvance; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAutoAdvance(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAutoAdvance);{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoAdvance;
   handleExceptionEnd
@@ -1302,7 +1302,7 @@ end;
 
 function StringGrid_GetCellHintPriority(AObj: TStringGrid): TCellHintPriority; extdecl;
 begin
-{$ifdef UsehandleException}Result := TCellHintPriority(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TCellHintPriority);{$endif}
   handleExceptionBegin
   Result :=  AObj.CellHintPriority;
   handleExceptionEnd
@@ -1437,7 +1437,7 @@ end;
 
 function StringGrid_GetMouseWheelOption(AObj: TStringGrid): TMouseWheelOption; extdecl;
 begin
-{$ifdef UsehandleException}Result := TMouseWheelOption(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TMouseWheelOption);{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseWheelOption;
   handleExceptionEnd
@@ -1467,7 +1467,7 @@ end;
 
 function StringGrid_GetRangeSelectMode(AObj: TStringGrid): TRangeSelectMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TRangeSelectMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TRangeSelectMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.RangeSelectMode;
   handleExceptionEnd
@@ -1482,7 +1482,7 @@ end;
 
 function StringGrid_GetTabAdvance(AObj: TStringGrid): TAutoAdvance; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAutoAdvance(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAutoAdvance);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabAdvance;
   handleExceptionEnd
@@ -1527,7 +1527,7 @@ end;
 
 function StringGrid_GetTitleStyle(AObj: TStringGrid): TTitleStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTitleStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTitleStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.TitleStyle;
   handleExceptionEnd
@@ -1557,7 +1557,7 @@ end;
 
 function StringGrid_GetAlign(AObj: TStringGrid): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1587,7 +1587,7 @@ end;
 
 function StringGrid_GetBiDiMode(AObj: TStringGrid): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1602,7 +1602,7 @@ end;
 
 function StringGrid_GetBorderStyle(AObj: TStringGrid): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -1737,7 +1737,7 @@ end;
 
 function StringGrid_GetDragKind(AObj: TStringGrid): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1752,7 +1752,7 @@ end;
 
 function StringGrid_GetDragMode(AObj: TStringGrid): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1962,7 +1962,7 @@ end;
 
 function StringGrid_GetScrollBars(AObj: TStringGrid): TScrollStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd

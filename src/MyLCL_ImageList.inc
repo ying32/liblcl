@@ -387,7 +387,7 @@ end;
 
 function ImageList_GetDrawingStyle(AObj: TImageList): TDrawingStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDrawingStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDrawingStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.DrawingStyle;
   handleExceptionEnd
@@ -417,7 +417,7 @@ end;
 
 function ImageList_GetImageType(AObj: TImageList): TImageType; extdecl;
 begin
-{$ifdef UsehandleException}Result := TImageType(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TImageType);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageType;
   handleExceptionEnd

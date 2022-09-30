@@ -609,7 +609,7 @@ end;
 
 function DateTimePicker_GetArrowShape(AObj: TDateTimePicker): TArrowShape; extdecl;
 begin
-{$ifdef UsehandleException}Result := TArrowShape(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TArrowShape);{$endif}
   handleExceptionBegin
   Result :=  AObj.ArrowShape;
   handleExceptionEnd
@@ -684,7 +684,7 @@ end;
 
 function DateTimePicker_GetDateDisplayOrder(AObj: TDateTimePicker): TDateDisplayOrder; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDateDisplayOrder(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDateDisplayOrder);{$endif}
   handleExceptionBegin
   Result :=  AObj.DateDisplayOrder;
   handleExceptionEnd
@@ -849,7 +849,7 @@ end;
 
 function DateTimePicker_GetTimeDisplay(AObj: TDateTimePicker): TTimeDisplay; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTimeDisplay(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTimeDisplay);{$endif}
   handleExceptionBegin
   Result :=  AObj.TimeDisplay;
   handleExceptionEnd
@@ -864,7 +864,7 @@ end;
 
 function DateTimePicker_GetTimeFormat(AObj: TDateTimePicker): TTimeFormat; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTimeFormat(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTimeFormat);{$endif}
   handleExceptionBegin
   Result :=  AObj.TimeFormat;
   handleExceptionEnd
@@ -948,7 +948,7 @@ end;
 
 function DateTimePicker_GetAlign(AObj: TDateTimePicker): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -978,7 +978,7 @@ end;
 
 function DateTimePicker_GetBiDiMode(AObj: TDateTimePicker): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -993,7 +993,7 @@ end;
 
 function DateTimePicker_GetCalAlignment(AObj: TDateTimePicker): TDTCalAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDTCalAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDTCalAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.CalAlignment;
   handleExceptionEnd
@@ -1085,7 +1085,7 @@ end;
 
 function DateTimePicker_GetDateMode(AObj: TDateTimePicker): TDTDateMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDTDateMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDTDateMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DateMode;
   handleExceptionEnd
@@ -1145,7 +1145,7 @@ end;
 
 function DateTimePicker_GetKind(AObj: TDateTimePicker): TDateTimeKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDateTimeKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDateTimeKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd

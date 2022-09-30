@@ -122,7 +122,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadDate(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDate(Name));
   handleExceptionEnd
@@ -131,7 +131,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadDateTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDateTime(Name));
   handleExceptionEnd
@@ -167,7 +167,7 @@ end;
 //CLASSMETHOD:
 function Registry_ReadTime(AObj: TRegistry; Name: PChar): TUnixDateTime; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadTime(Name));
   handleExceptionEnd

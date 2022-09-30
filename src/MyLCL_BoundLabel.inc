@@ -449,7 +449,7 @@ end;
 
 function BoundLabel_GetBiDiMode(AObj: TBoundLabel): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -509,7 +509,7 @@ end;
 
 function BoundLabel_GetDragMode(AObj: TBoundLabel): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -660,7 +660,7 @@ end;
 
 function BoundLabel_GetLayout(AObj: TBoundLabel): TTextLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTextLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTextLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -807,7 +807,7 @@ end;
 
 function BoundLabel_GetAlign(AObj: TBoundLabel): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd

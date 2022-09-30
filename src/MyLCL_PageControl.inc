@@ -766,7 +766,7 @@ end;
 
 function PageControl_GetAlign(AObj: TPageControl): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -796,7 +796,7 @@ end;
 
 function PageControl_GetBiDiMode(AObj: TPageControl): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -871,7 +871,7 @@ end;
 
 function PageControl_GetDragKind(AObj: TPageControl): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -886,7 +886,7 @@ end;
 
 function PageControl_GetDragMode(AObj: TPageControl): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1081,7 +1081,7 @@ end;
 
 function PageControl_GetTabPosition(AObj: TPageControl): TTabPosition; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTabPosition(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTabPosition);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabPosition;
   handleExceptionEnd

@@ -472,7 +472,7 @@ end;
 
 function ImageButton_GetAlign(AObj: TImageButton): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -562,7 +562,7 @@ end;
 
 function ImageButton_GetDragKind(AObj: TImageButton): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -577,7 +577,7 @@ end;
 
 function ImageButton_GetDragMode(AObj: TImageButton): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -637,7 +637,7 @@ end;
 
 function ImageButton_GetOrientation(AObj: TImageButton): TImageOrientation; extdecl;
 begin
-{$ifdef UsehandleException}Result := TImageOrientation(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TImageOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -868,7 +868,7 @@ end;
 
 function ImageButton_GetBiDiMode(AObj: TImageButton): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

@@ -102,7 +102,7 @@ begin
 end;
 
 //CLASSMETHOD:
-function Application_CreateForm(App: TApplication; AInitScale: LongBool): TForm; extdecl;
+function Application_CreateForm(App: TApplication): TForm; extdecl;
 begin
   handleExceptionBegin
   App.CreateForm(TGoForm, Result);
@@ -136,10 +136,11 @@ end;
 
 
 //CLASSMETHOD:
-function Form_Create2(AOwner: TComponent; AInitScale: LongBool): TGoForm; extdecl;
+function Form_Create2(AOwner: TComponent): TGoForm; extdecl;
 begin
+  {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
-  Result :=  TGoForm.Create2(AOwner, AInitScale);
+  Result :=  TGoForm.Create2(AOwner);
   handleExceptionEnd
 end;
 
@@ -336,7 +337,7 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Canvas_Draw2(AObj: TCanvas; X, Y: Integer; Graphic: TGraphic; Opacity: Byte); extdecl;
+procedure Canvas_Draw2(AObj: TCanvas; X, Y: Integer; Graphic: TGraphic); extdecl;
 begin
   handleExceptionBegin
   AObj.Draw(X, Y, Graphic);

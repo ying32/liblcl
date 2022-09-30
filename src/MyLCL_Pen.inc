@@ -134,7 +134,7 @@ end;
 
 function Pen_GetMode(AObj: TPen): TPenMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPenMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPenMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.Mode;
   handleExceptionEnd
@@ -149,7 +149,7 @@ end;
 
 function Pen_GetStyle(AObj: TPen): TPenStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPenStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPenStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd

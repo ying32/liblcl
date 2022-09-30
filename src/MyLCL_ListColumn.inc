@@ -104,7 +104,7 @@ end;
 
 function ListColumn_GetSortIndicator(AObj: TListColumn): TSortIndicator; extdecl;
 begin
-{$ifdef UsehandleException}Result := TSortIndicator(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TSortIndicator);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortIndicator;
   handleExceptionEnd
@@ -119,7 +119,7 @@ end;
 
 function ListColumn_GetAlignment(AObj: TListColumn): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd

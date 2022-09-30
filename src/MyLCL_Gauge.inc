@@ -465,7 +465,7 @@ end;
 
 function Gauge_GetAlign(AObj: TGauge): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -510,7 +510,7 @@ end;
 
 function Gauge_GetBorderStyle(AObj: TGauge): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -600,7 +600,7 @@ end;
 
 function Gauge_GetKind(AObj: TGauge): TGaugeKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TGaugeKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TGaugeKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -780,7 +780,7 @@ end;
 
 function Gauge_GetBiDiMode(AObj: TGauge): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

@@ -464,7 +464,7 @@ end;
 
 function Label_GetAlign(AObj: TLabel): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -479,7 +479,7 @@ end;
 
 function Label_GetAlignment(AObj: TLabel): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -524,7 +524,7 @@ end;
 
 function Label_GetBiDiMode(AObj: TLabel): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -599,7 +599,7 @@ end;
 
 function Label_GetDragKind(AObj: TLabel): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -614,7 +614,7 @@ end;
 
 function Label_GetDragMode(AObj: TLabel): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -779,7 +779,7 @@ end;
 
 function Label_GetLayout(AObj: TLabel): TTextLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTextLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTextLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd

@@ -89,7 +89,7 @@ end;
 
 function ParaAttributes_GetAlignment(AObj: TParaAttributes): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -134,7 +134,7 @@ end;
 
 function ParaAttributes_GetNumbering(AObj: TParaAttributes): TNumberingStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TNumberingStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TNumberingStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Numbering;
   handleExceptionEnd

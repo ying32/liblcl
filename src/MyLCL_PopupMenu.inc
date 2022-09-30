@@ -192,7 +192,7 @@ end;
 
 function PopupMenu_GetAlignment(AObj: TPopupMenu): TPopupAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPopupAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPopupAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -207,7 +207,7 @@ end;
 
 function PopupMenu_GetBiDiMode(AObj: TPopupMenu): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

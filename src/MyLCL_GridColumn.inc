@@ -147,7 +147,7 @@ end;
 
 function GridColumn_GetAlignment(AObj: TGridColumn): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -162,7 +162,7 @@ end;
 
 function GridColumn_GetButtonStyle(AObj: TGridColumn): TColumnButtonStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TColumnButtonStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TColumnButtonStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonStyle;
   handleExceptionEnd
@@ -237,7 +237,7 @@ end;
 
 function GridColumn_GetLayout(AObj: TGridColumn): TTextLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTextLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTextLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd

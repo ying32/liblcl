@@ -125,7 +125,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadDate(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDate(Section, Name, UnixToTime(Default)));
   handleExceptionEnd
@@ -134,7 +134,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadDateTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadDateTime(Section, Name, UnixToTime(Default)));
   handleExceptionEnd
@@ -153,7 +153,7 @@ end;
 //CLASSMETHOD:
 function IniFile_ReadTime(AObj: TIniFile; Section: PChar; Name: PChar; Default: TUnixDateTime): TUnixDateTime; extdecl;
 begin
-{$ifdef UsehandleException}Result := TUnixDateTime(nil);{$endif}
+{$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result :=  ToUnixTime(AObj.ReadTime(Section, Name, UnixToTime(Default)));
   handleExceptionEnd

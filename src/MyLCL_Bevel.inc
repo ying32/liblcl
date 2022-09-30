@@ -449,7 +449,7 @@ end;
 
 function Bevel_GetAlign(AObj: TBevel): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -509,7 +509,7 @@ end;
 
 function Bevel_GetShape(AObj: TBevel): TBevelShape; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBevelShape(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBevelShape);{$endif}
   handleExceptionBegin
   Result :=  AObj.Shape;
   handleExceptionEnd
@@ -539,7 +539,7 @@ end;
 
 function Bevel_GetStyle(AObj: TBevel): TBevelStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBevelStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBevelStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -599,7 +599,7 @@ end;
 
 function Bevel_GetBiDiMode(AObj: TBevel): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

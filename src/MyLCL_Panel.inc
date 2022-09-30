@@ -607,7 +607,7 @@ end;
 
 function Panel_GetAlign(AObj: TPanel): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -622,7 +622,7 @@ end;
 
 function Panel_GetAlignment(AObj: TPanel): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -667,7 +667,7 @@ end;
 
 function Panel_GetBevelInner(AObj: TPanel): TBevelCut; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBevelCut(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBevelCut);{$endif}
   handleExceptionBegin
   Result :=  AObj.BevelInner;
   handleExceptionEnd
@@ -682,7 +682,7 @@ end;
 
 function Panel_GetBevelOuter(AObj: TPanel): TBevelCut; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBevelCut(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBevelCut);{$endif}
   handleExceptionBegin
   Result :=  AObj.BevelOuter;
   handleExceptionEnd
@@ -697,7 +697,7 @@ end;
 
 function Panel_GetBiDiMode(AObj: TPanel): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -727,7 +727,7 @@ end;
 
 function Panel_GetBorderStyle(AObj: TPanel): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -847,7 +847,7 @@ end;
 
 function Panel_GetDragKind(AObj: TPanel): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -862,7 +862,7 @@ end;
 
 function Panel_GetDragMode(AObj: TPanel): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

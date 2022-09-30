@@ -607,7 +607,7 @@ end;
 
 function RadioButton_GetAlign(AObj: TRadioButton): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -622,7 +622,7 @@ end;
 
 function RadioButton_GetAlignment(AObj: TRadioButton): TLeftRight; extdecl;
 begin
-{$ifdef UsehandleException}Result := TLeftRight(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TLeftRight);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -652,7 +652,7 @@ end;
 
 function RadioButton_GetBiDiMode(AObj: TRadioButton): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -757,7 +757,7 @@ end;
 
 function RadioButton_GetDragKind(AObj: TRadioButton): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -772,7 +772,7 @@ end;
 
 function RadioButton_GetDragMode(AObj: TRadioButton): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

@@ -449,7 +449,7 @@ end;
 
 function Shape_GetAlign(AObj: TShape): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -509,7 +509,7 @@ end;
 
 function Shape_GetDragKind(AObj: TShape): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -524,7 +524,7 @@ end;
 
 function Shape_GetDragMode(AObj: TShape): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -599,7 +599,7 @@ end;
 
 function Shape_GetShape(AObj: TShape): TShapeType; extdecl;
 begin
-{$ifdef UsehandleException}Result := TShapeType(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TShapeType);{$endif}
   handleExceptionBegin
   Result :=  AObj.Shape;
   handleExceptionEnd
@@ -723,7 +723,7 @@ end;
 
 function Shape_GetBiDiMode(AObj: TShape): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

@@ -47,7 +47,7 @@ type
     procedure ScreenCenter;
     procedure WorkAreaCenter;
 
-    class function Create2(AOwner: TComponent; AInitScale: Boolean): TGoForm;
+    class function Create2(AOwner: TComponent): TGoForm;
 
     property GoPtr: Pointer read FGoPtr write FGoPtr;
   published
@@ -156,7 +156,7 @@ begin
   Top := (Screen.WorkAreaHeight - Height) div 2;
 end;
 
-class function TGoForm.Create2(AOwner: TComponent; AInitScale: Boolean): TGoForm;
+class function TGoForm.Create2(AOwner: TComponent): TGoForm;
 begin
   Result := TGoForm.Create(AOwner);
 end;

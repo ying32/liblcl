@@ -730,7 +730,7 @@ end;
 
 function TreeView_GetExpandSignType(AObj: TTreeView): TTreeViewExpandSignType; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTreeViewExpandSignType(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTreeViewExpandSignType);{$endif}
   handleExceptionBegin
   Result :=  AObj.ExpandSignType;
   handleExceptionEnd
@@ -790,7 +790,7 @@ end;
 
 function TreeView_GetScrollBars(AObj: TTreeView): TScrollStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -910,7 +910,7 @@ end;
 
 function TreeView_GetTreeLinePenStyle(AObj: TTreeView): TPenStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPenStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPenStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.TreeLinePenStyle;
   handleExceptionEnd
@@ -925,7 +925,7 @@ end;
 
 function TreeView_GetAlign(AObj: TTreeView): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -970,7 +970,7 @@ end;
 
 function TreeView_GetBiDiMode(AObj: TTreeView): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -985,7 +985,7 @@ end;
 
 function TreeView_GetBorderStyle(AObj: TTreeView): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -1060,7 +1060,7 @@ end;
 
 function TreeView_GetDragKind(AObj: TTreeView): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1090,7 +1090,7 @@ end;
 
 function TreeView_GetDragMode(AObj: TTreeView): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1405,7 +1405,7 @@ end;
 
 function TreeView_GetSortType(AObj: TTreeView): TSortType; extdecl;
 begin
-{$ifdef UsehandleException}Result := TSortType(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TSortType);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortType;
   handleExceptionEnd

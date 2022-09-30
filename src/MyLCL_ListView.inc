@@ -763,7 +763,7 @@ end;
 
 function ListView_GetSortDirection(AObj: TListView): TSortDirection; extdecl;
 begin
-{$ifdef UsehandleException}Result := TSortDirection(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TSortDirection);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortDirection;
   handleExceptionEnd
@@ -823,7 +823,7 @@ end;
 
 function ListView_GetScrollBars(AObj: TListView): TScrollStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -861,7 +861,7 @@ end;
 
 function ListView_GetAlign(AObj: TListView): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -906,7 +906,7 @@ end;
 
 function ListView_GetBiDiMode(AObj: TListView): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -921,7 +921,7 @@ end;
 
 function ListView_GetBorderStyle(AObj: TListView): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -1056,7 +1056,7 @@ end;
 
 function ListView_GetDragKind(AObj: TListView): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1071,7 +1071,7 @@ end;
 
 function ListView_GetDragMode(AObj: TListView): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1431,7 +1431,7 @@ end;
 
 function ListView_GetSortType(AObj: TListView): TSortType; extdecl;
 begin
-{$ifdef UsehandleException}Result := TSortType(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TSortType);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortType;
   handleExceptionEnd
@@ -1491,7 +1491,7 @@ end;
 
 function ListView_GetViewStyle(AObj: TListView): TViewStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TViewStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TViewStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ViewStyle;
   handleExceptionEnd

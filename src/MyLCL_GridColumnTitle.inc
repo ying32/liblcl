@@ -131,7 +131,7 @@ end;
 
 function GridColumnTitle_GetAlignment(AObj: TGridColumnTitle): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -206,7 +206,7 @@ end;
 
 function GridColumnTitle_GetImageLayout(AObj: TGridColumnTitle): TButtonLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TButtonLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TButtonLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageLayout;
   handleExceptionEnd
@@ -221,7 +221,7 @@ end;
 
 function GridColumnTitle_GetLayout(AObj: TGridColumnTitle): TTextLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTextLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTextLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -251,7 +251,7 @@ end;
 
 function GridColumnTitle_GetPrefixOption(AObj: TGridColumnTitle): TPrefixOption; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPrefixOption(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPrefixOption);{$endif}
   handleExceptionBegin
   Result :=  AObj.PrefixOption;
   handleExceptionEnd

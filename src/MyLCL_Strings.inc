@@ -291,7 +291,7 @@ end;
 
 function Strings_GetDelimiter(AObj: TStrings): Char; extdecl;
 begin
-{$ifdef UsehandleException}Result := Char(nil);{$endif}
+{$ifdef UsehandleException}Result := #0;{$endif}
   handleExceptionBegin
   Result :=  AObj.Delimiter;
   handleExceptionEnd
@@ -306,7 +306,7 @@ end;
 
 function Strings_GetNameValueSeparator(AObj: TStrings): Char; extdecl;
 begin
-{$ifdef UsehandleException}Result := Char(nil);{$endif}
+{$ifdef UsehandleException}Result := #0;{$endif}
   handleExceptionBegin
   Result :=  AObj.NameValueSeparator;
   handleExceptionEnd

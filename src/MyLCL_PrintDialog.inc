@@ -236,7 +236,7 @@ end;
 
 function PrintDialog_GetPrintRange(AObj: TPrintDialog): TPrintRange; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPrintRange(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPrintRange);{$endif}
   handleExceptionBegin
   Result :=  AObj.PrintRange;
   handleExceptionEnd

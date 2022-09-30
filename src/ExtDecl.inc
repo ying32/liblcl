@@ -17,7 +17,7 @@
 {$Z4+}
 
 // 未正式使用此异常处理
-//{$define UsehandleException}
+{$define UsehandleException}
 
 // 异常宏定义
 {$ifdef UsehandleException}

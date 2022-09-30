@@ -149,7 +149,7 @@ end;
 
 function Brush_GetStyle(AObj: TBrush): TBrushStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBrushStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBrushStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd

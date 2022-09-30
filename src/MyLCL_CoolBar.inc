@@ -576,7 +576,7 @@ end;
 
 function CoolBar_GetAlign(AObj: TCoolBar): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -621,7 +621,7 @@ end;
 
 function CoolBar_GetBandBorderStyle(AObj: TCoolBar): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BandBorderStyle;
   handleExceptionEnd
@@ -636,7 +636,7 @@ end;
 
 function CoolBar_GetBandMaximize(AObj: TCoolBar): TCoolBandMaximize; extdecl;
 begin
-{$ifdef UsehandleException}Result := TCoolBandMaximize(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TCoolBandMaximize);{$endif}
   handleExceptionBegin
   Result :=  AObj.BandMaximize;
   handleExceptionEnd
@@ -756,7 +756,7 @@ end;
 
 function CoolBar_GetDragKind(AObj: TCoolBar): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -771,7 +771,7 @@ end;
 
 function CoolBar_GetDragMode(AObj: TCoolBar): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -801,7 +801,7 @@ end;
 
 function CoolBar_GetEdgeInner(AObj: TCoolBar): TEdgeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEdgeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeInner;
   handleExceptionEnd
@@ -816,7 +816,7 @@ end;
 
 function CoolBar_GetEdgeOuter(AObj: TCoolBar): TEdgeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEdgeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeOuter;
   handleExceptionEnd
@@ -1331,7 +1331,7 @@ end;
 
 function CoolBar_GetBiDiMode(AObj: TCoolBar): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

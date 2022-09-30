@@ -449,7 +449,7 @@ end;
 
 function Image_GetAntialiasingMode(AObj: TImage): TAntialiasingMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAntialiasingMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAntialiasingMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.AntialiasingMode;
   handleExceptionEnd
@@ -532,7 +532,7 @@ end;
 
 function Image_GetAlign(AObj: TImage): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -622,7 +622,7 @@ end;
 
 function Image_GetDragMode(AObj: TImage): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -867,7 +867,7 @@ end;
 
 function Image_GetBiDiMode(AObj: TImage): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

@@ -98,7 +98,7 @@ end;
 
 function ControlScrollBar_GetKind(AObj: TControlScrollBar): TScrollBarKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollBarKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollBarKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -114,7 +114,7 @@ end;
 
 function ControlScrollBar_GetIncrement(AObj: TControlScrollBar): TScrollBarInc; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollBarInc(0);{$endif}
+{$ifdef UsehandleException}Result := 1;{$endif}
   handleExceptionBegin
   Result :=  AObj.Increment;
   handleExceptionEnd

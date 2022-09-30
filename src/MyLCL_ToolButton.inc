@@ -564,7 +564,7 @@ end;
 
 function ToolButton_GetDragKind(AObj: TToolButton): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -579,7 +579,7 @@ end;
 
 function ToolButton_GetDragMode(AObj: TToolButton): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -759,7 +759,7 @@ end;
 
 function ToolButton_GetStyle(AObj: TToolButton): TToolButtonStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TToolButtonStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TToolButtonStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -900,7 +900,7 @@ end;
 
 function ToolButton_GetAlign(AObj: TToolButton): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -930,7 +930,7 @@ end;
 
 function ToolButton_GetBiDiMode(AObj: TToolButton): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

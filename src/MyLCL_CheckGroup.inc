@@ -593,7 +593,7 @@ end;
 
 function CheckGroup_GetAlign(AObj: TCheckGroup): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -653,7 +653,7 @@ end;
 
 function CheckGroup_GetBiDiMode(AObj: TCheckGroup): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -728,7 +728,7 @@ end;
 
 function CheckGroup_GetColumnLayout(AObj: TCheckGroup): TColumnLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TColumnLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TColumnLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColumnLayout;
   handleExceptionEnd
@@ -803,7 +803,7 @@ end;
 
 function CheckGroup_GetDragMode(AObj: TCheckGroup): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

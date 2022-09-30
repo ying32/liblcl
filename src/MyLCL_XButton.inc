@@ -569,7 +569,7 @@ end;
 
 function XButton_GetDrawMode(AObj: TXButton): TDrawImageMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDrawImageMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDrawImageMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DrawMode;
   handleExceptionEnd
@@ -644,7 +644,7 @@ end;
 
 function XButton_GetAlign(AObj: TXButton): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -674,7 +674,7 @@ end;
 
 function XButton_GetBiDiMode(AObj: TXButton): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

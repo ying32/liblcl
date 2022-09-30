@@ -89,7 +89,7 @@ end;
 
 function IconOptions_GetArrangement(AObj: TIconOptions): TIconArrangement; extdecl;
 begin
-{$ifdef UsehandleException}Result := TIconArrangement(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TIconArrangement);{$endif}
   handleExceptionBegin
   Result :=  AObj.Arrangement;
   handleExceptionEnd

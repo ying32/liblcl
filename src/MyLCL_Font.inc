@@ -218,7 +218,7 @@ end;
 
 function Font_GetPitch(AObj: TFont): TFontPitch; extdecl;
 begin
-{$ifdef UsehandleException}Result := TFontPitch(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TFontPitch);{$endif}
   handleExceptionBegin
   Result :=  AObj.Pitch;
   handleExceptionEnd
@@ -263,7 +263,7 @@ end;
 
 function Font_GetQuality(AObj: TFont): TFontQuality; extdecl;
 begin
-{$ifdef UsehandleException}Result := TFontQuality(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TFontQuality);{$endif}
   handleExceptionBegin
   Result :=  AObj.Quality;
   handleExceptionEnd

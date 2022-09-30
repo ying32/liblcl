@@ -600,7 +600,7 @@ end;
 
 function ProgressBar_GetAlign(AObj: TProgressBar): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -675,7 +675,7 @@ end;
 
 function ProgressBar_GetDragKind(AObj: TProgressBar): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -690,7 +690,7 @@ end;
 
 function ProgressBar_GetDragMode(AObj: TProgressBar): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -780,7 +780,7 @@ end;
 
 function ProgressBar_GetOrientation(AObj: TProgressBar): TProgressBarOrientation; extdecl;
 begin
-{$ifdef UsehandleException}Result := TProgressBarOrientation(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TProgressBarOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -870,7 +870,7 @@ end;
 
 function ProgressBar_GetStyle(AObj: TProgressBar): TProgressBarStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TProgressBarStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TProgressBarStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -1164,7 +1164,7 @@ end;
 
 function ProgressBar_GetBiDiMode(AObj: TProgressBar): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

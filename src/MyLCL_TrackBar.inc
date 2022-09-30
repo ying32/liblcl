@@ -592,7 +592,7 @@ end;
 
 function TrackBar_GetAlign(AObj: TTrackBar): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -667,7 +667,7 @@ end;
 
 function TrackBar_GetDragMode(AObj: TTrackBar): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -757,7 +757,7 @@ end;
 
 function TrackBar_GetOrientation(AObj: TTrackBar): TTrackBarOrientation; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTrackBarOrientation(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTrackBarOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -952,7 +952,7 @@ end;
 
 function TrackBar_GetTickMarks(AObj: TTrackBar): TTickMark; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTickMark(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTickMark);{$endif}
   handleExceptionBegin
   Result :=  AObj.TickMarks;
   handleExceptionEnd
@@ -967,7 +967,7 @@ end;
 
 function TrackBar_GetTickStyle(AObj: TTrackBar): TTickStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TTickStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TTickStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.TickStyle;
   handleExceptionEnd
@@ -1193,7 +1193,7 @@ end;
 
 function TrackBar_GetBiDiMode(AObj: TTrackBar): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

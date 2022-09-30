@@ -624,7 +624,7 @@ end;
 
 function ColorBox_GetAlign(AObj: TColorBox): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -744,7 +744,7 @@ end;
 
 function ColorBox_GetBiDiMode(AObj: TColorBox): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1127,7 +1127,7 @@ end;
 
 function ColorBox_GetCharCase(AObj: TColorBox): TEditCharCase; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd

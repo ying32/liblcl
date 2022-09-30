@@ -472,7 +472,7 @@ end;
 
 function ColorButton_GetAlign(AObj: TColorButton): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -727,7 +727,7 @@ end;
 
 function ColorButton_GetLayout(AObj: TColorButton): TButtonLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TButtonLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TButtonLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -1011,7 +1011,7 @@ end;
 
 function ColorButton_GetBiDiMode(AObj: TColorButton): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

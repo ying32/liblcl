@@ -584,7 +584,7 @@ end;
 
 function StaticText_GetAlign(AObj: TStaticText): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -599,7 +599,7 @@ end;
 
 function StaticText_GetAlignment(AObj: TStaticText): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -644,7 +644,7 @@ end;
 
 function StaticText_GetBiDiMode(AObj: TStaticText): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -659,7 +659,7 @@ end;
 
 function StaticText_GetBorderStyle(AObj: TStaticText): TStaticBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TStaticBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TStaticBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -749,7 +749,7 @@ end;
 
 function StaticText_GetDragKind(AObj: TStaticText): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -764,7 +764,7 @@ end;
 
 function StaticText_GetDragMode(AObj: TStaticText): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

@@ -165,7 +165,7 @@ end;
 
 function ControlChildSizing_GetEnlargeHorizontal(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TChildControlResizeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EnlargeHorizontal;
   handleExceptionEnd
@@ -180,7 +180,7 @@ end;
 
 function ControlChildSizing_GetEnlargeVertical(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TChildControlResizeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EnlargeVertical;
   handleExceptionEnd
@@ -195,7 +195,7 @@ end;
 
 function ControlChildSizing_GetShrinkHorizontal(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TChildControlResizeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShrinkHorizontal;
   handleExceptionEnd
@@ -210,7 +210,7 @@ end;
 
 function ControlChildSizing_GetShrinkVertical(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TChildControlResizeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShrinkVertical;
   handleExceptionEnd
@@ -225,7 +225,7 @@ end;
 
 function ControlChildSizing_GetLayout(AObj: TControlChildSizing): TControlChildrenLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TControlChildrenLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TControlChildrenLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd

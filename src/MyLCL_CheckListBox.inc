@@ -659,7 +659,7 @@ end;
 
 function CheckListBox_GetAlign(AObj: TCheckListBox): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -704,7 +704,7 @@ end;
 
 function CheckListBox_GetBiDiMode(AObj: TCheckListBox): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -719,7 +719,7 @@ end;
 
 function CheckListBox_GetBorderStyle(AObj: TCheckListBox): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -809,7 +809,7 @@ end;
 
 function CheckListBox_GetDragMode(AObj: TCheckListBox): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -989,7 +989,7 @@ end;
 
 function CheckListBox_GetStyle(AObj: TCheckListBox): TListBoxStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TListBoxStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TListBoxStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -1756,7 +1756,7 @@ end;
 
 function CheckListBox_GetState(AObj: TCheckListBox; Index: Integer): TCheckBoxState; extdecl;
 begin
-{$ifdef UsehandleException}Result := TCheckBoxState(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TCheckBoxState);{$endif}
   handleExceptionBegin
   Result :=  AObj.State[Index];
   handleExceptionEnd

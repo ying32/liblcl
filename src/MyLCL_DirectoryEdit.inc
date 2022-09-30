@@ -956,7 +956,7 @@ end;
 
 function DirectoryEdit_GetAlign(AObj: TDirectoryEdit): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1046,7 +1046,7 @@ end;
 
 function DirectoryEdit_GetDragMode(AObj: TDirectoryEdit): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1091,7 +1091,7 @@ end;
 
 function DirectoryEdit_GetLayout(AObj: TDirectoryEdit): TLeftRight; extdecl;
 begin
-{$ifdef UsehandleException}Result := TLeftRight(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TLeftRight);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -1477,7 +1477,7 @@ end;
 
 function DirectoryEdit_GetAlignment(AObj: TDirectoryEdit): TAlignment; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlignment(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -1516,7 +1516,7 @@ end;
 
 function DirectoryEdit_GetCharCase(AObj: TDirectoryEdit): TEditCharCase; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEditCharCase(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -1576,7 +1576,7 @@ end;
 
 function DirectoryEdit_GetPasswordChar(AObj: TDirectoryEdit): Char; extdecl;
 begin
-{$ifdef UsehandleException}Result := Char(nil);{$endif}
+{$ifdef UsehandleException}Result := #0;{$endif}
   handleExceptionBegin
   Result :=  AObj.PasswordChar;
   handleExceptionEnd
@@ -1782,7 +1782,7 @@ end;
 
 function DirectoryEdit_GetBiDiMode(AObj: TDirectoryEdit): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

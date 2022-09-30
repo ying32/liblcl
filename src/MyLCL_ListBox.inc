@@ -688,7 +688,7 @@ end;
 
 function ListBox_GetStyle(AObj: TListBox): TListBoxStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TListBoxStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TListBoxStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -703,7 +703,7 @@ end;
 
 function ListBox_GetAlign(AObj: TListBox): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -733,7 +733,7 @@ end;
 
 function ListBox_GetBiDiMode(AObj: TListBox): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -748,7 +748,7 @@ end;
 
 function ListBox_GetBorderStyle(AObj: TListBox): TBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -838,7 +838,7 @@ end;
 
 function ListBox_GetDragKind(AObj: TListBox): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -853,7 +853,7 @@ end;
 
 function ListBox_GetDragMode(AObj: TListBox): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

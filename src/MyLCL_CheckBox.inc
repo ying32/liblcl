@@ -607,7 +607,7 @@ end;
 
 function CheckBox_GetAlign(AObj: TCheckBox): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -622,7 +622,7 @@ end;
 
 function CheckBox_GetAlignment(AObj: TCheckBox): TLeftRight; extdecl;
 begin
-{$ifdef UsehandleException}Result := TLeftRight(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TLeftRight);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -667,7 +667,7 @@ end;
 
 function CheckBox_GetBiDiMode(AObj: TCheckBox): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -772,7 +772,7 @@ end;
 
 function CheckBox_GetDragKind(AObj: TCheckBox): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -787,7 +787,7 @@ end;
 
 function CheckBox_GetDragMode(AObj: TCheckBox): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -922,7 +922,7 @@ end;
 
 function CheckBox_GetState(AObj: TCheckBox): TCheckBoxState; extdecl;
 begin
-{$ifdef UsehandleException}Result := TCheckBoxState(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TCheckBoxState);{$endif}
   handleExceptionBegin
   Result :=  AObj.State;
   handleExceptionEnd

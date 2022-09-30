@@ -449,7 +449,7 @@ end;
 
 function Splitter_GetResizeAnchor(AObj: TSplitter): TAnchorKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAnchorKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAnchorKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.ResizeAnchor;
   handleExceptionEnd
@@ -472,7 +472,7 @@ end;
 
 function Splitter_GetAlign(AObj: TSplitter): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -645,7 +645,7 @@ end;
 
 function Splitter_GetBiDiMode(AObj: TSplitter): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

@@ -624,7 +624,7 @@ end;
 
 function ComboBoxEx_GetAlign(AObj: TComboBoxEx): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -669,7 +669,7 @@ end;
 
 function ComboBoxEx_GetStyle(AObj: TComboBoxEx): TComboBoxExStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TComboBoxExStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TComboBoxExStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -729,7 +729,7 @@ end;
 
 function ComboBoxEx_GetBiDiMode(AObj: TComboBoxEx): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -804,7 +804,7 @@ end;
 
 function ComboBoxEx_GetDragKind(AObj: TComboBoxEx): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -819,7 +819,7 @@ end;
 
 function ComboBoxEx_GetDragMode(AObj: TComboBoxEx): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd

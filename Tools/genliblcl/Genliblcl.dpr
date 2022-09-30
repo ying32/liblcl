@@ -520,7 +520,15 @@ begin
       LCode := LCode + 'nil'
     else if ARetType.Equals('LongBool') then
       LCode := LCode + 'False'
-    else if (ATypeKind = TTypeKind.tkEnumeration) or (ATypeKind = TTypeKind.tkInteger) or (ATypeKind = TTypeKind.tkInt64) then
+    else if ARetType.Equals('TUnixDateTime') then
+      LCode := LCode + '0'
+    else if ARetType.Equals('TScrollBarInc') then
+      LCode := LCode + '1'
+    else if ARetType.Equals('Char') then
+      LCode := LCode + '#0'
+    else if (ATypeKind = TTypeKind.tkEnumeration) then
+      LCode := LCode + 'Low(' + ARetType + ')'
+    else if (ATypeKind = TTypeKind.tkInteger) or (ATypeKind = TTypeKind.tkInt64) then
       LCode := LCode + ARetType +  '(0)'
     else if (ATypeKind = TTypeKind.tkClass) or (ATypeKind = TTypeKind.tkInterface) or (ATypeKind = TTypeKind.tkPointer) then
       LCode := LCode + 'nil'
@@ -3395,10 +3403,6 @@ var
     AddHeaderInfo(AList, True);
     AList.Add('');
     AList.Add('package dllimports');
-    AList.Add('');
-    AList.Add('import (');
-    AList.Add('	"github.com/ying32/dylib"');
-    AList.Add(')');
     AList.Add('');
     AList.Add('var ' + AVarName + ' = []importTable{');
   end;

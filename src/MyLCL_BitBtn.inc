@@ -607,7 +607,7 @@ end;
 
 function BitBtn_GetGlyphShowMode(AObj: TBitBtn): TGlyphShowMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TGlyphShowMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TGlyphShowMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.GlyphShowMode;
   handleExceptionEnd
@@ -682,7 +682,7 @@ end;
 
 function BitBtn_GetAlign(AObj: TBitBtn): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -712,7 +712,7 @@ end;
 
 function BitBtn_GetBiDiMode(AObj: TBitBtn): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -847,7 +847,7 @@ end;
 
 function BitBtn_GetKind(AObj: TBitBtn): TBitBtnKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBitBtnKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBitBtnKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -862,7 +862,7 @@ end;
 
 function BitBtn_GetLayout(AObj: TBitBtn): TButtonLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TButtonLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TButtonLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd

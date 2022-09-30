@@ -592,7 +592,7 @@ end;
 
 function ScrollBar_GetAlign(AObj: TScrollBar): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -622,7 +622,7 @@ end;
 
 function ScrollBar_GetBiDiMode(AObj: TScrollBar): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -682,7 +682,7 @@ end;
 
 function ScrollBar_GetDragKind(AObj: TScrollBar): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -697,7 +697,7 @@ end;
 
 function ScrollBar_GetDragMode(AObj: TScrollBar): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -727,7 +727,7 @@ end;
 
 function ScrollBar_GetKind(AObj: TScrollBar): TScrollBarKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollBarKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TScrollBarKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -742,7 +742,7 @@ end;
 
 function ScrollBar_GetLargeChange(AObj: TScrollBar): TScrollBarInc; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollBarInc(0);{$endif}
+{$ifdef UsehandleException}Result := 1;{$endif}
   handleExceptionBegin
   Result :=  AObj.LargeChange;
   handleExceptionEnd
@@ -877,7 +877,7 @@ end;
 
 function ScrollBar_GetSmallChange(AObj: TScrollBar): TScrollBarInc; extdecl;
 begin
-{$ifdef UsehandleException}Result := TScrollBarInc(0);{$endif}
+{$ifdef UsehandleException}Result := 1;{$endif}
   handleExceptionBegin
   Result :=  AObj.SmallChange;
   handleExceptionEnd

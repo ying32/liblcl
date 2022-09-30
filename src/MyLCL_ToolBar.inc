@@ -608,7 +608,7 @@ end;
 
 function ToolBar_GetAlign(AObj: TToolBar): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -788,7 +788,7 @@ end;
 
 function ToolBar_GetDragKind(AObj: TToolBar): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -803,7 +803,7 @@ end;
 
 function ToolBar_GetDragMode(AObj: TToolBar): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -833,7 +833,7 @@ end;
 
 function ToolBar_GetEdgeInner(AObj: TToolBar): TEdgeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEdgeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeInner;
   handleExceptionEnd
@@ -848,7 +848,7 @@ end;
 
 function ToolBar_GetEdgeOuter(AObj: TToolBar): TEdgeStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TEdgeStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TEdgeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EdgeOuter;
   handleExceptionEnd
@@ -1392,7 +1392,7 @@ end;
 
 function ToolBar_GetBiDiMode(AObj: TToolBar): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd

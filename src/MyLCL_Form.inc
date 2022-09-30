@@ -712,7 +712,7 @@ end;
 
 function Form_GetShowInTaskBar(AObj: TGoForm): TShowInTaskbar; extdecl;
 begin
-{$ifdef UsehandleException}Result := TShowInTaskbar(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TShowInTaskbar);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowInTaskBar;
   handleExceptionEnd
@@ -780,7 +780,7 @@ end;
 
 function Form_GetAlign(AObj: TGoForm): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -870,7 +870,7 @@ end;
 
 function Form_GetBiDiMode(AObj: TGoForm): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -900,7 +900,7 @@ end;
 
 function Form_GetBorderStyle(AObj: TGoForm): TFormBorderStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TFormBorderStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TFormBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -1020,7 +1020,7 @@ end;
 
 function Form_GetDefaultMonitor(AObj: TGoForm): TDefaultMonitor; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDefaultMonitor(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDefaultMonitor);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultMonitor;
   handleExceptionEnd
@@ -1065,7 +1065,7 @@ end;
 
 function Form_GetDragKind(AObj: TGoForm): TDragKind; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragKind(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1080,7 +1080,7 @@ end;
 
 function Form_GetDragMode(AObj: TGoForm): TDragMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TDragMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1140,7 +1140,7 @@ end;
 
 function Form_GetFormStyle(AObj: TGoForm): TFormStyle; extdecl;
 begin
-{$ifdef UsehandleException}Result := TFormStyle(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TFormStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.FormStyle;
   handleExceptionEnd
@@ -1260,7 +1260,7 @@ end;
 
 function Form_GetPosition(AObj: TGoForm): TPosition; extdecl;
 begin
-{$ifdef UsehandleException}Result := TPosition(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TPosition);{$endif}
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
@@ -1350,7 +1350,7 @@ end;
 
 function Form_GetWindowState(AObj: TGoForm): TWindowState; extdecl;
 begin
-{$ifdef UsehandleException}Result := TWindowState(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TWindowState);{$endif}
   handleExceptionBegin
   Result :=  AObj.WindowState;
   handleExceptionEnd

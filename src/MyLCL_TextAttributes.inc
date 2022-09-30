@@ -134,7 +134,7 @@ end;
 
 function TextAttributes_GetPitch(AObj: TTextAttributes): TFontPitch; extdecl;
 begin
-{$ifdef UsehandleException}Result := TFontPitch(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TFontPitch);{$endif}
   handleExceptionBegin
   Result :=  AObj.Pitch;
   handleExceptionEnd

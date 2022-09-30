@@ -532,7 +532,7 @@ end;
 
 function SpeedButton_GetAlign(AObj: TSpeedButton): TAlign; extdecl;
 begin
-{$ifdef UsehandleException}Result := TAlign(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -577,7 +577,7 @@ end;
 
 function SpeedButton_GetBiDiMode(AObj: TSpeedButton): TBiDiMode; extdecl;
 begin
-{$ifdef UsehandleException}Result := TBiDiMode(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -712,7 +712,7 @@ end;
 
 function SpeedButton_GetLayout(AObj: TSpeedButton): TButtonLayout; extdecl;
 begin
-{$ifdef UsehandleException}Result := TButtonLayout(0);{$endif}
+{$ifdef UsehandleException}Result := Low(TButtonLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
