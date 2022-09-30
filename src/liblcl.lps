@@ -936,8 +936,8 @@
         <Filename Value="LazarusDef.inc"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="80"/>
-        <CursorPos X="49" Y="94"/>
+        <TopLine Value="1356"/>
+        <CursorPos X="16" Y="1374"/>
         <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit103>
@@ -3495,7 +3495,7 @@
     <OtherDefines Count="1">
       <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
     </OtherDefines>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="17" HistoryIndex="16">
       <Position1>
         <Filename Value="MyLCL_Registry.inc"/>
         <Caret Line="92" Column="26" TopLine="72"/>
@@ -3552,6 +3552,18 @@
         <Filename Value="LazarusDef.inc"/>
         <Caret Line="735" Column="24" TopLine="716"/>
       </Position14>
+      <Position15>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="87" Column="47" TopLine="80"/>
+      </Position15>
+      <Position16>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="305" Column="16" TopLine="273"/>
+      </Position16>
+      <Position17>
+        <Filename Value="LazarusDef.inc"/>
+        <Caret Line="332" Column="23" TopLine="318"/>
+      </Position17>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

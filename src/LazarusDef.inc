@@ -337,14 +337,6 @@ begin
 end;
 
 //CLASSMETHOD:
-procedure Canvas_Draw2(AObj: TCanvas; X, Y: Integer; Graphic: TGraphic); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Draw(X, Y, Graphic);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
 //PARAMS:2=nonPtr
 procedure Canvas_DrawFocusRect(AObj: TCanvas; var ARect: TRect); extdecl;
 begin
@@ -1380,7 +1372,6 @@ exports
   Canvas_BrushCopy,
   Canvas_CopyRect,
   Canvas_Draw1,
-  Canvas_Draw2,
   Canvas_DrawFocusRect,
   Canvas_FillRect,
   Canvas_FrameRect,
