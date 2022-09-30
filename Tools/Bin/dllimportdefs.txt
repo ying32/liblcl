@@ -44,7 +44,6 @@ MemoryStream_Write
 Canvas_BrushCopy
 Canvas_CopyRect
 Canvas_Draw1
-Canvas_Draw2
 Canvas_DrawFocusRect
 Canvas_FillRect
 Canvas_FrameRect

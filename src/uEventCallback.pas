@@ -31,7 +31,7 @@ uses
   fgl;
 
 const
-  // call最长参数数，与导出的MySyscall一致，暂定为12个
+  // call最长参数数，暂定为12个
   CALL_MAX_PARAM = 12;
 
 type

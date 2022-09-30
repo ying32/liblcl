@@ -42,8 +42,7 @@ uses
 {$ENDIF}
   uExceptionHandle,
   uComponents,
-  uControlPatchs,
-  LResources;
+  uControlPatchs;
 
 {$IFDEF WINDOWS}
   {$R *.res}
@@ -52,6 +51,9 @@ uses
 {$I ExtDecl.inc}
 {$I LazarusDef.inc}
 
+{$ifndef UsehandleException}
+  {$ERROR 'UsehandleException is not enabled'}
+{$endif}
 
 {$I uExport1.pas}
 {$I uExport2.pas}

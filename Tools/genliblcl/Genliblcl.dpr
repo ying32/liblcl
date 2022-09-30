@@ -1614,7 +1614,7 @@ var
    begin
 //     Result := '"' + AName + '"';
      // 行不通啊，还是只能原来的方式
-     LIndex := GDllImportTable.Add(Format('    /*%d*/ {"%s", nil},', [GDllImportTable.Count, AName]));
+     LIndex := GDllImportTable.Add(Format('    /*%d*/ {"%s", 0},', [GDllImportTable.Count, AName]));
      Result := LIndex.ToString;// (GDllImportTable.Count - 1).ToString;
    end;
 
@@ -3766,7 +3766,7 @@ begin
         Continue;
       if LS.StartsWith('//') then
         Continue;
-      LDllImportDef.Add(Format('    /*%d*/ {"%s", nil},', [LCount, LS]));
+      LDllImportDef.Add(Format('    /*%d*/ {"%s", 0},', [LCount, LS]));
       Inc(LCount);
     end;
     LDllImportDef.Add('}');

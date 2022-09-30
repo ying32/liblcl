@@ -57,4 +57,5 @@
   xButton,
   uGoForm,
   uRichEdit,
-  uGauge
+  uGauge,
+  LResources

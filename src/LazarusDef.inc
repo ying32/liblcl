@@ -17,7 +17,7 @@ end;
 function DLibVersion: Cardinal; extdecl;
 begin
   // 共8位，2位2位的
-  Result := $02020200;
+  Result := $02020300;
 end;
 
 // 一些初始
@@ -1122,53 +1122,6 @@ end;
 //  Result := ToPChar(GetDefaultLang);
 //end;
 
-{$ifndef UsehandleException}
-// dylib
-type
-  TSyscall0  = function: UInt64; extdecl;
-  TSyscall1  = function(A1: Pointer): UInt64; extdecl;
-  TSyscall2  = function(A1, A2: Pointer): UInt64; extdecl;
-  TSyscall3  = function(A1, A2, A3: Pointer): UInt64; extdecl;
-  TSyscall4  = function(A1, A2, A3, A4: Pointer): UInt64; extdecl;
-  TSyscall5  = function(A1, A2, A3, A4, A5: Pointer): UInt64; extdecl;
-  TSyscall6  = function(A1, A2, A3, A4, A5, A6: Pointer): UInt64; extdecl;
-  TSyscall7  = function(A1, A2, A3, A4, A5, A6, A7: Pointer): UInt64; extdecl;
-  TSyscall8  = function(A1, A2, A3, A4, A5, A6, A7, A8: Pointer): UInt64; extdecl;
-  TSyscall9  = function(A1, A2, A3, A4, A5, A6, A7, A8, A9: Pointer): UInt64; extdecl;
-  TSyscall10 = function(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10: Pointer): UInt64; extdecl;
-  TSyscall11 = function(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11: Pointer): UInt64; extdecl;
-  TSyscall12 = function(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12: Pointer): UInt64; extdecl;
-
-function MySyscall(AProc:Pointer; ALen: NativeInt; A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12: Pointer): UInt64; extdecl;
-begin
-  Result := 0;
-  if AProc = nil then Exit;
-  try
-    case ALen of
-      0 : Result := TSyscall0(AProc)();
-      1 : Result := TSyscall1(AProc) (A1);
-      2 : Result := TSyscall2(AProc) (A1, A2);
-      3 : Result := TSyscall3(AProc) (A1, A2, A3);
-      4 : Result := TSyscall4(AProc) (A1, A2, A3, A4);
-      5 : Result := TSyscall5(AProc) (A1, A2, A3, A4, A5);
-      6 : Result := TSyscall6(AProc) (A1, A2, A3, A4, A5, A6);
-      7 : Result := TSyscall7(AProc) (A1, A2, A3, A4, A5, A6, A7);
-      8 : Result := TSyscall8(AProc) (A1, A2, A3, A4, A5, A6, A7, A8);
-      9 : Result := TSyscall9(AProc) (A1, A2, A3, A4, A5, A6, A7, A8, A9);
-      10: Result := TSyscall10(AProc)(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10);
-      11: Result := TSyscall11(AProc)(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11);
-      12: Result := TSyscall12(AProc)(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12);
-    else
-      Exit;
-    end;
-  except
-    on E: Exception do
-      CallException(E);
-  end;
-end;
-{$endif}
-
-
 // 用于go编译成dll时使用
 procedure DInitGoDll(AMainThreadId: TThreadID); extdecl;
 begin
@@ -1245,11 +1198,6 @@ end;
 
 
 exports
-  // 导出动态调用的
-{$ifndef UsehandleException}
-  MySyscall,
-{$endif}
-
   // SysLocaled
   DSysLocale,
 
