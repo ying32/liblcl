@@ -2,6 +2,7 @@ Application_Instance
 Application_CreateForm
 Application_Run
 Application_Initialize
+Application_SetRunLoopReceived
 
 Form_Create2
 Form_SetOnWndProc

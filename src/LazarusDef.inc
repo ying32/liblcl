@@ -126,14 +126,13 @@ end;
 procedure Application_Run(AObj: TApplication); extdecl;
 begin
   handleExceptionBegin
-  AObj.Run;
+  AObj.MyRun;
   // 在Run结束后手动释放Application中的Form，主要是考虑在非Lazarus运行环境中造成的一些资源清理问题
   RemoveAllForms;
   handleExceptionEnd
 end;
 
 // TForm
-
 
 //CLASSMETHOD:
 function Form_Create2(AOwner: TComponent): TGoForm; extdecl;
@@ -1213,6 +1212,7 @@ exports
   Application_CreateForm,
   Application_Run,
   Application_Initialize,
+  Application_SetRunLoopReceived,
 
   // TForm
   Form_Create2,
