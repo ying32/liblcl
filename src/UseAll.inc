@@ -58,4 +58,5 @@
   uGoForm,
   uRichEdit,
   uGauge,
-  LResources
+  LResources,
+  CustApp

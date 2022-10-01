@@ -294,6 +294,105 @@ begin
   handleExceptionEnd
 end;
 
+function Application_GetCaseSensitiveOptions(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.CaseSensitiveOptions;
+  handleExceptionEnd
+end;
+
+procedure Application_SetCaseSensitiveOptions(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CaseSensitiveOptions := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetCaptureExceptions(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.CaptureExceptions;
+  handleExceptionEnd
+end;
+
+procedure Application_SetCaptureExceptions(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CaptureExceptions := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetExtendedKeysSupport(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.ExtendedKeysSupport;
+  handleExceptionEnd
+end;
+
+procedure Application_SetExtendedKeysSupport(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ExtendedKeysSupport := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetActive(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Active;
+  handleExceptionEnd
+end;
+
+function Application_GetMainFormHandle(AObj: TApplication): HWND; extdecl;
+begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.MainFormHandle;
+  handleExceptionEnd
+end;
+
+function Application_GetMouseControl(AObj: TApplication): TControl; extdecl;
+begin
+{$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.MouseControl;
+  handleExceptionEnd
+end;
+
+function Application_GetHintHidePausePerChar(AObj: TApplication): Integer; extdecl;
+begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.HintHidePausePerChar;
+  handleExceptionEnd
+end;
+
+procedure Application_SetHintHidePausePerChar(AObj: TApplication; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.HintHidePausePerChar := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetFindGlobalComponentEnabled(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.FindGlobalComponentEnabled;
+  handleExceptionEnd
+end;
+
+procedure Application_SetFindGlobalComponentEnabled(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FindGlobalComponentEnabled := AValue;
+  handleExceptionEnd
+end;
+
 function Application_GetExeName(AObj: TApplication): PChar; extdecl;
 begin
 {$ifdef UsehandleException}Result := PChar(nil);{$endif}
@@ -415,14 +514,6 @@ begin
   handleExceptionEnd
 end;
 
-function Application_GetMainFormHandle(AObj: TApplication): HWND; extdecl;
-begin
-{$ifdef UsehandleException}Result := HWND(0);{$endif}
-  handleExceptionBegin
-  Result :=  AObj.MainFormHandle;
-  handleExceptionEnd
-end;
-
 function Application_GetMainFormOnTaskBar(AObj: TApplication): LongBool; extdecl;
 begin
 {$ifdef UsehandleException}Result := False;{$endif}
@@ -480,6 +571,14 @@ procedure Application_SetShowMainForm(AObj: TApplication; AValue: LongBool); ext
 begin
   handleExceptionBegin
   AObj.ShowMainForm := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetTerminated(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Terminated;
   handleExceptionEnd
 end;
 
@@ -687,6 +786,19 @@ exports
   Application_SetStopOnException,
   Application_GetExceptionExitCode,
   Application_SetExceptionExitCode,
+  Application_GetCaseSensitiveOptions,
+  Application_SetCaseSensitiveOptions,
+  Application_GetCaptureExceptions,
+  Application_SetCaptureExceptions,
+  Application_GetExtendedKeysSupport,
+  Application_SetExtendedKeysSupport,
+  Application_GetActive,
+  Application_GetMainFormHandle,
+  Application_GetMouseControl,
+  Application_GetHintHidePausePerChar,
+  Application_SetHintHidePausePerChar,
+  Application_GetFindGlobalComponentEnabled,
+  Application_SetFindGlobalComponentEnabled,
   Application_GetExeName,
   Application_GetHint,
   Application_SetHint,
@@ -703,7 +815,6 @@ exports
   Application_GetIcon,
   Application_SetIcon,
   Application_GetMainForm,
-  Application_GetMainFormHandle,
   Application_GetMainFormOnTaskBar,
   Application_SetMainFormOnTaskBar,
   Application_GetBiDiMode,
@@ -712,6 +823,7 @@ exports
   Application_SetShowHint,
   Application_GetShowMainForm,
   Application_SetShowMainForm,
+  Application_GetTerminated,
   Application_GetTitle,
   Application_SetTitle,
   Application_SetOnActivate,

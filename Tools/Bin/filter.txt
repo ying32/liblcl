@@ -1672,3 +1672,15 @@ IndexOfPageAt
 IndexOfTabAt
 AddTabSheet
 FindNextPage
+
+//2022/10/1
+Terminated
+CaseSensitiveOptions
+//EventLogFilter
+CaptureExceptions
+ExtendedKeysSupport
+Active
+MainFormHandle
+MouseControl
+HintHidePausePerChar
+FindGlobalComponentEnabled 

@@ -1635,6 +1635,14 @@ begin
   EventMethodCode
 end;
 
+function Form_GetActive(AObj: TGoForm): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Active;
+  handleExceptionEnd
+end;
+
 function Form_GetCanvas(AObj: TGoForm): TCanvas; extdecl;
 begin
 {$ifdef UsehandleException}Result := nil;{$endif}
@@ -2320,6 +2328,7 @@ exports
   Form_SetOnShow,
   Form_SetOnStartDock,
   Form_SetOnUnDock,
+  Form_GetActive,
   Form_GetCanvas,
   Form_GetModalResult,
   Form_SetModalResult,

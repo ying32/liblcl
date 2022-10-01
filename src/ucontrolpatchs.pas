@@ -253,15 +253,17 @@ procedure TApplicationHelper.MyRunLoop;
 type TRunLoopReceivedProc = function(data: Pointer): Pointer; extdecl; // 实际返回值未使用，主要是为了兼容些
 begin
   repeat
-    TRunLoopReceivedProc(FRunLoopReceivedPtr)(Self);
-    if CaptureExceptions then
-      try
+    if TRunLoopReceivedProc(FRunLoopReceivedPtr)(Self) = nil then
+    begin
+      if CaptureExceptions then
+        try
+          HandleMessage;
+        except
+          HandleException(Self);
+        end
+      else
         HandleMessage;
-      except
-        HandleException(Self);
-      end
-    else
-      HandleMessage;
+    end;
   until Terminated;
 end;
 
