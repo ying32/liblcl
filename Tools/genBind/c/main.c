@@ -83,7 +83,12 @@ void onFormKeyDown(TObject sender, Char* key, TShiftState shift) {
 void onListBoxDrawItem(TListBox control, int32_t index, TRect* aRect, TOwnerDrawState state) {
     TCanvas canvas = ListBox_GetCanvas(control);
     TStrings items = ListBox_GetItems(control);
+	Brush_SetStyle(Canvas_GetBrush(canvas), bsClear);
     char* s = Strings_GetStrings(items, index);
+	if(index % 2 == 0) 
+		Font_SetColor(Canvas_GetFont(canvas), clRed);
+	else
+		Font_SetColor(Canvas_GetFont(canvas), clGreen);
     Canvas_TextOut(canvas, aRect->left, aRect->top, s);
 }
 

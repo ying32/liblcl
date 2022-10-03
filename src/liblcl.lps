@@ -241,9 +241,10 @@
         <Filename Value="ucontrolpatchs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uControlPatchs"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="252"/>
-        <CursorPos X="23" Y="262"/>
+        <TopLine Value="247"/>
+        <CursorPos X="18" Y="258"/>
         <UsageCount Value="195"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -935,10 +936,9 @@
       </Unit102>
       <Unit103>
         <Filename Value="LazarusDef.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="107"/>
-        <CursorPos Y="125"/>
+        <CursorPos X="17" Y="114"/>
         <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit103>
