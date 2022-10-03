@@ -12,7 +12,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\liblcl"/>
+            <Filename Value="..\bin\$(TargetCPU)-$(TargetOS)\liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -45,7 +45,7 @@
               <Define0 Value="USED_BY_LAZLOGGER_DUMMY"/>
             </OtherDefines>
             <ExecuteAfter>
-              <Command Value="cmd /c move /Y &quot;..\liblcl.dll&quot; &quot;F:\Golang\bin\liblcl.dll&quot;"/>
+              <Command Value="cmd /c copy /Y &quot;..\bin\$(TargetCPU)-$(TargetOS)\liblcl.dll&quot; &quot;F:\Golang\bin\liblcl.dll&quot;"/>
             </ExecuteAfter>
           </Other>
         </CompilerOptions>
@@ -58,7 +58,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="../liblcl"/>
+            <Filename Value="../bin/$(TargetCPU)-$(TargetOS)/liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -100,7 +100,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="$(HOME)liblcl"/>
+            <Filename Value="../bin/$(TargetCPU)-$(TargetOS)/liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -128,7 +128,7 @@
           </Linking>
           <Other>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@executable_path/liblcl.dylib&quot; &quot;$(HOME)liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@executable_path/liblcl.dylib&quot; &quot;../bin/$(TargetCPU)-$(TargetOS)/liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
@@ -139,7 +139,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="$(HOME)liblcl"/>
+            <Filename Value="../bin/$(TargetCPU)-$(TargetOS)/liblcl"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -167,7 +167,7 @@
           </Linking>
           <Other>
             <ExecuteAfter>
-              <Command Value="install_name_tool -id &quot;@executable_path/liblcl.dylib&quot; &quot;$(HOME)liblcl.dylib&quot;"/>
+              <Command Value="install_name_tool -id &quot;@executable_path/liblcl.dylib&quot; &quot;../bin/$(TargetCPU)-$(TargetOS)/liblcl.dylib&quot;"/>
               <CompileReasons Compile="False" Run="False"/>
             </ExecuteAfter>
           </Other>
