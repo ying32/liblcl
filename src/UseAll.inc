@@ -1,4 +1,5 @@
   Interfaces, // this includes the LCL widgetset,
+  InterfaceBase,
 {$IFDEF WINDOWS}
   Windows,
   MultiMon,
@@ -10,7 +11,6 @@
   win32proc,
   CommCtrl,
   LazUTF8,
-  InterfaceBase,
 {$ELSE}
   Types,
 {$ENDIF}
