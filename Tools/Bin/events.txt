@@ -192,3 +192,6 @@ OnItemChange
 OnUTF8KeyPress
 
 OnCloseTabClicked
+
+// 2022/11/30
+OnPaintBackground

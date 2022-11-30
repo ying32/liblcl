@@ -187,6 +187,8 @@ type
     procedure OnTOnPrepareCanvasEvent(sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
     //--------------------------------------------------------------------------
 
+    procedure OnTImagePaintBackgroundEvent(ASender: TObject; ACanvas: TCanvas; ARect: TRect);
+
     procedure OnTAcceptFileNameEvent(Sender: TObject; var Value: String);
     procedure OnTCheckItemChange(Sender: TObject; AIndex: Integer);
 
@@ -818,6 +820,12 @@ procedure TLCLEvent.OnTOnPrepareCanvasEvent(
   sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
 begin
   SendEvent([Sender, aCol, aRow, PWord(@aState)^]);
+end;
+
+procedure TLCLEvent.OnTImagePaintBackgroundEvent(ASender: TObject;
+  ACanvas: TCanvas; ARect: TRect);
+begin
+  SendEvent([ASender, ACanvas, @ARect]);
 end;
 
 procedure TLCLEvent.OnTAcceptFileNameEvent(Sender: TObject;

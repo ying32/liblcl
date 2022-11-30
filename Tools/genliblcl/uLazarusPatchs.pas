@@ -1095,6 +1095,8 @@ type
     amOff       // disabled
   );
 
+  TImagePaintBackgroundEvent = procedure (ASender: TObject; ACanvas: TCanvas; ARect: TRect) of object;
+
   TImage = class(Vcl.ExtCtrls.TImage)
   private
     FAntialiasingMode: TAntialiasingMode;
@@ -1102,6 +1104,7 @@ type
     FKeepOriginYWhenClipped: Boolean;
     FStretchInEnabled: Boolean;
     FStretchOutEnabled: Boolean;
+    FOnPaintBackground: TImagePaintBackgroundEvent;
 
   published
     property AntialiasingMode: TAntialiasingMode read FAntialiasingMode write FAntialiasingMode default amDontCare;
@@ -1109,6 +1112,8 @@ type
     property KeepOriginYWhenClipped: Boolean read FKeepOriginYWhenClipped write FKeepOriginYWhenClipped;
     property StretchInEnabled: Boolean read FStretchInEnabled write FStretchInEnabled;
     property StretchOutEnabled: Boolean read FStretchOutEnabled write FStretchOutEnabled;
+
+    property OnPaintBackground: TImagePaintBackgroundEvent read FOnPaintBackground write FOnPaintBackground;
   end;
 
   TSpeedButton = class(Vcl.Buttons.TSpeedButton)

@@ -522,6 +522,14 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TImagePaintBackgroundEvent
+procedure Image_SetOnPaintBackground(AObj: TImage; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTImagePaintBackgroundEvent}
+  {$DEFINE EventName := OnPaintBackground}
+  EventMethodCode
+end;
+
 function Image_GetCanvas(AObj: TImage): TCanvas; extdecl;
 begin
 {$ifdef UsehandleException}Result := nil;{$endif}
@@ -1304,6 +1312,7 @@ exports
   Image_SetStretchInEnabled,
   Image_GetStretchOutEnabled,
   Image_SetStretchOutEnabled,
+  Image_SetOnPaintBackground,
   Image_GetCanvas,
   Image_GetAlign,
   Image_SetAlign,
