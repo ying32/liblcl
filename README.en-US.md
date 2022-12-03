@@ -3,9 +3,12 @@
 * English   
 
 ----
+**Check out the [dev](dev) branch for new features.**
+----
+
 # liblcl
 
-A common cross-platform GUI library, the core uses Lazarus LCL, [Genliblcl tool source code](Tools/genliblcl).
+A common cross-platform GUI library, the core uses Lazarus LCL.
 
 ----
 

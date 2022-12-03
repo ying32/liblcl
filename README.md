@@ -3,8 +3,11 @@
 * [English](README.en-US.md)   
 
 ----
+**新功能请查看[dev](dev)分支。**
+----
+
 # liblcl
-一个通用的跨平台GUI库，核心使用Lazarus LCL，[Genliblcl工具源码](Tools/genliblcl)。
+一个通用的跨平台GUI库，核心使用Lazarus LCL。
 
 ----
 
