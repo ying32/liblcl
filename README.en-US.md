@@ -3,7 +3,7 @@
 * English   
 
 ----
-**Check out the [dev](dev) branch for new features.**
+**Check out the [dev](https://github.com/ying32/liblcl/tree/dev) branch for new features.**
 ----
 
 # liblcl

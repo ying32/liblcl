@@ -3,7 +3,7 @@
 * [English](README.en-US.md)   
 
 ----
-**新功能请查看[dev](dev)分支。**
+**新功能请查看[dev](https://github.com/ying32/liblcl/tree/dev)分支。**
 ----
 
 # liblcl
