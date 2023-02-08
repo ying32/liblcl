@@ -191,7 +191,6 @@
       <Unit1>
         <Filename Value="uEventCallback.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="823"/>
         <CursorPos X="79" Y="829"/>
@@ -244,7 +243,7 @@
         <Filename Value="ucontrolpatchs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uControlPatchs"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <UsageCount Value="195"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -286,10 +285,12 @@
       <Unit12>
         <Filename Value="uFormDesignerFile.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="307"/>
-        <CursorPos X="55" Y="325"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="43"/>
+        <CursorPos X="17" Y="67"/>
         <UsageCount Value="168"/>
+        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="uexport1.pas"/>
@@ -310,7 +311,7 @@
       <Unit15>
         <Filename Value="UseAll.inc"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <CursorPos Y="2"/>
         <UsageCount Value="160"/>
         <Loaded Value="True"/>
@@ -319,7 +320,7 @@
         <Filename Value="uexceptionhandle.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uExceptionHandle"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
       </Unit16>
@@ -462,7 +463,7 @@
       <Unit35>
         <Filename Value="F:\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="1332"/>
         <CursorPos X="3" Y="1352"/>
         <UsageCount Value="28"/>
@@ -935,7 +936,7 @@
       </Unit102>
       <Unit103>
         <Filename Value="LazarusDef.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="130"/>
         <CursorPos X="29" Y="149"/>
         <UsageCount Value="101"/>
@@ -1279,7 +1280,7 @@
       <Unit152>
         <Filename Value="F:\lazarus\lcl\interfacebase.pp"/>
         <UnitName Value="InterfaceBase"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="194"/>
         <CursorPos X="3" Y="213"/>
         <UsageCount Value="10"/>
@@ -2258,7 +2259,7 @@
       </Unit295>
       <Unit296>
         <Filename Value="F:\lazarus\lcl\include\application.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="2015"/>
         <CursorPos X="68" Y="2019"/>
         <UsageCount Value="14"/>
@@ -3428,7 +3429,7 @@
       <Unit458>
         <Filename Value="F:\lazarus\fpc\3.2.2\source\packages\fcl-base\src\custapp.pp"/>
         <UnitName Value="CustApp"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="63"/>
         <CursorPos X="24" Y="67"/>
         <UsageCount Value="10"/>
@@ -3493,7 +3494,7 @@
       </Unit466>
       <Unit467>
         <Filename Value="F:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\osutilsh.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="33"/>
         <CursorPos X="25" Y="64"/>
         <UsageCount Value="10"/>
@@ -3610,19 +3611,19 @@
       </Position26>
       <Position27>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="17" Column="81" TopLine="158"/>
+        <Caret Line="190" Column="33" TopLine="180"/>
       </Position27>
       <Position28>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="190" Column="33" TopLine="180"/>
+        <Caret Line="836" Column="56" TopLine="823"/>
       </Position28>
       <Position29>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="836" Column="56" TopLine="823"/>
+        <Caret Line="190" Column="34" TopLine="173"/>
       </Position29>
       <Position30>
         <Filename Value="uEventCallback.pas"/>
-        <Caret Line="190" Column="34" TopLine="173"/>
+        <Caret Line="829" Column="79" TopLine="823"/>
       </Position30>
     </JumpHistory>
     <RunParams>

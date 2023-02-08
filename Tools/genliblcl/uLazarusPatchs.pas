@@ -1105,6 +1105,8 @@ type
     FStretchInEnabled: Boolean;
     FStretchOutEnabled: Boolean;
     FOnPaintBackground: TImagePaintBackgroundEvent;
+    FOnPictureChanged: TNotifyEvent;
+    FOnPaint: TNotifyEvent;
 
   published
     property AntialiasingMode: TAntialiasingMode read FAntialiasingMode write FAntialiasingMode default amDontCare;
@@ -1113,7 +1115,10 @@ type
     property StretchInEnabled: Boolean read FStretchInEnabled write FStretchInEnabled;
     property StretchOutEnabled: Boolean read FStretchOutEnabled write FStretchOutEnabled;
 
+    property OnPaint: TNotifyEvent read FOnPaint write FOnPaint;
     property OnPaintBackground: TImagePaintBackgroundEvent read FOnPaintBackground write FOnPaintBackground;
+    property OnPictureChanged: TNotifyEvent read FOnPictureChanged write FOnPictureChanged;
+
   end;
 
   TSpeedButton = class(Vcl.Buttons.TSpeedButton)

@@ -522,11 +522,27 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TNotifyEvent
+procedure Image_SetOnPaint(AObj: TImage; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent}
+  {$DEFINE EventName := OnPaint}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TImagePaintBackgroundEvent
 procedure Image_SetOnPaintBackground(AObj: TImage; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := OnTImagePaintBackgroundEvent}
   {$DEFINE EventName := OnPaintBackground}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure Image_SetOnPictureChanged(AObj: TImage; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent}
+  {$DEFINE EventName := OnPictureChanged}
   EventMethodCode
 end;
 
@@ -1312,7 +1328,9 @@ exports
   Image_SetStretchInEnabled,
   Image_GetStretchOutEnabled,
   Image_SetStretchOutEnabled,
+  Image_SetOnPaint,
   Image_SetOnPaintBackground,
+  Image_SetOnPictureChanged,
   Image_GetCanvas,
   Image_GetAlign,
   Image_SetAlign,
