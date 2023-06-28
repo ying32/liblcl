@@ -1737,6 +1737,12 @@ type
     procedure SetAsHtml(Html: String; const PlainText: String);
     function GetFormat(FormatID: TClipboardFormat; Stream: TStream): Boolean;
 
+    function AddFormat(FormatID: TClipboardFormat; Stream: TStream): Boolean;
+    function SetFormat(FormatID: TClipboardFormat; Stream: TStream): Boolean;
+    function GetComponent(Owner, Parent: TComponent): TComponent;
+    function SetComponent(Component: TComponent): Boolean;
+    function SetComponentAsText(Component: TComponent): Boolean;
+
     property Formats[Index: Integer]: TClipboardFormat read GetFormats;// write SetFormats;
   end;
 
@@ -3834,6 +3840,12 @@ end;
 
 { TClipboard }
 
+function TClipboard.AddFormat(FormatID: TClipboardFormat;
+  Stream: TStream): Boolean;
+begin
+
+end;
+
 function TClipboard.FindFormatID(const FormatName: string): TClipboardFormat;
 begin
 
@@ -3847,6 +3859,11 @@ end;
 function TClipboard.GetAsHtml(ExtractFragmentOnly: Boolean): string;
 begin
    Result := '';
+end;
+
+function TClipboard.GetComponent(Owner, Parent: TComponent): TComponent;
+begin
+
 end;
 
 function TClipboard.GetFormat(FormatID: TClipboardFormat;
@@ -3876,6 +3893,22 @@ begin
 end;
 
 procedure TClipboard.SetAsHtml(Html: String; const PlainText: String);
+begin
+
+end;
+
+function TClipboard.SetComponent(Component: TComponent): Boolean;
+begin
+
+end;
+
+function TClipboard.SetComponentAsText(Component: TComponent): Boolean;
+begin
+
+end;
+
+function TClipboard.SetFormat(FormatID: TClipboardFormat;
+  Stream: TStream): Boolean;
 begin
 
 end;

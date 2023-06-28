@@ -636,6 +636,8 @@ TextOut
 
 Lock
 UnLock
+Unlock
+TryLock
 AddIcon
 //AddImage
 AddImages
@@ -1683,4 +1685,11 @@ Active
 MainFormHandle
 MouseControl
 HintHidePausePerChar
-FindGlobalComponentEnabled 
+FindGlobalComponentEnabled
+
+//2023/6/27
+AddFormat
+SetFormat
+GetComponent
+SetComponent
+SetComponentAsText

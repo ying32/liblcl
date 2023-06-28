@@ -84,6 +84,51 @@ begin
 end;
 
 //CLASSMETHOD:
+function Clipboard_AddFormat(AObj: TClipboard; FormatID: TClipboardFormat; Stream: TStream): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.AddFormat(FormatID, Stream);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_SetFormat(AObj: TClipboard; FormatID: TClipboardFormat; Stream: TStream): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.SetFormat(FormatID, Stream);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_GetComponent(AObj: TClipboard; Owner: TComponent; Parent: TComponent): TComponent; extdecl;
+begin
+{$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.GetComponent(Owner, Parent);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_SetComponent(AObj: TClipboard; Component: TComponent): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.SetComponent(Component);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_SetComponentAsText(AObj: TClipboard; Component: TComponent): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.SetComponentAsText(Component);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Clipboard_Assign(AObj: TClipboard; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -226,6 +271,11 @@ exports
   Clipboard_HasPictureFormat,
   Clipboard_SetAsHtml,
   Clipboard_GetFormat,
+  Clipboard_AddFormat,
+  Clipboard_SetFormat,
+  Clipboard_GetComponent,
+  Clipboard_SetComponent,
+  Clipboard_SetComponentAsText,
   Clipboard_Assign,
   Clipboard_Clear,
   Clipboard_Close,

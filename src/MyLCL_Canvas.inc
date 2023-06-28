@@ -181,6 +181,23 @@ begin
 end;
 
 //CLASSMETHOD:
+function Canvas_TryLock(AObj: TCanvas): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.TryLock;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Canvas_Unlock(AObj: TCanvas); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Unlock;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Canvas_Assign(AObj: TCanvas; Source: TPersistent); extdecl;
 begin
   handleExceptionBegin
@@ -393,6 +410,8 @@ exports
   Canvas_Lock,
   Canvas_TextHeight,
   Canvas_TextWidth,
+  Canvas_TryLock,
+  Canvas_Unlock,
   Canvas_Assign,
   Canvas_GetNamePath,
   Canvas_ClassType,
