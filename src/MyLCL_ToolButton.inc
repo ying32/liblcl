@@ -9,6 +9,7 @@
 
 function ToolButton_Create(AOwner: TComponent): TToolButton; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TToolButton.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_CheckMenuDropdown(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CheckMenuDropdown;
   handleExceptionEnd
@@ -76,6 +78,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_Dragging(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -84,6 +87,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_HasParent(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -108,6 +112,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_Perform(AObj: TToolButton; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -176,6 +181,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_GetTextBuf(AObj: TToolButton; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -184,6 +190,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_GetTextLen(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -200,6 +207,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_FindComponent(AObj: TToolButton; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -208,6 +216,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_GetNamePath(AObj: TToolButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -224,6 +233,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ClassType(AObj: TToolButton): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -232,6 +242,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ClassName(AObj: TToolButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -240,6 +251,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_InstanceSize(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -248,6 +260,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_InheritsFrom(AObj: TToolButton; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -256,6 +269,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_Equals(AObj: TToolButton; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -264,6 +278,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_GetHashCode(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -272,6 +287,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ToString(AObj: TToolButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -336,6 +352,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleDesignToForm(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -344,6 +361,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleFormToDesign(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -352,6 +370,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_Scale96ToForm(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -360,6 +379,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleFormTo96(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -368,6 +388,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_Scale96ToFont(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -376,6 +397,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleFontTo96(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -384,6 +406,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleScreenToFont(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -392,6 +415,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleFontToScreen(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -400,6 +424,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_Scale96ToScreen(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -408,6 +433,7 @@ end;
 //CLASSMETHOD:
 function ToolButton_ScaleScreenTo96(AObj: TToolButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -440,6 +466,7 @@ end;
 
 function ToolButton_GetIndex(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -447,6 +474,7 @@ end;
 
 function ToolButton_GetAction(AObj: TToolButton): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -461,6 +489,7 @@ end;
 
 function ToolButton_GetAllowAllUp(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowAllUp;
   handleExceptionEnd
@@ -475,6 +504,7 @@ end;
 
 function ToolButton_GetAutoSize(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -489,6 +519,7 @@ end;
 
 function ToolButton_GetCaption(AObj: TToolButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -503,6 +534,7 @@ end;
 
 function ToolButton_GetDown(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Down;
   handleExceptionEnd
@@ -517,6 +549,7 @@ end;
 
 function ToolButton_GetDragCursor(AObj: TToolButton): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -531,6 +564,7 @@ end;
 
 function ToolButton_GetDragKind(AObj: TToolButton): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -545,6 +579,7 @@ end;
 
 function ToolButton_GetDragMode(AObj: TToolButton): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -559,6 +594,7 @@ end;
 
 function ToolButton_GetDropdownMenu(AObj: TToolButton): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DropdownMenu;
   handleExceptionEnd
@@ -573,6 +609,7 @@ end;
 
 function ToolButton_GetEnabled(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -587,6 +624,7 @@ end;
 
 function ToolButton_GetGrouped(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Grouped;
   handleExceptionEnd
@@ -601,6 +639,7 @@ end;
 
 function ToolButton_GetHeight(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -615,6 +654,7 @@ end;
 
 function ToolButton_GetImageIndex(AObj: TToolButton): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -629,6 +669,7 @@ end;
 
 function ToolButton_GetIndeterminate(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Indeterminate;
   handleExceptionEnd
@@ -643,6 +684,7 @@ end;
 
 function ToolButton_GetMarked(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Marked;
   handleExceptionEnd
@@ -657,6 +699,7 @@ end;
 
 function ToolButton_GetParentShowHint(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -671,6 +714,7 @@ end;
 
 function ToolButton_GetPopupMenu(AObj: TToolButton): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -685,6 +729,7 @@ end;
 
 function ToolButton_GetWrap(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Wrap;
   handleExceptionEnd
@@ -699,6 +744,7 @@ end;
 
 function ToolButton_GetShowHint(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -713,6 +759,7 @@ end;
 
 function ToolButton_GetStyle(AObj: TToolButton): TToolButtonStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TToolButtonStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -727,6 +774,7 @@ end;
 
 function ToolButton_GetVisible(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -741,6 +789,7 @@ end;
 
 function ToolButton_GetWidth(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -851,6 +900,7 @@ end;
 
 function ToolButton_GetAlign(AObj: TToolButton): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -865,6 +915,7 @@ end;
 
 function ToolButton_GetAnchors(AObj: TToolButton): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -879,6 +930,7 @@ end;
 
 function ToolButton_GetBiDiMode(AObj: TToolButton): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -909,6 +961,7 @@ end;
 
 function ToolButton_GetClientHeight(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -939,6 +992,7 @@ end;
 
 function ToolButton_GetClientWidth(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -953,6 +1007,7 @@ end;
 
 function ToolButton_GetConstraints(AObj: TToolButton): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -967,6 +1022,7 @@ end;
 
 function ToolButton_GetControlState(AObj: TToolButton): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -981,6 +1037,7 @@ end;
 
 function ToolButton_GetControlStyle(AObj: TToolButton): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -995,6 +1052,7 @@ end;
 
 function ToolButton_GetFloating(AObj: TToolButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1002,6 +1060,7 @@ end;
 
 function ToolButton_GetParent(AObj: TToolButton): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1016,6 +1075,7 @@ end;
 
 function ToolButton_GetLeft(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1030,6 +1090,7 @@ end;
 
 function ToolButton_GetTop(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1044,6 +1105,7 @@ end;
 
 function ToolButton_GetCursor(AObj: TToolButton): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1058,6 +1120,7 @@ end;
 
 function ToolButton_GetHint(AObj: TToolButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1072,6 +1135,7 @@ end;
 
 function ToolButton_GetComponentCount(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1079,6 +1143,7 @@ end;
 
 function ToolButton_GetComponentIndex(AObj: TToolButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1093,6 +1158,7 @@ end;
 
 function ToolButton_GetOwner(AObj: TToolButton): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1100,6 +1166,7 @@ end;
 
 function ToolButton_GetName(AObj: TToolButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1114,6 +1181,7 @@ end;
 
 function ToolButton_GetTag(AObj: TToolButton): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1128,6 +1196,7 @@ end;
 
 function ToolButton_GetAnchorSideLeft(AObj: TToolButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1142,6 +1211,7 @@ end;
 
 function ToolButton_GetAnchorSideTop(AObj: TToolButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1156,6 +1226,7 @@ end;
 
 function ToolButton_GetAnchorSideRight(AObj: TToolButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1170,6 +1241,7 @@ end;
 
 function ToolButton_GetAnchorSideBottom(AObj: TToolButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1184,6 +1256,7 @@ end;
 
 function ToolButton_GetBorderSpacing(AObj: TToolButton): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1198,6 +1271,7 @@ end;
 
 function ToolButton_GetComponents(AObj: TToolButton; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1205,6 +1279,7 @@ end;
 
 function ToolButton_GetAnchorSide(AObj: TToolButton; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

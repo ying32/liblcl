@@ -106,7 +106,7 @@ func GenAst() {
 	parseBaseType(govclPath+"/vcl/types/types.go", "")
 	parseBaseType(govclPath+"/vcl/types/pascal.go", "")
 	parseBaseType(govclPath+"/vcl/types/types_386arm.go", "i386")
-	parseBaseType(govclPath+"/vcl/types/types_amd64.go", "amd64")
+	parseBaseType(govclPath+"/vcl/types/types_amd64arm.go", "amd64")
 	parseBaseType(govclPath+"/vcl/types/message.go", "i386")
 	parseBaseType(govclPath+"/vcl/types/message_posix.go", "amd64")
 
@@ -539,7 +539,13 @@ func parseFunc(s string, isClass bool, eventType, className, baseClassName strin
 
 		if item.IsMethod && item.RealName != "" {
 			nIdx := item.RealName[len(item.RealName)-1]
-			item.IsOverload = nIdx >= '0' && nIdx <= '9'
+			isNumber := false
+			if len(item.RealName) >= 2 {
+			   nIdx2 := item.RealName[len(item.RealName)-2]
+               isNumber = nIdx2 >= '0' && nIdx2 <= '9'
+			}
+			
+			item.IsOverload = (nIdx >= '0' && nIdx <= '9') && !isNumber
 			if item.IsOverload {
 				item.OverloadName = strings.Trim(item.RealName, string(nIdx))
 			}
@@ -602,7 +608,7 @@ func parseParams(s string, eventType string) []TFuncParam {
 			} else {
 				var item TFuncParam
 				item.Name = name
-				if eventType != "" && name == "AEventId" {
+				if eventType != "" && strings.EqualFold(name, "AEventData") {
 					item.Type = eventType
 					item.IsEvent = true
 				} else {

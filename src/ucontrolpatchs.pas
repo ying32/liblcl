@@ -8,6 +8,7 @@
 
 unit uControlPatchs;
 
+{$I ExtDecl.inc}
 {$mode objfpc}{$H+}
 
 
@@ -153,14 +154,15 @@ type
   { TApplicationHelper }
 
   TApplicationHelper = class helper for TApplication
+  public class var
+    // 定义运行过程指针
+    FRunLoopReceivedPtr: Pointer;
+  private
+    procedure MyRunLoop;
   public
     procedure RestoreTopMosts;
-  //{$IFDEF WINDOWS}
-  //  // 重写这个方法，因为要拦截一些东西
-  //  procedure MyRunLoop;
-  //  procedure MyHandleMessage;
-  //  function IsKeyMsg(var Msg: TMsg): Boolean;
-  //{$ENDIF}
+    procedure MyRun;
+    procedure SetRunLoopReceived(AProc: Pointer);
   end;
 
 
@@ -181,6 +183,8 @@ type
   function ToUnixTime(ADateTime: TDateTime): TUnixDateTime; inline;
   function UnixToTime(ADateTime: TUnixDateTime): TDateTime; inline;
   function ToPChar(AStr: string): PChar; inline;
+
+  procedure Application_SetRunLoopReceived(AObj: TApplication; AProc: Pointer); extdecl;
 
 implementation
 
@@ -234,9 +238,49 @@ end;
 
 { TApplicationHelper }
 
+//CLASSMETHOD:
+procedure Application_SetRunLoopReceived(AObj: TApplication; AProc: Pointer); extdecl;
+begin
+  AObj.SetRunLoopReceived(AProc);
+end;
+
 procedure TApplicationHelper.RestoreTopMosts;
 begin
   Self.RestoreStayOnTop(False);
+end;
+
+procedure TApplicationHelper.MyRunLoop;
+type TRunLoopReceivedProc = function(data: Pointer): Pointer; extdecl; // 实际返回值未使用，主要是为了兼容些
+begin
+  repeat
+    if TRunLoopReceivedProc(FRunLoopReceivedPtr)(Self) = nil then
+    begin
+      if CaptureExceptions then
+        try
+          HandleMessage;
+        except
+          HandleException(Self);
+        end
+      else
+        HandleMessage;
+    end;
+  until Terminated;
+end;
+
+procedure TApplicationHelper.MyRun;
+begin
+  if Assigned(FRunLoopReceivedPtr) then
+  begin
+    if (MainForm <> nil) and ShowMainForm then
+      MainForm.Show;
+    WidgetSet.AppRun(@MyRunLoop);
+  end else
+    Run();
+end;
+
+procedure TApplicationHelper.SetRunLoopReceived(AProc: Pointer);
+begin
+  FRunLoopReceivedPtr := AProc;
 end;
 
 { TStatusPanelsHelper }

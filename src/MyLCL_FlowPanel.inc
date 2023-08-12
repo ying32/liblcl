@@ -9,6 +9,7 @@
 
 function FlowPanel_Create(AOwner: TComponent): TFlowPanel; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TFlowPanel.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_GetControlIndex(AObj: TFlowPanel; AControl: TControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetControlIndex(AControl);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_CanFocus(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ContainsControl(AObj: TFlowPanel; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -57,6 +61,7 @@ end;
 //PARAMS:2=nonPtr
 function FlowPanel_ControlAtPos(AObj: TFlowPanel; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_FindChildControl(AObj: TFlowPanel; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Focused(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -105,6 +112,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_HandleAllocated(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -229,6 +237,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Dragging(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -237,6 +246,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_HasParent(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -253,6 +263,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Perform(AObj: TFlowPanel; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -305,6 +316,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_GetTextBuf(AObj: TFlowPanel; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -313,6 +325,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_GetTextLen(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -329,6 +342,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_FindComponent(AObj: TFlowPanel; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -337,6 +351,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_GetNamePath(AObj: TFlowPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -353,6 +368,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ClassType(AObj: TFlowPanel): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -361,6 +377,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ClassName(AObj: TFlowPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -369,6 +386,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_InstanceSize(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -377,6 +395,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_InheritsFrom(AObj: TFlowPanel; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -385,6 +404,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Equals(AObj: TFlowPanel; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -393,6 +413,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_GetHashCode(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -401,6 +422,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ToString(AObj: TFlowPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -465,6 +487,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleDesignToForm(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -473,6 +496,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleFormToDesign(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -481,6 +505,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Scale96ToForm(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -489,6 +514,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleFormTo96(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -497,6 +523,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Scale96ToFont(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -505,6 +532,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleFontTo96(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -513,6 +541,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleScreenToFont(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -521,6 +550,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleFontToScreen(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +559,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_Scale96ToScreen(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -537,6 +568,7 @@ end;
 //CLASSMETHOD:
 function FlowPanel_ScaleScreenTo96(AObj: TFlowPanel; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -569,6 +601,7 @@ end;
 
 function FlowPanel_GetControlList(AObj: TFlowPanel): TFlowPanelControlList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlList;
   handleExceptionEnd
@@ -583,6 +616,7 @@ end;
 
 function FlowPanel_GetAlign(AObj: TFlowPanel): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -597,6 +631,7 @@ end;
 
 function FlowPanel_GetAlignment(AObj: TFlowPanel): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -611,6 +646,7 @@ end;
 
 function FlowPanel_GetAnchors(AObj: TFlowPanel): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -625,6 +661,7 @@ end;
 
 function FlowPanel_GetAutoSize(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -639,6 +676,7 @@ end;
 
 function FlowPanel_GetAutoWrap(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoWrap;
   handleExceptionEnd
@@ -653,6 +691,7 @@ end;
 
 function FlowPanel_GetBiDiMode(AObj: TFlowPanel): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -667,6 +706,7 @@ end;
 
 function FlowPanel_GetBorderWidth(AObj: TFlowPanel): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -681,6 +721,7 @@ end;
 
 function FlowPanel_GetBorderStyle(AObj: TFlowPanel): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -695,6 +736,7 @@ end;
 
 function FlowPanel_GetCaption(AObj: TFlowPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -709,6 +751,7 @@ end;
 
 function FlowPanel_GetColor(AObj: TFlowPanel): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -723,6 +766,7 @@ end;
 
 function FlowPanel_GetConstraints(AObj: TFlowPanel): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -737,6 +781,7 @@ end;
 
 function FlowPanel_GetUseDockManager(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -751,6 +796,7 @@ end;
 
 function FlowPanel_GetDockSite(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -765,6 +811,7 @@ end;
 
 function FlowPanel_GetDoubleBuffered(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -779,6 +826,7 @@ end;
 
 function FlowPanel_GetDragCursor(AObj: TFlowPanel): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -793,6 +841,7 @@ end;
 
 function FlowPanel_GetDragKind(AObj: TFlowPanel): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -807,6 +856,7 @@ end;
 
 function FlowPanel_GetDragMode(AObj: TFlowPanel): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -821,6 +871,7 @@ end;
 
 function FlowPanel_GetEnabled(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -835,6 +886,7 @@ end;
 
 function FlowPanel_GetFlowStyle(AObj: TFlowPanel): TFlowStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TFlowStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.FlowStyle;
   handleExceptionEnd
@@ -849,6 +901,7 @@ end;
 
 function FlowPanel_GetFullRepaint(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FullRepaint;
   handleExceptionEnd
@@ -863,6 +916,7 @@ end;
 
 function FlowPanel_GetFont(AObj: TFlowPanel): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -877,6 +931,7 @@ end;
 
 function FlowPanel_GetParentBackground(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentBackground;
   handleExceptionEnd
@@ -891,6 +946,7 @@ end;
 
 function FlowPanel_GetParentColor(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -905,6 +961,7 @@ end;
 
 function FlowPanel_GetParentDoubleBuffered(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -919,6 +976,7 @@ end;
 
 function FlowPanel_GetParentFont(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -933,6 +991,7 @@ end;
 
 function FlowPanel_GetParentShowHint(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -947,6 +1006,7 @@ end;
 
 function FlowPanel_GetPopupMenu(AObj: TFlowPanel): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -961,6 +1021,7 @@ end;
 
 function FlowPanel_GetShowHint(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -975,6 +1036,7 @@ end;
 
 function FlowPanel_GetTabOrder(AObj: TFlowPanel): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -989,6 +1051,7 @@ end;
 
 function FlowPanel_GetTabStop(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1003,6 +1066,7 @@ end;
 
 function FlowPanel_GetVisible(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1185,6 +1249,7 @@ end;
 
 function FlowPanel_GetDockClientCount(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1192,6 +1257,7 @@ end;
 
 function FlowPanel_GetMouseInClient(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1199,6 +1265,7 @@ end;
 
 function FlowPanel_GetVisibleDockClientCount(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1206,6 +1273,7 @@ end;
 
 function FlowPanel_GetBrush(AObj: TFlowPanel): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1213,6 +1281,7 @@ end;
 
 function FlowPanel_GetControlCount(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1220,6 +1289,7 @@ end;
 
 function FlowPanel_GetHandle(AObj: TFlowPanel): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1227,6 +1297,7 @@ end;
 
 function FlowPanel_GetParentWindow(AObj: TFlowPanel): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1241,6 +1312,7 @@ end;
 
 function FlowPanel_GetShowing(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1248,6 +1320,7 @@ end;
 
 function FlowPanel_GetAction(AObj: TFlowPanel): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1278,6 +1351,7 @@ end;
 
 function FlowPanel_GetClientHeight(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1308,6 +1382,7 @@ end;
 
 function FlowPanel_GetClientWidth(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1322,6 +1397,7 @@ end;
 
 function FlowPanel_GetControlState(AObj: TFlowPanel): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1336,6 +1412,7 @@ end;
 
 function FlowPanel_GetControlStyle(AObj: TFlowPanel): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1350,6 +1427,7 @@ end;
 
 function FlowPanel_GetFloating(AObj: TFlowPanel): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1357,6 +1435,7 @@ end;
 
 function FlowPanel_GetParent(AObj: TFlowPanel): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1371,6 +1450,7 @@ end;
 
 function FlowPanel_GetLeft(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1385,6 +1465,7 @@ end;
 
 function FlowPanel_GetTop(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1399,6 +1480,7 @@ end;
 
 function FlowPanel_GetWidth(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1413,6 +1495,7 @@ end;
 
 function FlowPanel_GetHeight(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1427,6 +1510,7 @@ end;
 
 function FlowPanel_GetCursor(AObj: TFlowPanel): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1441,6 +1525,7 @@ end;
 
 function FlowPanel_GetHint(AObj: TFlowPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1455,6 +1540,7 @@ end;
 
 function FlowPanel_GetComponentCount(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1462,6 +1548,7 @@ end;
 
 function FlowPanel_GetComponentIndex(AObj: TFlowPanel): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1476,6 +1563,7 @@ end;
 
 function FlowPanel_GetOwner(AObj: TFlowPanel): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1483,6 +1571,7 @@ end;
 
 function FlowPanel_GetName(AObj: TFlowPanel): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1497,6 +1586,7 @@ end;
 
 function FlowPanel_GetTag(AObj: TFlowPanel): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1511,6 +1601,7 @@ end;
 
 function FlowPanel_GetAnchorSideLeft(AObj: TFlowPanel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1525,6 +1616,7 @@ end;
 
 function FlowPanel_GetAnchorSideTop(AObj: TFlowPanel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1539,6 +1631,7 @@ end;
 
 function FlowPanel_GetAnchorSideRight(AObj: TFlowPanel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1553,6 +1646,7 @@ end;
 
 function FlowPanel_GetAnchorSideBottom(AObj: TFlowPanel): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1567,6 +1661,7 @@ end;
 
 function FlowPanel_GetChildSizing(AObj: TFlowPanel): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1581,6 +1676,7 @@ end;
 
 function FlowPanel_GetBorderSpacing(AObj: TFlowPanel): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1595,6 +1691,7 @@ end;
 
 function FlowPanel_GetDockClients(AObj: TFlowPanel; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1602,6 +1699,7 @@ end;
 
 function FlowPanel_GetControls(AObj: TFlowPanel; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1609,6 +1707,7 @@ end;
 
 function FlowPanel_GetComponents(AObj: TFlowPanel; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1616,6 +1715,7 @@ end;
 
 function FlowPanel_GetAnchorSide(AObj: TFlowPanel; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function TrayIcon_Create(AOwner: TComponent): TTrayIcon; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TTrayIcon.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_FindComponent(AObj: TTrayIcon; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_GetNamePath(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_HasParent(AObj: TTrayIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +68,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_ClassType(AObj: TTrayIcon): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +77,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_ClassName(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +86,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_InstanceSize(AObj: TTrayIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +95,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_InheritsFrom(AObj: TTrayIcon; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +104,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_Equals(AObj: TTrayIcon; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +113,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_GetHashCode(AObj: TTrayIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +122,7 @@ end;
 //CLASSMETHOD:
 function TrayIcon_ToString(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +130,7 @@ end;
 
 function TrayIcon_GetAnimateInterval(AObj: TTrayIcon): Cardinal; extdecl;
 begin
+{$ifdef UsehandleException}Result := Cardinal(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AnimateInterval;
   handleExceptionEnd
@@ -133,6 +145,7 @@ end;
 
 function TrayIcon_GetHint(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -147,6 +160,7 @@ end;
 
 function TrayIcon_GetBalloonHint(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.BalloonHint);
   handleExceptionEnd
@@ -161,6 +175,7 @@ end;
 
 function TrayIcon_GetBalloonTitle(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.BalloonTitle);
   handleExceptionEnd
@@ -175,6 +190,7 @@ end;
 
 function TrayIcon_GetBalloonTimeout(AObj: TTrayIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BalloonTimeout;
   handleExceptionEnd
@@ -189,6 +205,7 @@ end;
 
 function TrayIcon_GetBalloonFlags(AObj: TTrayIcon): TBalloonFlags; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBalloonFlags);{$endif}
   handleExceptionBegin
   Result :=  AObj.BalloonFlags;
   handleExceptionEnd
@@ -203,6 +220,7 @@ end;
 
 function TrayIcon_GetIcon(AObj: TTrayIcon): TIcon; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Icon;
   handleExceptionEnd
@@ -217,6 +235,7 @@ end;
 
 function TrayIcon_GetPopupMenu(AObj: TTrayIcon): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -231,6 +250,7 @@ end;
 
 function TrayIcon_GetVisible(AObj: TTrayIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -285,6 +305,7 @@ end;
 
 function TrayIcon_GetComponentCount(AObj: TTrayIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -292,6 +313,7 @@ end;
 
 function TrayIcon_GetComponentIndex(AObj: TTrayIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -306,6 +328,7 @@ end;
 
 function TrayIcon_GetOwner(AObj: TTrayIcon): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -313,6 +336,7 @@ end;
 
 function TrayIcon_GetName(AObj: TTrayIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -327,6 +351,7 @@ end;
 
 function TrayIcon_GetTag(AObj: TTrayIcon): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -341,6 +366,7 @@ end;
 
 function TrayIcon_GetComponents(AObj: TTrayIcon; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

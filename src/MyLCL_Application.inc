@@ -9,6 +9,7 @@
 
 function Application_Create(AOwner: TComponent): TApplication; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TApplication.Create(AOwner);
   handleExceptionEnd
@@ -121,6 +122,7 @@ end;
 //CLASSMETHOD:
 function Application_MessageBox(AObj: TApplication; Text: PChar; Caption: PChar; Flags: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MessageBox(Text, Caption, Flags);
   handleExceptionEnd
@@ -129,6 +131,7 @@ end;
 //CLASSMETHOD:
 function Application_FindComponent(AObj: TApplication; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -137,6 +140,7 @@ end;
 //CLASSMETHOD:
 function Application_GetNamePath(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -145,6 +149,7 @@ end;
 //CLASSMETHOD:
 function Application_HasParent(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -161,6 +166,7 @@ end;
 //CLASSMETHOD:
 function Application_ClassType(AObj: TApplication): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -169,6 +175,7 @@ end;
 //CLASSMETHOD:
 function Application_ClassName(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -177,6 +184,7 @@ end;
 //CLASSMETHOD:
 function Application_InstanceSize(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -185,6 +193,7 @@ end;
 //CLASSMETHOD:
 function Application_InheritsFrom(AObj: TApplication; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -193,6 +202,7 @@ end;
 //CLASSMETHOD:
 function Application_Equals(AObj: TApplication; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -201,6 +211,7 @@ end;
 //CLASSMETHOD:
 function Application_GetHashCode(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -209,6 +220,7 @@ end;
 //CLASSMETHOD:
 function Application_ToString(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -216,6 +228,7 @@ end;
 
 function Application_GetScaled(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Scaled;
   handleExceptionEnd
@@ -230,6 +243,7 @@ end;
 
 function Application_GetSingleInstanceEnabled(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.SingleInstanceEnabled;
   handleExceptionEnd
@@ -244,6 +258,7 @@ end;
 
 function Application_GetLocation(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Location);
   handleExceptionEnd
@@ -251,6 +266,7 @@ end;
 
 function Application_GetStopOnException(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.StopOnException;
   handleExceptionEnd
@@ -265,6 +281,7 @@ end;
 
 function Application_GetExceptionExitCode(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ExceptionExitCode;
   handleExceptionEnd
@@ -277,8 +294,108 @@ begin
   handleExceptionEnd
 end;
 
+function Application_GetCaseSensitiveOptions(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.CaseSensitiveOptions;
+  handleExceptionEnd
+end;
+
+procedure Application_SetCaseSensitiveOptions(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CaseSensitiveOptions := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetCaptureExceptions(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.CaptureExceptions;
+  handleExceptionEnd
+end;
+
+procedure Application_SetCaptureExceptions(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.CaptureExceptions := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetExtendedKeysSupport(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.ExtendedKeysSupport;
+  handleExceptionEnd
+end;
+
+procedure Application_SetExtendedKeysSupport(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ExtendedKeysSupport := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetActive(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Active;
+  handleExceptionEnd
+end;
+
+function Application_GetMainFormHandle(AObj: TApplication): HWND; extdecl;
+begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.MainFormHandle;
+  handleExceptionEnd
+end;
+
+function Application_GetMouseControl(AObj: TApplication): TControl; extdecl;
+begin
+{$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.MouseControl;
+  handleExceptionEnd
+end;
+
+function Application_GetHintHidePausePerChar(AObj: TApplication): Integer; extdecl;
+begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.HintHidePausePerChar;
+  handleExceptionEnd
+end;
+
+procedure Application_SetHintHidePausePerChar(AObj: TApplication; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.HintHidePausePerChar := AValue;
+  handleExceptionEnd
+end;
+
+function Application_GetFindGlobalComponentEnabled(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.FindGlobalComponentEnabled;
+  handleExceptionEnd
+end;
+
+procedure Application_SetFindGlobalComponentEnabled(AObj: TApplication; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.FindGlobalComponentEnabled := AValue;
+  handleExceptionEnd
+end;
+
 function Application_GetExeName(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ExeName);
   handleExceptionEnd
@@ -286,6 +403,7 @@ end;
 
 function Application_GetHint(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -300,6 +418,7 @@ end;
 
 function Application_GetHintColor(AObj: TApplication): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HintColor;
   handleExceptionEnd
@@ -314,6 +433,7 @@ end;
 
 function Application_GetHintHidePause(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HintHidePause;
   handleExceptionEnd
@@ -328,6 +448,7 @@ end;
 
 function Application_GetHintPause(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HintPause;
   handleExceptionEnd
@@ -342,6 +463,7 @@ end;
 
 function Application_GetHintShortCuts(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HintShortCuts;
   handleExceptionEnd
@@ -356,6 +478,7 @@ end;
 
 function Application_GetHintShortPause(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HintShortPause;
   handleExceptionEnd
@@ -370,6 +493,7 @@ end;
 
 function Application_GetIcon(AObj: TApplication): TIcon; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Icon;
   handleExceptionEnd
@@ -384,20 +508,15 @@ end;
 
 function Application_GetMainForm(AObj: TApplication): TForm; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.MainForm;
   handleExceptionEnd
 end;
 
-function Application_GetMainFormHandle(AObj: TApplication): HWND; extdecl;
-begin
-  handleExceptionBegin
-  Result :=  AObj.MainFormHandle;
-  handleExceptionEnd
-end;
-
 function Application_GetMainFormOnTaskBar(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MainFormOnTaskBar;
   handleExceptionEnd
@@ -412,6 +531,7 @@ end;
 
 function Application_GetBiDiMode(AObj: TApplication): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -426,6 +546,7 @@ end;
 
 function Application_GetShowHint(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -440,6 +561,7 @@ end;
 
 function Application_GetShowMainForm(AObj: TApplication): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowMainForm;
   handleExceptionEnd
@@ -452,8 +574,17 @@ begin
   handleExceptionEnd
 end;
 
+function Application_GetTerminated(AObj: TApplication): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Terminated;
+  handleExceptionEnd
+end;
+
 function Application_GetTitle(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Title);
   handleExceptionEnd
@@ -532,6 +663,7 @@ end;
 
 function Application_GetHandle(AObj: TApplication): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -546,6 +678,7 @@ end;
 
 function Application_GetComponentCount(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -553,6 +686,7 @@ end;
 
 function Application_GetComponentIndex(AObj: TApplication): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -567,6 +701,7 @@ end;
 
 function Application_GetOwner(AObj: TApplication): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -574,6 +709,7 @@ end;
 
 function Application_GetName(AObj: TApplication): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -588,6 +724,7 @@ end;
 
 function Application_GetTag(AObj: TApplication): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -602,6 +739,7 @@ end;
 
 function Application_GetComponents(AObj: TApplication; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -648,6 +786,19 @@ exports
   Application_SetStopOnException,
   Application_GetExceptionExitCode,
   Application_SetExceptionExitCode,
+  Application_GetCaseSensitiveOptions,
+  Application_SetCaseSensitiveOptions,
+  Application_GetCaptureExceptions,
+  Application_SetCaptureExceptions,
+  Application_GetExtendedKeysSupport,
+  Application_SetExtendedKeysSupport,
+  Application_GetActive,
+  Application_GetMainFormHandle,
+  Application_GetMouseControl,
+  Application_GetHintHidePausePerChar,
+  Application_SetHintHidePausePerChar,
+  Application_GetFindGlobalComponentEnabled,
+  Application_SetFindGlobalComponentEnabled,
   Application_GetExeName,
   Application_GetHint,
   Application_SetHint,
@@ -664,7 +815,6 @@ exports
   Application_GetIcon,
   Application_SetIcon,
   Application_GetMainForm,
-  Application_GetMainFormHandle,
   Application_GetMainFormOnTaskBar,
   Application_SetMainFormOnTaskBar,
   Application_GetBiDiMode,
@@ -673,6 +823,7 @@ exports
   Application_SetShowHint,
   Application_GetShowMainForm,
   Application_SetShowMainForm,
+  Application_GetTerminated,
   Application_GetTitle,
   Application_SetTitle,
   Application_SetOnActivate,

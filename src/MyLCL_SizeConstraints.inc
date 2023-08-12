@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_GetNamePath(AObj: TSizeConstraints): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_ClassType(AObj: TSizeConstraints): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_ClassName(AObj: TSizeConstraints): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_InstanceSize(AObj: TSizeConstraints): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_InheritsFrom(AObj: TSizeConstraints; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_Equals(AObj: TSizeConstraints; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_GetHashCode(AObj: TSizeConstraints): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function SizeConstraints_ToString(AObj: TSizeConstraints): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -89,6 +97,7 @@ end;
 
 function SizeConstraints_GetMaxHeight(AObj: TSizeConstraints): TConstraintSize; extdecl;
 begin
+{$ifdef UsehandleException}Result := TConstraintSize(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxHeight;
   handleExceptionEnd
@@ -103,6 +112,7 @@ end;
 
 function SizeConstraints_GetMaxWidth(AObj: TSizeConstraints): TConstraintSize; extdecl;
 begin
+{$ifdef UsehandleException}Result := TConstraintSize(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxWidth;
   handleExceptionEnd
@@ -117,6 +127,7 @@ end;
 
 function SizeConstraints_GetMinHeight(AObj: TSizeConstraints): TConstraintSize; extdecl;
 begin
+{$ifdef UsehandleException}Result := TConstraintSize(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinHeight;
   handleExceptionEnd
@@ -131,6 +142,7 @@ end;
 
 function SizeConstraints_GetMinWidth(AObj: TSizeConstraints): TConstraintSize; extdecl;
 begin
+{$ifdef UsehandleException}Result := TConstraintSize(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinWidth;
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function DirectoryEdit_Create(AOwner: TComponent): TDirectoryEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TDirectoryEdit.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Focused(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -104,6 +106,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_CanFocus(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -112,6 +115,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ContainsControl(AObj: TDirectoryEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -121,6 +125,7 @@ end;
 //PARAMS:2=nonPtr
 function DirectoryEdit_ControlAtPos(AObj: TDirectoryEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -145,6 +150,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_FindChildControl(AObj: TDirectoryEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -161,6 +167,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_HandleAllocated(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -277,6 +284,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Dragging(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -285,6 +293,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_HasParent(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -301,6 +310,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Perform(AObj: TDirectoryEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -353,6 +363,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_GetTextBuf(AObj: TDirectoryEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -361,6 +372,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_GetTextLen(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -377,6 +389,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_FindComponent(AObj: TDirectoryEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -385,6 +398,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_GetNamePath(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -401,6 +415,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ClassType(AObj: TDirectoryEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -409,6 +424,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ClassName(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -417,6 +433,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_InstanceSize(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -425,6 +442,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_InheritsFrom(AObj: TDirectoryEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -433,6 +451,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Equals(AObj: TDirectoryEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -441,6 +460,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_GetHashCode(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -449,6 +469,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ToString(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -513,6 +534,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleDesignToForm(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -521,6 +543,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleFormToDesign(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -529,6 +552,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Scale96ToForm(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -537,6 +561,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleFormTo96(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -545,6 +570,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Scale96ToFont(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -553,6 +579,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleFontTo96(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -561,6 +588,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleScreenToFont(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -569,6 +597,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleFontToScreen(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +606,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_Scale96ToScreen(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -585,6 +615,7 @@ end;
 //CLASSMETHOD:
 function DirectoryEdit_ScaleScreenTo96(AObj: TDirectoryEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -617,6 +648,7 @@ end;
 
 function DirectoryEdit_GetAutoSelected(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelected;
   handleExceptionEnd
@@ -631,6 +663,7 @@ end;
 
 function DirectoryEdit_GetDirectory(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Directory);
   handleExceptionEnd
@@ -645,6 +678,7 @@ end;
 
 function DirectoryEdit_GetRootDir(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.RootDir);
   handleExceptionEnd
@@ -667,6 +701,7 @@ end;
 
 function DirectoryEdit_GetDialogTitle(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DialogTitle);
   handleExceptionEnd
@@ -681,6 +716,7 @@ end;
 
 function DirectoryEdit_GetDialogOptions(AObj: TDirectoryEdit): TOpenOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.DialogOptions;
   handleExceptionEnd
@@ -695,6 +731,7 @@ end;
 
 function DirectoryEdit_GetShowHidden(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHidden;
   handleExceptionEnd
@@ -709,6 +746,7 @@ end;
 
 function DirectoryEdit_GetButtonCaption(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ButtonCaption);
   handleExceptionEnd
@@ -723,6 +761,7 @@ end;
 
 function DirectoryEdit_GetButtonCursor(AObj: TDirectoryEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonCursor;
   handleExceptionEnd
@@ -737,6 +776,7 @@ end;
 
 function DirectoryEdit_GetButtonHint(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ButtonHint);
   handleExceptionEnd
@@ -751,6 +791,7 @@ end;
 
 function DirectoryEdit_GetButtonOnlyWhenFocused(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonOnlyWhenFocused;
   handleExceptionEnd
@@ -765,6 +806,7 @@ end;
 
 function DirectoryEdit_GetButtonWidth(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonWidth;
   handleExceptionEnd
@@ -779,6 +821,7 @@ end;
 
 function DirectoryEdit_GetConstraints(AObj: TDirectoryEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -793,6 +836,7 @@ end;
 
 function DirectoryEdit_GetDirectInput(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DirectInput;
   handleExceptionEnd
@@ -807,6 +851,7 @@ end;
 
 function DirectoryEdit_GetGlyph(AObj: TDirectoryEdit): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Glyph;
   handleExceptionEnd
@@ -821,6 +866,7 @@ end;
 
 function DirectoryEdit_GetNumGlyphs(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.NumGlyphs;
   handleExceptionEnd
@@ -835,6 +881,7 @@ end;
 
 function DirectoryEdit_GetImages(AObj: TDirectoryEdit): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -849,6 +896,7 @@ end;
 
 function DirectoryEdit_GetImageIndex(AObj: TDirectoryEdit): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -863,6 +911,7 @@ end;
 
 function DirectoryEdit_GetImageWidth(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageWidth;
   handleExceptionEnd
@@ -877,6 +926,7 @@ end;
 
 function DirectoryEdit_GetFlat(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Flat;
   handleExceptionEnd
@@ -891,6 +941,7 @@ end;
 
 function DirectoryEdit_GetFocusOnButtonClick(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.FocusOnButtonClick;
   handleExceptionEnd
@@ -905,6 +956,7 @@ end;
 
 function DirectoryEdit_GetAlign(AObj: TDirectoryEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -919,6 +971,7 @@ end;
 
 function DirectoryEdit_GetAnchors(AObj: TDirectoryEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -933,6 +986,7 @@ end;
 
 function DirectoryEdit_GetAutoSize(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -947,6 +1001,7 @@ end;
 
 function DirectoryEdit_GetAutoSelect(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelect;
   handleExceptionEnd
@@ -961,6 +1016,7 @@ end;
 
 function DirectoryEdit_GetColor(AObj: TDirectoryEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -975,6 +1031,7 @@ end;
 
 function DirectoryEdit_GetDragCursor(AObj: TDirectoryEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -989,6 +1046,7 @@ end;
 
 function DirectoryEdit_GetDragMode(AObj: TDirectoryEdit): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1003,6 +1061,7 @@ end;
 
 function DirectoryEdit_GetEnabled(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -1017,6 +1076,7 @@ end;
 
 function DirectoryEdit_GetFont(AObj: TDirectoryEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -1031,6 +1091,7 @@ end;
 
 function DirectoryEdit_GetLayout(AObj: TDirectoryEdit): TLeftRight; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TLeftRight);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -1045,6 +1106,7 @@ end;
 
 function DirectoryEdit_GetMaxLength(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -1059,6 +1121,7 @@ end;
 
 function DirectoryEdit_GetParentColor(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -1073,6 +1136,7 @@ end;
 
 function DirectoryEdit_GetParentFont(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -1087,6 +1151,7 @@ end;
 
 function DirectoryEdit_GetParentShowHint(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -1101,6 +1166,7 @@ end;
 
 function DirectoryEdit_GetPopupMenu(AObj: TDirectoryEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1115,6 +1181,7 @@ end;
 
 function DirectoryEdit_GetReadOnly(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -1129,6 +1196,7 @@ end;
 
 function DirectoryEdit_GetShowHint(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1143,6 +1211,7 @@ end;
 
 function DirectoryEdit_GetTabOrder(AObj: TDirectoryEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1157,6 +1226,7 @@ end;
 
 function DirectoryEdit_GetSpacing(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Spacing;
   handleExceptionEnd
@@ -1171,6 +1241,7 @@ end;
 
 function DirectoryEdit_GetTabStop(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1185,6 +1256,7 @@ end;
 
 function DirectoryEdit_GetVisible(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1375,6 +1447,7 @@ end;
 
 function DirectoryEdit_GetText(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1389,6 +1462,7 @@ end;
 
 function DirectoryEdit_GetTextHint(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1403,6 +1477,7 @@ end;
 
 function DirectoryEdit_GetAlignment(AObj: TDirectoryEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -1417,6 +1492,7 @@ end;
 
 function DirectoryEdit_GetCanUndo(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1440,6 +1516,7 @@ end;
 
 function DirectoryEdit_GetCharCase(AObj: TDirectoryEdit): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -1454,6 +1531,7 @@ end;
 
 function DirectoryEdit_GetHideSelection(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -1468,6 +1546,7 @@ end;
 
 function DirectoryEdit_GetModified(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1482,6 +1561,7 @@ end;
 
 function DirectoryEdit_GetNumbersOnly(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.NumbersOnly;
   handleExceptionEnd
@@ -1496,6 +1576,7 @@ end;
 
 function DirectoryEdit_GetPasswordChar(AObj: TDirectoryEdit): Char; extdecl;
 begin
+{$ifdef UsehandleException}Result := #0;{$endif}
   handleExceptionBegin
   Result :=  AObj.PasswordChar;
   handleExceptionEnd
@@ -1510,6 +1591,7 @@ end;
 
 function DirectoryEdit_GetSelLength(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1524,6 +1606,7 @@ end;
 
 function DirectoryEdit_GetSelStart(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1538,6 +1621,7 @@ end;
 
 function DirectoryEdit_GetSelText(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1552,6 +1636,7 @@ end;
 
 function DirectoryEdit_GetDockClientCount(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1559,6 +1644,7 @@ end;
 
 function DirectoryEdit_GetDockSite(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1573,6 +1659,7 @@ end;
 
 function DirectoryEdit_GetDoubleBuffered(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1587,6 +1674,7 @@ end;
 
 function DirectoryEdit_GetMouseInClient(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1594,6 +1682,7 @@ end;
 
 function DirectoryEdit_GetVisibleDockClientCount(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1601,6 +1690,7 @@ end;
 
 function DirectoryEdit_GetBrush(AObj: TDirectoryEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1608,6 +1698,7 @@ end;
 
 function DirectoryEdit_GetControlCount(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1615,6 +1706,7 @@ end;
 
 function DirectoryEdit_GetHandle(AObj: TDirectoryEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1622,6 +1714,7 @@ end;
 
 function DirectoryEdit_GetParentDoubleBuffered(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1636,6 +1729,7 @@ end;
 
 function DirectoryEdit_GetParentWindow(AObj: TDirectoryEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1650,6 +1744,7 @@ end;
 
 function DirectoryEdit_GetShowing(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1657,6 +1752,7 @@ end;
 
 function DirectoryEdit_GetUseDockManager(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1671,6 +1767,7 @@ end;
 
 function DirectoryEdit_GetAction(AObj: TDirectoryEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1685,6 +1782,7 @@ end;
 
 function DirectoryEdit_GetBiDiMode(AObj: TDirectoryEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1715,6 +1813,7 @@ end;
 
 function DirectoryEdit_GetClientHeight(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1745,6 +1844,7 @@ end;
 
 function DirectoryEdit_GetClientWidth(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1759,6 +1859,7 @@ end;
 
 function DirectoryEdit_GetControlState(AObj: TDirectoryEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1773,6 +1874,7 @@ end;
 
 function DirectoryEdit_GetControlStyle(AObj: TDirectoryEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1787,6 +1889,7 @@ end;
 
 function DirectoryEdit_GetFloating(AObj: TDirectoryEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1794,6 +1897,7 @@ end;
 
 function DirectoryEdit_GetParent(AObj: TDirectoryEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1808,6 +1912,7 @@ end;
 
 function DirectoryEdit_GetLeft(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1822,6 +1927,7 @@ end;
 
 function DirectoryEdit_GetTop(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1836,6 +1942,7 @@ end;
 
 function DirectoryEdit_GetWidth(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1850,6 +1957,7 @@ end;
 
 function DirectoryEdit_GetHeight(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1864,6 +1972,7 @@ end;
 
 function DirectoryEdit_GetCursor(AObj: TDirectoryEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1878,6 +1987,7 @@ end;
 
 function DirectoryEdit_GetHint(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1892,6 +2002,7 @@ end;
 
 function DirectoryEdit_GetComponentCount(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1899,6 +2010,7 @@ end;
 
 function DirectoryEdit_GetComponentIndex(AObj: TDirectoryEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1913,6 +2025,7 @@ end;
 
 function DirectoryEdit_GetOwner(AObj: TDirectoryEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1920,6 +2033,7 @@ end;
 
 function DirectoryEdit_GetName(AObj: TDirectoryEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1934,6 +2048,7 @@ end;
 
 function DirectoryEdit_GetTag(AObj: TDirectoryEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1948,6 +2063,7 @@ end;
 
 function DirectoryEdit_GetAnchorSideLeft(AObj: TDirectoryEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1962,6 +2078,7 @@ end;
 
 function DirectoryEdit_GetAnchorSideTop(AObj: TDirectoryEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1976,6 +2093,7 @@ end;
 
 function DirectoryEdit_GetAnchorSideRight(AObj: TDirectoryEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1990,6 +2108,7 @@ end;
 
 function DirectoryEdit_GetAnchorSideBottom(AObj: TDirectoryEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -2004,6 +2123,7 @@ end;
 
 function DirectoryEdit_GetChildSizing(AObj: TDirectoryEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -2018,6 +2138,7 @@ end;
 
 function DirectoryEdit_GetBorderSpacing(AObj: TDirectoryEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -2032,6 +2153,7 @@ end;
 
 function DirectoryEdit_GetDockClients(AObj: TDirectoryEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -2039,6 +2161,7 @@ end;
 
 function DirectoryEdit_GetControls(AObj: TDirectoryEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -2046,6 +2169,7 @@ end;
 
 function DirectoryEdit_GetComponents(AObj: TDirectoryEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -2053,6 +2177,7 @@ end;
 
 function DirectoryEdit_GetAnchorSide(AObj: TDirectoryEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

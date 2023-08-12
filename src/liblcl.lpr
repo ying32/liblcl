@@ -8,6 +8,9 @@
 {$if FPC_FULLVERSION < 30200}
    {$ERROR 'Requires FPC version>=3.2'}
 {$endif}
+{$if defined(lclqt) or defined(lclqt5)}
+   {$ERROR 'Qt widgets are not supported'}
+{$endif}
 
 library liblcl;
 
@@ -39,8 +42,7 @@ uses
 {$ENDIF}
   uExceptionHandle,
   uComponents,
-  uControlPatchs,
-  LResources;
+  uControlPatchs;
 
 {$IFDEF WINDOWS}
   {$R *.res}
@@ -49,6 +51,9 @@ uses
 {$I ExtDecl.inc}
 {$I LazarusDef.inc}
 
+{$ifndef UsehandleException}
+  {$ERROR 'UsehandleException is not enabled'}
+{$endif}
 
 {$I uExport1.pas}
 {$I uExport2.pas}

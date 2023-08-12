@@ -9,6 +9,7 @@
 
 function Font_Create: TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TFont.Create;
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function Font_HandleAllocated(AObj: TFont): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function Font_GetNamePath(AObj: TFont): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function Font_ClassType(AObj: TFont): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function Font_ClassName(AObj: TFont): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function Font_InstanceSize(AObj: TFont): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function Font_InheritsFrom(AObj: TFont; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function Font_Equals(AObj: TFont; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function Font_GetHashCode(AObj: TFont): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function Font_ToString(AObj: TFont): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -103,6 +113,7 @@ end;
 
 function Font_GetHandle(AObj: TFont): HFONT; extdecl;
 begin
+{$ifdef UsehandleException}Result := HFONT(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -117,6 +128,7 @@ end;
 
 function Font_GetPixelsPerInch(AObj: TFont): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelsPerInch;
   handleExceptionEnd
@@ -131,6 +143,7 @@ end;
 
 function Font_GetCharset(AObj: TFont): TFontCharset; extdecl;
 begin
+{$ifdef UsehandleException}Result := TFontCharset(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Charset;
   handleExceptionEnd
@@ -145,6 +158,7 @@ end;
 
 function Font_GetColor(AObj: TFont): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -159,6 +173,7 @@ end;
 
 function Font_GetHeight(AObj: TFont): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -173,6 +188,7 @@ end;
 
 function Font_GetName(AObj: TFont): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -187,6 +203,7 @@ end;
 
 function Font_GetOrientation(AObj: TFont): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -201,6 +218,7 @@ end;
 
 function Font_GetPitch(AObj: TFont): TFontPitch; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TFontPitch);{$endif}
   handleExceptionBegin
   Result :=  AObj.Pitch;
   handleExceptionEnd
@@ -215,6 +233,7 @@ end;
 
 function Font_GetSize(AObj: TFont): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Size;
   handleExceptionEnd
@@ -229,6 +248,7 @@ end;
 
 function Font_GetStyle(AObj: TFont): TFontStyles; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -243,6 +263,7 @@ end;
 
 function Font_GetQuality(AObj: TFont): TFontQuality; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TFontQuality);{$endif}
   handleExceptionBegin
   Result :=  AObj.Quality;
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function ReplaceDialog_Create(AOwner: TComponent): TReplaceDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TReplaceDialog.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_Execute(AObj: TReplaceDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_FindComponent(AObj: TReplaceDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_GetNamePath(AObj: TReplaceDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_HasParent(AObj: TReplaceDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -72,6 +77,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_ClassType(AObj: TReplaceDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -80,6 +86,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_ClassName(AObj: TReplaceDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -88,6 +95,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_InstanceSize(AObj: TReplaceDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -96,6 +104,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_InheritsFrom(AObj: TReplaceDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -104,6 +113,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_Equals(AObj: TReplaceDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -112,6 +122,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_GetHashCode(AObj: TReplaceDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -120,6 +131,7 @@ end;
 //CLASSMETHOD:
 function ReplaceDialog_ToString(AObj: TReplaceDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -127,6 +139,7 @@ end;
 
 function ReplaceDialog_GetReplaceText(AObj: TReplaceDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ReplaceText);
   handleExceptionEnd
@@ -149,6 +162,7 @@ end;
 
 function ReplaceDialog_GetLeft(AObj: TReplaceDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -179,6 +193,7 @@ end;
 
 function ReplaceDialog_GetTop(AObj: TReplaceDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -193,6 +208,7 @@ end;
 
 function ReplaceDialog_GetFindText(AObj: TReplaceDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.FindText);
   handleExceptionEnd
@@ -207,6 +223,7 @@ end;
 
 function ReplaceDialog_GetOptions(AObj: TReplaceDialog): TFindOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -229,6 +246,7 @@ end;
 
 function ReplaceDialog_GetHandle(AObj: TReplaceDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -252,6 +270,7 @@ end;
 
 function ReplaceDialog_GetComponentCount(AObj: TReplaceDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -259,6 +278,7 @@ end;
 
 function ReplaceDialog_GetComponentIndex(AObj: TReplaceDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -273,6 +293,7 @@ end;
 
 function ReplaceDialog_GetOwner(AObj: TReplaceDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -280,6 +301,7 @@ end;
 
 function ReplaceDialog_GetName(AObj: TReplaceDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -294,6 +316,7 @@ end;
 
 function ReplaceDialog_GetTag(AObj: TReplaceDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -308,6 +331,7 @@ end;
 
 function ReplaceDialog_GetComponents(AObj: TReplaceDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

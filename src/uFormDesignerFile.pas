@@ -6,9 +6,6 @@
 //
 //----------------------------------------
 
-// 设计器gfm文件格式，这里是加密格式，至于为啥使用加密的，一
-// 开始是做了外部gfm文件加载，防止项目发布使用了外部文件随意被修改，所以没有公开相关的
-
 unit uFormDesignerFile;
 
 {$I ExtDecl.inc}
@@ -19,32 +16,8 @@ uses
   Forms,
   sysutils,
   Classes,
-  zbase,
   typinfo,
-  paszlib,
   Types;
-
-type
-  EZLibError = class(Exception);
-  EZCompressionError = class(EZLibError);
-  EZDecompressionError = class(EZLibError);
-
-  { TFormResFile }
-
-  TFormResFile = class
-  public const
-    VERSION = 1;
-    // GOVCLFORMZ
-    HEADER: array[0..9] of byte = ($47, $4F, $56, $43, $4C, $46, $4F, $52, $4D, $5A);
-    // TPF0
-    HEADERTPF0: array[0..3] of byte = ($54, $50, $46, $30);
-  public
-    class function Decrypt(AInStream: TStream; AOutStream: TStream): Boolean;
-    class procedure XorStream(AStream: TMemoryStream);
-    class procedure ZDecompressStream(inStream, outStream: TStream);
-    class function ZDecompressCheck(code: Integer): Integer;
-    class function ZDecompressCheckWithoutBufferError(code: Integer): Integer;
-  end;
 
   procedure ResFormLoadFromResourceName(AInstance: NativeUInt; AResName: PChar; ARoot: TComponent); extdecl;
   procedure ResFormLoadFromFile(AFileName: PChar; ARoot: TComponent); extdecl;
@@ -56,172 +29,7 @@ type
 implementation
 
 uses
-  uComponents;
-
-
-const
-  {** return code messages **************************************************}
-  _z_errmsg: array [0..9] of PAnsiChar = (
-    'need dictionary',      // Z_NEED_DICT      (2)  //do not localize
-    'stream end',           // Z_STREAM_END     (1)  //do not localize
-    '',                     // Z_OK             (0)  //do not localize
-    'file error',           // Z_ERRNO          (-1) //do not localize
-    'stream error',         // Z_STREAM_ERROR   (-2) //do not localize
-    'data error',           // Z_DATA_ERROR     (-3) //do not localize
-    'insufficient memory',  // Z_MEM_ERROR      (-4) //do not localize
-    'buffer error',         // Z_BUF_ERROR      (-5) //do not localize
-    'incompatible version', // Z_VERSION_ERROR  (-6) //do not localize
-    ''                                               //do not localize
-    );
-
-{ TFormResFile }
-
-class function TFormResFile.Decrypt(AInStream: TStream; AOutStream: TStream): Boolean;
-var
-  LVer: Word;
-  LMem, LZipMem: TMemoryStream;
-  LHeader:array[0..High(HEADER)] of Byte;
-  LBytes: TBytes;
-begin
-  Result := False;
-  AInStream.Position := 0;
-  if AInStream.Size > Length(HEADER) + SizeOf(Word) then
-  begin
-    AInStream.Read(LHeader[0], Length(LHeader));
-    if CompareMem(@LHeader[0], @HEADER[0], Length(HEADER)) then
-    begin
-      AInStream.Read(LVer, SizeOf(Word));
-      if LVer >= VERSION then
-      begin
-        LMem := TMemoryStream.Create;
-        try
-          SetLength(LBytes, AInStream.Size - Length(HEADER) - SizeOf(Word));
-          AInStream.Read(LBytes[0], Length(LBytes));
-          LMem.Write(LBytes[0], Length(LBytes));
-          LMem.Position := 0;
-          XorStream(LMem);
-          LMem.Position := 0;
-          LZipMem := TMemoryStream.Create;
-          try
-            ZDecompressStream(LMem, LZipMem);
-            AOutStream.Position := 0;
-            AOutStream.Write(LZipMem.Memory^, LZipMem.Size);
-            AOutStream.Position := 0;
-            Result := True;
-          finally
-            LZipMem.Free;
-          end;
-        finally
-          LMem.Free;
-        end;
-      end;
-    end else
-    // 原生格式
-    if CompareMem(@LHeader[0], @HEADERTPF0[0], Length(HEADERTPF0)) then
-    begin
-      AInStream.Position := 0;
-      AOutStream.Position := 0;
-      AOutStream.CopyFrom(AInStream, AInStream.Size);
-      AOutStream.Position := 0;
-      Result := True;
-    end;
-  end;
-end;
-
-class procedure TFormResFile.XorStream(AStream: TMemoryStream);
-var
-  EncodedBytes, ZipBytes:array of Byte; //编码字节
-  BytesLength: Integer;
-  I, L:integer;
-const
-  EncKey: array[0..15] of Byte = (
-	$EB, $D4, $93, $48, $97, $0E, $38, $5B, $89, $B8, $2F, $D2, $31, $11, $AD, $BC);
-
-begin
-  AStream.Position := 0;
-  BytesLength := AStream.Size;
-  SetLength(EncodedBytes, BytesLength);
-  SetLength(ZipBytes, BytesLength);
-  AStream.Read(EncodedBytes[0], BytesLength);
-  for I := 0 to BytesLength - 1 do
-  begin
-    L := I mod 16;
-    ZipBytes[i] := EncodedBytes[i] xor EncKey[L];
-  end;
-  AStream.Clear; //清除以前的流
-  AStream.Write(ZipBytes[0], BytesLength); //将异或后的字节集写入原流中
-  AStream.Position := 0;
-end;
-
-class procedure TFormResFile.ZDecompressStream(inStream, outStream: TStream);
-const
-  bufferSize = 32768;
-var
-  zstream: TZStream;
-  zresult: Integer;
-  inBuffer: TBytes;
-  outBuffer: TBytes;
-  inSize: Integer;
-  outSize: Integer;
-begin
-  SetLength(inBuffer, BufferSize);
-  SetLength(outBuffer, BufferSize);
-  FillChar(zstream, SizeOf(TZStream), 0);
-  ZDecompressCheck(InflateInit(zstream));
-
-  try
-    inSize := inStream.Read(inBuffer[0], bufferSize);
-    while inSize > 0 do
-    begin
-      zstream.next_in := @inBuffer[0];
-      zstream.avail_in := inSize;
-
-      repeat
-        zstream.next_out := @outBuffer[0];
-        zstream.avail_out := bufferSize;
-
-        ZDecompressCheckWithoutBufferError(inflate(zstream, Z_NO_FLUSH));
-
-        outSize := bufferSize - zstream.avail_out;
-
-        outStream.Write(outBuffer[0], outSize);
-      until (zstream.avail_in = 0) and (zstream.avail_out > 0);
-
-      inSize := inStream.Read(inBuffer[0], bufferSize);
-    end;
-
-    repeat
-      zstream.next_out := @outBuffer[0];
-      zstream.avail_out := bufferSize;
-
-      zresult := ZDecompressCheckWithoutBufferError(inflate(zstream, Z_FINISH));
-
-      outSize := bufferSize - zstream.avail_out;
-
-      outStream.Write(outBuffer[0], outSize);
-    until (zresult = Z_STREAM_END) and (zstream.avail_out > 0);
-  finally
-    ZDecompressCheck(inflateEnd(zstream));
-  end;
-end;
-
-class function TFormResFile.ZDecompressCheck(code: Integer): Integer;
-begin
-  Result := code;
-  if code < 0 then
-    raise EZDecompressionError.Create(string(_z_errmsg[2 - code]));
-end;
-
-class function TFormResFile.ZDecompressCheckWithoutBufferError(code: Integer): Integer;
-begin
-  Result := code;
-  if code < 0 then
-    if (code <> Z_BUF_ERROR) then
-     raise EZDecompressionError.Create(string(_z_errmsg[2 - code]));
-end;
-
-//------------------------------------------------------------------------------
-
+  uComponents, uExceptionHandle;
 
 type
 
@@ -341,57 +149,68 @@ end;
 
 
 procedure TResForm.LoadFromStream(AStream: TStream; ARoot: TComponent);
+const
+  // TPF0
+  HEADERTPF0: array[0..3] of byte = ($54, $50, $46, $30);
 var
   LR: TReader;
-  LMem: TMemoryStream;
+
+  function IsTPF0: Boolean;
+  var
+    LHeader: array[0..High(HEADERTPF0)] of Byte;
+  begin
+    AStream.Position:=0;
+    AStream.Read(LHeader[0], Length(LHeader));
+    Result := CompareMem(@LHeader[0], @HEADERTPF0[0], Length(LHeader));
+    AStream.Position:=0;
+  end;
+
 begin
   if (AStream = nil) or (ARoot = nil) then
     Exit;
+  if not IsTPF0 then
+  begin
+    Writeln('The Form resource is bad.');
+    Exit;
+  end;
   AStream.Position := 0;
-  LMem := TMemoryStream.Create;
+  LR := TReader.Create(AStream, 4096);
   try
-    TFormResFile.Decrypt(AStream, LMem);
-    LMem.Position := 0;
-    LR := TReader.Create(LMem, 4096);
-    try
-      LR.OnFindComponentClass := @OnFindComponentClass;
-      LR.OnPropertyNotFound := @OnPropertyNotFound;
-      LR.OnAncestorNotFound := @OnAncestorNotFound;
-      LR.OnError:= @OnReaderError;
-      LR.OnReadStringProperty := @OnReadWriteStringProperty;
-      LR.OnCreateComponent := @OnCreateComponentEvent;
+    LR.OnFindComponentClass := @OnFindComponentClass;
+    LR.OnPropertyNotFound := @OnPropertyNotFound;
+    LR.OnAncestorNotFound := @OnAncestorNotFound;
+    LR.OnError:= @OnReaderError;
+    LR.OnReadStringProperty := @OnReadWriteStringProperty;
+    LR.OnCreateComponent := @OnCreateComponentEvent;
 
-      GlobalNameSpace.BeginWrite;
-      try
-        if (ARoot.ClassType <> TForm) and not (csDesigning in ARoot.ComponentState) then
+    GlobalNameSpace.BeginWrite;
+    try
+      if (ARoot.ClassType <> TForm) and not (csDesigning in ARoot.ComponentState) then
+      begin
+        if ARoot is TForm then
         begin
-          if ARoot is TForm then
-          begin
-            TFormPatch(ARoot).FormStateIncludeCreating;
-            try
-              InitLazResourceComponent(LR, ARoot, TForm);
-            finally
-              TFormPatch(ARoot).FormStateExcludeCreating;
-            end;
-          end else if ARoot is TFrame then
-          begin
-            //ControlStyle := [csAcceptsControls, csCaptureMouse, csClickEvents, csSetCaption,
-            //                 csDoubleClicks, csParentBackground];
-            if (ARoot.ClassType = TFrame) and ([csDesignInstance, csDesigning] * ARoot.ComponentState = []) then
-            begin
-              LR.ReadRootComponent(ARoot);
-              // InitLazResourceComponent(LR, ARoot, TFrame);
-            end
+          TFormPatch(ARoot).FormStateIncludeCreating;
+          try
+            InitLazResourceComponent(LR, ARoot, TForm);
+          finally
+            TFormPatch(ARoot).FormStateExcludeCreating;
           end;
+        end else if ARoot is TFrame then
+        begin
+          //ControlStyle := [csAcceptsControls, csCaptureMouse, csClickEvents, csSetCaption,
+          //                 csDoubleClicks, csParentBackground];
+          if (ARoot.ClassType = TFrame) and ([csDesignInstance, csDesigning] * ARoot.ComponentState = []) then
+          begin
+            LR.ReadRootComponent(ARoot);
+            // InitLazResourceComponent(LR, ARoot, TFrame);
+          end
         end;
-      finally
-        GlobalNameSpace.EndWrite;
       end;
     finally
-      LR.Free;
+      GlobalNameSpace.EndWrite;
     end;
   finally
-    LMem.Free;
+    LR.Free;
   end;
 end;
 
@@ -427,12 +246,9 @@ var
 begin
   LObj := TResForm.Create;
   try
-    try
-      LObj.LoadFromStream(AStream, ARoot);
-    except
-      on E: Exception do
-        Writeln(E.Message);
-    end;
+    handleExceptionBegin
+    LObj.LoadFromStream(AStream, ARoot);
+    handleExceptionEnd
   finally
     LObj.Free;
   end;
@@ -444,12 +260,9 @@ var
 begin
   LObj := TResForm.Create;
   try
-    try
-      LObj.LoadFromFile(AFileName, ARoot);
-    except
-      on E: Exception do
-        Writeln(E.Message);
-    end;
+    handleExceptionBegin
+    LObj.LoadFromFile(AFileName, ARoot);
+    handleExceptionEnd
   finally
     LObj.Free;
   end;
@@ -461,12 +274,9 @@ var
 begin
   LObj := TResForm.Create;
   try
-    try
-      LObj.LoadFromResourceName(AInstance, AResName, ARoot);
-    except
-      on E: Exception do
-        Writeln(E.Message);
-    end;
+    handleExceptionBegin
+    LObj.LoadFromResourceName(AInstance, AResName, ARoot);
+    handleExceptionEnd
   finally
     LObj.Free;
   end;

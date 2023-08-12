@@ -263,16 +263,24 @@ BOOL InSet(uint32_t s, uint8_t val) {
 // liblcl句柄
 static uintptr_t libHandle;
 ##
-// 用于处理异常的模拟call
-typedef uint64_t(LCLAPI *MYSYSCALL)(void*, intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+
 ##
-// 函数指针
-static MYSYSCALL pMySyscall;
+// 函数call
+typedef intptr_t LCLAPI (*SYSCALL0)();
+typedef intptr_t LCLAPI (*SYSCALL1)(intptr_t);
+typedef intptr_t LCLAPI (*SYSCALL2)(intptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef intptr_t LCLAPI (*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 ##
-// 异常处理函数实体
-#define MySyscall(addr, len, a1, a2 , a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) \
-    pMySyscall((void*)addr, (intptr_t)len, COV_PARAM(a1), COV_PARAM(a2), COV_PARAM(a3), COV_PARAM(a4), COV_PARAM(a5), COV_PARAM(a6), COV_PARAM(a7), COV_PARAM(a8), COV_PARAM(a9), COV_PARAM(a10), COV_PARAM(a11), COV_PARAM(a12))
-##
+
 // 全局实例类定义
 {{range $el := .InstanceObjects}}
 {{$el.Type}} {{$el.Name}};
@@ -310,7 +318,6 @@ BOOL load_liblcl(const char *name) {
     libHandle = (uintptr_t)dlopen(name, RTLD_LAZY|RTLD_GLOBAL);
 #endif
     if(libHandle > 0) {
-         pMySyscall = (MYSYSCALL)get_proc_addr("MySyscall");
          // 初始库
          init_lib_lcl();
     }
@@ -381,22 +388,28 @@ void close_liblcl() {
     {{if not (isEmpty $el.Return)}}
        {{$buff.Write "return (" (covType $el.Return) ")"}}
     {{end}}
-    {{$buff.Write "MySyscall(p" $el.Name ", " (len $el.Params)}}
+	{{$buff.Write "(((SYSCALL" (len $el.Params) ") (p" $el.Name "))(" }}
     {{/*参数传递*/}}
     {{range $idx, $ps := $el.Params}}
       {{if canOutParam $el $idx}}
-        {{$buff.Write ", "}}
+		{{if gt $idx 0}}
+          {{$buff.Write ", "}}
+		{{end}}
+		{{$buff.Write "COV_PARAM("}}
         {{if and $ps.IsVar (eq $ps.Flag "nonPtr")}}
           {{$buff.Write "&"}}
         {{end}}
         {{$buff.Write $ps.Name}}
+		{{$buff.Write ")"}}
       {{end}}
     {{end}}
     {{if $isPsRet}}
-      {{$buff.Write ", &result"}}
+	  {{if gt (len $el.Params) 1}}
+        {{$buff.Write ", "}}
+	  {{end}} 		
+      {{$buff.Write "COV_PARAM(&result)"}}
     {{end}}
-    {{cPsZero $el.Params|$buff.Write}}
-    {{$buff.Writeln ");"}}
+    {{$buff.Writeln "));"}}
 
     {{if $isPsRet}}
        {{$buff.Writeln "    return result;"}}
@@ -464,24 +477,26 @@ static inline char* GetFPStringArrayMember(void* P, intptr_t AIndex) {
     return GetStringArrOf(P, AIndex);
 }
 
+##
+##
 
 ##
-// 不知道有什么方法可以简化下
-typedef void(*SYSCALL0)();
-typedef void(*SYSCALL1)(intptr_t);
-typedef void(*SYSCALL2)(intptr_t, uintptr_t);
-typedef void(*SYSCALL3)(intptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-typedef void(*SYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+// 事件call
+typedef void(*ESYSCALL0)();
+typedef void(*ESYSCALL1)(intptr_t);
+typedef void(*ESYSCALL2)(intptr_t, uintptr_t);
+typedef void(*ESYSCALL3)(intptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL4)(intptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL5)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL6)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL7)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL8)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL9)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL10)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL11)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+typedef void(*ESYSCALL12)(intptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 ##
-##
+
 // getParam 从指定索引和地址获取事件中的参数
 #define getParamOf(index, ptr) \
  (*((uintptr_t*)((uintptr_t)ptr + (uintptr_t)index*sizeof(uintptr_t))))
@@ -495,19 +510,19 @@ static void* LCLAPI doEventCallbackProc(void* f, void* args, long argCount) {
 	   getParamOf(index, args)
 ##
     switch (argCount) {
-    case 0:  ((SYSCALL0) (f))(); break;
-    case 1:  ((SYSCALL1) (f))(_A_(0)); break;
-    case 2:  ((SYSCALL2) (f))(_A_(0), _A_(1)); break;
-    case 3:  ((SYSCALL3) (f))(_A_(0), _A_(1), _A_(2)); break;
-    case 4:  ((SYSCALL4) (f))(_A_(0), _A_(1), _A_(2), _A_(2)); break;
-    case 5:  ((SYSCALL5) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4)); break;
-    case 6:  ((SYSCALL6) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5)); break;
-    case 7:  ((SYSCALL7) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6)); break;
-    case 8:  ((SYSCALL8) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7)); break;
-    case 9:  ((SYSCALL9) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8)); break;
-    case 10: ((SYSCALL10)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9)); break;
-    case 11: ((SYSCALL11)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9), _A_(10)); break;
-    case 12: ((SYSCALL12)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9), _A_(10), _A_(11)); break;
+    case 0:  ((ESYSCALL0) (f))(); break;
+    case 1:  ((ESYSCALL1) (f))(_A_(0)); break;
+    case 2:  ((ESYSCALL2) (f))(_A_(0), _A_(1)); break;
+    case 3:  ((ESYSCALL3) (f))(_A_(0), _A_(1), _A_(2)); break;
+    case 4:  ((ESYSCALL4) (f))(_A_(0), _A_(1), _A_(2), _A_(2)); break;
+    case 5:  ((ESYSCALL5) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4)); break;
+    case 6:  ((ESYSCALL6) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5)); break;
+    case 7:  ((ESYSCALL7) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6)); break;
+    case 8:  ((ESYSCALL8) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7)); break;
+    case 9:  ((ESYSCALL9) (f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8)); break;
+    case 10: ((ESYSCALL10)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9)); break;
+    case 11: ((ESYSCALL11)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9), _A_(10)); break;
+    case 12: ((ESYSCALL12)(f))(_A_(0), _A_(1), _A_(2), _A_(3), _A_(4), _A_(5), _A_(6), _A_(7), _A_(8), _A_(9), _A_(10), _A_(11)); break;
     }
     return NULL;
 }

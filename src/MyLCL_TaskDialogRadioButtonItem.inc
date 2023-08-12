@@ -9,6 +9,7 @@
 
 function TaskDialogRadioButtonItem_Create(AOwner: TCollection): TTaskDialogRadioButtonItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TTaskDialogRadioButtonItem.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_GetNamePath(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_ClassType(AObj: TTaskDialogRadioButtonItem): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_ClassName(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_InstanceSize(AObj: TTaskDialogRadioButtonItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_InheritsFrom(AObj: TTaskDialogRadioButtonItem; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_Equals(AObj: TTaskDialogRadioButtonItem; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_GetHashCode(AObj: TTaskDialogRadioButtonItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function TaskDialogRadioButtonItem_ToString(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -95,6 +104,7 @@ end;
 
 function TaskDialogRadioButtonItem_GetModalResult(AObj: TTaskDialogRadioButtonItem): TModalResult; extdecl;
 begin
+{$ifdef UsehandleException}Result := TModalResult(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ModalResult;
   handleExceptionEnd
@@ -109,6 +119,7 @@ end;
 
 function TaskDialogRadioButtonItem_GetCaption(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -123,6 +134,7 @@ end;
 
 function TaskDialogRadioButtonItem_GetDefault(AObj: TTaskDialogRadioButtonItem): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Default;
   handleExceptionEnd
@@ -137,6 +149,7 @@ end;
 
 function TaskDialogRadioButtonItem_GetCollection(AObj: TTaskDialogRadioButtonItem): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -151,6 +164,7 @@ end;
 
 function TaskDialogRadioButtonItem_GetIndex(AObj: TTaskDialogRadioButtonItem): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -165,6 +179,7 @@ end;
 
 function TaskDialogRadioButtonItem_GetDisplayName(AObj: TTaskDialogRadioButtonItem): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

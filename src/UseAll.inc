@@ -1,4 +1,5 @@
   Interfaces, // this includes the LCL widgetset,
+  InterfaceBase,
 {$IFDEF WINDOWS}
   Windows,
   MultiMon,
@@ -10,7 +11,6 @@
   win32proc,
   CommCtrl,
   LazUTF8,
-  InterfaceBase,
 {$ELSE}
   Types,
 {$ENDIF}
@@ -49,6 +49,7 @@
   Printers,
   ComboEx,
   EditBtn,
+  GraphType,
   uLinkLabel,
   uEventCallback,
   ImageButton,
@@ -56,4 +57,6 @@
   xButton,
   uGoForm,
   uRichEdit,
-  uGauge
+  uGauge,
+  LResources,
+  CustApp

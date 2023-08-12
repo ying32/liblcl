@@ -9,6 +9,7 @@
 
 function ImageButton_Create(AOwner: TComponent): TImageButton; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TImageButton.Create(AOwner);
   handleExceptionEnd
@@ -60,6 +61,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_Dragging(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -68,6 +70,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_HasParent(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -92,6 +95,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_Perform(AObj: TImageButton; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -168,6 +172,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_GetTextBuf(AObj: TImageButton; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -176,6 +181,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_GetTextLen(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -192,6 +198,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_FindComponent(AObj: TImageButton; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -200,6 +207,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_GetNamePath(AObj: TImageButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -216,6 +224,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ClassType(AObj: TImageButton): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -224,6 +233,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ClassName(AObj: TImageButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -232,6 +242,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_InstanceSize(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -240,6 +251,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_InheritsFrom(AObj: TImageButton; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -248,6 +260,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_Equals(AObj: TImageButton; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -256,6 +269,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_GetHashCode(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -264,6 +278,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ToString(AObj: TImageButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -328,6 +343,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleDesignToForm(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -336,6 +352,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleFormToDesign(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -344,6 +361,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_Scale96ToForm(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -352,6 +370,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleFormTo96(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -360,6 +379,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_Scale96ToFont(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -368,6 +388,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleFontTo96(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -376,6 +397,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleScreenToFont(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -384,6 +406,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleFontToScreen(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +415,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_Scale96ToScreen(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -400,6 +424,7 @@ end;
 //CLASSMETHOD:
 function ImageButton_ScaleScreenTo96(AObj: TImageButton; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -432,6 +457,7 @@ end;
 
 function ImageButton_GetAction(AObj: TImageButton): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -446,6 +472,7 @@ end;
 
 function ImageButton_GetAlign(AObj: TImageButton): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -460,6 +487,7 @@ end;
 
 function ImageButton_GetAnchors(AObj: TImageButton): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -474,6 +502,7 @@ end;
 
 function ImageButton_GetAutoSize(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -488,6 +517,7 @@ end;
 
 function ImageButton_GetConstraints(AObj: TImageButton): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -502,6 +532,7 @@ end;
 
 function ImageButton_GetCaption(AObj: TImageButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -516,6 +547,7 @@ end;
 
 function ImageButton_GetDragCursor(AObj: TImageButton): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -530,6 +562,7 @@ end;
 
 function ImageButton_GetDragKind(AObj: TImageButton): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -544,6 +577,7 @@ end;
 
 function ImageButton_GetDragMode(AObj: TImageButton): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -558,6 +592,7 @@ end;
 
 function ImageButton_GetEnabled(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -572,6 +607,7 @@ end;
 
 function ImageButton_GetFont(AObj: TImageButton): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -586,6 +622,7 @@ end;
 
 function ImageButton_GetImageCount(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageCount;
   handleExceptionEnd
@@ -600,6 +637,7 @@ end;
 
 function ImageButton_GetOrientation(AObj: TImageButton): TImageOrientation; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TImageOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -614,6 +652,7 @@ end;
 
 function ImageButton_GetModalResult(AObj: TImageButton): TModalResult; extdecl;
 begin
+{$ifdef UsehandleException}Result := TModalResult(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ModalResult;
   handleExceptionEnd
@@ -628,6 +667,7 @@ end;
 
 function ImageButton_GetParentShowHint(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -642,6 +682,7 @@ end;
 
 function ImageButton_GetParentFont(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -656,6 +697,7 @@ end;
 
 function ImageButton_GetPicture(AObj: TImageButton): TPicture; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Picture;
   handleExceptionEnd
@@ -670,6 +712,7 @@ end;
 
 function ImageButton_GetPopupMenu(AObj: TImageButton): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -684,6 +727,7 @@ end;
 
 function ImageButton_GetShowHint(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -698,6 +742,7 @@ end;
 
 function ImageButton_GetShowCaption(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowCaption;
   handleExceptionEnd
@@ -712,6 +757,7 @@ end;
 
 function ImageButton_GetVisible(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -822,6 +868,7 @@ end;
 
 function ImageButton_GetBiDiMode(AObj: TImageButton): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -852,6 +899,7 @@ end;
 
 function ImageButton_GetClientHeight(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -882,6 +930,7 @@ end;
 
 function ImageButton_GetClientWidth(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -896,6 +945,7 @@ end;
 
 function ImageButton_GetControlState(AObj: TImageButton): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -910,6 +960,7 @@ end;
 
 function ImageButton_GetControlStyle(AObj: TImageButton): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -924,6 +975,7 @@ end;
 
 function ImageButton_GetFloating(AObj: TImageButton): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -931,6 +983,7 @@ end;
 
 function ImageButton_GetParent(AObj: TImageButton): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -945,6 +998,7 @@ end;
 
 function ImageButton_GetLeft(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -959,6 +1013,7 @@ end;
 
 function ImageButton_GetTop(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -973,6 +1028,7 @@ end;
 
 function ImageButton_GetWidth(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -987,6 +1043,7 @@ end;
 
 function ImageButton_GetHeight(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1001,6 +1058,7 @@ end;
 
 function ImageButton_GetCursor(AObj: TImageButton): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1015,6 +1073,7 @@ end;
 
 function ImageButton_GetHint(AObj: TImageButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1029,6 +1088,7 @@ end;
 
 function ImageButton_GetComponentCount(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1036,6 +1096,7 @@ end;
 
 function ImageButton_GetComponentIndex(AObj: TImageButton): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1050,6 +1111,7 @@ end;
 
 function ImageButton_GetOwner(AObj: TImageButton): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1057,6 +1119,7 @@ end;
 
 function ImageButton_GetName(AObj: TImageButton): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1071,6 +1134,7 @@ end;
 
 function ImageButton_GetTag(AObj: TImageButton): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1085,6 +1149,7 @@ end;
 
 function ImageButton_GetAnchorSideLeft(AObj: TImageButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1099,6 +1164,7 @@ end;
 
 function ImageButton_GetAnchorSideTop(AObj: TImageButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1113,6 +1179,7 @@ end;
 
 function ImageButton_GetAnchorSideRight(AObj: TImageButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1127,6 +1194,7 @@ end;
 
 function ImageButton_GetAnchorSideBottom(AObj: TImageButton): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1141,6 +1209,7 @@ end;
 
 function ImageButton_GetBorderSpacing(AObj: TImageButton): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1155,6 +1224,7 @@ end;
 
 function ImageButton_GetComponents(AObj: TImageButton; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1162,6 +1232,7 @@ end;
 
 function ImageButton_GetAnchorSide(AObj: TImageButton; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

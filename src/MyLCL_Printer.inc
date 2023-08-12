@@ -9,6 +9,7 @@
 
 function Printer_Create: TPrinter; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPrinter.Create;
   handleExceptionEnd
@@ -64,6 +65,7 @@ end;
 //CLASSMETHOD:
 function Printer_ClassType(AObj: TPrinter): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +74,7 @@ end;
 //CLASSMETHOD:
 function Printer_ClassName(AObj: TPrinter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function Printer_InstanceSize(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +92,7 @@ end;
 //CLASSMETHOD:
 function Printer_InheritsFrom(AObj: TPrinter; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +101,7 @@ end;
 //CLASSMETHOD:
 function Printer_Equals(AObj: TPrinter; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +110,7 @@ end;
 //CLASSMETHOD:
 function Printer_GetHashCode(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +119,7 @@ end;
 //CLASSMETHOD:
 function Printer_ToString(AObj: TPrinter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +127,7 @@ end;
 
 function Printer_GetAborted(AObj: TPrinter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Aborted;
   handleExceptionEnd
@@ -126,6 +135,7 @@ end;
 
 function Printer_GetCanvas(AObj: TPrinter): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -133,6 +143,7 @@ end;
 
 function Printer_GetCopies(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Copies;
   handleExceptionEnd
@@ -147,6 +158,7 @@ end;
 
 function Printer_GetFonts(AObj: TPrinter): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Fonts;
   handleExceptionEnd
@@ -154,6 +166,7 @@ end;
 
 function Printer_GetOrientation(AObj: TPrinter): TPrinterOrientation; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TPrinterOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -168,6 +181,7 @@ end;
 
 function Printer_GetPageHeight(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageHeight;
   handleExceptionEnd
@@ -175,6 +189,7 @@ end;
 
 function Printer_GetPageWidth(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageWidth;
   handleExceptionEnd
@@ -182,6 +197,7 @@ end;
 
 function Printer_GetPageNumber(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageNumber;
   handleExceptionEnd
@@ -189,6 +205,7 @@ end;
 
 function Printer_GetPrinterIndex(AObj: TPrinter): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PrinterIndex;
   handleExceptionEnd
@@ -203,6 +220,7 @@ end;
 
 function Printer_GetPrinting(AObj: TPrinter): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Printing;
   handleExceptionEnd
@@ -210,6 +228,7 @@ end;
 
 function Printer_GetPrinters(AObj: TPrinter): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Printers;
   handleExceptionEnd
@@ -217,6 +236,7 @@ end;
 
 function Printer_GetTitle(AObj: TPrinter): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Title);
   handleExceptionEnd

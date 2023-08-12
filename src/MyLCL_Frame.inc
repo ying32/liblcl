@@ -9,6 +9,7 @@
 
 function Frame_Create(AOwner: TComponent): TFrame; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TFrame.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function Frame_CanFocus(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function Frame_ContainsControl(AObj: TFrame; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function Frame_ControlAtPos(AObj: TFrame; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function Frame_FindChildControl(AObj: TFrame; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function Frame_Focused(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function Frame_HandleAllocated(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -221,6 +228,7 @@ end;
 //CLASSMETHOD:
 function Frame_Dragging(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -229,6 +237,7 @@ end;
 //CLASSMETHOD:
 function Frame_HasParent(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -245,6 +254,7 @@ end;
 //CLASSMETHOD:
 function Frame_Perform(AObj: TFrame; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -297,6 +307,7 @@ end;
 //CLASSMETHOD:
 function Frame_GetTextBuf(AObj: TFrame; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -305,6 +316,7 @@ end;
 //CLASSMETHOD:
 function Frame_GetTextLen(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -321,6 +333,7 @@ end;
 //CLASSMETHOD:
 function Frame_FindComponent(AObj: TFrame; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -329,6 +342,7 @@ end;
 //CLASSMETHOD:
 function Frame_GetNamePath(AObj: TFrame): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -345,6 +359,7 @@ end;
 //CLASSMETHOD:
 function Frame_ClassType(AObj: TFrame): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -353,6 +368,7 @@ end;
 //CLASSMETHOD:
 function Frame_ClassName(AObj: TFrame): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -361,6 +377,7 @@ end;
 //CLASSMETHOD:
 function Frame_InstanceSize(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -369,6 +386,7 @@ end;
 //CLASSMETHOD:
 function Frame_InheritsFrom(AObj: TFrame; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -377,6 +395,7 @@ end;
 //CLASSMETHOD:
 function Frame_Equals(AObj: TFrame; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -385,6 +404,7 @@ end;
 //CLASSMETHOD:
 function Frame_GetHashCode(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -393,6 +413,7 @@ end;
 //CLASSMETHOD:
 function Frame_ToString(AObj: TFrame): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -457,6 +478,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleDesignToForm(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -465,6 +487,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleFormToDesign(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -473,6 +496,7 @@ end;
 //CLASSMETHOD:
 function Frame_Scale96ToForm(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -481,6 +505,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleFormTo96(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -489,6 +514,7 @@ end;
 //CLASSMETHOD:
 function Frame_Scale96ToFont(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -497,6 +523,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleFontTo96(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -505,6 +532,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleScreenToFont(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -513,6 +541,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleFontToScreen(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +550,7 @@ end;
 //CLASSMETHOD:
 function Frame_Scale96ToScreen(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +559,7 @@ end;
 //CLASSMETHOD:
 function Frame_ScaleScreenTo96(AObj: TFrame; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -561,6 +592,7 @@ end;
 
 function Frame_GetDesignTimePPI(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DesignTimePPI;
   handleExceptionEnd
@@ -575,6 +607,7 @@ end;
 
 function Frame_GetAlign(AObj: TFrame): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -589,6 +622,7 @@ end;
 
 function Frame_GetAnchors(AObj: TFrame): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -603,6 +637,7 @@ end;
 
 function Frame_GetAutoScroll(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoScroll;
   handleExceptionEnd
@@ -617,6 +652,7 @@ end;
 
 function Frame_GetAutoSize(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -631,6 +667,7 @@ end;
 
 function Frame_GetBiDiMode(AObj: TFrame): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -645,6 +682,7 @@ end;
 
 function Frame_GetConstraints(AObj: TFrame): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -659,6 +697,7 @@ end;
 
 function Frame_GetDockSite(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -673,6 +712,7 @@ end;
 
 function Frame_GetDoubleBuffered(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -687,6 +727,7 @@ end;
 
 function Frame_GetDragCursor(AObj: TFrame): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -701,6 +742,7 @@ end;
 
 function Frame_GetDragKind(AObj: TFrame): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -715,6 +757,7 @@ end;
 
 function Frame_GetDragMode(AObj: TFrame): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -729,6 +772,7 @@ end;
 
 function Frame_GetEnabled(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -743,6 +787,7 @@ end;
 
 function Frame_GetColor(AObj: TFrame): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -757,6 +802,7 @@ end;
 
 function Frame_GetFont(AObj: TFrame): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -771,6 +817,7 @@ end;
 
 function Frame_GetParentBackground(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentBackground;
   handleExceptionEnd
@@ -785,6 +832,7 @@ end;
 
 function Frame_GetParentColor(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -799,6 +847,7 @@ end;
 
 function Frame_GetParentDoubleBuffered(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -813,6 +862,7 @@ end;
 
 function Frame_GetParentFont(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -827,6 +877,7 @@ end;
 
 function Frame_GetParentShowHint(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -841,6 +892,7 @@ end;
 
 function Frame_GetPopupMenu(AObj: TFrame): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -855,6 +907,7 @@ end;
 
 function Frame_GetShowHint(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -869,6 +922,7 @@ end;
 
 function Frame_GetTabOrder(AObj: TFrame): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -883,6 +937,7 @@ end;
 
 function Frame_GetTabStop(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -897,6 +952,7 @@ end;
 
 function Frame_GetVisible(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1103,6 +1159,7 @@ end;
 
 function Frame_GetHorzScrollBar(AObj: TFrame): TControlScrollBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.HorzScrollBar;
   handleExceptionEnd
@@ -1117,6 +1174,7 @@ end;
 
 function Frame_GetVertScrollBar(AObj: TFrame): TControlScrollBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.VertScrollBar;
   handleExceptionEnd
@@ -1131,6 +1189,7 @@ end;
 
 function Frame_GetDockClientCount(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1138,6 +1197,7 @@ end;
 
 function Frame_GetMouseInClient(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1145,6 +1205,7 @@ end;
 
 function Frame_GetVisibleDockClientCount(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1152,6 +1213,7 @@ end;
 
 function Frame_GetBrush(AObj: TFrame): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1159,6 +1221,7 @@ end;
 
 function Frame_GetControlCount(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1166,6 +1229,7 @@ end;
 
 function Frame_GetHandle(AObj: TFrame): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1173,6 +1237,7 @@ end;
 
 function Frame_GetParentWindow(AObj: TFrame): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1187,6 +1252,7 @@ end;
 
 function Frame_GetShowing(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1194,6 +1260,7 @@ end;
 
 function Frame_GetUseDockManager(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1208,6 +1275,7 @@ end;
 
 function Frame_GetAction(AObj: TFrame): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1238,6 +1306,7 @@ end;
 
 function Frame_GetClientHeight(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1268,6 +1337,7 @@ end;
 
 function Frame_GetClientWidth(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1282,6 +1352,7 @@ end;
 
 function Frame_GetControlState(AObj: TFrame): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1296,6 +1367,7 @@ end;
 
 function Frame_GetControlStyle(AObj: TFrame): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1310,6 +1382,7 @@ end;
 
 function Frame_GetFloating(AObj: TFrame): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1317,6 +1390,7 @@ end;
 
 function Frame_GetParent(AObj: TFrame): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1331,6 +1405,7 @@ end;
 
 function Frame_GetLeft(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1345,6 +1420,7 @@ end;
 
 function Frame_GetTop(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1359,6 +1435,7 @@ end;
 
 function Frame_GetWidth(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1373,6 +1450,7 @@ end;
 
 function Frame_GetHeight(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1387,6 +1465,7 @@ end;
 
 function Frame_GetCursor(AObj: TFrame): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1401,6 +1480,7 @@ end;
 
 function Frame_GetHint(AObj: TFrame): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1415,6 +1495,7 @@ end;
 
 function Frame_GetComponentCount(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1422,6 +1503,7 @@ end;
 
 function Frame_GetComponentIndex(AObj: TFrame): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1436,6 +1518,7 @@ end;
 
 function Frame_GetOwner(AObj: TFrame): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1443,6 +1526,7 @@ end;
 
 function Frame_GetName(AObj: TFrame): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1457,6 +1541,7 @@ end;
 
 function Frame_GetTag(AObj: TFrame): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1471,6 +1556,7 @@ end;
 
 function Frame_GetAnchorSideLeft(AObj: TFrame): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1485,6 +1571,7 @@ end;
 
 function Frame_GetAnchorSideTop(AObj: TFrame): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1499,6 +1586,7 @@ end;
 
 function Frame_GetAnchorSideRight(AObj: TFrame): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1513,6 +1601,7 @@ end;
 
 function Frame_GetAnchorSideBottom(AObj: TFrame): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1527,6 +1616,7 @@ end;
 
 function Frame_GetChildSizing(AObj: TFrame): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1541,6 +1631,7 @@ end;
 
 function Frame_GetBorderSpacing(AObj: TFrame): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1555,6 +1646,7 @@ end;
 
 function Frame_GetDockClients(AObj: TFrame; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1562,6 +1654,7 @@ end;
 
 function Frame_GetControls(AObj: TFrame; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1569,6 +1662,7 @@ end;
 
 function Frame_GetComponents(AObj: TFrame; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1576,6 +1670,7 @@ end;
 
 function Frame_GetAnchorSide(AObj: TFrame; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

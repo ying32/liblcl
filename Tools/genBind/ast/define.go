@@ -166,6 +166,7 @@ var baseTypes = map[string]string{
 	"TBasicAction":         "TAction",
 	"TPersistent":          "TObject",
 	"Byte":                 "i8",
+	"byte":                 "i8",
 	"TBorderWidth":         "i32",
 	"TCustomImageList":     "TImageList",
 	"TUnixDateTime":        "datetime",
@@ -192,6 +193,7 @@ var baseTypes = map[string]string{
 	"LResult":              "LRESULT",
 	"NaturalNumber":        "i32",
 	"TCustomGrid":          "TStringGrid",
+	"TCustomBitmap":        "TBitmap",
 }
 
 func GetTypes(s string) string {

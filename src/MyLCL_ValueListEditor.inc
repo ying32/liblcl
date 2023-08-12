@@ -9,6 +9,7 @@
 
 function ValueListEditor_Create(AOwner: TComponent): TValueListEditor; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TValueListEditor.Create(AOwner);
   handleExceptionEnd
@@ -66,6 +67,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_CanFocus(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -74,6 +76,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ContainsControl(AObj: TValueListEditor; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -83,6 +86,7 @@ end;
 //PARAMS:2=nonPtr
 function ValueListEditor_ControlAtPos(AObj: TValueListEditor; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -107,6 +111,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_FindChildControl(AObj: TValueListEditor; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -123,6 +128,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Focused(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -131,6 +137,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_HandleAllocated(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -255,6 +262,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Dragging(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -263,6 +271,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_HasParent(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -279,6 +288,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Perform(AObj: TValueListEditor; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -323,6 +333,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_GetTextBuf(AObj: TValueListEditor; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -331,6 +342,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_GetTextLen(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -347,6 +359,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_FindComponent(AObj: TValueListEditor; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -355,6 +368,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_GetNamePath(AObj: TValueListEditor): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -371,6 +385,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ClassType(AObj: TValueListEditor): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -379,6 +394,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ClassName(AObj: TValueListEditor): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -387,6 +403,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_InstanceSize(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -395,6 +412,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_InheritsFrom(AObj: TValueListEditor; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -403,6 +421,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Equals(AObj: TValueListEditor; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -411,6 +430,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_GetHashCode(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -419,6 +439,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ToString(AObj: TValueListEditor): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -483,6 +504,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleDesignToForm(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -491,6 +513,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleFormToDesign(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -499,6 +522,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Scale96ToForm(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -507,6 +531,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleFormTo96(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -515,6 +540,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Scale96ToFont(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -523,6 +549,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleFontTo96(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -531,6 +558,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleScreenToFont(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -539,6 +567,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleFontToScreen(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -547,6 +576,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_Scale96ToScreen(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -555,6 +585,7 @@ end;
 //CLASSMETHOD:
 function ValueListEditor_ScaleScreenTo96(AObj: TValueListEditor; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -587,6 +618,7 @@ end;
 
 function ValueListEditor_GetColCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColCount;
   handleExceptionEnd
@@ -601,6 +633,7 @@ end;
 
 function ValueListEditor_GetRowCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowCount;
   handleExceptionEnd
@@ -608,6 +641,7 @@ end;
 
 function ValueListEditor_GetVisibleColCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleColCount;
   handleExceptionEnd
@@ -615,6 +649,7 @@ end;
 
 function ValueListEditor_GetVisibleRowCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleRowCount;
   handleExceptionEnd
@@ -622,6 +657,7 @@ end;
 
 function ValueListEditor_GetAlign(AObj: TValueListEditor): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -636,6 +672,7 @@ end;
 
 function ValueListEditor_GetAnchors(AObj: TValueListEditor): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -650,6 +687,7 @@ end;
 
 function ValueListEditor_GetBiDiMode(AObj: TValueListEditor): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -664,6 +702,7 @@ end;
 
 function ValueListEditor_GetBorderStyle(AObj: TValueListEditor): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -678,6 +717,7 @@ end;
 
 function ValueListEditor_GetColor(AObj: TValueListEditor): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -692,6 +732,7 @@ end;
 
 function ValueListEditor_GetConstraints(AObj: TValueListEditor): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -706,6 +747,7 @@ end;
 
 function ValueListEditor_GetDefaultColWidth(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultColWidth;
   handleExceptionEnd
@@ -720,6 +762,7 @@ end;
 
 function ValueListEditor_GetDefaultDrawing(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultDrawing;
   handleExceptionEnd
@@ -734,6 +777,7 @@ end;
 
 function ValueListEditor_GetDefaultRowHeight(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultRowHeight;
   handleExceptionEnd
@@ -748,6 +792,7 @@ end;
 
 function ValueListEditor_GetDoubleBuffered(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -762,6 +807,7 @@ end;
 
 function ValueListEditor_GetDragCursor(AObj: TValueListEditor): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -776,6 +822,7 @@ end;
 
 function ValueListEditor_GetDragKind(AObj: TValueListEditor): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -790,6 +837,7 @@ end;
 
 function ValueListEditor_GetDragMode(AObj: TValueListEditor): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -804,6 +852,7 @@ end;
 
 function ValueListEditor_GetDropDownRows(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DropDownRows;
   handleExceptionEnd
@@ -818,6 +867,7 @@ end;
 
 function ValueListEditor_GetEnabled(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -832,6 +882,7 @@ end;
 
 function ValueListEditor_GetFixedColor(AObj: TValueListEditor): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedColor;
   handleExceptionEnd
@@ -846,6 +897,7 @@ end;
 
 function ValueListEditor_GetFixedCols(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedCols;
   handleExceptionEnd
@@ -860,6 +912,7 @@ end;
 
 function ValueListEditor_GetFont(AObj: TValueListEditor): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -874,6 +927,7 @@ end;
 
 function ValueListEditor_GetGridLineWidth(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLineWidth;
   handleExceptionEnd
@@ -888,6 +942,7 @@ end;
 
 function ValueListEditor_GetOptions(AObj: TValueListEditor): TGridOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -902,6 +957,7 @@ end;
 
 function ValueListEditor_GetParentColor(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -916,6 +972,7 @@ end;
 
 function ValueListEditor_GetParentDoubleBuffered(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -930,6 +987,7 @@ end;
 
 function ValueListEditor_GetParentFont(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -944,6 +1002,7 @@ end;
 
 function ValueListEditor_GetParentShowHint(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -958,6 +1017,7 @@ end;
 
 function ValueListEditor_GetPopupMenu(AObj: TValueListEditor): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -972,6 +1032,7 @@ end;
 
 function ValueListEditor_GetScrollBars(AObj: TValueListEditor): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -986,6 +1047,7 @@ end;
 
 function ValueListEditor_GetShowHint(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1000,6 +1062,7 @@ end;
 
 function ValueListEditor_GetStrings(AObj: TValueListEditor): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Strings as TValueListStrings;
   handleExceptionEnd
@@ -1014,6 +1077,7 @@ end;
 
 function ValueListEditor_GetTabOrder(AObj: TValueListEditor): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1028,6 +1092,7 @@ end;
 
 function ValueListEditor_GetVisible(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1250,6 +1315,7 @@ end;
 
 function ValueListEditor_GetCanvas(AObj: TValueListEditor): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1257,6 +1323,7 @@ end;
 
 function ValueListEditor_GetCol(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Col;
   handleExceptionEnd
@@ -1271,6 +1338,7 @@ end;
 
 function ValueListEditor_GetEditorMode(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.EditorMode;
   handleExceptionEnd
@@ -1285,6 +1353,7 @@ end;
 
 function ValueListEditor_GetGridHeight(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridHeight;
   handleExceptionEnd
@@ -1292,6 +1361,7 @@ end;
 
 function ValueListEditor_GetGridWidth(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridWidth;
   handleExceptionEnd
@@ -1299,6 +1369,7 @@ end;
 
 function ValueListEditor_GetLeftCol(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LeftCol;
   handleExceptionEnd
@@ -1329,6 +1400,7 @@ end;
 
 function ValueListEditor_GetRow(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Row;
   handleExceptionEnd
@@ -1343,6 +1415,7 @@ end;
 
 function ValueListEditor_GetTopRow(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TopRow;
   handleExceptionEnd
@@ -1357,6 +1430,7 @@ end;
 
 function ValueListEditor_GetTabStop(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1371,6 +1445,7 @@ end;
 
 function ValueListEditor_GetDockClientCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1378,6 +1453,7 @@ end;
 
 function ValueListEditor_GetDockSite(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1392,6 +1468,7 @@ end;
 
 function ValueListEditor_GetMouseInClient(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1399,6 +1476,7 @@ end;
 
 function ValueListEditor_GetVisibleDockClientCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1406,6 +1484,7 @@ end;
 
 function ValueListEditor_GetBrush(AObj: TValueListEditor): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1413,6 +1492,7 @@ end;
 
 function ValueListEditor_GetControlCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1420,6 +1500,7 @@ end;
 
 function ValueListEditor_GetHandle(AObj: TValueListEditor): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1427,6 +1508,7 @@ end;
 
 function ValueListEditor_GetParentWindow(AObj: TValueListEditor): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1441,6 +1523,7 @@ end;
 
 function ValueListEditor_GetShowing(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1448,6 +1531,7 @@ end;
 
 function ValueListEditor_GetUseDockManager(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1462,6 +1546,7 @@ end;
 
 function ValueListEditor_GetAction(AObj: TValueListEditor): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1492,6 +1577,7 @@ end;
 
 function ValueListEditor_GetClientHeight(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1522,6 +1608,7 @@ end;
 
 function ValueListEditor_GetClientWidth(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1536,6 +1623,7 @@ end;
 
 function ValueListEditor_GetControlState(AObj: TValueListEditor): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1550,6 +1638,7 @@ end;
 
 function ValueListEditor_GetControlStyle(AObj: TValueListEditor): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1564,6 +1653,7 @@ end;
 
 function ValueListEditor_GetFloating(AObj: TValueListEditor): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1571,6 +1661,7 @@ end;
 
 function ValueListEditor_GetParent(AObj: TValueListEditor): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1585,6 +1676,7 @@ end;
 
 function ValueListEditor_GetLeft(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1599,6 +1691,7 @@ end;
 
 function ValueListEditor_GetTop(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1613,6 +1706,7 @@ end;
 
 function ValueListEditor_GetWidth(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1627,6 +1721,7 @@ end;
 
 function ValueListEditor_GetHeight(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1641,6 +1736,7 @@ end;
 
 function ValueListEditor_GetCursor(AObj: TValueListEditor): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1655,6 +1751,7 @@ end;
 
 function ValueListEditor_GetHint(AObj: TValueListEditor): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1669,6 +1766,7 @@ end;
 
 function ValueListEditor_GetComponentCount(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1676,6 +1774,7 @@ end;
 
 function ValueListEditor_GetComponentIndex(AObj: TValueListEditor): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1690,6 +1789,7 @@ end;
 
 function ValueListEditor_GetOwner(AObj: TValueListEditor): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1697,6 +1797,7 @@ end;
 
 function ValueListEditor_GetName(AObj: TValueListEditor): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1711,6 +1812,7 @@ end;
 
 function ValueListEditor_GetTag(AObj: TValueListEditor): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1725,6 +1827,7 @@ end;
 
 function ValueListEditor_GetAnchorSideLeft(AObj: TValueListEditor): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1739,6 +1842,7 @@ end;
 
 function ValueListEditor_GetAnchorSideTop(AObj: TValueListEditor): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1753,6 +1857,7 @@ end;
 
 function ValueListEditor_GetAnchorSideRight(AObj: TValueListEditor): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1767,6 +1872,7 @@ end;
 
 function ValueListEditor_GetAnchorSideBottom(AObj: TValueListEditor): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1781,6 +1887,7 @@ end;
 
 function ValueListEditor_GetChildSizing(AObj: TValueListEditor): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1795,6 +1902,7 @@ end;
 
 function ValueListEditor_GetBorderSpacing(AObj: TValueListEditor): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1809,6 +1917,7 @@ end;
 
 function ValueListEditor_GetCells(AObj: TValueListEditor; ACol: Integer; ARow: Integer): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Cells[ACol, ARow]);
   handleExceptionEnd
@@ -1823,6 +1932,7 @@ end;
 
 function ValueListEditor_GetValues(AObj: TValueListEditor; Key: PChar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Values[Key]);
   handleExceptionEnd
@@ -1837,6 +1947,7 @@ end;
 
 function ValueListEditor_GetColWidths(AObj: TValueListEditor; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColWidths[Index];
   handleExceptionEnd
@@ -1851,6 +1962,7 @@ end;
 
 function ValueListEditor_GetRowHeights(AObj: TValueListEditor; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowHeights[Index];
   handleExceptionEnd
@@ -1865,6 +1977,7 @@ end;
 
 function ValueListEditor_GetDockClients(AObj: TValueListEditor; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1872,6 +1985,7 @@ end;
 
 function ValueListEditor_GetControls(AObj: TValueListEditor; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1879,6 +1993,7 @@ end;
 
 function ValueListEditor_GetComponents(AObj: TValueListEditor; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1886,6 +2001,7 @@ end;
 
 function ValueListEditor_GetAnchorSide(AObj: TValueListEditor; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

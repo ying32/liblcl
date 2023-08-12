@@ -9,6 +9,7 @@
 
 function TreeView_Create(AOwner: TComponent): TTreeView; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TTreeView.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function TreeView_AlphaSort(AObj: TTreeView; ARecurse: LongBool): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AlphaSort(ARecurse);
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //CLASSMETHOD:
 function TreeView_GetHitTestInfoAt(AObj: TTreeView; X: Integer; Y: Integer): THitTests; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHitTestInfoAt(X, Y);
   handleExceptionEnd
@@ -56,6 +59,7 @@ end;
 //CLASSMETHOD:
 function TreeView_GetNodeAt(AObj: TTreeView; X: Integer; Y: Integer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetNodeAt(X, Y);
   handleExceptionEnd
@@ -64,6 +68,7 @@ end;
 //CLASSMETHOD:
 function TreeView_IsEditing(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsEditing;
   handleExceptionEnd
@@ -112,6 +117,7 @@ end;
 //CLASSMETHOD:
 function TreeView_CustomSort(AObj: TTreeView; SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CustomSort(SortProc, Data, ARecurse);
   handleExceptionEnd
@@ -120,6 +126,7 @@ end;
 //CLASSMETHOD:
 function TreeView_CanFocus(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -128,6 +135,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ContainsControl(AObj: TTreeView; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -137,6 +145,7 @@ end;
 //PARAMS:2=nonPtr
 function TreeView_ControlAtPos(AObj: TTreeView; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -161,6 +170,7 @@ end;
 //CLASSMETHOD:
 function TreeView_FindChildControl(AObj: TTreeView; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -177,6 +187,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Focused(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -185,6 +196,7 @@ end;
 //CLASSMETHOD:
 function TreeView_HandleAllocated(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -309,6 +321,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Dragging(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -317,6 +330,7 @@ end;
 //CLASSMETHOD:
 function TreeView_HasParent(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -333,6 +347,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Perform(AObj: TTreeView; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -385,6 +400,7 @@ end;
 //CLASSMETHOD:
 function TreeView_GetTextBuf(AObj: TTreeView; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -393,6 +409,7 @@ end;
 //CLASSMETHOD:
 function TreeView_GetTextLen(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -409,6 +426,7 @@ end;
 //CLASSMETHOD:
 function TreeView_FindComponent(AObj: TTreeView; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -417,6 +435,7 @@ end;
 //CLASSMETHOD:
 function TreeView_GetNamePath(AObj: TTreeView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -433,6 +452,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ClassType(AObj: TTreeView): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -441,6 +461,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ClassName(AObj: TTreeView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function TreeView_InstanceSize(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function TreeView_InheritsFrom(AObj: TTreeView; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Equals(AObj: TTreeView; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function TreeView_GetHashCode(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ToString(AObj: TTreeView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -545,6 +571,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleDesignToForm(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -553,6 +580,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleFormToDesign(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -561,6 +589,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Scale96ToForm(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -569,6 +598,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleFormTo96(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -577,6 +607,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Scale96ToFont(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -585,6 +616,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleFontTo96(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -593,6 +625,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleScreenToFont(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -601,6 +634,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleFontToScreen(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -609,6 +643,7 @@ end;
 //CLASSMETHOD:
 function TreeView_Scale96ToScreen(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -617,6 +652,7 @@ end;
 //CLASSMETHOD:
 function TreeView_ScaleScreenTo96(AObj: TTreeView; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -649,6 +685,7 @@ end;
 
 function TreeView_GetDefaultItemHeight(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultItemHeight;
   handleExceptionEnd
@@ -663,6 +700,7 @@ end;
 
 function TreeView_GetExpandSignColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ExpandSignColor;
   handleExceptionEnd
@@ -677,6 +715,7 @@ end;
 
 function TreeView_GetExpandSignSize(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ExpandSignSize;
   handleExceptionEnd
@@ -691,6 +730,7 @@ end;
 
 function TreeView_GetExpandSignType(AObj: TTreeView): TTreeViewExpandSignType; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTreeViewExpandSignType);{$endif}
   handleExceptionBegin
   Result :=  AObj.ExpandSignType;
   handleExceptionEnd
@@ -705,6 +745,7 @@ end;
 
 function TreeView_GetHotTrackColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HotTrackColor;
   handleExceptionEnd
@@ -719,6 +760,7 @@ end;
 
 function TreeView_GetImagesWidth(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImagesWidth;
   handleExceptionEnd
@@ -733,6 +775,7 @@ end;
 
 function TreeView_GetOptions(AObj: TTreeView): TTreeViewOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -747,6 +790,7 @@ end;
 
 function TreeView_GetScrollBars(AObj: TTreeView): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -761,6 +805,7 @@ end;
 
 function TreeView_GetSelectionColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelectionColor;
   handleExceptionEnd
@@ -775,6 +820,7 @@ end;
 
 function TreeView_GetSelectionFontColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelectionFontColor;
   handleExceptionEnd
@@ -789,6 +835,7 @@ end;
 
 function TreeView_GetSelectionFontColorUsed(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.SelectionFontColorUsed;
   handleExceptionEnd
@@ -803,6 +850,7 @@ end;
 
 function TreeView_GetSeparatorColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SeparatorColor;
   handleExceptionEnd
@@ -817,6 +865,7 @@ end;
 
 function TreeView_GetStateImagesWidth(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.StateImagesWidth;
   handleExceptionEnd
@@ -831,6 +880,7 @@ end;
 
 function TreeView_GetToolTips(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ToolTips;
   handleExceptionEnd
@@ -845,6 +895,7 @@ end;
 
 function TreeView_GetTreeLineColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TreeLineColor;
   handleExceptionEnd
@@ -859,6 +910,7 @@ end;
 
 function TreeView_GetTreeLinePenStyle(AObj: TTreeView): TPenStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TPenStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.TreeLinePenStyle;
   handleExceptionEnd
@@ -873,6 +925,7 @@ end;
 
 function TreeView_GetAlign(AObj: TTreeView): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -887,6 +940,7 @@ end;
 
 function TreeView_GetAnchors(AObj: TTreeView): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -901,6 +955,7 @@ end;
 
 function TreeView_GetAutoExpand(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoExpand;
   handleExceptionEnd
@@ -915,6 +970,7 @@ end;
 
 function TreeView_GetBiDiMode(AObj: TTreeView): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -929,6 +985,7 @@ end;
 
 function TreeView_GetBorderStyle(AObj: TTreeView): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -943,6 +1000,7 @@ end;
 
 function TreeView_GetBorderWidth(AObj: TTreeView): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -957,6 +1015,7 @@ end;
 
 function TreeView_GetColor(AObj: TTreeView): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -971,6 +1030,7 @@ end;
 
 function TreeView_GetConstraints(AObj: TTreeView): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -985,6 +1045,7 @@ end;
 
 function TreeView_GetDoubleBuffered(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -999,6 +1060,7 @@ end;
 
 function TreeView_GetDragKind(AObj: TTreeView): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1013,6 +1075,7 @@ end;
 
 function TreeView_GetDragCursor(AObj: TTreeView): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -1027,6 +1090,7 @@ end;
 
 function TreeView_GetDragMode(AObj: TTreeView): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1041,6 +1105,7 @@ end;
 
 function TreeView_GetEnabled(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -1055,6 +1120,7 @@ end;
 
 function TreeView_GetFont(AObj: TTreeView): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -1069,6 +1135,7 @@ end;
 
 function TreeView_GetHideSelection(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -1083,6 +1150,7 @@ end;
 
 function TreeView_GetHotTrack(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HotTrack;
   handleExceptionEnd
@@ -1097,6 +1165,7 @@ end;
 
 function TreeView_GetImages(AObj: TTreeView): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -1111,6 +1180,7 @@ end;
 
 function TreeView_GetIndent(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Indent;
   handleExceptionEnd
@@ -1125,6 +1195,7 @@ end;
 
 function TreeView_GetMultiSelect(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiSelect;
   handleExceptionEnd
@@ -1139,6 +1210,7 @@ end;
 
 function TreeView_GetMultiSelectStyle(AObj: TTreeView): TMultiSelectStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiSelectStyle;
   handleExceptionEnd
@@ -1153,6 +1225,7 @@ end;
 
 function TreeView_GetParentColor(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -1167,6 +1240,7 @@ end;
 
 function TreeView_GetParentDoubleBuffered(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1181,6 +1255,7 @@ end;
 
 function TreeView_GetParentFont(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -1195,6 +1270,7 @@ end;
 
 function TreeView_GetParentShowHint(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -1209,6 +1285,7 @@ end;
 
 function TreeView_GetPopupMenu(AObj: TTreeView): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1223,6 +1300,7 @@ end;
 
 function TreeView_GetReadOnly(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -1237,6 +1315,7 @@ end;
 
 function TreeView_GetRightClickSelect(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RightClickSelect;
   handleExceptionEnd
@@ -1251,6 +1330,7 @@ end;
 
 function TreeView_GetRowSelect(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.RowSelect;
   handleExceptionEnd
@@ -1265,6 +1345,7 @@ end;
 
 function TreeView_GetShowButtons(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowButtons;
   handleExceptionEnd
@@ -1279,6 +1360,7 @@ end;
 
 function TreeView_GetShowHint(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1293,6 +1375,7 @@ end;
 
 function TreeView_GetShowLines(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowLines;
   handleExceptionEnd
@@ -1307,6 +1390,7 @@ end;
 
 function TreeView_GetShowRoot(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowRoot;
   handleExceptionEnd
@@ -1321,6 +1405,7 @@ end;
 
 function TreeView_GetSortType(AObj: TTreeView): TSortType; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TSortType);{$endif}
   handleExceptionBegin
   Result :=  AObj.SortType;
   handleExceptionEnd
@@ -1335,6 +1420,7 @@ end;
 
 function TreeView_GetStateImages(AObj: TTreeView): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.StateImages;
   handleExceptionEnd
@@ -1349,6 +1435,7 @@ end;
 
 function TreeView_GetTabOrder(AObj: TTreeView): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1363,6 +1450,7 @@ end;
 
 function TreeView_GetTabStop(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1377,6 +1465,7 @@ end;
 
 function TreeView_GetVisible(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1647,6 +1736,7 @@ end;
 
 function TreeView_GetItems(AObj: TTreeView): TTreeNodes; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -1661,6 +1751,7 @@ end;
 
 function TreeView_GetCanvas(AObj: TTreeView): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1668,6 +1759,7 @@ end;
 
 function TreeView_GetDropTarget(AObj: TTreeView): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DropTarget;
   handleExceptionEnd
@@ -1682,6 +1774,7 @@ end;
 
 function TreeView_GetSelected(AObj: TTreeView): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Selected;
   handleExceptionEnd
@@ -1696,6 +1789,7 @@ end;
 
 function TreeView_GetTopItem(AObj: TTreeView): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.TopItem;
   handleExceptionEnd
@@ -1710,6 +1804,7 @@ end;
 
 function TreeView_GetSelectionCount(AObj: TTreeView): Cardinal; extdecl;
 begin
+{$ifdef UsehandleException}Result := Cardinal(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelectionCount;
   handleExceptionEnd
@@ -1717,6 +1812,7 @@ end;
 
 function TreeView_GetDockClientCount(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1724,6 +1820,7 @@ end;
 
 function TreeView_GetDockSite(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1738,6 +1835,7 @@ end;
 
 function TreeView_GetMouseInClient(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1745,6 +1843,7 @@ end;
 
 function TreeView_GetVisibleDockClientCount(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1752,6 +1851,7 @@ end;
 
 function TreeView_GetBrush(AObj: TTreeView): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1759,6 +1859,7 @@ end;
 
 function TreeView_GetControlCount(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1766,6 +1867,7 @@ end;
 
 function TreeView_GetHandle(AObj: TTreeView): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1773,6 +1875,7 @@ end;
 
 function TreeView_GetParentWindow(AObj: TTreeView): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1787,6 +1890,7 @@ end;
 
 function TreeView_GetShowing(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1794,6 +1898,7 @@ end;
 
 function TreeView_GetUseDockManager(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1808,6 +1913,7 @@ end;
 
 function TreeView_GetAction(AObj: TTreeView): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1838,6 +1944,7 @@ end;
 
 function TreeView_GetClientHeight(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1868,6 +1975,7 @@ end;
 
 function TreeView_GetClientWidth(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1882,6 +1990,7 @@ end;
 
 function TreeView_GetControlState(AObj: TTreeView): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1896,6 +2005,7 @@ end;
 
 function TreeView_GetControlStyle(AObj: TTreeView): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1910,6 +2020,7 @@ end;
 
 function TreeView_GetFloating(AObj: TTreeView): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1917,6 +2028,7 @@ end;
 
 function TreeView_GetParent(AObj: TTreeView): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1931,6 +2043,7 @@ end;
 
 function TreeView_GetLeft(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1945,6 +2058,7 @@ end;
 
 function TreeView_GetTop(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1959,6 +2073,7 @@ end;
 
 function TreeView_GetWidth(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1973,6 +2088,7 @@ end;
 
 function TreeView_GetHeight(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1987,6 +2103,7 @@ end;
 
 function TreeView_GetCursor(AObj: TTreeView): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -2001,6 +2118,7 @@ end;
 
 function TreeView_GetHint(AObj: TTreeView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -2015,6 +2133,7 @@ end;
 
 function TreeView_GetComponentCount(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -2022,6 +2141,7 @@ end;
 
 function TreeView_GetComponentIndex(AObj: TTreeView): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -2036,6 +2156,7 @@ end;
 
 function TreeView_GetOwner(AObj: TTreeView): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -2043,6 +2164,7 @@ end;
 
 function TreeView_GetName(AObj: TTreeView): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -2057,6 +2179,7 @@ end;
 
 function TreeView_GetTag(AObj: TTreeView): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -2071,6 +2194,7 @@ end;
 
 function TreeView_GetAnchorSideLeft(AObj: TTreeView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -2085,6 +2209,7 @@ end;
 
 function TreeView_GetAnchorSideTop(AObj: TTreeView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -2099,6 +2224,7 @@ end;
 
 function TreeView_GetAnchorSideRight(AObj: TTreeView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -2113,6 +2239,7 @@ end;
 
 function TreeView_GetAnchorSideBottom(AObj: TTreeView): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -2127,6 +2254,7 @@ end;
 
 function TreeView_GetChildSizing(AObj: TTreeView): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -2141,6 +2269,7 @@ end;
 
 function TreeView_GetBorderSpacing(AObj: TTreeView): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -2155,6 +2284,7 @@ end;
 
 function TreeView_GetSelections(AObj: TTreeView; Index: Integer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Selections[Index];
   handleExceptionEnd
@@ -2162,6 +2292,7 @@ end;
 
 function TreeView_GetDockClients(AObj: TTreeView; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -2169,6 +2300,7 @@ end;
 
 function TreeView_GetControls(AObj: TTreeView; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -2176,6 +2308,7 @@ end;
 
 function TreeView_GetComponents(AObj: TTreeView; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -2183,6 +2316,7 @@ end;
 
 function TreeView_GetAnchorSide(AObj: TTreeView; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

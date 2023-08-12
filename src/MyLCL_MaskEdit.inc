@@ -9,6 +9,7 @@
 
 function MaskEdit_Create(AOwner: TComponent): TMaskEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMaskEdit.Create(AOwner);
   handleExceptionEnd
@@ -40,6 +41,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_GetTextLen(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -96,6 +98,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_CanFocus(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -104,6 +107,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ContainsControl(AObj: TMaskEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -113,6 +117,7 @@ end;
 //PARAMS:2=nonPtr
 function MaskEdit_ControlAtPos(AObj: TMaskEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -137,6 +142,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_FindChildControl(AObj: TMaskEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -153,6 +159,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Focused(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -161,6 +168,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_HandleAllocated(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -285,6 +293,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Dragging(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -293,6 +302,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_HasParent(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -309,6 +319,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Perform(AObj: TMaskEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -361,6 +372,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_GetTextBuf(AObj: TMaskEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -377,6 +389,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_FindComponent(AObj: TMaskEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -385,6 +398,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_GetNamePath(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -401,6 +415,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ClassType(AObj: TMaskEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -409,6 +424,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ClassName(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -417,6 +433,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_InstanceSize(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -425,6 +442,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_InheritsFrom(AObj: TMaskEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -433,6 +451,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Equals(AObj: TMaskEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -441,6 +460,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_GetHashCode(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -449,6 +469,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ToString(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -513,6 +534,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleDesignToForm(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -521,6 +543,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleFormToDesign(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -529,6 +552,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Scale96ToForm(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -537,6 +561,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleFormTo96(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -545,6 +570,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Scale96ToFont(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -553,6 +579,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleFontTo96(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -561,6 +588,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleScreenToFont(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -569,6 +597,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleFontToScreen(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +606,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_Scale96ToScreen(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -585,6 +615,7 @@ end;
 //CLASSMETHOD:
 function MaskEdit_ScaleScreenTo96(AObj: TMaskEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -617,6 +648,7 @@ end;
 
 function MaskEdit_GetAlign(AObj: TMaskEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -631,6 +663,7 @@ end;
 
 function MaskEdit_GetAlignment(AObj: TMaskEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -645,6 +678,7 @@ end;
 
 function MaskEdit_GetAnchors(AObj: TMaskEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -659,6 +693,7 @@ end;
 
 function MaskEdit_GetAutoSelect(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelect;
   handleExceptionEnd
@@ -673,6 +708,7 @@ end;
 
 function MaskEdit_GetAutoSize(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -687,6 +723,7 @@ end;
 
 function MaskEdit_GetBiDiMode(AObj: TMaskEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -701,6 +738,7 @@ end;
 
 function MaskEdit_GetBorderStyle(AObj: TMaskEdit): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -715,6 +753,7 @@ end;
 
 function MaskEdit_GetCharCase(AObj: TMaskEdit): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -729,6 +768,7 @@ end;
 
 function MaskEdit_GetColor(AObj: TMaskEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -743,6 +783,7 @@ end;
 
 function MaskEdit_GetConstraints(AObj: TMaskEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -757,6 +798,7 @@ end;
 
 function MaskEdit_GetDoubleBuffered(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -771,6 +813,7 @@ end;
 
 function MaskEdit_GetDragCursor(AObj: TMaskEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -785,6 +828,7 @@ end;
 
 function MaskEdit_GetDragKind(AObj: TMaskEdit): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -799,6 +843,7 @@ end;
 
 function MaskEdit_GetDragMode(AObj: TMaskEdit): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -813,6 +858,7 @@ end;
 
 function MaskEdit_GetEnabled(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -827,6 +873,7 @@ end;
 
 function MaskEdit_GetFont(AObj: TMaskEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -841,6 +888,7 @@ end;
 
 function MaskEdit_GetMaxLength(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -855,6 +903,7 @@ end;
 
 function MaskEdit_GetParentColor(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -869,6 +918,7 @@ end;
 
 function MaskEdit_GetParentDoubleBuffered(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -883,6 +933,7 @@ end;
 
 function MaskEdit_GetParentFont(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -897,6 +948,7 @@ end;
 
 function MaskEdit_GetParentShowHint(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -911,6 +963,7 @@ end;
 
 function MaskEdit_GetPasswordChar(AObj: TMaskEdit): Char; extdecl;
 begin
+{$ifdef UsehandleException}Result := #0;{$endif}
   handleExceptionBegin
   Result :=  AObj.PasswordChar;
   handleExceptionEnd
@@ -925,6 +978,7 @@ end;
 
 function MaskEdit_GetPopupMenu(AObj: TMaskEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -939,6 +993,7 @@ end;
 
 function MaskEdit_GetReadOnly(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -953,6 +1008,7 @@ end;
 
 function MaskEdit_GetShowHint(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -967,6 +1023,7 @@ end;
 
 function MaskEdit_GetTabOrder(AObj: TMaskEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -981,6 +1038,7 @@ end;
 
 function MaskEdit_GetTabStop(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -995,6 +1053,7 @@ end;
 
 function MaskEdit_GetText(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1009,6 +1068,7 @@ end;
 
 function MaskEdit_GetTextHint(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1023,6 +1083,7 @@ end;
 
 function MaskEdit_GetVisible(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1181,6 +1242,7 @@ end;
 
 function MaskEdit_GetIsMasked(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsMasked;
   handleExceptionEnd
@@ -1188,6 +1250,7 @@ end;
 
 function MaskEdit_GetEditText(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.EditText);
   handleExceptionEnd
@@ -1202,6 +1265,7 @@ end;
 
 function MaskEdit_GetCanUndo(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1209,6 +1273,7 @@ end;
 
 function MaskEdit_GetModified(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1223,6 +1288,7 @@ end;
 
 function MaskEdit_GetSelLength(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1237,6 +1303,7 @@ end;
 
 function MaskEdit_GetSelStart(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1251,6 +1318,7 @@ end;
 
 function MaskEdit_GetSelText(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1265,6 +1333,7 @@ end;
 
 function MaskEdit_GetDockClientCount(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1272,6 +1341,7 @@ end;
 
 function MaskEdit_GetDockSite(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1286,6 +1356,7 @@ end;
 
 function MaskEdit_GetMouseInClient(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1293,6 +1364,7 @@ end;
 
 function MaskEdit_GetVisibleDockClientCount(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1300,6 +1372,7 @@ end;
 
 function MaskEdit_GetBrush(AObj: TMaskEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1307,6 +1380,7 @@ end;
 
 function MaskEdit_GetControlCount(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1314,6 +1388,7 @@ end;
 
 function MaskEdit_GetHandle(AObj: TMaskEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1321,6 +1396,7 @@ end;
 
 function MaskEdit_GetParentWindow(AObj: TMaskEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1335,6 +1411,7 @@ end;
 
 function MaskEdit_GetShowing(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1342,6 +1419,7 @@ end;
 
 function MaskEdit_GetUseDockManager(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1356,6 +1434,7 @@ end;
 
 function MaskEdit_GetAction(AObj: TMaskEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1386,6 +1465,7 @@ end;
 
 function MaskEdit_GetClientHeight(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1416,6 +1496,7 @@ end;
 
 function MaskEdit_GetClientWidth(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1430,6 +1511,7 @@ end;
 
 function MaskEdit_GetControlState(AObj: TMaskEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1444,6 +1526,7 @@ end;
 
 function MaskEdit_GetControlStyle(AObj: TMaskEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1458,6 +1541,7 @@ end;
 
 function MaskEdit_GetFloating(AObj: TMaskEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1465,6 +1549,7 @@ end;
 
 function MaskEdit_GetParent(AObj: TMaskEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1479,6 +1564,7 @@ end;
 
 function MaskEdit_GetLeft(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1493,6 +1579,7 @@ end;
 
 function MaskEdit_GetTop(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1507,6 +1594,7 @@ end;
 
 function MaskEdit_GetWidth(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1521,6 +1609,7 @@ end;
 
 function MaskEdit_GetHeight(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1535,6 +1624,7 @@ end;
 
 function MaskEdit_GetCursor(AObj: TMaskEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1549,6 +1639,7 @@ end;
 
 function MaskEdit_GetHint(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1563,6 +1654,7 @@ end;
 
 function MaskEdit_GetComponentCount(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1570,6 +1662,7 @@ end;
 
 function MaskEdit_GetComponentIndex(AObj: TMaskEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1584,6 +1677,7 @@ end;
 
 function MaskEdit_GetOwner(AObj: TMaskEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1591,6 +1685,7 @@ end;
 
 function MaskEdit_GetName(AObj: TMaskEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1605,6 +1700,7 @@ end;
 
 function MaskEdit_GetTag(AObj: TMaskEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1619,6 +1715,7 @@ end;
 
 function MaskEdit_GetAnchorSideLeft(AObj: TMaskEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1633,6 +1730,7 @@ end;
 
 function MaskEdit_GetAnchorSideTop(AObj: TMaskEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1647,6 +1745,7 @@ end;
 
 function MaskEdit_GetAnchorSideRight(AObj: TMaskEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1661,6 +1760,7 @@ end;
 
 function MaskEdit_GetAnchorSideBottom(AObj: TMaskEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1675,6 +1775,7 @@ end;
 
 function MaskEdit_GetChildSizing(AObj: TMaskEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1689,6 +1790,7 @@ end;
 
 function MaskEdit_GetBorderSpacing(AObj: TMaskEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1703,6 +1805,7 @@ end;
 
 function MaskEdit_GetDockClients(AObj: TMaskEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1710,6 +1813,7 @@ end;
 
 function MaskEdit_GetControls(AObj: TMaskEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1717,6 +1821,7 @@ end;
 
 function MaskEdit_GetComponents(AObj: TMaskEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1724,6 +1829,7 @@ end;
 
 function MaskEdit_GetAnchorSide(AObj: TMaskEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

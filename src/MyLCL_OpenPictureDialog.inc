@@ -9,6 +9,7 @@
 
 function OpenPictureDialog_Create(AOwner: TComponent): TOpenPictureDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TOpenPictureDialog.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_Execute(AObj: TOpenPictureDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_FindComponent(AObj: TOpenPictureDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_GetNamePath(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_HasParent(AObj: TOpenPictureDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_ClassType(AObj: TOpenPictureDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_ClassName(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_InstanceSize(AObj: TOpenPictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_InheritsFrom(AObj: TOpenPictureDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_Equals(AObj: TOpenPictureDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_GetHashCode(AObj: TOpenPictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function OpenPictureDialog_ToString(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +131,7 @@ end;
 
 function OpenPictureDialog_GetFilter(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Filter);
   handleExceptionEnd
@@ -133,6 +146,7 @@ end;
 
 function OpenPictureDialog_GetFiles(AObj: TOpenPictureDialog): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Files;
   handleExceptionEnd
@@ -140,6 +154,7 @@ end;
 
 function OpenPictureDialog_GetDefaultExt(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DefaultExt);
   handleExceptionEnd
@@ -154,6 +169,7 @@ end;
 
 function OpenPictureDialog_GetFileName(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.FileName);
   handleExceptionEnd
@@ -168,6 +184,7 @@ end;
 
 function OpenPictureDialog_GetFilterIndex(AObj: TOpenPictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FilterIndex;
   handleExceptionEnd
@@ -182,6 +199,7 @@ end;
 
 function OpenPictureDialog_GetInitialDir(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.InitialDir);
   handleExceptionEnd
@@ -196,6 +214,7 @@ end;
 
 function OpenPictureDialog_GetOptions(AObj: TOpenPictureDialog): TOpenOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -210,6 +229,7 @@ end;
 
 function OpenPictureDialog_GetTitle(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Title);
   handleExceptionEnd
@@ -224,6 +244,7 @@ end;
 
 function OpenPictureDialog_GetHandle(AObj: TOpenPictureDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -247,6 +268,7 @@ end;
 
 function OpenPictureDialog_GetComponentCount(AObj: TOpenPictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -254,6 +276,7 @@ end;
 
 function OpenPictureDialog_GetComponentIndex(AObj: TOpenPictureDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -268,6 +291,7 @@ end;
 
 function OpenPictureDialog_GetOwner(AObj: TOpenPictureDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -275,6 +299,7 @@ end;
 
 function OpenPictureDialog_GetName(AObj: TOpenPictureDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -289,6 +314,7 @@ end;
 
 function OpenPictureDialog_GetTag(AObj: TOpenPictureDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -303,6 +329,7 @@ end;
 
 function OpenPictureDialog_GetComponents(AObj: TOpenPictureDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

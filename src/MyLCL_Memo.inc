@@ -9,6 +9,7 @@
 
 function Memo_Create(AOwner: TComponent): TMemo; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMemo.Create(AOwner);
   handleExceptionEnd
@@ -88,6 +89,7 @@ end;
 //CLASSMETHOD:
 function Memo_CanFocus(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -96,6 +98,7 @@ end;
 //CLASSMETHOD:
 function Memo_ContainsControl(AObj: TMemo; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -105,6 +108,7 @@ end;
 //PARAMS:2=nonPtr
 function Memo_ControlAtPos(AObj: TMemo; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -129,6 +133,7 @@ end;
 //CLASSMETHOD:
 function Memo_FindChildControl(AObj: TMemo; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -145,6 +150,7 @@ end;
 //CLASSMETHOD:
 function Memo_Focused(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -153,6 +159,7 @@ end;
 //CLASSMETHOD:
 function Memo_HandleAllocated(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -277,6 +284,7 @@ end;
 //CLASSMETHOD:
 function Memo_Dragging(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -285,6 +293,7 @@ end;
 //CLASSMETHOD:
 function Memo_HasParent(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -301,6 +310,7 @@ end;
 //CLASSMETHOD:
 function Memo_Perform(AObj: TMemo; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -353,6 +363,7 @@ end;
 //CLASSMETHOD:
 function Memo_GetTextBuf(AObj: TMemo; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -361,6 +372,7 @@ end;
 //CLASSMETHOD:
 function Memo_GetTextLen(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -377,6 +389,7 @@ end;
 //CLASSMETHOD:
 function Memo_FindComponent(AObj: TMemo; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -385,6 +398,7 @@ end;
 //CLASSMETHOD:
 function Memo_GetNamePath(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -401,6 +415,7 @@ end;
 //CLASSMETHOD:
 function Memo_ClassType(AObj: TMemo): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -409,6 +424,7 @@ end;
 //CLASSMETHOD:
 function Memo_ClassName(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -417,6 +433,7 @@ end;
 //CLASSMETHOD:
 function Memo_InstanceSize(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -425,6 +442,7 @@ end;
 //CLASSMETHOD:
 function Memo_InheritsFrom(AObj: TMemo; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -433,6 +451,7 @@ end;
 //CLASSMETHOD:
 function Memo_Equals(AObj: TMemo; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -441,6 +460,7 @@ end;
 //CLASSMETHOD:
 function Memo_GetHashCode(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -449,6 +469,7 @@ end;
 //CLASSMETHOD:
 function Memo_ToString(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -513,6 +534,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleDesignToForm(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -521,6 +543,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleFormToDesign(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -529,6 +552,7 @@ end;
 //CLASSMETHOD:
 function Memo_Scale96ToForm(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -537,6 +561,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleFormTo96(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -545,6 +570,7 @@ end;
 //CLASSMETHOD:
 function Memo_Scale96ToFont(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -553,6 +579,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleFontTo96(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -561,6 +588,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleScreenToFont(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -569,6 +597,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleFontToScreen(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +606,7 @@ end;
 //CLASSMETHOD:
 function Memo_Scale96ToScreen(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -585,6 +615,7 @@ end;
 //CLASSMETHOD:
 function Memo_ScaleScreenTo96(AObj: TMemo; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -617,6 +648,7 @@ end;
 
 function Memo_GetAlign(AObj: TMemo): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -631,6 +663,7 @@ end;
 
 function Memo_GetAlignment(AObj: TMemo): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -645,6 +678,7 @@ end;
 
 function Memo_GetAnchors(AObj: TMemo): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -659,6 +693,7 @@ end;
 
 function Memo_GetBiDiMode(AObj: TMemo): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -673,6 +708,7 @@ end;
 
 function Memo_GetBorderStyle(AObj: TMemo): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -687,6 +723,7 @@ end;
 
 function Memo_GetCharCase(AObj: TMemo): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -701,6 +738,7 @@ end;
 
 function Memo_GetColor(AObj: TMemo): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -715,6 +753,7 @@ end;
 
 function Memo_GetConstraints(AObj: TMemo): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -729,6 +768,7 @@ end;
 
 function Memo_GetDoubleBuffered(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -743,6 +783,7 @@ end;
 
 function Memo_GetDragCursor(AObj: TMemo): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -757,6 +798,7 @@ end;
 
 function Memo_GetDragKind(AObj: TMemo): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -771,6 +813,7 @@ end;
 
 function Memo_GetDragMode(AObj: TMemo): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -785,6 +828,7 @@ end;
 
 function Memo_GetEnabled(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -799,6 +843,7 @@ end;
 
 function Memo_GetFont(AObj: TMemo): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -813,6 +858,7 @@ end;
 
 function Memo_GetHideSelection(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -827,6 +873,7 @@ end;
 
 function Memo_GetLines(AObj: TMemo): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Lines;
   handleExceptionEnd
@@ -841,6 +888,7 @@ end;
 
 function Memo_GetMaxLength(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -855,6 +903,7 @@ end;
 
 function Memo_GetParentColor(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -869,6 +918,7 @@ end;
 
 function Memo_GetParentDoubleBuffered(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -883,6 +933,7 @@ end;
 
 function Memo_GetParentFont(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -897,6 +948,7 @@ end;
 
 function Memo_GetParentShowHint(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -911,6 +963,7 @@ end;
 
 function Memo_GetPopupMenu(AObj: TMemo): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -925,6 +978,7 @@ end;
 
 function Memo_GetReadOnly(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -939,6 +993,7 @@ end;
 
 function Memo_GetScrollBars(AObj: TMemo): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -953,6 +1008,7 @@ end;
 
 function Memo_GetShowHint(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -967,6 +1023,7 @@ end;
 
 function Memo_GetTabOrder(AObj: TMemo): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -981,6 +1038,7 @@ end;
 
 function Memo_GetTabStop(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -995,6 +1053,7 @@ end;
 
 function Memo_GetVisible(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1009,6 +1068,7 @@ end;
 
 function Memo_GetWantReturns(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WantReturns;
   handleExceptionEnd
@@ -1023,6 +1083,7 @@ end;
 
 function Memo_GetWantTabs(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WantTabs;
   handleExceptionEnd
@@ -1037,6 +1098,7 @@ end;
 
 function Memo_GetWordWrap(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WordWrap;
   handleExceptionEnd
@@ -1203,6 +1265,7 @@ end;
 
 function Memo_GetCanUndo(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1210,6 +1273,7 @@ end;
 
 function Memo_GetModified(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1224,6 +1288,7 @@ end;
 
 function Memo_GetSelLength(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1238,6 +1303,7 @@ end;
 
 function Memo_GetSelStart(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1252,6 +1318,7 @@ end;
 
 function Memo_GetSelText(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1266,6 +1333,7 @@ end;
 
 function Memo_GetText(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1280,6 +1348,7 @@ end;
 
 function Memo_GetTextHint(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1294,6 +1363,7 @@ end;
 
 function Memo_GetDockClientCount(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1301,6 +1371,7 @@ end;
 
 function Memo_GetDockSite(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1315,6 +1386,7 @@ end;
 
 function Memo_GetMouseInClient(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1322,6 +1394,7 @@ end;
 
 function Memo_GetVisibleDockClientCount(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1329,6 +1402,7 @@ end;
 
 function Memo_GetBrush(AObj: TMemo): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1336,6 +1410,7 @@ end;
 
 function Memo_GetControlCount(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1343,6 +1418,7 @@ end;
 
 function Memo_GetHandle(AObj: TMemo): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1350,6 +1426,7 @@ end;
 
 function Memo_GetParentWindow(AObj: TMemo): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1364,6 +1441,7 @@ end;
 
 function Memo_GetShowing(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1371,6 +1449,7 @@ end;
 
 function Memo_GetUseDockManager(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1385,6 +1464,7 @@ end;
 
 function Memo_GetAction(AObj: TMemo): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1415,6 +1495,7 @@ end;
 
 function Memo_GetClientHeight(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1445,6 +1526,7 @@ end;
 
 function Memo_GetClientWidth(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1459,6 +1541,7 @@ end;
 
 function Memo_GetControlState(AObj: TMemo): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1473,6 +1556,7 @@ end;
 
 function Memo_GetControlStyle(AObj: TMemo): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1487,6 +1571,7 @@ end;
 
 function Memo_GetFloating(AObj: TMemo): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1494,6 +1579,7 @@ end;
 
 function Memo_GetParent(AObj: TMemo): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1508,6 +1594,7 @@ end;
 
 function Memo_GetLeft(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1522,6 +1609,7 @@ end;
 
 function Memo_GetTop(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1536,6 +1624,7 @@ end;
 
 function Memo_GetWidth(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1550,6 +1639,7 @@ end;
 
 function Memo_GetHeight(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1564,6 +1654,7 @@ end;
 
 function Memo_GetCursor(AObj: TMemo): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1578,6 +1669,7 @@ end;
 
 function Memo_GetHint(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1592,6 +1684,7 @@ end;
 
 function Memo_GetComponentCount(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1599,6 +1692,7 @@ end;
 
 function Memo_GetComponentIndex(AObj: TMemo): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1613,6 +1707,7 @@ end;
 
 function Memo_GetOwner(AObj: TMemo): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1620,6 +1715,7 @@ end;
 
 function Memo_GetName(AObj: TMemo): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1634,6 +1730,7 @@ end;
 
 function Memo_GetTag(AObj: TMemo): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1648,6 +1745,7 @@ end;
 
 function Memo_GetAnchorSideLeft(AObj: TMemo): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1662,6 +1760,7 @@ end;
 
 function Memo_GetAnchorSideTop(AObj: TMemo): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1676,6 +1775,7 @@ end;
 
 function Memo_GetAnchorSideRight(AObj: TMemo): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1690,6 +1790,7 @@ end;
 
 function Memo_GetAnchorSideBottom(AObj: TMemo): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1704,6 +1805,7 @@ end;
 
 function Memo_GetChildSizing(AObj: TMemo): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1718,6 +1820,7 @@ end;
 
 function Memo_GetBorderSpacing(AObj: TMemo): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1732,6 +1835,7 @@ end;
 
 function Memo_GetDockClients(AObj: TMemo; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1739,6 +1843,7 @@ end;
 
 function Memo_GetControls(AObj: TMemo; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1746,6 +1851,7 @@ end;
 
 function Memo_GetComponents(AObj: TMemo; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1753,6 +1859,7 @@ end;
 
 function Memo_GetAnchorSide(AObj: TMemo; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function DragDockObject_Create(AOwner: TControl): TDragDockObject; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TDragDockObject.Create(AOwner);
   handleExceptionEnd
@@ -48,6 +49,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_ClassType(AObj: TDragDockObject): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -56,6 +58,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_ClassName(AObj: TDragDockObject): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -64,6 +67,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_InstanceSize(AObj: TDragDockObject): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -72,6 +76,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_InheritsFrom(AObj: TDragDockObject; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -80,6 +85,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_Equals(AObj: TDragDockObject; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -88,6 +94,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_GetHashCode(AObj: TDragDockObject): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -96,6 +103,7 @@ end;
 //CLASSMETHOD:
 function DragDockObject_ToString(AObj: TDragDockObject): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +127,7 @@ end;
 
 function DragDockObject_GetDropAlign(AObj: TDragDockObject): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.DropAlign;
   handleExceptionEnd
@@ -126,6 +135,7 @@ end;
 
 function DragDockObject_GetDropOnControl(AObj: TDragDockObject): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DropOnControl;
   handleExceptionEnd
@@ -149,6 +159,7 @@ end;
 
 function DragDockObject_GetFloating(AObj: TDragDockObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -163,6 +174,7 @@ end;
 
 function DragDockObject_GetControl(AObj: TDragDockObject): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Control;
   handleExceptionEnd
@@ -177,6 +189,7 @@ end;
 
 function DragDockObject_GetAlwaysShowDragImages(AObj: TDragDockObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AlwaysShowDragImages;
   handleExceptionEnd
@@ -207,6 +220,7 @@ end;
 
 function DragDockObject_GetDragTarget(AObj: TDragDockObject): Pointer; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DragTarget;
   handleExceptionEnd
@@ -237,6 +251,7 @@ end;
 
 function DragDockObject_GetDropped(AObj: TDragDockObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dropped;
   handleExceptionEnd

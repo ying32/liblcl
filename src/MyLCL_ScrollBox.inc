@@ -9,6 +9,7 @@
 
 function ScrollBox_Create(AOwner: TComponent): TScrollBox; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TScrollBox.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_CanFocus(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ContainsControl(AObj: TScrollBox; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function ScrollBox_ControlAtPos(AObj: TScrollBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_FindChildControl(AObj: TScrollBox; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Focused(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_HandleAllocated(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -221,6 +228,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Dragging(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -229,6 +237,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_HasParent(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -245,6 +254,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Perform(AObj: TScrollBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -297,6 +307,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_GetTextBuf(AObj: TScrollBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -305,6 +316,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_GetTextLen(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -321,6 +333,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_FindComponent(AObj: TScrollBox; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -329,6 +342,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_GetNamePath(AObj: TScrollBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -345,6 +359,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ClassType(AObj: TScrollBox): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -353,6 +368,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ClassName(AObj: TScrollBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -361,6 +377,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_InstanceSize(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -369,6 +386,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_InheritsFrom(AObj: TScrollBox; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -377,6 +395,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Equals(AObj: TScrollBox; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -385,6 +404,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_GetHashCode(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -393,6 +413,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ToString(AObj: TScrollBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -457,6 +478,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleDesignToForm(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -465,6 +487,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleFormToDesign(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -473,6 +496,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Scale96ToForm(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -481,6 +505,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleFormTo96(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -489,6 +514,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Scale96ToFont(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -497,6 +523,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleFontTo96(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -505,6 +532,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleScreenToFont(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -513,6 +541,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleFontToScreen(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +550,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_Scale96ToScreen(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +559,7 @@ end;
 //CLASSMETHOD:
 function ScrollBox_ScaleScreenTo96(AObj: TScrollBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -561,6 +592,7 @@ end;
 
 function ScrollBox_GetAlign(AObj: TScrollBox): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -575,6 +607,7 @@ end;
 
 function ScrollBox_GetAnchors(AObj: TScrollBox): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -589,6 +622,7 @@ end;
 
 function ScrollBox_GetAutoScroll(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoScroll;
   handleExceptionEnd
@@ -603,6 +637,7 @@ end;
 
 function ScrollBox_GetAutoSize(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -617,6 +652,7 @@ end;
 
 function ScrollBox_GetBiDiMode(AObj: TScrollBox): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -631,6 +667,7 @@ end;
 
 function ScrollBox_GetBorderStyle(AObj: TScrollBox): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -645,6 +682,7 @@ end;
 
 function ScrollBox_GetConstraints(AObj: TScrollBox): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -659,6 +697,7 @@ end;
 
 function ScrollBox_GetDockSite(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -673,6 +712,7 @@ end;
 
 function ScrollBox_GetDoubleBuffered(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -687,6 +727,7 @@ end;
 
 function ScrollBox_GetDragCursor(AObj: TScrollBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -701,6 +742,7 @@ end;
 
 function ScrollBox_GetDragKind(AObj: TScrollBox): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -715,6 +757,7 @@ end;
 
 function ScrollBox_GetDragMode(AObj: TScrollBox): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -729,6 +772,7 @@ end;
 
 function ScrollBox_GetEnabled(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -743,6 +787,7 @@ end;
 
 function ScrollBox_GetColor(AObj: TScrollBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -757,6 +802,7 @@ end;
 
 function ScrollBox_GetFont(AObj: TScrollBox): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -771,6 +817,7 @@ end;
 
 function ScrollBox_GetParentBackground(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentBackground;
   handleExceptionEnd
@@ -785,6 +832,7 @@ end;
 
 function ScrollBox_GetParentColor(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -799,6 +847,7 @@ end;
 
 function ScrollBox_GetParentDoubleBuffered(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -813,6 +862,7 @@ end;
 
 function ScrollBox_GetParentFont(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -827,6 +877,7 @@ end;
 
 function ScrollBox_GetParentShowHint(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -841,6 +892,7 @@ end;
 
 function ScrollBox_GetPopupMenu(AObj: TScrollBox): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -855,6 +907,7 @@ end;
 
 function ScrollBox_GetShowHint(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -869,6 +922,7 @@ end;
 
 function ScrollBox_GetTabOrder(AObj: TScrollBox): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -883,6 +937,7 @@ end;
 
 function ScrollBox_GetTabStop(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -897,6 +952,7 @@ end;
 
 function ScrollBox_GetVisible(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1079,6 +1135,7 @@ end;
 
 function ScrollBox_GetHorzScrollBar(AObj: TScrollBox): TControlScrollBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.HorzScrollBar;
   handleExceptionEnd
@@ -1093,6 +1150,7 @@ end;
 
 function ScrollBox_GetVertScrollBar(AObj: TScrollBox): TControlScrollBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.VertScrollBar;
   handleExceptionEnd
@@ -1107,6 +1165,7 @@ end;
 
 function ScrollBox_GetDockClientCount(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1114,6 +1173,7 @@ end;
 
 function ScrollBox_GetMouseInClient(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1121,6 +1181,7 @@ end;
 
 function ScrollBox_GetVisibleDockClientCount(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1128,6 +1189,7 @@ end;
 
 function ScrollBox_GetBrush(AObj: TScrollBox): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1135,6 +1197,7 @@ end;
 
 function ScrollBox_GetControlCount(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1142,6 +1205,7 @@ end;
 
 function ScrollBox_GetHandle(AObj: TScrollBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1149,6 +1213,7 @@ end;
 
 function ScrollBox_GetParentWindow(AObj: TScrollBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1163,6 +1228,7 @@ end;
 
 function ScrollBox_GetShowing(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1170,6 +1236,7 @@ end;
 
 function ScrollBox_GetUseDockManager(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1184,6 +1251,7 @@ end;
 
 function ScrollBox_GetAction(AObj: TScrollBox): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1214,6 +1282,7 @@ end;
 
 function ScrollBox_GetClientHeight(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1244,6 +1313,7 @@ end;
 
 function ScrollBox_GetClientWidth(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1258,6 +1328,7 @@ end;
 
 function ScrollBox_GetControlState(AObj: TScrollBox): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1272,6 +1343,7 @@ end;
 
 function ScrollBox_GetControlStyle(AObj: TScrollBox): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1286,6 +1358,7 @@ end;
 
 function ScrollBox_GetFloating(AObj: TScrollBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1293,6 +1366,7 @@ end;
 
 function ScrollBox_GetParent(AObj: TScrollBox): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1307,6 +1381,7 @@ end;
 
 function ScrollBox_GetLeft(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1321,6 +1396,7 @@ end;
 
 function ScrollBox_GetTop(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1335,6 +1411,7 @@ end;
 
 function ScrollBox_GetWidth(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1349,6 +1426,7 @@ end;
 
 function ScrollBox_GetHeight(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1363,6 +1441,7 @@ end;
 
 function ScrollBox_GetCursor(AObj: TScrollBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1377,6 +1456,7 @@ end;
 
 function ScrollBox_GetHint(AObj: TScrollBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1391,6 +1471,7 @@ end;
 
 function ScrollBox_GetComponentCount(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1398,6 +1479,7 @@ end;
 
 function ScrollBox_GetComponentIndex(AObj: TScrollBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1412,6 +1494,7 @@ end;
 
 function ScrollBox_GetOwner(AObj: TScrollBox): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1419,6 +1502,7 @@ end;
 
 function ScrollBox_GetName(AObj: TScrollBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1433,6 +1517,7 @@ end;
 
 function ScrollBox_GetTag(AObj: TScrollBox): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1447,6 +1532,7 @@ end;
 
 function ScrollBox_GetAnchorSideLeft(AObj: TScrollBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1461,6 +1547,7 @@ end;
 
 function ScrollBox_GetAnchorSideTop(AObj: TScrollBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1475,6 +1562,7 @@ end;
 
 function ScrollBox_GetAnchorSideRight(AObj: TScrollBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1489,6 +1577,7 @@ end;
 
 function ScrollBox_GetAnchorSideBottom(AObj: TScrollBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1503,6 +1592,7 @@ end;
 
 function ScrollBox_GetChildSizing(AObj: TScrollBox): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1517,6 +1607,7 @@ end;
 
 function ScrollBox_GetBorderSpacing(AObj: TScrollBox): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1531,6 +1622,7 @@ end;
 
 function ScrollBox_GetDockClients(AObj: TScrollBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1538,6 +1630,7 @@ end;
 
 function ScrollBox_GetControls(AObj: TScrollBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1545,6 +1638,7 @@ end;
 
 function ScrollBox_GetComponents(AObj: TScrollBox; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1552,6 +1646,7 @@ end;
 
 function ScrollBox_GetAnchorSide(AObj: TScrollBox; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

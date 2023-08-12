@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_IsScrollBarVisible(AObj: TControlScrollBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsScrollBarVisible;
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_GetNamePath(AObj: TControlScrollBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_ClassType(AObj: TControlScrollBar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_ClassName(AObj: TControlScrollBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_InstanceSize(AObj: TControlScrollBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_InheritsFrom(AObj: TControlScrollBar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_Equals(AObj: TControlScrollBar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_GetHashCode(AObj: TControlScrollBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -82,6 +90,7 @@ end;
 //CLASSMETHOD:
 function ControlScrollBar_ToString(AObj: TControlScrollBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -89,6 +98,7 @@ end;
 
 function ControlScrollBar_GetKind(AObj: TControlScrollBar): TScrollBarKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TScrollBarKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -96,6 +106,7 @@ end;
 
 function ControlScrollBar_GetScrollPos(AObj: TControlScrollBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollPos;
   handleExceptionEnd
@@ -103,6 +114,7 @@ end;
 
 function ControlScrollBar_GetIncrement(AObj: TControlScrollBar): TScrollBarInc; extdecl;
 begin
+{$ifdef UsehandleException}Result := 1;{$endif}
   handleExceptionBegin
   Result :=  AObj.Increment;
   handleExceptionEnd
@@ -117,6 +129,7 @@ end;
 
 function ControlScrollBar_GetPosition(AObj: TControlScrollBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
@@ -131,6 +144,7 @@ end;
 
 function ControlScrollBar_GetRange(AObj: TControlScrollBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Range;
   handleExceptionEnd
@@ -145,6 +159,7 @@ end;
 
 function ControlScrollBar_GetSmooth(AObj: TControlScrollBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Smooth;
   handleExceptionEnd
@@ -159,6 +174,7 @@ end;
 
 function ControlScrollBar_GetTracking(AObj: TControlScrollBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Tracking;
   handleExceptionEnd
@@ -173,6 +189,7 @@ end;
 
 function ControlScrollBar_GetVisible(AObj: TControlScrollBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd

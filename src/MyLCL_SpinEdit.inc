@@ -9,6 +9,7 @@
 
 function SpinEdit_Create(AOwner: TComponent): TSpinEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TSpinEdit.Create(AOwner);
   handleExceptionEnd
@@ -80,6 +81,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_CanFocus(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -88,6 +90,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ContainsControl(AObj: TSpinEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -97,6 +100,7 @@ end;
 //PARAMS:2=nonPtr
 function SpinEdit_ControlAtPos(AObj: TSpinEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -121,6 +125,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_FindChildControl(AObj: TSpinEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -137,6 +142,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Focused(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -145,6 +151,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_HandleAllocated(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -269,6 +276,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Dragging(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -277,6 +285,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_HasParent(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -293,6 +302,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Perform(AObj: TSpinEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -345,6 +355,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_GetTextBuf(AObj: TSpinEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -353,6 +364,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_GetTextLen(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -369,6 +381,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_FindComponent(AObj: TSpinEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -377,6 +390,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_GetNamePath(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -393,6 +407,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ClassType(AObj: TSpinEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -401,6 +416,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ClassName(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -409,6 +425,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_InstanceSize(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -417,6 +434,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_InheritsFrom(AObj: TSpinEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -425,6 +443,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Equals(AObj: TSpinEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -433,6 +452,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_GetHashCode(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -441,6 +461,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ToString(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -505,6 +526,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleDesignToForm(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -513,6 +535,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleFormToDesign(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -521,6 +544,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Scale96ToForm(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -529,6 +553,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleFormTo96(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -537,6 +562,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Scale96ToFont(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -545,6 +571,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleFontTo96(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -553,6 +580,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleScreenToFont(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -561,6 +589,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleFontToScreen(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -569,6 +598,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_Scale96ToScreen(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +607,7 @@ end;
 //CLASSMETHOD:
 function SpinEdit_ScaleScreenTo96(AObj: TSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -609,6 +640,7 @@ end;
 
 function SpinEdit_GetAnchors(AObj: TSpinEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -623,6 +655,7 @@ end;
 
 function SpinEdit_GetAutoSelect(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelect;
   handleExceptionEnd
@@ -637,6 +670,7 @@ end;
 
 function SpinEdit_GetAutoSize(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -651,6 +685,7 @@ end;
 
 function SpinEdit_GetColor(AObj: TSpinEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -665,6 +700,7 @@ end;
 
 function SpinEdit_GetConstraints(AObj: TSpinEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -679,6 +715,7 @@ end;
 
 function SpinEdit_GetEnabled(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -693,6 +730,7 @@ end;
 
 function SpinEdit_GetFont(AObj: TSpinEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -707,6 +745,7 @@ end;
 
 function SpinEdit_GetIncrement(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Increment;
   handleExceptionEnd
@@ -721,6 +760,7 @@ end;
 
 function SpinEdit_GetMaxLength(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -735,6 +775,7 @@ end;
 
 function SpinEdit_GetMaxValue(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxValue;
   handleExceptionEnd
@@ -749,6 +790,7 @@ end;
 
 function SpinEdit_GetMinValue(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinValue;
   handleExceptionEnd
@@ -763,6 +805,7 @@ end;
 
 function SpinEdit_GetParentColor(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -777,6 +820,7 @@ end;
 
 function SpinEdit_GetParentFont(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -791,6 +835,7 @@ end;
 
 function SpinEdit_GetParentShowHint(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -805,6 +850,7 @@ end;
 
 function SpinEdit_GetPopupMenu(AObj: TSpinEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -819,6 +865,7 @@ end;
 
 function SpinEdit_GetReadOnly(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -833,6 +880,7 @@ end;
 
 function SpinEdit_GetShowHint(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -847,6 +895,7 @@ end;
 
 function SpinEdit_GetTabOrder(AObj: TSpinEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -861,6 +910,7 @@ end;
 
 function SpinEdit_GetTabStop(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -875,6 +925,7 @@ end;
 
 function SpinEdit_GetValue(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Value;
   handleExceptionEnd
@@ -889,6 +940,7 @@ end;
 
 function SpinEdit_GetVisible(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -983,6 +1035,7 @@ end;
 
 function SpinEdit_GetAlignment(AObj: TSpinEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -997,6 +1050,7 @@ end;
 
 function SpinEdit_GetCanUndo(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1004,6 +1058,7 @@ end;
 
 function SpinEdit_GetModified(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1018,6 +1073,7 @@ end;
 
 function SpinEdit_GetSelLength(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1032,6 +1088,7 @@ end;
 
 function SpinEdit_GetSelStart(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1046,6 +1103,7 @@ end;
 
 function SpinEdit_GetSelText(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1060,6 +1118,7 @@ end;
 
 function SpinEdit_GetText(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1074,6 +1133,7 @@ end;
 
 function SpinEdit_GetTextHint(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1088,6 +1148,7 @@ end;
 
 function SpinEdit_GetDockClientCount(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1095,6 +1156,7 @@ end;
 
 function SpinEdit_GetDockSite(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1109,6 +1171,7 @@ end;
 
 function SpinEdit_GetDoubleBuffered(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1123,6 +1186,7 @@ end;
 
 function SpinEdit_GetMouseInClient(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1130,6 +1194,7 @@ end;
 
 function SpinEdit_GetVisibleDockClientCount(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1137,6 +1202,7 @@ end;
 
 function SpinEdit_GetBrush(AObj: TSpinEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1144,6 +1210,7 @@ end;
 
 function SpinEdit_GetControlCount(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1151,6 +1218,7 @@ end;
 
 function SpinEdit_GetHandle(AObj: TSpinEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1158,6 +1226,7 @@ end;
 
 function SpinEdit_GetParentDoubleBuffered(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1172,6 +1241,7 @@ end;
 
 function SpinEdit_GetParentWindow(AObj: TSpinEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1186,6 +1256,7 @@ end;
 
 function SpinEdit_GetShowing(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1193,6 +1264,7 @@ end;
 
 function SpinEdit_GetUseDockManager(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1207,6 +1279,7 @@ end;
 
 function SpinEdit_GetAction(AObj: TSpinEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1221,6 +1294,7 @@ end;
 
 function SpinEdit_GetAlign(AObj: TSpinEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -1235,6 +1309,7 @@ end;
 
 function SpinEdit_GetBiDiMode(AObj: TSpinEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1265,6 +1340,7 @@ end;
 
 function SpinEdit_GetClientHeight(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1295,6 +1371,7 @@ end;
 
 function SpinEdit_GetClientWidth(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1309,6 +1386,7 @@ end;
 
 function SpinEdit_GetControlState(AObj: TSpinEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1323,6 +1401,7 @@ end;
 
 function SpinEdit_GetControlStyle(AObj: TSpinEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1337,6 +1416,7 @@ end;
 
 function SpinEdit_GetFloating(AObj: TSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1344,6 +1424,7 @@ end;
 
 function SpinEdit_GetParent(AObj: TSpinEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1358,6 +1439,7 @@ end;
 
 function SpinEdit_GetLeft(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1372,6 +1454,7 @@ end;
 
 function SpinEdit_GetTop(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1386,6 +1469,7 @@ end;
 
 function SpinEdit_GetWidth(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1400,6 +1484,7 @@ end;
 
 function SpinEdit_GetHeight(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1414,6 +1499,7 @@ end;
 
 function SpinEdit_GetCursor(AObj: TSpinEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1428,6 +1514,7 @@ end;
 
 function SpinEdit_GetHint(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1442,6 +1529,7 @@ end;
 
 function SpinEdit_GetComponentCount(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1449,6 +1537,7 @@ end;
 
 function SpinEdit_GetComponentIndex(AObj: TSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1463,6 +1552,7 @@ end;
 
 function SpinEdit_GetOwner(AObj: TSpinEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1470,6 +1560,7 @@ end;
 
 function SpinEdit_GetName(AObj: TSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1484,6 +1575,7 @@ end;
 
 function SpinEdit_GetTag(AObj: TSpinEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1498,6 +1590,7 @@ end;
 
 function SpinEdit_GetAnchorSideLeft(AObj: TSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1512,6 +1605,7 @@ end;
 
 function SpinEdit_GetAnchorSideTop(AObj: TSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1526,6 +1620,7 @@ end;
 
 function SpinEdit_GetAnchorSideRight(AObj: TSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1540,6 +1635,7 @@ end;
 
 function SpinEdit_GetAnchorSideBottom(AObj: TSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1554,6 +1650,7 @@ end;
 
 function SpinEdit_GetChildSizing(AObj: TSpinEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1568,6 +1665,7 @@ end;
 
 function SpinEdit_GetBorderSpacing(AObj: TSpinEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1582,6 +1680,7 @@ end;
 
 function SpinEdit_GetDockClients(AObj: TSpinEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1589,6 +1688,7 @@ end;
 
 function SpinEdit_GetControls(AObj: TSpinEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1596,6 +1696,7 @@ end;
 
 function SpinEdit_GetComponents(AObj: TSpinEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1603,6 +1704,7 @@ end;
 
 function SpinEdit_GetAnchorSide(AObj: TSpinEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

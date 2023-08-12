@@ -762,6 +762,10 @@ type
   end;
 
 
+  TEventType = (etCustom,etInfo,etWarning,etError,etDebug);
+  TEventTypes = Set of TEventType;
+  TEventLogTypes = Set of TEventType;
+
   TApplication = class(Vcl.Forms.TApplication)
   private
     FScaled: Boolean;
@@ -769,12 +773,39 @@ type
     FLocation: string;
     FStopOnException: Boolean;
     FExceptionExitCode: LongInt;
+    FEventLogFilter: TEventLogTypes;
+    FFindGlobalComponentEnabled: boolean;
+    FExtendedKeysSupport: Boolean;
+    FHintHidePausePerChar: Integer;
+    FCaptureExceptions: boolean;
+    FMouseControl: TControl;
+    FCaseSensitiveOptions: Boolean;
+    function GetActive: boolean;
+    function GetMainFormHandle: HWND;
+    procedure SetCaptureExceptions(const Value: boolean);
   published
+    // on key down
+    procedure DoArrowKey(AControl: TWinControl; var Key: Word; Shift: TShiftState);
+    procedure DoTabKey(AControl: TWinControl; var Key: Word; Shift: TShiftState);
+    // on key up
+    procedure DoEscapeKey(AControl: TWinControl; var Key: Word; Shift: TShiftState);
+    procedure DoReturnKey(AControl: TWinControl; var Key: Word; Shift: TShiftState);
+
     property Scaled: Boolean read FScaled write FScaled;
     property SingleInstanceEnabled: Boolean read FSingleInstanceEnabled write FSingleInstanceEnabled;
     property Location: string read FLocation;
     property StopOnException: Boolean read FStopOnException write FStopOnException;
     property ExceptionExitCode: LongInt read FExceptionExitCode write FExceptionExitCode;
+    property CaseSensitiveOptions : Boolean Read FCaseSensitiveOptions Write FCaseSensitiveOptions;
+    property EventLogFilter : TEventLogTypes Read FEventLogFilter Write FEventLogFilter;
+    property CaptureExceptions: boolean read FCaptureExceptions write SetCaptureExceptions;
+//    property DoubleBuffered: TApplicationDoubleBuffered read FDoubleBuffered write FDoubleBuffered;
+    property ExtendedKeysSupport: Boolean read FExtendedKeysSupport write FExtendedKeysSupport;
+    property Active: boolean read GetActive;
+    property MainFormHandle: HWND read GetMainFormHandle;
+    property MouseControl: TControl read FMouseControl;
+    property HintHidePausePerChar: Integer read FHintHidePausePerChar write FHintHidePausePerChar;
+    property FindGlobalComponentEnabled: boolean read FFindGlobalComponentEnabled  write FFindGlobalComponentEnabled;
   end;
 
   TSortDirection = (sdAscending, sdDescending);
@@ -1064,6 +1095,8 @@ type
     amOff       // disabled
   );
 
+  TImagePaintBackgroundEvent = procedure (ASender: TObject; ACanvas: TCanvas; ARect: TRect) of object;
+
   TImage = class(Vcl.ExtCtrls.TImage)
   private
     FAntialiasingMode: TAntialiasingMode;
@@ -1071,6 +1104,9 @@ type
     FKeepOriginYWhenClipped: Boolean;
     FStretchInEnabled: Boolean;
     FStretchOutEnabled: Boolean;
+    FOnPaintBackground: TImagePaintBackgroundEvent;
+    FOnPictureChanged: TNotifyEvent;
+    FOnPaint: TNotifyEvent;
 
   published
     property AntialiasingMode: TAntialiasingMode read FAntialiasingMode write FAntialiasingMode default amDontCare;
@@ -1078,6 +1114,11 @@ type
     property KeepOriginYWhenClipped: Boolean read FKeepOriginYWhenClipped write FKeepOriginYWhenClipped;
     property StretchInEnabled: Boolean read FStretchInEnabled write FStretchInEnabled;
     property StretchOutEnabled: Boolean read FStretchOutEnabled write FStretchOutEnabled;
+
+    property OnPaint: TNotifyEvent read FOnPaint write FOnPaint;
+    property OnPaintBackground: TImagePaintBackgroundEvent read FOnPaintBackground write FOnPaintBackground;
+    property OnPictureChanged: TNotifyEvent read FOnPictureChanged write FOnPictureChanged;
+
   end;
 
   TSpeedButton = class(Vcl.Buttons.TSpeedButton)
@@ -1242,8 +1283,32 @@ type
   TPageControl = class(Vcl.ComCtrls.TPageControl)
   private
     FOptions: TCTabControlOptions;
+    FScrollOpposite: Boolean;
+    FMultiSelect: Boolean;
+    FHotTrack: Boolean;
+    FPageIndex: Integer;
+    FOwnerDraw: Boolean;
+    FRaggedRight: Boolean;
+    FOnCloseTabClicked: TNotifyEvent;
+    procedure SetPageIndex(const Value: Integer);
+  public
+    procedure Clear;
+    function FindNextPage(CurPage: TTabSheet; GoForward, CheckTabVisible: Boolean): TTabSheet;
+    procedure SelectNextPage(GoForward: Boolean);
+    function AddTabSheet: TTabSheet;
+    function IndexOfTabAt(X, Y: Integer): Integer;
+    function IndexOfPageAt(X, Y: Integer): Integer;
+    property RaggedRight: Boolean read FRaggedRight write FRaggedRight default False;
+    property ScrollOpposite: Boolean read FScrollOpposite write FScrollOpposite default False;
+    property OwnerDraw: Boolean read FOwnerDraw write FOwnerDraw default False;
+    property HotTrack: Boolean read FHotTrack write FHotTrack default False;
+    property PageIndex: Integer read FPageIndex write SetPageIndex default -1;
+
   published
     property Options: TCTabControlOptions read FOptions write FOptions default [];
+
+    property OnCloseTabClicked: TNotifyEvent read FOnCloseTabClicked  write FOnCloseTabClicked;
+    property MultiSelect: Boolean read FMultiSelect write FMultiSelect default False;
   end;
 
 
@@ -1598,6 +1663,18 @@ type
     procedure Clear;
   end;
 
+  TCustomBitmap = class(vcl.Graphics.TGraphic)
+
+  end;
+
+  TGraphicsDrawEffect =
+  (
+    gdeNormal,      // no effect
+    gdeDisabled,    // grayed image
+    gdeHighlighted, // a bit highlighted image
+    gdeShadowed,    // a bit shadowed image
+    gde1Bit         // 1 Bit image (for non-XP windows buttons)
+  );
 
   TImageList = class(Vcl.Controls.TImageList)
   private
@@ -1611,14 +1688,26 @@ type
     function GetWidthForPPI(AImageWidth, APPI: Integer): Integer;
   public
     procedure StretchDraw(ACanvas: TCanvas; AIndex: Integer; ARect: TRect; AEnabled: Boolean);
-    function AddSliced(Image: TBitmap; AHorizontalCount, AVerticalCount: Integer): Integer;
+    function AddSliced(Image: TCustomBitmap; AHorizontalCount, AVerticalCount: Integer): Integer;
     function AddLazarusResource(const ResourceName: string; MaskColor: TColor): integer;
     function AddResourceName(Instance: THandle; const ResourceName: string; MaskColor: TColor): integer;
-    function AddSlice(Image: TBitmap; AImageRect: TRect): Integer;
-    function AddSliceCentered(Image: TBitmap): Integer;
+    function AddSlice(Image: TCustomBitmap; AImageRect: TRect): Integer;
+    function AddSliceCentered(Image: TCustomBitmap): Integer;
 //    function AddMultipleResolutions(Images: array of TBitmap): Integer;
     procedure RegisterResolutions(const AResolutionWidths: array of Integer);
     procedure DeleteResolution(const AWidth: Integer);
+
+    // 要修改类型
+    function AddMultipleResolutions(Images: array of TCustomBitmap): Integer; // always pass sorted array from smallest to biggest
+    function Add(Image, Mask: TCustomBitmap): Integer;
+    procedure Insert(AIndex: Integer; AImage, AMask: TCustomBitmap);
+    procedure InsertMasked(Index: Integer; AImage: TCustomBitmap; MaskColor: TColor);
+    procedure Replace(AIndex: Integer; AImage, AMask: TCustomBitmap; const AllResolutions: Boolean = True);
+    procedure ReplaceMasked(Index: Integer; NewImage: TCustomBitmap; MaskColor: TColor; const AllResolutions: Boolean = True);
+    procedure ReplaceIcon(AIndex: Integer; AIcon: TIcon);
+
+    procedure GetBitmap(Index: Integer; Image: TCustomBitmap; AEffect: TGraphicsDrawEffect);
+    procedure GetFullBitmap(Image: TCustomBitmap; AEffect: TGraphicsDrawEffect = gdeNormal);
 
     property Scaled: Boolean read FScaled write FScaled;
     property ShareImages: Boolean read FShareImages write FShareImages;
@@ -1647,6 +1736,12 @@ type
     function HasPictureFormat: boolean;
     procedure SetAsHtml(Html: String; const PlainText: String);
     function GetFormat(FormatID: TClipboardFormat; Stream: TStream): Boolean;
+
+    function AddFormat(FormatID: TClipboardFormat; Stream: TStream): Boolean;
+    function SetFormat(FormatID: TClipboardFormat; Stream: TStream): Boolean;
+    function GetComponent(Owner, Parent: TComponent): TComponent;
+    function SetComponent(Component: TComponent): Boolean;
+    function SetComponentAsText(Component: TComponent): Boolean;
 
     property Formats[Index: Integer]: TClipboardFormat read GetFormats;// write SetFormats;
   end;
@@ -3745,6 +3840,12 @@ end;
 
 { TClipboard }
 
+function TClipboard.AddFormat(FormatID: TClipboardFormat;
+  Stream: TStream): Boolean;
+begin
+
+end;
+
 function TClipboard.FindFormatID(const FormatName: string): TClipboardFormat;
 begin
 
@@ -3758,6 +3859,11 @@ end;
 function TClipboard.GetAsHtml(ExtractFragmentOnly: Boolean): string;
 begin
    Result := '';
+end;
+
+function TClipboard.GetComponent(Owner, Parent: TComponent): TComponent;
+begin
+
 end;
 
 function TClipboard.GetFormat(FormatID: TClipboardFormat;
@@ -3787,6 +3893,22 @@ begin
 end;
 
 procedure TClipboard.SetAsHtml(Html: String; const PlainText: String);
+begin
+
+end;
+
+function TClipboard.SetComponent(Component: TComponent): Boolean;
+begin
+
+end;
+
+function TClipboard.SetComponentAsText(Component: TComponent): Boolean;
+begin
+
+end;
+
+function TClipboard.SetFormat(FormatID: TClipboardFormat;
+  Stream: TStream): Boolean;
 begin
 
 end;
@@ -3850,8 +3972,19 @@ end;
 
 { TImageList }
 
+function TImageList.Add(Image, Mask: TCustomBitmap): Integer;
+begin
+
+end;
+
 function TImageList.AddLazarusResource(const ResourceName: string;
   MaskColor: TColor): integer;
+begin
+
+end;
+
+function TImageList.AddMultipleResolutions(
+  Images: array of TCustomBitmap): Integer;
 begin
 
 end;
@@ -3862,23 +3995,35 @@ begin
 
 end;
 
-function TImageList.AddSlice(Image: TBitmap; AImageRect: TRect): Integer;
+function TImageList.AddSlice(Image: TCustomBitmap; AImageRect: TRect): Integer;
 begin
 
 end;
 
-function TImageList.AddSliceCentered(Image: TBitmap): Integer;
+function TImageList.AddSliceCentered(Image: TCustomBitmap): Integer;
 begin
 
 end;
 
-function TImageList.AddSliced(Image: TBitmap; AHorizontalCount,
+function TImageList.AddSliced(Image: TCustomBitmap; AHorizontalCount,
   AVerticalCount: Integer): Integer;
 begin
 
 end;
 
 procedure TImageList.DeleteResolution(const AWidth: Integer);
+begin
+
+end;
+
+procedure TImageList.GetBitmap(Index: Integer; Image: TCustomBitmap;
+  AEffect: TGraphicsDrawEffect);
+begin
+
+end;
+
+procedure TImageList.GetFullBitmap(Image: TCustomBitmap;
+  AEffect: TGraphicsDrawEffect);
 begin
 
 end;
@@ -3903,8 +4048,36 @@ begin
 
 end;
 
+procedure TImageList.Insert(AIndex: Integer; AImage, AMask: TCustomBitmap);
+begin
+
+end;
+
+procedure TImageList.InsertMasked(Index: Integer; AImage: TCustomBitmap;
+  MaskColor: TColor);
+begin
+
+end;
+
 procedure TImageList.RegisterResolutions(
   const AResolutionWidths: array of Integer);
+begin
+
+end;
+
+procedure TImageList.Replace(AIndex: Integer; AImage, AMask: TCustomBitmap;
+  const AllResolutions: Boolean);
+begin
+
+end;
+
+procedure TImageList.ReplaceIcon(AIndex: Integer; AIcon: TIcon);
+begin
+
+end;
+
+procedure TImageList.ReplaceMasked(Index: Integer; NewImage: TCustomBitmap;
+  MaskColor: TColor; const AllResolutions: Boolean);
 begin
 
 end;
@@ -5334,6 +5507,85 @@ end;
 procedure TFlowPanelControl.SetWrapAfter(const AWrapAfter: TWrapAfter);
 begin
 
+end;
+
+{ TPageControl }
+
+function TPageControl.AddTabSheet: TTabSheet;
+begin
+
+end;
+
+procedure TPageControl.Clear;
+begin
+
+end;
+
+function TPageControl.FindNextPage(CurPage: TTabSheet; GoForward,
+  CheckTabVisible: Boolean): TTabSheet;
+begin
+
+end;
+
+function TPageControl.IndexOfPageAt(X, Y: Integer): Integer;
+begin
+
+end;
+
+function TPageControl.IndexOfTabAt(X, Y: Integer): Integer;
+begin
+
+end;
+
+procedure TPageControl.SelectNextPage(GoForward: Boolean);
+begin
+
+end;
+
+procedure TPageControl.SetPageIndex(const Value: Integer);
+begin
+  FPageIndex := Value;
+end;
+
+{ TApplication }
+
+procedure TApplication.DoArrowKey(AControl: TWinControl; var Key: Word;
+  Shift: TShiftState);
+begin
+
+end;
+
+procedure TApplication.DoEscapeKey(AControl: TWinControl; var Key: Word;
+  Shift: TShiftState);
+begin
+
+end;
+
+procedure TApplication.DoReturnKey(AControl: TWinControl; var Key: Word;
+  Shift: TShiftState);
+begin
+
+end;
+
+procedure TApplication.DoTabKey(AControl: TWinControl; var Key: Word;
+  Shift: TShiftState);
+begin
+
+end;
+
+function TApplication.GetActive: boolean;
+begin
+
+end;
+
+function TApplication.GetMainFormHandle: HWND;
+begin
+
+end;
+
+procedure TApplication.SetCaptureExceptions(const Value: boolean);
+begin
+  FCaptureExceptions := Value;
 end;
 
 initialization

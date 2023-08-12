@@ -9,6 +9,7 @@
 
 function TrackBar_Create(AOwner: TComponent): TTrackBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TTrackBar.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_CanFocus(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ContainsControl(AObj: TTrackBar; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function TrackBar_ControlAtPos(AObj: TTrackBar; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_FindChildControl(AObj: TTrackBar; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Focused(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_HandleAllocated(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -221,6 +228,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Dragging(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -229,6 +237,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_HasParent(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -245,6 +254,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Perform(AObj: TTrackBar; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -297,6 +307,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_GetTextBuf(AObj: TTrackBar; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -305,6 +316,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_GetTextLen(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -321,6 +333,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_FindComponent(AObj: TTrackBar; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -329,6 +342,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_GetNamePath(AObj: TTrackBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -345,6 +359,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ClassType(AObj: TTrackBar): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -353,6 +368,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ClassName(AObj: TTrackBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -361,6 +377,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_InstanceSize(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -369,6 +386,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_InheritsFrom(AObj: TTrackBar; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -377,6 +395,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Equals(AObj: TTrackBar; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -385,6 +404,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_GetHashCode(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -393,6 +413,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ToString(AObj: TTrackBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -457,6 +478,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleDesignToForm(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -465,6 +487,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleFormToDesign(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -473,6 +496,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Scale96ToForm(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -481,6 +505,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleFormTo96(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -489,6 +514,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Scale96ToFont(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -497,6 +523,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleFontTo96(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -505,6 +532,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleScreenToFont(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -513,6 +541,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleFontToScreen(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +550,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_Scale96ToScreen(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +559,7 @@ end;
 //CLASSMETHOD:
 function TrackBar_ScaleScreenTo96(AObj: TTrackBar; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -561,6 +592,7 @@ end;
 
 function TrackBar_GetAlign(AObj: TTrackBar): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -575,6 +607,7 @@ end;
 
 function TrackBar_GetAnchors(AObj: TTrackBar): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -589,6 +622,7 @@ end;
 
 function TrackBar_GetBorderWidth(AObj: TTrackBar): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -603,6 +637,7 @@ end;
 
 function TrackBar_GetDoubleBuffered(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -617,6 +652,7 @@ end;
 
 function TrackBar_GetDragCursor(AObj: TTrackBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -631,6 +667,7 @@ end;
 
 function TrackBar_GetDragMode(AObj: TTrackBar): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -645,6 +682,7 @@ end;
 
 function TrackBar_GetEnabled(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -659,6 +697,7 @@ end;
 
 function TrackBar_GetConstraints(AObj: TTrackBar): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -673,6 +712,7 @@ end;
 
 function TrackBar_GetLineSize(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LineSize;
   handleExceptionEnd
@@ -687,6 +727,7 @@ end;
 
 function TrackBar_GetMax(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Max;
   handleExceptionEnd
@@ -701,6 +742,7 @@ end;
 
 function TrackBar_GetMin(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Min;
   handleExceptionEnd
@@ -715,6 +757,7 @@ end;
 
 function TrackBar_GetOrientation(AObj: TTrackBar): TTrackBarOrientation; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTrackBarOrientation);{$endif}
   handleExceptionBegin
   Result :=  AObj.Orientation;
   handleExceptionEnd
@@ -729,6 +772,7 @@ end;
 
 function TrackBar_GetParentDoubleBuffered(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -743,6 +787,7 @@ end;
 
 function TrackBar_GetParentShowHint(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -757,6 +802,7 @@ end;
 
 function TrackBar_GetPageSize(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PageSize;
   handleExceptionEnd
@@ -771,6 +817,7 @@ end;
 
 function TrackBar_GetPopupMenu(AObj: TTrackBar): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -785,6 +832,7 @@ end;
 
 function TrackBar_GetFrequency(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Frequency;
   handleExceptionEnd
@@ -799,6 +847,7 @@ end;
 
 function TrackBar_GetPosition(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
@@ -813,6 +862,7 @@ end;
 
 function TrackBar_GetSelEnd(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelEnd;
   handleExceptionEnd
@@ -827,6 +877,7 @@ end;
 
 function TrackBar_GetSelStart(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -841,6 +892,7 @@ end;
 
 function TrackBar_GetShowHint(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -855,6 +907,7 @@ end;
 
 function TrackBar_GetShowSelRange(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowSelRange;
   handleExceptionEnd
@@ -869,6 +922,7 @@ end;
 
 function TrackBar_GetTabOrder(AObj: TTrackBar): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -883,6 +937,7 @@ end;
 
 function TrackBar_GetTabStop(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -897,6 +952,7 @@ end;
 
 function TrackBar_GetTickMarks(AObj: TTrackBar): TTickMark; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTickMark);{$endif}
   handleExceptionBegin
   Result :=  AObj.TickMarks;
   handleExceptionEnd
@@ -911,6 +967,7 @@ end;
 
 function TrackBar_GetTickStyle(AObj: TTrackBar): TTickStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTickStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.TickStyle;
   handleExceptionEnd
@@ -925,6 +982,7 @@ end;
 
 function TrackBar_GetVisible(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1019,6 +1077,7 @@ end;
 
 function TrackBar_GetDockClientCount(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1026,6 +1085,7 @@ end;
 
 function TrackBar_GetDockSite(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1040,6 +1100,7 @@ end;
 
 function TrackBar_GetMouseInClient(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1047,6 +1108,7 @@ end;
 
 function TrackBar_GetVisibleDockClientCount(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1054,6 +1116,7 @@ end;
 
 function TrackBar_GetBrush(AObj: TTrackBar): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1061,6 +1124,7 @@ end;
 
 function TrackBar_GetControlCount(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1068,6 +1132,7 @@ end;
 
 function TrackBar_GetHandle(AObj: TTrackBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1075,6 +1140,7 @@ end;
 
 function TrackBar_GetParentWindow(AObj: TTrackBar): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1089,6 +1155,7 @@ end;
 
 function TrackBar_GetShowing(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1096,6 +1163,7 @@ end;
 
 function TrackBar_GetUseDockManager(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1110,6 +1178,7 @@ end;
 
 function TrackBar_GetAction(AObj: TTrackBar): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1124,6 +1193,7 @@ end;
 
 function TrackBar_GetBiDiMode(AObj: TTrackBar): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1154,6 +1224,7 @@ end;
 
 function TrackBar_GetClientHeight(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1184,6 +1255,7 @@ end;
 
 function TrackBar_GetClientWidth(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1198,6 +1270,7 @@ end;
 
 function TrackBar_GetControlState(AObj: TTrackBar): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1212,6 +1285,7 @@ end;
 
 function TrackBar_GetControlStyle(AObj: TTrackBar): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1226,6 +1300,7 @@ end;
 
 function TrackBar_GetFloating(AObj: TTrackBar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1233,6 +1308,7 @@ end;
 
 function TrackBar_GetParent(AObj: TTrackBar): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1247,6 +1323,7 @@ end;
 
 function TrackBar_GetLeft(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1261,6 +1338,7 @@ end;
 
 function TrackBar_GetTop(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1275,6 +1353,7 @@ end;
 
 function TrackBar_GetWidth(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1289,6 +1368,7 @@ end;
 
 function TrackBar_GetHeight(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1303,6 +1383,7 @@ end;
 
 function TrackBar_GetCursor(AObj: TTrackBar): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1317,6 +1398,7 @@ end;
 
 function TrackBar_GetHint(AObj: TTrackBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1331,6 +1413,7 @@ end;
 
 function TrackBar_GetComponentCount(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1338,6 +1421,7 @@ end;
 
 function TrackBar_GetComponentIndex(AObj: TTrackBar): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1352,6 +1436,7 @@ end;
 
 function TrackBar_GetOwner(AObj: TTrackBar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1359,6 +1444,7 @@ end;
 
 function TrackBar_GetName(AObj: TTrackBar): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1373,6 +1459,7 @@ end;
 
 function TrackBar_GetTag(AObj: TTrackBar): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1387,6 +1474,7 @@ end;
 
 function TrackBar_GetAnchorSideLeft(AObj: TTrackBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1401,6 +1489,7 @@ end;
 
 function TrackBar_GetAnchorSideTop(AObj: TTrackBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1415,6 +1504,7 @@ end;
 
 function TrackBar_GetAnchorSideRight(AObj: TTrackBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1429,6 +1519,7 @@ end;
 
 function TrackBar_GetAnchorSideBottom(AObj: TTrackBar): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1443,6 +1534,7 @@ end;
 
 function TrackBar_GetChildSizing(AObj: TTrackBar): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1457,6 +1549,7 @@ end;
 
 function TrackBar_GetBorderSpacing(AObj: TTrackBar): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1471,6 +1564,7 @@ end;
 
 function TrackBar_GetDockClients(AObj: TTrackBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1478,6 +1572,7 @@ end;
 
 function TrackBar_GetControls(AObj: TTrackBar; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1485,6 +1580,7 @@ end;
 
 function TrackBar_GetComponents(AObj: TTrackBar; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1492,6 +1588,7 @@ end;
 
 function TrackBar_GetAnchorSide(AObj: TTrackBar; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

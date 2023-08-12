@@ -9,6 +9,7 @@
 
 function Image_Create(AOwner: TComponent): TImage; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TImage.Create(AOwner);
   handleExceptionEnd
@@ -52,6 +53,7 @@ end;
 //CLASSMETHOD:
 function Image_Dragging(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -60,6 +62,7 @@ end;
 //CLASSMETHOD:
 function Image_HasParent(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -84,6 +87,7 @@ end;
 //CLASSMETHOD:
 function Image_Perform(AObj: TImage; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -160,6 +164,7 @@ end;
 //CLASSMETHOD:
 function Image_GetTextBuf(AObj: TImage; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -168,6 +173,7 @@ end;
 //CLASSMETHOD:
 function Image_GetTextLen(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -184,6 +190,7 @@ end;
 //CLASSMETHOD:
 function Image_FindComponent(AObj: TImage; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -192,6 +199,7 @@ end;
 //CLASSMETHOD:
 function Image_GetNamePath(AObj: TImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -208,6 +216,7 @@ end;
 //CLASSMETHOD:
 function Image_ClassType(AObj: TImage): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -216,6 +225,7 @@ end;
 //CLASSMETHOD:
 function Image_ClassName(AObj: TImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -224,6 +234,7 @@ end;
 //CLASSMETHOD:
 function Image_InstanceSize(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -232,6 +243,7 @@ end;
 //CLASSMETHOD:
 function Image_InheritsFrom(AObj: TImage; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -240,6 +252,7 @@ end;
 //CLASSMETHOD:
 function Image_Equals(AObj: TImage; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -248,6 +261,7 @@ end;
 //CLASSMETHOD:
 function Image_GetHashCode(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -256,6 +270,7 @@ end;
 //CLASSMETHOD:
 function Image_ToString(AObj: TImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -320,6 +335,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleDesignToForm(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -328,6 +344,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleFormToDesign(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -336,6 +353,7 @@ end;
 //CLASSMETHOD:
 function Image_Scale96ToForm(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -344,6 +362,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleFormTo96(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -352,6 +371,7 @@ end;
 //CLASSMETHOD:
 function Image_Scale96ToFont(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -360,6 +380,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleFontTo96(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -368,6 +389,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleScreenToFont(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -376,6 +398,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleFontToScreen(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -384,6 +407,7 @@ end;
 //CLASSMETHOD:
 function Image_Scale96ToScreen(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -392,6 +416,7 @@ end;
 //CLASSMETHOD:
 function Image_ScaleScreenTo96(AObj: TImage; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -424,6 +449,7 @@ end;
 
 function Image_GetAntialiasingMode(AObj: TImage): TAntialiasingMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAntialiasingMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.AntialiasingMode;
   handleExceptionEnd
@@ -438,6 +464,7 @@ end;
 
 function Image_GetKeepOriginXWhenClipped(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.KeepOriginXWhenClipped;
   handleExceptionEnd
@@ -452,6 +479,7 @@ end;
 
 function Image_GetKeepOriginYWhenClipped(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.KeepOriginYWhenClipped;
   handleExceptionEnd
@@ -466,6 +494,7 @@ end;
 
 function Image_GetStretchInEnabled(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.StretchInEnabled;
   handleExceptionEnd
@@ -480,6 +509,7 @@ end;
 
 function Image_GetStretchOutEnabled(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.StretchOutEnabled;
   handleExceptionEnd
@@ -492,8 +522,33 @@ begin
   handleExceptionEnd
 end;
 
+//EVENT_TYPE:TNotifyEvent
+procedure Image_SetOnPaint(AObj: TImage; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent}
+  {$DEFINE EventName := OnPaint}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TImagePaintBackgroundEvent
+procedure Image_SetOnPaintBackground(AObj: TImage; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTImagePaintBackgroundEvent}
+  {$DEFINE EventName := OnPaintBackground}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TNotifyEvent
+procedure Image_SetOnPictureChanged(AObj: TImage; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTNotifyEvent}
+  {$DEFINE EventName := OnPictureChanged}
+  EventMethodCode
+end;
+
 function Image_GetCanvas(AObj: TImage): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -501,6 +556,7 @@ end;
 
 function Image_GetAlign(AObj: TImage): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -515,6 +571,7 @@ end;
 
 function Image_GetAnchors(AObj: TImage): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -529,6 +586,7 @@ end;
 
 function Image_GetAutoSize(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -543,6 +601,7 @@ end;
 
 function Image_GetCenter(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Center;
   handleExceptionEnd
@@ -557,6 +616,7 @@ end;
 
 function Image_GetConstraints(AObj: TImage): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -571,6 +631,7 @@ end;
 
 function Image_GetDragCursor(AObj: TImage): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -585,6 +646,7 @@ end;
 
 function Image_GetDragMode(AObj: TImage): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -599,6 +661,7 @@ end;
 
 function Image_GetEnabled(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -613,6 +676,7 @@ end;
 
 function Image_GetParentShowHint(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -627,6 +691,7 @@ end;
 
 function Image_GetPicture(AObj: TImage): TPicture; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Picture;
   handleExceptionEnd
@@ -641,6 +706,7 @@ end;
 
 function Image_GetPopupMenu(AObj: TImage): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -655,6 +721,7 @@ end;
 
 function Image_GetProportional(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Proportional;
   handleExceptionEnd
@@ -669,6 +736,7 @@ end;
 
 function Image_GetShowHint(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -683,6 +751,7 @@ end;
 
 function Image_GetStretch(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Stretch;
   handleExceptionEnd
@@ -697,6 +766,7 @@ end;
 
 function Image_GetTransparent(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -711,6 +781,7 @@ end;
 
 function Image_GetVisible(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -805,6 +876,7 @@ end;
 
 function Image_GetAction(AObj: TImage): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -819,6 +891,7 @@ end;
 
 function Image_GetBiDiMode(AObj: TImage): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -849,6 +922,7 @@ end;
 
 function Image_GetClientHeight(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -879,6 +953,7 @@ end;
 
 function Image_GetClientWidth(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -893,6 +968,7 @@ end;
 
 function Image_GetControlState(AObj: TImage): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -907,6 +983,7 @@ end;
 
 function Image_GetControlStyle(AObj: TImage): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -921,6 +998,7 @@ end;
 
 function Image_GetFloating(AObj: TImage): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -928,6 +1006,7 @@ end;
 
 function Image_GetParent(AObj: TImage): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -942,6 +1021,7 @@ end;
 
 function Image_GetLeft(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -956,6 +1036,7 @@ end;
 
 function Image_GetTop(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -970,6 +1051,7 @@ end;
 
 function Image_GetWidth(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -984,6 +1066,7 @@ end;
 
 function Image_GetHeight(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -998,6 +1081,7 @@ end;
 
 function Image_GetCursor(AObj: TImage): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1012,6 +1096,7 @@ end;
 
 function Image_GetHint(AObj: TImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1026,6 +1111,7 @@ end;
 
 function Image_GetComponentCount(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1033,6 +1119,7 @@ end;
 
 function Image_GetComponentIndex(AObj: TImage): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1047,6 +1134,7 @@ end;
 
 function Image_GetOwner(AObj: TImage): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1054,6 +1142,7 @@ end;
 
 function Image_GetName(AObj: TImage): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1068,6 +1157,7 @@ end;
 
 function Image_GetTag(AObj: TImage): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1082,6 +1172,7 @@ end;
 
 function Image_GetAnchorSideLeft(AObj: TImage): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1096,6 +1187,7 @@ end;
 
 function Image_GetAnchorSideTop(AObj: TImage): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1110,6 +1202,7 @@ end;
 
 function Image_GetAnchorSideRight(AObj: TImage): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1124,6 +1217,7 @@ end;
 
 function Image_GetAnchorSideBottom(AObj: TImage): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1138,6 +1232,7 @@ end;
 
 function Image_GetBorderSpacing(AObj: TImage): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1152,6 +1247,7 @@ end;
 
 function Image_GetComponents(AObj: TImage; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1159,6 +1255,7 @@ end;
 
 function Image_GetAnchorSide(AObj: TImage; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd
@@ -1231,6 +1328,9 @@ exports
   Image_SetStretchInEnabled,
   Image_GetStretchOutEnabled,
   Image_SetStretchOutEnabled,
+  Image_SetOnPaint,
+  Image_SetOnPaintBackground,
+  Image_SetOnPictureChanged,
   Image_GetCanvas,
   Image_GetAlign,
   Image_SetAlign,

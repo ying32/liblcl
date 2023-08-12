@@ -10,6 +10,7 @@
 //CLASSMETHOD:
 function GridColumns_Add(AObj: TGridColumns): TGridColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_RealIndex(AObj: TGridColumns; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RealIndex(Index);
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_IndexOf(AObj: TGridColumns; Column: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOf(Column);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_IsDefault(AObj: TGridColumns): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsDefault;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_HasIndex(AObj: TGridColumns; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasIndex(Index);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_Owner(AObj: TGridColumns): TPersistent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -98,6 +104,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_FindItemID(AObj: TGridColumns; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -106,6 +113,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_GetNamePath(AObj: TGridColumns): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -114,6 +122,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_Insert(AObj: TGridColumns; Index: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -122,6 +131,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_ClassType(AObj: TGridColumns): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -130,6 +140,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_ClassName(AObj: TGridColumns): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -138,6 +149,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_InstanceSize(AObj: TGridColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -146,6 +158,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_InheritsFrom(AObj: TGridColumns; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -154,6 +167,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_Equals(AObj: TGridColumns; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -162,6 +176,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_GetHashCode(AObj: TGridColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -170,6 +185,7 @@ end;
 //CLASSMETHOD:
 function GridColumns_ToString(AObj: TGridColumns): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -177,6 +193,7 @@ end;
 
 function GridColumns_GetGrid(AObj: TGridColumns): TCustomGrid; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Grid;
   handleExceptionEnd
@@ -184,6 +201,7 @@ end;
 
 function GridColumns_GetVisibleCount(AObj: TGridColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleCount;
   handleExceptionEnd
@@ -191,6 +209,7 @@ end;
 
 function GridColumns_GetEnabled(AObj: TGridColumns): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -198,6 +217,7 @@ end;
 
 function GridColumns_GetCount(AObj: TGridColumns): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -205,6 +225,7 @@ end;
 
 function GridColumns_GetItems(AObj: TGridColumns; Index: Integer): TGridColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd

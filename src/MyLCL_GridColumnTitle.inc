@@ -43,6 +43,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_IsDefault(AObj: TGridColumnTitle): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsDefault;
   handleExceptionEnd
@@ -51,6 +52,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_GetNamePath(AObj: TGridColumnTitle): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -59,6 +61,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_ClassType(AObj: TGridColumnTitle): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -67,6 +70,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_ClassName(AObj: TGridColumnTitle): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -75,6 +79,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_InstanceSize(AObj: TGridColumnTitle): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -83,6 +88,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_InheritsFrom(AObj: TGridColumnTitle; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -91,6 +97,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_Equals(AObj: TGridColumnTitle; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -99,6 +106,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_GetHashCode(AObj: TGridColumnTitle): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -107,6 +115,7 @@ end;
 //CLASSMETHOD:
 function GridColumnTitle_ToString(AObj: TGridColumnTitle): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -114,6 +123,7 @@ end;
 
 function GridColumnTitle_GetColumn(AObj: TGridColumnTitle): TGridColumn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Column;
   handleExceptionEnd
@@ -121,6 +131,7 @@ end;
 
 function GridColumnTitle_GetAlignment(AObj: TGridColumnTitle): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -135,6 +146,7 @@ end;
 
 function GridColumnTitle_GetCaption(AObj: TGridColumnTitle): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -149,6 +161,7 @@ end;
 
 function GridColumnTitle_GetColor(AObj: TGridColumnTitle): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -163,6 +176,7 @@ end;
 
 function GridColumnTitle_GetFont(AObj: TGridColumnTitle): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -177,6 +191,7 @@ end;
 
 function GridColumnTitle_GetImageIndex(AObj: TGridColumnTitle): TImageIndex; extdecl;
 begin
+{$ifdef UsehandleException}Result := TImageIndex(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -191,6 +206,7 @@ end;
 
 function GridColumnTitle_GetImageLayout(AObj: TGridColumnTitle): TButtonLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TButtonLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageLayout;
   handleExceptionEnd
@@ -205,6 +221,7 @@ end;
 
 function GridColumnTitle_GetLayout(AObj: TGridColumnTitle): TTextLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTextLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -219,6 +236,7 @@ end;
 
 function GridColumnTitle_GetMultiLine(AObj: TGridColumnTitle): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiLine;
   handleExceptionEnd
@@ -233,6 +251,7 @@ end;
 
 function GridColumnTitle_GetPrefixOption(AObj: TGridColumnTitle): TPrefixOption; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TPrefixOption);{$endif}
   handleExceptionBegin
   Result :=  AObj.PrefixOption;
   handleExceptionEnd

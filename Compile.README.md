@@ -6,7 +6,7 @@
 
 ### liblcl 
 
-liblcl 基于Lazarus 2.2 版本 FPC 3.2.2，具体各个平台的安装方式自行参考官网安装说明, 其它版本编译出现的问题请自行解决相关。。
+liblcl 基于Lazarus 2.2.2 版本 FPC 3.2.2，具体各个平台的安装方式自行参考官网安装说明, 其它版本编译出现的问题请自行解决相关。。
 
 liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、MacOS`。       
 
@@ -18,10 +18,13 @@ liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、M
 * 4、菜单->Project->Project Options -> Compiler Options -> Build modes 切换相关编环模式，当前有效模式为以下几种种：   
    * Win32  
    * Win64  
+   * Linux32 **(未经测试)**
    * Linux64  
-   * Linux32
-   * LinuxARM           
-   * MacOS64(cocoa) 。 
+   * LinuxARM **(未经测试)** 
+   * LinuxARM64 **(未经测试)**
+   * MacOS64(cocoa)
+   * MacOS M1 **(未经测试)**
+   
 * 5、菜单 -> Run -> Build 或者 Shift + F9 (必须使用Build)  
 
 **注意： 如你想要编译ARM和Linux 32位的liblcl则需要在对应平台安装相应的[Lazarus](http://www.lazarus-ide.org/)和FPC。也可考虑安装[CodeTyphon](http://www.pilotlogic.com/sitejoom/index.php/codetyphon)进行交叉编译，不过挺麻烦。**
@@ -31,6 +34,7 @@ liblcl工程源码位于"liblcl/src"目录。`liblcl适用于Windows、Linux、M
 **注意：此目录为我本机编译目录，自行编译请修改相应的输出位置。**
 输出liblcl位置修改：`Menu -> Project -> Project Options -> Compiler Options -> Build modes Switch the relevant ring mode -> Target file name`  
 
-> Windows: `"..\..\..\..\..\bin\liblcl"`     
-> Linux: `"../bin/liblcl"`  
-> MacOS: `"../../../../../bin/liblcl"`
+> Windows: `..\bin\$(TargetCPU)-$(TargetOS)\liblcl`     
+> Linux: `../bin/$(TargetCPU)-$(TargetOS)/liblcl`  
+> MacOS: `../bin/$(TargetCPU)-$(TargetOS)/liblcl`
+

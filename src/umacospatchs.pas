@@ -80,6 +80,7 @@ end;
 
 function NSWindow_titleVisibility(AObj: MyNSWindow): NSWindowTitleVisibility; extdecl;
 begin
+  {$ifdef UsehandleException}Result := NSWindowTitleVisibility(0);{$endif}
   handleExceptionBegin
   Result := AObj.titleVisibility();
   handleExceptionEnd
@@ -94,6 +95,7 @@ end;
 
 function NSWindow_titlebarAppearsTransparent(AObj: MyNSWindow): Boolean; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result := AObj.titlebarAppearsTransparent();
   handleExceptionEnd
@@ -108,6 +110,7 @@ end;
 
 function NSWindow_styleMask(AObj: MyNSWindow): NSInteger; extdecl;
 begin
+  {$ifdef UsehandleException}Result := 0;{$endif}
   handleExceptionBegin
   Result := AObj.styleMask();
   handleExceptionEnd

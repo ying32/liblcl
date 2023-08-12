@@ -31,7 +31,7 @@ uses
   fgl;
 
 const
-  // call最长参数数，与导出的MySyscall一致，暂定为12个
+  // call最长参数数，暂定为12个
   CALL_MAX_PARAM = 12;
 
 type
@@ -72,6 +72,8 @@ type
     // 保存传入的，一个标识吧
     FHostDataPtr: Pointer;
     function GetDataPtr: Pointer;
+    // 不单独使用的，配置其他使用
+    class procedure CallRemoveEvent(AMethod: TMethod);
   protected
     procedure SendEvent(AArgs: array of const);
     function CheckDataPtr: Boolean;
@@ -82,6 +84,7 @@ type
 
     // 移除事件中的对象
     class procedure Remove(AMethod: TMethod);
+    class function CheckAndUpdate(AMethod: TMethod; AHostDataPtr: Pointer): Boolean;
   end;
 
   { TLCLEvent }
@@ -184,6 +187,8 @@ type
     procedure OnTOnPrepareCanvasEvent(sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
     //--------------------------------------------------------------------------
 
+    procedure OnTImagePaintBackgroundEvent(ASender: TObject; ACanvas: TCanvas; ARect: TRect);
+
     procedure OnTAcceptFileNameEvent(Sender: TObject; var Value: String);
     procedure OnTCheckItemChange(Sender: TObject; AIndex: Integer);
 
@@ -191,31 +196,18 @@ type
 
     procedure OnTMenuDrawItemEvent(Sender: TObject; ACanvas: TCanvas; ARect: TRect; AState: TOwnerDrawState);
 
+    procedure OnTWndProcEvent(Sender: TObject; var TheMessage: TLMessage);
   public
     // thread sync
     class procedure ThreadProc;
     class property ThreadEvtId: NativeUInt read FThreadEvtId write FThreadEvtId;
   end;
 
-   // 窗口消息的，不与之前的事件混在一起。
-  { TLCLMessageEvent }
-
-  TLCLMessageEvent = class(TLCLEventBase)
-  public
-    procedure OnTWndProcEvent(Sender: TObject; var TheMessage: TLMessage);
-  end;
 
 
 implementation
 
-{ TLCLMessageEvent }
 
-procedure TLCLMessageEvent.OnTWndProcEvent(Sender: TObject;
-  var TheMessage: TLMessage);
-begin
-  if Assigned(GMessageCallbackPtr) and CheckDataPtr then
-    GMessageCallbackPtr(DataPtr, @TheMessage);
-end;
 
 
 { TLCLEventBase }
@@ -246,6 +238,13 @@ end;
 function TLCLEventBase.GetDataPtr: Pointer;
 begin
   Result := FHostDataPtr;
+end;
+
+class procedure TLCLEventBase.CallRemoveEvent(AMethod: TMethod);
+begin
+  // 通知宿主程序，某个事件要清除了，解除引用。
+  if Assigned(GRemoveEventCallbackPtr) then
+    GRemoveEventCallbackPtr(TLCLEventBase(AMethod.Data).FHostDataPtr);
 end;
 
 procedure TLCLEventBase.SendEvent(AArgs: array of const);
@@ -318,14 +317,32 @@ begin
     // 这是一个class，找到后会删除并Free掉这个对象
     if AMethod.Data <> nil then
     begin
-      // 通知宿主程序，某个事件要清除了，解除引用。
-      if Assigned(GRemoveEventCallbackPtr) then
-        GRemoveEventCallbackPtr(TLCLEventBase(AMethod.Data).FHostDataPtr);
+      CallRemoveEvent(AMethod);
       FEventObjects.Remove(AMethod.Data);
     end;
   finally
     System.LeaveCriticalSection(FEventObjectsLock);
   end;
+end;
+
+class function TLCLEventBase.CheckAndUpdate(AMethod: TMethod; AHostDataPtr: Pointer): Boolean;
+begin
+  Result := False;
+  System.EnterCriticalSection(FEventObjectsLock);
+   try
+     if AMethod.Data <> nil then
+     begin
+       // 只有当要替换的数据不同时，则更新
+       if TLCLEventBase(AMethod.Data).FHostDataPtr <> AHostDataPtr then
+       begin
+         CallRemoveEvent(AMethod);
+         TLCLEventBase(AMethod.Data).FHostDataPtr := AHostDataPtr;
+         Result := True;
+       end;
+     end;
+   finally
+     System.LeaveCriticalSection(FEventObjectsLock);
+   end;
 end;
 
 { TLCLEvent }
@@ -805,6 +822,12 @@ begin
   SendEvent([Sender, aCol, aRow, PWord(@aState)^]);
 end;
 
+procedure TLCLEvent.OnTImagePaintBackgroundEvent(ASender: TObject;
+  ACanvas: TCanvas; ARect: TRect);
+begin
+  SendEvent([ASender, ACanvas, @ARect]);
+end;
+
 procedure TLCLEvent.OnTAcceptFileNameEvent(Sender: TObject;
   var Value: String);
 var
@@ -923,6 +946,12 @@ begin
   SendEvent([Sender, IsColumn, sIndex, tIndex]);
 end;
 
+procedure TLCLEvent.OnTWndProcEvent(Sender: TObject;
+  var TheMessage: TLMessage);
+begin
+  if Assigned(GMessageCallbackPtr) and CheckDataPtr then
+    GMessageCallbackPtr(DataPtr, @TheMessage);
+end;
 
 
 end.

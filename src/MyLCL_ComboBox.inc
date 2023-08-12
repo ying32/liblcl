@@ -9,6 +9,7 @@
 
 function ComboBox_Create(AOwner: TComponent): TComboBox; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TComboBox.Create(AOwner);
   handleExceptionEnd
@@ -56,6 +57,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Focused(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -72,6 +74,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_CanFocus(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -80,6 +83,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ContainsControl(AObj: TComboBox; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -89,6 +93,7 @@ end;
 //PARAMS:2=nonPtr
 function ComboBox_ControlAtPos(AObj: TComboBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -113,6 +118,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_FindChildControl(AObj: TComboBox; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -129,6 +135,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_HandleAllocated(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -253,6 +260,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Dragging(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -261,6 +269,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_HasParent(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -277,6 +286,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Perform(AObj: TComboBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -329,6 +339,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_GetTextBuf(AObj: TComboBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -337,6 +348,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_GetTextLen(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -353,6 +365,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_FindComponent(AObj: TComboBox; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -361,6 +374,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_GetNamePath(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -377,6 +391,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ClassType(AObj: TComboBox): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -385,6 +400,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ClassName(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -393,6 +409,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_InstanceSize(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -401,6 +418,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_InheritsFrom(AObj: TComboBox; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -409,6 +427,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Equals(AObj: TComboBox; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -417,6 +436,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_GetHashCode(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -425,6 +445,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ToString(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -489,6 +510,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleDesignToForm(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -497,6 +519,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleFormToDesign(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -505,6 +528,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Scale96ToForm(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -513,6 +537,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleFormTo96(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -521,6 +546,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Scale96ToFont(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -529,6 +555,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleFontTo96(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -537,6 +564,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleScreenToFont(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -545,6 +573,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleFontToScreen(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -553,6 +582,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_Scale96ToScreen(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -561,6 +591,7 @@ end;
 //CLASSMETHOD:
 function ComboBox_ScaleScreenTo96(AObj: TComboBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -593,6 +624,7 @@ end;
 
 function ComboBox_GetReadOnly(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -607,6 +639,7 @@ end;
 
 function ComboBox_GetAlign(AObj: TComboBox): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -621,6 +654,7 @@ end;
 
 function ComboBox_GetAutoComplete(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoComplete;
   handleExceptionEnd
@@ -635,6 +669,7 @@ end;
 
 function ComboBox_GetAutoDropDown(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoDropDown;
   handleExceptionEnd
@@ -649,6 +684,7 @@ end;
 
 function ComboBox_GetStyle(AObj: TComboBox): TComboBoxStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TComboBoxStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -663,6 +699,7 @@ end;
 
 function ComboBox_GetAnchors(AObj: TComboBox): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -677,6 +714,7 @@ end;
 
 function ComboBox_GetBiDiMode(AObj: TComboBox): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -691,6 +729,7 @@ end;
 
 function ComboBox_GetCharCase(AObj: TComboBox): TEditCharCase; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TEditCharCase);{$endif}
   handleExceptionBegin
   Result :=  AObj.CharCase;
   handleExceptionEnd
@@ -705,6 +744,7 @@ end;
 
 function ComboBox_GetColor(AObj: TComboBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -719,6 +759,7 @@ end;
 
 function ComboBox_GetConstraints(AObj: TComboBox): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -733,6 +774,7 @@ end;
 
 function ComboBox_GetDoubleBuffered(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -747,6 +789,7 @@ end;
 
 function ComboBox_GetDragCursor(AObj: TComboBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -761,6 +804,7 @@ end;
 
 function ComboBox_GetDragKind(AObj: TComboBox): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -775,6 +819,7 @@ end;
 
 function ComboBox_GetDragMode(AObj: TComboBox): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -789,6 +834,7 @@ end;
 
 function ComboBox_GetDropDownCount(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DropDownCount;
   handleExceptionEnd
@@ -803,6 +849,7 @@ end;
 
 function ComboBox_GetEnabled(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -817,6 +864,7 @@ end;
 
 function ComboBox_GetFont(AObj: TComboBox): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -831,6 +879,7 @@ end;
 
 function ComboBox_GetItemHeight(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemHeight;
   handleExceptionEnd
@@ -845,6 +894,7 @@ end;
 
 function ComboBox_GetItemIndex(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemIndex;
   handleExceptionEnd
@@ -859,6 +909,7 @@ end;
 
 function ComboBox_GetMaxLength(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -873,6 +924,7 @@ end;
 
 function ComboBox_GetParentColor(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -887,6 +939,7 @@ end;
 
 function ComboBox_GetParentDoubleBuffered(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -901,6 +954,7 @@ end;
 
 function ComboBox_GetParentFont(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -915,6 +969,7 @@ end;
 
 function ComboBox_GetParentShowHint(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -929,6 +984,7 @@ end;
 
 function ComboBox_GetPopupMenu(AObj: TComboBox): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -943,6 +999,7 @@ end;
 
 function ComboBox_GetShowHint(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -957,6 +1014,7 @@ end;
 
 function ComboBox_GetSorted(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Sorted;
   handleExceptionEnd
@@ -971,6 +1029,7 @@ end;
 
 function ComboBox_GetTabOrder(AObj: TComboBox): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -985,6 +1044,7 @@ end;
 
 function ComboBox_GetTabStop(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -999,6 +1059,7 @@ end;
 
 function ComboBox_GetText(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1013,6 +1074,7 @@ end;
 
 function ComboBox_GetVisible(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1179,6 +1241,7 @@ end;
 
 function ComboBox_GetItems(AObj: TComboBox): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -1193,6 +1256,7 @@ end;
 
 function ComboBox_GetSelText(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1207,6 +1271,7 @@ end;
 
 function ComboBox_GetCanvas(AObj: TComboBox): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1214,6 +1279,7 @@ end;
 
 function ComboBox_GetDroppedDown(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DroppedDown;
   handleExceptionEnd
@@ -1228,6 +1294,7 @@ end;
 
 function ComboBox_GetSelLength(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1242,6 +1309,7 @@ end;
 
 function ComboBox_GetSelStart(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1256,6 +1324,7 @@ end;
 
 function ComboBox_GetDockClientCount(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1263,6 +1332,7 @@ end;
 
 function ComboBox_GetDockSite(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1277,6 +1347,7 @@ end;
 
 function ComboBox_GetMouseInClient(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1284,6 +1355,7 @@ end;
 
 function ComboBox_GetVisibleDockClientCount(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1291,6 +1363,7 @@ end;
 
 function ComboBox_GetBrush(AObj: TComboBox): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1298,6 +1371,7 @@ end;
 
 function ComboBox_GetControlCount(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1305,6 +1379,7 @@ end;
 
 function ComboBox_GetHandle(AObj: TComboBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1312,6 +1387,7 @@ end;
 
 function ComboBox_GetParentWindow(AObj: TComboBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1326,6 +1402,7 @@ end;
 
 function ComboBox_GetShowing(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1333,6 +1410,7 @@ end;
 
 function ComboBox_GetUseDockManager(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1347,6 +1425,7 @@ end;
 
 function ComboBox_GetAction(AObj: TComboBox): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1377,6 +1456,7 @@ end;
 
 function ComboBox_GetClientHeight(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1407,6 +1487,7 @@ end;
 
 function ComboBox_GetClientWidth(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1421,6 +1502,7 @@ end;
 
 function ComboBox_GetControlState(AObj: TComboBox): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1435,6 +1517,7 @@ end;
 
 function ComboBox_GetControlStyle(AObj: TComboBox): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1449,6 +1532,7 @@ end;
 
 function ComboBox_GetFloating(AObj: TComboBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1456,6 +1540,7 @@ end;
 
 function ComboBox_GetParent(AObj: TComboBox): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1470,6 +1555,7 @@ end;
 
 function ComboBox_GetLeft(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1484,6 +1570,7 @@ end;
 
 function ComboBox_GetTop(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1498,6 +1585,7 @@ end;
 
 function ComboBox_GetWidth(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1512,6 +1600,7 @@ end;
 
 function ComboBox_GetHeight(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1526,6 +1615,7 @@ end;
 
 function ComboBox_GetCursor(AObj: TComboBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1540,6 +1630,7 @@ end;
 
 function ComboBox_GetHint(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1554,6 +1645,7 @@ end;
 
 function ComboBox_GetComponentCount(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1561,6 +1653,7 @@ end;
 
 function ComboBox_GetComponentIndex(AObj: TComboBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1575,6 +1668,7 @@ end;
 
 function ComboBox_GetOwner(AObj: TComboBox): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1582,6 +1676,7 @@ end;
 
 function ComboBox_GetName(AObj: TComboBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1596,6 +1691,7 @@ end;
 
 function ComboBox_GetTag(AObj: TComboBox): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1610,6 +1706,7 @@ end;
 
 function ComboBox_GetAnchorSideLeft(AObj: TComboBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1624,6 +1721,7 @@ end;
 
 function ComboBox_GetAnchorSideTop(AObj: TComboBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1638,6 +1736,7 @@ end;
 
 function ComboBox_GetAnchorSideRight(AObj: TComboBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1652,6 +1751,7 @@ end;
 
 function ComboBox_GetAnchorSideBottom(AObj: TComboBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1666,6 +1766,7 @@ end;
 
 function ComboBox_GetChildSizing(AObj: TComboBox): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1680,6 +1781,7 @@ end;
 
 function ComboBox_GetBorderSpacing(AObj: TComboBox): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1694,6 +1796,7 @@ end;
 
 function ComboBox_GetDockClients(AObj: TComboBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1701,6 +1804,7 @@ end;
 
 function ComboBox_GetControls(AObj: TComboBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1708,6 +1812,7 @@ end;
 
 function ComboBox_GetComponents(AObj: TComboBox; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1715,6 +1820,7 @@ end;
 
 function ComboBox_GetAnchorSide(AObj: TComboBox; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

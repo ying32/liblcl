@@ -9,6 +9,7 @@
 
 function FloatSpinEdit_Create(AOwner: TComponent): TFloatSpinEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TFloatSpinEdit.Create(AOwner);
   handleExceptionEnd
@@ -80,6 +81,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_CanFocus(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -88,6 +90,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ContainsControl(AObj: TFloatSpinEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -97,6 +100,7 @@ end;
 //PARAMS:2=nonPtr
 function FloatSpinEdit_ControlAtPos(AObj: TFloatSpinEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -121,6 +125,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_FindChildControl(AObj: TFloatSpinEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -137,6 +142,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Focused(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -145,6 +151,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_HandleAllocated(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -269,6 +276,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Dragging(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -277,6 +285,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_HasParent(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -293,6 +302,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Perform(AObj: TFloatSpinEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -345,6 +355,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_GetTextBuf(AObj: TFloatSpinEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -353,6 +364,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_GetTextLen(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -369,6 +381,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_FindComponent(AObj: TFloatSpinEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -377,6 +390,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_GetNamePath(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -393,6 +407,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ClassType(AObj: TFloatSpinEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -401,6 +416,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ClassName(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -409,6 +425,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_InstanceSize(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -417,6 +434,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_InheritsFrom(AObj: TFloatSpinEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -425,6 +443,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Equals(AObj: TFloatSpinEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -433,6 +452,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_GetHashCode(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -441,6 +461,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ToString(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -505,6 +526,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleDesignToForm(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -513,6 +535,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleFormToDesign(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -521,6 +544,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Scale96ToForm(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -529,6 +553,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleFormTo96(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -537,6 +562,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Scale96ToFont(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -545,6 +571,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleFontTo96(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -553,6 +580,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleScreenToFont(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -561,6 +589,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleFontToScreen(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -569,6 +598,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_Scale96ToScreen(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +607,7 @@ end;
 //CLASSMETHOD:
 function FloatSpinEdit_ScaleScreenTo96(AObj: TFloatSpinEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -609,6 +640,7 @@ end;
 
 function FloatSpinEdit_GetAutoSelected(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelected;
   handleExceptionEnd
@@ -623,6 +655,7 @@ end;
 
 function FloatSpinEdit_GetAlign(AObj: TFloatSpinEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -637,6 +670,7 @@ end;
 
 function FloatSpinEdit_GetAlignment(AObj: TFloatSpinEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -651,6 +685,7 @@ end;
 
 function FloatSpinEdit_GetAnchors(AObj: TFloatSpinEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -665,6 +700,7 @@ end;
 
 function FloatSpinEdit_GetAutoSelect(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSelect;
   handleExceptionEnd
@@ -679,6 +715,7 @@ end;
 
 function FloatSpinEdit_GetAutoSize(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -693,6 +730,7 @@ end;
 
 function FloatSpinEdit_GetColor(AObj: TFloatSpinEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -707,6 +745,7 @@ end;
 
 function FloatSpinEdit_GetConstraints(AObj: TFloatSpinEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -721,6 +760,7 @@ end;
 
 function FloatSpinEdit_GetEnabled(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -735,6 +775,7 @@ end;
 
 function FloatSpinEdit_GetFont(AObj: TFloatSpinEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -925,6 +966,7 @@ end;
 
 function FloatSpinEdit_GetParentColor(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -939,6 +981,7 @@ end;
 
 function FloatSpinEdit_GetParentFont(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -953,6 +996,7 @@ end;
 
 function FloatSpinEdit_GetParentShowHint(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -967,6 +1011,7 @@ end;
 
 function FloatSpinEdit_GetPopupMenu(AObj: TFloatSpinEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -981,6 +1026,7 @@ end;
 
 function FloatSpinEdit_GetReadOnly(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -995,6 +1041,7 @@ end;
 
 function FloatSpinEdit_GetShowHint(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1009,6 +1056,7 @@ end;
 
 function FloatSpinEdit_GetTabStop(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1023,6 +1071,7 @@ end;
 
 function FloatSpinEdit_GetTabOrder(AObj: TFloatSpinEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1053,6 +1102,7 @@ end;
 
 function FloatSpinEdit_GetVisible(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1067,6 +1117,7 @@ end;
 
 function FloatSpinEdit_GetCanUndo(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1074,6 +1125,7 @@ end;
 
 function FloatSpinEdit_GetModified(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1088,6 +1140,7 @@ end;
 
 function FloatSpinEdit_GetSelLength(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1102,6 +1155,7 @@ end;
 
 function FloatSpinEdit_GetSelStart(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1116,6 +1170,7 @@ end;
 
 function FloatSpinEdit_GetSelText(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1130,6 +1185,7 @@ end;
 
 function FloatSpinEdit_GetText(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1144,6 +1200,7 @@ end;
 
 function FloatSpinEdit_GetTextHint(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1158,6 +1215,7 @@ end;
 
 function FloatSpinEdit_GetDockClientCount(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1165,6 +1223,7 @@ end;
 
 function FloatSpinEdit_GetDockSite(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1179,6 +1238,7 @@ end;
 
 function FloatSpinEdit_GetDoubleBuffered(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1193,6 +1253,7 @@ end;
 
 function FloatSpinEdit_GetMouseInClient(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1200,6 +1261,7 @@ end;
 
 function FloatSpinEdit_GetVisibleDockClientCount(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1207,6 +1269,7 @@ end;
 
 function FloatSpinEdit_GetBrush(AObj: TFloatSpinEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1214,6 +1277,7 @@ end;
 
 function FloatSpinEdit_GetControlCount(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1221,6 +1285,7 @@ end;
 
 function FloatSpinEdit_GetHandle(AObj: TFloatSpinEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1228,6 +1293,7 @@ end;
 
 function FloatSpinEdit_GetParentDoubleBuffered(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1242,6 +1308,7 @@ end;
 
 function FloatSpinEdit_GetParentWindow(AObj: TFloatSpinEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1256,6 +1323,7 @@ end;
 
 function FloatSpinEdit_GetShowing(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1263,6 +1331,7 @@ end;
 
 function FloatSpinEdit_GetUseDockManager(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1277,6 +1346,7 @@ end;
 
 function FloatSpinEdit_GetAction(AObj: TFloatSpinEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1291,6 +1361,7 @@ end;
 
 function FloatSpinEdit_GetBiDiMode(AObj: TFloatSpinEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -1321,6 +1392,7 @@ end;
 
 function FloatSpinEdit_GetClientHeight(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1351,6 +1423,7 @@ end;
 
 function FloatSpinEdit_GetClientWidth(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1365,6 +1438,7 @@ end;
 
 function FloatSpinEdit_GetControlState(AObj: TFloatSpinEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1379,6 +1453,7 @@ end;
 
 function FloatSpinEdit_GetControlStyle(AObj: TFloatSpinEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1393,6 +1468,7 @@ end;
 
 function FloatSpinEdit_GetFloating(AObj: TFloatSpinEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1400,6 +1476,7 @@ end;
 
 function FloatSpinEdit_GetParent(AObj: TFloatSpinEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1414,6 +1491,7 @@ end;
 
 function FloatSpinEdit_GetLeft(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1428,6 +1506,7 @@ end;
 
 function FloatSpinEdit_GetTop(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1442,6 +1521,7 @@ end;
 
 function FloatSpinEdit_GetWidth(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1456,6 +1536,7 @@ end;
 
 function FloatSpinEdit_GetHeight(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1470,6 +1551,7 @@ end;
 
 function FloatSpinEdit_GetCursor(AObj: TFloatSpinEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1484,6 +1566,7 @@ end;
 
 function FloatSpinEdit_GetHint(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1498,6 +1581,7 @@ end;
 
 function FloatSpinEdit_GetComponentCount(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1505,6 +1589,7 @@ end;
 
 function FloatSpinEdit_GetComponentIndex(AObj: TFloatSpinEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1519,6 +1604,7 @@ end;
 
 function FloatSpinEdit_GetOwner(AObj: TFloatSpinEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1526,6 +1612,7 @@ end;
 
 function FloatSpinEdit_GetName(AObj: TFloatSpinEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1540,6 +1627,7 @@ end;
 
 function FloatSpinEdit_GetTag(AObj: TFloatSpinEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1554,6 +1642,7 @@ end;
 
 function FloatSpinEdit_GetAnchorSideLeft(AObj: TFloatSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1568,6 +1657,7 @@ end;
 
 function FloatSpinEdit_GetAnchorSideTop(AObj: TFloatSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1582,6 +1672,7 @@ end;
 
 function FloatSpinEdit_GetAnchorSideRight(AObj: TFloatSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1596,6 +1687,7 @@ end;
 
 function FloatSpinEdit_GetAnchorSideBottom(AObj: TFloatSpinEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1610,6 +1702,7 @@ end;
 
 function FloatSpinEdit_GetChildSizing(AObj: TFloatSpinEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1624,6 +1717,7 @@ end;
 
 function FloatSpinEdit_GetBorderSpacing(AObj: TFloatSpinEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1638,6 +1732,7 @@ end;
 
 function FloatSpinEdit_GetDockClients(AObj: TFloatSpinEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1645,6 +1740,7 @@ end;
 
 function FloatSpinEdit_GetControls(AObj: TFloatSpinEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1652,6 +1748,7 @@ end;
 
 function FloatSpinEdit_GetComponents(AObj: TFloatSpinEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1659,6 +1756,7 @@ end;
 
 function FloatSpinEdit_GetAnchorSide(AObj: TFloatSpinEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

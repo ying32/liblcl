@@ -35,6 +35,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_IsDefault(AObj: TGridColumn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsDefault;
   handleExceptionEnd
@@ -43,6 +44,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_GetNamePath(AObj: TGridColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -51,6 +53,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_ClassType(AObj: TGridColumn): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -59,6 +62,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_ClassName(AObj: TGridColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -67,6 +71,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_InstanceSize(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -75,6 +80,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_InheritsFrom(AObj: TGridColumn; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -83,6 +89,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_Equals(AObj: TGridColumn; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -91,6 +98,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_GetHashCode(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -99,6 +107,7 @@ end;
 //CLASSMETHOD:
 function GridColumn_ToString(AObj: TGridColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -106,6 +115,7 @@ end;
 
 function GridColumn_GetGrid(AObj: TGridColumn): TCustomGrid; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Grid;
   handleExceptionEnd
@@ -113,6 +123,7 @@ end;
 
 function GridColumn_GetDefaultWidth(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultWidth;
   handleExceptionEnd
@@ -120,6 +131,7 @@ end;
 
 function GridColumn_GetStoredWidth(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.StoredWidth;
   handleExceptionEnd
@@ -127,6 +139,7 @@ end;
 
 function GridColumn_GetWidthChanged(AObj: TGridColumn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WidthChanged;
   handleExceptionEnd
@@ -134,6 +147,7 @@ end;
 
 function GridColumn_GetAlignment(AObj: TGridColumn): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -148,6 +162,7 @@ end;
 
 function GridColumn_GetButtonStyle(AObj: TGridColumn): TColumnButtonStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TColumnButtonStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ButtonStyle;
   handleExceptionEnd
@@ -162,6 +177,7 @@ end;
 
 function GridColumn_GetColor(AObj: TGridColumn): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -176,6 +192,7 @@ end;
 
 function GridColumn_GetDropDownRows(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DropDownRows;
   handleExceptionEnd
@@ -190,6 +207,7 @@ end;
 
 function GridColumn_GetExpanded(AObj: TGridColumn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Expanded;
   handleExceptionEnd
@@ -204,6 +222,7 @@ end;
 
 function GridColumn_GetFont(AObj: TGridColumn): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -218,6 +237,7 @@ end;
 
 function GridColumn_GetLayout(AObj: TGridColumn): TTextLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTextLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -232,6 +252,7 @@ end;
 
 function GridColumn_GetMinSize(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinSize;
   handleExceptionEnd
@@ -246,6 +267,7 @@ end;
 
 function GridColumn_GetMaxSize(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxSize;
   handleExceptionEnd
@@ -260,6 +282,7 @@ end;
 
 function GridColumn_GetPickList(AObj: TGridColumn): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PickList;
   handleExceptionEnd
@@ -274,6 +297,7 @@ end;
 
 function GridColumn_GetReadOnly(AObj: TGridColumn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -288,6 +312,7 @@ end;
 
 function GridColumn_GetSizePriority(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SizePriority;
   handleExceptionEnd
@@ -302,6 +327,7 @@ end;
 
 function GridColumn_GetTag(AObj: TGridColumn): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -316,6 +342,7 @@ end;
 
 function GridColumn_GetTitle(AObj: TGridColumn): TGridColumnTitle; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Title;
   handleExceptionEnd
@@ -330,6 +357,7 @@ end;
 
 function GridColumn_GetWidth(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -344,6 +372,7 @@ end;
 
 function GridColumn_GetVisible(AObj: TGridColumn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -358,6 +387,7 @@ end;
 
 function GridColumn_GetValueChecked(AObj: TGridColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ValueChecked);
   handleExceptionEnd
@@ -372,6 +402,7 @@ end;
 
 function GridColumn_GetValueUnchecked(AObj: TGridColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ValueUnchecked);
   handleExceptionEnd
@@ -386,6 +417,7 @@ end;
 
 function GridColumn_GetCollection(AObj: TGridColumn): TCollection; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collection;
   handleExceptionEnd
@@ -400,6 +432,7 @@ end;
 
 function GridColumn_GetIndex(AObj: TGridColumn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Index;
   handleExceptionEnd
@@ -414,6 +447,7 @@ end;
 
 function GridColumn_GetDisplayName(AObj: TGridColumn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DisplayName);
   handleExceptionEnd

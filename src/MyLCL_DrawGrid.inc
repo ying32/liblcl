@@ -9,6 +9,7 @@
 
 function DrawGrid_Create(AOwner: TComponent): TDrawGrid; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TDrawGrid.Create(AOwner);
   handleExceptionEnd
@@ -50,6 +51,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_CanFocus(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -58,6 +60,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ContainsControl(AObj: TDrawGrid; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -67,6 +70,7 @@ end;
 //PARAMS:2=nonPtr
 function DrawGrid_ControlAtPos(AObj: TDrawGrid; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -91,6 +95,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_FindChildControl(AObj: TDrawGrid; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -107,6 +112,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Focused(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -115,6 +121,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_HandleAllocated(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -239,6 +246,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Dragging(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -247,6 +255,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_HasParent(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -263,6 +272,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Perform(AObj: TDrawGrid; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -315,6 +325,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_GetTextBuf(AObj: TDrawGrid; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -323,6 +334,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_GetTextLen(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -339,6 +351,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_FindComponent(AObj: TDrawGrid; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -347,6 +360,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_GetNamePath(AObj: TDrawGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -363,6 +377,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ClassType(AObj: TDrawGrid): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -371,6 +386,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ClassName(AObj: TDrawGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -379,6 +395,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_InstanceSize(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -387,6 +404,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_InheritsFrom(AObj: TDrawGrid; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -395,6 +413,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Equals(AObj: TDrawGrid; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -403,6 +422,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_GetHashCode(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -411,6 +431,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ToString(AObj: TDrawGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -475,6 +496,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleDesignToForm(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -483,6 +505,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleFormToDesign(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -491,6 +514,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Scale96ToForm(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -499,6 +523,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleFormTo96(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -507,6 +532,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Scale96ToFont(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -515,6 +541,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleFontTo96(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -523,6 +550,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleScreenToFont(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -531,6 +559,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleFontToScreen(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -539,6 +568,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_Scale96ToScreen(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -547,6 +577,7 @@ end;
 //CLASSMETHOD:
 function DrawGrid_ScaleScreenTo96(AObj: TDrawGrid; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -595,6 +626,7 @@ end;
 
 function DrawGrid_GetAlign(AObj: TDrawGrid): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -609,6 +641,7 @@ end;
 
 function DrawGrid_GetAnchors(AObj: TDrawGrid): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -623,6 +656,7 @@ end;
 
 function DrawGrid_GetBiDiMode(AObj: TDrawGrid): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -637,6 +671,7 @@ end;
 
 function DrawGrid_GetBorderStyle(AObj: TDrawGrid): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -651,6 +686,7 @@ end;
 
 function DrawGrid_GetColor(AObj: TDrawGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -665,6 +701,7 @@ end;
 
 function DrawGrid_GetColCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColCount;
   handleExceptionEnd
@@ -679,6 +716,7 @@ end;
 
 function DrawGrid_GetConstraints(AObj: TDrawGrid): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -693,6 +731,7 @@ end;
 
 function DrawGrid_GetDefaultColWidth(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultColWidth;
   handleExceptionEnd
@@ -707,6 +746,7 @@ end;
 
 function DrawGrid_GetDefaultRowHeight(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultRowHeight;
   handleExceptionEnd
@@ -721,6 +761,7 @@ end;
 
 function DrawGrid_GetDefaultDrawing(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultDrawing;
   handleExceptionEnd
@@ -735,6 +776,7 @@ end;
 
 function DrawGrid_GetDoubleBuffered(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -749,6 +791,7 @@ end;
 
 function DrawGrid_GetDragCursor(AObj: TDrawGrid): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -763,6 +806,7 @@ end;
 
 function DrawGrid_GetDragKind(AObj: TDrawGrid): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -777,6 +821,7 @@ end;
 
 function DrawGrid_GetDragMode(AObj: TDrawGrid): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -791,6 +836,7 @@ end;
 
 function DrawGrid_GetEnabled(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -805,6 +851,7 @@ end;
 
 function DrawGrid_GetFixedColor(AObj: TDrawGrid): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedColor;
   handleExceptionEnd
@@ -819,6 +866,7 @@ end;
 
 function DrawGrid_GetFixedCols(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedCols;
   handleExceptionEnd
@@ -833,6 +881,7 @@ end;
 
 function DrawGrid_GetRowCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowCount;
   handleExceptionEnd
@@ -847,6 +896,7 @@ end;
 
 function DrawGrid_GetFixedRows(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FixedRows;
   handleExceptionEnd
@@ -861,6 +911,7 @@ end;
 
 function DrawGrid_GetFont(AObj: TDrawGrid): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -875,6 +926,7 @@ end;
 
 function DrawGrid_GetGridLineWidth(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridLineWidth;
   handleExceptionEnd
@@ -889,6 +941,7 @@ end;
 
 function DrawGrid_GetOptions(AObj: TDrawGrid): TGridOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -903,6 +956,7 @@ end;
 
 function DrawGrid_GetParentColor(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -917,6 +971,7 @@ end;
 
 function DrawGrid_GetParentDoubleBuffered(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -931,6 +986,7 @@ end;
 
 function DrawGrid_GetParentFont(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -945,6 +1001,7 @@ end;
 
 function DrawGrid_GetParentShowHint(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -959,6 +1016,7 @@ end;
 
 function DrawGrid_GetPopupMenu(AObj: TDrawGrid): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -973,6 +1031,7 @@ end;
 
 function DrawGrid_GetScrollBars(AObj: TDrawGrid): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -987,6 +1046,7 @@ end;
 
 function DrawGrid_GetShowHint(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1001,6 +1061,7 @@ end;
 
 function DrawGrid_GetTabOrder(AObj: TDrawGrid): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1015,6 +1076,7 @@ end;
 
 function DrawGrid_GetVisible(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1029,6 +1091,7 @@ end;
 
 function DrawGrid_GetVisibleColCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleColCount;
   handleExceptionEnd
@@ -1036,6 +1099,7 @@ end;
 
 function DrawGrid_GetVisibleRowCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleRowCount;
   handleExceptionEnd
@@ -1251,6 +1315,7 @@ end;
 
 function DrawGrid_GetCanvas(AObj: TDrawGrid): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1258,6 +1323,7 @@ end;
 
 function DrawGrid_GetCol(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Col;
   handleExceptionEnd
@@ -1272,6 +1338,7 @@ end;
 
 function DrawGrid_GetEditorMode(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.EditorMode;
   handleExceptionEnd
@@ -1286,6 +1353,7 @@ end;
 
 function DrawGrid_GetGridHeight(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridHeight;
   handleExceptionEnd
@@ -1293,6 +1361,7 @@ end;
 
 function DrawGrid_GetGridWidth(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GridWidth;
   handleExceptionEnd
@@ -1300,6 +1369,7 @@ end;
 
 function DrawGrid_GetLeftCol(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LeftCol;
   handleExceptionEnd
@@ -1330,6 +1400,7 @@ end;
 
 function DrawGrid_GetRow(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Row;
   handleExceptionEnd
@@ -1344,6 +1415,7 @@ end;
 
 function DrawGrid_GetTopRow(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TopRow;
   handleExceptionEnd
@@ -1358,6 +1430,7 @@ end;
 
 function DrawGrid_GetTabStop(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1372,6 +1445,7 @@ end;
 
 function DrawGrid_GetDockClientCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1379,6 +1453,7 @@ end;
 
 function DrawGrid_GetDockSite(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1393,6 +1468,7 @@ end;
 
 function DrawGrid_GetMouseInClient(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1400,6 +1476,7 @@ end;
 
 function DrawGrid_GetVisibleDockClientCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1407,6 +1484,7 @@ end;
 
 function DrawGrid_GetBrush(AObj: TDrawGrid): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1414,6 +1492,7 @@ end;
 
 function DrawGrid_GetControlCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1421,6 +1500,7 @@ end;
 
 function DrawGrid_GetHandle(AObj: TDrawGrid): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1428,6 +1508,7 @@ end;
 
 function DrawGrid_GetParentWindow(AObj: TDrawGrid): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1442,6 +1523,7 @@ end;
 
 function DrawGrid_GetShowing(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1449,6 +1531,7 @@ end;
 
 function DrawGrid_GetUseDockManager(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1463,6 +1546,7 @@ end;
 
 function DrawGrid_GetAction(AObj: TDrawGrid): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1493,6 +1577,7 @@ end;
 
 function DrawGrid_GetClientHeight(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1523,6 +1608,7 @@ end;
 
 function DrawGrid_GetClientWidth(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1537,6 +1623,7 @@ end;
 
 function DrawGrid_GetControlState(AObj: TDrawGrid): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1551,6 +1638,7 @@ end;
 
 function DrawGrid_GetControlStyle(AObj: TDrawGrid): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1565,6 +1653,7 @@ end;
 
 function DrawGrid_GetFloating(AObj: TDrawGrid): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1572,6 +1661,7 @@ end;
 
 function DrawGrid_GetParent(AObj: TDrawGrid): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1586,6 +1676,7 @@ end;
 
 function DrawGrid_GetLeft(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1600,6 +1691,7 @@ end;
 
 function DrawGrid_GetTop(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1614,6 +1706,7 @@ end;
 
 function DrawGrid_GetWidth(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1628,6 +1721,7 @@ end;
 
 function DrawGrid_GetHeight(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1642,6 +1736,7 @@ end;
 
 function DrawGrid_GetCursor(AObj: TDrawGrid): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1656,6 +1751,7 @@ end;
 
 function DrawGrid_GetHint(AObj: TDrawGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1670,6 +1766,7 @@ end;
 
 function DrawGrid_GetComponentCount(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1677,6 +1774,7 @@ end;
 
 function DrawGrid_GetComponentIndex(AObj: TDrawGrid): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1691,6 +1789,7 @@ end;
 
 function DrawGrid_GetOwner(AObj: TDrawGrid): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1698,6 +1797,7 @@ end;
 
 function DrawGrid_GetName(AObj: TDrawGrid): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1712,6 +1812,7 @@ end;
 
 function DrawGrid_GetTag(AObj: TDrawGrid): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1726,6 +1827,7 @@ end;
 
 function DrawGrid_GetAnchorSideLeft(AObj: TDrawGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1740,6 +1842,7 @@ end;
 
 function DrawGrid_GetAnchorSideTop(AObj: TDrawGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1754,6 +1857,7 @@ end;
 
 function DrawGrid_GetAnchorSideRight(AObj: TDrawGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1768,6 +1872,7 @@ end;
 
 function DrawGrid_GetAnchorSideBottom(AObj: TDrawGrid): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1782,6 +1887,7 @@ end;
 
 function DrawGrid_GetChildSizing(AObj: TDrawGrid): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1796,6 +1902,7 @@ end;
 
 function DrawGrid_GetBorderSpacing(AObj: TDrawGrid): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1810,6 +1917,7 @@ end;
 
 function DrawGrid_GetColWidths(AObj: TDrawGrid; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColWidths[Index];
   handleExceptionEnd
@@ -1824,6 +1932,7 @@ end;
 
 function DrawGrid_GetRowHeights(AObj: TDrawGrid; Index: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.RowHeights[Index];
   handleExceptionEnd
@@ -1838,6 +1947,7 @@ end;
 
 function DrawGrid_GetDockClients(AObj: TDrawGrid; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1845,6 +1955,7 @@ end;
 
 function DrawGrid_GetControls(AObj: TDrawGrid; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1852,6 +1963,7 @@ end;
 
 function DrawGrid_GetComponents(AObj: TDrawGrid; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1859,6 +1971,7 @@ end;
 
 function DrawGrid_GetAnchorSide(AObj: TDrawGrid; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function BitBtn_Create(AOwner: TComponent): TBitBtn; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TBitBtn.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_CanFocus(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ContainsControl(AObj: TBitBtn; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -49,6 +52,7 @@ end;
 //PARAMS:2=nonPtr
 function BitBtn_ControlAtPos(AObj: TBitBtn; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -73,6 +77,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_FindChildControl(AObj: TBitBtn; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Focused(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -97,6 +103,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_HandleAllocated(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -221,6 +228,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Dragging(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -229,6 +237,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_HasParent(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -245,6 +254,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Perform(AObj: TBitBtn; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -297,6 +307,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_GetTextBuf(AObj: TBitBtn; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -305,6 +316,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_GetTextLen(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -321,6 +333,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_FindComponent(AObj: TBitBtn; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -329,6 +342,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_GetNamePath(AObj: TBitBtn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -345,6 +359,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ClassType(AObj: TBitBtn): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -353,6 +368,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ClassName(AObj: TBitBtn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -361,6 +377,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_InstanceSize(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -369,6 +386,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_InheritsFrom(AObj: TBitBtn; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -377,6 +395,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Equals(AObj: TBitBtn; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -385,6 +404,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_GetHashCode(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -393,6 +413,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ToString(AObj: TBitBtn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -457,6 +478,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleDesignToForm(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -465,6 +487,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleFormToDesign(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -473,6 +496,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Scale96ToForm(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -481,6 +505,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleFormTo96(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -489,6 +514,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Scale96ToFont(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -497,6 +523,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleFontTo96(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -505,6 +532,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleScreenToFont(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -513,6 +541,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleFontToScreen(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +550,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_Scale96ToScreen(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +559,7 @@ end;
 //CLASSMETHOD:
 function BitBtn_ScaleScreenTo96(AObj: TBitBtn; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -561,6 +592,7 @@ end;
 
 function BitBtn_GetDefaultCaption(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultCaption;
   handleExceptionEnd
@@ -575,6 +607,7 @@ end;
 
 function BitBtn_GetGlyphShowMode(AObj: TBitBtn): TGlyphShowMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TGlyphShowMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.GlyphShowMode;
   handleExceptionEnd
@@ -589,6 +622,7 @@ end;
 
 function BitBtn_GetImageIndex(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageIndex;
   handleExceptionEnd
@@ -603,6 +637,7 @@ end;
 
 function BitBtn_GetImages(AObj: TBitBtn): TCustomImageList; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Images;
   handleExceptionEnd
@@ -617,6 +652,7 @@ end;
 
 function BitBtn_GetImageWidth(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ImageWidth;
   handleExceptionEnd
@@ -631,6 +667,7 @@ end;
 
 function BitBtn_GetAction(AObj: TBitBtn): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -645,6 +682,7 @@ end;
 
 function BitBtn_GetAlign(AObj: TBitBtn): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -659,6 +697,7 @@ end;
 
 function BitBtn_GetAnchors(AObj: TBitBtn): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -673,6 +712,7 @@ end;
 
 function BitBtn_GetBiDiMode(AObj: TBitBtn): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -687,6 +727,7 @@ end;
 
 function BitBtn_GetCancel(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Cancel;
   handleExceptionEnd
@@ -701,6 +742,7 @@ end;
 
 function BitBtn_GetCaption(AObj: TBitBtn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -715,6 +757,7 @@ end;
 
 function BitBtn_GetConstraints(AObj: TBitBtn): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -729,6 +772,7 @@ end;
 
 function BitBtn_GetDefault(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Default;
   handleExceptionEnd
@@ -743,6 +787,7 @@ end;
 
 function BitBtn_GetDoubleBuffered(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -757,6 +802,7 @@ end;
 
 function BitBtn_GetEnabled(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -771,6 +817,7 @@ end;
 
 function BitBtn_GetFont(AObj: TBitBtn): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -785,6 +832,7 @@ end;
 
 function BitBtn_GetGlyph(AObj: TBitBtn): TBitmap; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Glyph;
   handleExceptionEnd
@@ -799,6 +847,7 @@ end;
 
 function BitBtn_GetKind(AObj: TBitBtn): TBitBtnKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBitBtnKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -813,6 +862,7 @@ end;
 
 function BitBtn_GetLayout(AObj: TBitBtn): TButtonLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TButtonLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -827,6 +877,7 @@ end;
 
 function BitBtn_GetModalResult(AObj: TBitBtn): TModalResult; extdecl;
 begin
+{$ifdef UsehandleException}Result := TModalResult(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ModalResult;
   handleExceptionEnd
@@ -841,6 +892,7 @@ end;
 
 function BitBtn_GetNumGlyphs(AObj: TBitBtn): TNumGlyphs; extdecl;
 begin
+{$ifdef UsehandleException}Result := TNumGlyphs(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.NumGlyphs;
   handleExceptionEnd
@@ -855,6 +907,7 @@ end;
 
 function BitBtn_GetParentDoubleBuffered(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -869,6 +922,7 @@ end;
 
 function BitBtn_GetParentFont(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -883,6 +937,7 @@ end;
 
 function BitBtn_GetParentShowHint(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -897,6 +952,7 @@ end;
 
 function BitBtn_GetPopupMenu(AObj: TBitBtn): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -911,6 +967,7 @@ end;
 
 function BitBtn_GetShowHint(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -925,6 +982,7 @@ end;
 
 function BitBtn_GetSpacing(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Spacing;
   handleExceptionEnd
@@ -939,6 +997,7 @@ end;
 
 function BitBtn_GetTabOrder(AObj: TBitBtn): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -953,6 +1012,7 @@ end;
 
 function BitBtn_GetTabStop(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -967,6 +1027,7 @@ end;
 
 function BitBtn_GetVisible(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1101,6 +1162,7 @@ end;
 
 function BitBtn_GetDockClientCount(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1108,6 +1170,7 @@ end;
 
 function BitBtn_GetDockSite(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1122,6 +1185,7 @@ end;
 
 function BitBtn_GetMouseInClient(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1129,6 +1193,7 @@ end;
 
 function BitBtn_GetVisibleDockClientCount(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1136,6 +1201,7 @@ end;
 
 function BitBtn_GetBrush(AObj: TBitBtn): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1143,6 +1209,7 @@ end;
 
 function BitBtn_GetControlCount(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1150,6 +1217,7 @@ end;
 
 function BitBtn_GetHandle(AObj: TBitBtn): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1157,6 +1225,7 @@ end;
 
 function BitBtn_GetParentWindow(AObj: TBitBtn): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1171,6 +1240,7 @@ end;
 
 function BitBtn_GetShowing(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1178,6 +1248,7 @@ end;
 
 function BitBtn_GetUseDockManager(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1208,6 +1279,7 @@ end;
 
 function BitBtn_GetClientHeight(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1238,6 +1310,7 @@ end;
 
 function BitBtn_GetClientWidth(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1252,6 +1325,7 @@ end;
 
 function BitBtn_GetControlState(AObj: TBitBtn): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1266,6 +1340,7 @@ end;
 
 function BitBtn_GetControlStyle(AObj: TBitBtn): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1280,6 +1355,7 @@ end;
 
 function BitBtn_GetFloating(AObj: TBitBtn): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1287,6 +1363,7 @@ end;
 
 function BitBtn_GetParent(AObj: TBitBtn): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1301,6 +1378,7 @@ end;
 
 function BitBtn_GetLeft(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1315,6 +1393,7 @@ end;
 
 function BitBtn_GetTop(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1329,6 +1408,7 @@ end;
 
 function BitBtn_GetWidth(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1343,6 +1423,7 @@ end;
 
 function BitBtn_GetHeight(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1357,6 +1438,7 @@ end;
 
 function BitBtn_GetCursor(AObj: TBitBtn): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1371,6 +1453,7 @@ end;
 
 function BitBtn_GetHint(AObj: TBitBtn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1385,6 +1468,7 @@ end;
 
 function BitBtn_GetComponentCount(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1392,6 +1476,7 @@ end;
 
 function BitBtn_GetComponentIndex(AObj: TBitBtn): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1406,6 +1491,7 @@ end;
 
 function BitBtn_GetOwner(AObj: TBitBtn): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1413,6 +1499,7 @@ end;
 
 function BitBtn_GetName(AObj: TBitBtn): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1427,6 +1514,7 @@ end;
 
 function BitBtn_GetTag(AObj: TBitBtn): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1441,6 +1529,7 @@ end;
 
 function BitBtn_GetAnchorSideLeft(AObj: TBitBtn): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1455,6 +1544,7 @@ end;
 
 function BitBtn_GetAnchorSideTop(AObj: TBitBtn): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1469,6 +1559,7 @@ end;
 
 function BitBtn_GetAnchorSideRight(AObj: TBitBtn): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1483,6 +1574,7 @@ end;
 
 function BitBtn_GetAnchorSideBottom(AObj: TBitBtn): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1497,6 +1589,7 @@ end;
 
 function BitBtn_GetChildSizing(AObj: TBitBtn): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1511,6 +1604,7 @@ end;
 
 function BitBtn_GetBorderSpacing(AObj: TBitBtn): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1525,6 +1619,7 @@ end;
 
 function BitBtn_GetDockClients(AObj: TBitBtn; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1532,6 +1627,7 @@ end;
 
 function BitBtn_GetControls(AObj: TBitBtn; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1539,6 +1635,7 @@ end;
 
 function BitBtn_GetComponents(AObj: TBitBtn; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1546,6 +1643,7 @@ end;
 
 function BitBtn_GetAnchorSide(AObj: TBitBtn; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

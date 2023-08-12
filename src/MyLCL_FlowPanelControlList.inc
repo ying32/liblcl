@@ -10,6 +10,7 @@
 //CLASSMETHOD:
 function FlowPanelControlList_IndexOf(AObj: TFlowPanelControlList; AControl: TControl): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.IndexOf(AControl);
   handleExceptionEnd
@@ -34,6 +35,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_AllowAdd(AObj: TFlowPanelControlList): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowAdd;
   handleExceptionEnd
@@ -42,6 +44,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_AllowDelete(AObj: TFlowPanelControlList): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowDelete;
   handleExceptionEnd
@@ -50,6 +53,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_Owner(AObj: TFlowPanelControlList): TPersistent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -58,6 +62,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_Add(AObj: TFlowPanelControlList): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -106,6 +111,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_FindItemID(AObj: TFlowPanelControlList; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -114,6 +120,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_GetNamePath(AObj: TFlowPanelControlList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -122,6 +129,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_Insert(AObj: TFlowPanelControlList; Index: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -130,6 +138,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_ClassType(AObj: TFlowPanelControlList): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -138,6 +147,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_ClassName(AObj: TFlowPanelControlList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -146,6 +156,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_InstanceSize(AObj: TFlowPanelControlList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -154,6 +165,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_InheritsFrom(AObj: TFlowPanelControlList; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -162,6 +174,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_Equals(AObj: TFlowPanelControlList; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -170,6 +183,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_GetHashCode(AObj: TFlowPanelControlList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -178,6 +192,7 @@ end;
 //CLASSMETHOD:
 function FlowPanelControlList_ToString(AObj: TFlowPanelControlList): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -185,6 +200,7 @@ end;
 
 function FlowPanelControlList_GetCount(AObj: TFlowPanelControlList): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -192,6 +208,7 @@ end;
 
 function FlowPanelControlList_GetItems(AObj: TFlowPanelControlList; Index: Integer): TFlowPanelControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items[Index];
   handleExceptionEnd

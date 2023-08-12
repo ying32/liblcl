@@ -9,6 +9,7 @@
 
 function ListBox_Create(AOwner: TComponent): TListBox; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TListBox.Create(AOwner);
   handleExceptionEnd
@@ -57,6 +58,7 @@ end;
 //PARAMS:2=nonPtr
 function ListBox_ItemAtPos(AObj: TListBox; var Pos: TPoint; Existing: LongBool): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemAtPos(Pos, Existing);
   handleExceptionEnd
@@ -82,6 +84,7 @@ end;
 //CLASSMETHOD:
 function ListBox_CanFocus(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -90,6 +93,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ContainsControl(AObj: TListBox; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -99,6 +103,7 @@ end;
 //PARAMS:2=nonPtr
 function ListBox_ControlAtPos(AObj: TListBox; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -123,6 +128,7 @@ end;
 //CLASSMETHOD:
 function ListBox_FindChildControl(AObj: TListBox; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -139,6 +145,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Focused(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -147,6 +154,7 @@ end;
 //CLASSMETHOD:
 function ListBox_HandleAllocated(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -271,6 +279,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Dragging(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -279,6 +288,7 @@ end;
 //CLASSMETHOD:
 function ListBox_HasParent(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -295,6 +305,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Perform(AObj: TListBox; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -347,6 +358,7 @@ end;
 //CLASSMETHOD:
 function ListBox_GetTextBuf(AObj: TListBox; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -355,6 +367,7 @@ end;
 //CLASSMETHOD:
 function ListBox_GetTextLen(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -371,6 +384,7 @@ end;
 //CLASSMETHOD:
 function ListBox_FindComponent(AObj: TListBox; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -379,6 +393,7 @@ end;
 //CLASSMETHOD:
 function ListBox_GetNamePath(AObj: TListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -395,6 +410,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ClassType(AObj: TListBox): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -403,6 +419,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ClassName(AObj: TListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -411,6 +428,7 @@ end;
 //CLASSMETHOD:
 function ListBox_InstanceSize(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -419,6 +437,7 @@ end;
 //CLASSMETHOD:
 function ListBox_InheritsFrom(AObj: TListBox; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -427,6 +446,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Equals(AObj: TListBox; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -435,6 +455,7 @@ end;
 //CLASSMETHOD:
 function ListBox_GetHashCode(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -443,6 +464,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ToString(AObj: TListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -507,6 +529,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleDesignToForm(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -515,6 +538,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleFormToDesign(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -523,6 +547,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Scale96ToForm(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -531,6 +556,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleFormTo96(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -539,6 +565,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Scale96ToFont(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -547,6 +574,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleFontTo96(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -555,6 +583,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleScreenToFont(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -563,6 +592,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleFontToScreen(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -571,6 +601,7 @@ end;
 //CLASSMETHOD:
 function ListBox_Scale96ToScreen(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -579,6 +610,7 @@ end;
 //CLASSMETHOD:
 function ListBox_ScaleScreenTo96(AObj: TListBox; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -611,6 +643,7 @@ end;
 
 function ListBox_GetClickOnSelChange(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ClickOnSelChange;
   handleExceptionEnd
@@ -625,6 +658,7 @@ end;
 
 function ListBox_GetOptions(AObj: TListBox): TListBoxOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -639,6 +673,7 @@ end;
 
 function ListBox_GetTopIndex(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TopIndex;
   handleExceptionEnd
@@ -653,6 +688,7 @@ end;
 
 function ListBox_GetStyle(AObj: TListBox): TListBoxStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TListBoxStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.Style;
   handleExceptionEnd
@@ -667,6 +703,7 @@ end;
 
 function ListBox_GetAlign(AObj: TListBox): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -681,6 +718,7 @@ end;
 
 function ListBox_GetAnchors(AObj: TListBox): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -695,6 +733,7 @@ end;
 
 function ListBox_GetBiDiMode(AObj: TListBox): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -709,6 +748,7 @@ end;
 
 function ListBox_GetBorderStyle(AObj: TListBox): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -723,6 +763,7 @@ end;
 
 function ListBox_GetColor(AObj: TListBox): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -737,6 +778,7 @@ end;
 
 function ListBox_GetColumns(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Columns;
   handleExceptionEnd
@@ -751,6 +793,7 @@ end;
 
 function ListBox_GetConstraints(AObj: TListBox): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -765,6 +808,7 @@ end;
 
 function ListBox_GetDoubleBuffered(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -779,6 +823,7 @@ end;
 
 function ListBox_GetDragCursor(AObj: TListBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -793,6 +838,7 @@ end;
 
 function ListBox_GetDragKind(AObj: TListBox): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -807,6 +853,7 @@ end;
 
 function ListBox_GetDragMode(AObj: TListBox): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -821,6 +868,7 @@ end;
 
 function ListBox_GetEnabled(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -835,6 +883,7 @@ end;
 
 function ListBox_GetExtendedSelect(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ExtendedSelect;
   handleExceptionEnd
@@ -849,6 +898,7 @@ end;
 
 function ListBox_GetFont(AObj: TListBox): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -863,6 +913,7 @@ end;
 
 function ListBox_GetItemHeight(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemHeight;
   handleExceptionEnd
@@ -877,6 +928,7 @@ end;
 
 function ListBox_GetItems(AObj: TListBox): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -891,6 +943,7 @@ end;
 
 function ListBox_GetMultiSelect(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MultiSelect;
   handleExceptionEnd
@@ -905,6 +958,7 @@ end;
 
 function ListBox_GetParentColor(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -919,6 +973,7 @@ end;
 
 function ListBox_GetParentDoubleBuffered(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -933,6 +988,7 @@ end;
 
 function ListBox_GetParentFont(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -947,6 +1003,7 @@ end;
 
 function ListBox_GetParentShowHint(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -961,6 +1018,7 @@ end;
 
 function ListBox_GetPopupMenu(AObj: TListBox): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -975,6 +1033,7 @@ end;
 
 function ListBox_GetShowHint(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -989,6 +1048,7 @@ end;
 
 function ListBox_GetSorted(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Sorted;
   handleExceptionEnd
@@ -1003,6 +1063,7 @@ end;
 
 function ListBox_GetTabOrder(AObj: TListBox): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1017,6 +1078,7 @@ end;
 
 function ListBox_GetTabStop(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1031,6 +1093,7 @@ end;
 
 function ListBox_GetVisible(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1189,6 +1252,7 @@ end;
 
 function ListBox_GetCanvas(AObj: TListBox): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1196,6 +1260,7 @@ end;
 
 function ListBox_GetCount(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -1203,6 +1268,7 @@ end;
 
 function ListBox_GetSelCount(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelCount;
   handleExceptionEnd
@@ -1210,6 +1276,7 @@ end;
 
 function ListBox_GetItemIndex(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ItemIndex;
   handleExceptionEnd
@@ -1224,6 +1291,7 @@ end;
 
 function ListBox_GetDockClientCount(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1231,6 +1299,7 @@ end;
 
 function ListBox_GetDockSite(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1245,6 +1314,7 @@ end;
 
 function ListBox_GetMouseInClient(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1252,6 +1322,7 @@ end;
 
 function ListBox_GetVisibleDockClientCount(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1259,6 +1330,7 @@ end;
 
 function ListBox_GetBrush(AObj: TListBox): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1266,6 +1338,7 @@ end;
 
 function ListBox_GetControlCount(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1273,6 +1346,7 @@ end;
 
 function ListBox_GetHandle(AObj: TListBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1280,6 +1354,7 @@ end;
 
 function ListBox_GetParentWindow(AObj: TListBox): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1294,6 +1369,7 @@ end;
 
 function ListBox_GetShowing(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1301,6 +1377,7 @@ end;
 
 function ListBox_GetUseDockManager(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1315,6 +1392,7 @@ end;
 
 function ListBox_GetAction(AObj: TListBox): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1345,6 +1423,7 @@ end;
 
 function ListBox_GetClientHeight(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1375,6 +1454,7 @@ end;
 
 function ListBox_GetClientWidth(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1389,6 +1469,7 @@ end;
 
 function ListBox_GetControlState(AObj: TListBox): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1403,6 +1484,7 @@ end;
 
 function ListBox_GetControlStyle(AObj: TListBox): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1417,6 +1499,7 @@ end;
 
 function ListBox_GetFloating(AObj: TListBox): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1424,6 +1507,7 @@ end;
 
 function ListBox_GetParent(AObj: TListBox): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1438,6 +1522,7 @@ end;
 
 function ListBox_GetLeft(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1452,6 +1537,7 @@ end;
 
 function ListBox_GetTop(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1466,6 +1552,7 @@ end;
 
 function ListBox_GetWidth(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1480,6 +1567,7 @@ end;
 
 function ListBox_GetHeight(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1494,6 +1582,7 @@ end;
 
 function ListBox_GetCursor(AObj: TListBox): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1508,6 +1597,7 @@ end;
 
 function ListBox_GetHint(AObj: TListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1522,6 +1612,7 @@ end;
 
 function ListBox_GetComponentCount(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1529,6 +1620,7 @@ end;
 
 function ListBox_GetComponentIndex(AObj: TListBox): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1543,6 +1635,7 @@ end;
 
 function ListBox_GetOwner(AObj: TListBox): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1550,6 +1643,7 @@ end;
 
 function ListBox_GetName(AObj: TListBox): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1564,6 +1658,7 @@ end;
 
 function ListBox_GetTag(AObj: TListBox): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1578,6 +1673,7 @@ end;
 
 function ListBox_GetAnchorSideLeft(AObj: TListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1592,6 +1688,7 @@ end;
 
 function ListBox_GetAnchorSideTop(AObj: TListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1606,6 +1703,7 @@ end;
 
 function ListBox_GetAnchorSideRight(AObj: TListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1620,6 +1718,7 @@ end;
 
 function ListBox_GetAnchorSideBottom(AObj: TListBox): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1634,6 +1733,7 @@ end;
 
 function ListBox_GetChildSizing(AObj: TListBox): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1648,6 +1748,7 @@ end;
 
 function ListBox_GetBorderSpacing(AObj: TListBox): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1662,6 +1763,7 @@ end;
 
 function ListBox_GetSelected(AObj: TListBox; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Selected[Index];
   handleExceptionEnd
@@ -1676,6 +1778,7 @@ end;
 
 function ListBox_GetDockClients(AObj: TListBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1683,6 +1786,7 @@ end;
 
 function ListBox_GetControls(AObj: TListBox; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1690,6 +1794,7 @@ end;
 
 function ListBox_GetComponents(AObj: TListBox; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1697,6 +1802,7 @@ end;
 
 function ListBox_GetAnchorSide(AObj: TListBox; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

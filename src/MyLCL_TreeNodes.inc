@@ -9,6 +9,7 @@
 
 function TreeNodes_Create(AOwner: TCustomTreeView): TTreeNodes; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TTreeNodes.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddChildFirst(AObj: TTreeNodes; Parent: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddChildFirst(Parent, S);
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddChild(AObj: TTreeNodes; Parent: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddChild(Parent, S);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddChildObjectFirst(AObj: TTreeNodes; Parent: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddChildObjectFirst(Parent, S, Ptr);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddChildObject(AObj: TTreeNodes; Parent: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddChildObject(Parent, S, Ptr);
   handleExceptionEnd
@@ -56,6 +61,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddObjectFirst(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddObjectFirst(Sibling, S, Ptr);
   handleExceptionEnd
@@ -64,6 +70,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddObject(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddObject(Sibling, S, Ptr);
   handleExceptionEnd
@@ -72,6 +79,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddNode(AObj: TTreeNodes; Node: TTreeNode; Relative: TTreeNode; S: PChar; Ptr: Pointer; Method: TNodeAttachMode): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddNode(Node, Relative, S, Ptr, Method);
   handleExceptionEnd
@@ -80,6 +88,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_AddFirst(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddFirst(Sibling, S);
   handleExceptionEnd
@@ -88,6 +97,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_Add(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add(Sibling, S);
   handleExceptionEnd
@@ -136,6 +146,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_GetFirstNode(AObj: TTreeNodes): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetFirstNode;
   handleExceptionEnd
@@ -144,6 +155,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_Insert(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Sibling, S);
   handleExceptionEnd
@@ -152,6 +164,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_InsertObject(AObj: TTreeNodes; Sibling: TTreeNode; S: PChar; Ptr: Pointer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.InsertObject(Sibling, S, Ptr);
   handleExceptionEnd
@@ -160,6 +173,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_CustomSort(AObj: TTreeNodes; SortProc: PFNTVCOMPARE; Data: NativeInt; ARecurse: LongBool): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CustomSort(SortProc, Data, ARecurse);
   handleExceptionEnd
@@ -168,6 +182,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_GetNamePath(AObj: TTreeNodes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -176,6 +191,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_ClassType(AObj: TTreeNodes): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -184,6 +200,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_ClassName(AObj: TTreeNodes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -192,6 +209,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_InstanceSize(AObj: TTreeNodes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -200,6 +218,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_InheritsFrom(AObj: TTreeNodes; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -208,6 +227,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_Equals(AObj: TTreeNodes; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -216,6 +236,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_GetHashCode(AObj: TTreeNodes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -224,6 +245,7 @@ end;
 //CLASSMETHOD:
 function TreeNodes_ToString(AObj: TTreeNodes): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -231,6 +253,7 @@ end;
 
 function TreeNodes_GetCount(AObj: TTreeNodes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -238,6 +261,7 @@ end;
 
 function TreeNodes_GetOwner(AObj: TTreeNodes): TCustomTreeView; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -245,6 +269,7 @@ end;
 
 function TreeNodes_GetItem(AObj: TTreeNodes; Index: Integer): TTreeNode; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Item[Index];
   handleExceptionEnd

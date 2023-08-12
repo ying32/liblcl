@@ -9,6 +9,7 @@
 
 function DateTimePicker_Create(AOwner: TComponent): TDateTimePicker; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TDateTimePicker.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_DateIsNull(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DateIsNull;
   handleExceptionEnd
@@ -48,6 +50,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_CanFocus(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -56,6 +59,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ContainsControl(AObj: TDateTimePicker; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -65,6 +69,7 @@ end;
 //PARAMS:2=nonPtr
 function DateTimePicker_ControlAtPos(AObj: TDateTimePicker; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -89,6 +94,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_FindChildControl(AObj: TDateTimePicker; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -105,6 +111,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Focused(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -113,6 +120,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_HandleAllocated(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -237,6 +245,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Dragging(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -245,6 +254,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_HasParent(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -261,6 +271,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Perform(AObj: TDateTimePicker; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -313,6 +324,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_GetTextBuf(AObj: TDateTimePicker; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -321,6 +333,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_GetTextLen(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -337,6 +350,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_FindComponent(AObj: TDateTimePicker; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -345,6 +359,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_GetNamePath(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -361,6 +376,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ClassType(AObj: TDateTimePicker): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -369,6 +385,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ClassName(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -377,6 +394,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_InstanceSize(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -385,6 +403,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_InheritsFrom(AObj: TDateTimePicker; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -393,6 +412,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Equals(AObj: TDateTimePicker; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -401,6 +421,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_GetHashCode(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -409,6 +430,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ToString(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -473,6 +495,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleDesignToForm(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -481,6 +504,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleFormToDesign(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -489,6 +513,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Scale96ToForm(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -497,6 +522,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleFormTo96(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -505,6 +531,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Scale96ToFont(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -513,6 +540,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleFontTo96(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -521,6 +549,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleScreenToFont(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -529,6 +558,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleFontToScreen(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -537,6 +567,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_Scale96ToScreen(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -545,6 +576,7 @@ end;
 //CLASSMETHOD:
 function DateTimePicker_ScaleScreenTo96(AObj: TDateTimePicker; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -577,6 +609,7 @@ end;
 
 function DateTimePicker_GetArrowShape(AObj: TDateTimePicker): TArrowShape; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TArrowShape);{$endif}
   handleExceptionBegin
   Result :=  AObj.ArrowShape;
   handleExceptionEnd
@@ -591,6 +624,7 @@ end;
 
 function DateTimePicker_GetAutoAdvance(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoAdvance;
   handleExceptionEnd
@@ -605,6 +639,7 @@ end;
 
 function DateTimePicker_GetAutoButtonSize(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoButtonSize;
   handleExceptionEnd
@@ -619,6 +654,7 @@ end;
 
 function DateTimePicker_GetCascade(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Cascade;
   handleExceptionEnd
@@ -633,6 +669,7 @@ end;
 
 function DateTimePicker_GetCenturyFrom(AObj: TDateTimePicker): Word; extdecl;
 begin
+{$ifdef UsehandleException}Result := Word(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.CenturyFrom;
   handleExceptionEnd
@@ -647,6 +684,7 @@ end;
 
 function DateTimePicker_GetDateDisplayOrder(AObj: TDateTimePicker): TDateDisplayOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDateDisplayOrder);{$endif}
   handleExceptionBegin
   Result :=  AObj.DateDisplayOrder;
   handleExceptionEnd
@@ -661,6 +699,7 @@ end;
 
 function DateTimePicker_GetDateSeparator(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.DateSeparator);
   handleExceptionEnd
@@ -675,6 +714,7 @@ end;
 
 function DateTimePicker_GetHideDateTimeParts(AObj: TDateTimePicker): TDateTimeParts; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.HideDateTimeParts;
   handleExceptionEnd
@@ -689,6 +729,7 @@ end;
 
 function DateTimePicker_GetLeadingZeros(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.LeadingZeros;
   handleExceptionEnd
@@ -703,6 +744,7 @@ end;
 
 function DateTimePicker_GetMonthNames(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.MonthNames);
   handleExceptionEnd
@@ -717,6 +759,7 @@ end;
 
 function DateTimePicker_GetShowMonthNames(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowMonthNames;
   handleExceptionEnd
@@ -731,6 +774,7 @@ end;
 
 function DateTimePicker_GetNullInputAllowed(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.NullInputAllowed;
   handleExceptionEnd
@@ -745,6 +789,7 @@ end;
 
 function DateTimePicker_GetOptions(AObj: TDateTimePicker): TDateTimePickerOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -759,6 +804,7 @@ end;
 
 function DateTimePicker_GetShowCheckBox(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowCheckBox;
   handleExceptionEnd
@@ -773,6 +819,7 @@ end;
 
 function DateTimePicker_GetReadOnly(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -787,6 +834,7 @@ end;
 
 function DateTimePicker_GetTextForNullDate(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextForNullDate);
   handleExceptionEnd
@@ -801,6 +849,7 @@ end;
 
 function DateTimePicker_GetTimeDisplay(AObj: TDateTimePicker): TTimeDisplay; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTimeDisplay);{$endif}
   handleExceptionBegin
   Result :=  AObj.TimeDisplay;
   handleExceptionEnd
@@ -815,6 +864,7 @@ end;
 
 function DateTimePicker_GetTimeFormat(AObj: TDateTimePicker): TTimeFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TTimeFormat);{$endif}
   handleExceptionBegin
   Result :=  AObj.TimeFormat;
   handleExceptionEnd
@@ -829,6 +879,7 @@ end;
 
 function DateTimePicker_GetTimeSeparator(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TimeSeparator);
   handleExceptionEnd
@@ -843,6 +894,7 @@ end;
 
 function DateTimePicker_GetTrailingSeparator(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TrailingSeparator;
   handleExceptionEnd
@@ -857,6 +909,7 @@ end;
 
 function DateTimePicker_GetUseDefaultSeparators(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDefaultSeparators;
   handleExceptionEnd
@@ -871,6 +924,7 @@ end;
 
 function DateTimePicker_GetDroppedDown(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DroppedDown;
   handleExceptionEnd
@@ -894,6 +948,7 @@ end;
 
 function DateTimePicker_GetAlign(AObj: TDateTimePicker): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -908,6 +963,7 @@ end;
 
 function DateTimePicker_GetAnchors(AObj: TDateTimePicker): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -922,6 +978,7 @@ end;
 
 function DateTimePicker_GetBiDiMode(AObj: TDateTimePicker): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -936,6 +993,7 @@ end;
 
 function DateTimePicker_GetCalAlignment(AObj: TDateTimePicker): TDTCalAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDTCalAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.CalAlignment;
   handleExceptionEnd
@@ -950,6 +1008,7 @@ end;
 
 function DateTimePicker_GetConstraints(AObj: TDateTimePicker): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -996,6 +1055,7 @@ end;
 
 function DateTimePicker_GetChecked(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checked;
   handleExceptionEnd
@@ -1010,6 +1070,7 @@ end;
 
 function DateTimePicker_GetColor(AObj: TDateTimePicker): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -1024,6 +1085,7 @@ end;
 
 function DateTimePicker_GetDateMode(AObj: TDateTimePicker): TDTDateMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDTDateMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DateMode;
   handleExceptionEnd
@@ -1038,6 +1100,7 @@ end;
 
 function DateTimePicker_GetDoubleBuffered(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1052,6 +1115,7 @@ end;
 
 function DateTimePicker_GetEnabled(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -1066,6 +1130,7 @@ end;
 
 function DateTimePicker_GetFont(AObj: TDateTimePicker): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -1080,6 +1145,7 @@ end;
 
 function DateTimePicker_GetKind(AObj: TDateTimePicker): TDateTimeKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDateTimeKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.Kind;
   handleExceptionEnd
@@ -1126,6 +1192,7 @@ end;
 
 function DateTimePicker_GetParentColor(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -1140,6 +1207,7 @@ end;
 
 function DateTimePicker_GetParentDoubleBuffered(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1154,6 +1222,7 @@ end;
 
 function DateTimePicker_GetParentFont(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -1168,6 +1237,7 @@ end;
 
 function DateTimePicker_GetParentShowHint(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -1182,6 +1252,7 @@ end;
 
 function DateTimePicker_GetPopupMenu(AObj: TDateTimePicker): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1196,6 +1267,7 @@ end;
 
 function DateTimePicker_GetShowHint(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1210,6 +1282,7 @@ end;
 
 function DateTimePicker_GetTabOrder(AObj: TDateTimePicker): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1224,6 +1297,7 @@ end;
 
 function DateTimePicker_GetTabStop(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1238,6 +1312,7 @@ end;
 
 function DateTimePicker_GetVisible(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1348,6 +1423,7 @@ end;
 
 function DateTimePicker_GetDockClientCount(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1355,6 +1431,7 @@ end;
 
 function DateTimePicker_GetDockSite(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1369,6 +1446,7 @@ end;
 
 function DateTimePicker_GetMouseInClient(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1376,6 +1454,7 @@ end;
 
 function DateTimePicker_GetVisibleDockClientCount(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1383,6 +1462,7 @@ end;
 
 function DateTimePicker_GetBrush(AObj: TDateTimePicker): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1390,6 +1470,7 @@ end;
 
 function DateTimePicker_GetControlCount(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1397,6 +1478,7 @@ end;
 
 function DateTimePicker_GetHandle(AObj: TDateTimePicker): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1404,6 +1486,7 @@ end;
 
 function DateTimePicker_GetParentWindow(AObj: TDateTimePicker): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1418,6 +1501,7 @@ end;
 
 function DateTimePicker_GetShowing(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1425,6 +1509,7 @@ end;
 
 function DateTimePicker_GetUseDockManager(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1439,6 +1524,7 @@ end;
 
 function DateTimePicker_GetAction(AObj: TDateTimePicker): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1469,6 +1555,7 @@ end;
 
 function DateTimePicker_GetClientHeight(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1499,6 +1586,7 @@ end;
 
 function DateTimePicker_GetClientWidth(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1513,6 +1601,7 @@ end;
 
 function DateTimePicker_GetControlState(AObj: TDateTimePicker): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1527,6 +1616,7 @@ end;
 
 function DateTimePicker_GetControlStyle(AObj: TDateTimePicker): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1541,6 +1631,7 @@ end;
 
 function DateTimePicker_GetFloating(AObj: TDateTimePicker): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1548,6 +1639,7 @@ end;
 
 function DateTimePicker_GetParent(AObj: TDateTimePicker): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1562,6 +1654,7 @@ end;
 
 function DateTimePicker_GetLeft(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1576,6 +1669,7 @@ end;
 
 function DateTimePicker_GetTop(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1590,6 +1684,7 @@ end;
 
 function DateTimePicker_GetWidth(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1604,6 +1699,7 @@ end;
 
 function DateTimePicker_GetHeight(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1618,6 +1714,7 @@ end;
 
 function DateTimePicker_GetCursor(AObj: TDateTimePicker): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1632,6 +1729,7 @@ end;
 
 function DateTimePicker_GetHint(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1646,6 +1744,7 @@ end;
 
 function DateTimePicker_GetComponentCount(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1653,6 +1752,7 @@ end;
 
 function DateTimePicker_GetComponentIndex(AObj: TDateTimePicker): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1667,6 +1767,7 @@ end;
 
 function DateTimePicker_GetOwner(AObj: TDateTimePicker): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1674,6 +1775,7 @@ end;
 
 function DateTimePicker_GetName(AObj: TDateTimePicker): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1688,6 +1790,7 @@ end;
 
 function DateTimePicker_GetTag(AObj: TDateTimePicker): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1702,6 +1805,7 @@ end;
 
 function DateTimePicker_GetAnchorSideLeft(AObj: TDateTimePicker): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1716,6 +1820,7 @@ end;
 
 function DateTimePicker_GetAnchorSideTop(AObj: TDateTimePicker): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1730,6 +1835,7 @@ end;
 
 function DateTimePicker_GetAnchorSideRight(AObj: TDateTimePicker): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1744,6 +1850,7 @@ end;
 
 function DateTimePicker_GetAnchorSideBottom(AObj: TDateTimePicker): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1758,6 +1865,7 @@ end;
 
 function DateTimePicker_GetChildSizing(AObj: TDateTimePicker): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1772,6 +1880,7 @@ end;
 
 function DateTimePicker_GetBorderSpacing(AObj: TDateTimePicker): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1786,6 +1895,7 @@ end;
 
 function DateTimePicker_GetDockClients(AObj: TDateTimePicker; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1793,6 +1903,7 @@ end;
 
 function DateTimePicker_GetControls(AObj: TDateTimePicker; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1800,6 +1911,7 @@ end;
 
 function DateTimePicker_GetComponents(AObj: TDateTimePicker; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1807,6 +1919,7 @@ end;
 
 function DateTimePicker_GetAnchorSide(AObj: TDateTimePicker; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

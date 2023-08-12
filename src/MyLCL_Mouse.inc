@@ -9,6 +9,7 @@
 
 function Mouse_Create: TMouse; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TMouse.Create;
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function Mouse_ClassType(AObj: TMouse): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function Mouse_ClassName(AObj: TMouse): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function Mouse_InstanceSize(AObj: TMouse): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function Mouse_InheritsFrom(AObj: TMouse; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -56,6 +61,7 @@ end;
 //CLASSMETHOD:
 function Mouse_Equals(AObj: TMouse; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -64,6 +70,7 @@ end;
 //CLASSMETHOD:
 function Mouse_GetHashCode(AObj: TMouse): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -72,6 +79,7 @@ end;
 //CLASSMETHOD:
 function Mouse_ToString(AObj: TMouse): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -79,6 +87,7 @@ end;
 
 function Mouse_GetCapture(AObj: TMouse): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Capture;
   handleExceptionEnd
@@ -109,6 +118,7 @@ end;
 
 function Mouse_GetIsDragging(AObj: TMouse): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.IsDragging;
   handleExceptionEnd
@@ -116,6 +126,7 @@ end;
 
 function Mouse_GetWheelScrollLines(AObj: TMouse): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.WheelScrollLines;
   handleExceptionEnd

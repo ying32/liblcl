@@ -10,6 +10,7 @@
 //CLASSMETHOD:
 function ComboExItems_Add(AObj: TComboExItems): TComboExItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Add;
   handleExceptionEnd
@@ -18,6 +19,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_AddItem(AObj: TComboExItems; Caption: PChar; ImageIndex: Integer; SelectedImageIndex: Integer; OverlayImageIndex: Integer; Indent: Integer; Data: Pointer): TComboExItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AddItem(Caption, ImageIndex, SelectedImageIndex, OverlayImageIndex, Indent, Data);
   handleExceptionEnd
@@ -26,6 +28,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_Insert(AObj: TComboExItems; Index: Integer): TComboExItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Insert(Index);
   handleExceptionEnd
@@ -34,6 +37,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_Owner(AObj: TComboExItems): TPersistent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -82,6 +86,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_FindItemID(AObj: TComboExItems; ID: Integer): TCollectionItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindItemID(ID);
   handleExceptionEnd
@@ -90,6 +95,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_GetNamePath(AObj: TComboExItems): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -98,6 +104,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_ClassType(AObj: TComboExItems): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -106,6 +113,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_ClassName(AObj: TComboExItems): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -114,6 +122,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_InstanceSize(AObj: TComboExItems): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -122,6 +131,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_InheritsFrom(AObj: TComboExItems; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -130,6 +140,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_Equals(AObj: TComboExItems; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -138,6 +149,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_GetHashCode(AObj: TComboExItems): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -146,6 +158,7 @@ end;
 //CLASSMETHOD:
 function ComboExItems_ToString(AObj: TComboExItems): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -153,6 +166,7 @@ end;
 
 function ComboExItems_GetCount(AObj: TComboExItems): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Count;
   handleExceptionEnd
@@ -160,6 +174,7 @@ end;
 
 function ComboExItems_GetComboItems(AObj: TComboExItems; Index: Integer): TComboExItem; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ComboItems[Index];
   handleExceptionEnd

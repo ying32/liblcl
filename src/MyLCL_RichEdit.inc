@@ -9,6 +9,7 @@
 
 function RichEdit_Create(AOwner: TComponent): TRichEdit; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TRichEdit.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_FindText(AObj: TRichEdit; SearchStr: PChar; StartPos: Integer; Length: Integer; Options: TSearchTypes): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FindText(SearchStr, StartPos, Length, Options);
   handleExceptionEnd
@@ -88,6 +90,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_CanFocus(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -96,6 +99,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ContainsControl(AObj: TRichEdit; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -105,6 +109,7 @@ end;
 //PARAMS:2=nonPtr
 function RichEdit_ControlAtPos(AObj: TRichEdit; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -129,6 +134,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_FindChildControl(AObj: TRichEdit; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -145,6 +151,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Focused(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -153,6 +160,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_HandleAllocated(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -277,6 +285,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Dragging(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -285,6 +294,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_HasParent(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -301,6 +311,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Perform(AObj: TRichEdit; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -353,6 +364,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_GetTextBuf(AObj: TRichEdit; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -361,6 +373,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_GetTextLen(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -377,6 +390,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_FindComponent(AObj: TRichEdit; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -385,6 +399,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_GetNamePath(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -401,6 +416,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ClassType(AObj: TRichEdit): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -409,6 +425,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ClassName(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -417,6 +434,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_InstanceSize(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -425,6 +443,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_InheritsFrom(AObj: TRichEdit; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -433,6 +452,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Equals(AObj: TRichEdit; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -441,6 +461,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_GetHashCode(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -449,6 +470,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ToString(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -513,6 +535,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleDesignToForm(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -521,6 +544,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleFormToDesign(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -529,6 +553,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Scale96ToForm(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -537,6 +562,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleFormTo96(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -545,6 +571,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Scale96ToFont(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -553,6 +580,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleFontTo96(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -561,6 +589,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleScreenToFont(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -569,6 +598,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleFontToScreen(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -577,6 +607,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_Scale96ToScreen(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -585,6 +616,7 @@ end;
 //CLASSMETHOD:
 function RichEdit_ScaleScreenTo96(AObj: TRichEdit; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -617,6 +649,7 @@ end;
 
 function RichEdit_GetAlign(AObj: TRichEdit): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -631,6 +664,7 @@ end;
 
 function RichEdit_GetAlignment(AObj: TRichEdit): TAlignment; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlignment);{$endif}
   handleExceptionBegin
   Result :=  AObj.Alignment;
   handleExceptionEnd
@@ -645,6 +679,7 @@ end;
 
 function RichEdit_GetAnchors(AObj: TRichEdit): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -659,6 +694,7 @@ end;
 
 function RichEdit_GetBiDiMode(AObj: TRichEdit): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -673,6 +709,7 @@ end;
 
 function RichEdit_GetBorderStyle(AObj: TRichEdit): TBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -687,6 +724,7 @@ end;
 
 function RichEdit_GetBorderWidth(AObj: TRichEdit): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -701,6 +739,7 @@ end;
 
 function RichEdit_GetColor(AObj: TRichEdit): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -715,6 +754,7 @@ end;
 
 function RichEdit_GetDragCursor(AObj: TRichEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -729,6 +769,7 @@ end;
 
 function RichEdit_GetDragKind(AObj: TRichEdit): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -743,6 +784,7 @@ end;
 
 function RichEdit_GetDragMode(AObj: TRichEdit): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -757,6 +799,7 @@ end;
 
 function RichEdit_GetEnabled(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -771,6 +814,7 @@ end;
 
 function RichEdit_GetFont(AObj: TRichEdit): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -785,6 +829,7 @@ end;
 
 function RichEdit_GetHideSelection(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HideSelection;
   handleExceptionEnd
@@ -799,6 +844,7 @@ end;
 
 function RichEdit_GetConstraints(AObj: TRichEdit): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -813,6 +859,7 @@ end;
 
 function RichEdit_GetLines(AObj: TRichEdit): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Lines;
   handleExceptionEnd
@@ -827,6 +874,7 @@ end;
 
 function RichEdit_GetMaxLength(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxLength;
   handleExceptionEnd
@@ -841,6 +889,7 @@ end;
 
 function RichEdit_GetParentColor(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -855,6 +904,7 @@ end;
 
 function RichEdit_GetParentFont(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -869,6 +919,7 @@ end;
 
 function RichEdit_GetParentShowHint(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -883,6 +934,7 @@ end;
 
 function RichEdit_GetPopupMenu(AObj: TRichEdit): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -897,6 +949,7 @@ end;
 
 function RichEdit_GetReadOnly(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ReadOnly;
   handleExceptionEnd
@@ -911,6 +964,7 @@ end;
 
 function RichEdit_GetScrollBars(AObj: TRichEdit): TScrollStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TScrollStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScrollBars;
   handleExceptionEnd
@@ -925,6 +979,7 @@ end;
 
 function RichEdit_GetShowHint(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -939,6 +994,7 @@ end;
 
 function RichEdit_GetTabOrder(AObj: TRichEdit): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -953,6 +1009,7 @@ end;
 
 function RichEdit_GetTabStop(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -967,6 +1024,7 @@ end;
 
 function RichEdit_GetVisible(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -981,6 +1039,7 @@ end;
 
 function RichEdit_GetWantTabs(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WantTabs;
   handleExceptionEnd
@@ -995,6 +1054,7 @@ end;
 
 function RichEdit_GetWantReturns(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WantReturns;
   handleExceptionEnd
@@ -1009,6 +1069,7 @@ end;
 
 function RichEdit_GetWordWrap(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.WordWrap;
   handleExceptionEnd
@@ -1023,6 +1084,7 @@ end;
 
 function RichEdit_GetZoom(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Zoom;
   handleExceptionEnd
@@ -1197,6 +1259,7 @@ end;
 
 function RichEdit_GetDefAttributes(AObj: TRichEdit): TTextAttributes; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DefAttributes;
   handleExceptionEnd
@@ -1211,6 +1274,7 @@ end;
 
 function RichEdit_GetSelAttributes(AObj: TRichEdit): TTextAttributes; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.SelAttributes;
   handleExceptionEnd
@@ -1225,6 +1289,7 @@ end;
 
 function RichEdit_GetParagraph(AObj: TRichEdit): TParaAttributes; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Paragraph;
   handleExceptionEnd
@@ -1248,6 +1313,7 @@ end;
 
 function RichEdit_GetCanUndo(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanUndo;
   handleExceptionEnd
@@ -1255,6 +1321,7 @@ end;
 
 function RichEdit_GetModified(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -1269,6 +1336,7 @@ end;
 
 function RichEdit_GetSelLength(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelLength;
   handleExceptionEnd
@@ -1283,6 +1351,7 @@ end;
 
 function RichEdit_GetSelStart(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.SelStart;
   handleExceptionEnd
@@ -1297,6 +1366,7 @@ end;
 
 function RichEdit_GetSelText(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.SelText);
   handleExceptionEnd
@@ -1311,6 +1381,7 @@ end;
 
 function RichEdit_GetText(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Text);
   handleExceptionEnd
@@ -1325,6 +1396,7 @@ end;
 
 function RichEdit_GetTextHint(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.TextHint);
   handleExceptionEnd
@@ -1339,6 +1411,7 @@ end;
 
 function RichEdit_GetDockClientCount(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1346,6 +1419,7 @@ end;
 
 function RichEdit_GetDockSite(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1360,6 +1434,7 @@ end;
 
 function RichEdit_GetDoubleBuffered(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1374,6 +1449,7 @@ end;
 
 function RichEdit_GetMouseInClient(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1381,6 +1457,7 @@ end;
 
 function RichEdit_GetVisibleDockClientCount(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1388,6 +1465,7 @@ end;
 
 function RichEdit_GetBrush(AObj: TRichEdit): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1395,6 +1473,7 @@ end;
 
 function RichEdit_GetControlCount(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1402,6 +1481,7 @@ end;
 
 function RichEdit_GetHandle(AObj: TRichEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1409,6 +1489,7 @@ end;
 
 function RichEdit_GetParentDoubleBuffered(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1423,6 +1504,7 @@ end;
 
 function RichEdit_GetParentWindow(AObj: TRichEdit): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1437,6 +1519,7 @@ end;
 
 function RichEdit_GetShowing(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1444,6 +1527,7 @@ end;
 
 function RichEdit_GetUseDockManager(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1458,6 +1542,7 @@ end;
 
 function RichEdit_GetAction(AObj: TRichEdit): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1488,6 +1573,7 @@ end;
 
 function RichEdit_GetClientHeight(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -1518,6 +1604,7 @@ end;
 
 function RichEdit_GetClientWidth(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -1532,6 +1619,7 @@ end;
 
 function RichEdit_GetControlState(AObj: TRichEdit): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1546,6 +1634,7 @@ end;
 
 function RichEdit_GetControlStyle(AObj: TRichEdit): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1560,6 +1649,7 @@ end;
 
 function RichEdit_GetFloating(AObj: TRichEdit): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1567,6 +1657,7 @@ end;
 
 function RichEdit_GetParent(AObj: TRichEdit): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1581,6 +1672,7 @@ end;
 
 function RichEdit_GetLeft(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1595,6 +1687,7 @@ end;
 
 function RichEdit_GetTop(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1609,6 +1702,7 @@ end;
 
 function RichEdit_GetWidth(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1623,6 +1717,7 @@ end;
 
 function RichEdit_GetHeight(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1637,6 +1732,7 @@ end;
 
 function RichEdit_GetCursor(AObj: TRichEdit): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1651,6 +1747,7 @@ end;
 
 function RichEdit_GetHint(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1665,6 +1762,7 @@ end;
 
 function RichEdit_GetComponentCount(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1672,6 +1770,7 @@ end;
 
 function RichEdit_GetComponentIndex(AObj: TRichEdit): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1686,6 +1785,7 @@ end;
 
 function RichEdit_GetOwner(AObj: TRichEdit): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1693,6 +1793,7 @@ end;
 
 function RichEdit_GetName(AObj: TRichEdit): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1707,6 +1808,7 @@ end;
 
 function RichEdit_GetTag(AObj: TRichEdit): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1721,6 +1823,7 @@ end;
 
 function RichEdit_GetAnchorSideLeft(AObj: TRichEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1735,6 +1838,7 @@ end;
 
 function RichEdit_GetAnchorSideTop(AObj: TRichEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1749,6 +1853,7 @@ end;
 
 function RichEdit_GetAnchorSideRight(AObj: TRichEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1763,6 +1868,7 @@ end;
 
 function RichEdit_GetAnchorSideBottom(AObj: TRichEdit): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1777,6 +1883,7 @@ end;
 
 function RichEdit_GetChildSizing(AObj: TRichEdit): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1791,6 +1898,7 @@ end;
 
 function RichEdit_GetBorderSpacing(AObj: TRichEdit): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1805,6 +1913,7 @@ end;
 
 function RichEdit_GetDockClients(AObj: TRichEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1812,6 +1921,7 @@ end;
 
 function RichEdit_GetControls(AObj: TRichEdit; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1819,6 +1929,7 @@ end;
 
 function RichEdit_GetComponents(AObj: TRichEdit; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1826,6 +1937,7 @@ end;
 
 function RichEdit_GetAnchorSide(AObj: TRichEdit; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

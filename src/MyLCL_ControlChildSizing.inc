@@ -18,6 +18,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_GetNamePath(AObj: TControlChildSizing): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -26,6 +27,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_ClassType(AObj: TControlChildSizing): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -34,6 +36,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_ClassName(AObj: TControlChildSizing): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -42,6 +45,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_InstanceSize(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -50,6 +54,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_InheritsFrom(AObj: TControlChildSizing; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -58,6 +63,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_Equals(AObj: TControlChildSizing; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -66,6 +72,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_GetHashCode(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -74,6 +81,7 @@ end;
 //CLASSMETHOD:
 function ControlChildSizing_ToString(AObj: TControlChildSizing): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -81,6 +89,7 @@ end;
 
 function ControlChildSizing_GetControl(AObj: TControlChildSizing): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Control;
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 
 function ControlChildSizing_GetLeftRightSpacing(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.LeftRightSpacing;
   handleExceptionEnd
@@ -110,6 +120,7 @@ end;
 
 function ControlChildSizing_GetTopBottomSpacing(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TopBottomSpacing;
   handleExceptionEnd
@@ -124,6 +135,7 @@ end;
 
 function ControlChildSizing_GetHorizontalSpacing(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.HorizontalSpacing;
   handleExceptionEnd
@@ -138,6 +150,7 @@ end;
 
 function ControlChildSizing_GetVerticalSpacing(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VerticalSpacing;
   handleExceptionEnd
@@ -152,6 +165,7 @@ end;
 
 function ControlChildSizing_GetEnlargeHorizontal(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EnlargeHorizontal;
   handleExceptionEnd
@@ -166,6 +180,7 @@ end;
 
 function ControlChildSizing_GetEnlargeVertical(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.EnlargeVertical;
   handleExceptionEnd
@@ -180,6 +195,7 @@ end;
 
 function ControlChildSizing_GetShrinkHorizontal(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShrinkHorizontal;
   handleExceptionEnd
@@ -194,6 +210,7 @@ end;
 
 function ControlChildSizing_GetShrinkVertical(AObj: TControlChildSizing): TChildControlResizeStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TChildControlResizeStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShrinkVertical;
   handleExceptionEnd
@@ -208,6 +225,7 @@ end;
 
 function ControlChildSizing_GetLayout(AObj: TControlChildSizing): TControlChildrenLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TControlChildrenLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.Layout;
   handleExceptionEnd
@@ -222,6 +240,7 @@ end;
 
 function ControlChildSizing_GetControlsPerLine(AObj: TControlChildSizing): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlsPerLine;
   handleExceptionEnd

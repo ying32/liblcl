@@ -9,6 +9,7 @@
 
 function CheckGroup_Create(AOwner: TComponent): TCheckGroup; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TCheckGroup.Create(AOwner);
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Rows(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Rows;
   handleExceptionEnd
@@ -40,6 +42,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_CanFocus(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ContainsControl(AObj: TCheckGroup; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -57,6 +61,7 @@ end;
 //PARAMS:2=nonPtr
 function CheckGroup_ControlAtPos(AObj: TCheckGroup; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -81,6 +86,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_FindChildControl(AObj: TCheckGroup; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -89,6 +95,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Focused(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -97,6 +104,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_HandleAllocated(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -221,6 +229,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Dragging(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -229,6 +238,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_HasParent(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -245,6 +255,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Perform(AObj: TCheckGroup; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -297,6 +308,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_GetTextBuf(AObj: TCheckGroup; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -305,6 +317,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_GetTextLen(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -321,6 +334,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_FindComponent(AObj: TCheckGroup; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -329,6 +343,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_GetNamePath(AObj: TCheckGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -345,6 +360,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ClassType(AObj: TCheckGroup): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -353,6 +369,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ClassName(AObj: TCheckGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -361,6 +378,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_InstanceSize(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -369,6 +387,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_InheritsFrom(AObj: TCheckGroup; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -377,6 +396,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Equals(AObj: TCheckGroup; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -385,6 +405,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_GetHashCode(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -393,6 +414,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ToString(AObj: TCheckGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -457,6 +479,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleDesignToForm(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -465,6 +488,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleFormToDesign(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -473,6 +497,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Scale96ToForm(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -481,6 +506,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleFormTo96(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -489,6 +515,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Scale96ToFont(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -497,6 +524,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleFontTo96(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -505,6 +533,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleScreenToFont(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -513,6 +542,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleFontToScreen(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -521,6 +551,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_Scale96ToScreen(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -529,6 +560,7 @@ end;
 //CLASSMETHOD:
 function CheckGroup_ScaleScreenTo96(AObj: TCheckGroup; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -561,6 +593,7 @@ end;
 
 function CheckGroup_GetAlign(AObj: TCheckGroup): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -575,6 +608,7 @@ end;
 
 function CheckGroup_GetAnchors(AObj: TCheckGroup): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -589,6 +623,7 @@ end;
 
 function CheckGroup_GetAutoFill(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoFill;
   handleExceptionEnd
@@ -603,6 +638,7 @@ end;
 
 function CheckGroup_GetAutoSize(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -617,6 +653,7 @@ end;
 
 function CheckGroup_GetBiDiMode(AObj: TCheckGroup): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -631,6 +668,7 @@ end;
 
 function CheckGroup_GetCaption(AObj: TCheckGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -645,6 +683,7 @@ end;
 
 function CheckGroup_GetClientHeight(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -659,6 +698,7 @@ end;
 
 function CheckGroup_GetClientWidth(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -673,6 +713,7 @@ end;
 
 function CheckGroup_GetColor(AObj: TCheckGroup): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -687,6 +728,7 @@ end;
 
 function CheckGroup_GetColumnLayout(AObj: TCheckGroup): TColumnLayout; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TColumnLayout);{$endif}
   handleExceptionBegin
   Result :=  AObj.ColumnLayout;
   handleExceptionEnd
@@ -701,6 +743,7 @@ end;
 
 function CheckGroup_GetColumns(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Columns;
   handleExceptionEnd
@@ -715,6 +758,7 @@ end;
 
 function CheckGroup_GetConstraints(AObj: TCheckGroup): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -729,6 +773,7 @@ end;
 
 function CheckGroup_GetDoubleBuffered(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -743,6 +788,7 @@ end;
 
 function CheckGroup_GetDragCursor(AObj: TCheckGroup): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragCursor;
   handleExceptionEnd
@@ -757,6 +803,7 @@ end;
 
 function CheckGroup_GetDragMode(AObj: TCheckGroup): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -771,6 +818,7 @@ end;
 
 function CheckGroup_GetEnabled(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -785,6 +833,7 @@ end;
 
 function CheckGroup_GetFont(AObj: TCheckGroup): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -799,6 +848,7 @@ end;
 
 function CheckGroup_GetItems(AObj: TCheckGroup): TStrings; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Items;
   handleExceptionEnd
@@ -973,6 +1023,7 @@ end;
 
 function CheckGroup_GetParentFont(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -987,6 +1038,7 @@ end;
 
 function CheckGroup_GetParentColor(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentColor;
   handleExceptionEnd
@@ -1001,6 +1053,7 @@ end;
 
 function CheckGroup_GetParentDoubleBuffered(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1015,6 +1068,7 @@ end;
 
 function CheckGroup_GetParentShowHint(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentShowHint;
   handleExceptionEnd
@@ -1029,6 +1083,7 @@ end;
 
 function CheckGroup_GetPopupMenu(AObj: TCheckGroup): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1043,6 +1098,7 @@ end;
 
 function CheckGroup_GetShowHint(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1057,6 +1113,7 @@ end;
 
 function CheckGroup_GetTabOrder(AObj: TCheckGroup): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1071,6 +1128,7 @@ end;
 
 function CheckGroup_GetTabStop(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1085,6 +1143,7 @@ end;
 
 function CheckGroup_GetVisible(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1099,6 +1158,7 @@ end;
 
 function CheckGroup_GetParentBackground(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentBackground;
   handleExceptionEnd
@@ -1113,6 +1173,7 @@ end;
 
 function CheckGroup_GetDockClientCount(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1120,6 +1181,7 @@ end;
 
 function CheckGroup_GetDockSite(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -1134,6 +1196,7 @@ end;
 
 function CheckGroup_GetMouseInClient(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1141,6 +1204,7 @@ end;
 
 function CheckGroup_GetVisibleDockClientCount(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1148,6 +1212,7 @@ end;
 
 function CheckGroup_GetBrush(AObj: TCheckGroup): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1155,6 +1220,7 @@ end;
 
 function CheckGroup_GetControlCount(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1162,6 +1228,7 @@ end;
 
 function CheckGroup_GetHandle(AObj: TCheckGroup): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1169,6 +1236,7 @@ end;
 
 function CheckGroup_GetParentWindow(AObj: TCheckGroup): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1183,6 +1251,7 @@ end;
 
 function CheckGroup_GetShowing(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1190,6 +1259,7 @@ end;
 
 function CheckGroup_GetUseDockManager(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -1204,6 +1274,7 @@ end;
 
 function CheckGroup_GetAction(AObj: TCheckGroup): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -1250,6 +1321,7 @@ end;
 
 function CheckGroup_GetControlState(AObj: TCheckGroup): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1264,6 +1336,7 @@ end;
 
 function CheckGroup_GetControlStyle(AObj: TCheckGroup): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1278,6 +1351,7 @@ end;
 
 function CheckGroup_GetFloating(AObj: TCheckGroup): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1285,6 +1359,7 @@ end;
 
 function CheckGroup_GetParent(AObj: TCheckGroup): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1299,6 +1374,7 @@ end;
 
 function CheckGroup_GetLeft(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1313,6 +1389,7 @@ end;
 
 function CheckGroup_GetTop(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1327,6 +1404,7 @@ end;
 
 function CheckGroup_GetWidth(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1341,6 +1419,7 @@ end;
 
 function CheckGroup_GetHeight(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1355,6 +1434,7 @@ end;
 
 function CheckGroup_GetCursor(AObj: TCheckGroup): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1369,6 +1449,7 @@ end;
 
 function CheckGroup_GetHint(AObj: TCheckGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1383,6 +1464,7 @@ end;
 
 function CheckGroup_GetComponentCount(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1390,6 +1472,7 @@ end;
 
 function CheckGroup_GetComponentIndex(AObj: TCheckGroup): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1404,6 +1487,7 @@ end;
 
 function CheckGroup_GetOwner(AObj: TCheckGroup): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1411,6 +1495,7 @@ end;
 
 function CheckGroup_GetName(AObj: TCheckGroup): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1425,6 +1510,7 @@ end;
 
 function CheckGroup_GetTag(AObj: TCheckGroup): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1439,6 +1525,7 @@ end;
 
 function CheckGroup_GetAnchorSideLeft(AObj: TCheckGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1453,6 +1540,7 @@ end;
 
 function CheckGroup_GetAnchorSideTop(AObj: TCheckGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1467,6 +1555,7 @@ end;
 
 function CheckGroup_GetAnchorSideRight(AObj: TCheckGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1481,6 +1570,7 @@ end;
 
 function CheckGroup_GetAnchorSideBottom(AObj: TCheckGroup): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1495,6 +1585,7 @@ end;
 
 function CheckGroup_GetChildSizing(AObj: TCheckGroup): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1509,6 +1600,7 @@ end;
 
 function CheckGroup_GetBorderSpacing(AObj: TCheckGroup): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1523,6 +1615,7 @@ end;
 
 function CheckGroup_GetChecked(AObj: TCheckGroup; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Checked[Index];
   handleExceptionEnd
@@ -1537,6 +1630,7 @@ end;
 
 function CheckGroup_GetCheckEnabled(AObj: TCheckGroup; Index: Integer): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CheckEnabled[Index];
   handleExceptionEnd
@@ -1551,6 +1645,7 @@ end;
 
 function CheckGroup_GetDockClients(AObj: TCheckGroup; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1558,6 +1653,7 @@ end;
 
 function CheckGroup_GetControls(AObj: TCheckGroup; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1565,6 +1661,7 @@ end;
 
 function CheckGroup_GetComponents(AObj: TCheckGroup; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1572,6 +1669,7 @@ end;
 
 function CheckGroup_GetAnchorSide(AObj: TCheckGroup; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function Clipboard_Create: TClipboard; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TClipboard.Create;
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_FindPictureFormatID(AObj: TClipboard): TClipboardFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FindPictureFormatID;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_FindFormatID(AObj: TClipboard; FormatName: PChar): TClipboardFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FindFormatID(FormatName);
   handleExceptionEnd
@@ -48,6 +51,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_HasFormatName(AObj: TClipboard; FormatName: PChar): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasFormatName(FormatName);
   handleExceptionEnd
@@ -56,6 +60,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_HasPictureFormat(AObj: TClipboard): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasPictureFormat;
   handleExceptionEnd
@@ -72,8 +77,54 @@ end;
 //CLASSMETHOD:
 function Clipboard_GetFormat(AObj: TClipboard; FormatID: TClipboardFormat; Stream: TStream): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.GetFormat(FormatID, Stream);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_AddFormat(AObj: TClipboard; FormatID: TClipboardFormat; Stream: TStream): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.AddFormat(FormatID, Stream);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_SetFormat(AObj: TClipboard; FormatID: TClipboardFormat; Stream: TStream): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.SetFormat(FormatID, Stream);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_GetComponent(AObj: TClipboard; Owner: TComponent; Parent: TComponent): TComponent; extdecl;
+begin
+{$ifdef UsehandleException}Result := nil;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.GetComponent(Owner, Parent);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_SetComponent(AObj: TClipboard; Component: TComponent): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.SetComponent(Component);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function Clipboard_SetComponentAsText(AObj: TClipboard; Component: TComponent): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.SetComponentAsText(Component);
   handleExceptionEnd
 end;
 
@@ -120,6 +171,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_GetNamePath(AObj: TClipboard): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -128,6 +180,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_ClassType(AObj: TClipboard): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -136,6 +189,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_ClassName(AObj: TClipboard): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -144,6 +198,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_InstanceSize(AObj: TClipboard): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -152,6 +207,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_InheritsFrom(AObj: TClipboard; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -160,6 +216,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_Equals(AObj: TClipboard; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -168,6 +225,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_GetHashCode(AObj: TClipboard): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -176,6 +234,7 @@ end;
 //CLASSMETHOD:
 function Clipboard_ToString(AObj: TClipboard): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -183,6 +242,7 @@ end;
 
 function Clipboard_GetFormatCount(AObj: TClipboard): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FormatCount;
   handleExceptionEnd
@@ -190,6 +250,7 @@ end;
 
 function Clipboard_GetFormats(AObj: TClipboard; Index: Integer): TClipboardFormat; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClipboardFormat(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Formats[Index];
   handleExceptionEnd
@@ -210,6 +271,11 @@ exports
   Clipboard_HasPictureFormat,
   Clipboard_SetAsHtml,
   Clipboard_GetFormat,
+  Clipboard_AddFormat,
+  Clipboard_SetFormat,
+  Clipboard_GetComponent,
+  Clipboard_SetComponent,
+  Clipboard_SetComponentAsText,
   Clipboard_Assign,
   Clipboard_Clear,
   Clipboard_Close,

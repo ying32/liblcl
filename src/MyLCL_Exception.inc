@@ -10,6 +10,7 @@
 //CLASSMETHOD:
 function Exception_ToString(AObj: Exception): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -18,6 +19,7 @@ end;
 //CLASSMETHOD:
 function Exception_ClassType(AObj: Exception): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -26,6 +28,7 @@ end;
 //CLASSMETHOD:
 function Exception_ClassName(AObj: Exception): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -34,6 +37,7 @@ end;
 //CLASSMETHOD:
 function Exception_InstanceSize(AObj: Exception): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -42,6 +46,7 @@ end;
 //CLASSMETHOD:
 function Exception_InheritsFrom(AObj: Exception; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -50,6 +55,7 @@ end;
 //CLASSMETHOD:
 function Exception_Equals(AObj: Exception; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -58,6 +64,7 @@ end;
 //CLASSMETHOD:
 function Exception_GetHashCode(AObj: Exception): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -65,6 +72,7 @@ end;
 
 function Exception_GetMessage(AObj: Exception): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Message);
   handleExceptionEnd

@@ -9,6 +9,7 @@
 
 function Form_Create(AOwner: TComponent): TForm; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TGoForm.CreateNew(AOwner);
   handleExceptionEnd
@@ -136,6 +137,7 @@ end;
 //CLASSMETHOD:
 function Form_ShowModal(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowModal;
   handleExceptionEnd
@@ -152,6 +154,7 @@ end;
 //CLASSMETHOD:
 function Form_CanFocus(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.CanFocus;
   handleExceptionEnd
@@ -160,6 +163,7 @@ end;
 //CLASSMETHOD:
 function Form_ContainsControl(AObj: TGoForm; Control: TControl): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ContainsControl(Control);
   handleExceptionEnd
@@ -169,6 +173,7 @@ end;
 //PARAMS:2=nonPtr
 function Form_ControlAtPos(AObj: TGoForm; var Pos: TPoint; AllowDisabled: LongBool; AllowWinControls: LongBool): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlAtPos(Pos, AllowDisabled, AllowWinControls);
   handleExceptionEnd
@@ -193,6 +198,7 @@ end;
 //CLASSMETHOD:
 function Form_FindChildControl(AObj: TGoForm; ControlName: PChar): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindChildControl(ControlName);
   handleExceptionEnd
@@ -209,6 +215,7 @@ end;
 //CLASSMETHOD:
 function Form_Focused(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Focused;
   handleExceptionEnd
@@ -217,6 +224,7 @@ end;
 //CLASSMETHOD:
 function Form_HandleAllocated(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -333,6 +341,7 @@ end;
 //CLASSMETHOD:
 function Form_Dragging(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
   handleExceptionEnd
@@ -341,6 +350,7 @@ end;
 //CLASSMETHOD:
 function Form_HasParent(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -349,6 +359,7 @@ end;
 //CLASSMETHOD:
 function Form_Perform(AObj: TGoForm; Msg: Cardinal; WParam: NativeUInt; LParam: NativeInt): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Perform(Msg, WParam, LParam);
   handleExceptionEnd
@@ -393,6 +404,7 @@ end;
 //CLASSMETHOD:
 function Form_GetTextBuf(AObj: TGoForm; Buffer: PChar; BufSize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetTextBuf(Buffer, BufSize);
   handleExceptionEnd
@@ -401,6 +413,7 @@ end;
 //CLASSMETHOD:
 function Form_GetTextLen(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  {$ifdef darwin}Length(AObj.Caption){$else}AObj.GetTextLen{$endif};
   handleExceptionEnd
@@ -417,6 +430,7 @@ end;
 //CLASSMETHOD:
 function Form_FindComponent(AObj: TGoForm; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -425,6 +439,7 @@ end;
 //CLASSMETHOD:
 function Form_GetNamePath(AObj: TGoForm): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -441,6 +456,7 @@ end;
 //CLASSMETHOD:
 function Form_ClassType(AObj: TGoForm): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -449,6 +465,7 @@ end;
 //CLASSMETHOD:
 function Form_ClassName(AObj: TGoForm): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -457,6 +474,7 @@ end;
 //CLASSMETHOD:
 function Form_InstanceSize(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -465,6 +483,7 @@ end;
 //CLASSMETHOD:
 function Form_InheritsFrom(AObj: TGoForm; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -473,6 +492,7 @@ end;
 //CLASSMETHOD:
 function Form_Equals(AObj: TGoForm; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -481,6 +501,7 @@ end;
 //CLASSMETHOD:
 function Form_GetHashCode(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -489,6 +510,7 @@ end;
 //CLASSMETHOD:
 function Form_ToString(AObj: TGoForm): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -553,6 +575,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleDesignToForm(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleDesignToForm(ASize);
   handleExceptionEnd
@@ -561,6 +584,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleFormToDesign(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormToDesign(ASize);
   handleExceptionEnd
@@ -569,6 +593,7 @@ end;
 //CLASSMETHOD:
 function Form_Scale96ToForm(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToForm(ASize);
   handleExceptionEnd
@@ -577,6 +602,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleFormTo96(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFormTo96(ASize);
   handleExceptionEnd
@@ -585,6 +611,7 @@ end;
 //CLASSMETHOD:
 function Form_Scale96ToFont(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToFont(ASize);
   handleExceptionEnd
@@ -593,6 +620,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleFontTo96(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontTo96(ASize);
   handleExceptionEnd
@@ -601,6 +629,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleScreenToFont(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenToFont(ASize);
   handleExceptionEnd
@@ -609,6 +638,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleFontToScreen(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleFontToScreen(ASize);
   handleExceptionEnd
@@ -617,6 +647,7 @@ end;
 //CLASSMETHOD:
 function Form_Scale96ToScreen(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Scale96ToScreen(ASize);
   handleExceptionEnd
@@ -625,6 +656,7 @@ end;
 //CLASSMETHOD:
 function Form_ScaleScreenTo96(AObj: TGoForm; ASize: Integer): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ScaleScreenTo96(ASize);
   handleExceptionEnd
@@ -657,6 +689,7 @@ end;
 
 function Form_GetAllowDropFiles(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AllowDropFiles;
   handleExceptionEnd
@@ -679,6 +712,7 @@ end;
 
 function Form_GetShowInTaskBar(AObj: TGoForm): TShowInTaskbar; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TShowInTaskbar);{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowInTaskBar;
   handleExceptionEnd
@@ -693,6 +727,7 @@ end;
 
 function Form_GetDesignTimePPI(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DesignTimePPI;
   handleExceptionEnd
@@ -715,6 +750,7 @@ end;
 
 function Form_GetAction(AObj: TGoForm): TBasicAction; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Action;
   handleExceptionEnd
@@ -729,6 +765,7 @@ end;
 
 function Form_GetActiveControl(AObj: TGoForm): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ActiveControl;
   handleExceptionEnd
@@ -743,6 +780,7 @@ end;
 
 function Form_GetAlign(AObj: TGoForm): TAlign; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
   handleExceptionBegin
   Result :=  AObj.Align;
   handleExceptionEnd
@@ -757,6 +795,7 @@ end;
 
 function Form_GetAlphaBlend(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AlphaBlend;
   handleExceptionEnd
@@ -771,6 +810,7 @@ end;
 
 function Form_GetAlphaBlendValue(AObj: TGoForm): Byte; extdecl;
 begin
+{$ifdef UsehandleException}Result := Byte(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.AlphaBlendValue;
   handleExceptionEnd
@@ -785,6 +825,7 @@ end;
 
 function Form_GetAnchors(AObj: TGoForm): TAnchors; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Anchors;
   handleExceptionEnd
@@ -799,6 +840,7 @@ end;
 
 function Form_GetAutoScroll(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoScroll;
   handleExceptionEnd
@@ -813,6 +855,7 @@ end;
 
 function Form_GetAutoSize(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.AutoSize;
   handleExceptionEnd
@@ -827,6 +870,7 @@ end;
 
 function Form_GetBiDiMode(AObj: TGoForm): TBiDiMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.BiDiMode;
   handleExceptionEnd
@@ -841,6 +885,7 @@ end;
 
 function Form_GetBorderIcons(AObj: TGoForm): TBorderIcons; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderIcons;
   handleExceptionEnd
@@ -855,6 +900,7 @@ end;
 
 function Form_GetBorderStyle(AObj: TGoForm): TFormBorderStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TFormBorderStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderStyle;
   handleExceptionEnd
@@ -869,6 +915,7 @@ end;
 
 function Form_GetBorderWidth(AObj: TGoForm): TBorderWidth; extdecl;
 begin
+{$ifdef UsehandleException}Result := TBorderWidth(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderWidth;
   handleExceptionEnd
@@ -883,6 +930,7 @@ end;
 
 function Form_GetCaption(AObj: TGoForm): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Caption);
   handleExceptionEnd
@@ -897,6 +945,7 @@ end;
 
 function Form_GetClientHeight(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientHeight;
   handleExceptionEnd
@@ -911,6 +960,7 @@ end;
 
 function Form_GetClientWidth(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClientWidth;
   handleExceptionEnd
@@ -925,6 +975,7 @@ end;
 
 function Form_GetColor(AObj: TGoForm): TColor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TColor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Color;
   handleExceptionEnd
@@ -939,6 +990,7 @@ end;
 
 function Form_GetConstraints(AObj: TGoForm): TSizeConstraints; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Constraints;
   handleExceptionEnd
@@ -953,6 +1005,7 @@ end;
 
 function Form_GetUseDockManager(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.UseDockManager;
   handleExceptionEnd
@@ -967,6 +1020,7 @@ end;
 
 function Form_GetDefaultMonitor(AObj: TGoForm): TDefaultMonitor; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDefaultMonitor);{$endif}
   handleExceptionBegin
   Result :=  AObj.DefaultMonitor;
   handleExceptionEnd
@@ -981,6 +1035,7 @@ end;
 
 function Form_GetDockSite(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockSite;
   handleExceptionEnd
@@ -995,6 +1050,7 @@ end;
 
 function Form_GetDoubleBuffered(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.DoubleBuffered;
   handleExceptionEnd
@@ -1009,6 +1065,7 @@ end;
 
 function Form_GetDragKind(AObj: TGoForm): TDragKind; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragKind);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragKind;
   handleExceptionEnd
@@ -1023,6 +1080,7 @@ end;
 
 function Form_GetDragMode(AObj: TGoForm): TDragMode; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TDragMode);{$endif}
   handleExceptionBegin
   Result :=  AObj.DragMode;
   handleExceptionEnd
@@ -1037,6 +1095,7 @@ end;
 
 function Form_GetEnabled(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Enabled;
   handleExceptionEnd
@@ -1051,6 +1110,7 @@ end;
 
 function Form_GetParentFont(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentFont;
   handleExceptionEnd
@@ -1065,6 +1125,7 @@ end;
 
 function Form_GetFont(AObj: TGoForm): TFont; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Font;
   handleExceptionEnd
@@ -1079,6 +1140,7 @@ end;
 
 function Form_GetFormStyle(AObj: TGoForm): TFormStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TFormStyle);{$endif}
   handleExceptionBegin
   Result :=  AObj.FormStyle;
   handleExceptionEnd
@@ -1093,6 +1155,7 @@ end;
 
 function Form_GetHeight(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -1107,6 +1170,7 @@ end;
 
 function Form_GetHorzScrollBar(AObj: TGoForm): TControlScrollBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.HorzScrollBar;
   handleExceptionEnd
@@ -1121,6 +1185,7 @@ end;
 
 function Form_GetIcon(AObj: TGoForm): TIcon; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Icon;
   handleExceptionEnd
@@ -1135,6 +1200,7 @@ end;
 
 function Form_GetKeyPreview(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.KeyPreview;
   handleExceptionEnd
@@ -1149,6 +1215,7 @@ end;
 
 function Form_GetMenu(AObj: TGoForm): TMainMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Menu;
   handleExceptionEnd
@@ -1163,6 +1230,7 @@ end;
 
 function Form_GetPixelsPerInch(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.PixelsPerInch;
   handleExceptionEnd
@@ -1177,6 +1245,7 @@ end;
 
 function Form_GetPopupMenu(AObj: TGoForm): TPopupMenu; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.PopupMenu;
   handleExceptionEnd
@@ -1191,6 +1260,7 @@ end;
 
 function Form_GetPosition(AObj: TGoForm): TPosition; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TPosition);{$endif}
   handleExceptionBegin
   Result :=  AObj.Position;
   handleExceptionEnd
@@ -1205,6 +1275,7 @@ end;
 
 function Form_GetScaled(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Scaled;
   handleExceptionEnd
@@ -1219,6 +1290,7 @@ end;
 
 function Form_GetShowHint(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ShowHint;
   handleExceptionEnd
@@ -1233,6 +1305,7 @@ end;
 
 function Form_GetVertScrollBar(AObj: TGoForm): TControlScrollBar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.VertScrollBar;
   handleExceptionEnd
@@ -1247,6 +1320,7 @@ end;
 
 function Form_GetVisible(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Visible;
   handleExceptionEnd
@@ -1261,6 +1335,7 @@ end;
 
 function Form_GetWidth(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
@@ -1275,6 +1350,7 @@ end;
 
 function Form_GetWindowState(AObj: TGoForm): TWindowState; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TWindowState);{$endif}
   handleExceptionBegin
   Result :=  AObj.WindowState;
   handleExceptionEnd
@@ -1559,8 +1635,17 @@ begin
   EventMethodCode
 end;
 
+function Form_GetActive(AObj: TGoForm): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Active;
+  handleExceptionEnd
+end;
+
 function Form_GetCanvas(AObj: TGoForm): TCanvas; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Canvas;
   handleExceptionEnd
@@ -1568,6 +1653,7 @@ end;
 
 function Form_GetModalResult(AObj: TGoForm): TModalResult; extdecl;
 begin
+{$ifdef UsehandleException}Result := TModalResult(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ModalResult;
   handleExceptionEnd
@@ -1582,6 +1668,7 @@ end;
 
 function Form_GetMonitor(AObj: TGoForm): TMonitor; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Monitor;
   handleExceptionEnd
@@ -1589,6 +1676,7 @@ end;
 
 function Form_GetLeft(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Left;
   handleExceptionEnd
@@ -1603,6 +1691,7 @@ end;
 
 function Form_GetTop(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Top;
   handleExceptionEnd
@@ -1617,6 +1706,7 @@ end;
 
 function Form_GetDockClientCount(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClientCount;
   handleExceptionEnd
@@ -1624,6 +1714,7 @@ end;
 
 function Form_GetMouseInClient(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.MouseInClient;
   handleExceptionEnd
@@ -1631,6 +1722,7 @@ end;
 
 function Form_GetVisibleDockClientCount(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.VisibleDockClientCount;
   handleExceptionEnd
@@ -1638,6 +1730,7 @@ end;
 
 function Form_GetBrush(AObj: TGoForm): TBrush; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Brush;
   handleExceptionEnd
@@ -1645,6 +1738,7 @@ end;
 
 function Form_GetControlCount(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlCount;
   handleExceptionEnd
@@ -1652,6 +1746,7 @@ end;
 
 function Form_GetHandle(AObj: TGoForm): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -1659,6 +1754,7 @@ end;
 
 function Form_GetParentDoubleBuffered(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentDoubleBuffered;
   handleExceptionEnd
@@ -1673,6 +1769,7 @@ end;
 
 function Form_GetParentWindow(AObj: TGoForm): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ParentWindow;
   handleExceptionEnd
@@ -1687,6 +1784,7 @@ end;
 
 function Form_GetShowing(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Showing;
   handleExceptionEnd
@@ -1694,6 +1792,7 @@ end;
 
 function Form_GetTabOrder(AObj: TGoForm): TTabOrder; extdecl;
 begin
+{$ifdef UsehandleException}Result := TTabOrder(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.TabOrder;
   handleExceptionEnd
@@ -1708,6 +1807,7 @@ end;
 
 function Form_GetTabStop(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.TabStop;
   handleExceptionEnd
@@ -1754,6 +1854,7 @@ end;
 
 function Form_GetControlState(AObj: TGoForm): TControlState; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlState;
   handleExceptionEnd
@@ -1768,6 +1869,7 @@ end;
 
 function Form_GetControlStyle(AObj: TGoForm): TControlStyle; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.ControlStyle;
   handleExceptionEnd
@@ -1782,6 +1884,7 @@ end;
 
 function Form_GetFloating(AObj: TGoForm): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Floating;
   handleExceptionEnd
@@ -1789,6 +1892,7 @@ end;
 
 function Form_GetParent(AObj: TGoForm): TWinControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Parent;
   handleExceptionEnd
@@ -1803,6 +1907,7 @@ end;
 
 function Form_GetCursor(AObj: TGoForm): TCursor; extdecl;
 begin
+{$ifdef UsehandleException}Result := TCursor(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Cursor;
   handleExceptionEnd
@@ -1817,6 +1922,7 @@ end;
 
 function Form_GetHint(AObj: TGoForm): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Hint);
   handleExceptionEnd
@@ -1831,6 +1937,7 @@ end;
 
 function Form_GetComponentCount(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -1838,6 +1945,7 @@ end;
 
 function Form_GetComponentIndex(AObj: TGoForm): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -1852,6 +1960,7 @@ end;
 
 function Form_GetOwner(AObj: TGoForm): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -1859,6 +1968,7 @@ end;
 
 function Form_GetName(AObj: TGoForm): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -1873,6 +1983,7 @@ end;
 
 function Form_GetTag(AObj: TGoForm): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -1887,6 +1998,7 @@ end;
 
 function Form_GetAnchorSideLeft(AObj: TGoForm): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideLeft;
   handleExceptionEnd
@@ -1901,6 +2013,7 @@ end;
 
 function Form_GetAnchorSideTop(AObj: TGoForm): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideTop;
   handleExceptionEnd
@@ -1915,6 +2028,7 @@ end;
 
 function Form_GetAnchorSideRight(AObj: TGoForm): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideRight;
   handleExceptionEnd
@@ -1929,6 +2043,7 @@ end;
 
 function Form_GetAnchorSideBottom(AObj: TGoForm): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSideBottom;
   handleExceptionEnd
@@ -1943,6 +2058,7 @@ end;
 
 function Form_GetChildSizing(AObj: TGoForm): TControlChildSizing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.ChildSizing;
   handleExceptionEnd
@@ -1957,6 +2073,7 @@ end;
 
 function Form_GetBorderSpacing(AObj: TGoForm): TControlBorderSpacing; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.BorderSpacing;
   handleExceptionEnd
@@ -1971,6 +2088,7 @@ end;
 
 function Form_GetDockClients(AObj: TGoForm; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.DockClients[Index];
   handleExceptionEnd
@@ -1978,6 +2096,7 @@ end;
 
 function Form_GetControls(AObj: TGoForm; Index: Integer): TControl; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Controls[Index];
   handleExceptionEnd
@@ -1985,6 +2104,7 @@ end;
 
 function Form_GetComponents(AObj: TGoForm; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd
@@ -1992,6 +2112,7 @@ end;
 
 function Form_GetAnchorSide(AObj: TGoForm; AKind: TAnchorKind): TAnchorSide; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.AnchorSide[AKind];
   handleExceptionEnd
@@ -2207,6 +2328,7 @@ exports
   Form_SetOnShow,
   Form_SetOnStartDock,
   Form_SetOnUnDock,
+  Form_GetActive,
   Form_GetCanvas,
   Form_GetModalResult,
   Form_SetModalResult,

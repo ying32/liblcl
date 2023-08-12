@@ -9,6 +9,7 @@
 
 function PrintDialog_Create(AOwner: TComponent): TPrintDialog; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TPrintDialog.Create(AOwner);
   handleExceptionEnd
@@ -24,6 +25,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_Execute(AObj: TPrintDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Execute;
   handleExceptionEnd
@@ -32,6 +34,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_FindComponent(AObj: TPrintDialog; AName: PChar): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.FindComponent(AName);
   handleExceptionEnd
@@ -40,6 +43,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_GetNamePath(AObj: TPrintDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -48,6 +52,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_HasParent(AObj: TPrintDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HasParent;
   handleExceptionEnd
@@ -64,6 +69,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_ClassType(AObj: TPrintDialog): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -72,6 +78,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_ClassName(AObj: TPrintDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -80,6 +87,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_InstanceSize(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -88,6 +96,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_InheritsFrom(AObj: TPrintDialog; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -96,6 +105,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_Equals(AObj: TPrintDialog; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +114,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_GetHashCode(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -112,6 +123,7 @@ end;
 //CLASSMETHOD:
 function PrintDialog_ToString(AObj: TPrintDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -119,6 +131,7 @@ end;
 
 function PrintDialog_GetCollate(AObj: TPrintDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Collate;
   handleExceptionEnd
@@ -133,6 +146,7 @@ end;
 
 function PrintDialog_GetCopies(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Copies;
   handleExceptionEnd
@@ -147,6 +161,7 @@ end;
 
 function PrintDialog_GetFromPage(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.FromPage;
   handleExceptionEnd
@@ -161,6 +176,7 @@ end;
 
 function PrintDialog_GetMinPage(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MinPage;
   handleExceptionEnd
@@ -175,6 +191,7 @@ end;
 
 function PrintDialog_GetMaxPage(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.MaxPage;
   handleExceptionEnd
@@ -189,6 +206,7 @@ end;
 
 function PrintDialog_GetOptions(AObj: TPrintDialog): TPrintDialogOptions; extdecl;
 begin
+{$ifdef UsehandleException}Result := [];{$endif}
   handleExceptionBegin
   Result :=  AObj.Options;
   handleExceptionEnd
@@ -203,6 +221,7 @@ end;
 
 function PrintDialog_GetPrintToFile(AObj: TPrintDialog): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PrintToFile;
   handleExceptionEnd
@@ -217,6 +236,7 @@ end;
 
 function PrintDialog_GetPrintRange(AObj: TPrintDialog): TPrintRange; extdecl;
 begin
+{$ifdef UsehandleException}Result := Low(TPrintRange);{$endif}
   handleExceptionBegin
   Result :=  AObj.PrintRange;
   handleExceptionEnd
@@ -231,6 +251,7 @@ end;
 
 function PrintDialog_GetToPage(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ToPage;
   handleExceptionEnd
@@ -245,6 +266,7 @@ end;
 
 function PrintDialog_GetHandle(AObj: TPrintDialog): HWND; extdecl;
 begin
+{$ifdef UsehandleException}Result := HWND(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -268,6 +290,7 @@ end;
 
 function PrintDialog_GetComponentCount(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentCount;
   handleExceptionEnd
@@ -275,6 +298,7 @@ end;
 
 function PrintDialog_GetComponentIndex(AObj: TPrintDialog): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.ComponentIndex;
   handleExceptionEnd
@@ -289,6 +313,7 @@ end;
 
 function PrintDialog_GetOwner(AObj: TPrintDialog): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Owner;
   handleExceptionEnd
@@ -296,6 +321,7 @@ end;
 
 function PrintDialog_GetName(AObj: TPrintDialog): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.Name);
   handleExceptionEnd
@@ -310,6 +336,7 @@ end;
 
 function PrintDialog_GetTag(AObj: TPrintDialog): NativeInt; extdecl;
 begin
+{$ifdef UsehandleException}Result := NativeInt(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Tag;
   handleExceptionEnd
@@ -324,6 +351,7 @@ end;
 
 function PrintDialog_GetComponents(AObj: TPrintDialog; AIndex: Integer): TComponent; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  AObj.Components[AIndex];
   handleExceptionEnd

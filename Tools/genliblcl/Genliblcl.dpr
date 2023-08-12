@@ -86,7 +86,7 @@ type
 var
   GFilterTable, GCTypeTable, GEvents, GAddTypePkgs, GAddUnsafePkgs: TDictionary<string, string>;
   GGoApiPath, GGoVclPath: string;
-  GGoSrcFile, GIsAsFile, GExportTable: TStringList;
+  GGoSrcFile, GIsAsFile, GExportTable, GDllImportTable: TStringList;
   GCommentInfo: TDictionary<string, TCommentItem>;
 
 
@@ -152,6 +152,13 @@ begin
   else
     Result := False;
   end;
+end;
+
+function GetReturnTypeKind(AType: TRttiType): TTypeKind;
+begin
+  Result := TTypeKind.tkUnknown;
+  if AType = nil then Exit;
+  Result := AType.TypeKind;
 end;
 //
 //function TypeIsDateTime22222(AType: TRttiType): Boolean;
@@ -313,7 +320,7 @@ end;
 function GetDelphiMethodCode(AOrgName, AInst, ARetType, AParamsStr, AParamNames: string;
    AIsConstructor: Boolean; AIsRead: Boolean = False; AIsWrite: Boolean = False;
    AIsComponent: Boolean = True; AIsRec: Boolean = False; AisIndex: Boolean = False;
-   AIndexName: string = ''; AIndexType: string = ''; AIndexName2: string = ''; AIndexType2: string = ''): string;
+   AIndexName: string = ''; AIndexType: string = ''; AIndexName2: string = ''; AIndexType2: string = ''; ATypeKind: TTypeKind = TTypeKind.tkUnknown): string;
 
    function GetRealOwnerType: string;
    begin
@@ -501,7 +508,37 @@ begin
 //  if IsOnlyWindowsFunc(LMName) then
 //    LCode := LCode + '{$IFDEF MSWINDOWS}'#13#10;
 
- // 异常开始
+  // 当定义使用异常处理时，有返回值的必须返回一个默认的
+  if (ARetType <> '') and (not AIsRec) then
+  begin
+    LCode := LCode + '{$ifdef UsehandleException}';
+    LCode := LCode + 'Result := ';
+
+    if ATypeKind = TTypeKind.tkSet then
+      LCode := LCode + '[]'
+    else if (ARetType.ToLower = 'shortstring') or (AIndexType.ToLower = 'shortstring') or ARetType.Equals('TPointerList') then
+      LCode := LCode + 'nil'
+    else if ARetType.Equals('LongBool') then
+      LCode := LCode + 'False'
+    else if ARetType.Equals('TUnixDateTime') then
+      LCode := LCode + '0'
+    else if ARetType.Equals('TScrollBarInc') then
+      LCode := LCode + '1'
+    else if ARetType.Equals('Char') then
+      LCode := LCode + '#0'
+    else if (ATypeKind = TTypeKind.tkEnumeration) then
+      LCode := LCode + 'Low(' + ARetType + ')'
+    else if (ATypeKind = TTypeKind.tkInteger) or (ATypeKind = TTypeKind.tkInt64) then
+      LCode := LCode + ARetType +  '(0)'
+    else if (ATypeKind = TTypeKind.tkClass) or (ATypeKind = TTypeKind.tkInterface) or (ATypeKind = TTypeKind.tkPointer) then
+      LCode := LCode + 'nil'
+    else
+      LCode := LCode + ARetType +  '(nil)';
+
+    LCode := LCode + ';';
+    LCode := LCode + '{$endif}'#13#10;
+  end;
+  // 异常开始
   LCode := LCode + '  handleExceptionBegin'#13#10;
 
 
@@ -716,7 +753,7 @@ var
       LIncFile.Add(GetDelphiMethodCode(AMethod.Name, AInstName, CovRetType(AMethod.Name, LDRetStr),
                    GetDelphiParamsStr(LParams, isMethodSub(AMethod.Name)),
          GetDelphiParamsName(LParams, isMethodSub(AMethod.Name)), False, False, False, True,
-         TypeIsRecOrFloat(AMethod.ReturnType) and not TypeIsDateTime(AMethod.ReturnType) ));
+         TypeIsRecOrFloat(AMethod.ReturnType) and not TypeIsDateTime(AMethod.ReturnType) , False, '', '', '', '', GetReturnTypeKind(AMethod.ReturnType)));
       AddExport(AInstName, AMethod.Name);
     end;
 
@@ -724,7 +761,8 @@ var
     begin
       AddHeaderInfo(LIncFile, False);
       // Create
-      LIncFile.Add(GetDelphiMethodCode('Create', AInstName, AInstName, '', '', True, False, False, AIsComponent));
+      LIncFile.Add(GetDelphiMethodCode('Create', AInstName, AInstName, '', '', True, False, False, AIsComponent,
+        False, False, '', '', '', '', TTypeKind.tkClass));
       AddExport(AInstName, 'Create');
 
       // Free
@@ -777,6 +815,8 @@ var
         Result := 'IObject'
       else if AN.Equals('TStrings') and not AIsRet then
         Result := 'IStrings'
+      else if AN.Equals('TCustomBitmap') and not AIsRet then
+        Result := 'IBitmap'
       else Result := '*' + AN;
     end;
 
@@ -1538,6 +1578,8 @@ var
   LNeedImport: Boolean;
   LIdxP: TRttiIndexedProperty;
 
+  LNeedClosingBracket: Boolean;
+
 
   LMs: TArray<TRttiMethod>;
   LProps: TArray<TRttiProperty>;
@@ -1566,9 +1608,19 @@ var
         Result := True;
    end;
 
+   function AddToGlobalDllImport(const AName: string): string;
+   var
+     LIndex: Integer;
+   begin
+//     Result := '"' + AName + '"';
+     // 行不通啊，还是只能原来的方式
+     LIndex := GDllImportTable.Add(Format('    /*%d*/ {"%s", 0},', [GDllImportTable.Count, AName]));
+     Result := LIndex.ToString;// (GDllImportTable.Count - 1).ToString;
+   end;
+
 var
   LHaveComponetContructorParam: Boolean;
-  LBaseClassName: string; // 伪的
+  LBaseClassName, LNameTemp: string; // 伪的
 begin
   // ??
 //  AIsComponent := AClass.InheritsFrom(TComponent);
@@ -1621,19 +1673,27 @@ begin
         if not ANoCreateAndFree then
         begin
           LFileGodll.Add('func ' + GetNewMethod(LOrgInstName, 'Create', False)  + '(' + IfThen(IsComponent or AIsComponent, 'obj uintptr', GetNotComponetFirstP(LOrgInstName, True)) + ') uintptr {');
-          LFileGodll.Add('    ret, _, _ := getLazyProc("' + LWithoutTInstName + '_Create").Call(' + IfThen(IsComponent or AIsComponent, 'obj', GetNotComponetFirstP(LOrgInstName, False)) + ')');
-          LFileGodll.Add('    return ret');
+          LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_Create');
+//          LFileGodll.Add('    ret, _, _ := syscallN(' + LNameTemp + ').Call(' + IfThen(IsComponent or AIsComponent, 'obj', GetNotComponetFirstP(LOrgInstName, False)) + ')');
+          LFileGodll.Add('    return syscallN(' + LNameTemp + ', ' + IfThen(IsComponent or AIsComponent, 'obj', GetNotComponetFirstP(LOrgInstName, False)) + ')');
+//          LFileGodll.Add('    return ret');
           LFileGodll.Add('}');
           LFileGodll.Add('');
+          //AddToGlobalDllImport(LNameTemp);
+
           //AGoHeaderFile.Add('    ' + LFirstCharLowerCaseName + '_Create = libvcl.NewProc("' + LWithoutTInstName + '_Create")');
           AddGoImport(LFirstCharLowerCaseName, 'Create', LWithoutTInstName);
 
           LFileGodll.Add('func ' + GetNewMethod(LOrgInstName, 'Free', False)  + '(obj uintptr) {');
-          LFileGodll.Add('    getLazyProc("' + LWithoutTInstName + '_Free").Call(obj)');
+
+          LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_Free');
+//          LFileGodll.Add('    syscallN(' + LNameTemp + ').Call(obj)');
+          LFileGodll.Add('    syscallN(' + LNameTemp + ', obj)');
           LFileGodll.Add('}');
           LFileGodll.Add('');
           //AGoHeaderFile.Add('    ' + LFirstCharLowerCaseName + '_Free = libvcl.NewProc("' + LWithoutTInstName + '_Free")');
           AddGoImport(LFirstCharLowerCaseName, 'Free', LWithoutTInstName);
+          //AddToGlobalDllImport(LNameTemp);
         end;
         //-----------------------------------------
 
@@ -1680,10 +1740,12 @@ begin
             LBaseClassName := 'IStrings'
           else if LOrgInstName.Equals('TMemoryStream') then
             LBaseClassName := 'IStream'
-          else if LOrgInstName.Equals('TGraphic') or
+          else if LOrgInstName.Equals('TGraphic') then
+            LBaseClassName := 'IGraphic'
+          else if
             LOrgInstName.Equals('TJPEGImage') or LOrgInstName.Equals('TPngImage') or
             LOrgInstName.Equals('TGIFImage') or LOrgInstName.Equals('TBitmap') or LOrgInstName.Equals('TIcon') then
-            LBaseClassName := 'IGraphic'
+            LBaseClassName := 'IBitmap'
 
         end;
         //  LFileGoVcl.Add('    IObject');
@@ -1994,7 +2056,15 @@ begin
 
             LCode := LCode + ')';
             // 返回值
+            if TypeIsRecOrFloat(LM.ReturnType) and (not TypeIsDateTime(LM.ReturnType)) then
+            begin
+              LCode := LCode + '(result ';
+            end;
             LCode := LCode + ' ' + DelphiParamTypeToGoType(LM.ReturnType, True);
+            if TypeIsRecOrFloat(LM.ReturnType) and (not TypeIsDateTime(LM.ReturnType)) then
+            begin
+              LCode := LCode + ') ';
+            end;
             LCode := LCode + ' {'#13#10;
 
             // 实体代码
@@ -2002,7 +2072,9 @@ begin
             if TypeIsRecOrFloat(LM.ReturnType) {and not TypeIsDateTime(LM.ReturnType)} then
             begin
               LNeedImport := True;
-              LCode := LCode + '    var ret ' + IfThen(TypeIsDateTime(LM.ReturnType), 'int64', DelphiParamTypeToGoType(LM.ReturnType)) + #13#10;
+              if TypeIsDateTime(LM.ReturnType) then
+                LCode := LCode + '    var result int64'#13#10;
+//                LCode := LCode + '    var ret ' + IfThen(TypeIsDateTime(LM.ReturnType), 'int64', DelphiParamTypeToGoType(LM.ReturnType)) + #13#10;
             end;
 
             // 判断是不是TControl 的GetTextBuf
@@ -2017,7 +2089,7 @@ begin
 
 
 
-              if (AClass.InheritsFrom(TControl) and LMName.Equals('GetTextBuf')) or
+             (* if (AClass.InheritsFrom(TControl) and LMName.Equals('GetTextBuf')) or
                  (AClass.InheritsFrom(TCustomEdit) and LMName.Equals('GetSelTextBuf')) then
               begin
                 LCode := LCode + '    if Buffer == nil || BufSize == 0 {' + sLineBreak;
@@ -2035,15 +2107,56 @@ begin
 //                LCode := LCode + '    }' + sLineBreak;
 //                LCode := LCode + '    return int32(ret)' + sLineBreak;
 //                LCode := LCode + '}' + sLineBreak;
-              end;
-
+              end;    *)
 
 
 
             LCode := LCode + '    ';
-            if (LM.ReturnType <> nil) and not (TypeIsRecOrFloat(LM.ReturnType) {and not TypeIsDateTime(LM.ReturnType)} ) then
-              LCode := LCode + 'ret, _, _ := ';
-            LCode := LCode + 'getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj' + '';
+            if (LM.ReturnType <> nil) and (not TypeIsRecOrFloat(LM.ReturnType) {and not TypeIsDateTime(LM.ReturnType)} ) then
+              LCode := LCode + 'return ';
+
+            LNeedClosingBracket := False;
+            if LM.ReturnType <> nil then
+            begin
+              LType := DelphiParamTypeToGoType(LM.ReturnType);
+              if LType <> 'uintptr' then
+              begin
+                LNeedClosingBracket := True;
+                if LType = 'string' then
+                   LCode := LCode + 'GoStr('//#13#10
+                else if LType = 'bool' then
+                   LCode := LCode + 'GoBool('//#13#10
+                else if TypeIsDateTime(LM.ReturnType) then
+                begin
+                   //LCode := LCode + 'return time.Unix(ret, 0)';//#13#10
+                   LNeedClosingBracket := False;
+                   //LCode := LCode + '    return time.Unix(int64(ret), 0)'#13#10
+                end
+                else if TypeIsRecOrFloat(LM.ReturnType) then
+                begin
+                  LNeedImport := True;
+                  //LCode := LCode + 'return ret'//#13#10
+                  LNeedClosingBracket := False;
+                end
+                else
+                  LCode := LCode + '' + LType + '('; //#13#10
+
+              end ;//else
+               // LCode := LCode + 'return '//#13#10;
+            end;
+
+            LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+
+
+            if (AClass.InheritsFrom(TControl) and LMName.Equals('GetTextBuf')) or
+               (AClass.InheritsFrom(TCustomEdit) and LMName.Equals('GetSelTextBuf')) then
+              LCode := LCode + 'syscallGetTextBuf'
+            else
+              LCode := LCode + 'syscallN';
+
+//            LCode := LCode + 'syscallN(' + LNameTemp + ').Call(obj' + '';
+            LCode := LCode + '(' + LNameTemp + ', obj' + '';
+//            AddToGlobalDllImport(LNameTemp);
 
             if Length(LParams) > 0 then
             begin
@@ -2075,9 +2188,11 @@ begin
                   begin
                      if (AClass.InheritsFrom(TControl) and LMName.Equals('GetTextBuf')) or
                         (AClass.InheritsFrom(TCustomEdit) and LMName.Equals('GetSelTextBuf')) then
-                       LCode := LCode + 'getBuffPtr(strPtr)'
+//                       LCode := LCode + 'getBuffPtr(strPtr)'
+                       LCode := LCode + LP.Name
                      else
                        LCode := LCode + 'PascalStr(' + LP.Name + ') ';
+                       
                   end
                   else if LType = 'bool' then
                      LCode := LCode + 'PascalBool(' + LP.Name + ') '
@@ -2108,12 +2223,26 @@ begin
             if TypeIsRecOrFloat(LM.ReturnType) {and not TypeIsDateTime(LM.ReturnType)} then
             begin
               LNeedImport := True;
-              LCode := LCode + ', uintptr(unsafe.Pointer(&ret))';
+              LCode := LCode + ', uintptr(unsafe.Pointer(&result))';
             end;
 
 
-            LCode := LCode + ')'#13#10;
+            if LNeedClosingBracket then
+              LCode := LCode + ')';
 
+
+            //if not LNeedClosingBracket then
+              LCode := LCode + ')'#13#10;
+
+             if TypeIsRecOrFloat(LM.ReturnType)  then
+             begin
+               if TypeIsDateTime(LM.ReturnType) then
+                 LCode := LCode  + '    return time.Unix(result, 0)' + slinebreak
+               else
+                 LCode := LCode  + '    return' + slinebreak;
+             end;
+
+           (*
             // 结尾
             if (AClass.InheritsFrom(TControl) and LMName.Equals('GetTextBuf')) or
                (AClass.InheritsFrom(TCustomEdit) and LMName.Equals('GetSelTextBuf')) then
@@ -2133,31 +2262,33 @@ begin
 
 
 
-            end;
+            end;   *)
 
 
-            if LM.ReturnType <> nil then
-            begin
-              LType := DelphiParamTypeToGoType(LM.ReturnType);
-              if LType <> 'uintptr' then
-              begin
-                if LType = 'string' then
-                   LCode := LCode + '    return GoStr(ret)'#13#10
-                else if LType = 'bool' then
-                   LCode := LCode + '    return GoBool(ret)'#13#10
-                else if TypeIsDateTime(LM.ReturnType) then
-                   LCode := LCode + '    return time.Unix(ret, 0)'#13#10
-                   //LCode := LCode + '    return time.Unix(int64(ret), 0)'#13#10
-                else if TypeIsRecOrFloat(LM.ReturnType) then
-                begin
-                  LNeedImport := True;
-                  LCode := LCode + '    return ret'#13#10
-                end
-                else
-                  LCode := LCode + '    return ' + LType + '(ret)'#13#10
-              end else
-                LCode := LCode + '    return ret'#13#10;
-            end;
+//            if LM.ReturnType <> nil then
+//            begin
+//              LType := DelphiParamTypeToGoType(LM.ReturnType);
+//              if LType <> 'uintptr' then
+//              begin
+//                if LType = 'string' then
+//                   LCode := LCode + '    return GoStr(ret)'#13#10
+//                else if LType = 'bool' then
+//                   LCode := LCode + '    return GoBool(ret)'#13#10
+//                else if TypeIsDateTime(LM.ReturnType) then
+//                   LCode := LCode + '    return time.Unix(ret, 0)'#13#10
+//                   //LCode := LCode + '    return time.Unix(int64(ret), 0)'#13#10
+//                else if TypeIsRecOrFloat(LM.ReturnType) then
+//                begin
+//                  LNeedImport := True;
+//                  LCode := LCode + '    return ret'#13#10
+//                end
+//                else
+//                  LCode := LCode + '    return ' + LType + '(ret)'#13#10
+//              end else
+//                LCode := LCode + '    return ret'#13#10;
+//            end;
+
+
             LCode := LCode + '}'#13#10;
             LFileGodll.Add(LCode);
 
@@ -2239,7 +2370,7 @@ begin
                 //  LCode := LCode + LType.Remove(0,2) + 'From(' + LP.Name + '.Instance())'
                 //else
                 if  (LType[1] = '*') or LType.Equals('IObject') or LType.Equals('IControl') or LType.Equals('IComponent')
-                  or LType.Equals('IWinControl') or LType.Equals('IStrings') or LType.Equals('IStream') or LType.Equals('IGraphic') then
+                  or LType.Equals('IWinControl') or LType.Equals('IStrings') or LType.Equals('IStream') or LType.Equals('IGraphic') or LType.Equals('IBitmap') then
                   LCode := LCode + 'CheckPtr(' + LP.Name + ')' // .Instance() LCode := LCode + ')';
                 else
                 begin
@@ -2296,37 +2427,89 @@ begin
                   LIncFile.Add('//RETURNISLASTPARAM:');
 
                 LIncFile.Add(GetDelphiMethodCode(LPR.Name, LOrgInstName, DTypeConvert(LPR.PropertyType), '', '', False, True, False, True,
-                  TypeIsRecOrFloat(LPR.PropertyType) {and not TypeIsDateTime(LPR.PropertyType)} ));
+                  TypeIsRecOrFloat(LPR.PropertyType) {and not TypeIsDateTime(LPR.PropertyType)}  , False, '', '', '', '', GetReturnTypeKind(LPR.PropertyType)));
                 //AGoHeaderFile.Add('    ' + LFirstCharLowerCaseName + '_' + LMName + ' = libvcl.NewProc("' + LWithoutTInstName + '_' + LMName + '")');
                 AddGoImport(LFirstCharLowerCaseName, LMName, LWithoutTInstName);
 
-                LCode := 'func ' + GetNewMethod(LOrgInstName, LMName, False) + '(obj uintptr) ' + DelphiParamTypeToGoType(LPR.PropertyType) + ' {'#13#10;
+                LCode := 'func ' + GetNewMethod(LOrgInstName, LMName, False) + '(obj uintptr) ';
+
+                if TypeIsRecOrFloat(LPR.PropertyType) and (not TypeIsDateTime(LPR.PropertyType)) then
+                  LCode := LCode + '(result ';
+                LCode := LCode + DelphiParamTypeToGoType(LPR.PropertyType);
+                if TypeIsRecOrFloat(LPR.PropertyType) and (not TypeIsDateTime(LPR.PropertyType)) then
+                  LCode := LCode + ')';
+                LCode := LCode + ' {'#13#10;
+                LNeedClosingBracket := False;
+
+
+
+                // 一定有返回值
+                if not TypeIsRecOrFloat(LPR.PropertyType) then
+                  LCode := LCode + '    return ';
 
                 if TypeIsRecOrFloat(LPR.PropertyType) {and not TypeIsDateTime(LPR.PropertyType)} then
                 begin
                   LNeedImport := True;
-                  LCode := LCode + '    var ret '+  ifThen(TypeIsDateTime(LPR.PropertyType), 'int64', DelphiParamTypeToGoType(LPR.PropertyType)) + #13#10;
-                  LCode := LCode + '    getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj, uintptr(unsafe.Pointer(&ret)))'#13#10
+                  if TypeIsDateTime(LPR.PropertyType) then
+                    LCode := LCode + '    var result int64'#13#10;
+                
+//                  LCode := LCode + '    var ret '+  ifThen(TypeIsDateTime(LPR.PropertyType), 'int64', DelphiParamTypeToGoType(LPR.PropertyType)) + #13#10;
+                  LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+//                  LCode := LCode + '    syscallN(' + LNameTemp + ').Call(obj, uintptr(unsafe.Pointer(&ret)))'#13#10;
+                  LCode := LCode + '    syscallN(' + LNameTemp + ', obj, uintptr(unsafe.Pointer(&result)))'#13#10;
+                  if TypeIsDateTime(LPR.PropertyType) then
+                    LCode := LCode + '    return time.Unix(result, 0)'
+                  else 
+                    LCode := LCode + '    return';
+//                  AddToGlobalDllImport(LNameTemp);
                 end
                 else
-                  LCode := LCode + '    ret, _, _ := getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj)'#13#10;
-                LType := DelphiParamTypeToGoType(LPR.PropertyType);
-                if LType <> 'uintptr' then
                 begin
-                  if LType = 'string' then
-                     LCode := LCode + '    return GoStr(ret)'#13#10
-                  else if LType = 'bool' then
-                     LCode := LCode + '    return GoBool(ret)'#13#10
-                  else if TypeIsDateTime(LPR.PropertyType) then
-                     LCode := LCode + '    return time.Unix(int64(ret), 0)'#13#10
-                  else if TypeIsRecOrFloat(LPR.PropertyType) then
-                     LCode := LCode + '    return ret'#13#10//*(*' + LType + ')(unsafe.Pointer(ret))'#13#10
-                  else
-                    LCode := LCode + '    return ' + LType + '(ret)'#13#10
-                end else
-                  LCode := LCode + '    return ret'#13#10;
+                  LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
 
-                LCode := LCode + '}'#13#10;
+                  LNeedClosingBracket := False;
+                  LType := DelphiParamTypeToGoType(LPR.PropertyType);
+                  if LType <> 'uintptr' then
+                  begin
+
+                    if LType = 'string' then
+                    begin
+                       LCode := LCode + 'GoStr(';
+                       LNeedClosingBracket := True;
+                    end
+                    else if LType = 'bool' then
+                    begin
+                       LCode := LCode + 'GoBool(';
+                       LNeedClosingBracket := True;
+                    end
+                    else if TypeIsDateTime(LPR.PropertyType) then
+//                       LCode := LCode + 'time.Unix(result), 0)'
+                    else if TypeIsRecOrFloat(LPR.PropertyType) then
+                       //LCode := LCode + 'ret'#13#10//*(*' + LType + ')(unsafe.Pointer(ret))'#13#10
+                    else
+                    begin
+                      LCode := LCode + '' + LType + '(';
+                      LNeedClosingBracket := True;
+                    end;
+                  end;
+
+
+//                  LCode := LCode + '    ret, _, _ := syscallN(' + LNameTemp + ').Call(obj)'#13#10;
+                  LCode := LCode + 'syscallN(' + LNameTemp + ', obj)';
+                  if LNeedClosingBracket then
+                    LCode := LCode + ')';
+//                  LCode := LCode + slinebreak;
+
+//                  AddToGlobalDllImport(LNameTemp);
+                end;
+
+
+
+
+//                if TypeIsRecOrFloat(LPR.PropertyType) then
+//                  LCode := LCode + '    return' + slinebreak;
+
+                LCode := LCode + #13#10 + '}'#13#10;
                 LFileGodll.Add(LCode);
 //                LFileGoVcl
 
@@ -2440,9 +2623,13 @@ begin
 
                 // api
                 LFileGodll.Add('func ' + GetNewMethod(LOrgInstName, LMName, False) + '(obj uintptr, fn interface{}) {');
-                LFileGodll.Add('    getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj, MakeEventDataPtr(fn))');
+                LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+//                LFileGodll.Add('    syscallN(' + LNameTemp + ').Call(obj, MakeEventDataPtr(fn))');
+                LFileGodll.Add('    syscallN(' + LNameTemp + ', obj, MakeEventDataPtr(fn))');
                 LFileGodll.Add('}');
                 LFileGodll.Add('');
+//                AddToGlobalDllImport(LNameTemp);
+
 
                 // vcl
                 LFileGoVcl.Add({'// ' + LMName + #13#10 + }GetComment(LOrgInstName, LPR.Name, True, True) + 'func (' + LFChar + ' *' + LOrgInstName + ') ' + LMName + '(fn ' + FixEventTypeName(LPR.PropertyType.Name) + ') {');
@@ -2478,7 +2665,10 @@ begin
 
                 if TypeIsDateTime(LPR.PropertyType) then
                   LCode := LCode + '    tVal := value.Unix()'#13#10;
-                LCode := LCode + '    getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj, ';
+                LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+//                LCode := LCode + '    syscallN(' + LNameTemp + ').Call(obj, ';
+                LCode := LCode + '    syscallN(' + LNameTemp + ', obj, ';
+//                AddToGlobalDllImport(LNameTemp);
                 LType := DelphiParamTypeToGoType(LPR.PropertyType);
                 if LType <> 'uintptr' then
                 begin
@@ -2565,6 +2755,7 @@ begin
 
 //            LIncFile.Add();
 
+            LNeedClosingBracket := False;
             // 有读属性，生成函数
             if LIdxP.IsReadable then
             begin
@@ -2596,7 +2787,7 @@ begin
                     LTemp1, LTemp2
                   //  IfThen(Length(LM.GetParameters) >= 2, LM.GetParameters[1].Name, ''),
                    // IfThen(Length(LM.GetParameters) >= 2, DTypeConvert(LM.GetParameters[1].ParamType), '')
-
+                     ,GetReturnTypeKind(LIdxP.PropertyType)
                    ));
                 //AGoHeaderFile.Add('    ' + LFirstCharLowerCaseName + '_' + LMName + ' = libvcl.NewProc("' + LWithoutTInstName + '_' + LMName + '")');
                 AddGoImport(LFirstCharLowerCaseName, LMName, LWithoutTInstName);
@@ -2612,13 +2803,39 @@ begin
                 end;
 
                 // 结束
-                LCode := LCode + ') ' + DelphiParamTypeToGoType(LIdxP.PropertyType) + ' {'#13#10;
+                LCode := LCode + ') ';
+
+                // 返回类型是浮点或者结构类型，则用最后一个参数传递结果
+//                if TypeIsRecOrFloat(LIdxP.PropertyType) then
+//                begin
+//                  LCode := LCode + '(fdsff)';
+//                end;
+
+                if TypeIsRecOrFloat(LIdxP.PropertyType) and (not TypeIsDateTime(LIdxP.PropertyType)) then
+                  LCode := LCode + '(result ';
+
+                LCode := LCode + DelphiParamTypeToGoType(LIdxP.PropertyType);
+
+                if TypeIsRecOrFloat(LIdxP.PropertyType) and (not TypeIsDateTime(LIdxP.PropertyType)) then
+                  LCode := LCode + ')';
+
+                LCode := LCode + ' {'#13#10;
+
+
+                // 一定有返回值
+                //LCode := LCode + '    return ';
 
                 if TypeIsRecOrFloat(LIdxP.PropertyType) {and not TypeIsDateTime(LIdxP.PropertyType)} then
                 begin
                   LNeedImport := True;
-                  LCode := LCode + '    var ret '+ IfThen(TypeIsDateTime(LIdxP.PropertyType), 'int64', DelphiParamTypeToGoType(LIdxP.PropertyType)) + #13#10;
-                  LCode := LCode + '    getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj, ';
+                  if TypeIsDateTime(LIdxP.PropertyType) then
+                    LCode := LCode + '    var result int64'#13#10;
+                    
+//                  LCode := LCode + '    var ret '+ IfThen(TypeIsDateTime(LIdxP.PropertyType), 'int64', DelphiParamTypeToGoType(LIdxP.PropertyType)) + #13#10;
+                  LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+//                  LCode := LCode + '    syscallN(' + LNameTemp + ').Call(obj, ';
+                  LCode := LCode + '    syscallN(' + LNameTemp + ', obj, ';
+//                  AddToGlobalDllImport(LNameTemp);
 
                   LType := DelphiParamTypeToGoType(LM.GetParameters[0].ParamType);
                   if LType.Equals('string') then
@@ -2627,11 +2844,50 @@ begin
                      LCode := LCode + 'uintptr(' + LM.GetParameters[0].Name + '), '
                   else LCode := LCode + LType;
 
-                  LCode := LCode + 'uintptr(unsafe.Pointer(&ret)))'#13#10
+                  LCode := LCode + 'uintptr(unsafe.Pointer(&result)))'#13#10;
+                  if TypeIsDateTime(LIdxP.PropertyType) then
+                    LCode := LCode + '    return time.Unix(result, 0)'
+                  else 
+                    LCode := LCode + '    return';
+
+                  
                 end
                 else
                 begin
-                  LCode := LCode + '    ret, _, _ := getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj, ';
+
+                  LCode := LCode + '    return ';
+                  LNeedClosingBracket := False;
+                  LType := DelphiParamTypeToGoType(LIdxP.PropertyType);
+                  if LType <> 'uintptr' then
+                  begin
+
+                    if LType = 'string' then
+                    begin
+                      LCode := LCode + 'GoStr(';
+                      LNeedClosingBracket := True;
+                    end
+                    else if LType = 'bool' then
+                    begin
+                      LCode := LCode + 'GoBool(';
+                      LNeedClosingBracket := True;
+                    end
+                    else if TypeIsDateTime(LIdxP.PropertyType) then
+                       LCode := LCode + 'time.Unix(int64(ret), 0)'#13#10
+                    else if TypeIsRecOrFloat(LIdxP.PropertyType) then
+                       LCode := LCode + 'ret'#13#10//*(*' + LType + ')(unsafe.Pointer(ret))'#13#10
+                    else
+                    begin
+                      LCode := LCode + '' + LType + '(';
+                      LNeedClosingBracket := True;
+                    end;
+                  end;// else
+//                    LCode := LCode + 'ret'#13#10;
+
+
+                  LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+//                  LCode := LCode + '    ret, _, _ := syscallN(' + LNameTemp + ').Call(obj, ';
+                  LCode := LCode + 'syscallN(' + LNameTemp + ', obj, ';
+//                  AddToGlobalDllImport(LNameTemp);
 
                    LType := DelphiParamTypeToGoType(LM.GetParameters[0].ParamType);
                   if LType.Equals('string') then
@@ -2642,40 +2898,21 @@ begin
 
                   if Length(LM.GetParameters) >= 2 then
                   begin
-
-
                     LCode := LCode + ', ';
                     if LType.Equals('string') then
                        LCode := LCode  + 'PascalStr(' + LM.GetParameters[1].Name + ')'
                     else if LType <> 'uintptr' then
                        LCode := LCode + 'uintptr(' + LM.GetParameters[1].Name + ')'
                     else LCode := LCode + LType;
-
-
                   end;
+                  LCode := LCode + ')';
 
-
-                  LCode := LCode + ')'#13#10;
+                 if LNeedClosingBracket then
+                   LCode := LCode + ')';
                 end;
 
 
-                LType := DelphiParamTypeToGoType(LIdxP.PropertyType);
-                if LType <> 'uintptr' then
-                begin
-                  if LType = 'string' then
-                     LCode := LCode + '    return GoStr(ret)'#13#10
-                  else if LType = 'bool' then
-                     LCode := LCode + '    return GoBool(ret)'#13#10
-                  else if TypeIsDateTime(LIdxP.PropertyType) then
-                     LCode := LCode + '    return time.Unix(int64(ret), 0)'#13#10
-                  else if TypeIsRecOrFloat(LIdxP.PropertyType) then
-                     LCode := LCode + '    return ret'#13#10//*(*' + LType + ')(unsafe.Pointer(ret))'#13#10
-                  else
-                    LCode := LCode + '    return ' + LType + '(ret)'#13#10
-                end else
-                  LCode := LCode + '    return ret'#13#10;
-
-                LCode := LCode + '}'#13#10;
+                LCode := LCode + slinebreak + '}'#13#10;
                 LFileGodll.Add(LCode);
 //                LFileGoVcl
 
@@ -2801,7 +3038,11 @@ begin
 
                 if TypeIsDateTime(LIdxP.PropertyType) then
                    LCode := LCode + '    tVal := value.Unix()'#13#10;
-                LCode := LCode + '    getLazyProc("' + LWithoutTInstName + '_' + LMName + '").Call(obj, ';
+
+                LNameTemp := AddToGlobalDllImport(LWithoutTInstName + '_' + LMName);
+//                LCode := LCode + '    syscallN(' + LNameTemp + ').Call(obj, ';
+                LCode := LCode + '    syscallN(' + LNameTemp + ', obj, ';
+//                AddToGlobalDllImport(LNameTemp);
                 // 第一个参数
                 LType := DelphiParamTypeToGoType(LM.GetParameters[0].ParamType);
                 if LType.Equals('string') then
@@ -2947,9 +3188,12 @@ begin
 
         //  AGoHeaderFile.Add(Format('    %s_%s = libvcl.NewProc("%s_%s")', [AClassName, AMName, InstName, AMName]));
         LFileGodll.Add(Format('func %s_StaticClassType() TClass {', [LWithoutTInstName]));
-        LFileGodll.Add(Format('    r, _, _:= getLazyProc("%s_StaticClassType").Call()', [LWithoutTInstName]));
-        LFileGodll.Add('    return TClass(r)');
+        LNameTemp := AddToGlobalDllImport(Format('%s_StaticClassType', [LWithoutTInstName]));
+//        LFileGodll.Add('    r, _, _:= syscallN(' + LNameTemp + ').Call()');
+        LFileGodll.Add('    return TClass(syscallN(' + LNameTemp + '))');
+//        LFileGodll.Add('    return TClass(r)');
         LFileGodll.Add('}');
+//        AddToGlobalDllImport(LNameTemp);
 
         // 兼容Delphi的边距调整功能
 //        if AClass.InheritsFrom(TControl) then
@@ -3035,7 +3279,7 @@ end;
 
 procedure MakeVclObjectUnit;
 var
-  LGoHeaderFile, LDelphiUnitFile, LExportTplStr: TStringList;
+  LGoHeaderFile, LDelphiUnitFile, LExportTplStr, LDllImportAuto, LDllImportDef, LDllImportTable: TStringList;
   LPath: string;
   LExportI: Integer;
   LExportTplText: string;
@@ -3057,7 +3301,7 @@ var
     LDelphiUnitFile.Add('');
 	  LDelphiUnitFile.Add('{$ifndef windows}');
     LDelphiUnitFile.Add('  {$define UseCThreads}');
-    LDelphiUnitFile.Add('{$endif}'); 
+    LDelphiUnitFile.Add('{$endif}');
     LDelphiUnitFile.Add('');
     LUses := TStringList.Create;
     try
@@ -3105,7 +3349,7 @@ var
 
   // 添加Go的默认，从cdef.txt文件
   procedure AddDefaultGoHeader;
-  var 
+  var
     LStr: TStringList;
   begin
     AddHeaderInfo(LGoHeaderFile, True);
@@ -3153,10 +3397,20 @@ var
   end;
 
 
+  procedure AddDllImportTable(AList: TStrings; AVarName: string);
+  begin
+//    AList.Sorted := False;
+    AddHeaderInfo(AList, True);
+    AList.Add('');
+    AList.Add('package dllimports');
+    AList.Add('');
+    AList.Add('var ' + AVarName + ' = []importTable{');
+  end;
+
 
 var
-  LRootPath: string;
-
+  LRootPath, LS: string;
+  LIndex, LCount: Integer;
 begin
   LRootPath := GetEnvironmentVariable('GOPATH') + '\src\github.com\ying32\govcl';
   if not DirectoryExists(LRootPath) then
@@ -3172,6 +3426,10 @@ begin
   GIsAsFile := TStringList.Create;
   LExportTplStr := TStringList.Create;
   GExportTable := TStringList.Create;
+  GDllImportTable := TStringList.Create;
+  LDllImportAuto := TStringList.Create;
+  LDllImportDef := TStringList.Create;
+  LDllImportTable := TStringList.Create;
   try
     // vcl.dpr
     LPath := ExtractFilePath(ParamStr(0)) + '..\..\src\';
@@ -3188,6 +3446,7 @@ begin
       TDirectory.CreateDirectory(GGoVclPath);
 
 
+    AddHeaderInfo(GGoSrcFile, True);
     GGoSrcFile.Add('');
     GGoSrcFile.Add('package api');
     GGoSrcFile.Add('');
@@ -3197,6 +3456,13 @@ begin
     GGoSrcFile.Add('    . "github.com/ying32/govcl/vcl/types"');
     GGoSrcFile.Add(')');
     GGoSrcFile.Add('');
+
+    // 自动导入表
+    AddDllImportTable(LDllImportAuto, 'dllImports');
+
+
+
+
 
     // Is As 操作符的单元
     AddHeaderInfo(GIsAsFile, True);
@@ -3405,7 +3671,7 @@ begin
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TReplaceDialog);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPrinterSetupDialog);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPageSetupDialog);
-	
+
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TDragObject, True);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TDragDockObject, True);
 
@@ -3481,6 +3747,49 @@ begin
 
     LGoHeaderFile.Add(')');
     SaveToUTF8(GGoSrcFile, GGoApiPath + 'importFuncsAuto.go');
+
+
+    // 自动导入表
+    LDllImportAuto.AddStrings(GDllImportTable);
+    LDllImportAuto.Add('}');
+    SaveToUTF8(LDllImportAuto, GGoApiPath + 'dllimports\' + 'dllimports.go');
+    // 手动导出的
+    LDllImportTable.LoadFromFile('dllimportdefs.txt');
+
+        // 手动导出的
+    AddDllImportTable(LDllImportDef, 'dllImportDefs');
+    LCount := 0;
+    for LIndex := 0 to LDllImportTable.Count - 1 do
+    begin
+      LS := LDllImportTable[LIndex].Trim;
+      if LS.IsEmpty then
+        Continue;
+      if LS.StartsWith('//') then
+        Continue;
+      LDllImportDef.Add(Format('    /*%d*/ {"%s", 0},', [LCount, LS]));
+      Inc(LCount);
+    end;
+    LDllImportDef.Add('}');
+    LDllImportDef.Add('');
+    LDllImportDef.Add('');
+    LDllImportDef.Add('const (');
+    LCount := 0;
+    for LIndex := 0 to LDllImportTable.Count - 1 do
+    begin
+      LS := LDllImportTable[LIndex].Trim;
+      if LS.IsEmpty then
+        Continue;
+      if LS.StartsWith('//') then
+        Continue;
+      LDllImportDef.Add(Format('    %s = %d', [LS.ToUpper, LCount]));
+      Inc(LCount);
+    end;
+
+    LDllImportDef.Add(')');
+    SaveToUTF8(LDllImportDef, GGoApiPath + 'dllimports\' + 'dllimportdefs.go');
+
+
+
 //    SaveToUTF8(LGoHeaderFile, GGoApiPath + 'importAuto.go');
 
     // 这里不再保存了
@@ -3529,6 +3838,10 @@ begin
     //SaveToUTF8(GExportTable, LPath + 'GlobalExports.inc');
 
   finally
+    LDllImportDef.Free;
+    LDllImportTable.Free;
+    LDllImportAuto.Free;
+    GDllImportTable.Free;
     GExportTable.Free;
     LExportTplStr.Free;
     GIsAsFile.Free;

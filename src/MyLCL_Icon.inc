@@ -9,6 +9,7 @@
 
 function Icon_Create: TIcon; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  TIcon.Create;
   handleExceptionEnd
@@ -32,6 +33,7 @@ end;
 //CLASSMETHOD:
 function Icon_HandleAllocated(AObj: TIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.HandleAllocated;
   handleExceptionEnd
@@ -80,6 +82,7 @@ end;
 //CLASSMETHOD:
 function Icon_Equals(AObj: TIcon; Obj: TObject): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Obj);
   handleExceptionEnd
@@ -104,6 +107,7 @@ end;
 //CLASSMETHOD:
 function Icon_GetNamePath(AObj: TIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.GetNamePath);
   handleExceptionEnd
@@ -112,6 +116,7 @@ end;
 //CLASSMETHOD:
 function Icon_ClassType(AObj: TIcon): TClass; extdecl;
 begin
+{$ifdef UsehandleException}Result := TClass(nil);{$endif}
   handleExceptionBegin
   Result :=  AObj.ClassType;
   handleExceptionEnd
@@ -120,6 +125,7 @@ end;
 //CLASSMETHOD:
 function Icon_ClassName(AObj: TIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
   Result :=  ToPChar(AObj.ClassName);
   handleExceptionEnd
@@ -128,6 +134,7 @@ end;
 //CLASSMETHOD:
 function Icon_InstanceSize(AObj: TIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.InstanceSize;
   handleExceptionEnd
@@ -136,6 +143,7 @@ end;
 //CLASSMETHOD:
 function Icon_InheritsFrom(AObj: TIcon; AClass: TClass): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.InheritsFrom(AClass);
   handleExceptionEnd
@@ -144,6 +152,7 @@ end;
 //CLASSMETHOD:
 function Icon_GetHashCode(AObj: TIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.GetHashCode;
   handleExceptionEnd
@@ -152,6 +161,7 @@ end;
 //CLASSMETHOD:
 function Icon_ToString(AObj: TIcon): PChar; extdecl;
 begin
+{$ifdef UsehandleException}Result := PChar(nil);{$endif}
   handleExceptionBegin
   Result :=  PChar(AObj.ToString);
   handleExceptionEnd
@@ -159,6 +169,7 @@ end;
 
 function Icon_GetHandle(AObj: TIcon): HICON; extdecl;
 begin
+{$ifdef UsehandleException}Result := HICON(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Handle;
   handleExceptionEnd
@@ -173,6 +184,7 @@ end;
 
 function Icon_GetEmpty(AObj: TIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Empty;
   handleExceptionEnd
@@ -180,6 +192,7 @@ end;
 
 function Icon_GetHeight(AObj: TIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Height;
   handleExceptionEnd
@@ -194,6 +207,7 @@ end;
 
 function Icon_GetModified(AObj: TIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Modified;
   handleExceptionEnd
@@ -208,6 +222,7 @@ end;
 
 function Icon_GetPalette(AObj: TIcon): HPALETTE; extdecl;
 begin
+{$ifdef UsehandleException}Result := HPALETTE(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Palette;
   handleExceptionEnd
@@ -222,6 +237,7 @@ end;
 
 function Icon_GetPaletteModified(AObj: TIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.PaletteModified;
   handleExceptionEnd
@@ -236,6 +252,7 @@ end;
 
 function Icon_GetTransparent(AObj: TIcon): LongBool; extdecl;
 begin
+{$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Transparent;
   handleExceptionEnd
@@ -250,6 +267,7 @@ end;
 
 function Icon_GetWidth(AObj: TIcon): Integer; extdecl;
 begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
   handleExceptionBegin
   Result :=  AObj.Width;
   handleExceptionEnd
