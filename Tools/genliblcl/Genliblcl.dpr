@@ -742,7 +742,7 @@ var
       LParams := AMethod.GetParameters;
       if True then
       // 添加标识，用于标识是最后一个参数返回的
-      if TypeIsRecOrFloat(AMethod.ReturnType) and not TypeIsDateTime(AMethod.ReturnType) then
+      if TypeIsRecOrFloat(AMethod.ReturnType) {and not TypeIsDateTime(AMethod.ReturnType)} then
         LIncFile.Add('//RETURNISLASTPARAM:');
 
      //// 2=nonPtr,4=nonPtr
@@ -753,7 +753,7 @@ var
       LIncFile.Add(GetDelphiMethodCode(AMethod.Name, AInstName, CovRetType(AMethod.Name, LDRetStr),
                    GetDelphiParamsStr(LParams, isMethodSub(AMethod.Name)),
          GetDelphiParamsName(LParams, isMethodSub(AMethod.Name)), False, False, False, True,
-         TypeIsRecOrFloat(AMethod.ReturnType) and not TypeIsDateTime(AMethod.ReturnType) , False, '', '', '', '', GetReturnTypeKind(AMethod.ReturnType)));
+         TypeIsRecOrFloat(AMethod.ReturnType) {and not TypeIsDateTime(AMethod.ReturnType)} , False, '', '', '', '', GetReturnTypeKind(AMethod.ReturnType)));
       AddExport(AInstName, AMethod.Name);
     end;
 
