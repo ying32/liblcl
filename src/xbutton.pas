@@ -48,7 +48,8 @@ type
     FDownColor: TColor;
     FHoverColor: TColor;
     FPicture: TPicture;
-    FBufferBmp: TBitmap;
+    //FBufferBmp: TBitmap;
+    FGrayPicture: TBitmap;
 
     FMouseInControl: Boolean;
 
@@ -127,7 +128,8 @@ begin
   inherited Create(AOwner);
   Width := 80;
   Height := 40;
-  FBufferBmp := TBitmap.Create;
+  //FBufferBmp := TBitmap.Create;
+  FGrayPicture := TBitmap.Create;
   FPicture := TPicture.Create;
   FPicture.OnChange := {$IFDEF FPC}@{$ENDIF}DoPictureChange;
   FShowCaption := True;
@@ -138,8 +140,9 @@ end;
 
 destructor TXButton.Destroy;
 begin
+  FGrayPicture.Free;
   FPicture.Free;
-  FBufferBmp.Free;;
+  //FBufferBmp.Free;;
   inherited Destroy;
 end;
 
@@ -149,27 +152,80 @@ begin
 
   if csDesigning in ComponentState then
   begin
-    Canvas.Draw(1, 1,FBufferBmp);
+    //Canvas.Draw(1, 1,FBufferBmp);
     Canvas.Pen.Style := psDot;
     Canvas.Pen.Color := clBlack;
     Canvas.Brush.Style := bsClear;
     Canvas.Rectangle(Rect(0, 0, Width -1, Height - 1)); ///???
-  end else
-    Canvas.Draw(0, 0,FBufferBmp);
+  end;// else
+  DrawBmp;
+    //Canvas.Draw(0, 0,FBufferBmp);
 end;
 
 procedure TXButton.Resize;
 begin
   inherited Resize;
-  if Assigned(FBufferBmp) then
-  begin
-    FBufferBmp.SetSize(Width, Height);
-    FBufferBmp.PixelFormat := pf24bit;
+  //if Assigned(FBufferBmp) then
+  //begin
+
+    //FBufferBmp.SetSize(Canvas.Width, Canvas.Height);
+    //FBufferBmp.PixelFormat := pf24bit;
     StateChanged;
-  end;
+
+  //end;
 end;
 
 procedure TXButton.StateChanged;
+//type
+//  TRGB = record
+//  {$if Defined(WINDOWS) or Defined(MSWINDOWS)}
+//    B, G, R: Byte;
+//  {$elseif Defined(LINUX) or Defined(DARWIN)}
+//    R, G, B: Byte;
+//  {$ENDIF}
+//  end;
+//  PRGB = ^TRGB;
+
+//var
+//  X, Y: Integer;
+//  Ptr: PByte;
+//  LGray: Byte;
+//  LC: PRGB;
+begin
+  //DrawBmp;
+  //if (not Enabled) and Assigned(FPicture.Graphic) then
+  //begin
+  {$IFDEF FPC}
+    //FBufferBmp.BeginUpdate;
+    //FGrayPicture.BeginUpdate();
+    //try
+  {$ENDIF}
+
+     // 灰度化图像
+     //for Y := 0 to FBufferBmp.Height - 1 do
+     //begin
+     //  Ptr := PByte(FBufferBmp.ScanLine[Y]);
+     //  for X := 0 to FBufferBmp.Width - 1 do
+     //  begin
+     //    LC := PRGB(Ptr + X * 3);
+     //    LGray := Byte(Round(0.299 * LC^.R + 0.587 * LC^.G + 0.114 * LC^.B + 0.1));
+     //    LC^.R := LGray;
+     //    LC^.G := LGray;
+     //    LC^.B := LGray;
+     //  end;
+     //end;
+  {$IFDEF FPC}
+    //finally
+    //  FGrayPicture.EndUpdate();
+    //  FBufferBmp.EndUpdate;
+    //end;
+  {$ENDIF}
+  //end;
+  Invalidate;
+end;
+
+
+procedure TXButton.DoPictureChange(Sender: TObject);
 type
   TRGB = record
   {$if Defined(WINDOWS) or Defined(MSWINDOWS)}
@@ -185,56 +241,83 @@ var
   Ptr: PByte;
   LGray: Byte;
   LC: PRGB;
-begin
-  DrawBmp;
-  if not Enabled then
-  begin
-  {$IFDEF FPC}
-    FBufferBmp.BeginUpdate;
-    try
-  {$ENDIF}
-     // 灰度化图像
-     for Y := 0 to FBufferBmp.Height - 1 do
-     begin
-       Ptr := PByte(FBufferBmp.ScanLine[Y]);
-       for X := 0 to FBufferBmp.Width - 1 do
-       begin
-         LC := PRGB(Ptr + X * 3);
-         LGray := Byte(Round(0.299 * LC^.R + 0.587 * LC^.G + 0.114 * LC^.B + 0.1));
-         LC^.R := LGray;
-         LC^.G := LGray;
-         LC^.B := LGray;
-       end;
-     end;
-  {$IFDEF FPC}
-    finally
-      FBufferBmp.EndUpdate;
-    end;
-  {$ENDIF}
-  end;
-  Invalidate;
-end;
-
-
-procedure TXButton.DoPictureChange(Sender: TObject);
+  LP: Integer;
 begin
   StateChanged;
+  FGrayPicture.Assign(FPicture.Graphic);
+  if Assigned(FPicture.Graphic) then
+  begin
+
+    case FGrayPicture.PixelFormat of
+      pf16bit: LP := 2;
+      pf24bit: LP := 3;
+      pf32bit : LP := 4;
+    else
+      LP := 0;
+    end;
+    if LP <> 0 then
+    begin
+    {$IFDEF FPC}
+      FGrayPicture.BeginUpdate();
+      try
+    {$ENDIF}
+       // 灰度化图像
+       for Y := 0 to FGrayPicture.Height - 1 do
+       begin
+         Ptr := PByte(FGrayPicture.ScanLine[Y]);
+         for X := 0 to FGrayPicture.Width - 1 do
+         begin
+           LC := PRGB(Ptr + X * LP);
+           LGray := Byte(Round(0.299 * LC^.R + 0.587 * LC^.G + 0.114 * LC^.B + 0.1));
+           LC^.R := LGray;
+           LC^.G := LGray;
+           LC^.B := LGray;
+         end;
+        end;
+    {$IFDEF FPC}
+      finally
+        FGrayPicture.EndUpdate();
+      end;
+    {$ENDIF}
+    end;
+  end;
 end;
 
 procedure TXButton.DrawBmp;
+const
+  DisabledColor = clGray;
 var
   LR: TRect;
 {$IFDEF FPC}
   LTextStyle: TTextStyle;
 {$ENDIF}
   LBrushColor, LFontColor: TColor;
+
+  function GetRealColor(AColor: TColor; AIsText: Boolean = False): TColor;
+  begin
+    if Enabled then
+      Result := AColor
+    else
+    begin
+      if AIsText then
+        Result := clGrayText
+      else
+        Result := DisabledColor;
+    end;
+  end;
+
+  function GetRealGraphic(AGraphic: TGraphic): TGraphic;
+  begin
+    if Enabled then Result := AGraphic else Result := FGrayPicture;
+  end;
+
 begin
   LR := ClientRect;//Rect(0, 0, Width, Height);
-  with FBufferBmp do
-  begin
-    FreeImage;
-    if (FBufferBmp.Width <> LR.Width) or (FBufferBmp.Height <> LR.Height) then
-      FBufferBmp.SetSize(LR.Width, LR.Height);
+  //with FBufferBmp do
+  //begin
+  //  FreeImage;
+  //  if (FBufferBmp.Width <> LR.Width) or (FBufferBmp.Height <> LR.Height) then
+  //    FBufferBmp.SetSize(LR.Width, LR.Height);
     Canvas.Font := Self.Font;
     // pen清除
     Canvas.Pen.Style := psClear;
@@ -245,19 +328,19 @@ begin
     case FState of
       xbsDown:
        begin
-         LBrushColor := FDownColor;
-         LFontColor := FDownFontColor;
+         LBrushColor := GetRealColor(FDownColor);
+         LFontColor := GetRealColor(FDownFontColor);
        end;
       xbsHot:
         begin
-          LBrushColor := FHoverColor;
-          LFontColor := FHoverFontColor;
+          LBrushColor := GetRealColor(FHoverColor);
+          LFontColor := GetRealColor(FHoverFontColor);
         end;
     else
-      LBrushColor := FBackColor;
-      LFontColor := FNormalFontColor
+      LBrushColor := GetRealColor(FBackColor);
+      LFontColor := GetRealColor(FNormalFontColor)
     end;
-    Canvas.Brush.Color:= LBrushColor;
+    Canvas.Brush.Color:= GetRealColor(LBrushColor);
     Canvas.Rectangle(LR);
 
     // 画图片背景
@@ -265,11 +348,11 @@ begin
     begin
       case FDrawMode of
         dimNormal:
-         Canvas.Draw(0, 0, FPicture.Graphic);
+         Canvas.Draw(0, 0, GetRealGraphic(FPicture.Graphic));
         dimCenter:
-         Canvas.Draw((LR.Width - FPicture.Graphic.Width) div 2, (LR.Height - FPicture.Graphic.Height) div 2, FPicture.Graphic);
+         Canvas.Draw((LR.Width - FPicture.Graphic.Width) div 2, (LR.Height - FPicture.Graphic.Height) div 2, GetRealGraphic(FPicture.Graphic));
         dimStretch:
-         Canvas.StretchDraw(LR, FPicture.Graphic);
+         Canvas.StretchDraw(LR, GetRealGraphic(FPicture.Graphic));
       end;
     end;
 
@@ -277,7 +360,7 @@ begin
     if FBorderWidth > 0 then
     begin
       Canvas.Pen.Width := FBorderWidth;
-      Canvas.Pen.Color := FBorderColor;
+      Canvas.Pen.Color := GetRealColor(FBorderColor);
       Canvas.Pen.Style := psSolid;
       Canvas.Brush.Style := bsClear;
       Canvas.Rectangle(LR);
@@ -287,7 +370,7 @@ begin
     if FShowCaption and (FCaption <> '') then
     begin
       Canvas.Brush.Style := bsClear;
-      Canvas.Font.Color:= LFontColor;
+      Canvas.Font.Color:= GetRealColor(LFontColor, True);
     {$IFDEF FPC}
       LTextStyle := Canvas.TextStyle;
       LTextStyle.Alignment := taCenter;
@@ -297,7 +380,7 @@ begin
       Canvas.TextRect(LR, FCaption, [tfCenter, tfVerticalCenter, tfSingleLine]);
     {$ENDIF}
     end;
-  end;
+  //end;
 end;
 
 procedure TXButton.SetBackColor(AValue: TColor);
@@ -457,4 +540,3 @@ end;
 
 
 end.
-
