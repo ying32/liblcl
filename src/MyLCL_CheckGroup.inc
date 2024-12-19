@@ -199,6 +199,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckGroup_BeginDrag(AObj: TCheckGroup; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckGroup_BringToFront(AObj: TCheckGroup); extdecl;
 begin
   handleExceptionBegin
@@ -232,6 +240,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckGroup_EndDrag(AObj: TCheckGroup; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1704,10 +1720,12 @@ exports
   CheckGroup_SetBounds,
   CheckGroup_SetFocus,
   CheckGroup_Update,
+  CheckGroup_BeginDrag,
   CheckGroup_BringToFront,
   CheckGroup_ClientToScreen,
   CheckGroup_ClientToParent,
   CheckGroup_Dragging,
+  CheckGroup_EndDrag,
   CheckGroup_HasParent,
   CheckGroup_Hide,
   CheckGroup_Perform,

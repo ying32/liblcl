@@ -2370,6 +2370,111 @@ type
     property ControlList: TFlowPanelControlList read FControlList write SetControlList;
   end;
 
+  TPage = class(TCustomControl)
+  private
+    //FOnBeforeShow: TBeforeShowPageEvent;
+    function GetPageIndex: Integer;
+  protected
+//    class procedure WSRegisterClass; override;
+    procedure SetParent(AParent: TWinControl); override;
+  public
+    constructor Create(TheOwner: TComponent); override;
+    destructor Destroy; override;
+  public
+    property PageIndex: Integer read GetPageIndex;
+  published
+    // Lazarus-specific TPage events
+    // OnBeforeShow occurs before a page is displayed, so that
+    // preparations can be executed in it's user interface, for example
+    //property OnBeforeShow: TBeforeShowPageEvent read FOnBeforeShow write FOnBeforeShow;
+    // Other events and properties
+    property BiDiMode;
+   //property ChildSizing;
+    property Color;
+    property Left stored False;
+    property Top stored False;
+    property Width stored False;
+    property Height stored False;
+    property OnContextPopup;
+    property OnEnter;
+    property OnExit;
+    property OnMouseDown;
+    property OnMouseEnter;
+    property OnMouseLeave;
+    property OnMouseMove;
+    property OnMouseUp;
+    property OnMouseWheel;
+    property OnMouseWheelDown;
+    property OnMouseWheelUp;
+    property OnResize;
+    property ParentBiDiMode;
+    property ParentShowHint;
+    property PopupMenu;
+    property TabOrder stored False;
+    property TabStop;
+    property Visible stored False;
+  end;
+
+  TNotebook = class(TCustomControl)
+  private
+    FPages: TStrings; // TUNBPages
+    FPageIndex: Integer;
+    function GetActivePage: String;
+    function GetActivePageComponent: TPage;
+    function GetPage(AIndex: Integer): TPage;
+    function GetPageCount : integer;
+    function GetPageIndex: Integer;
+    procedure SetPageIndex(AValue: Integer);
+    procedure SetPages(Items: TStrings);
+  public
+    constructor Create(TheOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure ShowControl(AControl: TControl); override;
+    function IndexOf(APage: TPage): integer;
+  public
+    property ActivePage: String read GetActivePage;
+    property ActivePageComponent: TPage read GetActivePageComponent;
+    property Page[Index: Integer]: TPage read GetPage;
+    property PageCount: integer read GetPageCount;
+  published
+    // LCL TNotebook specific properties
+    property PageIndex: Integer read GetPageIndex write SetPageIndex default -1;
+    property Pages: TStrings read FPages write SetPages stored False;
+    // Generic properties
+    property Align;
+    property AutoSize;
+    property Anchors;
+    property BiDiMode;
+    //property BorderSpacing;
+    property Color;
+    property Constraints;
+    property DragCursor;
+    property DragMode;
+    property Enabled;
+    //property OnChangeBounds;
+    property OnContextPopup;
+    property OnDragDrop;
+    property OnDragOver;
+    property OnEndDrag;
+    property OnEnter;
+    property OnExit;
+    property OnMouseDown;
+    property OnMouseEnter;
+    property OnMouseLeave;
+    property OnMouseMove;
+    property OnMouseUp;
+    property OnMouseWheel;
+    property OnMouseWheelDown;
+    property OnMouseWheelUp;
+    property OnResize;
+    property OnStartDrag;
+//    property Options;
+//    property PageIndex;
+    property ParentBiDiMode;
+    property PopupMenu;
+    property TabOrder;
+    property TabStop;
+  end;
 
 procedure AddControlDefaultMethodsRtti(AC: TClass; var ADest: TArray<TRttiMethod>);
 procedure AddControlDefaultPropsRtti(AC: TClass; var ADest: TArray<TRttiProperty>);
@@ -5587,6 +5692,93 @@ procedure TApplication.SetCaptureExceptions(const Value: boolean);
 begin
   FCaptureExceptions := Value;
 end;
+
+{ TNotebook }
+
+constructor TNotebook.Create(TheOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+destructor TNotebook.Destroy;
+begin
+
+  inherited;
+end;
+
+function TNotebook.GetActivePage: String;
+begin
+
+end;
+
+function TNotebook.GetActivePageComponent: TPage;
+begin
+
+end;
+
+function TNotebook.GetPage(AIndex: Integer): TPage;
+begin
+
+end;
+
+function TNotebook.GetPageCount: integer;
+begin
+
+end;
+
+function TNotebook.GetPageIndex: Integer;
+begin
+
+end;
+
+function TNotebook.IndexOf(APage: TPage): integer;
+begin
+
+end;
+
+procedure TNotebook.SetPageIndex(AValue: Integer);
+begin
+
+end;
+
+procedure TNotebook.SetPages(Items: TStrings);
+begin
+
+end;
+
+procedure TNotebook.ShowControl(AControl: TControl);
+begin
+  inherited;
+
+end;
+
+{ TPage }
+
+constructor TPage.Create(TheOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+destructor TPage.Destroy;
+begin
+
+  inherited;
+end;
+
+function TPage.GetPageIndex: Integer;
+begin
+
+end;
+
+procedure TPage.SetParent(AParent: TWinControl);
+begin
+  inherited;
+
+end;
+
+
 
 initialization
   InitDefaultControlRtti;

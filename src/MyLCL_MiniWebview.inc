@@ -272,6 +272,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MiniWebview_BeginDrag(AObj: TMiniWebview; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MiniWebview_BringToFront(AObj: TMiniWebview); extdecl;
 begin
   handleExceptionBegin
@@ -305,6 +313,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MiniWebview_EndDrag(AObj: TMiniWebview; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1387,10 +1403,12 @@ exports
   MiniWebview_ScrollBy,
   MiniWebview_SetFocus,
   MiniWebview_Update,
+  MiniWebview_BeginDrag,
   MiniWebview_BringToFront,
   MiniWebview_ClientToScreen,
   MiniWebview_ClientToParent,
   MiniWebview_Dragging,
+  MiniWebview_EndDrag,
   MiniWebview_HasParent,
   MiniWebview_Hide,
   MiniWebview_Perform,

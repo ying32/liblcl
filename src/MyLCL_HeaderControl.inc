@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure HeaderControl_BeginDrag(AObj: THeaderControl; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure HeaderControl_BringToFront(AObj: THeaderControl); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure HeaderControl_EndDrag(AObj: THeaderControl; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1550,10 +1566,12 @@ exports
   HeaderControl_SetBounds,
   HeaderControl_SetFocus,
   HeaderControl_Update,
+  HeaderControl_BeginDrag,
   HeaderControl_BringToFront,
   HeaderControl_ClientToScreen,
   HeaderControl_ClientToParent,
   HeaderControl_Dragging,
+  HeaderControl_EndDrag,
   HeaderControl_HasParent,
   HeaderControl_Hide,
   HeaderControl_Perform,

@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RadioButton_BeginDrag(AObj: TRadioButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RadioButton_BringToFront(AObj: TRadioButton); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RadioButton_EndDrag(AObj: TRadioButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1587,10 +1603,12 @@ exports
   RadioButton_SetBounds,
   RadioButton_SetFocus,
   RadioButton_Update,
+  RadioButton_BeginDrag,
   RadioButton_BringToFront,
   RadioButton_ClientToScreen,
   RadioButton_ClientToParent,
   RadioButton_Dragging,
+  RadioButton_EndDrag,
   RadioButton_HasParent,
   RadioButton_Hide,
   RadioButton_Perform,

@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MonthCalendar_BeginDrag(AObj: TMonthCalendar; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MonthCalendar_BringToFront(AObj: TMonthCalendar); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MonthCalendar_EndDrag(AObj: TMonthCalendar; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1536,10 +1552,12 @@ exports
   MonthCalendar_SetBounds,
   MonthCalendar_SetFocus,
   MonthCalendar_Update,
+  MonthCalendar_BeginDrag,
   MonthCalendar_BringToFront,
   MonthCalendar_ClientToScreen,
   MonthCalendar_ClientToParent,
   MonthCalendar_Dragging,
+  MonthCalendar_EndDrag,
   MonthCalendar_HasParent,
   MonthCalendar_Hide,
   MonthCalendar_Perform,

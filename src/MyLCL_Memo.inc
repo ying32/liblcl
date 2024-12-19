@@ -254,6 +254,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Memo_BeginDrag(AObj: TMemo; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Memo_BringToFront(AObj: TMemo); extdecl;
 begin
   handleExceptionBegin
@@ -287,6 +295,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Memo_EndDrag(AObj: TMemo; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1901,10 +1917,12 @@ exports
   Memo_SetBounds,
   Memo_SetFocus,
   Memo_Update,
+  Memo_BeginDrag,
   Memo_BringToFront,
   Memo_ClientToScreen,
   Memo_ClientToParent,
   Memo_Dragging,
+  Memo_EndDrag,
   Memo_HasParent,
   Memo_Hide,
   Memo_Perform,

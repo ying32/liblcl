@@ -85,7 +85,7 @@ static void* p##name;
 
 /*--------------------常量定义--------------------*/
 
-// Lazarus中的颜色表，Lazarus中的TColor与一般HTML的RGB有点不一样，反过来的以BGR表示.
+// 原Delphi中的定义
 #define clClSysNone  0x1FFFFFFF
 #define clSysDefault  0x20000000
 
@@ -246,6 +246,158 @@ static void* p##name;
 #define clBtnFace  0xFF00000F
 #define clNull  0x00000000
 
+// Lazarus中的定义
+
+// CLR_NONE    = 0xFFFFFFFF
+
+// CLR_DEFAULT = 0xFF000000
+
+// CLR_INVALID = 0xFFFFFFFF
+#define cOLOR_SCROLLBAR  0
+#define cOLOR_BACKGROUND  1
+#define cOLOR_ACTIVECAPTION  2
+#define cOLOR_INACTIVECAPTION  3
+#define cOLOR_MENU  4
+#define cOLOR_WINDOW  5
+#define cOLOR_WINDOWFRAME  6
+#define cOLOR_MENUTEXT  7
+#define cOLOR_WINDOWTEXT  8
+#define cOLOR_CAPTIONTEXT  9
+#define cOLOR_ACTIVEBORDER  10
+#define cOLOR_INACTIVEBORDER  11
+#define cOLOR_APPWORKSPACE  12
+#define cOLOR_HIGHLIGHT  13
+#define cOLOR_HIGHLIGHTTEXT  14
+#define cOLOR_BTNFACE  15
+#define cOLOR_BTNSHADOW  16
+#define cOLOR_GRAYTEXT  17
+#define cOLOR_BTNTEXT  18
+#define cOLOR_INACTIVECAPTIONTEXT  19
+#define cOLOR_BTNHIGHLIGHT  20
+#define cOLOR_3DDKSHADOW  21
+#define cOLOR_3DLIGHT  22
+#define cOLOR_INFOTEXT  23
+#define cOLOR_INFOBK  24
+
+// PBD: 25 is unassigned in all the docs I can find
+
+// if someone finds what this is supposed to be then fill it in
+
+// note defaults below, and cl[ColorConst] in graphics
+#define cOLOR_HOTLIGHT  26
+#define cOLOR_GRADIENTACTIVECAPTION  27
+#define cOLOR_GRADIENTINACTIVECAPTION  28
+#define cOLOR_MENUHILIGHT  29
+#define cOLOR_MENUBAR  30
+#define cOLOR_FORM  31
+#define cOLOR_ENDCOLORS  cOLOR_FORM
+#define cOLOR_DESKTOP  cOLOR_BACKGROUND
+#define cOLOR_3DFACE  cOLOR_BTNFACE
+#define cOLOR_3DSHADOW  cOLOR_BTNSHADOW
+#define cOLOR_3DHIGHLIGHT  cOLOR_BTNHIGHLIGHT
+#define cOLOR_3DHILIGHT  cOLOR_BTNHIGHLIGHT
+#define cOLOR_BTNHILIGHT  cOLOR_BTNHIGHLIGHT
+#define mAX_SYS_COLORS  cOLOR_ENDCOLORS
+#define sYS_COLOR_BASE  0x80000000
+
+// The following colors match the predefined Delphi Colors
+
+// standard colors
+
+// ClBlack   = 0x000000
+
+// ClMaroon  = 0x000080
+
+// ClGreen   = 0x008000
+
+// ClOlive   = 0x008080
+
+// ClNavy    = 0x800000
+
+// ClPurple  = 0x800080
+
+// ClTeal    = 0x808000
+
+// ClGray    = 0x808080
+
+// ClSilver  = 0xC0C0C0
+
+// ClRed     = 0x0000FF
+
+// ClLime    = 0x00FF00
+
+// ClYellow  = 0x00FFFF
+
+// ClBlue    = 0xFF0000
+
+// ClFuchsia = 0xFF00FF
+
+// ClAqua    = 0xFFFF00
+
+// ClLtGray  = 0xC0C0C0  ClSilver alias
+
+// ClDkGray  = 0x808080  ClGray alias
+
+// ClWhite   = 0xFFFFFF
+
+// extended colors
+
+// ClMoneyGreen = 0xC0DCC0
+
+// ClSkyBlue    = 0xF0CAA6
+
+// ClCream      = 0xF0FBFF
+
+// ClMedGray    = 0xA4A0A0
+
+// special colors
+#define clNone  0x1FFFFFFF
+#define clDefault  0x20000000
+
+// system colors
+#define clScrollBar  sYS_COLOR_BASE | cOLOR_SCROLLBAR
+#define clBackground  sYS_COLOR_BASE | cOLOR_BACKGROUND
+#define clActiveCaption  sYS_COLOR_BASE | cOLOR_ACTIVECAPTION
+#define clInactiveCaption  sYS_COLOR_BASE | cOLOR_INACTIVECAPTION
+#define clMenu  sYS_COLOR_BASE | cOLOR_MENU
+#define clWindow  sYS_COLOR_BASE | cOLOR_WINDOW
+#define clWindowFrame  sYS_COLOR_BASE | cOLOR_WINDOWFRAME
+#define clMenuText  sYS_COLOR_BASE | cOLOR_MENUTEXT
+#define clWindowText  sYS_COLOR_BASE | cOLOR_WINDOWTEXT
+#define clCaptionText  sYS_COLOR_BASE | cOLOR_CAPTIONTEXT
+#define clActiveBorder  sYS_COLOR_BASE | cOLOR_ACTIVEBORDER
+#define clInactiveBorder  sYS_COLOR_BASE | cOLOR_INACTIVEBORDER
+#define clAppWorkspace  sYS_COLOR_BASE | cOLOR_APPWORKSPACE
+#define clHighlight  sYS_COLOR_BASE | cOLOR_HIGHLIGHT
+#define clHighlightText  sYS_COLOR_BASE | cOLOR_HIGHLIGHTTEXT
+
+// ClBtnFace             = sYS_COLOR_BASE | cOLOR_BTNFACE
+#define clBtnShadow  sYS_COLOR_BASE | cOLOR_BTNSHADOW
+#define clGrayText  sYS_COLOR_BASE | cOLOR_GRAYTEXT
+#define clBtnText  sYS_COLOR_BASE | cOLOR_BTNTEXT
+#define clInactiveCaptionText  sYS_COLOR_BASE | cOLOR_INACTIVECAPTIONTEXT
+#define clBtnHighlight  sYS_COLOR_BASE | cOLOR_BTNHIGHLIGHT
+#define cl3DDkShadow  sYS_COLOR_BASE | cOLOR_3DDKSHADOW
+#define cl3DLight  sYS_COLOR_BASE | cOLOR_3DLIGHT
+#define clInfoText  sYS_COLOR_BASE | cOLOR_INFOTEXT
+#define clInfoBk  sYS_COLOR_BASE | cOLOR_INFOBK
+#define clHotLight  sYS_COLOR_BASE | cOLOR_HOTLIGHT
+#define clGradientActiveCaption  sYS_COLOR_BASE | cOLOR_GRADIENTACTIVECAPTION
+#define clGradientInactiveCaption  sYS_COLOR_BASE | cOLOR_GRADIENTINACTIVECAPTION
+#define clMenuHighlight  sYS_COLOR_BASE | cOLOR_MENUHILIGHT
+#define clMenuBar  sYS_COLOR_BASE | cOLOR_MENUBAR
+#define clForm  sYS_COLOR_BASE | cOLOR_FORM
+
+// synonyms: do not show them in color lists
+#define clColorDesktop  sYS_COLOR_BASE | cOLOR_DESKTOP
+#define cl3DFace  sYS_COLOR_BASE | cOLOR_3DFACE
+#define cl3DShadow  sYS_COLOR_BASE | cOLOR_3DSHADOW
+#define cl3DHiLight  sYS_COLOR_BASE | cOLOR_3DHIGHLIGHT
+#define clBtnHiLight  sYS_COLOR_BASE | cOLOR_BTNHILIGHT
+#define clFirstSpecialColor  clBtnHiLight
+#define clMask  clWhite
+#define clDontMask  clBlack
+
 // Virtual Keys, Standard Set
 #define vkLButton  0x01 // 1
 #define vkRButton  0x02 // 2
@@ -402,24 +554,24 @@ static void* p##name;
 #define vkLaunchMediaSelect  0xB5 // 181
 #define vkLaunchApp1  0xB6 // 182
 #define vkLaunchApp2  0xB7 // 183
-#define vkSemicolon  0xBA // 186
-#define vkEqual  0xBB // 187
-#define vkComma  0xBC // 188
-#define vkMinus  0xBD // 189
-#define vkPeriod  0xBE // 190
-#define vkSlash  0xBF // 191
-#define vkTilde  0xC0 // 192
-#define vkLeftBracket  0xDB // 219
-#define vkBackslash  0xDC // 220
-#define vkRightBracket  0xDD // 221
-#define vkQuote  0xDE // 222
-#define vkPara  0xDF // 223
-#define vkOem102  0xE2 // 226
+#define vkSemicolon  0xBA // 186 VK_OEM_1
+#define vkEqual  0xBB // 187 VK_OEM_PLUS
+#define vkComma  0xBC // 188 VK_OEM_COMMA
+#define vkMinus  0xBD // 189 VK_OEM_MINUS
+#define vkPeriod  0xBE // 190 VK_OEM_PERIOD
+#define vkSlash  0xBF // 191 VK_OEM_2
+#define vkTilde  0xC0 // 192 VK_OEM_3
+#define vkLeftBracket  0xDB // 219 VK_OEM_4
+#define vkBackslash  0xDC // 220 VK_OEM_5
+#define vkRightBracket  0xDD // 221 VK_OEM_6
+#define vkQuote  0xDE // 222 VK_OEM_7
+#define vkPara  0xDF // 223 VK_OEM_8
+#define vkOem102  0xE2 // 226 VK_OEM_102
 #define vkIcoHelp  0xE3 // 227
 #define vkIco00  0xE4 // 228
 #define vkProcessKey  0xE5 // 229
 #define vkIcoClear  0xE6 // 230
-#define vkPacket  0xE7 // 231
+#define vkPacket  0xE7 // 231 VK_PROCESSKEY
 #define vkAttn  0xF6 // 246
 #define vkCrsel  0xF7 // 247
 #define vkExsel  0xF8 // 248
@@ -2287,6 +2439,10 @@ typedef uintptr_t SIZE_T;
 
 typedef uintptr_t DWORD_PTR;
 
+typedef DWORD ACCESS_MASK;
+
+typedef ACCESS_MASK REGSAM;
+
 typedef struct TUTF8Char {
     int8_t len;
     int8_t content[7];
@@ -2957,6 +3113,9 @@ typedef void(*TUTF8KeyPressEvent)(TObject, TUTF8Char*);
 
 // void (TObject sender, TCanvas aCanvas, TRect* aRect, TOwnerDrawState aState)
 typedef void(*TMenuDrawItemEvent)(TObject, TCanvas, TRect*, TOwnerDrawState);
+
+// void (TObject sender, TCanvas aCanvas, TRect* aRect)
+typedef void(*TImagePaintBackgroundEvent)(TObject, TCanvas, TRect*);
 
 
 
@@ -16924,6 +17083,27 @@ void
 Image_SetStretchOutEnabled(TImage AObj, BOOL AValue) {
     GET_FUNC_ADDR(Image_SetStretchOutEnabled)
     (((SYSCALL2) (pImage_SetStretchOutEnabled))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
+DEFINE_FUNC_PTR(Image_SetOnPaint)
+void
+Image_SetOnPaint(TImage AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(Image_SetOnPaint)
+    (((SYSCALL2) (pImage_SetOnPaint))(COV_PARAM(AObj), COV_PARAM(AEventData)));
+}
+
+DEFINE_FUNC_PTR(Image_SetOnPaintBackground)
+void
+Image_SetOnPaintBackground(TImage AObj, TImagePaintBackgroundEvent AEventData) {
+    GET_FUNC_ADDR(Image_SetOnPaintBackground)
+    (((SYSCALL2) (pImage_SetOnPaintBackground))(COV_PARAM(AObj), COV_PARAM(AEventData)));
+}
+
+DEFINE_FUNC_PTR(Image_SetOnPictureChanged)
+void
+Image_SetOnPictureChanged(TImage AObj, TNotifyEvent AEventData) {
+    GET_FUNC_ADDR(Image_SetOnPictureChanged)
+    (((SYSCALL2) (pImage_SetOnPictureChanged))(COV_PARAM(AObj), COV_PARAM(AEventData)));
 }
 
 DEFINE_FUNC_PTR(Image_GetCanvas)
@@ -68179,6 +68359,20 @@ Canvas_TextWidth(TCanvas AObj, CChar char* Text) {
     return (int32_t)(((SYSCALL2) (pCanvas_TextWidth))(COV_PARAM(AObj), COV_PARAM(Text)));
 }
 
+DEFINE_FUNC_PTR(Canvas_TryLock)
+BOOL
+Canvas_TryLock(TCanvas AObj) {
+    GET_FUNC_ADDR(Canvas_TryLock)
+    return (BOOL)(((SYSCALL1) (pCanvas_TryLock))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Canvas_Unlock)
+void
+Canvas_Unlock(TCanvas AObj) {
+    GET_FUNC_ADDR(Canvas_Unlock)
+    (((SYSCALL1) (pCanvas_Unlock))(COV_PARAM(AObj)));
+}
+
 DEFINE_FUNC_PTR(Canvas_Assign)
 void
 Canvas_Assign(TCanvas AObj, TObject Source) {
@@ -68671,6 +68865,97 @@ Application_SetExceptionExitCode(TApplication AObj, int32_t AValue) {
     (((SYSCALL2) (pApplication_SetExceptionExitCode))(COV_PARAM(AObj), COV_PARAM(AValue)));
 }
 
+DEFINE_FUNC_PTR(Application_GetCaseSensitiveOptions)
+BOOL
+Application_GetCaseSensitiveOptions(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetCaseSensitiveOptions)
+    return (BOOL)(((SYSCALL1) (pApplication_GetCaseSensitiveOptions))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_SetCaseSensitiveOptions)
+void
+Application_SetCaseSensitiveOptions(TApplication AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Application_SetCaseSensitiveOptions)
+    (((SYSCALL2) (pApplication_SetCaseSensitiveOptions))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
+DEFINE_FUNC_PTR(Application_GetCaptureExceptions)
+BOOL
+Application_GetCaptureExceptions(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetCaptureExceptions)
+    return (BOOL)(((SYSCALL1) (pApplication_GetCaptureExceptions))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_SetCaptureExceptions)
+void
+Application_SetCaptureExceptions(TApplication AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Application_SetCaptureExceptions)
+    (((SYSCALL2) (pApplication_SetCaptureExceptions))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
+DEFINE_FUNC_PTR(Application_GetExtendedKeysSupport)
+BOOL
+Application_GetExtendedKeysSupport(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetExtendedKeysSupport)
+    return (BOOL)(((SYSCALL1) (pApplication_GetExtendedKeysSupport))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_SetExtendedKeysSupport)
+void
+Application_SetExtendedKeysSupport(TApplication AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Application_SetExtendedKeysSupport)
+    (((SYSCALL2) (pApplication_SetExtendedKeysSupport))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
+DEFINE_FUNC_PTR(Application_GetActive)
+BOOL
+Application_GetActive(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetActive)
+    return (BOOL)(((SYSCALL1) (pApplication_GetActive))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_GetMainFormHandle)
+HWND
+Application_GetMainFormHandle(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetMainFormHandle)
+    return (HWND)(((SYSCALL1) (pApplication_GetMainFormHandle))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_GetMouseControl)
+TControl
+Application_GetMouseControl(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetMouseControl)
+    return (TControl)(((SYSCALL1) (pApplication_GetMouseControl))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_GetHintHidePausePerChar)
+int32_t
+Application_GetHintHidePausePerChar(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetHintHidePausePerChar)
+    return (int32_t)(((SYSCALL1) (pApplication_GetHintHidePausePerChar))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_SetHintHidePausePerChar)
+void
+Application_SetHintHidePausePerChar(TApplication AObj, int32_t AValue) {
+    GET_FUNC_ADDR(Application_SetHintHidePausePerChar)
+    (((SYSCALL2) (pApplication_SetHintHidePausePerChar))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
+DEFINE_FUNC_PTR(Application_GetFindGlobalComponentEnabled)
+BOOL
+Application_GetFindGlobalComponentEnabled(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetFindGlobalComponentEnabled)
+    return (BOOL)(((SYSCALL1) (pApplication_GetFindGlobalComponentEnabled))(COV_PARAM(AObj)));
+}
+
+DEFINE_FUNC_PTR(Application_SetFindGlobalComponentEnabled)
+void
+Application_SetFindGlobalComponentEnabled(TApplication AObj, BOOL AValue) {
+    GET_FUNC_ADDR(Application_SetFindGlobalComponentEnabled)
+    (((SYSCALL2) (pApplication_SetFindGlobalComponentEnabled))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
 DEFINE_FUNC_PTR(Application_GetExeName)
 char*
 Application_GetExeName(TApplication AObj) {
@@ -68783,13 +69068,6 @@ Application_GetMainForm(TApplication AObj) {
     return (TForm)(((SYSCALL1) (pApplication_GetMainForm))(COV_PARAM(AObj)));
 }
 
-DEFINE_FUNC_PTR(Application_GetMainFormHandle)
-HWND
-Application_GetMainFormHandle(TApplication AObj) {
-    GET_FUNC_ADDR(Application_GetMainFormHandle)
-    return (HWND)(((SYSCALL1) (pApplication_GetMainFormHandle))(COV_PARAM(AObj)));
-}
-
 DEFINE_FUNC_PTR(Application_GetMainFormOnTaskBar)
 BOOL
 Application_GetMainFormOnTaskBar(TApplication AObj) {
@@ -68844,6 +69122,13 @@ void
 Application_SetShowMainForm(TApplication AObj, BOOL AValue) {
     GET_FUNC_ADDR(Application_SetShowMainForm)
     (((SYSCALL2) (pApplication_SetShowMainForm))(COV_PARAM(AObj), COV_PARAM(AValue)));
+}
+
+DEFINE_FUNC_PTR(Application_GetTerminated)
+BOOL
+Application_GetTerminated(TApplication AObj) {
+    GET_FUNC_ADDR(Application_GetTerminated)
+    return (BOOL)(((SYSCALL1) (pApplication_GetTerminated))(COV_PARAM(AObj)));
 }
 
 DEFINE_FUNC_PTR(Application_GetTitle)
@@ -72321,6 +72606,41 @@ Clipboard_GetFormat(TClipboard AObj, TClipboardFormat FormatID, TStream Stream) 
     return (BOOL)(((SYSCALL3) (pClipboard_GetFormat))(COV_PARAM(AObj), COV_PARAM(FormatID), COV_PARAM(Stream)));
 }
 
+DEFINE_FUNC_PTR(Clipboard_AddFormat)
+BOOL
+Clipboard_AddFormat(TClipboard AObj, TClipboardFormat FormatID, TStream Stream) {
+    GET_FUNC_ADDR(Clipboard_AddFormat)
+    return (BOOL)(((SYSCALL3) (pClipboard_AddFormat))(COV_PARAM(AObj), COV_PARAM(FormatID), COV_PARAM(Stream)));
+}
+
+DEFINE_FUNC_PTR(Clipboard_SetFormat)
+BOOL
+Clipboard_SetFormat(TClipboard AObj, TClipboardFormat FormatID, TStream Stream) {
+    GET_FUNC_ADDR(Clipboard_SetFormat)
+    return (BOOL)(((SYSCALL3) (pClipboard_SetFormat))(COV_PARAM(AObj), COV_PARAM(FormatID), COV_PARAM(Stream)));
+}
+
+DEFINE_FUNC_PTR(Clipboard_GetComponent)
+TComponent
+Clipboard_GetComponent(TClipboard AObj, TComponent Owner, TComponent Parent) {
+    GET_FUNC_ADDR(Clipboard_GetComponent)
+    return (TComponent)(((SYSCALL3) (pClipboard_GetComponent))(COV_PARAM(AObj), COV_PARAM(Owner), COV_PARAM(Parent)));
+}
+
+DEFINE_FUNC_PTR(Clipboard_SetComponent)
+BOOL
+Clipboard_SetComponent(TClipboard AObj, TComponent Component) {
+    GET_FUNC_ADDR(Clipboard_SetComponent)
+    return (BOOL)(((SYSCALL2) (pClipboard_SetComponent))(COV_PARAM(AObj), COV_PARAM(Component)));
+}
+
+DEFINE_FUNC_PTR(Clipboard_SetComponentAsText)
+BOOL
+Clipboard_SetComponentAsText(TClipboard AObj, TComponent Component) {
+    GET_FUNC_ADDR(Clipboard_SetComponentAsText)
+    return (BOOL)(((SYSCALL2) (pClipboard_SetComponentAsText))(COV_PARAM(AObj), COV_PARAM(Component)));
+}
+
 DEFINE_FUNC_PTR(Clipboard_Assign)
 void
 Clipboard_Assign(TClipboard AObj, TObject Source) {
@@ -75442,6 +75762,13 @@ void
 Form_SetOnUnDock(TForm AObj, TUnDockEvent AEventData) {
     GET_FUNC_ADDR(Form_SetOnUnDock)
     (((SYSCALL2) (pForm_SetOnUnDock))(COV_PARAM(AObj), COV_PARAM(AEventData)));
+}
+
+DEFINE_FUNC_PTR(Form_GetActive)
+BOOL
+Form_GetActive(TForm AObj) {
+    GET_FUNC_ADDR(Form_GetActive)
+    return (BOOL)(((SYSCALL1) (pForm_GetActive))(COV_PARAM(AObj)));
 }
 
 DEFINE_FUNC_PTR(Form_GetCanvas)

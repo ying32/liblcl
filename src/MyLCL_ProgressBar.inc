@@ -206,6 +206,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ProgressBar_BeginDrag(AObj: TProgressBar; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ProgressBar_BringToFront(AObj: TProgressBar); extdecl;
 begin
   handleExceptionBegin
@@ -239,6 +247,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ProgressBar_EndDrag(AObj: TProgressBar; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1580,10 +1596,12 @@ exports
   ProgressBar_SetBounds,
   ProgressBar_SetFocus,
   ProgressBar_Update,
+  ProgressBar_BeginDrag,
   ProgressBar_BringToFront,
   ProgressBar_ClientToScreen,
   ProgressBar_ClientToParent,
   ProgressBar_Dragging,
+  ProgressBar_EndDrag,
   ProgressBar_HasParent,
   ProgressBar_Hide,
   ProgressBar_Perform,

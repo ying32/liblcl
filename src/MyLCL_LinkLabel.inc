@@ -55,6 +55,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure LinkLabel_BeginDrag(AObj: TLinkLabel; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure LinkLabel_BringToFront(AObj: TLinkLabel); extdecl;
 begin
   handleExceptionBegin
@@ -88,6 +96,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure LinkLabel_EndDrag(AObj: TLinkLabel; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1205,10 +1221,12 @@ exports
   LinkLabel_Repaint,
   LinkLabel_SetBounds,
   LinkLabel_Update,
+  LinkLabel_BeginDrag,
   LinkLabel_BringToFront,
   LinkLabel_ClientToScreen,
   LinkLabel_ClientToParent,
   LinkLabel_Dragging,
+  LinkLabel_EndDrag,
   LinkLabel_HasParent,
   LinkLabel_Hide,
   LinkLabel_Perform,

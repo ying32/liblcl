@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Panel_BeginDrag(AObj: TPanel; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Panel_BringToFront(AObj: TPanel); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Panel_EndDrag(AObj: TPanel; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1732,10 +1748,12 @@ exports
   Panel_SetBounds,
   Panel_SetFocus,
   Panel_Update,
+  Panel_BeginDrag,
   Panel_BringToFront,
   Panel_ClientToScreen,
   Panel_ClientToParent,
   Panel_Dragging,
+  Panel_EndDrag,
   Panel_HasParent,
   Panel_Hide,
   Panel_Perform,

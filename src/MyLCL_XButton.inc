@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure XButton_BeginDrag(AObj: TXButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure XButton_BringToFront(AObj: TXButton); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure XButton_EndDrag(AObj: TXButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1228,10 +1244,12 @@ end;
 exports
   XButton_Create,
   XButton_Free,
+  XButton_BeginDrag,
   XButton_BringToFront,
   XButton_ClientToScreen,
   XButton_ClientToParent,
   XButton_Dragging,
+  XButton_EndDrag,
   XButton_HasParent,
   XButton_Hide,
   XButton_Invalidate,

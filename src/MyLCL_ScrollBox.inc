@@ -198,6 +198,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ScrollBox_BeginDrag(AObj: TScrollBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ScrollBox_BringToFront(AObj: TScrollBox); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +239,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ScrollBox_EndDrag(AObj: TScrollBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1681,10 +1697,12 @@ exports
   ScrollBox_SetBounds,
   ScrollBox_SetFocus,
   ScrollBox_Update,
+  ScrollBox_BeginDrag,
   ScrollBox_BringToFront,
   ScrollBox_ClientToScreen,
   ScrollBox_ClientToParent,
   ScrollBox_Dragging,
+  ScrollBox_EndDrag,
   ScrollBox_HasParent,
   ScrollBox_Hide,
   ScrollBox_Perform,

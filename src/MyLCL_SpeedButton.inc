@@ -31,6 +31,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure SpeedButton_BeginDrag(AObj: TSpeedButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure SpeedButton_BringToFront(AObj: TSpeedButton); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +72,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure SpeedButton_EndDrag(AObj: TSpeedButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1267,10 +1283,12 @@ exports
   SpeedButton_Create,
   SpeedButton_Free,
   SpeedButton_Click,
+  SpeedButton_BeginDrag,
   SpeedButton_BringToFront,
   SpeedButton_ClientToScreen,
   SpeedButton_ClientToParent,
   SpeedButton_Dragging,
+  SpeedButton_EndDrag,
   SpeedButton_HasParent,
   SpeedButton_Hide,
   SpeedButton_Invalidate,

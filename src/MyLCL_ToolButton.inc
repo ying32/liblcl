@@ -48,6 +48,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToolButton_BeginDrag(AObj: TToolButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToolButton_BringToFront(AObj: TToolButton); extdecl;
 begin
   handleExceptionBegin
@@ -81,6 +89,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToolButton_EndDrag(AObj: TToolButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1296,10 +1312,12 @@ exports
   ToolButton_CheckMenuDropdown,
   ToolButton_Click,
   ToolButton_SetBounds,
+  ToolButton_BeginDrag,
   ToolButton_BringToFront,
   ToolButton_ClientToScreen,
   ToolButton_ClientToParent,
   ToolButton_Dragging,
+  ToolButton_EndDrag,
   ToolButton_HasParent,
   ToolButton_Hide,
   ToolButton_Invalidate,

@@ -31,6 +31,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Gauge_BeginDrag(AObj: TGauge; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Gauge_BringToFront(AObj: TGauge); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +72,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Gauge_EndDrag(AObj: TGauge; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1159,10 +1175,12 @@ exports
   Gauge_Create,
   Gauge_Free,
   Gauge_AddProgress,
+  Gauge_BeginDrag,
   Gauge_BringToFront,
   Gauge_ClientToScreen,
   Gauge_ClientToParent,
   Gauge_Dragging,
+  Gauge_EndDrag,
   Gauge_HasParent,
   Gauge_Hide,
   Gauge_Invalidate,

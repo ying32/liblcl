@@ -255,6 +255,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure RichEdit_BeginDrag(AObj: TRichEdit; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure RichEdit_BringToFront(AObj: TRichEdit); extdecl;
 begin
   handleExceptionBegin
@@ -288,6 +296,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure RichEdit_EndDrag(AObj: TRichEdit; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1979,10 +1995,12 @@ exports
   RichEdit_SetBounds,
   RichEdit_SetFocus,
   RichEdit_Update,
+  RichEdit_BeginDrag,
   RichEdit_BringToFront,
   RichEdit_ClientToScreen,
   RichEdit_ClientToParent,
   RichEdit_Dragging,
+  RichEdit_EndDrag,
   RichEdit_HasParent,
   RichEdit_Hide,
   RichEdit_Perform,

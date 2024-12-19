@@ -207,6 +207,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure FlowPanel_BeginDrag(AObj: TFlowPanel; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure FlowPanel_BringToFront(AObj: TFlowPanel); extdecl;
 begin
   handleExceptionBegin
@@ -240,6 +248,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure FlowPanel_EndDrag(AObj: TFlowPanel; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1751,10 +1767,12 @@ exports
   FlowPanel_SetBounds,
   FlowPanel_SetFocus,
   FlowPanel_Update,
+  FlowPanel_BeginDrag,
   FlowPanel_BringToFront,
   FlowPanel_ClientToScreen,
   FlowPanel_ClientToParent,
   FlowPanel_Dragging,
+  FlowPanel_EndDrag,
   FlowPanel_HasParent,
   FlowPanel_Hide,
   FlowPanel_Perform,

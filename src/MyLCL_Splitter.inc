@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Splitter_BeginDrag(AObj: TSplitter; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Splitter_BringToFront(AObj: TSplitter); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Splitter_EndDrag(AObj: TSplitter; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1008,10 +1024,12 @@ end;
 exports
   Splitter_Create,
   Splitter_Free,
+  Splitter_BeginDrag,
   Splitter_BringToFront,
   Splitter_ClientToScreen,
   Splitter_ClientToParent,
   Splitter_Dragging,
+  Splitter_EndDrag,
   Splitter_HasParent,
   Splitter_Hide,
   Splitter_Invalidate,

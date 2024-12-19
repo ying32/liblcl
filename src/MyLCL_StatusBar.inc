@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StatusBar_BeginDrag(AObj: TStatusBar; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StatusBar_BringToFront(AObj: TStatusBar); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StatusBar_EndDrag(AObj: TStatusBar; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1647,10 +1663,12 @@ exports
   StatusBar_ScrollBy,
   StatusBar_SetFocus,
   StatusBar_Update,
+  StatusBar_BeginDrag,
   StatusBar_BringToFront,
   StatusBar_ClientToScreen,
   StatusBar_ClientToParent,
   StatusBar_Dragging,
+  StatusBar_EndDrag,
   StatusBar_HasParent,
   StatusBar_Hide,
   StatusBar_Perform,

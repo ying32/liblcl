@@ -215,6 +215,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DateTimePicker_BeginDrag(AObj: TDateTimePicker; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DateTimePicker_BringToFront(AObj: TDateTimePicker); extdecl;
 begin
   handleExceptionBegin
@@ -248,6 +256,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DateTimePicker_EndDrag(AObj: TDateTimePicker; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1956,10 +1972,12 @@ exports
   DateTimePicker_SetBounds,
   DateTimePicker_SetFocus,
   DateTimePicker_Update,
+  DateTimePicker_BeginDrag,
   DateTimePicker_BringToFront,
   DateTimePicker_ClientToScreen,
   DateTimePicker_ClientToParent,
   DateTimePicker_Dragging,
+  DateTimePicker_EndDrag,
   DateTimePicker_HasParent,
   DateTimePicker_Hide,
   DateTimePicker_Perform,

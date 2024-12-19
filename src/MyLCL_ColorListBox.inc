@@ -249,6 +249,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ColorListBox_BeginDrag(AObj: TColorListBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ColorListBox_BringToFront(AObj: TColorListBox); extdecl;
 begin
   handleExceptionBegin
@@ -282,6 +290,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ColorListBox_EndDrag(AObj: TColorListBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1738,10 +1754,12 @@ exports
   ColorListBox_SetBounds,
   ColorListBox_SetFocus,
   ColorListBox_Update,
+  ColorListBox_BeginDrag,
   ColorListBox_BringToFront,
   ColorListBox_ClientToScreen,
   ColorListBox_ClientToParent,
   ColorListBox_Dragging,
+  ColorListBox_EndDrag,
   ColorListBox_HasParent,
   ColorListBox_Hide,
   ColorListBox_Perform,

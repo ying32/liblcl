@@ -31,6 +31,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ColorButton_BeginDrag(AObj: TColorButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ColorButton_BringToFront(AObj: TColorButton); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +72,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ColorButton_EndDrag(AObj: TColorButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1405,10 +1421,12 @@ exports
   ColorButton_Create,
   ColorButton_Free,
   ColorButton_Click,
+  ColorButton_BeginDrag,
   ColorButton_BringToFront,
   ColorButton_ClientToScreen,
   ColorButton_ClientToParent,
   ColorButton_Dragging,
+  ColorButton_EndDrag,
   ColorButton_HasParent,
   ColorButton_Hide,
   ColorButton_Invalidate,

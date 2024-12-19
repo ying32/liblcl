@@ -251,6 +251,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure PageControl_BeginDrag(AObj: TPageControl; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure PageControl_BringToFront(AObj: TPageControl); extdecl;
 begin
   handleExceptionBegin
@@ -284,6 +292,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PageControl_EndDrag(AObj: TPageControl; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1823,10 +1839,12 @@ exports
   PageControl_SetBounds,
   PageControl_SetFocus,
   PageControl_Update,
+  PageControl_BeginDrag,
   PageControl_BringToFront,
   PageControl_ClientToScreen,
   PageControl_ClientToParent,
   PageControl_Dragging,
+  PageControl_EndDrag,
   PageControl_HasParent,
   PageControl_Hide,
   PageControl_Perform,

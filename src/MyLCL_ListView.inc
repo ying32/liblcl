@@ -294,6 +294,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ListView_BeginDrag(AObj: TListView; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ListView_BringToFront(AObj: TListView); extdecl;
 begin
   handleExceptionBegin
@@ -327,6 +335,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ListView_EndDrag(AObj: TListView; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2452,10 +2468,12 @@ exports
   ListView_SetBounds,
   ListView_SetFocus,
   ListView_Update,
+  ListView_BeginDrag,
   ListView_BringToFront,
   ListView_ClientToScreen,
   ListView_ClientToParent,
   ListView_Dragging,
+  ListView_EndDrag,
   ListView_HasParent,
   ListView_Hide,
   ListView_Perform,

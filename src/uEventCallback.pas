@@ -197,6 +197,8 @@ type
     procedure OnTMenuDrawItemEvent(Sender: TObject; ACanvas: TCanvas; ARect: TRect; AState: TOwnerDrawState);
 
     procedure OnTWndProcEvent(Sender: TObject; var TheMessage: TLMessage);
+
+    procedure OnTStartDragEvent(Sender: TObject; var DragObject: TDragObject);
   public
     // thread sync
     class procedure ThreadProc;
@@ -951,6 +953,12 @@ procedure TLCLEvent.OnTWndProcEvent(Sender: TObject;
 begin
   if Assigned(GMessageCallbackPtr) and CheckDataPtr then
     GMessageCallbackPtr(DataPtr, @TheMessage);
+end;
+
+procedure TLCLEvent.OnTStartDragEvent(Sender: TObject;
+  var DragObject: TDragObject);
+begin
+ SendEvent([Sender, @DragObject]);
 end;
 
 

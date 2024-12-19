@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure GroupBox_BeginDrag(AObj: TGroupBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure GroupBox_BringToFront(AObj: TGroupBox); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure GroupBox_EndDrag(AObj: TGroupBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1596,10 +1612,12 @@ exports
   GroupBox_SetBounds,
   GroupBox_SetFocus,
   GroupBox_Update,
+  GroupBox_BeginDrag,
   GroupBox_BringToFront,
   GroupBox_ClientToScreen,
   GroupBox_ClientToParent,
   GroupBox_Dragging,
+  GroupBox_EndDrag,
   GroupBox_HasParent,
   GroupBox_Hide,
   GroupBox_Perform,

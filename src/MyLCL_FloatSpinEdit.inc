@@ -246,6 +246,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure FloatSpinEdit_BeginDrag(AObj: TFloatSpinEdit; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure FloatSpinEdit_BringToFront(AObj: TFloatSpinEdit); extdecl;
 begin
   handleExceptionBegin
@@ -279,6 +287,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure FloatSpinEdit_EndDrag(AObj: TFloatSpinEdit; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1797,10 +1813,12 @@ exports
   FloatSpinEdit_SetBounds,
   FloatSpinEdit_SetFocus,
   FloatSpinEdit_Update,
+  FloatSpinEdit_BeginDrag,
   FloatSpinEdit_BringToFront,
   FloatSpinEdit_ClientToScreen,
   FloatSpinEdit_ClientToParent,
   FloatSpinEdit_Dragging,
+  FloatSpinEdit_EndDrag,
   FloatSpinEdit_HasParent,
   FloatSpinEdit_Hide,
   FloatSpinEdit_Perform,

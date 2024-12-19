@@ -1693,3 +1693,12 @@ SetFormat
 GetComponent
 SetComponent
 SetComponentAsText
+
+//2024/7/8
+BeginDrag
+EndDrag
+
+//2024/12/19
+ActivePageComponent
+Page
+ShowControl

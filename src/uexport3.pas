@@ -16,6 +16,20 @@
   
 //{$endif windows}
 
+{$I MyLCL_PageControl.inc}  //BASECLASS:TWinControl
+{$I MyLCL_TabSheet.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Control.inc}  //BASECLASS:TControl
+{$I MyLCL_WinControl.inc}  //BASECLASS:TWinControl
+{$I MyLCL_Screen.inc}  //BASECLASS:TComponent
+{$I MyLCL_Mouse.inc}  //BASECLASS:TObject
+{$I MyLCL_ListColumn.inc}  //BASECLASS:TObject
+{$I MyLCL_CollectionItem.inc}  //BASECLASS:TObject
+{$I MyLCL_StatusPanels.inc}  //BASECLASS:TObject
+{$I MyLCL_StatusPanel.inc}  //BASECLASS:TObject
+{$I MyLCL_SpinEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_FloatSpinEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_DirectoryEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ColorButton.inc}  //BASECLASS:TControl
 {$I MyLCL_MiniWebview.inc}  //BASECLASS:TWinControl
 {$I MyLCL_Canvas.inc}  //BASECLASS:TObject
 {$I MyLCL_Object.inc}  //BASECLASS:TObject
@@ -31,27 +45,6 @@
 {$I MyLCL_Clipboard.inc}  //BASECLASS:TObject
 {$I MyLCL_Monitor.inc}  //BASECLASS:TObject
 {$I MyLCL_PaintBox.inc}  //BASECLASS:TControl
-{$I MyLCL_Timer.inc}  //BASECLASS:TComponent
-{$I MyLCL_List.inc}  //BASECLASS:TObject
-{$I MyLCL_Component.inc}  //BASECLASS:TComponent
-{$I MyLCL_ParaAttributes.inc}  //BASECLASS:TObject
-{$I MyLCL_TextAttributes.inc}  //BASECLASS:TObject
-{$I MyLCL_IconOptions.inc}  //BASECLASS:TObject
-{$I MyLCL_Exception.inc}  //BASECLASS:TObject
-{$I MyLCL_ScrollBar.inc}  //BASECLASS:TWinControl
-{$I MyLCL_MaskEdit.inc}  //BASECLASS:TWinControl
-{$I MyLCL_Shape.inc}  //BASECLASS:TControl
-{$I MyLCL_Bevel.inc}  //BASECLASS:TControl
-{$I MyLCL_ScrollBox.inc}  //BASECLASS:TWinControl
-{$I MyLCL_CheckListBox.inc}  //BASECLASS:TWinControl
-{$I MyLCL_Gauge.inc}  //BASECLASS:TControl
-{$I MyLCL_ImageButton.inc}  //BASECLASS:TControl
-{$I MyLCL_FindDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_ReplaceDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_PrinterSetupDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_PageSetupDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_DragObject.inc}  //BASECLASS:TObject
-{$I MyLCL_DragDockObject.inc}  //BASECLASS:TObject
 
 
 //{$ifdef windows}

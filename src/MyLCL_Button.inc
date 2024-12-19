@@ -198,6 +198,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Button_BeginDrag(AObj: TButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Button_BringToFront(AObj: TButton); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +239,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Button_EndDrag(AObj: TButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1573,10 +1589,12 @@ exports
   Button_SetBounds,
   Button_SetFocus,
   Button_Update,
+  Button_BeginDrag,
   Button_BringToFront,
   Button_ClientToScreen,
   Button_ClientToParent,
   Button_Dragging,
+  Button_EndDrag,
   Button_HasParent,
   Button_Hide,
   Button_Perform,

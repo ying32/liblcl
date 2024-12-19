@@ -254,6 +254,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckComboBox_BeginDrag(AObj: TCheckComboBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckComboBox_BringToFront(AObj: TCheckComboBox); extdecl;
 begin
   handleExceptionBegin
@@ -287,6 +295,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckComboBox_EndDrag(AObj: TCheckComboBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2024,10 +2040,12 @@ exports
   CheckComboBox_SetBounds,
   CheckComboBox_SetFocus,
   CheckComboBox_Update,
+  CheckComboBox_BeginDrag,
   CheckComboBox_BringToFront,
   CheckComboBox_ClientToScreen,
   CheckComboBox_ClientToParent,
   CheckComboBox_Dragging,
+  CheckComboBox_EndDrag,
   CheckComboBox_HasParent,
   CheckComboBox_Hide,
   CheckComboBox_Perform,

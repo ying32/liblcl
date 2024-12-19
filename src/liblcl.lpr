@@ -59,6 +59,7 @@ uses
 {$I uExport2.pas}
 {$I uExport3.pas}
 {$I uExport4.pas}
+{$I uExport5.pas}
 
 begin
   RequireDerivedFormResource := False;

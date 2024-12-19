@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure UpDown_BeginDrag(AObj: TUpDown; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure UpDown_BringToFront(AObj: TUpDown); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure UpDown_EndDrag(AObj: TUpDown; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1479,10 +1495,12 @@ exports
   UpDown_SetBounds,
   UpDown_SetFocus,
   UpDown_Update,
+  UpDown_BeginDrag,
   UpDown_BringToFront,
   UpDown_ClientToScreen,
   UpDown_ClientToParent,
   UpDown_Dragging,
+  UpDown_EndDrag,
   UpDown_HasParent,
   UpDown_Hide,
   UpDown_Perform,

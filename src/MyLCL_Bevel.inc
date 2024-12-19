@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Bevel_BeginDrag(AObj: TBevel; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Bevel_BringToFront(AObj: TBevel); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Bevel_EndDrag(AObj: TBevel; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -977,10 +993,12 @@ end;
 exports
   Bevel_Create,
   Bevel_Free,
+  Bevel_BeginDrag,
   Bevel_BringToFront,
   Bevel_ClientToScreen,
   Bevel_ClientToParent,
   Bevel_Dragging,
+  Bevel_EndDrag,
   Bevel_HasParent,
   Bevel_Hide,
   Bevel_Invalidate,

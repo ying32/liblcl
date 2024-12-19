@@ -198,6 +198,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure BitBtn_BeginDrag(AObj: TBitBtn; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure BitBtn_BringToFront(AObj: TBitBtn); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +239,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure BitBtn_EndDrag(AObj: TBitBtn; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1678,10 +1694,12 @@ exports
   BitBtn_SetBounds,
   BitBtn_SetFocus,
   BitBtn_Update,
+  BitBtn_BeginDrag,
   BitBtn_BringToFront,
   BitBtn_ClientToScreen,
   BitBtn_ClientToParent,
   BitBtn_Dragging,
+  BitBtn_EndDrag,
   BitBtn_HasParent,
   BitBtn_Hide,
   BitBtn_Perform,

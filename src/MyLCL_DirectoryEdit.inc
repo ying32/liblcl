@@ -254,6 +254,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DirectoryEdit_BeginDrag(AObj: TDirectoryEdit; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DirectoryEdit_BringToFront(AObj: TDirectoryEdit); extdecl;
 begin
   handleExceptionBegin
@@ -287,6 +295,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DirectoryEdit_EndDrag(AObj: TDirectoryEdit; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2219,10 +2235,12 @@ exports
   DirectoryEdit_ScrollBy,
   DirectoryEdit_SetBounds,
   DirectoryEdit_Update,
+  DirectoryEdit_BeginDrag,
   DirectoryEdit_BringToFront,
   DirectoryEdit_ClientToScreen,
   DirectoryEdit_ClientToParent,
   DirectoryEdit_Dragging,
+  DirectoryEdit_EndDrag,
   DirectoryEdit_HasParent,
   DirectoryEdit_Hide,
   DirectoryEdit_Perform,

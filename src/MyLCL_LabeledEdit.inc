@@ -246,6 +246,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure LabeledEdit_BeginDrag(AObj: TLabeledEdit; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure LabeledEdit_BringToFront(AObj: TLabeledEdit); extdecl;
 begin
   handleExceptionBegin
@@ -279,6 +287,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure LabeledEdit_EndDrag(AObj: TLabeledEdit; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1876,10 +1892,12 @@ exports
   LabeledEdit_ScrollBy,
   LabeledEdit_SetFocus,
   LabeledEdit_Update,
+  LabeledEdit_BeginDrag,
   LabeledEdit_BringToFront,
   LabeledEdit_ClientToScreen,
   LabeledEdit_ClientToParent,
   LabeledEdit_Dragging,
+  LabeledEdit_EndDrag,
   LabeledEdit_HasParent,
   LabeledEdit_Hide,
   LabeledEdit_Perform,

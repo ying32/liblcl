@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckBox_BeginDrag(AObj: TCheckBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckBox_BringToFront(AObj: TCheckBox); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckBox_EndDrag(AObj: TCheckBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1617,10 +1633,12 @@ exports
   CheckBox_SetBounds,
   CheckBox_SetFocus,
   CheckBox_Update,
+  CheckBox_BeginDrag,
   CheckBox_BringToFront,
   CheckBox_ClientToScreen,
   CheckBox_ClientToParent,
   CheckBox_Dragging,
+  CheckBox_EndDrag,
   CheckBox_HasParent,
   CheckBox_Hide,
   CheckBox_Perform,

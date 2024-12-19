@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToggleBox_BeginDrag(AObj: TToggleBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToggleBox_BringToFront(AObj: TToggleBox); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToggleBox_EndDrag(AObj: TToggleBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1594,10 +1610,12 @@ exports
   ToggleBox_SetBounds,
   ToggleBox_SetFocus,
   ToggleBox_Update,
+  ToggleBox_BeginDrag,
   ToggleBox_BringToFront,
   ToggleBox_ClientToScreen,
   ToggleBox_ClientToParent,
   ToggleBox_Dragging,
+  ToggleBox_EndDrag,
   ToggleBox_HasParent,
   ToggleBox_Hide,
   ToggleBox_Perform,

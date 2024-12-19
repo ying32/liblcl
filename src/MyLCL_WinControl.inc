@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure WinControl_BeginDrag(AObj: TWinControl; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure WinControl_BringToFront(AObj: TWinControl); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure WinControl_EndDrag(AObj: TWinControl; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1279,10 +1295,12 @@ exports
   WinControl_SetBounds,
   WinControl_SetFocus,
   WinControl_Update,
+  WinControl_BeginDrag,
   WinControl_BringToFront,
   WinControl_ClientToScreen,
   WinControl_ClientToParent,
   WinControl_Dragging,
+  WinControl_EndDrag,
   WinControl_HasParent,
   WinControl_Hide,
   WinControl_Perform,

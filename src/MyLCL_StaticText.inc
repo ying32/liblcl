@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StaticText_BeginDrag(AObj: TStaticText; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StaticText_BringToFront(AObj: TStaticText); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StaticText_EndDrag(AObj: TStaticText; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1607,10 +1623,12 @@ exports
   StaticText_SetBounds,
   StaticText_SetFocus,
   StaticText_Update,
+  StaticText_BeginDrag,
   StaticText_BringToFront,
   StaticText_ClientToScreen,
   StaticText_ClientToParent,
   StaticText_Dragging,
+  StaticText_EndDrag,
   StaticText_HasParent,
   StaticText_Hide,
   StaticText_Perform,

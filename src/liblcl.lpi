@@ -25,8 +25,8 @@
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="2"/>
-      <RevisionNr Value="3"/>
-      <StringTable Comments="LCL for Windows" CompanyName="ying32" FileDescription="LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright ying32" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="2.2.3.0"/>
+      <RevisionNr Value="4"/>
+      <StringTable Comments="LCL for Windows" CompanyName="ying32" FileDescription="LCL for Windows" InternalName="liblcl" LegalCopyright="Copyright ying32" OriginalFilename="liblcl.dll" ProductName="liblcl" ProductVersion="2.2.4.0"/>
     </VersionInfo>
     <Res2go>
       <GoRoot Value="F:\Program Files (x86)\Golang\go"/>
@@ -188,7 +188,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="21">
       <Unit0>
         <Filename Value="liblcl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -252,7 +252,6 @@
       <Unit13>
         <Filename Value="uexport1.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uExport1"/>
       </Unit13>
       <Unit14>
         <Filename Value="uexport2.pas"/>
@@ -276,13 +275,15 @@
       <Unit18>
         <Filename Value="uexport3.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uExport3"/>
       </Unit18>
       <Unit19>
         <Filename Value="uexport4.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="uExport4"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="uexport5.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit20>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

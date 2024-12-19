@@ -257,6 +257,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CheckListBox_BeginDrag(AObj: TCheckListBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CheckListBox_BringToFront(AObj: TCheckListBox); extdecl;
 begin
   handleExceptionBegin
@@ -290,6 +298,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CheckListBox_EndDrag(AObj: TCheckListBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1867,10 +1883,12 @@ exports
   CheckListBox_SetBounds,
   CheckListBox_SetFocus,
   CheckListBox_Update,
+  CheckListBox_BeginDrag,
   CheckListBox_BringToFront,
   CheckListBox_ClientToScreen,
   CheckListBox_ClientToParent,
   CheckListBox_Dragging,
+  CheckListBox_EndDrag,
   CheckListBox_HasParent,
   CheckListBox_Hide,
   CheckListBox_Perform,

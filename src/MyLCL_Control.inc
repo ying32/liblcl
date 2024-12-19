@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Control_BeginDrag(AObj: TControl; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Control_BringToFront(AObj: TControl); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Control_EndDrag(AObj: TControl; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -932,10 +948,12 @@ end;
 exports
   Control_Create,
   Control_Free,
+  Control_BeginDrag,
   Control_BringToFront,
   Control_ClientToScreen,
   Control_ClientToParent,
   Control_Dragging,
+  Control_EndDrag,
   Control_HasParent,
   Control_Hide,
   Control_Invalidate,

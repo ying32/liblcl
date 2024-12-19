@@ -232,6 +232,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ValueListEditor_BeginDrag(AObj: TValueListEditor; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ValueListEditor_BringToFront(AObj: TValueListEditor); extdecl;
 begin
   handleExceptionBegin
@@ -265,6 +273,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ValueListEditor_EndDrag(AObj: TValueListEditor; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2040,10 +2056,12 @@ exports
   ValueListEditor_SetBounds,
   ValueListEditor_SetFocus,
   ValueListEditor_Update,
+  ValueListEditor_BeginDrag,
   ValueListEditor_BringToFront,
   ValueListEditor_ClientToScreen,
   ValueListEditor_ClientToParent,
   ValueListEditor_Dragging,
+  ValueListEditor_EndDrag,
   ValueListEditor_HasParent,
   ValueListEditor_Hide,
   ValueListEditor_Perform,

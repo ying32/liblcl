@@ -198,6 +198,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Frame_BeginDrag(AObj: TFrame; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Frame_BringToFront(AObj: TFrame); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +239,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Frame_EndDrag(AObj: TFrame; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1705,10 +1721,12 @@ exports
   Frame_SetBounds,
   Frame_SetFocus,
   Frame_Update,
+  Frame_BeginDrag,
   Frame_BringToFront,
   Frame_ClientToScreen,
   Frame_ClientToParent,
   Frame_Dragging,
+  Frame_EndDrag,
   Frame_HasParent,
   Frame_Hide,
   Frame_Perform,

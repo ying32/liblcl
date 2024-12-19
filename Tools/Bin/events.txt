@@ -197,3 +197,9 @@ OnCloseTabClicked
 OnPaintBackground
 
 OnPictureChanged
+
+//2024/7/8
+//找不到哪个控件不支持，干脆取消得了，一个一个的找太累了
+//OnStartDrag
+OnDragOver
+OnDragDrop

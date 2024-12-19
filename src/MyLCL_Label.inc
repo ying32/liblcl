@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Label_BeginDrag(AObj: TLabel; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Label_BringToFront(AObj: TLabel); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Label_EndDrag(AObj: TLabel; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1298,10 +1314,12 @@ end;
 exports
   Label_Create,
   Label_Free,
+  Label_BeginDrag,
   Label_BringToFront,
   Label_ClientToScreen,
   Label_ClientToParent,
   Label_Dragging,
+  Label_EndDrag,
   Label_HasParent,
   Label_Hide,
   Label_Invalidate,

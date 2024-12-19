@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure PaintBox_BeginDrag(AObj: TPaintBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure PaintBox_BringToFront(AObj: TPaintBox); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure PaintBox_EndDrag(AObj: TPaintBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1148,10 +1164,12 @@ end;
 exports
   PaintBox_Create,
   PaintBox_Free,
+  PaintBox_BeginDrag,
   PaintBox_BringToFront,
   PaintBox_ClientToScreen,
   PaintBox_ClientToParent,
   PaintBox_Dragging,
+  PaintBox_EndDrag,
   PaintBox_HasParent,
   PaintBox_Hide,
   PaintBox_Invalidate,

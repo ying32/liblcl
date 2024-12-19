@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ToolBar_BeginDrag(AObj: TToolBar; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ToolBar_BringToFront(AObj: TToolBar); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ToolBar_EndDrag(AObj: TToolBar; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1814,10 +1830,12 @@ exports
   ToolBar_SetBounds,
   ToolBar_SetFocus,
   ToolBar_Update,
+  ToolBar_BeginDrag,
   ToolBar_BringToFront,
   ToolBar_ClientToScreen,
   ToolBar_ClientToParent,
   ToolBar_Dragging,
+  ToolBar_EndDrag,
   ToolBar_HasParent,
   ToolBar_Hide,
   ToolBar_Perform,

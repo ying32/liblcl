@@ -61784,6 +61784,108 @@
 					"prop_name": "StretchOutEnabled"
 				},
 				{
+					"name": "Image_SetOnPaint",
+					"real_name": "SetOnPaint",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TImage",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AEventData",
+							"type": "TNotifyEvent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": true
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": true,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "OnPaint"
+				},
+				{
+					"name": "Image_SetOnPaintBackground",
+					"real_name": "SetOnPaintBackground",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TImage",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AEventData",
+							"type": "TImagePaintBackgroundEvent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": true
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": true,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "OnPaintBackground"
+				},
+				{
+					"name": "Image_SetOnPictureChanged",
+					"real_name": "SetOnPictureChanged",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TImage",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AEventData",
+							"type": "TNotifyEvent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": true
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": true,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "OnPictureChanged"
+				},
+				{
 					"name": "Image_GetCanvas",
 					"real_name": "GetCanvas",
 					"return": "TCanvas",
@@ -288836,6 +288938,58 @@
 					"prop_name": ""
 				},
 				{
+					"name": "Canvas_TryLock",
+					"real_name": "TryLock",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TCanvas",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
+					"name": "Canvas_Unlock",
+					"real_name": "Unlock",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TCanvas",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
 					"name": "Canvas_Assign",
 					"real_name": "Assign",
 					"return": "",
@@ -291080,6 +291234,384 @@
 					"prop_name": "ExceptionExitCode"
 				},
 				{
+					"name": "Application_GetCaseSensitiveOptions",
+					"real_name": "GetCaseSensitiveOptions",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "CaseSensitiveOptions"
+				},
+				{
+					"name": "Application_SetCaseSensitiveOptions",
+					"real_name": "SetCaseSensitiveOptions",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AValue",
+							"type": "bool",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "CaseSensitiveOptions"
+				},
+				{
+					"name": "Application_GetCaptureExceptions",
+					"real_name": "GetCaptureExceptions",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "CaptureExceptions"
+				},
+				{
+					"name": "Application_SetCaptureExceptions",
+					"real_name": "SetCaptureExceptions",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AValue",
+							"type": "bool",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "CaptureExceptions"
+				},
+				{
+					"name": "Application_GetExtendedKeysSupport",
+					"real_name": "GetExtendedKeysSupport",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "ExtendedKeysSupport"
+				},
+				{
+					"name": "Application_SetExtendedKeysSupport",
+					"real_name": "SetExtendedKeysSupport",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AValue",
+							"type": "bool",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "ExtendedKeysSupport"
+				},
+				{
+					"name": "Application_GetActive",
+					"real_name": "GetActive",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "Active"
+				},
+				{
+					"name": "Application_GetMainFormHandle",
+					"real_name": "GetMainFormHandle",
+					"return": "HWND",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "MainFormHandle"
+				},
+				{
+					"name": "Application_GetMouseControl",
+					"real_name": "GetMouseControl",
+					"return": "TControl",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "MouseControl"
+				},
+				{
+					"name": "Application_GetHintHidePausePerChar",
+					"real_name": "GetHintHidePausePerChar",
+					"return": "i32",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "HintHidePausePerChar"
+				},
+				{
+					"name": "Application_SetHintHidePausePerChar",
+					"real_name": "SetHintHidePausePerChar",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AValue",
+							"type": "i32",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "HintHidePausePerChar"
+				},
+				{
+					"name": "Application_GetFindGlobalComponentEnabled",
+					"real_name": "GetFindGlobalComponentEnabled",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "FindGlobalComponentEnabled"
+				},
+				{
+					"name": "Application_SetFindGlobalComponentEnabled",
+					"real_name": "SetFindGlobalComponentEnabled",
+					"return": "",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "AValue",
+							"type": "bool",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": true,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "FindGlobalComponentEnabled"
+				},
+				{
 					"name": "Application_GetExeName",
 					"real_name": "GetExeName",
 					"return": "string",
@@ -291552,32 +292084,6 @@
 					"prop_name": "MainForm"
 				},
 				{
-					"name": "Application_GetMainFormHandle",
-					"real_name": "GetMainFormHandle",
-					"return": "HWND",
-					"params": [
-						{
-							"name": "AObj",
-							"type": "TApplication",
-							"is_var": false,
-							"is_array": false,
-							"flag": "",
-							"is_event": false
-						}
-					],
-					"is_static": false,
-					"platform": "all",
-					"last_is_return": false,
-					"is_method": false,
-					"is_prop": true,
-					"is_setter": false,
-					"is_getter": true,
-					"is_set_event": false,
-					"is_overload": false,
-					"overload_name": "",
-					"prop_name": "MainFormHandle"
-				},
-				{
 					"name": "Application_GetMainFormOnTaskBar",
 					"real_name": "GetMainFormOnTaskBar",
 					"return": "bool",
@@ -291816,6 +292322,32 @@
 					"is_overload": false,
 					"overload_name": "",
 					"prop_name": "ShowMainForm"
+				},
+				{
+					"name": "Application_GetTerminated",
+					"real_name": "GetTerminated",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TApplication",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "Terminated"
 				},
 				{
 					"name": "Application_GetTitle",
@@ -307276,6 +307808,200 @@
 					"prop_name": ""
 				},
 				{
+					"name": "Clipboard_AddFormat",
+					"real_name": "AddFormat",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TClipboard",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "FormatID",
+							"type": "TClipboardFormat",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "Stream",
+							"type": "TStream",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
+					"name": "Clipboard_SetFormat",
+					"real_name": "SetFormat",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TClipboard",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "FormatID",
+							"type": "TClipboardFormat",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "Stream",
+							"type": "TStream",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
+					"name": "Clipboard_GetComponent",
+					"real_name": "GetComponent",
+					"return": "TComponent",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TClipboard",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "Owner",
+							"type": "TComponent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "Parent",
+							"type": "TComponent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
+					"name": "Clipboard_SetComponent",
+					"real_name": "SetComponent",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TClipboard",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "Component",
+							"type": "TComponent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
+					"name": "Clipboard_SetComponentAsText",
+					"real_name": "SetComponentAsText",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TClipboard",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						},
+						{
+							"name": "Component",
+							"type": "TComponent",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": true,
+					"is_prop": false,
+					"is_setter": false,
+					"is_getter": false,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": ""
+				},
+				{
 					"name": "Clipboard_Assign",
 					"real_name": "Assign",
 					"return": "",
@@ -321162,6 +321888,32 @@
 					"is_overload": false,
 					"overload_name": "",
 					"prop_name": "OnUnDock"
+				},
+				{
+					"name": "Form_GetActive",
+					"real_name": "GetActive",
+					"return": "bool",
+					"params": [
+						{
+							"name": "AObj",
+							"type": "TForm",
+							"is_var": false,
+							"is_array": false,
+							"flag": "",
+							"is_event": false
+						}
+					],
+					"is_static": false,
+					"platform": "all",
+					"last_is_return": false,
+					"is_method": false,
+					"is_prop": true,
+					"is_setter": false,
+					"is_getter": true,
+					"is_set_event": false,
+					"is_overload": false,
+					"overload_name": "",
+					"prop_name": "Active"
 				},
 				{
 					"name": "Form_GetCanvas",
@@ -500136,6 +500888,37 @@
 					"is_event": false
 				}
 			]
+		},
+		{
+			"name": "TImagePaintBackgroundEvent",
+			"re_define": "",
+			"is_func": false,
+			"params": [
+				{
+					"name": "sender",
+					"type": "TObject",
+					"is_var": false,
+					"is_array": false,
+					"flag": "",
+					"is_event": false
+				},
+				{
+					"name": "aCanvas",
+					"type": "TCanvas",
+					"is_var": false,
+					"is_array": false,
+					"flag": "",
+					"is_event": false
+				},
+				{
+					"name": "aRect",
+					"type": "TRect",
+					"is_var": true,
+					"is_array": false,
+					"flag": "",
+					"is_event": false
+				}
+			]
 		}
 	],
 	"consts": [
@@ -500143,7 +500926,7 @@
 			"name": "",
 			"value": "",
 			"value_2": "",
-			"comment": "Lazarus中的颜色表，Lazarus中的TColor与一般HTML的RGB有点不一样，反过来的以BGR表示."
+			"comment": "原Delphi中的定义"
 		},
 		{
 			"name": "clClSysNone",
@@ -501097,6 +501880,702 @@
 			"name": "",
 			"value": "",
 			"value_2": "",
+			"comment": "Lazarus中的定义"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "CLR_NONE    = 0xFFFFFFFF"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "CLR_DEFAULT = 0xFF000000"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "CLR_INVALID = 0xFFFFFFFF"
+		},
+		{
+			"name": "cOLOR_SCROLLBAR",
+			"value": "0",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_BACKGROUND",
+			"value": "1",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_ACTIVECAPTION",
+			"value": "2",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_INACTIVECAPTION",
+			"value": "3",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_MENU",
+			"value": "4",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_WINDOW",
+			"value": "5",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_WINDOWFRAME",
+			"value": "6",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_MENUTEXT",
+			"value": "7",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_WINDOWTEXT",
+			"value": "8",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_CAPTIONTEXT",
+			"value": "9",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_ACTIVEBORDER",
+			"value": "10",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_INACTIVEBORDER",
+			"value": "11",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_APPWORKSPACE",
+			"value": "12",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_HIGHLIGHT",
+			"value": "13",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_HIGHLIGHTTEXT",
+			"value": "14",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_BTNFACE",
+			"value": "15",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_BTNSHADOW",
+			"value": "16",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_GRAYTEXT",
+			"value": "17",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_BTNTEXT",
+			"value": "18",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_INACTIVECAPTIONTEXT",
+			"value": "19",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_BTNHIGHLIGHT",
+			"value": "20",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_3DDKSHADOW",
+			"value": "21",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_3DLIGHT",
+			"value": "22",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_INFOTEXT",
+			"value": "23",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_INFOBK",
+			"value": "24",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "PBD: 25 is unassigned in all the docs I can find"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "if someone finds what this is supposed to be then fill it in"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "note defaults below, and cl[ColorConst] in graphics"
+		},
+		{
+			"name": "cOLOR_HOTLIGHT",
+			"value": "26",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_GRADIENTACTIVECAPTION",
+			"value": "27",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_GRADIENTINACTIVECAPTION",
+			"value": "28",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_MENUHILIGHT",
+			"value": "29",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_MENUBAR",
+			"value": "30",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_FORM",
+			"value": "31",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_ENDCOLORS",
+			"value": "cOLOR_FORM",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_DESKTOP",
+			"value": "cOLOR_BACKGROUND",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_3DFACE",
+			"value": "cOLOR_BTNFACE",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_3DSHADOW",
+			"value": "cOLOR_BTNSHADOW",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_3DHIGHLIGHT",
+			"value": "cOLOR_BTNHIGHLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_3DHILIGHT",
+			"value": "cOLOR_BTNHIGHLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cOLOR_BTNHILIGHT",
+			"value": "cOLOR_BTNHIGHLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "mAX_SYS_COLORS",
+			"value": "cOLOR_ENDCOLORS",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "sYS_COLOR_BASE",
+			"value": "0x80000000",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "The following colors match the predefined Delphi Colors"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "standard colors"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClBlack   = 0x000000"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClMaroon  = 0x000080"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClGreen   = 0x008000"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClOlive   = 0x008080"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClNavy    = 0x800000"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClPurple  = 0x800080"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClTeal    = 0x808000"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClGray    = 0x808080"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClSilver  = 0xC0C0C0"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClRed     = 0x0000FF"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClLime    = 0x00FF00"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClYellow  = 0x00FFFF"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClBlue    = 0xFF0000"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClFuchsia = 0xFF00FF"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClAqua    = 0xFFFF00"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClLtGray  = 0xC0C0C0  ClSilver alias"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClDkGray  = 0x808080  ClGray alias"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClWhite   = 0xFFFFFF"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "extended colors"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClMoneyGreen = 0xC0DCC0"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClSkyBlue    = 0xF0CAA6"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClCream      = 0xF0FBFF"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClMedGray    = 0xA4A0A0"
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "special colors"
+		},
+		{
+			"name": "clNone",
+			"value": "0x1FFFFFFF",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clDefault",
+			"value": "0x20000000",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "system colors"
+		},
+		{
+			"name": "clScrollBar",
+			"value": "sYS_COLOR_BASE | cOLOR_SCROLLBAR",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clBackground",
+			"value": "sYS_COLOR_BASE | cOLOR_BACKGROUND",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clActiveCaption",
+			"value": "sYS_COLOR_BASE | cOLOR_ACTIVECAPTION",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clInactiveCaption",
+			"value": "sYS_COLOR_BASE | cOLOR_INACTIVECAPTION",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clMenu",
+			"value": "sYS_COLOR_BASE | cOLOR_MENU",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clWindow",
+			"value": "sYS_COLOR_BASE | cOLOR_WINDOW",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clWindowFrame",
+			"value": "sYS_COLOR_BASE | cOLOR_WINDOWFRAME",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clMenuText",
+			"value": "sYS_COLOR_BASE | cOLOR_MENUTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clWindowText",
+			"value": "sYS_COLOR_BASE | cOLOR_WINDOWTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clCaptionText",
+			"value": "sYS_COLOR_BASE | cOLOR_CAPTIONTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clActiveBorder",
+			"value": "sYS_COLOR_BASE | cOLOR_ACTIVEBORDER",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clInactiveBorder",
+			"value": "sYS_COLOR_BASE | cOLOR_INACTIVEBORDER",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clAppWorkspace",
+			"value": "sYS_COLOR_BASE | cOLOR_APPWORKSPACE",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clHighlight",
+			"value": "sYS_COLOR_BASE | cOLOR_HIGHLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clHighlightText",
+			"value": "sYS_COLOR_BASE | cOLOR_HIGHLIGHTTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "ClBtnFace             = sYS_COLOR_BASE | cOLOR_BTNFACE"
+		},
+		{
+			"name": "clBtnShadow",
+			"value": "sYS_COLOR_BASE | cOLOR_BTNSHADOW",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clGrayText",
+			"value": "sYS_COLOR_BASE | cOLOR_GRAYTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clBtnText",
+			"value": "sYS_COLOR_BASE | cOLOR_BTNTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clInactiveCaptionText",
+			"value": "sYS_COLOR_BASE | cOLOR_INACTIVECAPTIONTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clBtnHighlight",
+			"value": "sYS_COLOR_BASE | cOLOR_BTNHIGHLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cl3DDkShadow",
+			"value": "sYS_COLOR_BASE | cOLOR_3DDKSHADOW",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cl3DLight",
+			"value": "sYS_COLOR_BASE | cOLOR_3DLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clInfoText",
+			"value": "sYS_COLOR_BASE | cOLOR_INFOTEXT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clInfoBk",
+			"value": "sYS_COLOR_BASE | cOLOR_INFOBK",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clHotLight",
+			"value": "sYS_COLOR_BASE | cOLOR_HOTLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clGradientActiveCaption",
+			"value": "sYS_COLOR_BASE | cOLOR_GRADIENTACTIVECAPTION",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clGradientInactiveCaption",
+			"value": "sYS_COLOR_BASE | cOLOR_GRADIENTINACTIVECAPTION",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clMenuHighlight",
+			"value": "sYS_COLOR_BASE | cOLOR_MENUHILIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clMenuBar",
+			"value": "sYS_COLOR_BASE | cOLOR_MENUBAR",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clForm",
+			"value": "sYS_COLOR_BASE | cOLOR_FORM",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
+			"comment": "synonyms: do not show them in color lists"
+		},
+		{
+			"name": "clColorDesktop",
+			"value": "sYS_COLOR_BASE | cOLOR_DESKTOP",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cl3DFace",
+			"value": "sYS_COLOR_BASE | cOLOR_3DFACE",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cl3DShadow",
+			"value": "sYS_COLOR_BASE | cOLOR_3DSHADOW",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "cl3DHiLight",
+			"value": "sYS_COLOR_BASE | cOLOR_3DHIGHLIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clBtnHiLight",
+			"value": "sYS_COLOR_BASE | cOLOR_BTNHILIGHT",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clFirstSpecialColor",
+			"value": "clBtnHiLight",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clMask",
+			"value": "clWhite",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "clDontMask",
+			"value": "clBlack",
+			"value_2": "",
+			"comment": ""
+		},
+		{
+			"name": "",
+			"value": "",
+			"value_2": "",
 			"comment": "Virtual Keys, Standard Set"
 		},
 		{
@@ -502021,79 +503500,79 @@
 			"name": "vkSemicolon",
 			"value": "0xBA",
 			"value_2": "",
-			"comment": "186"
+			"comment": "186 VK_OEM_1"
 		},
 		{
 			"name": "vkEqual",
 			"value": "0xBB",
 			"value_2": "",
-			"comment": "187"
+			"comment": "187 VK_OEM_PLUS"
 		},
 		{
 			"name": "vkComma",
 			"value": "0xBC",
 			"value_2": "",
-			"comment": "188"
+			"comment": "188 VK_OEM_COMMA"
 		},
 		{
 			"name": "vkMinus",
 			"value": "0xBD",
 			"value_2": "",
-			"comment": "189"
+			"comment": "189 VK_OEM_MINUS"
 		},
 		{
 			"name": "vkPeriod",
 			"value": "0xBE",
 			"value_2": "",
-			"comment": "190"
+			"comment": "190 VK_OEM_PERIOD"
 		},
 		{
 			"name": "vkSlash",
 			"value": "0xBF",
 			"value_2": "",
-			"comment": "191"
+			"comment": "191 VK_OEM_2"
 		},
 		{
 			"name": "vkTilde",
 			"value": "0xC0",
 			"value_2": "",
-			"comment": "192"
+			"comment": "192 VK_OEM_3"
 		},
 		{
 			"name": "vkLeftBracket",
 			"value": "0xDB",
 			"value_2": "",
-			"comment": "219"
+			"comment": "219 VK_OEM_4"
 		},
 		{
 			"name": "vkBackslash",
 			"value": "0xDC",
 			"value_2": "",
-			"comment": "220"
+			"comment": "220 VK_OEM_5"
 		},
 		{
 			"name": "vkRightBracket",
 			"value": "0xDD",
 			"value_2": "",
-			"comment": "221"
+			"comment": "221 VK_OEM_6"
 		},
 		{
 			"name": "vkQuote",
 			"value": "0xDE",
 			"value_2": "",
-			"comment": "222"
+			"comment": "222 VK_OEM_7"
 		},
 		{
 			"name": "vkPara",
 			"value": "0xDF",
 			"value_2": "",
-			"comment": "223"
+			"comment": "223 VK_OEM_8"
 		},
 		{
 			"name": "vkOem102",
 			"value": "0xE2",
 			"value_2": "",
-			"comment": "226"
+			"comment": "226 VK_OEM_102"
 		},
 		{
 			"name": "vkIcoHelp",
@@ -502123,7 +503602,7 @@
 			"name": "vkPacket",
 			"value": "0xE7",
 			"value_2": "",
-			"comment": "231"
+			"comment": "231 VK_PROCESSKEY"
 		},
 		{
 			"name": "vkAttn",
@@ -510746,6 +512225,26 @@
 		{
 			"name": "DWORD_PTR",
 			"type": "usize",
+			"kind": "type",
+			"enums": null,
+			"set_of": "",
+			"fields": null,
+			"field_arch": "",
+			"comment": ""
+		},
+		{
+			"name": "ACCESS_MASK",
+			"type": "DWORD",
+			"kind": "type",
+			"enums": null,
+			"set_of": "",
+			"fields": null,
+			"field_arch": "",
+			"comment": ""
+		},
+		{
+			"name": "REGSAM",
+			"type": "ACCESS_MASK",
 			"kind": "type",
 			"enums": null,
 			"set_of": "",

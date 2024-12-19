@@ -263,6 +263,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure MaskEdit_BeginDrag(AObj: TMaskEdit; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure MaskEdit_BringToFront(AObj: TMaskEdit); extdecl;
 begin
   handleExceptionBegin
@@ -296,6 +304,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure MaskEdit_EndDrag(AObj: TMaskEdit; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1872,10 +1888,12 @@ exports
   MaskEdit_SetBounds,
   MaskEdit_SetFocus,
   MaskEdit_Update,
+  MaskEdit_BeginDrag,
   MaskEdit_BringToFront,
   MaskEdit_ClientToScreen,
   MaskEdit_ClientToParent,
   MaskEdit_Dragging,
+  MaskEdit_EndDrag,
   MaskEdit_HasParent,
   MaskEdit_Hide,
   MaskEdit_Perform,

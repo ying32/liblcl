@@ -182,6 +182,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure CoolBar_BeginDrag(AObj: TCoolBar; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure CoolBar_BringToFront(AObj: TCoolBar); extdecl;
 begin
   handleExceptionBegin
@@ -215,6 +223,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure CoolBar_EndDrag(AObj: TCoolBar; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1759,10 +1775,12 @@ exports
   CoolBar_SetBounds,
   CoolBar_SetFocus,
   CoolBar_Update,
+  CoolBar_BeginDrag,
   CoolBar_BringToFront,
   CoolBar_ClientToScreen,
   CoolBar_ClientToParent,
   CoolBar_Dragging,
+  CoolBar_EndDrag,
   CoolBar_HasParent,
   CoolBar_Hide,
   CoolBar_Perform,

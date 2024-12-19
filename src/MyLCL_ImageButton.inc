@@ -31,6 +31,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ImageButton_BeginDrag(AObj: TImageButton; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ImageButton_BringToFront(AObj: TImageButton); extdecl;
 begin
   handleExceptionBegin
@@ -64,6 +72,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ImageButton_EndDrag(AObj: TImageButton; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1247,10 +1263,12 @@ exports
   ImageButton_Create,
   ImageButton_Free,
   ImageButton_Click,
+  ImageButton_BeginDrag,
   ImageButton_BringToFront,
   ImageButton_ClientToScreen,
   ImageButton_ClientToParent,
   ImageButton_Dragging,
+  ImageButton_EndDrag,
   ImageButton_HasParent,
   ImageButton_Hide,
   ImageButton_Invalidate,

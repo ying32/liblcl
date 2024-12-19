@@ -230,6 +230,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ComboBox_BeginDrag(AObj: TComboBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ComboBox_BringToFront(AObj: TComboBox); extdecl;
 begin
   handleExceptionBegin
@@ -263,6 +271,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ComboBox_EndDrag(AObj: TComboBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1859,10 +1875,12 @@ exports
   ComboBox_SetBounds,
   ComboBox_SetFocus,
   ComboBox_Update,
+  ComboBox_BeginDrag,
   ComboBox_BringToFront,
   ComboBox_ClientToScreen,
   ComboBox_ClientToParent,
   ComboBox_Dragging,
+  ComboBox_EndDrag,
   ComboBox_HasParent,
   ComboBox_Hide,
   ComboBox_Perform,

@@ -198,6 +198,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TrackBar_BeginDrag(AObj: TTrackBar; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TrackBar_BringToFront(AObj: TTrackBar); extdecl;
 begin
   handleExceptionBegin
@@ -231,6 +239,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TrackBar_EndDrag(AObj: TTrackBar; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1623,10 +1639,12 @@ exports
   TrackBar_SetBounds,
   TrackBar_SetFocus,
   TrackBar_Update,
+  TrackBar_BeginDrag,
   TrackBar_BringToFront,
   TrackBar_ClientToScreen,
   TrackBar_ClientToParent,
   TrackBar_Dragging,
+  TrackBar_EndDrag,
   TrackBar_HasParent,
   TrackBar_Hide,
   TrackBar_Perform,

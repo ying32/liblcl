@@ -190,6 +190,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TabSheet_BeginDrag(AObj: TTabSheet; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TabSheet_BringToFront(AObj: TTabSheet); extdecl;
 begin
   handleExceptionBegin
@@ -223,6 +231,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TabSheet_EndDrag(AObj: TTabSheet; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1549,10 +1565,12 @@ exports
   TabSheet_SetBounds,
   TabSheet_SetFocus,
   TabSheet_Update,
+  TabSheet_BeginDrag,
   TabSheet_BringToFront,
   TabSheet_ClientToScreen,
   TabSheet_ClientToParent,
   TabSheet_Dragging,
+  TabSheet_EndDrag,
   TabSheet_HasParent,
   TabSheet_Hide,
   TabSheet_Perform,

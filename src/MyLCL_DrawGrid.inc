@@ -216,6 +216,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure DrawGrid_BeginDrag(AObj: TDrawGrid; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure DrawGrid_BringToFront(AObj: TDrawGrid); extdecl;
 begin
   handleExceptionBegin
@@ -249,6 +257,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure DrawGrid_EndDrag(AObj: TDrawGrid; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2008,10 +2024,12 @@ exports
   DrawGrid_SetBounds,
   DrawGrid_SetFocus,
   DrawGrid_Update,
+  DrawGrid_BeginDrag,
   DrawGrid_BringToFront,
   DrawGrid_ClientToScreen,
   DrawGrid_ClientToParent,
   DrawGrid_Dragging,
+  DrawGrid_EndDrag,
   DrawGrid_HasParent,
   DrawGrid_Hide,
   DrawGrid_Perform,

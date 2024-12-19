@@ -45,13 +45,6 @@
 {$I MyLCL_FontDialog.inc}  //BASECLASS:TComponent
 {$I MyLCL_PrintDialog.inc}  //BASECLASS:TComponent
 {$I MyLCL_OpenPictureDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_SavePictureDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_SelectDirectoryDialog.inc}  //BASECLASS:TComponent
-{$I MyLCL_RichEdit.inc}  //BASECLASS:TWinControl
-{$I MyLCL_TrackBar.inc}  //BASECLASS:TWinControl
-{$I MyLCL_ImageList.inc}  //BASECLASS:TComponent
-{$I MyLCL_UpDown.inc}  //BASECLASS:TWinControl
-{$I MyLCL_ProgressBar.inc}  //BASECLASS:TWinControl
 
 
 //{$ifdef windows}

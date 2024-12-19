@@ -16,6 +16,13 @@
   
 //{$endif windows}
 
+{$I MyLCL_SavePictureDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_SelectDirectoryDialog.inc}  //BASECLASS:TComponent
+{$I MyLCL_RichEdit.inc}  //BASECLASS:TWinControl
+{$I MyLCL_TrackBar.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ImageList.inc}  //BASECLASS:TComponent
+{$I MyLCL_UpDown.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ProgressBar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_DateTimePicker.inc}  //BASECLASS:TWinControl
 {$I MyLCL_MonthCalendar.inc}  //BASECLASS:TWinControl
 {$I MyLCL_ListView.inc}  //BASECLASS:TWinControl
@@ -38,20 +45,6 @@
 {$I MyLCL_TreeNodes.inc}  //BASECLASS:TObject
 {$I MyLCL_ListItem.inc}  //BASECLASS:TObject
 {$I MyLCL_TreeNode.inc}  //BASECLASS:TObject
-{$I MyLCL_PageControl.inc}  //BASECLASS:TWinControl
-{$I MyLCL_TabSheet.inc}  //BASECLASS:TWinControl
-{$I MyLCL_Control.inc}  //BASECLASS:TControl
-{$I MyLCL_WinControl.inc}  //BASECLASS:TWinControl
-{$I MyLCL_Screen.inc}  //BASECLASS:TComponent
-{$I MyLCL_Mouse.inc}  //BASECLASS:TObject
-{$I MyLCL_ListColumn.inc}  //BASECLASS:TObject
-{$I MyLCL_CollectionItem.inc}  //BASECLASS:TObject
-{$I MyLCL_StatusPanels.inc}  //BASECLASS:TObject
-{$I MyLCL_StatusPanel.inc}  //BASECLASS:TObject
-{$I MyLCL_SpinEdit.inc}  //BASECLASS:TWinControl
-{$I MyLCL_FloatSpinEdit.inc}  //BASECLASS:TWinControl
-{$I MyLCL_DirectoryEdit.inc}  //BASECLASS:TWinControl
-{$I MyLCL_ColorButton.inc}  //BASECLASS:TControl
 
 
 //{$ifdef windows}

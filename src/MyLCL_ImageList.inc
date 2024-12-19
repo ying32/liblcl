@@ -106,6 +106,24 @@ begin
 end;
 
 //CLASSMETHOD:
+function ImageList_BeginDrag(AObj: TImageList; Window: HWND; X: Integer; Y: Integer): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.BeginDrag(Window, X, Y);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function ImageList_EndDrag(AObj: TImageList): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.EndDrag;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 //RETURNISLASTPARAM:
 procedure ImageList_GetHotSpot(AObj: TImageList; var Result: TPoint); extdecl;
 begin
@@ -578,6 +596,8 @@ exports
   ImageList_ReplaceIcon,
   ImageList_GetBitmap,
   ImageList_GetFullBitmap,
+  ImageList_BeginDrag,
+  ImageList_EndDrag,
   ImageList_GetHotSpot,
   ImageList_HideDragImage,
   ImageList_ShowDragImage,

@@ -23,6 +23,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Shape_BeginDrag(AObj: TShape; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Shape_BringToFront(AObj: TShape); extdecl;
 begin
   handleExceptionBegin
@@ -56,6 +64,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Shape_EndDrag(AObj: TShape; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1101,10 +1117,12 @@ end;
 exports
   Shape_Create,
   Shape_Free,
+  Shape_BeginDrag,
   Shape_BringToFront,
   Shape_ClientToScreen,
   Shape_ClientToParent,
   Shape_Dragging,
+  Shape_EndDrag,
   Shape_HasParent,
   Shape_Hide,
   Shape_Invalidate,

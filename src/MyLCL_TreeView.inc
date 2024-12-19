@@ -291,6 +291,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure TreeView_BeginDrag(AObj: TTreeView; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure TreeView_BringToFront(AObj: TTreeView); extdecl;
 begin
   handleExceptionBegin
@@ -324,6 +332,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure TreeView_EndDrag(AObj: TTreeView; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2362,10 +2378,12 @@ exports
   TreeView_SetBounds,
   TreeView_SetFocus,
   TreeView_Update,
+  TreeView_BeginDrag,
   TreeView_BringToFront,
   TreeView_ClientToScreen,
   TreeView_ClientToParent,
   TreeView_Dragging,
+  TreeView_EndDrag,
   TreeView_HasParent,
   TreeView_Hide,
   TreeView_Perform,

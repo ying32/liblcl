@@ -249,6 +249,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure ListBox_BeginDrag(AObj: TListBox; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure ListBox_BringToFront(AObj: TListBox); extdecl;
 begin
   handleExceptionBegin
@@ -282,6 +290,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure ListBox_EndDrag(AObj: TListBox; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -1843,10 +1859,12 @@ exports
   ListBox_SetBounds,
   ListBox_SetFocus,
   ListBox_Update,
+  ListBox_BeginDrag,
   ListBox_BringToFront,
   ListBox_ClientToScreen,
   ListBox_ClientToParent,
   ListBox_Dragging,
+  ListBox_EndDrag,
   ListBox_HasParent,
   ListBox_Hide,
   ListBox_Perform,

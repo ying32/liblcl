@@ -461,6 +461,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure StringGrid_BeginDrag(AObj: TStringGrid; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StringGrid_BringToFront(AObj: TStringGrid); extdecl;
 begin
   handleExceptionBegin
@@ -494,6 +502,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure StringGrid_EndDrag(AObj: TStringGrid; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -3021,10 +3037,12 @@ exports
   StringGrid_SetBounds,
   StringGrid_SetFocus,
   StringGrid_Update,
+  StringGrid_BeginDrag,
   StringGrid_BringToFront,
   StringGrid_ClientToScreen,
   StringGrid_ClientToParent,
   StringGrid_Dragging,
+  StringGrid_EndDrag,
   StringGrid_HasParent,
   StringGrid_Hide,
   StringGrid_Perform,

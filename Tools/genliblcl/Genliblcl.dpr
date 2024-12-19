@@ -1195,7 +1195,7 @@ var
          Result := true
        else if (o.Equals('TDateTimePicker')) and (m.Equals('DragCursor') or m.Equals('DragKind') or
          m.Equals('DragMode') or m.Equals('OnDragDrop') or m.Equals('OnDragOver') or m.Equals('OnEndDock') or
-         m.Equals('OnStartDock')) then
+         m.Equals('OnStartDock') or m.Equals('OnStartDrag')) then
           Result := true
        else if (o.Equals('TTabSheet')) and (m.Equals('DragMode')) then
           Result := true
@@ -1211,7 +1211,7 @@ var
        else if o.Equals('TDragDockObject') and m.Equals('Brush') then
          Result := true
 
-       else if (o.Equals('TDateTimePicker') ) and (m.Equals('OnEndDrag')) then
+       else if (o.Equals('TDateTimePicker') ) and (m.Equals('OnEndDrag') or m.Equals('OnStartDrag')) then
          Result := true
        else if (o.Equals('TBitBtn')) and (m.Equals('DragCursor') or m.Equals('DragKind') or m.Equals('DragMode') or
          m.Equals('Style') or m.Equals('WordWrap') or m.Equals('OnEndDock') or m.Equals('OnStartDock')) then
@@ -1281,6 +1281,8 @@ var
          Result := True
        else if o.Equals('TClipboard') and (m.Equals('HasFormat') or m.Equals('GetAsHtml') or m.Equals('AsText') or m.Equals('GetTextBuf')) then
          Result := True
+       else if o.Equals('TNotebook') and (m.Equals('FindChildControl')) then
+         Result := True;
 
 //       else if (o.Equals('TStrings') or o.Equals('TStringList')) and (m.Equals('Equals')) then
 //         Result := True
@@ -3716,6 +3718,8 @@ begin
 
 
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TXButton);
+    MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TNotebook);
+    MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPage);
 
     // 新的东西
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TAnchorSide, True, True);
@@ -3805,8 +3809,8 @@ begin
 //    end;
 
 //      Writeln('LDelphiUnitFile.Count=', LDelphiUnitFile.Count);
-      for LExportI := 1 to 4 do
-         RepaceAndSaveExportPas(LExportTplText, LExportI, 4);
+      for LExportI := 1 to 5 do
+         RepaceAndSaveExportPas(LExportTplText, LExportI, 5);
 
     // 通过模板输出导出单元
     // 目前就只有2个

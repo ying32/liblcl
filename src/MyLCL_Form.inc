@@ -311,6 +311,14 @@ begin
 end;
 
 //CLASSMETHOD:
+procedure Form_BeginDrag(AObj: TGoForm; Immediate: LongBool; Threshold: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.BeginDrag(Immediate, Threshold);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure Form_BringToFront(AObj: TGoForm); extdecl;
 begin
   handleExceptionBegin
@@ -344,6 +352,14 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Dragging;
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+procedure Form_EndDrag(AObj: TGoForm; Drop: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.EndDrag(Drop);
   handleExceptionEnd
 end;
 
@@ -2161,10 +2177,12 @@ exports
   Form_ScrollBy,
   Form_SetBounds,
   Form_Update,
+  Form_BeginDrag,
   Form_BringToFront,
   Form_ClientToScreen,
   Form_ClientToParent,
   Form_Dragging,
+  Form_EndDrag,
   Form_HasParent,
   Form_Perform,
   Form_Refresh,
