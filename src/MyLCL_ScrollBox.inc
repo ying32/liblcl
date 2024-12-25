@@ -1030,6 +1030,14 @@ begin
 end;
 
 //EVENT_TYPE:TEndDragEvent
+procedure ScrollBox_SetOnEndDock(AObj: TScrollBox; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTEndDragEvent}
+  {$DEFINE EventName := OnEndDock}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TEndDragEvent
 procedure ScrollBox_SetOnEndDrag(AObj: TScrollBox; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := OnTEndDragEvent}
@@ -1130,6 +1138,14 @@ procedure ScrollBox_SetOnResize(AObj: TScrollBox; AEventData: Pointer); extdecl;
 begin
   {$DEFINE EventMethodName := OnTNotifyEvent}
   {$DEFINE EventName := OnResize}
+  EventMethodCode
+end;
+
+//EVENT_TYPE:TStartDockEvent
+procedure ScrollBox_SetOnStartDock(AObj: TScrollBox; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTStartDockEvent}
+  {$DEFINE EventName := OnStartDock}
   EventMethodCode
 end;
 
@@ -1800,6 +1816,7 @@ exports
   ScrollBox_SetOnDockDrop,
   ScrollBox_SetOnDragDrop,
   ScrollBox_SetOnDragOver,
+  ScrollBox_SetOnEndDock,
   ScrollBox_SetOnEndDrag,
   ScrollBox_SetOnEnter,
   ScrollBox_SetOnExit,
@@ -1813,6 +1830,7 @@ exports
   ScrollBox_SetOnMouseWheelDown,
   ScrollBox_SetOnMouseWheelUp,
   ScrollBox_SetOnResize,
+  ScrollBox_SetOnStartDock,
   ScrollBox_SetOnUnDock,
   ScrollBox_SetOnAlignPosition,
   ScrollBox_GetHorzScrollBar,

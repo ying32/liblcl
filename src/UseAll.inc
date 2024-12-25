@@ -59,4 +59,5 @@
   uRichEdit,
   uGauge,
   LResources,
-  CustApp
+  CustApp,
+  ButtonPanel

@@ -1702,3 +1702,12 @@ EndDrag
 ActivePageComponent
 Page
 ShowControl
+
+//2024/12/25
+ShowBevel
+ShowGlyphs
+ButtonOrder
+CancelButton
+CloseButton
+HelpButton
+OKButton

@@ -38,6 +38,8 @@
 {$I MyLCL_XButton.inc}  //BASECLASS:TControl
 {$I MyLCL_Notebook.inc}  //BASECLASS:TWinControl
 {$I MyLCL_Page.inc}  //BASECLASS:TWinControl
+{$I MyLCL_ButtonPanel.inc}  //BASECLASS:TWinControl
+{$I MyLCL_PanelBitBtn.inc}  //BASECLASS:TWinControl
 {$I MyLCL_AnchorSide.inc}  //BASECLASS:TObject
 {$I MyLCL_ControlBorderSpacing.inc}  //BASECLASS:TObject
 {$I MyLCL_ControlChildSizing.inc}  //BASECLASS:TObject

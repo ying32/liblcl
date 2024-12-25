@@ -2476,6 +2476,146 @@ type
     property TabStop;
   end;
 
+
+type
+  TButtonOrder  = (boDefault, boCloseCancelOK, boCloseOKCancel);
+  TPanelButtonEx  = (pbOK, pbCancel, pbClose, pbHelp, pbNone);
+  TPanelButton  = pbOK..pbHelp;
+  TPanelButtons = set of TPanelButton;
+
+const
+  DefShowButtons = [pbOK, pbCancel, pbClose, pbHelp];
+  DefShowGlyphs = [pbOK, pbCancel, pbClose, pbHelp];
+
+type
+
+  { TPanelBitBtn }
+
+  TPanelBitBtn = class(TBitBtn)
+  public
+    constructor Create(AOwner: TComponent); override;
+  published
+    // Caption is stored only if DefaultCaption = false
+    property Caption;// stored IsCaptionStored;
+    property DefaultCaption stored True;
+    property Left stored False;
+    property Top stored False;
+    property Width stored False;
+    property Height stored False;
+    property Enabled;
+    property Font;
+    property Glyph;
+    property Name stored True;
+    property PopupMenu;
+    property ShowHint;
+    property OnClick;
+  end;
+
+  { TCustomButtonPanel }
+
+  TCustomButtonPanel = class(TCustomPanel)
+  private
+    FShowBevel: Boolean;
+    FShowButtons: TPanelButtons;
+    FShowGlyphs: TPanelButtons;
+    FBevel: TBevel;
+    FButtons: array[TPanelButton] of TPanelBitBtn;
+    FButtonsWidth: Integer;
+    FButtonsHeight: Integer;
+    FButtonOrder: TButtonOrder;
+    FDefaultButton: TPanelButtonEx;
+    FSpacing: TSpacingSize;
+    procedure CreateButton(AButton: TPanelButton);
+    procedure DoDefaultButton;
+    procedure DoShowButtons;
+    procedure DoShowGlyphs;
+    procedure SetButtonOrder(Value: TButtonOrder);
+    procedure SetDefaultButton(Value: TPanelButtonEx);
+    procedure SetShowBevel(AValue: Boolean);
+    procedure SetShowButtons(Value: TPanelButtons);
+    procedure SetShowGlyphs(Value: TPanelButtons);
+    procedure SetSpacing(AValue: TSpacingSize);
+    procedure UpdateBevel;
+    procedure UpdateButtonOrder;
+    procedure UpdateSizes;
+    procedure UpdateButtonLayout;
+    procedure UpdateButtonSize;
+    function IsLastButton(AControl: TControl): boolean;
+  protected
+//    function CreateControlBorderSpacing: TControlBorderSpacing; override;
+//    function CustomAlignInsertBefore(AControl1, AControl2: TControl): Boolean; override;
+//    procedure CustomAlignPosition(AControl: TControl; var ANewLeft, ANewTop,
+//      ANewWidth, ANewHeight: Integer; var AlignRect: TRect;
+//      AlignInfo: TAlignInfo); override;
+//    procedure CalculatePreferredSize(var PreferredWidth,
+//      PreferredHeight: integer; WithThemeSpace: Boolean); override;
+//    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
+//    procedure SetAlign(Value: TAlign); override;
+//    procedure CMAppShowBtnGlyphChanged(var Message: TLMessage); message CM_APPSHOWBTNGLYPHCHANGED;
+//    procedure CMShowingChanged(var Message: TLMessage); message CM_SHOWINGCHANGED;
+  public
+    constructor Create(AOwner: TComponent); override;
+
+    property Align default alBottom;
+    property AutoSize default True;
+
+    property OKButton: TPanelBitBtn read FButtons[pbOK] default nil;
+    property HelpButton: TPanelBitBtn read FButtons[pbHelp] default nil;
+    property CloseButton: TPanelBitBtn read FButtons[pbClose] default nil;
+    property CancelButton: TPanelBitBtn read FButtons[pbCancel] default nil;
+    property ButtonOrder: TButtonOrder read FButtonOrder write SetButtonOrder default boDefault;
+
+    property DefaultButton: TPanelButtonEx read FDefaultButton write SetDefaultButton default pbOK;
+    property ShowButtons: TPanelButtons read FShowButtons write SetShowButtons default DefShowButtons;
+    property ShowGlyphs: TPanelButtons read FShowGlyphs write SetShowGlyphs default DefShowGlyphs;
+    property ShowBevel: Boolean read FShowBevel write SetShowBevel default True;
+    property Spacing: TSpacingSize read FSpacing write SetSpacing default 6;
+  published
+  end;
+
+  { TButtonPanel }
+
+  TButtonPanel = class(TCustomButtonPanel)
+  published
+    property Align;
+    property Anchors;
+    property AutoSize;
+    //property BorderSpacing;
+    property Constraints;
+    property Enabled;
+    property OKButton;
+    property HelpButton;
+    property CloseButton;
+    property CancelButton;
+    property Color;
+    property ButtonOrder;
+    property TabOrder;
+    property DefaultButton;
+    property Spacing;
+    property OnClick;
+    property OnDblClick;
+    property OnDragDrop;
+    property OnEnter;
+    property OnExit;
+    property OnKeyDown;
+    property OnKeyPress;
+    property OnKeyUp;
+    property OnMouseDown;
+    property OnMouseEnter;
+    property OnMouseLeave;
+    property OnMouseMove;
+    property OnMouseUp;
+    property OnMouseWheel;
+    property OnMouseWheelDown;
+    property OnMouseWheelUp;
+    property OnResize;
+    //property OnUTF8KeyPress;
+    property ShowButtons;
+    property ShowGlyphs;
+    property ShowBevel;
+    property Visible;
+  end;
+
 procedure AddControlDefaultMethodsRtti(AC: TClass; var ADest: TArray<TRttiMethod>);
 procedure AddControlDefaultPropsRtti(AC: TClass; var ADest: TArray<TRttiProperty>);
 procedure AddControlDefaultIndexPropsRtti(AC: TClass; var ADest: TArray<TRttiIndexedProperty>);
@@ -5779,6 +5919,102 @@ begin
 end;
 
 
+
+{ TCustomButtonPanel }
+
+constructor TCustomButtonPanel.Create(AOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+procedure TCustomButtonPanel.CreateButton(AButton: TPanelButton);
+begin
+
+end;
+
+procedure TCustomButtonPanel.DoDefaultButton;
+begin
+
+end;
+
+procedure TCustomButtonPanel.DoShowButtons;
+begin
+
+end;
+
+procedure TCustomButtonPanel.DoShowGlyphs;
+begin
+
+end;
+
+function TCustomButtonPanel.IsLastButton(AControl: TControl): boolean;
+begin
+
+end;
+
+procedure TCustomButtonPanel.SetButtonOrder(Value: TButtonOrder);
+begin
+
+end;
+
+procedure TCustomButtonPanel.SetDefaultButton(Value: TPanelButtonEx);
+begin
+
+end;
+
+procedure TCustomButtonPanel.SetShowBevel(AValue: Boolean);
+begin
+
+end;
+
+procedure TCustomButtonPanel.SetShowButtons(Value: TPanelButtons);
+begin
+
+end;
+
+procedure TCustomButtonPanel.SetShowGlyphs(Value: TPanelButtons);
+begin
+
+end;
+
+procedure TCustomButtonPanel.SetSpacing(AValue: TSpacingSize);
+begin
+
+end;
+
+procedure TCustomButtonPanel.UpdateBevel;
+begin
+
+end;
+
+procedure TCustomButtonPanel.UpdateButtonLayout;
+begin
+
+end;
+
+procedure TCustomButtonPanel.UpdateButtonOrder;
+begin
+
+end;
+
+procedure TCustomButtonPanel.UpdateButtonSize;
+begin
+
+end;
+
+procedure TCustomButtonPanel.UpdateSizes;
+begin
+
+end;
+
+{ TPanelBitBtn }
+
+constructor TPanelBitBtn.Create(AOwner: TComponent);
+begin
+  inherited;
+
+end;
 
 initialization
   InitDefaultControlRtti;

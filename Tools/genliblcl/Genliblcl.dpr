@@ -1179,11 +1179,13 @@ var
                 o.Equals('TColorListBox') or o.Equals('TTrackBar') or o.Equals('TProgressBar') or
                 o.Equals('TDateTimePicker') or o.Equals('TTreeView')or o.Equals('TToolBar') or
                 o.Equals('TPaintBox') or o.Equals('TScrollBar') or o.Equals('TShape') or
-                o.Equals('TScrollBox') or o.Equals('TCheckListBox') or o.Equals('TRichEdit') ) and
+                o.Equals('TScroPanelBitBtnllBox') or o.Equals('TCheckListBox') or o.Equals('TRichEdit') or
+                o.Equals('TButtonPanel') or o.Equals('TPanelBitBtn') ) and
 
                (m.Equals('OnEndDock') or m.Equals('OnStartDock')) then
          Result := true
-       else if (o.Equals('TImage') or o.Equals('TRadioGroup')) and (m.Equals('OnContextPopup')) then
+       else if (o.Equals('TImage') or o.Equals('TRadioGroup') or o.Equals('TButtonPanel')
+         or o.Equals('TPanelBitBtn')) and (m.Equals('OnContextPopup')) then
           Result := true
        else if o.Equals('TLinkLabel') and (m.Equals('DockSite') or m.Equals('UseDockManager')  or
                (m.Equals('ContainsControl') or m.Equals('ControlAtPos') or m.Equals('DisableAlign') or
@@ -1252,7 +1254,8 @@ var
           Result := True
        else if o.Equals('TToolBar') and m.Equals('OnCustomDraw') then
          Result := True
-       else if (o.Equals('TSpinEdit') or o.Equals('TFloatSpinEdit')) and (m.Equals('DragCursor') or m.Equals('DragMode') or
+       else if (o.Equals('TSpinEdit') or o.Equals('TFloatSpinEdit') or
+         o.Equals('TPanelBitBtn') or o.Equals('TButtonPanel')) and (m.Equals('DragCursor') or m.Equals('DragMode') or
          m.Equals('EditorEnabled') or m.Equals('OnDblClick') or m.Equals('OnDragDrop') or m.Equals('OnDragOver') or
          m.Equals('OnEndDrag') or m.Equals('Button')) then
          Result := True
@@ -1282,7 +1285,14 @@ var
        else if o.Equals('TClipboard') and (m.Equals('HasFormat') or m.Equals('GetAsHtml') or m.Equals('AsText') or m.Equals('GetTextBuf')) then
          Result := True
        else if o.Equals('TNotebook') and (m.Equals('FindChildControl')) then
-         Result := True;
+         Result := True
+       else if O.Equals('TPanelBitBtn') and (m.Equals('DragCursor') or m.Equals('DragKind') or m.Equals('DragMode')
+         or m.Equals('ParentFont') or m.Equals('ParentShowHint') or m.Equals('Style') or m.Equals('WordWrap') or
+          m.Equals('OnMouseDown') or m.Equals('OnMouseEnter') or m.Equals('OnMouseLeave') or
+          m.Equals('OnMouseUp') or m.Equals('OnMouseMove')) then
+         Result := True
+       //else if o.Equals('TButtonPanel') and (m.Equals('')) then
+
 
 //       else if (o.Equals('TStrings') or o.Equals('TStringList')) and (m.Equals('Equals')) then
 //         Result := True
@@ -3720,6 +3730,9 @@ begin
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TXButton);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TNotebook);
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPage);
+
+    MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TButtonPanel);
+    MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TPanelBitBtn);
 
     // 新的东西
     MakeObjIncFile(LGoHeaderFile, LDelphiUnitFile, LPath, TAnchorSide, True, True);
