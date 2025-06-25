@@ -199,6 +199,8 @@ type
     procedure OnTWndProcEvent(Sender: TObject; var TheMessage: TLMessage);
 
     procedure OnTStartDragEvent(Sender: TObject; var DragObject: TDragObject);
+
+    procedure OnTDrawPanelEvent(StatusBar: TStatusBar; Panel: TStatusPanel; const Rect: TRect);
   public
     // thread sync
     class procedure ThreadProc;
@@ -959,6 +961,12 @@ procedure TLCLEvent.OnTStartDragEvent(Sender: TObject;
   var DragObject: TDragObject);
 begin
  SendEvent([Sender, @DragObject]);
+end;
+
+procedure TLCLEvent.OnTDrawPanelEvent(StatusBar: TStatusBar;
+  Panel: TStatusPanel; const Rect: TRect);
+begin
+ SendEvent([StatusBar, Panel, @Rect]);
 end;
 
 

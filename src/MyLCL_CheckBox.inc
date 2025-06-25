@@ -598,6 +598,21 @@ begin
   handleExceptionEnd
 end;
 
+function CheckBox_GetAutoSize(AObj: TCheckBox): LongBool; extdecl;
+begin
+{$ifdef UsehandleException}Result := False;{$endif}
+  handleExceptionBegin
+  Result :=  AObj.AutoSize;
+  handleExceptionEnd
+end;
+
+procedure CheckBox_SetAutoSize(AObj: TCheckBox; AValue: LongBool); extdecl;
+begin
+  handleExceptionBegin
+  AObj.AutoSize := AValue;
+  handleExceptionEnd
+end;
+
 //EVENT_TYPE:TNotifyEvent
 procedure CheckBox_SetOnChange(AObj: TCheckBox; AEventData: Pointer); extdecl;
 begin
@@ -1680,6 +1695,8 @@ exports
   CheckBox_AutoAdjustLayout,
   CheckBox_FixDesignFontsPPI,
   CheckBox_ScaleFontsPPI,
+  CheckBox_GetAutoSize,
+  CheckBox_SetAutoSize,
   CheckBox_SetOnChange,
   CheckBox_GetAction,
   CheckBox_SetAction,

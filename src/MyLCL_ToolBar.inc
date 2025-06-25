@@ -598,6 +598,21 @@ begin
   handleExceptionEnd
 end;
 
+function ToolBar_GetImagesWidth(AObj: TToolBar): Integer; extdecl;
+begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.ImagesWidth;
+  handleExceptionEnd
+end;
+
+procedure ToolBar_SetImagesWidth(AObj: TToolBar; AValue: Integer); extdecl;
+begin
+  handleExceptionBegin
+  AObj.ImagesWidth := AValue;
+  handleExceptionEnd
+end;
+
 function ToolBar_GetButtonCount(AObj: TToolBar): Integer; extdecl;
 begin
 {$ifdef UsehandleException}Result := Integer(0);{$endif}
@@ -1877,6 +1892,8 @@ exports
   ToolBar_AutoAdjustLayout,
   ToolBar_FixDesignFontsPPI,
   ToolBar_ScaleFontsPPI,
+  ToolBar_GetImagesWidth,
+  ToolBar_SetImagesWidth,
   ToolBar_GetButtonCount,
   ToolBar_GetCanvas,
   ToolBar_GetRowCount,

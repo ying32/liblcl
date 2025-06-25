@@ -1092,6 +1092,14 @@ begin
   EventMethodCode
 end;
 
+//EVENT_TYPE:TDrawPanelEvent
+procedure StatusBar_SetOnDrawPanel(AObj: TStatusBar; AEventData: Pointer); extdecl;
+begin
+  {$DEFINE EventMethodName := OnTDrawPanelEvent}
+  {$DEFINE EventName := OnDrawPanel}
+  EventMethodCode
+end;
+
 //EVENT_TYPE:TNotifyEvent
 procedure StatusBar_SetOnResize(AObj: TStatusBar; AEventData: Pointer); extdecl;
 begin
@@ -1775,6 +1783,7 @@ exports
   StatusBar_SetOnMouseLeave,
   StatusBar_SetOnMouseMove,
   StatusBar_SetOnMouseUp,
+  StatusBar_SetOnDrawPanel,
   StatusBar_SetOnResize,
   StatusBar_SetOnStartDock,
   StatusBar_GetCanvas,

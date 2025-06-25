@@ -1321,7 +1321,10 @@ type
   TCheckBox = class(Vcl.StdCtrls.TCheckBox)
   private
     FOnChange: TNotifyEvent;
+    function GetAutoSize: Boolean;
+    procedure SetAutoSize(const Value: Boolean);
   published
+    property AutoSize: Boolean read GetAutoSize write SetAutoSize;
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
   end;
 
@@ -2615,6 +2618,16 @@ type
     property ShowBevel;
     property Visible;
   end;
+
+
+  TToolBar = class(Vcl.ComCtrls.TToolBar)
+  private
+    FImagesWidth: Integer;
+    procedure SetImagesWidth(const Value: Integer);
+  published
+    property ImagesWidth: Integer read FImagesWidth write SetImagesWidth default 0;
+  end;
+
 
 procedure AddControlDefaultMethodsRtti(AC: TClass; var ADest: TArray<TRttiMethod>);
 procedure AddControlDefaultPropsRtti(AC: TClass; var ADest: TArray<TRttiProperty>);
@@ -6014,6 +6027,25 @@ constructor TPanelBitBtn.Create(AOwner: TComponent);
 begin
   inherited;
 
+end;
+
+{ TCheckBox }
+
+function TCheckBox.GetAutoSize: Boolean;
+begin
+
+end;
+
+procedure TCheckBox.SetAutoSize(const Value: Boolean);
+begin
+
+end;
+
+{ TToolBar }
+
+procedure TToolBar.SetImagesWidth(const Value: Integer);
+begin
+  FImagesWidth := Value;
 end;
 
 initialization
