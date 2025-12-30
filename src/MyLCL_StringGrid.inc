@@ -1530,7 +1530,7 @@ function StringGrid_GetTitleImageList(AObj: TStringGrid): TImageList; extdecl;
 begin
 {$ifdef UsehandleException}Result := nil;{$endif}
   handleExceptionBegin
-  Result :=  AObj.TitleImageList;
+  Result :=  AObj.TitleImageList as TImageList;
   handleExceptionEnd
 end;
 

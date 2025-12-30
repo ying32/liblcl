@@ -72,3 +72,5 @@ lib
 .idea
 *.res
 *.skincfg
+MSHTML.pas
+/bin/x86_64-win64

@@ -16,7 +16,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
-  Controls, Forms, ActiveX, Menus, ComObj, MSHTML, WebJSExternal_TLB;
+  Controls, Forms, ActiveX, Menus, ComObj, {MSHTML,} WebJSExternal_TLB;
 
 const
 
@@ -67,7 +67,55 @@ type
   TWebWindowClosingEvent = procedure(Sender: TObject; AIsChildWindow: Boolean; var ACancel: Boolean) of object;
   TWebJSExternalEvent = procedure(Sender: TObject; const AFunc: string; const AArgs: string; var ARetval: string) of object;
 
-  
+
+// *********************************************************************//
+// Interface: IHTMLFramesCollection2
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {332C4426-26CB-11D0-B483-00C04FD90119}
+// *********************************************************************//
+  IHTMLFramesCollection2 = interface(IDispatch)
+    ['{332C4426-26CB-11D0-B483-00C04FD90119}']
+    function item(const pvarIndex: OleVariant): OleVariant; safecall;
+    function Get_length: Integer; safecall;
+    property length: Integer read Get_length;
+  end;
+
+// *********************************************************************//
+// Interface: IHTMLWindow2
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {332C4427-26CB-11D0-B483-00C04FD90119}
+// *********************************************************************//
+  IHTMLWindow2 = interface(IHTMLFramesCollection2)
+    ['{332C4427-26CB-11D0-B483-00C04FD90119}']
+
+    function execScript(const code: WideString; const language: WideString): OleVariant; safecall;
+  end;
+
+
+// *********************************************************************//
+// Interface: IHTMLDocument
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {626FC520-A41E-11CF-A731-00A0C9082637}
+// *********************************************************************//
+  IHTMLDocument = interface(IDispatch)
+    ['{626FC520-A41E-11CF-A731-00A0C9082637}']
+    function Get_Script: IDispatch; safecall;
+    property Script: IDispatch read Get_Script;
+  end;
+
+// *********************************************************************//
+// Interface: IHTMLDocument2
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {332C4425-26CB-11D0-B483-00C04FD90119}
+// *********************************************************************//
+  IHTMLDocument2 = interface(IHTMLDocument)
+    ['{332C4425-26CB-11D0-B483-00C04FD90119}']
+    function Get_parentWindow: IHTMLWindow2; safecall;
+
+    property parentWindow: IHTMLWindow2 read Get_parentWindow;
+  end;
+
+
 // *********************************************************************//
 // Interface: IWebBrowser
 // Flags:     (4432) Hidden Dual OleAutomation Dispatchable

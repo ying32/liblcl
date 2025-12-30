@@ -82,6 +82,24 @@ begin
 end;
 
 //CLASSMETHOD:
+function StringList_IndexOfName(AObj: TStringList; Name: PChar): Integer; extdecl;
+begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.IndexOfName(Name);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
+function StringList_IndexOfObject(AObj: TStringList; AObject: TObject): Integer; extdecl;
+begin
+{$ifdef UsehandleException}Result := Integer(0);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.IndexOfObject(AObject);
+  handleExceptionEnd
+end;
+
+//CLASSMETHOD:
 procedure StringList_Insert(AObj: TStringList; Index: Integer; S: PChar); extdecl;
 begin
   handleExceptionBegin
@@ -127,24 +145,6 @@ begin
 {$ifdef UsehandleException}Result := False;{$endif}
   handleExceptionBegin
   Result :=  AObj.Equals(Strings);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-function StringList_IndexOfName(AObj: TStringList; Name: PChar): Integer; extdecl;
-begin
-{$ifdef UsehandleException}Result := Integer(0);{$endif}
-  handleExceptionBegin
-  Result :=  AObj.IndexOfName(Name);
-  handleExceptionEnd
-end;
-
-//CLASSMETHOD:
-function StringList_IndexOfObject(AObj: TStringList; AObject: TObject): Integer; extdecl;
-begin
-{$ifdef UsehandleException}Result := Integer(0);{$endif}
-  handleExceptionBegin
-  Result :=  AObj.IndexOfObject(AObject);
   handleExceptionEnd
 end;
 
@@ -440,14 +440,14 @@ exports
   StringList_Delete,
   StringList_Exchange,
   StringList_IndexOf,
+  StringList_IndexOfName,
+  StringList_IndexOfObject,
   StringList_Insert,
   StringList_InsertObject,
   StringList_Append,
   StringList_BeginUpdate,
   StringList_EndUpdate,
   StringList_Equals,
-  StringList_IndexOfName,
-  StringList_IndexOfObject,
   StringList_LoadFromFile,
   StringList_LoadFromStream,
   StringList_Move,

@@ -13,7 +13,6 @@ use lclapi::*;
 use types::*;
 use fns::ToRustString;
 ##
-use std::borrow::Cow;
 use std::ffi::CString;
 use std::mem::{transmute};
 ##
@@ -158,9 +157,6 @@ impl {{$className}} {
 				  {{else}}
 				      {{$buff.Write $mm.RealName}}
 				  {{end}}
-                  {{if eq $mm.Return "string"}}
-                      {{$buff.Write "<'a>"}}
-                  {{end}}
 				  
 				  {{if $mm.IsSetEvent}}
 				      {{$buff.Write "<T,T2>"}}
@@ -201,7 +197,7 @@ impl {{$className}} {
                   {{if not (isEmpty $mm.Return)}}
                       {{$buff.Write " -> "}}
                       {{if eq $mm.Return "string"}}
-                          {{$buff.Write "Cow<'a, str>"}}
+                          {{$buff.Write "String"}}
                       {{else}}
                           {{covType2 $mm.Return|$buff.Write}}
                       {{end}}

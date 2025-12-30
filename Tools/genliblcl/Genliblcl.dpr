@@ -933,7 +933,7 @@ var
         begin
           if AType.Name.Contains('.') then
           begin
-            LArr := AType.Name.Split(['.'], ExcludeEmpty);
+            LArr := AType.Name.Split(['.'], TStringSplitOptions.ExcludeEmpty);
             Result := LArr[High(LArr)];
           end
           else

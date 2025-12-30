@@ -13,12 +13,11 @@
 
 ##
 use lclapi;
-use std::borrow::Cow;
 use std::ffi::{CStr, CString};
 use types::*;
 use vcl::{TControl, TWinControl, IObject, IComponent, IStrings, IStream, TClipboard};
 ##
-pub fn GetFPStringArrayMember{{html "<'a>"}}(ptr: usize, index: isize) -> Cow{{html "<'a, str>"}} {
+pub fn GetFPStringArrayMember(ptr: usize, index: isize) -> String {
     return {{$toRustStr}}(unsafe { lclapi::DGetStringArrOf(ptr, index) });
 }
 ##
@@ -49,30 +48,30 @@ pub fn GdkWindow_GetXId(AW: PGdkWindow) -> TXId {
     return result;
 }
 ##
-pub fn SelectDirectory{{html "<'a>"}}(Options: TSelectDirOpts, HelpCtx: i32) -> (bool, {{html "Cow<'a, str>"}}) {
+pub fn SelectDirectory(Options: TSelectDirOpts, HelpCtx: i32) -> (bool, String) {
     let mut cstr = to_CString!("");
     let result = unsafe { lclapi::DSelectDirectory1(&mut cstr, Options, HelpCtx) };
     return (result, {{$toRustStr}}(cstr), );
 }
 ##
-pub fn SelectDirectory2{{html "<'a>"}}(Caption: &str, Root: &str, AShowHidden: bool) -> (bool, {{html "Cow<'a, str>"}}) {
+pub fn SelectDirectory2(Caption: &str, Root: &str, AShowHidden: bool) -> (bool, String) {
     let mut cstr = to_CString!("");
     let result = unsafe { lclapi::DSelectDirectory2(to_CString!(Caption), to_CString!(Root), AShowHidden, &mut cstr) };
     return (result, {{$toRustStr}}(cstr), );
 }
 ##
-pub fn InputQuery{{html "<'a>"}}(ACaption: &str, APrompt: &str, Value: &str)-> (bool, {{html "Cow<'a, str>"}}) {
+pub fn InputQuery(ACaption: &str, APrompt: &str, Value: &str)-> (bool, String) {
     let mut cstr = to_CString!("");
     let result = unsafe { lclapi::DInputQuery(to_CString!(ACaption), to_CString!(APrompt), to_CString!(Value), &mut cstr) };
     return (result, {{$toRustStr}}(cstr), );
 }
 ##
 
-pub fn {{$toRustStr}}{{html "<'a>"}}(s: *const i8) -> {{html "Cow<'a, str>"}} {
+pub fn {{$toRustStr}}(s: *const i8) -> String {
     if s == 0 as *const i8 {
-        return Cow::Owned(String::from(""));
+        return "".to_string();
     }
-    return unsafe { CStr::from_ptr(s).to_string_lossy() };
+    return unsafe { CStr::from_ptr(s).to_str().unwrap_or_default().to_string() };
 }
 ##
 #[inline]

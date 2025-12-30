@@ -654,6 +654,21 @@ begin
   handleExceptionEnd
 end;
 
+function SpinEdit_GetAlign(AObj: TSpinEdit): TAlign; extdecl;
+begin
+{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
+  handleExceptionBegin
+  Result :=  AObj.Align;
+  handleExceptionEnd
+end;
+
+procedure SpinEdit_SetAlign(AObj: TSpinEdit; AValue: TAlign); extdecl;
+begin
+  handleExceptionBegin
+  AObj.Align := AValue;
+  handleExceptionEnd
+end;
+
 function SpinEdit_GetAnchors(AObj: TSpinEdit): TAnchors; extdecl;
 begin
 {$ifdef UsehandleException}Result := [];{$endif}
@@ -1308,21 +1323,6 @@ begin
   handleExceptionEnd
 end;
 
-function SpinEdit_GetAlign(AObj: TSpinEdit): TAlign; extdecl;
-begin
-{$ifdef UsehandleException}Result := Low(TAlign);{$endif}
-  handleExceptionBegin
-  Result :=  AObj.Align;
-  handleExceptionEnd
-end;
-
-procedure SpinEdit_SetAlign(AObj: TSpinEdit; AValue: TAlign); extdecl;
-begin
-  handleExceptionBegin
-  AObj.Align := AValue;
-  handleExceptionEnd
-end;
-
 function SpinEdit_GetBiDiMode(AObj: TSpinEdit): TBiDiMode; extdecl;
 begin
 {$ifdef UsehandleException}Result := Low(TBiDiMode);{$endif}
@@ -1808,6 +1808,8 @@ exports
   SpinEdit_AutoAdjustLayout,
   SpinEdit_FixDesignFontsPPI,
   SpinEdit_ScaleFontsPPI,
+  SpinEdit_GetAlign,
+  SpinEdit_SetAlign,
   SpinEdit_GetAnchors,
   SpinEdit_SetAnchors,
   SpinEdit_GetAutoSelect,
@@ -1894,8 +1896,6 @@ exports
   SpinEdit_SetUseDockManager,
   SpinEdit_GetAction,
   SpinEdit_SetAction,
-  SpinEdit_GetAlign,
-  SpinEdit_SetAlign,
   SpinEdit_GetBiDiMode,
   SpinEdit_SetBiDiMode,
   SpinEdit_GetBoundsRect,
